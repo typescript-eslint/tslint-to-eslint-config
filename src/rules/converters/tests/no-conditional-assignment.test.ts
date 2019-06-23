@@ -1,0 +1,17 @@
+import { convertNoConditionalAssignment } from "../no-conditional-assignment";
+
+describe(convertNoConditionalAssignment, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoConditionalAssignment({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "no-cond-assign",
+                },
+            ],
+        });
+    });
+});

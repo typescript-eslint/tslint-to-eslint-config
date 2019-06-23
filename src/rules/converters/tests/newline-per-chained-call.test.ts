@@ -1,0 +1,17 @@
+import { convertNewlinePerChainedCall } from "../newline-per-chained-call";
+
+describe(convertNewlinePerChainedCall, () => {
+    test("conversion without arguments", () => {
+        const result = convertNewlinePerChainedCall({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "newline-per-chained-call",
+                },
+            ],
+        });
+    });
+});

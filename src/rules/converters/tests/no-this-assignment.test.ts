@@ -1,0 +1,17 @@
+import { convertNoThisAssignment } from "../no-this-assignment";
+
+describe(convertNoThisAssignment, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoThisAssignment({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/no-this-alias",
+                },
+            ],
+        });
+    });
+});

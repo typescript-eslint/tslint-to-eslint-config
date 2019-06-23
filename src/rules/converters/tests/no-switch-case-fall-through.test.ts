@@ -1,0 +1,17 @@
+import { convertNoSwitchCaseFallThrough } from "../no-switch-case-fall-through";
+
+describe(convertNoSwitchCaseFallThrough, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoSwitchCaseFallThrough({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "no-fallthrough",
+                },
+            ],
+        });
+    });
+});

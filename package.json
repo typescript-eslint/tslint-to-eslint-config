@@ -1,0 +1,36 @@
+{
+    "author": "Josh Goldberg <me@joshuakgoldberg.com>",
+    "bin": {
+        "tslint-to-eslint-config": "bin/tslint-to-eslint-config"
+    },
+    "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
+    "dependencies": {
+        "chalk": "^2.4.2",
+        "commander": "^2.19.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^24.0.15",
+        "@types/node": "^12.0.10",
+        "husky": "^2.4.1",
+        "jest": "^24.8.0",
+        "lint-staged": "^8.2.0",
+        "prettier": "^1.18.2",
+        "ts-jest": "^24.0.2",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.2"
+    },
+    "keywords": [
+        "eslint",
+        "tslint",
+        "lint",
+        "configuration"
+    ],
+    "license": "MIT",
+    "main": "index.js",
+    "name": "tslint-to-eslint-config",
+    "version": "0.1.0",
+    "scripts": {
+        "test": "jest",
+        "tsc": "tsc"
+    }
+}

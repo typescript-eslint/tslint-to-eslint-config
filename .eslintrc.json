@@ -1,0 +1,22 @@
+{
+    "plugins": [
+        "@typescript-eslint/tslint"
+    ],
+    "parserOptions": {
+        "project": "tsconfig.json"
+    },
+    "rules": {
+        "@typescript-eslint/tslint/config": [
+            "error",
+            {
+                "rules": {
+                    "sample-rule": [
+                        true,
+                        "one",
+                        "two"
+                    ]
+                }
+            }
+        ]
+    }
+}

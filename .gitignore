@@ -1,0 +1,7 @@
+*.tsbuildinfo
+*.d.ts
+*.log
+*.map
+coverage/
+node_modules/
+src/**/*.js
