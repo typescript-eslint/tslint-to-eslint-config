@@ -52,9 +52,7 @@ const logFailedConversions = (failed: ConversionError[], logger: ProcessLogger) 
         failed
             .map(
                 failed =>
-                    `${failed.tslintRule.ruleName} threw an error during conversion: ${
-                        failed.error.stack
-                    }.${EOL}`,
+                    `${failed.tslintRule.ruleName} threw an error during conversion: ${failed.error.stack}.${EOL}`,
             )
             .join(""),
     );

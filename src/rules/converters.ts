@@ -91,7 +91,7 @@ import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSwitchDefault } from "./converters/switch-default";
-import { convertTypedefWhitespace } from "./converters/type-annotation-spacing";
+import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
 import { convertTypeofCompare } from "./converters/typeof-compare";
 import { convertUnifiedSignatures } from "./converters/unified-signatures";

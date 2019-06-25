@@ -1,10 +1,10 @@
 import { createNewConfiguration } from "./creation/createNewConfiguration";
 import { FoundTSLintRules } from "./input/findTslintRules";
 import { ProcessLogger } from "./logger";
+import { reportConversionResults } from "./reportConversionResults";
 import { convertRules } from "./rules/convertRules";
-import { reportConversionResults } from "./reporting";
-import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "./types";
 import { converters } from "./rules/converters";
+import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "./types";
 
 export type RuleFinder = (config: string) => Promise<FoundTSLintRules | Error>;
 
