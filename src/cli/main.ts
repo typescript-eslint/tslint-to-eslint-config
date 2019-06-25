@@ -4,6 +4,7 @@ import { EOL } from "os";
 import { promisify } from "util";
 
 import { convertConfig } from "../convertConfig";
+import { createNewConfiguration } from "../creation/createNewConfiguration";
 import { findTslintRules } from "../input/findTslintRules";
 import { TSLintToESLintSettings } from "../types";
 import { runCli } from "./runCli";
@@ -23,7 +24,14 @@ const fileExists = (filePath: string) => Promise.resolve(fs.existsSync(filePath)
 
 const runtime = {
     convertConfig: (settings: TSLintToESLintSettings) =>
-        convertConfig(settings, logger, ruleFinder, fileExists),
+        convertConfig({
+            createNewConfiguration: configConversionResults =>
+                createNewConfiguration(configConversionResults, fs.promises.writeFile),
+            fileExists,
+            logger,
+            ruleFinder,
+            settings,
+        }),
     logger,
     ruleFinder,
 };

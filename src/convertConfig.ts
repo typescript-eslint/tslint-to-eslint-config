@@ -1,21 +1,31 @@
-import { createNewConfiguration } from "./creation/createNewConfiguration";
 import { FoundTSLintRules } from "./input/findTslintRules";
 import { ProcessLogger } from "./logger";
 import { reportConversionResults } from "./reportConversionResults";
-import { convertRules } from "./rules/convertRules";
+import { convertRules, ConfigConversionResults } from "./rules/convertRules";
 import { converters } from "./rules/converters";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "./types";
 
-export type RuleFinder = (config: string) => Promise<FoundTSLintRules | Error>;
+export type CreateNewConfiguration = (conversionResults: ConfigConversionResults) => Promise<void>;
 
 export type FileExists = (filePath: string) => Promise<boolean>;
 
-export const convertConfig = async (
-    settings: TSLintToESLintSettings,
-    logger: ProcessLogger,
-    ruleFinder: RuleFinder,
-    fileExists: FileExists,
-): Promise<TSLintToESLintResult> => {
+export type RuleFinder = (config: string) => Promise<FoundTSLintRules | Error>;
+
+export type ConvertConfigRequest = {
+    createNewConfiguration: CreateNewConfiguration;
+    fileExists: FileExists;
+    logger: ProcessLogger;
+    ruleFinder: RuleFinder;
+    settings: TSLintToESLintSettings;
+};
+
+export const convertConfig = async ({
+    createNewConfiguration,
+    fileExists,
+    logger,
+    ruleFinder,
+    settings,
+}: ConvertConfigRequest): Promise<TSLintToESLintResult> => {
     const { config = "./tslint.json" } = settings;
     if (!(await fileExists(config))) {
         return {
