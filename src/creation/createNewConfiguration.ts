@@ -1,9 +1,12 @@
-import * as fs from "fs";
-
 import { ConfigConversionResults } from "../rules/convertRules";
 import { formatConvertedRules } from "./formatConvertedRules";
 
-export const createNewConfiguration = async (conversionResults: ConfigConversionResults) => {
+export type WriteFile = (filePath: string, contents: string) => Promise<void>;
+
+export const createNewConfiguration = async (
+    conversionResults: ConfigConversionResults,
+    writeFile: WriteFile,
+) => {
     const output = {
         ...(conversionResults.missing.length && {
             plugins: ["@typescript-eslint/tslint"],
@@ -15,5 +18,5 @@ export const createNewConfiguration = async (conversionResults: ConfigConversion
         rules: formatConvertedRules(conversionResults),
     };
 
-    await fs.promises.writeFile(".eslintrc.json", JSON.stringify(output, undefined, 4));
+    await writeFile(".eslintrc.json", JSON.stringify(output, undefined, 4));
 };
