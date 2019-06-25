@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+    codecov: codecov/codecov@1.0.2
+
 jobs:
     build:
         docker:
@@ -70,6 +73,9 @@ jobs:
                   at: "."
 
             - run: npm run test --coverage
+
+            - codecov/upload:
+                  file: ./coverage/coverage-final.json
 
     tsc:
         docker:
