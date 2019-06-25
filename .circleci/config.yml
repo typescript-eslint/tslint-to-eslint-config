@@ -83,7 +83,7 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm run tsx
+            - run: npm run tsc
 
 workflows:
     version: 2
