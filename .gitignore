@@ -5,3 +5,6 @@
 coverage/
 node_modules/
 src/**/*.js
+
+# https://github.com/JoshuaKGoldberg/tslint-to-eslint-config/issues/9
+.eslintrc.json

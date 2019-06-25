@@ -1,0 +1,87 @@
+version: 2.1
+
+jobs:
+    build:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - restore_cache:
+                  keys:
+                      - dependency-cache-1-{{ checksum "package-lock.json" }}
+
+            - run: npm install
+
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: dependency-cache-1-{{ checksum "package-lock.json" }}
+
+            - persist_to_workspace:
+                  root: "."
+                  paths:
+                      - ./*
+                      - node_modules
+                      - package-lock.json
+                      - src
+
+    formatting:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run prettier
+
+    linting:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run eslint
+
+    tests:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run jest --coverage
+
+workflows:
+    version: 2
+    build_and_verify:
+        jobs:
+            - build
+            - formatting:
+                  requires:
+                      - build
+            - linting:
+                  requires:
+                      - build
+            - tests:
+                  requires:
+                      - build

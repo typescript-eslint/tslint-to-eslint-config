@@ -1,0 +1,32 @@
+module.exports = {
+    env: {
+        es6: true,
+        node: true,
+    },
+    extends: ["airbnb-base", "eslint-config-prettier", "plugin:@typescript-eslint/recommended"],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        project: "tsconfig.json",
+    },
+    plugins: ["@typescript-eslint"],
+    rules: {
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/indent": 0,
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-parameter-properties": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/prefer-interface": 0,
+        "default-case": 0,
+        "import/first": 0,
+        "import/newline-after-import": 0,
+        "import/order": 0,
+        "import/prefer-default-export": 0,
+        "no-console": 0,
+        "no-continue": 0,
+        "no-empty-function": 0,
+        "no-restricted-syntax": 0,
+        "no-shadow": 0,
+        "no-undef": 0,
+        "no-useless-constructor": 0,
+    },
+};

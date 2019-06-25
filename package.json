@@ -3,6 +3,9 @@
     "bin": {
         "tslint-to-eslint-config": "bin/tslint-to-eslint-config"
     },
+    "bugs": {
+        "url": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config/issues"
+    },
     "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
     "dependencies": {
         "chalk": "^2.4.2",
@@ -11,6 +14,13 @@
     "devDependencies": {
         "@types/jest": "^24.0.15",
         "@types/node": "^12.0.10",
+        "@typescript-eslint/eslint-plugin": "^1.11.0",
+        "@typescript-eslint/parser": "^1.11.0",
+        "eslint": "^5.16.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-prettier": "^5.0.0",
+        "eslint-plugin-import": "^2.17.3",
         "husky": "^2.4.1",
         "jest": "^24.8.0",
         "lint-staged": "^8.2.0",
@@ -19,6 +29,12 @@
         "tslint": "^5.18.0",
         "typescript": "^3.5.2"
     },
+    "homepage": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config#readme",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
     "keywords": [
         "eslint",
         "tslint",
@@ -26,11 +42,19 @@
         "configuration"
     ],
     "license": "MIT",
-    "main": "index.js",
+    "lint-staged": {
+        "**/*.{js,json,ts,xml,yaml}": [
+            "prettier --write",
+            "git add"
+        ]
+    },
     "name": "tslint-to-eslint-config",
-    "version": "0.1.0",
     "scripts": {
+        "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
+        "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\"",
+        "prettier:write": "npm run prettier -- --write",
         "test": "jest",
         "tsc": "tsc"
-    }
+    },
+    "version": "0.1.0"
 }

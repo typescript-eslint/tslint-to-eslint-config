@@ -4,7 +4,7 @@ stubOutChalk();
 import { EOL } from "os";
 
 import { version } from "../../package.json";
-import { ResultStatus, TSLintToESLintResult } from "../types.js";
+import { ResultStatus, TSLintToESLintResult } from "../types";
 import { runCli } from "./runCli";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
