@@ -8,12 +8,12 @@ export const createNewConfiguration = async (
     writeFile: WriteFile,
 ) => {
     const output = {
+        parser: "@typescript-eslint/parser",
+        parserOptions: {
+            project: "tsconfig.json",
+        },
         ...(conversionResults.missing.length && {
             plugins: ["@typescript-eslint/tslint"],
-            parser: "@typescript-eslint/parser",
-            parserOptions: {
-                project: "tsconfig.json",
-            },
         }),
         rules: formatConvertedRules(conversionResults),
     };
