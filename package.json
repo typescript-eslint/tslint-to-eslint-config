@@ -51,7 +51,7 @@
     "name": "tslint-to-eslint-config",
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
-        "prettier": "prettier \"./src/*.{css,html,js}\" \"./src/**/*.{css,html,js}\"",
+        "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\"",
         "prettier:write": "npm run prettier -- --write",
         "test": "jest",
         "tsc": "tsc"

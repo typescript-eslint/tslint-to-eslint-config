@@ -29,21 +29,7 @@ jobs:
                       - package-lock.json
                       - src
 
-    formatting:
-        docker:
-            - image: circleci/node:latest
-
-        working_directory: ~/repo
-
-        steps:
-            - checkout
-
-            - attach_workspace:
-                  at: "."
-
-            - run: npm run prettier
-
-    linting:
+    eslint:
         docker:
             - image: circleci/node:latest
 
@@ -57,7 +43,7 @@ jobs:
 
             - run: npm run eslint
 
-    tests:
+    prettier:
         docker:
             - image: circleci/node:latest
 
@@ -69,19 +55,50 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm run jest --coverage
+            - run: npm run prettier
+
+    test:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run test --coverage
+
+    tsc:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run tsc
 
 workflows:
     version: 2
-    build_and_verify:
+    commit:
         jobs:
             - build
-            - formatting:
+            - eslint:
                   requires:
                       - build
-            - linting:
+            - prettier:
                   requires:
                       - build
-            - tests:
+            - test:
+                  requires:
+                      - build
+            - tsc:
                   requires:
                       - build
