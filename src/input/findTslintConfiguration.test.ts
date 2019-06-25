@@ -1,13 +1,13 @@
-import { findTslintRules } from "./findTslintRules";
+import { findTslintConfiguration } from "./findTslintConfiguration";
 
-describe("findTslintRules", () => {
+describe("findTslintConfiguration", () => {
     it("returns stderr as an error when the command fails", async () => {
         // Arrange
         const [stderr, stdout] = ["error", ""];
         const childProcessExec = () => Promise.resolve({ stderr, stdout });
 
         // Act
-        const result = await findTslintRules("tslint.json", childProcessExec);
+        const result = await findTslintConfiguration("tslint.json", childProcessExec);
 
         // Assert
         expect(result).toEqual(new Error(stderr));
@@ -19,7 +19,7 @@ describe("findTslintRules", () => {
         const childProcessExec = () => Promise.resolve({ stderr, stdout });
 
         // Act
-        const result = await findTslintRules("tslint.json", childProcessExec);
+        const result = await findTslintConfiguration("tslint.json", childProcessExec);
 
         // Assert
         expect(result).toEqual(
@@ -36,7 +36,7 @@ describe("findTslintRules", () => {
         const childProcessExec = () => Promise.resolve({ stderr, stdout });
 
         // Act
-        const result = await findTslintRules("tslint.json", childProcessExec);
+        const result = await findTslintConfiguration("tslint.json", childProcessExec);
 
         // Assert
         expect(result).toEqual(rules);

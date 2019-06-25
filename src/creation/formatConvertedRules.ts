@@ -1,8 +1,12 @@
 import { ConfigConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions } from "../rules/types";
 import { formatMissingRules } from "./formatMissingRules";
+import { TSLintConfiguration } from "../input/findTslintConfiguration";
 
-export const formatConvertedRules = (conversionResults: ConfigConversionResults) => {
+export const formatConvertedRules = (
+    conversionResults: ConfigConversionResults,
+    originalConfiguration: TSLintConfiguration,
+) => {
     const output: { [i: string]: string | any[] } = {};
     const sortedRuleEntries = Array.from(conversionResults.converted).sort(
         ([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB),
@@ -13,7 +17,10 @@ export const formatConvertedRules = (conversionResults: ConfigConversionResults)
     }
 
     if (conversionResults.missing.length !== 0) {
-        output["@typescript-eslint/tslint/config"] = formatMissingRules(conversionResults.missing);
+        output["@typescript-eslint/tslint/config"] = formatMissingRules(
+            conversionResults.missing,
+            originalConfiguration.ruleDirectories,
+        );
     }
 
     return output;

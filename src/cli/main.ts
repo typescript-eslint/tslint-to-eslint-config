@@ -5,7 +5,7 @@ import { promisify } from "util";
 
 import { convertConfig } from "../convertConfig";
 import { createNewConfiguration } from "../creation/createNewConfiguration";
-import { findTslintRules } from "../input/findTslintRules";
+import { findTslintConfiguration } from "../input/findTslintConfiguration";
 import { TSLintToESLintSettings } from "../types";
 import { runCli } from "./runCli";
 
@@ -18,22 +18,24 @@ const logger = {
     stdout: process.stdout,
 };
 
-const ruleFinder = (config: string) => findTslintRules(config, promisify(exec));
-
 const fileExists = (filePath: string) => Promise.resolve(fs.existsSync(filePath));
 
 const runtime = {
     convertConfig: (settings: TSLintToESLintSettings) =>
         convertConfig({
-            createNewConfiguration: configConversionResults =>
-                createNewConfiguration(configConversionResults, fs.promises.writeFile),
+            createNewConfiguration: (conversionResults, originalConfiguration) =>
+                createNewConfiguration(
+                    conversionResults,
+                    originalConfiguration,
+                    fs.promises.writeFile,
+                ),
             fileExists,
+            findTslintConfiguration: (config: string) =>
+                findTslintConfiguration(config, promisify(exec)),
             logger,
-            ruleFinder,
             settings,
         }),
     logger,
-    ruleFinder,
 };
 
 export const main = async (argv: string[]) => {

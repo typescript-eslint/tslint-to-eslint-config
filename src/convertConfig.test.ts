@@ -5,7 +5,7 @@ import { ResultStatus } from "./types";
 const defaultRequest = {
     settings: {},
     logger: createStubLogger(),
-    ruleFinder: jest.fn().mockReturnValue(Promise.resolve(new Error())),
+    findTslintConfiguration: jest.fn().mockReturnValue(Promise.resolve(new Error())),
     fileExists: jest.fn().mockReturnValue(Promise.resolve(true)),
     createNewConfiguration: jest.fn().mockReturnValue(Promise.resolve()),
 };
@@ -41,7 +41,7 @@ describe("convertConfig", () => {
         await convertConfig(request);
 
         // Assert
-        expect(request.ruleFinder).toHaveBeenLastCalledWith(request.settings.config);
+        expect(request.findTslintConfiguration).toHaveBeenLastCalledWith(request.settings.config);
     });
 
     it("searches for ./tslint.json by default when no settings.config is provided", async () => {
@@ -55,15 +55,15 @@ describe("convertConfig", () => {
         await convertConfig(request);
 
         // Assert
-        expect(request.ruleFinder).toHaveBeenLastCalledWith("./tslint.json");
+        expect(request.findTslintConfiguration).toHaveBeenLastCalledWith("./tslint.json");
     });
 
-    it("returns a failure result when ruleFinder returns an error", async () => {
+    it("returns a failure result when findTslintConfiguration returns an error", async () => {
         // Arrange
         const error = new Error("oh no");
         const request = {
             ...defaultRequest,
-            ruleFinder: jest.fn().mockReturnValue(Promise.resolve(error)),
+            findTslintConfiguration: jest.fn().mockReturnValue(Promise.resolve(error)),
         };
 
         // Act
@@ -76,11 +76,11 @@ describe("convertConfig", () => {
         });
     });
 
-    it("creates a new configuration when ruleFinder returns rules", async () => {
+    it("creates a new configuration when findTslintConfiguration returns rules", async () => {
         // Arrange
         const request = {
             ...defaultRequest,
-            ruleFinder: jest.fn().mockReturnValue({
+            findTslintConfiguration: jest.fn().mockReturnValue({
                 rules: {
                     "sample-rule": {
                         ruleArguments: ["one", "two"],

@@ -2,6 +2,11 @@ import { ConfigConversionResults } from "../rules/convertRules";
 import { emptyConversionResults } from "../stubs";
 import { formatConvertedRules } from "./formatConvertedRules";
 
+const originalConfiguration = {
+    ruleDirectories: [],
+    rules: {},
+};
+
 describe("formatConvertedRules", () => {
     it("prints rules sorted by name when there are multiple rules", () => {
         // Arrange
@@ -26,7 +31,7 @@ describe("formatConvertedRules", () => {
         };
 
         // Act
-        const output = formatConvertedRules(results);
+        const output = formatConvertedRules(results, originalConfiguration);
 
         // Assert
         expect(output).toEqual({
@@ -51,7 +56,7 @@ describe("formatConvertedRules", () => {
         };
 
         // Act
-        const output = formatConvertedRules(results);
+        const output = formatConvertedRules(results, originalConfiguration);
 
         // Assert
         expect(output).toEqual({
@@ -76,7 +81,7 @@ describe("formatConvertedRules", () => {
         };
 
         // Act
-        const output = formatConvertedRules(results);
+        const output = formatConvertedRules(results, originalConfiguration);
 
         // Assert
         expect(output).toEqual({
@@ -101,7 +106,7 @@ describe("formatConvertedRules", () => {
         };
 
         // Act
-        const output = formatConvertedRules(results);
+        const output = formatConvertedRules(results, originalConfiguration);
 
         // Assert
         expect(output).toEqual({
@@ -133,7 +138,7 @@ describe("formatConvertedRules", () => {
         };
 
         // Act
-        const output = formatConvertedRules(results);
+        const output = formatConvertedRules(results, originalConfiguration);
 
         // Assert
         expect(output).toEqual({

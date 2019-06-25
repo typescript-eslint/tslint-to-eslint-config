@@ -1,29 +1,32 @@
-import { FoundTSLintRules } from "./input/findTslintRules";
+import { TSLintConfiguration } from "./input/findTslintConfiguration";
 import { ProcessLogger } from "./logger";
 import { reportConversionResults } from "./reportConversionResults";
 import { convertRules, ConfigConversionResults } from "./rules/convertRules";
 import { converters } from "./rules/converters";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "./types";
 
-export type CreateNewConfiguration = (conversionResults: ConfigConversionResults) => Promise<void>;
+export type CreateNewConfiguration = (
+    conversionResults: ConfigConversionResults,
+    originalConfiguration: TSLintConfiguration,
+) => Promise<void>;
 
 export type FileExists = (filePath: string) => Promise<boolean>;
 
-export type RuleFinder = (config: string) => Promise<FoundTSLintRules | Error>;
+export type findTslintConfiguration = (config: string) => Promise<TSLintConfiguration | Error>;
 
 export type ConvertConfigRequest = {
     createNewConfiguration: CreateNewConfiguration;
     fileExists: FileExists;
+    findTslintConfiguration: findTslintConfiguration;
     logger: ProcessLogger;
-    ruleFinder: RuleFinder;
     settings: TSLintToESLintSettings;
 };
 
 export const convertConfig = async ({
     createNewConfiguration,
     fileExists,
+    findTslintConfiguration,
     logger,
-    ruleFinder,
     settings,
 }: ConvertConfigRequest): Promise<TSLintToESLintResult> => {
     const { config = "./tslint.json" } = settings;
@@ -34,23 +37,23 @@ export const convertConfig = async ({
         };
     }
 
-    const originalRules = await ruleFinder(config);
-    if (originalRules instanceof Error) {
+    const originalConfiguration = await findTslintConfiguration(config);
+    if (originalConfiguration instanceof Error) {
         return {
-            error: originalRules,
+            error: originalConfiguration,
             status: ResultStatus.Failed,
         };
     }
 
     const convertedRules = convertRules(
-        Object.entries(originalRules.rules).map(([ruleName, value]) => ({
+        Object.entries(originalConfiguration.rules).map(([ruleName, value]) => ({
             ruleName,
             ...value,
         })),
         converters,
     );
 
-    await createNewConfiguration(convertedRules);
+    await createNewConfiguration(convertedRules, originalConfiguration);
     reportConversionResults(convertedRules, logger);
 
     return {

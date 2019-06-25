@@ -13,7 +13,7 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing);
+        const output = formatMissingRules(missing, []);
 
         // Assert
         expect(output).toEqual([
@@ -37,7 +37,7 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing);
+        const output = formatMissingRules(missing, []);
 
         // Assert
         expect(output).toEqual([
@@ -66,7 +66,7 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing);
+        const output = formatMissingRules(missing, []);
 
         // Assert
         expect(output).toEqual([
@@ -96,12 +96,38 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing);
+        const output = formatMissingRules(missing, []);
 
         // Assert
         expect(output).toEqual([
             "error",
             {
+                rules: {
+                    "tslint-rule-a": true,
+                },
+            },
+        ]);
+    });
+
+    it("includes rule directories when there are rule directories", () => {
+        // Arrange
+        const ruleDirectories = ["./path/to/rules"];
+        const missing: TSLintRuleOptions[] = [
+            {
+                ruleArguments: [],
+                ruleName: "tslint-rule-a",
+                ruleSeverity: "warning",
+            },
+        ];
+
+        // Act
+        const output = formatMissingRules(missing, ruleDirectories);
+
+        // Assert
+        expect(output).toEqual([
+            "error",
+            {
+                ruleDirectories,
                 rules: {
                     "tslint-rule-a": true,
                 },
