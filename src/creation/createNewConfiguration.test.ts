@@ -3,7 +3,7 @@ import { createNewConfiguration } from "./createNewConfiguration";
 import { ConfigConversionResults } from "../rules/convertRules";
 
 describe("createNewConfiguration", () => {
-    it("writes only formatted rules when there are no missing rules", async () => {
+    it("excludes the tslint plugin when there are no missing rules", async () => {
         // Arrange
         const conversionResults: ConfigConversionResults = {
             ...emptyConversionResults,
@@ -17,7 +17,17 @@ describe("createNewConfiguration", () => {
         // Assert
         expect(writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
-            JSON.stringify({ rules: {} }, undefined, 4),
+            JSON.stringify(
+                {
+                    parser: "@typescript-eslint/parser",
+                    parserOptions: {
+                        project: "tsconfig.json",
+                    },
+                    rules: {},
+                },
+                undefined,
+                4,
+            ),
         );
     });
 
@@ -44,11 +54,11 @@ describe("createNewConfiguration", () => {
             ".eslintrc.json",
             JSON.stringify(
                 {
-                    plugins: ["@typescript-eslint/tslint"],
                     parser: "@typescript-eslint/parser",
                     parserOptions: {
                         project: "tsconfig.json",
                     },
+                    plugins: ["@typescript-eslint/tslint"],
                     rules: {
                         "@typescript-eslint/tslint/config": [
                             "error",
