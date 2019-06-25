@@ -1,4 +1,5 @@
-export type FoundTSLintRules = {
+export type TSLintConfiguration = {
+    ruleDirectories: string[];
     rules: {
         [i: string]: any;
     };
@@ -6,10 +7,10 @@ export type FoundTSLintRules = {
 
 export type ChildProcessExec = (command: string) => Promise<{ stderr: string; stdout: string }>;
 
-export const findTslintRules = async (
+export const findTslintConfiguration = async (
     config: string,
     childProcessExec: ChildProcessExec,
-): Promise<FoundTSLintRules | Error> => {
+): Promise<TSLintConfiguration | Error> => {
     const command = buildCommand(config);
     const { stderr, stdout } = await childProcessExec(command);
 
@@ -18,7 +19,7 @@ export const findTslintRules = async (
     }
 
     try {
-        return JSON.parse(stdout) as FoundTSLintRules;
+        return JSON.parse(stdout) as TSLintConfiguration;
     } catch (error) {
         return new Error(`Error parsing TSLint configuration: ${error}`);
     }

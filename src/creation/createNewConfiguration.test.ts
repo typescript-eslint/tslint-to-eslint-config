@@ -2,6 +2,11 @@ import { emptyConversionResults } from "../stubs";
 import { createNewConfiguration } from "./createNewConfiguration";
 import { ConfigConversionResults } from "../rules/convertRules";
 
+const originalConfiguration = {
+    ruleDirectories: [],
+    rules: {},
+};
+
 describe("createNewConfiguration", () => {
     it("excludes the tslint plugin when there are no missing rules", async () => {
         // Arrange
@@ -12,7 +17,7 @@ describe("createNewConfiguration", () => {
         const writeFile = jest.fn().mockReturnValue(Promise.resolve());
 
         // Act
-        await createNewConfiguration(conversionResults, writeFile);
+        await createNewConfiguration(conversionResults, originalConfiguration, writeFile);
 
         // Assert
         expect(writeFile).toHaveBeenLastCalledWith(
@@ -47,7 +52,7 @@ describe("createNewConfiguration", () => {
         const writeFile = jest.fn().mockReturnValue(Promise.resolve());
 
         // Act
-        await createNewConfiguration(conversionResults, writeFile);
+        await createNewConfiguration(conversionResults, originalConfiguration, writeFile);
 
         // Assert
         expect(writeFile).toHaveBeenLastCalledWith(
