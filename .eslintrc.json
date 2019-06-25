@@ -2,6 +2,7 @@
     "plugins": [
         "@typescript-eslint/tslint"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "tsconfig.json"
     },

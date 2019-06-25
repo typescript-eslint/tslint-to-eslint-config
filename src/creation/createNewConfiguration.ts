@@ -7,6 +7,7 @@ export const createNewConfiguration = async (conversionResults: ConfigConversion
     const output = {
         ...(conversionResults.missing.length && {
             plugins: ["@typescript-eslint/tslint"],
+            parser: "@typescript-eslint/parser",
             parserOptions: {
                 project: "tsconfig.json",
             },

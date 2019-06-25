@@ -41,7 +41,7 @@ export const runCli = async (rawArgv: string[], runtime: CliRuntime): Promise<Re
 
     switch (result.status) {
         case ResultStatus.Succeeded:
-            runtime.logger.stdout.write(chalk.greenBright("✅ All is well! ✅"));
+            runtime.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
             break;
 
         case ResultStatus.ConfigurationError:

@@ -6,7 +6,7 @@ export const convertIncrementDecrement: RuleConverter = tslintRule => {
             {
                 ...(tslintRule.ruleArguments.length === 0 && {
                     notices: ["++ and -- operators will now only be allowed in for loops."],
-                    ruleArguments: ["allowForLoopAfterthoughts"],
+                    ruleArguments: [{ allowForLoopAfterthoughts: true }],
                 }),
                 ruleName: "no-plusplus",
             },
