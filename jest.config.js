@@ -5,6 +5,14 @@ module.exports = {
         "!./src/cli/main.ts",
         "!./src/stubs.ts",
     ],
+    coverageThreshold: {
+        global: {
+            branches: 100,
+            functions: 100,
+            lines: 100,
+            statements: 100,
+        },
+    },
     globals: {
         "ts-jest": {
             diagnostics: false,
