@@ -3,6 +3,7 @@ import { convertRule } from "./convertRule";
 import { convertRuleSeverity } from "./convertRuleSeverity";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 import { RuleConverter } from "./converter";
+import { RuleMerger } from "./merger";
 
 export type ConfigConversionResults = {
     converted: Map<string, ESLintRuleOptions>;
@@ -14,6 +15,7 @@ export type ConfigConversionResults = {
 export const convertRules = (
     tslintRules: TSLintRuleOptions[],
     converters: Map<string, RuleConverter>,
+    mergers: Map<string, RuleMerger>,
 ): ConfigConversionResults => {
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
@@ -36,10 +38,36 @@ export const convertRules = (
         }
 
         for (const changes of conversion.rules) {
-            converted.set(changes.ruleName, {
+            const existingConversion = converted.get(changes.ruleName);
+            const newConversion = {
                 ...changes,
                 ruleSeverity: convertRuleSeverity(tslintRule.ruleSeverity),
-            });
+            };
+
+            if (existingConversion === undefined) {
+                converted.set(changes.ruleName, newConversion);
+                continue;
+            }
+
+            const merger = mergers.get(changes.ruleName);
+            if (merger === undefined) {
+                failed.push(
+                    new ConversionError(
+                        new Error(
+                            `No merger for multiple output ${changes.ruleName} rule configurations.`,
+                        ),
+                        tslintRule,
+                    ),
+                );
+            } else {
+                converted.set(changes.ruleName, {
+                    ...existingConversion,
+                    ruleArguments: merger(
+                        existingConversion.ruleArguments,
+                        newConversion.ruleArguments,
+                    ),
+                });
+            }
         }
 
         if (conversion.packages !== undefined) {
