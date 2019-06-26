@@ -3,6 +3,7 @@ import { ProcessLogger } from "./logger";
 import { reportConversionResults } from "./reportConversionResults";
 import { convertRules, ConfigConversionResults } from "./rules/convertRules";
 import { converters } from "./rules/converters";
+import { mergers } from "./rules/mergers";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "./types";
 
 export type CreateNewConfiguration = (
@@ -51,6 +52,7 @@ export const convertConfig = async ({
             ...value,
         })),
         converters,
+        mergers,
     );
 
     await createNewConfiguration(convertedRules, originalConfiguration);
