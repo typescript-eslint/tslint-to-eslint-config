@@ -1,11 +1,11 @@
+import { TSLintConfiguration } from "../input/findTSLintConfiguration";
 import { ConfigConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions } from "../rules/types";
 import { formatMissingRules } from "./formatMissingRules";
-import { TSLintConfiguration } from "../input/findTslintConfiguration";
 
 export const formatConvertedRules = (
     conversionResults: ConfigConversionResults,
-    originalConfiguration: TSLintConfiguration,
+    tslintConfiguration: TSLintConfiguration,
 ) => {
     const output: { [i: string]: string | any[] } = {};
     const sortedRuleEntries = Array.from(conversionResults.converted).sort(
@@ -19,7 +19,7 @@ export const formatConvertedRules = (
     if (conversionResults.missing.length !== 0) {
         output["@typescript-eslint/tslint/config"] = formatMissingRules(
             conversionResults.missing,
-            originalConfiguration.ruleDirectories,
+            tslintConfiguration.ruleDirectories,
         );
     }
 

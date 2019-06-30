@@ -1,58 +1,39 @@
-import { findTslintConfiguration } from "./findTslintConfiguration";
+import { findTSLintConfiguration } from "./findTSLintConfiguration";
+import { createStubExec } from "../adapters/exec.stubs";
 
-describe("findTslintConfiguration", () => {
-    it("returns stderr as an error when the command fails", async () => {
+describe("findTSLintConfiguration", () => {
+    it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
-        const [stderr, stdout] = ["error", ""];
-        const exec = () => Promise.resolve({ stderr, stdout });
+        const dependencies = { exec: createStubExec() };
 
         // Act
-        const result = await findTslintConfiguration({ exec }, "tslint.json");
+        await findTSLintConfiguration(dependencies, undefined);
 
         // Assert
-        expect(result).toEqual(new Error(stderr));
+        expect(dependencies.exec).toHaveBeenLastCalledWith("tslint --print-config ./tslint.json");
     });
 
-    it("returns a parse error when the command returns invalid JSON", async () => {
+    it("includes a configuration file in the TSLint command when one is provided", async () => {
         // Arrange
-        const [stderr, stdout] = ["", "invalid"];
-        const exec = () => Promise.resolve({ stderr, stdout });
+        const dependencies = { exec: createStubExec() };
+        const config = "./custom/tslint.json";
 
         // Act
-        const result = await findTslintConfiguration({ exec }, "tslint.json");
+        await findTSLintConfiguration(dependencies, config);
 
         // Assert
-        expect(result).toEqual(
-            new Error(
-                "Error parsing TSLint configuration: SyntaxError: Unexpected token i in JSON at position 0",
-            ),
+        expect(dependencies.exec).toHaveBeenLastCalledWith(
+            "tslint --print-config ./custom/tslint.json",
         );
     });
 
-    it("returns parsed JSON when the command returns valid JSON", async () => {
+    it("applies TSLint defaults when none are provided", async () => {
         // Arrange
-        const rules = { "rule-a": true };
-        const [stderr, stdout] = ["", JSON.stringify({ rules })];
-        const exec = () => Promise.resolve({ stderr, stdout });
+        const dependencies = { exec: createStubExec({ stdout: "{}" }) };
+        const config = "./custom/tslint.json";
 
         // Act
-        const result = await findTslintConfiguration({ exec }, "tslint.json");
-
-        // Assert
-        expect(result).toEqual({
-            ruleDirectories: [],
-            rules,
-        });
-    });
-
-    it("fills in configuration defaults the command returns valid but empty JSON", async () => {
-        // Arrange
-        const originalConfiguration = {};
-        const [stderr, stdout] = ["", JSON.stringify(originalConfiguration)];
-        const exec = () => Promise.resolve({ stderr, stdout });
-
-        // Act
-        const result = await findTslintConfiguration({ exec }, "tslint.json");
+        const result = await findTSLintConfiguration(dependencies, config);
 
         // Assert
         expect(result).toEqual({

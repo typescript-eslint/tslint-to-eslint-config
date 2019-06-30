@@ -1,53 +1,35 @@
-import { FileSystem } from "../adapters/fileSystem";
-import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
-import { createNewConfiguration } from "../creation/createNewConfiguration";
-import { findTslintConfiguration } from "../input/findTslintConfiguration";
-import { convertRules } from "../rules/convertRules";
-import { converters } from "../rules/converters";
-import { mergers } from "../rules/mergers";
-import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
+import { writeConversionResults } from "../creation/writeConversionResults";
+import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { reportConversionResults } from "../reporting/reportConversionResults";
+import { convertRules } from "../rules/convertRules";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type ConvertConfigDependencies = {
-    createNewConfiguration: SansDependencies<typeof createNewConfiguration>;
-    fileSystem: Pick<FileSystem, "fileExists">;
-    findTslintConfiguration: SansDependencies<typeof findTslintConfiguration>;
-    logger: Logger;
+    convertRules: SansDependencies<typeof convertRules>;
+    findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
+    writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
 export const convertConfig = async (
     dependencies: ConvertConfigDependencies,
     settings: TSLintToESLintSettings,
-): Promise<TSLintToESLintResult> => {
-    const { config = "./tslint.json" } = settings;
-    if (!(await dependencies.fileSystem.fileExists(config))) {
-        return {
-            complaint: `${config} does not seem to exist.`,
-            status: ResultStatus.ConfigurationError,
-        };
+): Promise<ResultWithStatus> => {
+    const originalConfigurations = await dependencies.findOriginalConfigurations(settings);
+    if (originalConfigurations.status !== ResultStatus.Succeeded) {
+        return originalConfigurations;
     }
 
-    const originalConfiguration = await dependencies.findTslintConfiguration(config);
-    if (originalConfiguration instanceof Error) {
-        return {
-            error: originalConfiguration,
-            status: ResultStatus.Failed,
-        };
-    }
-
-    const convertedRules = convertRules(
-        Object.entries(originalConfiguration.rules).map(([ruleName, value]) => ({
-            ruleName,
-            ...value,
-        })),
-        converters,
-        mergers,
+    const configConversonResults = dependencies.convertRules(
+        originalConfigurations.data.tslint.rules,
     );
 
-    await dependencies.createNewConfiguration(convertedRules, originalConfiguration);
-    dependencies.reportConversionResults(convertedRules);
+    await dependencies.writeConversionResults(
+        configConversonResults,
+        originalConfigurations.data.tslint,
+    );
+    dependencies.reportConversionResults(configConversonResults);
 
     return {
         status: ResultStatus.Succeeded,

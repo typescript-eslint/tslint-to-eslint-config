@@ -1,42 +1,61 @@
 import { EOL } from "os";
 
 import { bind } from "../binding";
-import {
-    createNewConfiguration,
-    CreateNewConfigurationDependencies,
-} from "../creation/createNewConfiguration";
-import { fsFileSystem } from "../adapters/fsFileSystem";
-import {
-    findTslintConfiguration,
-    FindTSlintConfigurationDependencies,
-} from "../input/findTslintConfiguration";
 import { runCli, RunCliDependencies } from "./runCli";
 import { processLogger } from "../adapters/processLogger";
+import { childProcessExec } from "../adapters/childProcessExec";
+import { fsFileSystem } from "../adapters/fsFileSystem";
 import { ConvertConfigDependencies, convertConfig } from "../conversion/convertConfig";
+import {
+    writeConversionResults,
+    WriteConversionResultsDependencies,
+} from "../creation/writeConversionResults";
+import {
+    findOriginalConfigurations,
+    FindOriginalConfigurationsDependencies,
+} from "../input/findOriginalConfigurations";
+import { findESLintConfiguration } from "../input/findESLintConfiguration";
+import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
+import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import {
     reportConversionResults,
     ReportConversionResultsDependencies,
 } from "../reporting/reportConversionResults";
-import { childProcessExec } from "../adapters/childProcessExec";
+import { converters } from "../rules/converters";
+import { convertRules } from "../rules/convertRules";
+import { mergers } from "../rules/mergers";
 
-const createNewConfigurationDependencies: CreateNewConfigurationDependencies = {
-    fileSystem: fsFileSystem,
+const convertRulesDependencies = {
+    converters,
+    mergers,
 };
 
-const findTslintConfigurationDependencies: FindTSlintConfigurationDependencies = {
+const findConfigurationDependencies = {
     exec: childProcessExec,
+};
+
+const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
+    findESLintConfiguration: bind(findESLintConfiguration, findConfigurationDependencies),
+    findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
+    findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
 };
 
 const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
     logger: processLogger,
 };
 
-const convertConfigDependencies: ConvertConfigDependencies = {
-    createNewConfiguration: bind(createNewConfiguration, createNewConfigurationDependencies),
+const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
-    findTslintConfiguration: bind(findTslintConfiguration, findTslintConfigurationDependencies),
-    logger: processLogger,
+};
+
+const convertConfigDependencies: ConvertConfigDependencies = {
+    convertRules: bind(convertRules, convertRulesDependencies),
+    findOriginalConfigurations: bind(
+        findOriginalConfigurations,
+        findOriginalConfigurationsDependencies,
+    ),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
+    writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };
 
 const runCliDependencies: RunCliDependencies = {

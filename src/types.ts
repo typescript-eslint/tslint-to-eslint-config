@@ -1,6 +1,21 @@
 export type TSLintToESLintSettings = {
-    config?: string;
+    /**
+     * Original ESLint configuration file path, such as `.eslintrc.js`.
+     */
+    eslintConfig?: string;
+
+    /**
+     * Original TSLint configuration file path, such as `tslint.json`.
+     */
+    tslintConfig?: string;
+
+    /**
+     * Original TypeScript configuration file path, such as `tsconfig.json`.
+     */
+    typescriptConfig?: string;
 };
+
+export type TSLintToESLintResult = ResultWithStatus;
 
 export enum ResultStatus {
     Succeeded = 0,
@@ -8,18 +23,28 @@ export enum ResultStatus {
     ConfigurationError = 2,
 }
 
-export type TSLintToESLintResult = ConfigurationErrorResult | FailedResult | SucceededResult;
+export type ResultWithStatus = ConfigurationErrorResult | FailedResult | SucceededResult;
+
+export type ResultWithDataStatus<Data> =
+    | ConfigurationErrorResult
+    | FailedResult
+    | SucceededDataResult<Data>;
 
 export type ConfigurationErrorResult = {
-    readonly complaint: string;
+    readonly complaints: string[];
     readonly status: ResultStatus.ConfigurationError;
 };
 
 export type FailedResult = {
-    readonly error: Error;
+    readonly errors: Error[];
     readonly status: ResultStatus.Failed;
 };
 
 export type SucceededResult = {
+    readonly status: ResultStatus.Succeeded;
+};
+
+export type SucceededDataResult<Data> = {
+    readonly data: Data;
     readonly status: ResultStatus.Succeeded;
 };

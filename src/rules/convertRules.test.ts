@@ -14,7 +14,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { missing } = convertRules([tslintRule], converters, mergers);
+        const { missing } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(missing).toEqual([]);
@@ -31,7 +34,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { missing } = convertRules([tslintRule], converters, mergers);
+        const { missing } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(missing).toEqual([tslintRule]);
@@ -49,7 +55,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { failed } = convertRules([tslintRule], converters, mergers);
+        const { failed } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(failed).toEqual([conversionError]);
@@ -73,7 +82,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { converted } = convertRules([tslintRule], converters, mergers);
+        const { converted } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(converted).toEqual(
@@ -110,7 +122,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { failed } = convertRules([tslintRule], converters, mergers);
+        const { failed } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(failed).toEqual(
@@ -147,7 +162,10 @@ describe("convertRules", () => {
         const mergers = new Map([[conversionResult.rules[0].ruleName, () => mergedArguments]]);
 
         // Act
-        const { converted } = convertRules([tslintRule], converters, mergers);
+        const { converted } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(converted).toEqual(
@@ -179,7 +197,10 @@ describe("convertRules", () => {
         const mergers = new Map();
 
         // Act
-        const { packages } = convertRules([tslintRule], converters, mergers);
+        const { packages } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
 
         // Assert
         expect(packages).toEqual(new Set(["extra-package"]));
