@@ -51,12 +51,6 @@ export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]) => {
     const realCalls = removeOddCharactersAndTrim(fn.mock.calls.map(args => args.join("")).join(""));
     const actualCalls = removeOddCharactersAndTrim(actual.join(EOL) + EOL);
 
-    for (let i = 0; i < realCalls.length; i += 1) {
-        if (realCalls[i] !== actualCalls[i]) {
-            console.log(i, realCalls[i].charCodeAt(0), "vs", actualCalls[i].charCodeAt(0));
-            if (i > 40) break;
-        }
-    }
     expect(realCalls).toEqual(actualCalls);
 };
 
