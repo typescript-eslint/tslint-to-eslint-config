@@ -41,11 +41,11 @@ const createStubWritableStream = () => ({
 
 const removeOddCharactersAndTrim = (text: string) =>
     text
-        .trim()
         .replace(
             new RegExp([String.fromCharCode(65039), String.fromCharCode(13)].join("|"), "g"),
             "",
-        );
+        )
+        .trim();
 
 export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]) => {
     const realCalls = removeOddCharactersAndTrim(fn.mock.calls.map(args => args.join("")).join(""));
