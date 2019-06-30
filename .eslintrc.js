@@ -20,7 +20,6 @@ module.exports = {
         "import/first": 0,
         "import/newline-after-import": 0,
         "import/no-unresolved": 0,
-        "import/order": 0,
         "import/prefer-default-export": 0,
         "no-console": 0,
         "no-continue": 0,

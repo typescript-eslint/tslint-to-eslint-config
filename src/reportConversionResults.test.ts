@@ -1,10 +1,8 @@
-import { createStubLogger, emptyConversionResults, expectEqualWrites, stubOutChalk } from "./stubs";
-stubOutChalk();
-
 import { reportConversionResults } from "./reportConversionResults";
 import { ConfigConversionResults } from "./rules/convertRules";
 import { ESLintRuleOptions } from "./rules/types";
 import { ConversionError } from "./rules/conversionError";
+import { createStubLogger, emptyConversionResults, expectEqualWrites } from "./stubs";
 
 describe("reportConversionResults", () => {
     it("logs a successful conversion when there is one converted rule", () => {
