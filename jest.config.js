@@ -13,16 +13,7 @@ module.exports = {
             statements: 100,
         },
     },
-    globals: {
-        "ts-jest": {
-            diagnostics: false,
-        },
-    },
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    preset: "ts-jest",
     testRegex: "((\\.|/)test)\\.tsx?$",
     testEnvironment: "node",
-    transform: {
-        "^.+\\.tsx?$": "ts-jest",
-    },
 };
