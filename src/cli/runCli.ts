@@ -3,19 +3,20 @@ import { EOL } from "os";
 import { Command } from "commander";
 
 import { version } from "../../package.json";
-import { ProcessLogger } from "../logger";
+import { Logger } from "../adapters/logger";
+import { SansDependencies } from "../binding";
+import { convertConfig } from "../conversion/convertConfig";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
 
-export type CliRuntime = {
-    convertConfig: RuntimeConvertConfig;
-    logger: ProcessLogger;
+export type RunCliDependencies = {
+    convertConfig: SansDependencies<typeof convertConfig>;
+    logger: Logger;
 };
 
-export type RuntimeConvertConfig = (
-    settings: TSLintToESLintSettings,
-) => Promise<TSLintToESLintResult>;
-
-export const runCli = async (rawArgv: string[], runtime: CliRuntime): Promise<ResultStatus> => {
+export const runCli = async (
+    dependencies: RunCliDependencies,
+    rawArgv: string[],
+): Promise<ResultStatus> => {
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
         .option("-c, --config [config]", "tslint configuration file to convert")
@@ -24,14 +25,14 @@ export const runCli = async (rawArgv: string[], runtime: CliRuntime): Promise<Re
     const parsedArgv = command.parse(rawArgv) as Partial<TSLintToESLintSettings>;
 
     if ({}.hasOwnProperty.call(parsedArgv, "version")) {
-        runtime.logger.stdout.write(`${version}${EOL}`);
+        dependencies.logger.stdout.write(`${version}${EOL}`);
         return ResultStatus.Succeeded;
     }
 
     let result: TSLintToESLintResult;
 
     try {
-        result = await runtime.convertConfig(parsedArgv);
+        result = await dependencies.convertConfig(parsedArgv);
     } catch (error) {
         result = {
             error: error as Error,
@@ -41,21 +42,21 @@ export const runCli = async (rawArgv: string[], runtime: CliRuntime): Promise<Re
 
     switch (result.status) {
         case ResultStatus.Succeeded:
-            runtime.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
+            dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
             break;
 
         case ResultStatus.ConfigurationError:
-            runtime.logger.stderr.write(chalk.redBright("❌ "));
-            runtime.logger.stderr.write(chalk.yellow("Could not start tslint-to-eslint: "));
-            runtime.logger.stderr.write(chalk.yellowBright(result.complaint));
-            runtime.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
+            dependencies.logger.stderr.write(chalk.redBright("❌ "));
+            dependencies.logger.stderr.write(chalk.yellow("Could not start tslint-to-eslint: "));
+            dependencies.logger.stderr.write(chalk.yellowBright(result.complaint));
+            dependencies.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
             break;
 
         case ResultStatus.Failed:
-            runtime.logger.stderr.write(chalk.redBright("❌ "));
-            runtime.logger.stderr.write(chalk.yellow("Error running tslint-to-eslint:"));
-            runtime.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
-            runtime.logger.stderr.write(chalk.yellowBright(`${result.error.stack}${EOL}`));
+            dependencies.logger.stderr.write(chalk.redBright("❌ "));
+            dependencies.logger.stderr.write(chalk.yellow("Error running tslint-to-eslint:"));
+            dependencies.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
+            dependencies.logger.stderr.write(chalk.yellowBright(`${result.error.stack}${EOL}`));
             break;
     }
 

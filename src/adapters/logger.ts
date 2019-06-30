@@ -1,7 +1,7 @@
 /**
  * Wraps process outputs and a debug file.
  */
-export type ProcessLogger = {
+export type Logger = {
     readonly debugFileName: string;
     readonly info: NodeJS.WritableStream;
     readonly stderr: NodeJS.WritableStream;

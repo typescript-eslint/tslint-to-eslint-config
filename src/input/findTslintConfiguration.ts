@@ -1,3 +1,5 @@
+import { Exec } from "../adapters/exec";
+
 export type TSLintConfiguration = {
     ruleDirectories: string[];
     rules: {
@@ -5,21 +7,27 @@ export type TSLintConfiguration = {
     };
 };
 
-export type ChildProcessExec = (command: string) => Promise<{ stderr: string; stdout: string }>;
+export type FindTSlintConfigurationDependencies = {
+    exec: Exec;
+};
 
 export const findTslintConfiguration = async (
+    dependencies: FindTSlintConfigurationDependencies,
     config: string,
-    childProcessExec: ChildProcessExec,
 ): Promise<TSLintConfiguration | Error> => {
     const command = buildCommand(config);
-    const { stderr, stdout } = await childProcessExec(command);
+    const { stderr, stdout } = await dependencies.exec(command);
 
     if (stderr) {
         return new Error(stderr);
     }
 
     try {
-        return JSON.parse(stdout) as TSLintConfiguration;
+        return {
+            ruleDirectories: [],
+            rules: {},
+            ...(JSON.parse(stdout) as Partial<TSLintConfiguration>),
+        };
     } catch (error) {
         return new Error(`Error parsing TSLint configuration: ${error}`);
     }

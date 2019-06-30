@@ -19,7 +19,7 @@ module.exports = {
         "default-case": 0,
         "import/no-extraneous-dependencies": [
             "error",
-            { devDependencies: ["src/stubs.ts", "**/*.test.*"] },
+            { devDependencies: ["**/*.stubs.ts", "**/*.test.*"] },
         ],
         "import/first": 0,
         "import/newline-after-import": 0,

@@ -1,14 +1,13 @@
+import { ConversionError } from "../rules/conversionError";
+import { ESLintRuleOptions } from "../rules/types";
 import { reportConversionResults } from "./reportConversionResults";
-import { ConfigConversionResults } from "./rules/convertRules";
-import { ESLintRuleOptions } from "./rules/types";
-import { ConversionError } from "./rules/conversionError";
-import { createStubLogger, emptyConversionResults, expectEqualWrites } from "./stubs";
+import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
+import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 
 describe("reportConversionResults", () => {
     it("logs a successful conversion when there is one converted rule", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
                 [
                     "tslint-rule-one",
@@ -19,12 +18,12 @@ describe("reportConversionResults", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(logger.stdout.write, "✨ 1 rule replaced with its ESLint equivalent. ✨");
@@ -32,8 +31,7 @@ describe("reportConversionResults", () => {
 
     it("logs successful conversions when there are multiple converted rules", () => {
         // Arrange
-        const conversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
                 [
                     "tslint-rule-one",
@@ -52,12 +50,12 @@ describe("reportConversionResults", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -68,8 +66,7 @@ describe("reportConversionResults", () => {
 
     it("logs a failed conversion when there is one failed conversion", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             failed: [
                 new ConversionError(new Error("and a one"), {
                     ruleArguments: ["a", "b"],
@@ -77,12 +74,12 @@ describe("reportConversionResults", () => {
                     ruleSeverity: "error",
                 }),
             ],
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -94,8 +91,7 @@ describe("reportConversionResults", () => {
 
     it("logs failed conversions when there are multiple failed conversions", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             failed: [
                 new ConversionError(new Error("and a one"), {
                     ruleArguments: ["a", "b"],
@@ -108,12 +104,12 @@ describe("reportConversionResults", () => {
                     ruleSeverity: "warning",
                 }),
             ],
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -125,8 +121,7 @@ describe("reportConversionResults", () => {
 
     it("logs a missing rule when there is a missing rule", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             missing: [
                 {
                     ruleArguments: ["a", "b"],
@@ -134,12 +129,12 @@ describe("reportConversionResults", () => {
                     ruleSeverity: "error",
                 },
             ],
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -154,8 +149,7 @@ describe("reportConversionResults", () => {
 
     it("logs missing rules when there are missing rules", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             missing: [
                 {
                     ruleArguments: ["a", "b"],
@@ -168,12 +162,12 @@ describe("reportConversionResults", () => {
                     ruleSeverity: "warning",
                 },
             ],
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -189,15 +183,14 @@ describe("reportConversionResults", () => {
 
     it("logs a missing package when there is a missing package", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             packages: new Set(["package-one"]),
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -209,15 +202,14 @@ describe("reportConversionResults", () => {
 
     it("logs missing packages when there are missing packages", () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             packages: new Set(["package-one", "package-two"]),
-        };
+        });
 
         const logger = createStubLogger();
 
         // Act
-        reportConversionResults(conversionResults, logger);
+        reportConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(

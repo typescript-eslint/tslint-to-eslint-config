@@ -1,36 +1,37 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
-import { ProcessLogger } from "./logger";
-import { ConversionError } from "./rules/conversionError";
-import { ConfigConversionResults } from "./rules/convertRules";
-import { TSLintRuleOptions, ESLintRuleOptions } from "./rules/types";
+import { Logger } from "../adapters/logger";
+import { ConversionError } from "../rules/conversionError";
+import { ConfigConversionResults } from "../rules/convertRules";
+import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
+
+export type ReportConversionResultsDependencies = {
+    logger: Logger;
+};
 
 export const reportConversionResults = (
+    dependencies: ReportConversionResultsDependencies,
     conversionResults: ConfigConversionResults,
-    logger: ProcessLogger,
 ) => {
     if (conversionResults.converted.size !== 0) {
-        logSuccessfulConversions(conversionResults.converted, logger);
+        logSuccessfulConversions(conversionResults.converted, dependencies.logger);
     }
 
     if (conversionResults.failed.length !== 0) {
-        logFailedConversions(conversionResults.failed, logger);
+        logFailedConversions(conversionResults.failed, dependencies.logger);
     }
 
     if (conversionResults.missing.length !== 0) {
-        logMissingRules(conversionResults.missing, logger);
+        logMissingRules(conversionResults.missing, dependencies.logger);
     }
 
     if (conversionResults.packages.size !== 0) {
-        logMissingPackages(conversionResults.packages, logger);
+        logMissingPackages(conversionResults.packages, dependencies.logger);
     }
 };
 
-const logSuccessfulConversions = (
-    converted: Map<string, ESLintRuleOptions>,
-    logger: ProcessLogger,
-) => {
+const logSuccessfulConversions = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
     logger.stdout.write(chalk.greenBright(`✨ ${converted.size}`));
     logger.stdout.write(
         converted.size === 1
@@ -40,7 +41,7 @@ const logSuccessfulConversions = (
     logger.stdout.write(chalk.greenBright(` ✨${EOL}`));
 };
 
-const logFailedConversions = (failed: ConversionError[], logger: ProcessLogger) => {
+const logFailedConversions = (failed: ConversionError[], logger: Logger) => {
     logger.stderr.write(`${chalk.redBright(`💀 ${failed.length}`)}`);
     logger.stderr.write(
         chalk.red(` rule${failed.length === 1 ? " threw an error" : "s threw errors"}`),
@@ -60,7 +61,7 @@ const logFailedConversions = (failed: ConversionError[], logger: ProcessLogger) 
     logger.stderr.write(chalk.gray(`Check ${logger.debugFileName} for details.${EOL}`));
 };
 
-const logMissingRules = (missing: TSLintRuleOptions[], logger: ProcessLogger) => {
+const logMissingRules = (missing: TSLintRuleOptions[], logger: Logger) => {
     logger.stdout.write(chalk.yellowBright(`️👀 ${missing.length}`));
     logger.stdout.write(
         chalk.yellow(
@@ -79,7 +80,7 @@ const logMissingRules = (missing: TSLintRuleOptions[], logger: ProcessLogger) =>
     );
 };
 
-const logMissingPackages = (packages: Set<string>, logger: ProcessLogger) => {
+const logMissingPackages = (packages: Set<string>, logger: Logger) => {
     logger.stdout.write(chalk.cyanBright(`⚡ ${packages.size}`));
     logger.stdout.write(chalk.cyan(" package"));
     logger.stdout.write(chalk.cyan(packages.size === 1 ? " is" : "s are"));

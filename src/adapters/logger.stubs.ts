@@ -1,23 +1,7 @@
 import { EOL } from "os";
 import stripAnsi from "strip-ansi";
 
-import { ConfigConversionResults } from "./rules/convertRules";
-
-export const emptyConversionResults: ConfigConversionResults = {
-    converted: new Map(),
-    failed: [],
-    missing: [],
-    packages: new Set(),
-};
-
 const debugFileName = "stub-output.log";
-
-export const createStubLogger = () => ({
-    debugFileName,
-    info: createStubWritableStream(),
-    stderr: createStubWritableStream(),
-    stdout: createStubWritableStream(),
-});
 
 const createStubWritableStream = () => ({
     writable: true,
@@ -38,6 +22,13 @@ const createStubWritableStream = () => ({
     removeListener: jest.fn(),
     setMaxListeners: jest.fn(),
     write: jest.fn(),
+});
+
+export const createStubLogger = () => ({
+    debugFileName,
+    info: createStubWritableStream(),
+    stderr: createStubWritableStream(),
+    stdout: createStubWritableStream(),
 });
 
 const removeOddCharactersAndTrim = (text: string) =>

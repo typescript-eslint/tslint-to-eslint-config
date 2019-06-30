@@ -1,6 +1,5 @@
-import { emptyConversionResults } from "../stubs";
+import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 import { createNewConfiguration } from "./createNewConfiguration";
-import { ConfigConversionResults } from "../rules/convertRules";
 
 const originalConfiguration = {
     ruleDirectories: [],
@@ -10,17 +9,16 @@ const originalConfiguration = {
 describe("createNewConfiguration", () => {
     it("excludes the tslint plugin when there are no missing rules", async () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             converted: new Map(),
-        };
-        const writeFile = jest.fn().mockReturnValue(Promise.resolve());
+        });
+        const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await createNewConfiguration(conversionResults, originalConfiguration, writeFile);
+        await createNewConfiguration({ fileSystem }, conversionResults, originalConfiguration);
 
         // Assert
-        expect(writeFile).toHaveBeenLastCalledWith(
+        expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
             JSON.stringify(
                 {
@@ -38,8 +36,7 @@ describe("createNewConfiguration", () => {
 
     it("includes typescript-eslint plugin settings when there are missing rules", async () => {
         // Arrange
-        const conversionResults: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const conversionResults = createEmptyConversionResults({
             converted: new Map(),
             missing: [
                 {
@@ -48,14 +45,14 @@ describe("createNewConfiguration", () => {
                     ruleSeverity: "error",
                 },
             ],
-        };
-        const writeFile = jest.fn().mockReturnValue(Promise.resolve());
+        });
+        const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await createNewConfiguration(conversionResults, originalConfiguration, writeFile);
+        await createNewConfiguration({ fileSystem }, conversionResults, originalConfiguration);
 
         // Assert
-        expect(writeFile).toHaveBeenLastCalledWith(
+        expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
             JSON.stringify(
                 {

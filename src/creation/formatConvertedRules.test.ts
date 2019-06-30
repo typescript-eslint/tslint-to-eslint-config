@@ -1,5 +1,4 @@
-import { ConfigConversionResults } from "../rules/convertRules";
-import { emptyConversionResults } from "../stubs";
+import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 import { formatConvertedRules } from "./formatConvertedRules";
 
 const originalConfiguration = {
@@ -10,8 +9,7 @@ const originalConfiguration = {
 describe("formatConvertedRules", () => {
     it("prints rules sorted by name when there are multiple rules", () => {
         // Arrange
-        const results: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const results = createEmptyConversionResults({
             converted: new Map([
                 [
                     "tslint-rule-b",
@@ -28,7 +26,7 @@ describe("formatConvertedRules", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         // Act
         const output = formatConvertedRules(results, originalConfiguration);
@@ -42,8 +40,7 @@ describe("formatConvertedRules", () => {
 
     it("prints a rule with only its severity when there are no rule arguments", () => {
         // Arrange
-        const results: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const results = createEmptyConversionResults({
             converted: new Map([
                 [
                     "tslint-rule-a",
@@ -53,7 +50,7 @@ describe("formatConvertedRules", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         // Act
         const output = formatConvertedRules(results, originalConfiguration);
@@ -66,8 +63,7 @@ describe("formatConvertedRules", () => {
 
     it("prints a rule with only its severity when rule arguments are empty", () => {
         // Arrange
-        const results: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const results = createEmptyConversionResults({
             converted: new Map([
                 [
                     "tslint-rule-a",
@@ -78,7 +74,7 @@ describe("formatConvertedRules", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         // Act
         const output = formatConvertedRules(results, originalConfiguration);
@@ -91,8 +87,7 @@ describe("formatConvertedRules", () => {
 
     it("prints a rule with its argumeents and severity when it has arguments", () => {
         // Arrange
-        const results: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const results = createEmptyConversionResults({
             converted: new Map([
                 [
                     "tslint-rule-a",
@@ -103,7 +98,7 @@ describe("formatConvertedRules", () => {
                     },
                 ],
             ]),
-        };
+        });
 
         // Act
         const output = formatConvertedRules(results, originalConfiguration);
@@ -116,8 +111,7 @@ describe("formatConvertedRules", () => {
 
     it("includes missing rules under the tslint adapter when there are missing rules", () => {
         // Arrange
-        const results: ConfigConversionResults = {
-            ...emptyConversionResults,
+        const results = createEmptyConversionResults({
             converted: new Map([
                 [
                     "tslint-rule-a",
@@ -135,7 +129,7 @@ describe("formatConvertedRules", () => {
                     ruleSeverity: "error",
                 },
             ],
-        };
+        });
 
         // Act
         const output = formatConvertedRules(results, originalConfiguration);
