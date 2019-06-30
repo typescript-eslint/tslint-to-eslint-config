@@ -1,16 +1,16 @@
 import { FileSystem } from "../adapters/fileSystem";
-import { TSLintConfiguration } from "../input/findTslintConfiguration";
+import { TSLintConfiguration } from "../input/findTSLintConfiguration";
 import { ConfigConversionResults } from "../rules/convertRules";
 import { formatConvertedRules } from "./formatConvertedRules";
 
-export type CreateNewConfigurationDependencies = {
+export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;
 };
 
-export const createNewConfiguration = async (
-    dependencies: CreateNewConfigurationDependencies,
+export const writeConversionResults = async (
+    dependencies: WriteConversionResultsDependencies,
     conversionResults: ConfigConversionResults,
-    originalConfiguration: TSLintConfiguration,
+    tslintConfiguration: TSLintConfiguration,
 ) => {
     const output = {
         parser: "@typescript-eslint/parser",
@@ -20,7 +20,7 @@ export const createNewConfiguration = async (
         ...(conversionResults.missing.length && {
             plugins: ["@typescript-eslint/tslint"],
         }),
-        rules: formatConvertedRules(conversionResults, originalConfiguration),
+        rules: formatConvertedRules(conversionResults, tslintConfiguration),
     };
 
     await dependencies.fileSystem.writeFile(".eslintrc.json", JSON.stringify(output, undefined, 4));

@@ -35,7 +35,7 @@ export const runCli = async (
         result = await dependencies.convertConfig(parsedArgv);
     } catch (error) {
         result = {
-            error: error as Error,
+            errors: [error as Error],
             status: ResultStatus.Failed,
         };
     }
@@ -47,16 +47,22 @@ export const runCli = async (
 
         case ResultStatus.ConfigurationError:
             dependencies.logger.stderr.write(chalk.redBright("❌ "));
-            dependencies.logger.stderr.write(chalk.yellow("Could not start tslint-to-eslint: "));
-            dependencies.logger.stderr.write(chalk.yellowBright(result.complaint));
+            dependencies.logger.stderr.write(chalk.red("Could not start tslint-to-eslint:"));
             dependencies.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
+            for (const complaint of result.complaints) {
+                dependencies.logger.stderr.write(chalk.yellowBright(`${complaint}${EOL}`));
+            }
             break;
 
         case ResultStatus.Failed:
             dependencies.logger.stderr.write(chalk.redBright("❌ "));
-            dependencies.logger.stderr.write(chalk.yellow("Error running tslint-to-eslint:"));
+            dependencies.logger.stderr.write(chalk.yellow(`${result.errors.length} error`));
+            dependencies.logger.stderr.write(chalk.yellow(result.errors.length === 1 ? "" : "s"));
+            dependencies.logger.stderr.write(chalk.yellow(" running tslint-to-eslint:"));
             dependencies.logger.stderr.write(chalk.redBright(` ❌${EOL}`));
-            dependencies.logger.stderr.write(chalk.yellowBright(`${result.error.stack}${EOL}`));
+            for (const error of result.errors) {
+                dependencies.logger.stderr.write(chalk.yellowBright(`${error.stack}${EOL}`));
+            }
             break;
     }
 

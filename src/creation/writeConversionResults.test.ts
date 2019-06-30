@@ -1,12 +1,12 @@
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
-import { createNewConfiguration } from "./createNewConfiguration";
+import { writeConversionResults } from "./writeConversionResults";
 
-const originalConfiguration = {
+const tslintConfiguration = {
     ruleDirectories: [],
     rules: {},
 };
 
-describe("createNewConfiguration", () => {
+describe("writeConversionResults", () => {
     it("excludes the tslint plugin when there are no missing rules", async () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
@@ -15,7 +15,7 @@ describe("createNewConfiguration", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await createNewConfiguration({ fileSystem }, conversionResults, originalConfiguration);
+        await writeConversionResults({ fileSystem }, conversionResults, tslintConfiguration);
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
@@ -49,7 +49,7 @@ describe("createNewConfiguration", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await createNewConfiguration({ fileSystem }, conversionResults, originalConfiguration);
+        await writeConversionResults({ fileSystem }, conversionResults, tslintConfiguration);
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
