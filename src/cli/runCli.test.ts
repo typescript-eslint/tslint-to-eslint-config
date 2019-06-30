@@ -1,9 +1,7 @@
-import { createStubLogger, stubOutChalk, expectEqualWrites } from "../stubs";
-stubOutChalk();
-
 import { EOL } from "os";
 
 import { version } from "../../package.json";
+import { createStubLogger, expectEqualWrites } from "../stubs";
 import { ResultStatus, TSLintToESLintResult } from "../types";
 import { runCli } from "./runCli";
 
