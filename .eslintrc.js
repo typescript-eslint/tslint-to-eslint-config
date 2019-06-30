@@ -17,6 +17,10 @@ module.exports = {
         "@typescript-eslint/no-use-before-define": 0,
         "@typescript-eslint/prefer-interface": 0,
         "default-case": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            { devDependencies: ["src/stubs.ts", "**/*.test.*"] },
+        ],
         "import/first": 0,
         "import/newline-after-import": 0,
         "import/no-unresolved": 0,
