@@ -1,7 +1,23 @@
 import { findESLintConfiguration } from "./findESLintConfiguration";
-import { createStubExec } from "../adapters/exec.stubs";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 
 describe("findESLintConfiguration", () => {
+    it("returns an error when one occurs", async () => {
+        // Arrange
+        const message = "error";
+        const dependencies = { exec: createStubThrowingExec({ stderr: message }) };
+
+        // Act
+        const result = await findESLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message,
+            }),
+        );
+    });
+
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec() };
@@ -36,6 +52,9 @@ describe("findESLintConfiguration", () => {
         const result = await findESLintConfiguration(dependencies, config);
 
         // Assert
-        expect(result).toEqual({});
+        expect(result).toEqual({
+            env: {},
+            rules: {},
+        });
     });
 });

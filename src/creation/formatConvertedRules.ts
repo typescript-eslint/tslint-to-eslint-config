@@ -1,10 +1,10 @@
 import { TSLintConfiguration } from "../input/findTSLintConfiguration";
-import { ConfigConversionResults } from "../rules/convertRules";
+import { RuleConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions } from "../rules/types";
 import { formatMissingRules } from "./formatMissingRules";
 
 export const formatConvertedRules = (
-    conversionResults: ConfigConversionResults,
+    conversionResults: RuleConversionResults,
     tslintConfiguration: TSLintConfiguration,
 ) => {
     const output: { [i: string]: string | any[] } = {};

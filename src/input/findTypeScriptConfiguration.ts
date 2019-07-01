@@ -1,22 +1,34 @@
-import { Exec } from "../adapters/exec";
-import { findLintConfiguration } from "./findLintConfiguration";
+import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
 
-// Soon, this will be filled out with real information...
-export type TypeScriptConfiguration = unknown;
-
-const defaultTypeScriptConfiguration = {};
-
-export type FindTypeScriptConfigurationDependencies = {
-    exec: Exec;
+export type TypeScriptConfiguration = {
+    compilerOptions: {
+        lib?: string[];
+        target: string;
+    };
 };
 
-export const findTypeScriptConfiguration = (
-    dependencies: FindTypeScriptConfigurationDependencies,
+const defaultTypeScriptConfiguration = {
+    compilerOptions: {
+        target: "es3",
+    },
+};
+
+export const findTypeScriptConfiguration = async (
+    dependencies: FindConfigurationDependencies,
     config: string | undefined,
-) =>
-    findLintConfiguration<TypeScriptConfiguration>(
+): Promise<TypeScriptConfiguration | Error> => {
+    const rawConfiguration = await findConfiguration<TypeScriptConfiguration>(
         dependencies.exec,
         "cat",
         config || "./tsconfig.json",
-        defaultTypeScriptConfiguration,
     );
+
+    return rawConfiguration instanceof Error
+        ? rawConfiguration
+        : {
+              compilerOptions: {
+                  ...defaultTypeScriptConfiguration.compilerOptions,
+                  ...rawConfiguration.compilerOptions,
+              },
+          };
+};

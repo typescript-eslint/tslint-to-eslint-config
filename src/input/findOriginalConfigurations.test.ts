@@ -1,4 +1,7 @@
-import { findOriginalConfigurations } from "./findOriginalConfigurations";
+import {
+    findOriginalConfigurations,
+    FindOriginalConfigurationsDependencies,
+} from "./findOriginalConfigurations";
 import { ResultStatus } from "../types";
 
 const createRawSettings = () => ({
@@ -7,15 +10,34 @@ const createRawSettings = () => ({
     typescriptConfig: "",
 });
 
+const createDependencies = (overrides: Partial<FindOriginalConfigurationsDependencies> = {}) => ({
+    findESLintConfiguration: async () => ({
+        env: {},
+        rules: {},
+    }),
+    findPackagesConfiguration: async () => ({
+        dependencies: {},
+        devDependencies: {},
+    }),
+    findTSLintConfiguration: async () => ({
+        ruleDirectories: [],
+        rules: {},
+    }),
+    findTypeScriptConfiguration: async () => ({
+        compilerOptions: {
+            target: "es3",
+        },
+    }),
+    ...overrides,
+});
+
 describe("findOriginalConfigurations", () => {
     it("returns an errors when the tslint finder returns an error", async () => {
         // Arrange
         const complaint = "Complaint from TSLint";
-        const dependencies = {
-            findESLintConfiguration: async () => ({}),
+        const dependencies = createDependencies({
             findTSLintConfiguration: async () => new Error(complaint),
-            findTypeScriptConfiguration: async () => ({}),
-        };
+        });
 
         // Act
         const result = await findOriginalConfigurations(dependencies, createRawSettings());
@@ -29,15 +51,11 @@ describe("findOriginalConfigurations", () => {
 
     it("returns only tslint results when the other finders return errors", async () => {
         // Arrange
-        const complaints = ["Complaint from ESLint", "Complaint from TypeScript"];
-        const dependencies = {
-            findESLintConfiguration: async () => new Error(complaints[0]),
-            findTSLintConfiguration: async () => ({
-                ruleDirectories: [],
-                rules: {},
-            }),
-            findTypeScriptConfiguration: async () => new Error(complaints[1]),
-        };
+        const dependencies = createDependencies({
+            findESLintConfiguration: async () => new Error("one"),
+            findPackagesConfiguration: async () => new Error("two"),
+            findTypeScriptConfiguration: async () => new Error("three"),
+        });
 
         // Act
         const result = await findOriginalConfigurations(dependencies, createRawSettings());
@@ -56,14 +74,7 @@ describe("findOriginalConfigurations", () => {
 
     it("returns successful results when all finders succeed", async () => {
         // Arrange
-        const dependencies = {
-            findESLintConfiguration: async () => ({}),
-            findTSLintConfiguration: async () => ({
-                ruleDirectories: [],
-                rules: {},
-            }),
-            findTypeScriptConfiguration: async () => ({}),
-        };
+        const dependencies = createDependencies();
 
         // Act
         const result = await findOriginalConfigurations(dependencies, createRawSettings());
@@ -71,12 +82,23 @@ describe("findOriginalConfigurations", () => {
         // Assert
         expect(result).toEqual({
             data: {
-                eslint: {},
+                eslint: {
+                    env: {},
+                    rules: {},
+                },
+                packages: {
+                    dependencies: {},
+                    devDependencies: {},
+                },
                 tslint: {
                     ruleDirectories: [],
                     rules: {},
                 },
-                typescript: {},
+                typescript: {
+                    compilerOptions: {
+                        target: "es3",
+                    },
+                },
             },
             status: ResultStatus.Succeeded,
         });

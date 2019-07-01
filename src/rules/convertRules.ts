@@ -11,7 +11,7 @@ export type ConvertRulesDependencies = {
     mergers: Map<string, RuleMerger>;
 };
 
-export type ConfigConversionResults = {
+export type RuleConversionResults = {
     converted: Map<string, ESLintRuleOptions>;
     failed: ConversionError[];
     missing: TSLintRuleOptions[];
@@ -21,7 +21,7 @@ export type ConfigConversionResults = {
 export const convertRules = (
     dependencies: ConvertRulesDependencies,
     rawTslintRules: TSLintConfigurationRules,
-): ConfigConversionResults => {
+): RuleConversionResults => {
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];

@@ -5,6 +5,11 @@ export type TSLintToESLintSettings = {
     eslintConfig?: string;
 
     /**
+     * Original packages configuration file path, such as `package.json`.
+     */
+    packages?: string;
+
+    /**
      * Original TSLint configuration file path, such as `tslint.json`.
      */
     tslintConfig?: string;

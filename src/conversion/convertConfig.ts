@@ -21,15 +21,12 @@ export const convertConfig = async (
         return originalConfigurations;
     }
 
-    const configConversonResults = dependencies.convertRules(
+    const ruleConversionResults = dependencies.convertRules(
         originalConfigurations.data.tslint.rules,
     );
 
-    await dependencies.writeConversionResults(
-        configConversonResults,
-        originalConfigurations.data.tslint,
-    );
-    dependencies.reportConversionResults(configConversonResults);
+    await dependencies.writeConversionResults(ruleConversionResults, originalConfigurations.data);
+    dependencies.reportConversionResults(ruleConversionResults);
 
     return {
         status: ResultStatus.Succeeded,
