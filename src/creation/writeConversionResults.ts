@@ -13,15 +13,18 @@ export const writeConversionResults = async (
     ruleConversionResults: RuleConversionResults,
     originalConfigurations: OriginalConfigurations,
 ) => {
+    const plugins = ["@typescript-eslint"];
+
+    if (ruleConversionResults.missing.length !== 0) {
+        plugins.push("@typescript-eslint/tslint");
+    }
     const output = {
         env: createEnv(originalConfigurations),
         parser: "@typescript-eslint/parser",
         parserOptions: {
             project: "tsconfig.json",
         },
-        ...(ruleConversionResults.missing.length && {
-            plugins: ["@typescript-eslint/tslint"],
-        }),
+        plugins,
         rules: formatConvertedRules(ruleConversionResults, originalConfigurations.tslint),
     };
 

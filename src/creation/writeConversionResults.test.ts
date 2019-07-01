@@ -33,6 +33,7 @@ describe("writeConversionResults", () => {
                     parserOptions: {
                         project: "tsconfig.json",
                     },
+                    plugins: ["@typescript-eslint"],
                     rules: {},
                 },
                 undefined,
@@ -72,7 +73,7 @@ describe("writeConversionResults", () => {
                     parserOptions: {
                         project: "tsconfig.json",
                     },
-                    plugins: ["@typescript-eslint/tslint"],
+                    plugins: ["@typescript-eslint", "@typescript-eslint/tslint"],
                     rules: {
                         "@typescript-eslint/tslint/config": [
                             "error",
