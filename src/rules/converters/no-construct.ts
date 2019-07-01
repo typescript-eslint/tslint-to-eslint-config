@@ -4,7 +4,7 @@ export const convertNoConstruct: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "no-construct",
+                ruleName: "no-new-wrappers",
             },
         ],
     };
