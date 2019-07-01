@@ -2,22 +2,22 @@ export type TSLintToESLintSettings = {
     /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
      */
-    eslintConfig?: string;
+    eslint?: string;
 
     /**
      * Original packages configuration file path, such as `package.json`.
      */
-    packages?: string;
+    package?: string;
 
     /**
      * Original TSLint configuration file path, such as `tslint.json`.
      */
-    tslintConfig?: string;
+    tslint?: string;
 
     /**
      * Original TypeScript configuration file path, such as `tsconfig.json`.
      */
-    typescriptConfig?: string;
+    typescript?: string;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

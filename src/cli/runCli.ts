@@ -19,7 +19,10 @@ export const runCli = async (
 ): Promise<ResultStatus> => {
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
-        .option("-c, --config [config]", "tslint configuration file to convert")
+        .option("--eslint [eslint]", "eslint configuration file to convert")
+        .option("--package [package]", "package configuration file to convert")
+        .option("--tslint [tslint]", "tslint configuration file to convert")
+        .option("--typescript [typescript]", "typescript configuration file to convert")
         .option("-V --version", "output the package version");
 
     const parsedArgv = command.parse(rawArgv) as Partial<TSLintToESLintSettings>;

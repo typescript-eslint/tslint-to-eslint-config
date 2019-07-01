@@ -27,10 +27,10 @@ export const findOriginalConfigurations = async (
     rawSettings: TSLintToESLintSettings,
 ): Promise<ResultWithDataStatus<OriginalConfigurations>> => {
     const [eslint, packages, tslint, typescript] = await Promise.all([
-        dependencies.findESLintConfiguration(rawSettings.eslintConfig),
-        dependencies.findPackagesConfiguration(rawSettings.packages),
-        dependencies.findTSLintConfiguration(rawSettings.tslintConfig),
-        dependencies.findTypeScriptConfiguration(rawSettings.typescriptConfig),
+        dependencies.findESLintConfiguration(rawSettings.eslint),
+        dependencies.findPackagesConfiguration(rawSettings.package),
+        dependencies.findTSLintConfiguration(rawSettings.tslint),
+        dependencies.findTypeScriptConfiguration(rawSettings.typescript),
     ]);
 
     if (tslint instanceof Error) {
