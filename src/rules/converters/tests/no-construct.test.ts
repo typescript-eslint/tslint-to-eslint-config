@@ -9,7 +9,7 @@ describe(convertNoConstruct, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-construct",
+                    ruleName: "no-new-wrappers",
                 },
             ],
         });
