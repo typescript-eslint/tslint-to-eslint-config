@@ -1,0 +1,5 @@
+*.tsbuildinfo
+*.log
+*.map
+coverage/
+src/**/*.test.ts
