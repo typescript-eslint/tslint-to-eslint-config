@@ -6,4 +6,6 @@ src/**/*.test.ts
 src/**/*.ts
 !src/**/*.d.ts
 src/rules/converters/*.d.ts
+src/rules/converters/tests/*
 src/rules/mergers/*.d.ts
+src/rules/mergers/tests/*
