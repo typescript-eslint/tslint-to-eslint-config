@@ -5,3 +5,5 @@ coverage/
 src/**/*.test.ts
 src/**/*.ts
 !src/**/*.d.ts
+src/rules/converters/*.ts
+src/rules/mergers/*.ts
