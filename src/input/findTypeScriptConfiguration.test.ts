@@ -1,7 +1,23 @@
 import { findTypeScriptConfiguration } from "./findTypeScriptConfiguration";
-import { createStubExec } from "../adapters/exec.stubs";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 
 describe("findTypeScriptConfiguration", () => {
+    it("returns an error when one occurs", async () => {
+        // Arrange
+        const message = "error";
+        const dependencies = { exec: createStubThrowingExec({ stderr: message }) };
+
+        // Act
+        const result = await findTypeScriptConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message,
+            }),
+        );
+    });
+
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec() };
@@ -34,6 +50,10 @@ describe("findTypeScriptConfiguration", () => {
         const result = await findTypeScriptConfiguration(dependencies, config);
 
         // Assert
-        expect(result).toEqual({});
+        expect(result).toEqual({
+            compilerOptions: {
+                target: "es3",
+            },
+        });
     });
 });

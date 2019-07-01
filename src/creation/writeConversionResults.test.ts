@@ -1,9 +1,11 @@
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 import { writeConversionResults } from "./writeConversionResults";
 
-const tslintConfiguration = {
-    ruleDirectories: [],
-    rules: {},
+const originalConfigurations = {
+    tslint: {
+        ruleDirectories: [],
+        rules: {},
+    },
 };
 
 describe("writeConversionResults", () => {
@@ -15,13 +17,18 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, tslintConfiguration);
+        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
             JSON.stringify(
                 {
+                    env: {
+                        browser: true,
+                        es6: true,
+                        node: true,
+                    },
                     parser: "@typescript-eslint/parser",
                     parserOptions: {
                         project: "tsconfig.json",
@@ -49,13 +56,18 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, tslintConfiguration);
+        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
             JSON.stringify(
                 {
+                    env: {
+                        browser: true,
+                        es6: true,
+                        node: true,
+                    },
                     parser: "@typescript-eslint/parser",
                     parserOptions: {
                         project: "tsconfig.json",

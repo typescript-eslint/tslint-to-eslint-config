@@ -1,7 +1,23 @@
 import { findTSLintConfiguration } from "./findTSLintConfiguration";
-import { createStubExec } from "../adapters/exec.stubs";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 
 describe("findTSLintConfiguration", () => {
+    it("returns an error when one occurs", async () => {
+        // Arrange
+        const stderr = "error";
+        const dependencies = { exec: createStubThrowingExec({ stderr }) };
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message: stderr,
+            }),
+        );
+    });
+
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec() };

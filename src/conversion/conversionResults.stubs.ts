@@ -1,8 +1,8 @@
-import { ConfigConversionResults } from "../rules/convertRules";
+import { RuleConversionResults } from "../rules/convertRules";
 
 export const createEmptyConversionResults = (
-    overrides: Partial<ConfigConversionResults>,
-): ConfigConversionResults => ({
+    overrides: Partial<RuleConversionResults>,
+): RuleConversionResults => ({
     converted: new Map(),
     failed: [],
     missing: [],

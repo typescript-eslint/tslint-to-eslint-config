@@ -1,14 +1,14 @@
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { findLintConfiguration } from "./findLintConfiguration";
+import { findConfiguration } from "./findConfiguration";
 
-describe("findLintConfiguration", () => {
+describe("findConfiguration", () => {
     it("returns stderr as an error when the command fails with a zero exit code", async () => {
         // Arrange
         const stderr = "error";
         const exec = createStubExec({ stderr });
 
         // Act
-        const result = await findLintConfiguration(exec, "command", "sample.json", {});
+        const result = await findConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(new Error(stderr));
@@ -20,7 +20,7 @@ describe("findLintConfiguration", () => {
         const exec = createStubThrowingExec({ stderr });
 
         // Act
-        const result = await findLintConfiguration(exec, "command", "sample.json", {});
+        const result = await findConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(new Error(stderr));
@@ -32,7 +32,7 @@ describe("findLintConfiguration", () => {
         const exec = createStubExec({ stdout });
 
         // Act
-        const result = await findLintConfiguration(exec, "command", "sample.json", {});
+        const result = await findConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(
@@ -49,37 +49,11 @@ describe("findLintConfiguration", () => {
         const exec = createStubExec({ stdout });
 
         // Act
-        const result = await findLintConfiguration(exec, "command", "sample.json", {});
+        const result = await findConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual({
             rules,
-        });
-    });
-
-    it("fills in configuration defaults the command returns valid but empty JSON", async () => {
-        // Arrange
-        const defaultConfiguration = {
-            default: true,
-        };
-        const originalConfiguration = {
-            original: true,
-        };
-        const stdout = JSON.stringify(originalConfiguration);
-        const exec = createStubExec({ stdout });
-
-        // Act
-        const result = await findLintConfiguration(
-            exec,
-            "command",
-            "sample.json",
-            defaultConfiguration,
-        );
-
-        // Assert
-        expect(result).toEqual({
-            ...defaultConfiguration,
-            ...originalConfiguration,
         });
     });
 });

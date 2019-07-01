@@ -1,6 +1,7 @@
 import { SansDependencies } from "../binding";
 import { ResultStatus, TSLintToESLintSettings, ResultWithDataStatus } from "../types";
 import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
+import { PackagesConfiguration, findPackagesConfiguration } from "./findPackagesConfiguration";
 import {
     findTypeScriptConfiguration,
     TypeScriptConfiguration,
@@ -9,12 +10,14 @@ import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfig
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;
+    findPackagesConfiguration: SansDependencies<typeof findPackagesConfiguration>;
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
     findTSLintConfiguration: SansDependencies<typeof findTSLintConfiguration>;
 };
 
-export type OriginalConfigurationsData = {
+export type OriginalConfigurations = {
     eslint?: ESLintConfiguration;
+    packages?: PackagesConfiguration;
     tslint: TSLintConfiguration;
     typescript?: TypeScriptConfiguration;
 };
@@ -22,9 +25,10 @@ export type OriginalConfigurationsData = {
 export const findOriginalConfigurations = async (
     dependencies: FindOriginalConfigurationsDependencies,
     rawSettings: TSLintToESLintSettings,
-): Promise<ResultWithDataStatus<OriginalConfigurationsData>> => {
-    const [eslint, tslint, typescript] = await Promise.all([
+): Promise<ResultWithDataStatus<OriginalConfigurations>> => {
+    const [eslint, packages, tslint, typescript] = await Promise.all([
         dependencies.findESLintConfiguration(rawSettings.eslintConfig),
+        dependencies.findPackagesConfiguration(rawSettings.packages),
         dependencies.findTSLintConfiguration(rawSettings.tslintConfig),
         dependencies.findTypeScriptConfiguration(rawSettings.typescriptConfig),
     ]);
@@ -39,6 +43,7 @@ export const findOriginalConfigurations = async (
     return {
         data: {
             ...(!(eslint instanceof Error) && { eslint }),
+            ...(!(packages instanceof Error) && { packages }),
             tslint,
             ...(!(typescript instanceof Error) && { typescript }),
         },

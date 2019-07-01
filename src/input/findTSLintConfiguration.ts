@@ -1,5 +1,5 @@
 import { Exec } from "../adapters/exec";
-import { findLintConfiguration } from "./findLintConfiguration";
+import { findConfiguration } from "./findConfiguration";
 
 export type TSLintConfiguration = {
     ruleDirectories: string[];
@@ -19,13 +19,20 @@ export type FindTSLintConfigurationDependencies = {
     exec: Exec;
 };
 
-export const findTSLintConfiguration = (
+export const findTSLintConfiguration = async (
     dependencies: FindTSLintConfigurationDependencies,
     config: string | undefined,
-) =>
-    findLintConfiguration<TSLintConfiguration>(
+): Promise<TSLintConfiguration | Error> => {
+    const rawConfiguration = await findConfiguration<TSLintConfiguration>(
         dependencies.exec,
         "tslint --print-config",
         config || "./tslint.json",
-        defaultTSLintConfiguration,
     );
+
+    return rawConfiguration instanceof Error
+        ? rawConfiguration
+        : {
+              ...defaultTSLintConfiguration,
+              ...rawConfiguration,
+          };
+};

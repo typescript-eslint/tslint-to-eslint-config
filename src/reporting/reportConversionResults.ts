@@ -3,7 +3,7 @@ import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
 import { ConversionError } from "../rules/conversionError";
-import { ConfigConversionResults } from "../rules/convertRules";
+import { RuleConversionResults } from "../rules/convertRules";
 import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
 
 export type ReportConversionResultsDependencies = {
@@ -12,22 +12,22 @@ export type ReportConversionResultsDependencies = {
 
 export const reportConversionResults = (
     dependencies: ReportConversionResultsDependencies,
-    conversionResults: ConfigConversionResults,
+    ruleConversionResults: RuleConversionResults,
 ) => {
-    if (conversionResults.converted.size !== 0) {
-        logSuccessfulConversions(conversionResults.converted, dependencies.logger);
+    if (ruleConversionResults.converted.size !== 0) {
+        logSuccessfulConversions(ruleConversionResults.converted, dependencies.logger);
     }
 
-    if (conversionResults.failed.length !== 0) {
-        logFailedConversions(conversionResults.failed, dependencies.logger);
+    if (ruleConversionResults.failed.length !== 0) {
+        logFailedConversions(ruleConversionResults.failed, dependencies.logger);
     }
 
-    if (conversionResults.missing.length !== 0) {
-        logMissingRules(conversionResults.missing, dependencies.logger);
+    if (ruleConversionResults.missing.length !== 0) {
+        logMissingRules(ruleConversionResults.missing, dependencies.logger);
     }
 
-    if (conversionResults.packages.size !== 0) {
-        logMissingPackages(conversionResults.packages, dependencies.logger);
+    if (ruleConversionResults.packages.size !== 0) {
+        logMissingPackages(ruleConversionResults.packages, dependencies.logger);
     }
 };
 

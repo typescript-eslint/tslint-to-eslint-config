@@ -1,6 +1,6 @@
 import { ResultStatus, FailedResult, SucceededDataResult } from "../types";
 import { convertConfig, ConvertConfigDependencies } from "./convertConfig";
-import { OriginalConfigurationsData } from "../input/findOriginalConfigurations";
+import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
 const createStubDependencies = (
     overrides: Pick<ConvertConfigDependencies, "findOriginalConfigurations">,
@@ -12,12 +12,10 @@ const createStubDependencies = (
 });
 
 const createStubOriginalConfigurationsData = () => ({
-    eslint: {},
     tslint: {
         rules: [],
         ruleDirectories: [],
     },
-    typescript: {},
 });
 
 describe("convertConfig", () => {
@@ -41,7 +39,7 @@ describe("convertConfig", () => {
 
     it("returns a successful result when finding the original configurations succeeds", async () => {
         // Arrange
-        const findSuccess: SucceededDataResult<OriginalConfigurationsData> = {
+        const findSuccess: SucceededDataResult<OriginalConfigurations> = {
             data: createStubOriginalConfigurationsData(),
             status: ResultStatus.Succeeded,
         };

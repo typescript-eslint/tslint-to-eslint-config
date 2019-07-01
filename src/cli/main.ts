@@ -24,6 +24,7 @@ import {
 import { converters } from "../rules/converters";
 import { convertRules } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
+import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
 
 const convertRulesDependencies = {
     converters,
@@ -36,6 +37,7 @@ const findConfigurationDependencies = {
 
 const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: bind(findESLintConfiguration, findConfigurationDependencies),
+    findPackagesConfiguration: bind(findPackagesConfiguration, findConfigurationDependencies),
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
 };

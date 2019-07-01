@@ -1,22 +1,33 @@
-import { Exec } from "../adapters/exec";
-import { findLintConfiguration } from "./findLintConfiguration";
+import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
 
-// Soon, this will be filled out with real information...
-export type ESLintConfiguration = unknown;
-
-const defaultESLintConfiguration = {};
-
-export type FindESLintConfigurationDependencies = {
-    exec: Exec;
+export type ESLintConfiguration = {
+    env: {
+        [i: string]: boolean;
+    };
+    rules: {
+        [i: string]: number | [string, any];
+    };
 };
 
-export const findESLintConfiguration = (
-    dependencies: FindESLintConfigurationDependencies,
+const defaultESLintConfiguration = {
+    env: {},
+    rules: {},
+};
+
+export const findESLintConfiguration = async (
+    dependencies: FindConfigurationDependencies,
     config: string | undefined,
-) =>
-    findLintConfiguration<ESLintConfiguration>(
+): Promise<ESLintConfiguration | Error> => {
+    const rawConfiguration = await findConfiguration<ESLintConfiguration>(
         dependencies.exec,
         "eslint --print-config",
         config || "./eslintrc.js",
-        defaultESLintConfiguration,
     );
+
+    return rawConfiguration instanceof Error
+        ? rawConfiguration
+        : {
+              ...defaultESLintConfiguration,
+              ...rawConfiguration,
+          };
+};
