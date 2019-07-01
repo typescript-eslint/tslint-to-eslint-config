@@ -5,6 +5,7 @@
 [![Circle CI](https://img.shields.io/circleci/build/github/JoshuaKGoldberg/tslint-to-eslint-config.svg)](https://circleci.com/gh/JoshuaKGoldberg/tslint-to-eslint-config)
 [![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://badges.gitter.im/tslint-to-eslint-config/community.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![NPM version](https://badge.fury.io/js/tslint-to-eslint-config.svg)](http://badge.fury.io/js/tslint-to-eslint-config)
+![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-14cc21.svg)
 
 Converts your TSLint configuration to the closest possible ESLint equivalent.
 
