@@ -53,6 +53,10 @@
         ]
     },
     "name": "tslint-to-eslint-config",
+    "repository": {
+        "type": "git",
+        "url": "github:JoshuaKGoldberg/tslint-to-eslint"
+    },
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\"",
@@ -60,5 +64,5 @@
         "test": "jest",
         "tsc": "tsc"
     },
-    "version": "0.1.0"
+    "version": "0.1.1"
 }
