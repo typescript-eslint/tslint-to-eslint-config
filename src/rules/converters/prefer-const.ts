@@ -7,7 +7,7 @@ export const convertPreferConst: RuleConverter = tslintRule => {
                 ...(tslintRule.ruleArguments.length !== 0 && {
                     ruleArguments: tslintRule.ruleArguments,
                 }),
-                ruleName: "object-shorthand",
+                ruleName: "prefer-const",
             },
         ],
     };
