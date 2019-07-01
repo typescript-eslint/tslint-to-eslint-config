@@ -5,9 +5,9 @@ import {
 import { ResultStatus } from "../types";
 
 const createRawSettings = () => ({
-    eslintConfig: "",
-    tslintConfig: "",
-    typescriptConfig: "",
+    eslint: "",
+    tslint: "",
+    typescript: "",
 });
 
 const createDependencies = (overrides: Partial<FindOriginalConfigurationsDependencies> = {}) => ({
