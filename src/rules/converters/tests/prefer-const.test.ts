@@ -9,7 +9,7 @@ describe(convertPreferConst, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "object-shorthand",
+                    ruleName: "prefer-const",
                 },
             ],
         });
@@ -24,7 +24,7 @@ describe(convertPreferConst, () => {
             rules: [
                 {
                     ruleArguments: ["all"],
-                    ruleName: "object-shorthand",
+                    ruleName: "prefer-const",
                 },
             ],
         });

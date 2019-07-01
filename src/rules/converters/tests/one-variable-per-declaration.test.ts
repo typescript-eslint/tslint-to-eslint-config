@@ -10,7 +10,7 @@ describe(convertOneVariablePerDeclaration, () => {
             rules: [
                 {
                     notices: ["Variables declared in for loops will no longer be checked."],
-                    ruleName: "object-shorthand",
+                    ruleName: "one-var",
                 },
             ],
         });
@@ -24,7 +24,7 @@ describe(convertOneVariablePerDeclaration, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "object-shorthand",
+                    ruleName: "one-var",
                 },
             ],
         });

@@ -7,7 +7,7 @@ export const convertOneVariablePerDeclaration: RuleConverter = tslintRule => {
                 ...(!tslintRule.ruleArguments.includes("ignore-for-loop") && {
                     notices: ["Variables declared in for loops will no longer be checked."],
                 }),
-                ruleName: "object-shorthand",
+                ruleName: "one-var",
             },
         ],
     };
