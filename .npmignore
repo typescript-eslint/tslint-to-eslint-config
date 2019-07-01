@@ -3,3 +3,5 @@
 *.map
 coverage/
 src/**/*.test.ts
+src/**/*.ts
+!src/**/*.d.ts
