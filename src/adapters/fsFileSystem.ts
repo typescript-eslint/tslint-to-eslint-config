@@ -3,6 +3,8 @@ import { promisify } from "util";
 
 import { FileSystem } from "./fileSystem";
 
+const readFile = promisify(fs.readFile);
+
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {
         try {
@@ -13,7 +15,6 @@ export const fsFileSystem: FileSystem = {
     },
     readFile: async (filePath: string) => {
         try {
-            const readFile = promisify(fs.readFile);
             return (await readFile(filePath)).toString();
         } catch (error) {
             return error;
