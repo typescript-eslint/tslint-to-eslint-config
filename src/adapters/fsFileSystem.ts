@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { promisify } from "util";
 
 import { FileSystem } from "./fileSystem";
 
@@ -12,7 +13,8 @@ export const fsFileSystem: FileSystem = {
     },
     readFile: async (filePath: string) => {
         try {
-            return (await fs.promises.readFile(filePath)).toString();
+            const readFile = promisify(fs.readFile);
+            return (await readFile(filePath)).toString();
         } catch (error) {
             return error;
         }
