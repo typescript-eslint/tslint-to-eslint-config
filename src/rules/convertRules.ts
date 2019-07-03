@@ -5,6 +5,7 @@ import { convertRuleSeverity } from "./convertRuleSeverity";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 import { RuleConverter } from "./converter";
 import { RuleMerger } from "./merger";
+import { formatRawTslintRule } from "./formatRawTslintRule";
 
 export type ConvertRulesDependencies = {
     converters: Map<string, RuleConverter>;
@@ -28,11 +29,9 @@ export const convertRules = (
     const packages = new Set<string>();
 
     for (const [ruleName, value] of Object.entries(rawTslintRules)) {
-        const tslintRule = {
-            ruleName,
-            ...value,
-        };
+        const tslintRule = formatRawTslintRule(ruleName, value);
         const conversion = convertRule(tslintRule, dependencies.converters);
+
         if (conversion === undefined) {
             if (tslintRule.ruleSeverity !== "off") {
                 missing.push(tslintRule);

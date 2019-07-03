@@ -53,7 +53,7 @@ describe("findTSLintConfiguration", () => {
 
         // Assert
         expect(result).toEqual({
-            ruleDirectories: [],
+            rulesDirectory: [],
             rules: {},
         });
     });

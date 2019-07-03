@@ -19,7 +19,7 @@ export const formatConvertedRules = (
     if (conversionResults.missing.length !== 0) {
         output["@typescript-eslint/tslint/config"] = formatMissingRules(
             conversionResults.missing,
-            tslintConfiguration.ruleDirectories,
+            tslintConfiguration.rulesDirectory,
         );
     }
 

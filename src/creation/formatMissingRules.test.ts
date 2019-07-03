@@ -111,7 +111,7 @@ describe("formatMissingRules", () => {
 
     it("includes rule directories when there are rule directories", () => {
         // Arrange
-        const ruleDirectories = ["./path/to/rules"];
+        const rulesDirectory = ["./path/to/rules"];
         const missing: TSLintRuleOptions[] = [
             {
                 ruleArguments: [],
@@ -121,13 +121,13 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing, ruleDirectories);
+        const output = formatMissingRules(missing, rulesDirectory);
 
         // Assert
         expect(output).toEqual([
             "error",
             {
-                ruleDirectories,
+                rulesDirectory,
                 rules: {
                     "tslint-rule-a": true,
                 },

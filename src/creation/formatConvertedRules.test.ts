@@ -2,7 +2,7 @@ import { createEmptyConversionResults } from "../conversion/conversionResults.st
 import { formatConvertedRules } from "./formatConvertedRules";
 
 const originalConfiguration = {
-    ruleDirectories: [],
+    rulesDirectory: [],
     rules: {},
 };
 
