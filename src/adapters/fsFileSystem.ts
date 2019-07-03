@@ -4,6 +4,7 @@ import { promisify } from "util";
 import { FileSystem } from "./fileSystem";
 
 const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
 
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {
@@ -22,7 +23,7 @@ export const fsFileSystem: FileSystem = {
     },
     writeFile: async (filePath: string, contents: string) => {
         try {
-            return fs.promises.writeFile(filePath, contents);
+            return writeFile(filePath, contents);
         } catch (error) {
             return error;
         }
