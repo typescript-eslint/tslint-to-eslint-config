@@ -74,6 +74,7 @@ export const convertRules = (
                         existingConversion.ruleArguments,
                         newConversion.ruleArguments,
                     ),
+                    notices: merger(existingConversion.notices, newConversion.notices),
                 });
             }
         }

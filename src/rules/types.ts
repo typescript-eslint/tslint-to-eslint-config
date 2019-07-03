@@ -9,6 +9,7 @@ export type TSLintRuleOptions = {
 export type ESLintRuleSeverity = "warn" | "error" | "off";
 
 export type ESLintRuleOptions = {
+    notices?: any[];
     ruleArguments?: any[];
     ruleName: string;
     ruleSeverity: ESLintRuleSeverity;
