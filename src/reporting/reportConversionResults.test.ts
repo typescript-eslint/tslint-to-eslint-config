@@ -1,3 +1,4 @@
+import { EOL } from "os";
 import { ConversionError } from "../rules/conversionError";
 import { ESLintRuleOptions } from "../rules/types";
 import { reportConversionResults } from "./reportConversionResults";
@@ -12,6 +13,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-one",
                     {
+                        notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
                         ruleName: "tslint-rule-one",
                         ruleSeverity: "error",
@@ -26,7 +28,14 @@ describe("reportConversionResults", () => {
         reportConversionResults({ logger }, conversionResults);
 
         // Assert
-        expectEqualWrites(logger.stdout.write, "✨ 1 rule replaced with its ESLint equivalent. ✨");
+        expectEqualWrites(
+            logger.stdout.write,
+            `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}` +
+                `📢 1 ESLint rule behaves differently from their TSLint counterparts: 📢${EOL}` +
+                `* tslint-rule-one:${EOL}` +
+                `- 1${EOL}` +
+                `- 2${EOL}`,
+        );
     });
 
     it("logs successful conversions when there are multiple converted rules", () => {

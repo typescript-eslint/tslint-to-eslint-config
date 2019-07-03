@@ -96,16 +96,17 @@ const logMissingPackages = (packages: Set<string>, logger: Logger) => {
 };
 
 const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
-    const rulesWithNotices = Object.values(converted).filter(
-        ruleOptions => ruleOptions.notices.length >= 1,
+    const rulesWithNotices = [...converted.values()].filter(
+        ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
     ) as ESLintRuleOptions[];
+
     if (rulesWithNotices.length > 0) {
         logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
         logger.stdout.write(
             chalk.yellowBright(rulesWithNotices.length == 1 ? ` rule behaves` : ` rules behave`),
         );
         logger.stdout.write(
-            chalk.yellowBright(` differently from their TSLint counterparts: 📢 ${EOL}`),
+            chalk.yellowBright(` differently from their TSLint counterparts: 📢${EOL}`),
         );
 
         rulesWithNotices.forEach(rule => {
