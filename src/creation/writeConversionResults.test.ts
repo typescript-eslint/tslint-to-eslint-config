@@ -3,7 +3,7 @@ import { writeConversionResults } from "./writeConversionResults";
 
 const originalConfigurations = {
     tslint: {
-        ruleDirectories: [],
+        rulesDirectory: [],
         rules: {},
     },
 };

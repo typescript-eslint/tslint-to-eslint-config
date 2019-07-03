@@ -2,7 +2,7 @@ import { Exec } from "../adapters/exec";
 import { findConfiguration } from "./findConfiguration";
 
 export type TSLintConfiguration = {
-    ruleDirectories: string[];
+    rulesDirectory: string[];
     rules: TSLintConfigurationRules;
 };
 
@@ -11,7 +11,7 @@ export type TSLintConfigurationRules = {
 };
 
 const defaultTSLintConfiguration = {
-    ruleDirectories: [],
+    rulesDirectory: [],
     rules: {},
 };
 

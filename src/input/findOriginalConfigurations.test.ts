@@ -20,7 +20,7 @@ const createDependencies = (overrides: Partial<FindOriginalConfigurationsDepende
         devDependencies: {},
     }),
     findTSLintConfiguration: async () => ({
-        ruleDirectories: [],
+        rulesDirectory: [],
         rules: {},
     }),
     findTypeScriptConfiguration: async () => ({
@@ -64,7 +64,7 @@ describe("findOriginalConfigurations", () => {
         expect(result).toEqual({
             data: {
                 tslint: {
-                    ruleDirectories: [],
+                    rulesDirectory: [],
                     rules: {},
                 },
             },
@@ -91,7 +91,7 @@ describe("findOriginalConfigurations", () => {
                     devDependencies: {},
                 },
                 tslint: {
-                    ruleDirectories: [],
+                    rulesDirectory: [],
                     rules: {},
                 },
                 typescript: {
