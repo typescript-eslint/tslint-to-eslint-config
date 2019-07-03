@@ -45,6 +45,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-one",
                     {
+                        notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
                         ruleName: "tslint-rule-one",
                         ruleSeverity: "error",
@@ -53,6 +54,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-two",
                     {
+                        notices: ["3", "4"],
                         ruleArguments: ["c", "d"],
                         ruleName: "tslint-rule-two",
                         ruleSeverity: "warn",
@@ -69,7 +71,14 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "✨ 2 rules replaced with their ESLint equivalents. ✨",
+            `✨ 2 rules replaced with their ESLint equivalents. ✨${EOL}` +
+                `📢 2 ESLint rules behave differently from their TSLint counterparts: 📢${EOL}` +
+                `* tslint-rule-one:${EOL}` +
+                `- 1${EOL}` +
+                `- 2${EOL}` +
+                `* tslint-rule-two:${EOL}` +
+                `- 3${EOL}` +
+                `- 4${EOL}`,
         );
     });
 
