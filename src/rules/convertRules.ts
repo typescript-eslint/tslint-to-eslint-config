@@ -1,11 +1,11 @@
 import { TSLintConfigurationRules } from "../input/findTSLintConfiguration";
 import { ConversionError } from "./conversionError";
+import { RuleConverter } from "./converter";
 import { convertRule } from "./convertRule";
 import { convertRuleSeverity } from "./convertRuleSeverity";
-import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
-import { RuleConverter } from "./converter";
-import { RuleMerger } from "./merger";
 import { formatRawTslintRule } from "./formatRawTslintRule";
+import { RuleMerger } from "./merger";
+import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 
 export type ConvertRulesDependencies = {
     converters: Map<string, RuleConverter>;
