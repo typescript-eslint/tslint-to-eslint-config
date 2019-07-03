@@ -2,6 +2,7 @@
 *.log
 *.map
 coverage/
+src/**/*.stubs.ts
 src/**/*.test.ts
 src/**/*.ts
 !src/**/*.d.ts

@@ -1,5 +1,11 @@
 version: 2.1
 
+references:
+    set_npm_token: &set_npm_token
+        run:
+            name: Add NPM auth token file
+            command: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+
 jobs:
     build:
         docker:
@@ -42,6 +48,22 @@ jobs:
                   at: "."
 
             - run: npm run eslint
+
+    publish:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - *set_npm_token
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm publish || exit 0
 
     prettier:
         docker:
@@ -93,6 +115,12 @@ workflows:
             - eslint:
                   requires:
                       - build
+            - publish:
+                  filters:
+                      branches:
+                          only: master
+                  requires:
+                      - tsc
             - prettier:
                   requires:
                       - build
