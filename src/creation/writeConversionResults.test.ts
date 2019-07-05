@@ -127,25 +127,21 @@ describe("writeConversionResults", () => {
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
-            JSON.stringify(
-                {
-                    ...eslint,
-                    env: {
-                        browser: true,
-                        es6: true,
-                        node: true,
-                    },
-                    parser: "@typescript-eslint/parser",
-                    parserOptions: {
-                        project: "tsconfig.json",
-                        sourceType: "module",
-                    },
-                    plugins: ["@typescript-eslint"],
-                    rules: {},
+            formatJsonOutput({
+                ...eslint,
+                env: {
+                    browser: true,
+                    es6: true,
+                    node: true,
                 },
-                undefined,
-                4,
-            ),
+                parser: "@typescript-eslint/parser",
+                parserOptions: {
+                    project: "tsconfig.json",
+                    sourceType: "module",
+                },
+                plugins: ["@typescript-eslint"],
+                rules: {},
+            }),
         );
     });
 });
