@@ -1,4 +1,4 @@
-import { TSLintRuleOptions } from "./types";
+import { TSLintRuleOptions } from "../rules/types";
 
 export class ConversionError {
     public constructor(

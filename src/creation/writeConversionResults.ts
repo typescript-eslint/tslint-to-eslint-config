@@ -20,7 +20,9 @@ export const writeConversionResults = async (
     if (ruleConversionResults.missing.length !== 0) {
         plugins.push("@typescript-eslint/tslint");
     }
+
     const output = {
+        ...(originalConfigurations.eslint && originalConfigurations.eslint),
         env: createEnv(originalConfigurations),
         parser: "@typescript-eslint/parser",
         parserOptions: {

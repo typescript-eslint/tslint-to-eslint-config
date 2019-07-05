@@ -65,6 +65,7 @@ describe("findESLintConfiguration", () => {
         // Assert
         expect(result).toEqual({
             env: {},
+            extends: [],
             rules: {},
         });
     });

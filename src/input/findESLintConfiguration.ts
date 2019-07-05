@@ -1,3 +1,4 @@
+import { ESLintRuleSeverity } from "../rules/types";
 import { TSLintToESLintSettings } from "../types";
 import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
 
@@ -5,13 +6,24 @@ export type ESLintConfiguration = {
     env: {
         [i: string]: boolean;
     };
-    rules: {
-        [i: string]: number | [string, any];
-    };
+    extends: string | string[];
+    rules: ESLintConfigurationRules;
 };
+
+export type ESLintConfigurationRules = {
+    [i: string]: ESLintConfigurationRuleValue;
+};
+
+export type ESLintConfigurationRuleValue =
+    | 0
+    | 1
+    | 2
+    | ESLintRuleSeverity
+    | [ESLintRuleSeverity, any];
 
 const defaultESLintConfiguration = {
     env: {},
+    extends: [],
     rules: {},
 };
 

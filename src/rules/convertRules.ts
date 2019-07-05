@@ -1,8 +1,9 @@
+import { ConfigurationError } from "../errors/configurationError";
+import { ConversionError } from "../errors/conversionError";
 import { TSLintConfigurationRules } from "../input/findTSLintConfiguration";
-import { ConversionError } from "./conversionError";
 import { RuleConverter } from "./converter";
 import { convertRule } from "./convertRule";
-import { convertRuleSeverity } from "./convertRuleSeverity";
+import { convertTSLintRuleSeverity } from "./convertRuleSeverity";
 import { formatRawTslintRule } from "./formatRawTslintRule";
 import { RuleMerger } from "./merger";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
@@ -14,9 +15,9 @@ export type ConvertRulesDependencies = {
 
 export type RuleConversionResults = {
     converted: Map<string, ESLintRuleOptions>;
-    failed: ConversionError[];
+    failed: (ConfigurationError | ConversionError)[];
     missing: TSLintRuleOptions[];
-    packages: Set<string>;
+    plugins: Set<string>;
 };
 
 export const convertRules = (
@@ -26,7 +27,7 @@ export const convertRules = (
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];
-    const packages = new Set<string>();
+    const plugins = new Set<string>();
 
     for (const [ruleName, value] of Object.entries(rawTslintRules)) {
         const tslintRule = formatRawTslintRule(ruleName, value);
@@ -49,7 +50,7 @@ export const convertRules = (
             const existingConversion = converted.get(changes.ruleName);
             const newConversion = {
                 ...changes,
-                ruleSeverity: convertRuleSeverity(tslintRule.ruleSeverity),
+                ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
             };
 
             if (existingConversion === undefined) {
@@ -78,12 +79,12 @@ export const convertRules = (
             }
         }
 
-        if (conversion.packages !== undefined) {
-            for (const newPackage of conversion.packages) {
-                packages.add(newPackage);
+        if (conversion.plugins !== undefined) {
+            for (const newPlugin of conversion.plugins) {
+                plugins.add(newPlugin);
             }
         }
     }
 
-    return { converted, failed, missing, packages };
+    return { converted, failed, missing, plugins };
 };

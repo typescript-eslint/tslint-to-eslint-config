@@ -1,6 +1,6 @@
+import { ConversionError } from "../errors/conversionError";
 import { convertRule } from "./convertRule";
 import { RuleConverter } from "./converter";
-import { ConversionError } from "./conversionError";
 import { TSLintRuleOptions } from "./types";
 
 describe("convertRule", () => {

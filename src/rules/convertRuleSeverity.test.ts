@@ -1,4 +1,4 @@
-import { convertRuleSeverity } from "./convertRuleSeverity";
+import { convertTSLintRuleSeverity, convertRawESLintRuleSeverity } from "./convertRuleSeverity";
 
 describe("convertRuleSeverity", () => {
     it("returns error when the severity is error", () => {
@@ -6,7 +6,7 @@ describe("convertRuleSeverity", () => {
         const tslintSeverity = "error";
 
         // Act
-        const eslintSeverity = convertRuleSeverity(tslintSeverity);
+        const eslintSeverity = convertTSLintRuleSeverity(tslintSeverity);
 
         // Assert
         expect(eslintSeverity).toEqual("error");
@@ -17,7 +17,7 @@ describe("convertRuleSeverity", () => {
         const tslintSeverity = "off";
 
         // Act
-        const eslintSeverity = convertRuleSeverity(tslintSeverity);
+        const eslintSeverity = convertTSLintRuleSeverity(tslintSeverity);
 
         // Assert
         expect(eslintSeverity).toEqual("off");
@@ -28,9 +28,55 @@ describe("convertRuleSeverity", () => {
         const tslintSeverity = "warning";
 
         // Act
-        const eslintSeverity = convertRuleSeverity(tslintSeverity);
+        const eslintSeverity = convertTSLintRuleSeverity(tslintSeverity);
 
         // Assert
         expect(eslintSeverity).toEqual("warn");
+    });
+});
+
+describe("convertRawESLintRuleSeverity", () => {
+    it("returns off when the severity is 0", () => {
+        // Arrange
+        const rawSeverity = 0;
+
+        // Act
+        const converted = convertRawESLintRuleSeverity(rawSeverity);
+
+        // Assert
+        expect(converted).toEqual("off");
+    });
+
+    it("returns off when the severity is 2", () => {
+        // Arrange
+        const rawSeverity = 1;
+
+        // Act
+        const converted = convertRawESLintRuleSeverity(rawSeverity);
+
+        // Assert
+        expect(converted).toEqual("warn");
+    });
+
+    it("returns off when the severity is 3", () => {
+        // Arrange
+        const rawSeverity = 2;
+
+        // Act
+        const converted = convertRawESLintRuleSeverity(rawSeverity);
+
+        // Assert
+        expect(converted).toEqual("error");
+    });
+
+    it("returns the original severity when it's a string", () => {
+        // Arrange
+        const rawSeverity = "warn";
+
+        // Act
+        const converted = convertRawESLintRuleSeverity(rawSeverity);
+
+        // Assert
+        expect(converted).toEqual("warn");
     });
 });

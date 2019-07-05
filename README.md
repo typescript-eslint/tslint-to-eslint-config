@@ -66,7 +66,7 @@ npx tslint-to-eslint-config --eslint ./path/to/eslintrc.js
 _Default: `--config`'s value_
 
 Path to an ESLint configuration file to read settings from.
-This isn't yet used for anything, but will eventually inform settings for the generated ESLint configuration file.
+The generated ESLint configuration file will include any settings `import`ed from this file.
 
 #### `package`
 

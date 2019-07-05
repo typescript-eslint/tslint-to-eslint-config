@@ -2,7 +2,8 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
-import { ConversionError } from "../rules/conversionError";
+import { ConfigurationError } from "../errors/configurationError";
+import { ConversionError } from "../errors/conversionError";
 import { RuleConversionResults } from "../rules/convertRules";
 import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
 
@@ -26,8 +27,8 @@ export const reportConversionResults = (
         logMissingRules(ruleConversionResults.missing, dependencies.logger);
     }
 
-    if (ruleConversionResults.packages.size !== 0) {
-        logMissingPackages(ruleConversionResults.packages, dependencies.logger);
+    if (ruleConversionResults.plugins.size !== 0) {
+        logMissingPlugins(ruleConversionResults.plugins, dependencies.logger);
     }
 };
 
@@ -41,19 +42,18 @@ const logSuccessfulConversions = (converted: Map<string, ESLintRuleOptions>, log
     logger.stdout.write(chalk.greenBright(` ✨${EOL}`));
 };
 
-const logFailedConversions = (failed: ConversionError[], logger: Logger) => {
+const logFailedConversions = (failed: (ConfigurationError | ConversionError)[], logger: Logger) => {
     logger.stderr.write(`${chalk.redBright(`💀 ${failed.length}`)}`);
-    logger.stderr.write(
-        chalk.red(` rule${failed.length === 1 ? " threw an error" : "s threw errors"}`),
-    );
-    logger.stderr.write(chalk.red("; using eslint-plugin-tslint instead."));
+    logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
+    logger.stderr.write(chalk.red(" thrown."));
     logger.stderr.write(chalk.redBright(` 💀${EOL}`));
 
     logger.info.write(
         failed
-            .map(
-                failed =>
-                    `${failed.tslintRule.ruleName} threw an error during conversion: ${failed.error.stack}.${EOL}`,
+            .map(failed =>
+                failed instanceof ConfigurationError
+                    ? `${failed.complaint}: ${failed.error.stack}${EOL}`
+                    : `${failed.tslintRule.ruleName} threw an error during conversion: ${failed.error.stack}${EOL}`,
             )
             .join(""),
     );
@@ -80,16 +80,16 @@ const logMissingRules = (missing: TSLintRuleOptions[], logger: Logger) => {
     );
 };
 
-const logMissingPackages = (packages: Set<string>, logger: Logger) => {
-    logger.stdout.write(chalk.cyanBright(`⚡ ${packages.size}`));
+const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
+    logger.stdout.write(chalk.cyanBright(`⚡ ${plugins.size}`));
     logger.stdout.write(chalk.cyan(" package"));
-    logger.stdout.write(chalk.cyan(packages.size === 1 ? " is" : "s are"));
+    logger.stdout.write(chalk.cyan(plugins.size === 1 ? " is" : "s are"));
     logger.stdout.write(chalk.cyan(` required for new ESLint rules.`));
     logger.stdout.write(chalk.cyanBright(` ⚡${EOL}`));
 
     logger.stdout.write(
-        Array.from(packages)
-            .map(packageName => `\t${chalk.cyanBright(packageName)}${EOL}`)
+        Array.from(plugins)
+            .map(pluginName => `\t${chalk.cyanBright(pluginName)}${EOL}`)
             .join(""),
     );
 };
