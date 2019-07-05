@@ -3,7 +3,7 @@ import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 import { TSLintToESLintSettings } from "../types";
 
 const createStubRawSettings = (overrides: Partial<TSLintToESLintSettings> = {}) => ({
-    config: "./eslintrc.json",
+    config: "./eslintrc.js",
     eslint: undefined,
     ...overrides,
 });
@@ -33,7 +33,7 @@ describe("findESLintConfiguration", () => {
         await findESLintConfiguration(dependencies, createStubRawSettings());
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith("eslint --print-config ./eslintrc.js");
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`eslint --print-config "./eslintrc.js"`);
     });
 
     it("includes a configuration file in the ESLint command when one is provided", async () => {
@@ -48,7 +48,7 @@ describe("findESLintConfiguration", () => {
 
         // Assert
         expect(dependencies.exec).toHaveBeenLastCalledWith(
-            "eslint --print-config ./custom/eslintrc.js",
+            `eslint --print-config "./custom/eslintrc.js"`,
         );
     });
 

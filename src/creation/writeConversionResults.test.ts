@@ -1,5 +1,6 @@
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 import { writeConversionResults } from "./writeConversionResults";
+import { formatJsonOutput } from "./formatting/formatters/formatJsonOutput";
 
 const originalConfigurations = {
     tslint: {
@@ -27,24 +28,20 @@ describe("writeConversionResults", () => {
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
-            JSON.stringify(
-                {
-                    env: {
-                        browser: true,
-                        es6: true,
-                        node: true,
-                    },
-                    parser: "@typescript-eslint/parser",
-                    parserOptions: {
-                        project: "tsconfig.json",
-                        sourceType: "module",
-                    },
-                    plugins: ["@typescript-eslint"],
-                    rules: {},
+            formatJsonOutput({
+                env: {
+                    browser: true,
+                    es6: true,
+                    node: true,
                 },
-                undefined,
-                4,
-            ),
+                parser: "@typescript-eslint/parser",
+                parserOptions: {
+                    project: "tsconfig.json",
+                    sourceType: "module",
+                },
+                plugins: ["@typescript-eslint"],
+                rules: {},
+            }),
         );
     });
 
@@ -73,33 +70,29 @@ describe("writeConversionResults", () => {
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
             ".eslintrc.json",
-            JSON.stringify(
-                {
-                    env: {
-                        browser: true,
-                        es6: true,
-                        node: true,
-                    },
-                    parser: "@typescript-eslint/parser",
-                    parserOptions: {
-                        project: "tsconfig.json",
-                        sourceType: "module",
-                    },
-                    plugins: ["@typescript-eslint", "@typescript-eslint/tslint"],
-                    rules: {
-                        "@typescript-eslint/tslint/config": [
-                            "error",
-                            {
-                                rules: {
-                                    "tslint-rule-one": true,
-                                },
-                            },
-                        ],
-                    },
+            formatJsonOutput({
+                env: {
+                    browser: true,
+                    es6: true,
+                    node: true,
                 },
-                undefined,
-                4,
-            ),
+                parser: "@typescript-eslint/parser",
+                parserOptions: {
+                    project: "tsconfig.json",
+                    sourceType: "module",
+                },
+                plugins: ["@typescript-eslint", "@typescript-eslint/tslint"],
+                rules: {
+                    "@typescript-eslint/tslint/config": [
+                        "error",
+                        {
+                            rules: {
+                                "tslint-rule-one": true,
+                            },
+                        },
+                    ],
+                },
+            }),
         );
     });
 });

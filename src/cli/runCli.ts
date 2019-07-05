@@ -27,7 +27,7 @@ export const runCli = async (
         .option("-V --version", "output the package version");
 
     const parsedArgv = {
-        config: "./eslintrc.json",
+        config: "./eslintrc.js",
         ...(command.parse(rawArgv) as Partial<TSLintToESLintSettings>),
     };
 
