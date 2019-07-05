@@ -1,0 +1,44 @@
+{
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint", "@typescript-eslint/tslint"],
+    "rules": {
+        "@typescript-eslint/array-type": "error",
+        "@typescript-eslint/interface-name-prefix": "error",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-param-reassign": "off",
+        "@typescript-eslint/no-parameter-properties": "off",
+        "@typescript-eslint/no-use-before-declare": "off",
+        "@typescript-eslint/promise-function-async": "off",
+        "@typescript-eslint/unbound-method": "off",
+        "arrow-body-style": "off",
+        "default-case": "off",
+        "linebreak-style": "off",
+        "no-bitwise": "off",
+        "no-empty": "off",
+        "no-empty-functions": "off",
+        "no-magic-numbers": "off",
+        "prefer-template": "off",
+        "@typescript-eslint/tslint/config": [
+            "error",
+            {
+                "rules": {
+                    "no-implicit-dependencies": [true, "dev"],
+                    "strict-boolean-expressions": [
+                        true,
+                        "allow-boolean-or-undefined",
+                        "allow-number"
+                    ]
+                }
+            }
+        ]
+    }
+}

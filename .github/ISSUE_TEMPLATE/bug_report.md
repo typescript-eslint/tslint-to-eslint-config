@@ -12,9 +12,9 @@ If your issue doesn't provide enough info to fully explain or reproduce your bug
 
 ### 🐛 Bug Report
 
--   `tslint-to-eslint-config` version: <!-- X.X.X -->
--   ESLint version: <!-- X.X.X -->
--   Node version: <!-- X.X.X -->
+-   `tslint-to-eslint-config` version: X.X.X
+-   ESLint version: X.X.X
+-   Node version: X.X.X
 
 #### Actual Behavior
 

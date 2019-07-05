@@ -3,6 +3,7 @@ import { RuleConversionResults } from "../rules/convertRules";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 import { createEnv } from "./eslint/createEnv";
+import { formatOutput } from "./formatting/formatOutput";
 
 export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;
@@ -10,6 +11,7 @@ export type WriteConversionResultsDependencies = {
 
 export const writeConversionResults = async (
     dependencies: WriteConversionResultsDependencies,
+    outputPath: string,
     ruleConversionResults: RuleConversionResults,
     originalConfigurations: OriginalConfigurations,
 ) => {
@@ -31,5 +33,5 @@ export const writeConversionResults = async (
         rules: formatConvertedRules(ruleConversionResults, originalConfigurations.tslint),
     };
 
-    await dependencies.fileSystem.writeFile(".eslintrc.json", JSON.stringify(output, undefined, 4));
+    await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };

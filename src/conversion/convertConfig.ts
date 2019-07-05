@@ -26,7 +26,6 @@ export const convertConfig = async (
     const ruleConversionResults = dependencies.convertRules(
         originalConfigurations.data.tslint.rules,
     );
-
     const mergedConfiguration = {
         ...ruleConversionResults,
         ...(await dependencies.simplifyPackageRules(
@@ -35,7 +34,11 @@ export const convertConfig = async (
         )),
     };
 
-    await dependencies.writeConversionResults(mergedConfiguration, originalConfigurations.data);
+    await dependencies.writeConversionResults(
+        settings.config,
+        mergedConfiguration,
+        originalConfigurations.data,
+    );
     dependencies.reportConversionResults(mergedConfiguration);
 
     return {

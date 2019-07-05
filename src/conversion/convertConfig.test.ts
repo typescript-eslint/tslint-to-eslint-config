@@ -29,7 +29,9 @@ describe("convertConfig", () => {
         const dependencies = createStubDependencies({
             findOriginalConfigurations: async () => findError,
         });
-        const settings = {};
+        const settings = {
+            config: "./eslintrc.js",
+        };
 
         // Act
         const result = await convertConfig(dependencies, settings);
@@ -47,7 +49,9 @@ describe("convertConfig", () => {
         const dependencies = createStubDependencies({
             findOriginalConfigurations: async () => findSuccess,
         });
-        const settings = {};
+        const settings = {
+            config: "./eslintrc.js",
+        };
 
         // Act
         const result = await convertConfig(dependencies, settings);

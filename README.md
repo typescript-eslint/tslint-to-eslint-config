@@ -1,11 +1,12 @@
 # tslint-to-eslint-config
 
-![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)
-![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
-[![Circle CI](https://img.shields.io/circleci/build/github/JoshuaKGoldberg/tslint-to-eslint-config.svg)](https://circleci.com/gh/JoshuaKGoldberg/tslint-to-eslint-config)
-[![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://badges.gitter.im/tslint-to-eslint-config/community.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-e72163.svg)](https://prettier.io)
+![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-orange.svg)
+![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-yellow.svg)
 [![NPM version](https://badge.fury.io/js/tslint-to-eslint-config.svg)](http://badge.fury.io/js/tslint-to-eslint-config)
-![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)
+[![Circle CI](https://img.shields.io/circleci/build/github/JoshuaKGoldberg/tslint-to-eslint-config.svg)](https://circleci.com/gh/JoshuaKGoldberg/tslint-to-eslint-config)
+[![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://img.shields.io/badge/chat-gitter-informational.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Style: Prettier](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](https://prettier.io)
 
 Converts your TSLint configuration to the closest possible ESLint equivalent.
 
@@ -35,13 +36,34 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 Each of these flags is optional.
 
-#### `eslint`
+-   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
+-   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
+-   **[`package`](#package)**: Path to a package.json file to read dependencies from.
+-   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
+-   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
+
+#### `config`
 
 ```shell
-npx tslint-to-eslint-config --eslint ./path/to/seslintrc.json
+npx tslint-to-eslint-config --config .eslintrc.json
 ```
 
 _Default: `.eslintrc.js`_
+
+Path to print the generated ESLint configuration file to.
+
+The file extension of this path will be used to determine the format of the created file:
+
+-   `.js` file paths will be written `module.exports = ...` JavaScript
+-   Other file paths will default to JSON
+
+#### `eslint`
+
+```shell
+npx tslint-to-eslint-config --eslint ./path/to/eslintrc.js
+```
+
+_Default: `--config`'s value_
 
 Path to an ESLint configuration file to read settings from.
 The generated ESLint configuration file will include any settings `import`ed from this file.
@@ -76,7 +98,7 @@ npx tslint-to-eslint-config --typescript ./path/to/tsconfig.json
 
 _Default: `tsconfig.json`_
 
-Path to a `tsconfig.json` file to read TypeScript compiler options from.
+Path to a TypeScript configuration file to read TypeScript compiler options from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
 
 ## Development

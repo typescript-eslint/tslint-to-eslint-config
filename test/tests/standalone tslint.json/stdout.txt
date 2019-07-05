@@ -1,0 +1,3 @@
+✨ 17 rules replaced with their ESLint equivalents. ✨
+️👀 2 rules do not yet have ESLint equivalents; defaulting to eslint-plugin-tslint. 👀
+✅ All is well! ✅

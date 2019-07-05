@@ -1,4 +1,3 @@
-import { ConfigurationError } from "../../errors/configurationError";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 
 describe("retrieveExtendsValues", () => {
