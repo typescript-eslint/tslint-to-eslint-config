@@ -1,11 +1,12 @@
 # tslint-to-eslint-config
 
-![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)
-![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
-[![Circle CI](https://img.shields.io/circleci/build/github/JoshuaKGoldberg/tslint-to-eslint-config.svg)](https://circleci.com/gh/JoshuaKGoldberg/tslint-to-eslint-config)
-[![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://badges.gitter.im/tslint-to-eslint-config/community.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-e72163.svg)](https://prettier.io)
+![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-orange.svg)
+![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-yellow.svg)
 [![NPM version](https://badge.fury.io/js/tslint-to-eslint-config.svg)](http://badge.fury.io/js/tslint-to-eslint-config)
-![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-brightgreen.svg)
+[![Circle CI](https://img.shields.io/circleci/build/github/JoshuaKGoldberg/tslint-to-eslint-config.svg)](https://circleci.com/gh/JoshuaKGoldberg/tslint-to-eslint-config)
+[![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://img.shields.io/badge/chat-gitter-informational.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Code Style: Prettier](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](https://prettier.io)
 
 Converts your TSLint configuration to the closest possible ESLint equivalent.
 

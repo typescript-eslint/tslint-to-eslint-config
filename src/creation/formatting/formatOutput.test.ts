@@ -1,5 +1,6 @@
-import { formatOutput } from "./formatOutput";
 import { EOL } from "os";
+
+import { formatOutput } from "./formatOutput";
 
 describe("formatOutput", () => {
     it("formats output as JavaScript for a .js file path", () => {
