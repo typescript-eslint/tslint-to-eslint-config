@@ -25,7 +25,11 @@ export const convertConfig = async (
         originalConfigurations.data.tslint.rules,
     );
 
-    await dependencies.writeConversionResults(ruleConversionResults, originalConfigurations.data);
+    await dependencies.writeConversionResults(
+        settings.config,
+        ruleConversionResults,
+        originalConfigurations.data,
+    );
     dependencies.reportConversionResults(ruleConversionResults);
 
     return {

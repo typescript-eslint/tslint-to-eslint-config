@@ -1,3 +1,4 @@
+import { TSLintToESLintSettings } from "../types";
 import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
 
 export type ESLintConfiguration = {
@@ -16,12 +17,12 @@ const defaultESLintConfiguration = {
 
 export const findESLintConfiguration = async (
     dependencies: FindConfigurationDependencies,
-    config: string | undefined,
+    rawSettings: Pick<TSLintToESLintSettings, "config" | "eslint">,
 ): Promise<ESLintConfiguration | Error> => {
     const rawConfiguration = await findConfiguration<ESLintConfiguration>(
         dependencies.exec,
         "eslint --print-config",
-        config || "./eslintrc.js",
+        rawSettings.eslint || rawSettings.config,
     );
 
     return rawConfiguration instanceof Error
