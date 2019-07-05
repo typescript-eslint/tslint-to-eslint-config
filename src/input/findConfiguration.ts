@@ -13,7 +13,7 @@ export const findConfiguration = async <Configuration>(
     command: string,
     config: string,
 ): Promise<DeepPartial<Configuration> | Error> => {
-    const fullCommand = `${command} ${config}`;
+    const fullCommand = `${command} "${config}"`;
     const stdout = await execAndCatch(exec, fullCommand);
 
     if (stdout instanceof Error) {
