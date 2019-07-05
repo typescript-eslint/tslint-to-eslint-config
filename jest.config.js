@@ -17,6 +17,6 @@ module.exports = {
         },
     },
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    testRegex: "((\\.|/)test)\\.tsx?$",
+    testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
 };

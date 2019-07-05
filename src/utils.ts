@@ -5,3 +5,5 @@ export const isError = <Item>(item: Item | Error): item is Error => item instanc
 export type RemoveErrors<Items> = {
     [P in keyof Items]: Exclude<Items[P], Error>;
 };
+
+export type PromiseValue<T> = T extends Promise<infer R> ? R : never;

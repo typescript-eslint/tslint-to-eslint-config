@@ -4,5 +4,6 @@
         "**/*.js.map": true,
         "**/*.js": { "when": "$(basename).ts" }
     },
+    "prettier.ignorePath": ".prettierignore",
     "typescript.tsdk": "node_modules/typescript/lib"
 }
