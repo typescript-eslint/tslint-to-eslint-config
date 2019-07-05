@@ -36,10 +36,15 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 Each of these flags is optional.
 
+-   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
+-   **[`package`](#package)**: Path to a package.json file to read dependencies from.
+-   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
+-   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
+
 #### `eslint`
 
 ```shell
-npx tslint-to-eslint-config --eslint ./path/to/seslintrc.json
+npx tslint-to-eslint-config --eslint ./path/to/eslintrc.json
 ```
 
 _Default: `.eslintrc.js`_
@@ -77,7 +82,7 @@ npx tslint-to-eslint-config --typescript ./path/to/tsconfig.json
 
 _Default: `tsconfig.json`_
 
-Path to a `tsconfig.json` file to read TypeScript compiler options from.
+Path to a TypeScript configuration file to read TypeScript compiler options from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
 
 ## Development
