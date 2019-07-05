@@ -19,13 +19,17 @@ export const runCli = async (
 ): Promise<ResultStatus> => {
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
-        .option("--eslint [eslint]", "eslint configuration file to convert")
-        .option("--package [package]", "package configuration file to convert")
-        .option("--tslint [tslint]", "tslint configuration file to convert")
-        .option("--typescript [typescript]", "typescript configuration file to convert")
+        .option("--config [config]", "eslint configuration file to output to")
+        .option("--eslint [eslint]", "eslint configuration file to convert using")
+        .option("--package [package]", "package configuration file to convert using")
+        .option("--tslint [tslint]", "tslint configuration file to convert using")
+        .option("--typescript [typescript]", "typescript configuration file to convert using")
         .option("-V --version", "output the package version");
 
-    const parsedArgv = command.parse(rawArgv) as Partial<TSLintToESLintSettings>;
+    const parsedArgv = {
+        config: "./eslintrc.json",
+        ...(command.parse(rawArgv) as Partial<TSLintToESLintSettings>),
+    };
 
     if ({}.hasOwnProperty.call(parsedArgv, "version")) {
         dependencies.logger.stdout.write(`${version}${EOL}`);

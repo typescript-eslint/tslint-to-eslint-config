@@ -17,7 +17,12 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
+        await writeConversionResults(
+            { fileSystem },
+            ".eslintrc.json",
+            conversionResults,
+            originalConfigurations,
+        );
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
@@ -58,7 +63,12 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
+        await writeConversionResults(
+            { fileSystem },
+            ".eslintrc.json",
+            conversionResults,
+            originalConfigurations,
+        );
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(

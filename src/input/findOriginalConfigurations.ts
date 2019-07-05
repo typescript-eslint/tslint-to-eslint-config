@@ -27,7 +27,7 @@ export const findOriginalConfigurations = async (
     rawSettings: TSLintToESLintSettings,
 ): Promise<ResultWithDataStatus<OriginalConfigurations>> => {
     const [eslint, packages, tslint, typescript] = await Promise.all([
-        dependencies.findESLintConfiguration(rawSettings.eslint),
+        dependencies.findESLintConfiguration(rawSettings),
         dependencies.findPackagesConfiguration(rawSettings.package),
         dependencies.findTSLintConfiguration(rawSettings.tslint),
         dependencies.findTypeScriptConfiguration(rawSettings.typescript),

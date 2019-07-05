@@ -35,13 +35,23 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 Each of these flags is optional.
 
+#### `config`
+
+```shell
+npx tslint-to-eslint-config --config ./project/eslintrc.js
+```
+
+_Default: `.eslintrc.json`_
+
+Path to print the generated ESLint configuration file to.
+
 #### `eslint`
 
 ```shell
-npx tslint-to-eslint-config --eslint ./path/to/seslintrc.json
+npx tslint-to-eslint-config --eslint ./path/to/eslintrc.json
 ```
 
-_Default: `.eslintrc.js`_
+_Default: `--config`'s value_
 
 Path to an ESLint configuration file to read settings from.
 This isn't yet used for anything, but will eventually inform settings for the generated ESLint configuration file.

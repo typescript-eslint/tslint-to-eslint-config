@@ -5,6 +5,7 @@ import {
 import { ResultStatus } from "../types";
 
 const createRawSettings = () => ({
+    config: "./eslintrc.json",
     eslint: "",
     tslint: "",
     typescript: "",

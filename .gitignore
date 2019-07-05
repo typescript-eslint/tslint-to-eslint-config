@@ -5,3 +5,4 @@
 coverage/
 node_modules/
 src/**/*.js
+test/tests/**/.eslintrc*
