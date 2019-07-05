@@ -1,12 +1,14 @@
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
 import { writeConversionResults } from "./writeConversionResults";
+import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
-const originalConfigurations = {
+const createStubOriginalConfigurations = (overrides: Partial<OriginalConfigurations> = {}) => ({
     tslint: {
         rulesDirectory: [],
         rules: {},
     },
-};
+    ...overrides,
+});
 
 describe("writeConversionResults", () => {
     it("excludes the tslint plugin when there are no missing rules", async () => {
@@ -17,7 +19,11 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
+        await writeConversionResults(
+            { fileSystem },
+            conversionResults,
+            createStubOriginalConfigurations(),
+        );
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
@@ -58,7 +64,11 @@ describe("writeConversionResults", () => {
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
         // Act
-        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
+        await writeConversionResults(
+            { fileSystem },
+            conversionResults,
+            createStubOriginalConfigurations(),
+        );
 
         // Assert
         expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
@@ -86,6 +96,52 @@ describe("writeConversionResults", () => {
                             },
                         ],
                     },
+                },
+                undefined,
+                4,
+            ),
+        );
+    });
+
+    it("includes the original eslint configuration when it exists", async () => {
+        // Arrange
+        const conversionResults = createEmptyConversionResults({
+            converted: new Map(),
+        });
+        const eslint = {
+            env: {},
+            extends: [],
+            globals: {
+                Promise: true,
+            },
+            rules: {},
+        };
+        const originalConfigurations = createStubOriginalConfigurations({
+            eslint,
+        });
+        const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
+
+        // Act
+        await writeConversionResults({ fileSystem }, conversionResults, originalConfigurations);
+
+        // Assert
+        expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
+            ".eslintrc.json",
+            JSON.stringify(
+                {
+                    ...eslint,
+                    env: {
+                        browser: true,
+                        es6: true,
+                        node: true,
+                    },
+                    parser: "@typescript-eslint/parser",
+                    parserOptions: {
+                        project: "tsconfig.json",
+                        sourceType: "module",
+                    },
+                    plugins: ["@typescript-eslint"],
+                    rules: {},
                 },
                 undefined,
                 4,

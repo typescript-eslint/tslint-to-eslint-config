@@ -1,6 +1,6 @@
-import { TSLintRuleOptions } from "./types";
-import { ConversionError } from "./conversionError";
+import { ConversionError } from "../errors/conversionError";
 import { RuleConverter } from "./converter";
+import { TSLintRuleOptions } from "./types";
 
 export const convertRule = (
     tslintRule: TSLintRuleOptions,

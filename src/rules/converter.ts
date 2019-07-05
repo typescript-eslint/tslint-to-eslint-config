@@ -1,4 +1,4 @@
-import { ConversionError } from "./conversionError";
+import { ConversionError } from "../errors/conversionError";
 import { TSLintRuleOptions } from "./types";
 
 /**
@@ -23,9 +23,9 @@ export type ConversionResult = {
     notices?: string[];
 
     /**
-     * Any packages that should now be installed if not already.
+     * Any plugins that should now be installed if not already.
      */
-    packages?: string[];
+    plugins?: string[];
 
     /**
      * At least one equivalent ESLint rule and options.

@@ -4,9 +4,10 @@ import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
 const createStubDependencies = (
     overrides: Pick<ConvertConfigDependencies, "findOriginalConfigurations">,
-) => ({
+): ConvertConfigDependencies => ({
     convertRules: jest.fn(),
     reportConversionResults: jest.fn(),
+    simplifyPackageRules: async (_configurations, data) => data,
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,
 });

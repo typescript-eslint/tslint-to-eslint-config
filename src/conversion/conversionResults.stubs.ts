@@ -1,11 +1,11 @@
 import { RuleConversionResults } from "../rules/convertRules";
 
 export const createEmptyConversionResults = (
-    overrides: Partial<RuleConversionResults>,
+    overrides: Partial<RuleConversionResults> = {},
 ): RuleConversionResults => ({
     converted: new Map(),
     failed: [],
     missing: [],
-    packages: new Set(),
+    plugins: new Set(),
     ...overrides,
 });

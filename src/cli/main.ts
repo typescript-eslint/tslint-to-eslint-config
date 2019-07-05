@@ -1,11 +1,20 @@
 import { EOL } from "os";
 
-import { bind } from "../binding";
-import { runCli, RunCliDependencies } from "./runCli";
+import { nativeImporter } from "../adapters/importer";
 import { processLogger } from "../adapters/processLogger";
 import { childProcessExec } from "../adapters/childProcessExec";
 import { fsFileSystem } from "../adapters/fsFileSystem";
+import { bind } from "../binding";
 import { ConvertConfigDependencies, convertConfig } from "../conversion/convertConfig";
+import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
+import {
+    RetrieveExtendsValuesDependencies,
+    retrieveExtendsValues,
+} from "../creation/simplification/retrieveExtendsValues";
+import {
+    simplifyPackageRules,
+    SimplifyPackageRulesDependencies,
+} from "../creation/simplification/simplifyPackageRules";
 import {
     writeConversionResults,
     WriteConversionResultsDependencies,
@@ -14,6 +23,7 @@ import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
 } from "../input/findOriginalConfigurations";
+import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
@@ -24,7 +34,7 @@ import {
 import { converters } from "../rules/converters";
 import { convertRules } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
-import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
+import { runCli, RunCliDependencies } from "./runCli";
 
 const convertRulesDependencies = {
     converters,
@@ -46,6 +56,15 @@ const reportConversionResultsDependencies: ReportConversionResultsDependencies =
     logger: processLogger,
 };
 
+const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
+    importer: nativeImporter,
+};
+
+const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
+    removeExtendsDuplicatedRules,
+    retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
+};
+
 const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
@@ -57,6 +76,7 @@ const convertConfigDependencies: ConvertConfigDependencies = {
         findOriginalConfigurationsDependencies,
     ),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
+    simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };
 

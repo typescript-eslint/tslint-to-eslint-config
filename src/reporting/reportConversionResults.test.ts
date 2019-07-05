@@ -1,8 +1,9 @@
-import { ConversionError } from "../rules/conversionError";
 import { ESLintRuleOptions } from "../rules/types";
 import { reportConversionResults } from "./reportConversionResults";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
+import { ConversionError } from "../errors/conversionError";
+import { ConfigurationError } from "../errors/configurationError";
 
 describe("reportConversionResults", () => {
     it("logs a successful conversion when there is one converted rule", () => {
@@ -64,6 +65,25 @@ describe("reportConversionResults", () => {
         );
     });
 
+    it("logs a failed configuration when there is one failed configuration error", () => {
+        // Arrange
+        const conversionResults = createEmptyConversionResults({
+            failed: [new ConfigurationError(new Error("and a one"), "some complaint")],
+        });
+
+        const logger = createStubLogger();
+
+        // Act
+        reportConversionResults({ logger }, conversionResults);
+
+        // Assert
+        expectEqualWrites(
+            logger.stderr.write,
+            "💀 1 error thrown. 💀",
+            `Check ${logger.debugFileName} for details.`,
+        );
+    });
+
     it("logs a failed conversion when there is one failed conversion", () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
@@ -84,7 +104,7 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 1 rule threw an error; using eslint-plugin-tslint instead. 💀",
+            "💀 1 error thrown. 💀",
             `Check ${logger.debugFileName} for details.`,
         );
     });
@@ -114,7 +134,7 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 2 rules threw errors; using eslint-plugin-tslint instead. 💀",
+            "💀 2 errors thrown. 💀",
             `Check ${logger.debugFileName} for details.`,
         );
     });
@@ -181,10 +201,10 @@ describe("reportConversionResults", () => {
         );
     });
 
-    it("logs a missing package when there is a missing package", () => {
+    it("logs a missing plugin when there is a missing plugin", () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
-            packages: new Set(["package-one"]),
+            plugins: new Set(["plugin-one"]),
         });
 
         const logger = createStubLogger();
@@ -196,14 +216,14 @@ describe("reportConversionResults", () => {
         expectEqualWrites(
             logger.stdout.write,
             "⚡ 1 package is required for new ESLint rules. ⚡",
-            "\tpackage-one",
+            "\tplugin-one",
         );
     });
 
-    it("logs missing packages when there are missing packages", () => {
+    it("logs missing plugins when there are missing plugins", () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
-            packages: new Set(["package-one", "package-two"]),
+            plugins: new Set(["plugin-one", "plugin-two"]),
         });
 
         const logger = createStubLogger();
@@ -215,8 +235,8 @@ describe("reportConversionResults", () => {
         expectEqualWrites(
             logger.stdout.write,
             "⚡ 2 packages are required for new ESLint rules. ⚡",
-            "\tpackage-one",
-            "\tpackage-two",
+            "\tplugin-one",
+            "\tplugin-two",
         );
     });
 });

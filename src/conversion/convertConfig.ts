@@ -1,4 +1,5 @@
 import { SansDependencies } from "../binding";
+import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { reportConversionResults } from "../reporting/reportConversionResults";
@@ -9,6 +10,7 @@ export type ConvertConfigDependencies = {
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
+    simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -25,8 +27,16 @@ export const convertConfig = async (
         originalConfigurations.data.tslint.rules,
     );
 
-    await dependencies.writeConversionResults(ruleConversionResults, originalConfigurations.data);
-    dependencies.reportConversionResults(ruleConversionResults);
+    const mergedConfiguration = {
+        ...ruleConversionResults,
+        ...(await dependencies.simplifyPackageRules(
+            originalConfigurations.data.eslint,
+            ruleConversionResults,
+        )),
+    };
+
+    await dependencies.writeConversionResults(mergedConfiguration, originalConfigurations.data);
+    dependencies.reportConversionResults(mergedConfiguration);
 
     return {
         status: ResultStatus.Succeeded,
