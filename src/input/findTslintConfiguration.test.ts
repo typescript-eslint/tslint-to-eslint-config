@@ -26,7 +26,7 @@ describe("findTSLintConfiguration", () => {
         await findTSLintConfiguration(dependencies, undefined);
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith("tslint --print-config ./tslint.json");
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`tslint --print-config "./tslint.json"`);
     });
 
     it("includes a configuration file in the TSLint command when one is provided", async () => {
@@ -39,7 +39,7 @@ describe("findTSLintConfiguration", () => {
 
         // Assert
         expect(dependencies.exec).toHaveBeenLastCalledWith(
-            "tslint --print-config ./custom/tslint.json",
+            `tslint --print-config "./custom/tslint.json"`,
         );
     });
 
