@@ -96,9 +96,9 @@ const logMissingPackages = (packages: Set<string>, logger: Logger) => {
 };
 
 const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
-    const rulesWithNotices = [...converted.values()].filter(
+    const rulesWithNotices = Array.from(converted.values()).filter(
         ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
-    ) as ESLintRuleOptions[];
+    );
 
     if (rulesWithNotices.length > 0) {
         logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
