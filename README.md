@@ -36,7 +36,6 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 Each of these flags is optional.
 
--   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
