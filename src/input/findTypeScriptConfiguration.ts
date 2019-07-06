@@ -19,7 +19,7 @@ export const findTypeScriptConfiguration = async (
 ): Promise<TypeScriptConfiguration | Error> => {
     const rawConfiguration = await findConfiguration<TypeScriptConfiguration>(
         dependencies.exec,
-        "cat",
+        "tsc --showConfig -p",
         config || "./tsconfig.json",
     );
 
