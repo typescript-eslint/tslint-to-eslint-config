@@ -37,6 +37,13 @@ export type ConversionResult = {
  * An ESLint rule equivalent to a previously enabled TSLint rule.
  */
 export type ConvertedRuleChanges = {
+    /**
+     * Any arguments for that ESLint rule.
+     */
     ruleArguments?: any[];
+
+    /**
+     * Equivalent ESLint rule name that should be enabled.
+     */
     ruleName: string;
 };
