@@ -59,10 +59,12 @@
     },
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
-        "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\"",
+        "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
-        "test": "jest",
+        "test:unit": "jest",
+        "test:end-to-end": "jest --config=test/jest.config.js",
+        "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"",
         "tsc": "tsc"
     },
-    "version": "0.1.7"
+    "version": "0.1.8"
 }

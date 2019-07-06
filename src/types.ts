@@ -1,5 +1,10 @@
 export type TSLintToESLintSettings = {
     /**
+     * Output ESLint configuration file path, such as `.eslintrc.js`.
+     */
+    config: string;
+
+    /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
      */
     eslint?: string;

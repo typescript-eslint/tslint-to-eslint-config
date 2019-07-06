@@ -5,6 +5,7 @@ import {
 import { ResultStatus } from "../types";
 
 const createRawSettings = () => ({
+    config: "./eslintrc.js",
     eslint: "",
     tslint: "",
     typescript: "",
@@ -13,6 +14,7 @@ const createRawSettings = () => ({
 const createDependencies = (overrides: Partial<FindOriginalConfigurationsDependencies> = {}) => ({
     findESLintConfiguration: async () => ({
         env: {},
+        extends: [],
         rules: {},
     }),
     findPackagesConfiguration: async () => ({
@@ -84,6 +86,7 @@ describe("findOriginalConfigurations", () => {
             data: {
                 eslint: {
                     env: {},
+                    extends: [],
                     rules: {},
                 },
                 packages: {

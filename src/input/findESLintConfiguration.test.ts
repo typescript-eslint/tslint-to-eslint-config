@@ -1,5 +1,12 @@
 import { findESLintConfiguration } from "./findESLintConfiguration";
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
+import { TSLintToESLintSettings } from "../types";
+
+const createStubRawSettings = (overrides: Partial<TSLintToESLintSettings> = {}) => ({
+    config: "./eslintrc.js",
+    eslint: undefined,
+    ...overrides,
+});
 
 describe("findESLintConfiguration", () => {
     it("returns an error when one occurs", async () => {
@@ -8,7 +15,7 @@ describe("findESLintConfiguration", () => {
         const dependencies = { exec: createStubThrowingExec({ stderr: message }) };
 
         // Act
-        const result = await findESLintConfiguration(dependencies, undefined);
+        const result = await findESLintConfiguration(dependencies, createStubRawSettings());
 
         // Assert
         expect(result).toEqual(
@@ -23,30 +30,34 @@ describe("findESLintConfiguration", () => {
         const dependencies = { exec: createStubExec() };
 
         // Act
-        await findESLintConfiguration(dependencies, undefined);
+        await findESLintConfiguration(dependencies, createStubRawSettings());
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith("eslint --print-config ./eslintrc.js");
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`eslint --print-config "./eslintrc.js"`);
     });
 
     it("includes a configuration file in the ESLint command when one is provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec() };
-        const config = "./custom/eslintrc.js";
+        const config = createStubRawSettings({
+            eslint: "./custom/eslintrc.js",
+        });
 
         // Act
         await findESLintConfiguration(dependencies, config);
 
         // Assert
         expect(dependencies.exec).toHaveBeenLastCalledWith(
-            "eslint --print-config ./custom/eslintrc.js",
+            `eslint --print-config "./custom/eslintrc.js"`,
         );
     });
 
     it("applies ESLint defaults when none are provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec({ stdout: "{}" }) };
-        const config = "./custom/eslintrc.js";
+        const config = createStubRawSettings({
+            eslint: "./custom/eslintrc.js",
+        });
 
         // Act
         const result = await findESLintConfiguration(dependencies, config);
@@ -54,6 +65,7 @@ describe("findESLintConfiguration", () => {
         // Assert
         expect(result).toEqual({
             env: {},
+            extends: [],
             rules: {},
         });
     });

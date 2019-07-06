@@ -4,9 +4,10 @@ import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
 const createStubDependencies = (
     overrides: Pick<ConvertConfigDependencies, "findOriginalConfigurations">,
-) => ({
+): ConvertConfigDependencies => ({
     convertRules: jest.fn(),
     reportConversionResults: jest.fn(),
+    simplifyPackageRules: async (_configurations, data) => data,
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,
 });
@@ -28,7 +29,9 @@ describe("convertConfig", () => {
         const dependencies = createStubDependencies({
             findOriginalConfigurations: async () => findError,
         });
-        const settings = {};
+        const settings = {
+            config: "./eslintrc.js",
+        };
 
         // Act
         const result = await convertConfig(dependencies, settings);
@@ -46,7 +49,9 @@ describe("convertConfig", () => {
         const dependencies = createStubDependencies({
             findOriginalConfigurations: async () => findSuccess,
         });
-        const settings = {};
+        const settings = {
+            config: "./eslintrc.js",
+        };
 
         // Act
         const result = await convertConfig(dependencies, settings);

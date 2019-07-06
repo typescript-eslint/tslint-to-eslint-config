@@ -10,7 +10,7 @@ describe("findPackagesConfiguration", () => {
         await findPackagesConfiguration(dependencies, undefined);
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith("cat ./package.json");
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`cat "./package.json"`);
     });
 
     it("includes a configuration file in the packages command when one is provided", async () => {
@@ -22,7 +22,7 @@ describe("findPackagesConfiguration", () => {
         await findPackagesConfiguration(dependencies, config);
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith("cat ./custom/package.json");
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`cat "./custom/package.json"`);
     });
 
     it("applies packages defaults when none are provided", async () => {

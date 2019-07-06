@@ -1,6 +1,6 @@
+import { ConversionError } from "../errors/conversionError";
 import { convertRules } from "./convertRules";
 import { TSLintRuleOptions } from "./types";
-import { ConversionError } from "./conversionError";
 
 describe("convertRules", () => {
     it("doesn't marks a disabled rule as missing when its converter returns undefined", () => {
@@ -182,7 +182,7 @@ describe("convertRules", () => {
         );
     });
 
-    it("marks a new package when a conversion has a new package", () => {
+    it("marks a new plugin when a conversion has a new plugin", () => {
         // Arrange
         const tslintRule: TSLintRuleOptions = {
             ruleArguments: [],
@@ -190,19 +190,19 @@ describe("convertRules", () => {
             ruleSeverity: "error",
         };
         const conversionResult = {
-            packages: ["extra-package"],
+            plugins: ["extra-plugin"],
             rules: [],
         };
         const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
         const mergers = new Map();
 
         // Act
-        const { packages } = convertRules(
+        const { plugins } = convertRules(
             { converters, mergers },
             { [tslintRule.ruleName]: tslintRule },
         );
 
         // Assert
-        expect(packages).toEqual(new Set(["extra-package"]));
+        expect(plugins).toEqual(new Set(["extra-plugin"]));
     });
 });
