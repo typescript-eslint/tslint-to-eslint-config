@@ -31,7 +31,7 @@
         "prettier": "1.18.2",
         "strip-ansi": "5.2.0",
         "tslint": "5.18.0",
-        "typescript": "3.5.2"
+        "typescript": "3.5.3"
     },
     "homepage": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config#readme",
     "husky": {
