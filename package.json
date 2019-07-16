@@ -9,7 +9,9 @@
     "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
     "dependencies": {
         "chalk": "2.4.2",
-        "commander": "2.20.0"
+        "commander": "2.20.0",
+        "tslint": "^5.18.0",
+        "typescript": "^3.5.3"
     },
     "devDependencies": {
         "@babel/core": "7.5.4",
@@ -29,9 +31,7 @@
         "jest": "24.8.0",
         "lint-staged": "9.2.0",
         "prettier": "1.18.2",
-        "strip-ansi": "5.2.0",
-        "tslint": "5.18.0",
-        "typescript": "3.5.3"
+        "strip-ansi": "5.2.0"
     },
     "homepage": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config#readme",
     "husky": {
