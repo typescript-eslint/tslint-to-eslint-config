@@ -95,10 +95,15 @@ const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
     );
 };
 
+interface RuleWithNotices {
+    notices: any[];
+    ruleName: string;
+}
+
 const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
     const rulesWithNotices = Array.from(converted.values()).filter(
         ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
-    );
+    ) as RuleWithNotices[];
 
     if (rulesWithNotices.length > 0) {
         logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
@@ -111,11 +116,9 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
 
         rulesWithNotices.forEach(rule => {
             logger.stdout.write(chalk.yellow(`* ${rule.ruleName}:${EOL}`));
-            if (rule.notices !== undefined) {
-                rule.notices.forEach(notice => {
-                    logger.stdout.write(chalk.yellow(`- ${notice}${EOL}`));
-                });
-            }
+            rule.notices.forEach(notice => {
+                logger.stdout.write(chalk.yellow(`- ${notice}${EOL}`));
+            });
         });
     }
 };
