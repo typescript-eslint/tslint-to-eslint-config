@@ -29,10 +29,16 @@ export const findTSLintConfiguration = async (
         config || "./tslint.json",
     );
 
-    return rawConfiguration instanceof Error
-        ? rawConfiguration
-        : {
-              ...defaultTSLintConfiguration,
-              ...rawConfiguration,
-          };
+    if (rawConfiguration instanceof Error) {
+        if (rawConfiguration.message.includes("unknown option `--print-config")) {
+            return new Error("TSLint v5.18 required. Please update your version.");
+        }
+
+        return rawConfiguration;
+    }
+
+    return {
+        ...defaultTSLintConfiguration,
+        ...rawConfiguration,
+    };
 };
