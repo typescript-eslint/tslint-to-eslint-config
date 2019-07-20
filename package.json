@@ -66,5 +66,5 @@
         "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"",
         "tsc": "tsc"
     },
-    "version": "0.2.0"
+    "version": "0.2.1"
 }
