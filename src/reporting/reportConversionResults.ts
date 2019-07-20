@@ -117,7 +117,7 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
         rulesWithNotices.forEach(rule => {
             logger.stdout.write(chalk.yellow(`* ${rule.ruleName}:${EOL}`));
             rule.notices.forEach(notice => {
-                logger.stdout.write(chalk.yellow(`- ${notice}${EOL}`));
+                logger.stdout.write(chalk.yellow(`  - ${notice}${EOL}`));
             });
         });
     }
