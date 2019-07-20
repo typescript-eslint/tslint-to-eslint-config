@@ -18,6 +18,22 @@ describe("findTSLintConfiguration", () => {
         );
     });
 
+    it("replaces an error with a v5.18 request when the --print-config option is unsupported", async () => {
+        // Arrange
+        const stderr = "unknown option `--print-config";
+        const dependencies = { exec: createStubThrowingExec({ stderr }) };
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message: "TSLint v5.18 required. Please update your version.",
+            }),
+        );
+    });
+
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
         const dependencies = { exec: createStubExec() };
