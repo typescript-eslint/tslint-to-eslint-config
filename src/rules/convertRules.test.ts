@@ -176,6 +176,7 @@ describe("convertRules", () => {
                         ruleArguments: mergedArguments,
                         ruleName: "eslint-rule-a",
                         ruleSeverity: "error",
+                        notices: [],
                     },
                 ],
             ]),

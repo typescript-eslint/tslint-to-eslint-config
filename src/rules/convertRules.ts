@@ -69,13 +69,16 @@ export const convertRules = (
                     ),
                 );
             } else {
+                const existingNotices = existingConversion.notices || [];
+                const newNotices = newConversion.notices || [];
+
                 converted.set(changes.ruleName, {
                     ...existingConversion,
                     ruleArguments: merger(
                         existingConversion.ruleArguments,
                         newConversion.ruleArguments,
                     ),
-                    notices: merger(existingConversion.notices, newConversion.notices),
+                    notices: [...existingNotices, ...newNotices],
                 });
             }
         }
