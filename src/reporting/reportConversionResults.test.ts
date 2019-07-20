@@ -34,8 +34,8 @@ describe("reportConversionResults", () => {
             `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}` +
                 `📢 1 ESLint rule behaves differently from their TSLint counterparts: 📢${EOL}` +
                 `* tslint-rule-one:${EOL}` +
-                `- 1${EOL}` +
-                `- 2${EOL}`,
+                `  - 1${EOL}` +
+                `  - 2${EOL}`,
         );
     });
 
@@ -75,11 +75,11 @@ describe("reportConversionResults", () => {
             `✨ 2 rules replaced with their ESLint equivalents. ✨${EOL}` +
                 `📢 2 ESLint rules behave differently from their TSLint counterparts: 📢${EOL}` +
                 `* tslint-rule-one:${EOL}` +
-                `- 1${EOL}` +
-                `- 2${EOL}` +
+                `  - 1${EOL}` +
+                `  - 2${EOL}` +
                 `* tslint-rule-two:${EOL}` +
-                `- 3${EOL}` +
-                `- 4${EOL}`,
+                `  - 3${EOL}` +
+                `  - 4${EOL}`,
         );
     });
 
