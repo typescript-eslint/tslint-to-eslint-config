@@ -1,10 +1,9 @@
 {
-    "author": "Josh Goldberg <me@joshuakgoldberg.com>",
     "bin": {
         "tslint-to-eslint-config": "bin/tslint-to-eslint-config"
     },
     "bugs": {
-        "url": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config/issues"
+        "url": "https://github.com/typescript-eslint/tslint-to-eslint-config/issues"
     },
     "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
     "dependencies": {
@@ -33,7 +32,7 @@
         "prettier": "1.18.2",
         "strip-ansi": "5.2.0"
     },
-    "homepage": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config#readme",
+    "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged"
@@ -55,7 +54,7 @@
     "name": "tslint-to-eslint-config",
     "repository": {
         "type": "git",
-        "url": "github:JoshuaKGoldberg/tslint-to-eslint"
+        "url": "github:typescript-eslint/tslint-to-eslint"
     },
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",

@@ -5,8 +5,8 @@ Please fill out all fields below to ensure your PR is reviewed quickly.
 
 ## PR Checklist
 
--   [ ] Addresses an existing issue: fixes #00
--   [ ] That issue was marked as [`status: accepting prs`](https://github.com/JoshuaKGoldberg/tslint-to-eslint-config/labels/status%3A%20accepting%20prs)
+-   [ ] Addresses an existing issue: fixes #000
+-   [ ] That issue was marked as [`status: accepting prs`](https://github.com/typescript-eslint/tslint-to-eslint-config/labels/status%3A%20accepting%20prs)
 
 ## Overview
 
