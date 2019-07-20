@@ -9,29 +9,29 @@
     "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
     "dependencies": {
         "chalk": "2.4.2",
-        "commander": "2.20.0"
+        "commander": "2.20.0",
+        "tslint": "5.18.0",
+        "typescript": "3.5.3"
     },
     "devDependencies": {
-        "@babel/core": "7.5.0",
-        "@babel/preset-env": "7.5.0",
+        "@babel/core": "7.5.5",
+        "@babel/preset-env": "7.5.5",
         "@babel/preset-typescript": "7.3.3",
         "@types/jest": "24.0.15",
-        "@types/node": "12.0.12",
-        "@typescript-eslint/eslint-plugin": "1.11.0",
-        "@typescript-eslint/parser": "1.11.0",
+        "@types/node": "12.6.8",
+        "@typescript-eslint/eslint-plugin": "1.12.0",
+        "@typescript-eslint/parser": "1.12.0",
         "babel-jest": "24.8.0",
         "eslint": "6.0.1",
         "eslint-config-airbnb": "17.1.1",
         "eslint-config-airbnb-base": "13.2.0",
         "eslint-config-prettier": "6.0.0",
-        "eslint-plugin-import": "2.18.0",
-        "husky": "3.0.0",
+        "eslint-plugin-import": "2.18.2",
+        "husky": "3.0.1",
         "jest": "24.8.0",
-        "lint-staged": "9.0.2",
+        "lint-staged": "9.2.0",
         "prettier": "1.18.2",
-        "strip-ansi": "5.2.0",
-        "tslint": "5.18.0",
-        "typescript": "3.5.2"
+        "strip-ansi": "5.2.0"
     },
     "homepage": "https://github.com/JoshuaKGoldberg/tslint-to-eslint-config#readme",
     "husky": {
@@ -66,5 +66,5 @@
         "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"",
         "tsc": "tsc"
     },
-    "version": "0.1.8"
+    "version": "0.2.0"
 }

@@ -107,6 +107,11 @@ jobs:
 
             - run: npm run tsc
 
+            - persist_to_workspace:
+                  root: "."
+                  paths:
+                      - src
+
 workflows:
     version: 2
     commit:

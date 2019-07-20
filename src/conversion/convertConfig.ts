@@ -14,19 +14,27 @@ export type ConvertConfigDependencies = {
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
+/**
+ * Root-level driver to convert a TSLint configuration to ESLint.
+ * @see `Architecture.md` for documentation.
+ */
 export const convertConfig = async (
     dependencies: ConvertConfigDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
+    // 1. Existing configurations are read
     const originalConfigurations = await dependencies.findOriginalConfigurations(settings);
     if (originalConfigurations.status !== ResultStatus.Succeeded) {
         return originalConfigurations;
     }
 
+    // 2. TSLint rules are converted into their ESLint configurations
     const ruleConversionResults = dependencies.convertRules(
         originalConfigurations.data.tslint.rules,
     );
-    const mergedConfiguration = {
+
+    // 3. ESLint configurations are simplified based on extended ESLint presets
+    const simplifiedConfiguration = {
         ...ruleConversionResults,
         ...(await dependencies.simplifyPackageRules(
             originalConfigurations.data.eslint,
@@ -34,12 +42,15 @@ export const convertConfig = async (
         )),
     };
 
+    // 4. The simplified configuration is written to the output config file
     await dependencies.writeConversionResults(
         settings.config,
-        mergedConfiguration,
+        simplifiedConfiguration,
         originalConfigurations.data,
     );
-    dependencies.reportConversionResults(mergedConfiguration);
+
+    // 5. A summary of the results is printed to the user's console
+    dependencies.reportConversionResults(simplifiedConfiguration);
 
     return {
         status: ResultStatus.Succeeded,

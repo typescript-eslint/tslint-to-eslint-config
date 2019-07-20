@@ -26,7 +26,7 @@ describe("findTypeScriptConfiguration", () => {
         await findTypeScriptConfiguration(dependencies, undefined);
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith(`cat "./tsconfig.json"`);
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`tsc --showConfig -p "./tsconfig.json"`);
     });
 
     it("includes a configuration file in the TypeScript command when one is provided", async () => {
@@ -38,7 +38,9 @@ describe("findTypeScriptConfiguration", () => {
         await findTypeScriptConfiguration(dependencies, config);
 
         // Assert
-        expect(dependencies.exec).toHaveBeenLastCalledWith(`cat "./custom/tsconfig.json"`);
+        expect(dependencies.exec).toHaveBeenLastCalledWith(
+            `tsc --showConfig -p "./custom/tsconfig.json"`,
+        );
     });
 
     it("applies TypeScript defaults when none are provided", async () => {
