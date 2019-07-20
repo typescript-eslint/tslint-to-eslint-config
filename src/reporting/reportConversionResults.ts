@@ -17,6 +17,7 @@ export const reportConversionResults = (
 ) => {
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions(ruleConversionResults.converted, dependencies.logger);
+        logNotices(ruleConversionResults.converted, dependencies.logger);
     }
 
     if (ruleConversionResults.failed.length !== 0) {
@@ -92,4 +93,32 @@ const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
             .map(pluginName => `\t${chalk.cyanBright(pluginName)}${EOL}`)
             .join(""),
     );
+};
+
+interface RuleWithNotices {
+    notices: any[];
+    ruleName: string;
+}
+
+const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
+    const rulesWithNotices = Array.from(converted.values()).filter(
+        ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
+    ) as RuleWithNotices[];
+
+    if (rulesWithNotices.length > 0) {
+        logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
+        logger.stdout.write(
+            chalk.yellowBright(rulesWithNotices.length == 1 ? ` rule behaves` : ` rules behave`),
+        );
+        logger.stdout.write(
+            chalk.yellowBright(` differently from their TSLint counterparts: 📢${EOL}`),
+        );
+
+        rulesWithNotices.forEach(rule => {
+            logger.stdout.write(chalk.yellow(`* ${rule.ruleName}:${EOL}`));
+            rule.notices.forEach(notice => {
+                logger.stdout.write(chalk.yellow(`  - ${notice}${EOL}`));
+            });
+        });
+    }
 };

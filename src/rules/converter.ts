@@ -38,6 +38,11 @@ export type ConversionResult = {
  */
 export type ConvertedRuleChanges = {
     /**
+     * Any notices associated with that ESLint rule.
+     */
+    notices?: string[];
+
+    /**
      * Any arguments for that ESLint rule.
      */
     ruleArguments?: any[];

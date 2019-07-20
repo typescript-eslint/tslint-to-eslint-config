@@ -1,3 +1,4 @@
+import { EOL } from "os";
 import { ESLintRuleOptions } from "../rules/types";
 import { reportConversionResults } from "./reportConversionResults";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
@@ -13,6 +14,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-one",
                     {
+                        notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
                         ruleName: "tslint-rule-one",
                         ruleSeverity: "error",
@@ -27,7 +29,14 @@ describe("reportConversionResults", () => {
         reportConversionResults({ logger }, conversionResults);
 
         // Assert
-        expectEqualWrites(logger.stdout.write, "✨ 1 rule replaced with its ESLint equivalent. ✨");
+        expectEqualWrites(
+            logger.stdout.write,
+            `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}` +
+                `📢 1 ESLint rule behaves differently from their TSLint counterparts: 📢${EOL}` +
+                `* tslint-rule-one:${EOL}` +
+                `  - 1${EOL}` +
+                `  - 2${EOL}`,
+        );
     });
 
     it("logs successful conversions when there are multiple converted rules", () => {
@@ -37,6 +46,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-one",
                     {
+                        notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
                         ruleName: "tslint-rule-one",
                         ruleSeverity: "error",
@@ -45,6 +55,7 @@ describe("reportConversionResults", () => {
                 [
                     "tslint-rule-two",
                     {
+                        notices: ["3", "4"],
                         ruleArguments: ["c", "d"],
                         ruleName: "tslint-rule-two",
                         ruleSeverity: "warn",
@@ -61,7 +72,14 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "✨ 2 rules replaced with their ESLint equivalents. ✨",
+            `✨ 2 rules replaced with their ESLint equivalents. ✨${EOL}` +
+                `📢 2 ESLint rules behave differently from their TSLint counterparts: 📢${EOL}` +
+                `* tslint-rule-one:${EOL}` +
+                `  - 1${EOL}` +
+                `  - 2${EOL}` +
+                `* tslint-rule-two:${EOL}` +
+                `  - 3${EOL}` +
+                `  - 4${EOL}`,
         );
     });
 
