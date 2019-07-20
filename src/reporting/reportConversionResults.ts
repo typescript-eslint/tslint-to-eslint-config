@@ -95,10 +95,10 @@ const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
     );
 };
 
-interface RuleWithNotices {
+type RuleWithNotices = {
     notices: any[];
     ruleName: string;
-}
+};
 
 const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
     const rulesWithNotices = Array.from(converted.values()).filter(
@@ -108,7 +108,7 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
     if (rulesWithNotices.length > 0) {
         logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
         logger.stdout.write(
-            chalk.yellowBright(rulesWithNotices.length == 1 ? ` rule behaves` : ` rules behave`),
+            chalk.yellowBright(rulesWithNotices.length === 1 ? ` rule behaves` : ` rules behave`),
         );
         logger.stdout.write(
             chalk.yellowBright(` differently from their TSLint counterparts: 📢${EOL}`),
