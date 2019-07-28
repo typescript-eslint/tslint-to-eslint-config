@@ -1,3 +1,4 @@
-✨ 17 rules replaced with their ESLint equivalents. ✨
-️👀 2 rules do not yet have ESLint equivalents; defaulting to eslint-plugin-tslint. 👀
-✅ All is well! ✅
+[92m✨ 17[39m[32m rules replaced with their ESLint equivalents.[39m[92m ✨[39m
+[92m[39m[93m️👀 2[39m[33m rules do not yet have ESLint equivalents[39m[33m; defaulting to eslint-plugin-tslint.[39m[93m 👀[39m
+[93m[39m[92m✅ All is well! ✅[39m
+[92m[39m

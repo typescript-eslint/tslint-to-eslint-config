@@ -6,4 +6,5 @@ coverage/
 node_modules/
 src/**/*.js
 test/*.js
+~test/jest.config.js
 test/tests/**/.eslintrc*
