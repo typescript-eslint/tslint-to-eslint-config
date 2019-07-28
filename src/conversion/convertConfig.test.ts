@@ -1,6 +1,5 @@
-import { ResultStatus, FailedResult, SucceededDataResult } from "../types";
+import { ResultStatus, FailedResult } from "../types";
 import { convertConfig, ConvertConfigDependencies } from "./convertConfig";
-import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
 const stubSettings = {
     config: "./eslintrc.js",
