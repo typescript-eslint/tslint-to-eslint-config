@@ -28,6 +28,7 @@ export const findOriginalConfigurations = async (
     dependencies: FindOriginalConfigurationsDependencies,
     rawSettings: TSLintToESLintSettings,
 ): Promise<ResultWithDataStatus<OriginalConfigurations>> => {
+    // Simultaneously search for all required configuration types
     const [eslint, packages, tslint, typescript] = await Promise.all([
         dependencies.findESLintConfiguration(rawSettings),
         dependencies.findPackagesConfiguration(rawSettings.package),
@@ -35,9 +36,23 @@ export const findOriginalConfigurations = async (
         dependencies.findTypeScriptConfiguration(rawSettings.typescript),
     ]);
 
+    // Out of those configurations, only TSLint's is required to run
     if (tslint instanceof Error) {
         return {
             complaints: [tslint.message],
+            status: ResultStatus.ConfigurationError,
+        };
+    }
+
+    // Other configuration errors only halt the program if the user asked for them
+    const configurationErrors = ([
+        [eslint, rawSettings.eslint],
+        [packages, rawSettings.package],
+        [typescript, rawSettings.typescript],
+    ] as const).filter(configurationResultIsError);
+    if (configurationErrors.length !== 0) {
+        return {
+            complaints: configurationErrors.map(([configuration]) => configuration.message),
             status: ResultStatus.ConfigurationError,
         };
     }
@@ -51,4 +66,10 @@ export const findOriginalConfigurations = async (
         },
         status: ResultStatus.Succeeded,
     };
+};
+
+const configurationResultIsError = (
+    result: readonly [{} | Error | undefined, string | undefined],
+): result is [Error, string] => {
+    return result[0] instanceof Error && typeof result[1] === "string";
 };
