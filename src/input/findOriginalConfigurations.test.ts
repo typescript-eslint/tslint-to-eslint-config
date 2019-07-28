@@ -2,15 +2,13 @@ import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
 } from "./findOriginalConfigurations";
-import { ResultStatus } from "../types";
+import { ResultStatus, TSLintToESLintSettings } from "../types";
 import { TSLintConfiguration } from "./findTSLintConfiguration";
 import { ESLintConfiguration } from "./findESLintConfiguration";
 
-const createRawSettings = () => ({
+const createRawSettings = (overrides: Partial<TSLintToESLintSettings> = {}) => ({
     config: "./eslintrc.js",
-    eslint: "",
-    tslint: "",
-    typescript: "",
+    ...overrides,
 });
 
 const createDependencies = (overrides: Partial<FindOriginalConfigurationsDependencies> = {}) => ({
@@ -38,7 +36,7 @@ const createDependencies = (overrides: Partial<FindOriginalConfigurationsDepende
 });
 
 describe("findOriginalConfigurations", () => {
-    it("returns an errors when the tslint finder returns an error", async () => {
+    it("returns errors when the tslint finder returns an error", async () => {
         // Arrange
         const complaint = "Complaint from TSLint";
         const dependencies = createDependencies({
@@ -72,6 +70,58 @@ describe("findOriginalConfigurations", () => {
                 tslint: {
                     rulesDirectory: [],
                     rules: {},
+                },
+            },
+            status: ResultStatus.Succeeded,
+        });
+    });
+
+    it("returns an error when an optional configuration returns an error and the user asked for it", async () => {
+        // Arrange
+        const eslint = new Error("one");
+        const dependencies = createDependencies({
+            findESLintConfiguration: async () => eslint,
+        });
+
+        // Act
+        const result = await findOriginalConfigurations(
+            dependencies,
+            createRawSettings({
+                eslint: "./eslintrc.js",
+            }),
+        );
+
+        // Assert
+        expect(result).toEqual({
+            complaints: [eslint.message],
+            status: ResultStatus.ConfigurationError,
+        });
+    });
+
+    it("returns successful results when an optional configuration returns an error and the user didn't ask for it", async () => {
+        // Arrange
+        const dependencies = createDependencies({
+            findESLintConfiguration: async () => new Error("one"),
+        });
+
+        // Act
+        const result = await findOriginalConfigurations(dependencies, createRawSettings());
+
+        // Assert
+        expect(result).toEqual({
+            data: {
+                packages: {
+                    dependencies: {},
+                    devDependencies: {},
+                },
+                tslint: {
+                    rulesDirectory: [],
+                    rules: {},
+                },
+                typescript: {
+                    compilerOptions: {
+                        target: "es3",
+                    },
                 },
             },
             status: ResultStatus.Succeeded,
