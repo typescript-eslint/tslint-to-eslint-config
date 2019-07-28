@@ -7,12 +7,14 @@ import {
     TypeScriptConfiguration,
 } from "./findTypeScriptConfiguration";
 import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
+import { mergeLintConfigurations } from "./mergeLintConfigurations";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;
     findPackagesConfiguration: SansDependencies<typeof findPackagesConfiguration>;
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
     findTSLintConfiguration: SansDependencies<typeof findTSLintConfiguration>;
+    mergeLintConfigurations: typeof mergeLintConfigurations;
 };
 
 export type OriginalConfigurations = {
@@ -44,7 +46,7 @@ export const findOriginalConfigurations = async (
         data: {
             ...(!(eslint instanceof Error) && { eslint }),
             ...(!(packages instanceof Error) && { packages }),
-            tslint,
+            tslint: dependencies.mergeLintConfigurations(eslint, tslint),
             ...(!(typescript instanceof Error) && { typescript }),
         },
         status: ResultStatus.Succeeded,

@@ -27,6 +27,7 @@ import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
+import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import {
     reportConversionResults,
     ReportConversionResultsDependencies,
@@ -50,6 +51,7 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     findPackagesConfiguration: bind(findPackagesConfiguration, findConfigurationDependencies),
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
+    mergeLintConfigurations,
 };
 
 const reportConversionResultsDependencies: ReportConversionResultsDependencies = {

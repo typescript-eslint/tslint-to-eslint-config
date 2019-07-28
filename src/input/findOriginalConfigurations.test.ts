@@ -3,6 +3,8 @@ import {
     FindOriginalConfigurationsDependencies,
 } from "./findOriginalConfigurations";
 import { ResultStatus } from "../types";
+import { TSLintConfiguration } from "./findTSLintConfiguration";
+import { ESLintConfiguration } from "./findESLintConfiguration";
 
 const createRawSettings = () => ({
     config: "./eslintrc.js",
@@ -30,6 +32,8 @@ const createDependencies = (overrides: Partial<FindOriginalConfigurationsDepende
             target: "es3",
         },
     }),
+    mergeLintConfigurations: (_: ESLintConfiguration | Error, tslint: TSLintConfiguration) =>
+        tslint,
     ...overrides,
 });
 
