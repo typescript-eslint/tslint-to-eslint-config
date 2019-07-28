@@ -33,5 +33,5 @@ export const writeConversionResults = async (
         rules: formatConvertedRules(ruleConversionResults, originalConfigurations.tslint),
     };
 
-    await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
+    return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };
