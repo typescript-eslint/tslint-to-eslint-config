@@ -7,7 +7,34 @@ import { ConversionError } from "../errors/conversionError";
 import { ConfigurationError } from "../errors/configurationError";
 
 describe("reportConversionResults", () => {
-    it("logs a successful conversion when there is one converted rule", () => {
+    it("logs a successful conversion without notices when there is one converted rule without notices", () => {
+        // Arrange
+        const conversionResults = createEmptyConversionResults({
+            converted: new Map<string, ESLintRuleOptions>([
+                [
+                    "tslint-rule-one",
+                    {
+                        ruleArguments: ["a", "b"],
+                        ruleName: "tslint-rule-one",
+                        ruleSeverity: "error",
+                    },
+                ],
+            ]),
+        });
+
+        const logger = createStubLogger();
+
+        // Act
+        reportConversionResults({ logger }, conversionResults);
+
+        // Assert
+        expectEqualWrites(
+            logger.stdout.write,
+            `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}`,
+        );
+    });
+
+    it("logs a successful conversion with notices when there is one converted rule with notices", () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
