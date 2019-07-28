@@ -10,19 +10,24 @@ import { assertFileContents } from "./expectFileContains";
 const exec = promisify(cp.exec);
 const readFile = promisify(fs.readFile);
 
-export const createTests = (testName: string, accept: boolean) => {
-    const cwd = path.join(__dirname, "tests", testName);
+export const createTests = (cwd: string) => {
+    const testName = path.basename(cwd);
+    const accept = "acceptTestChanges" in globalThis;
     const cwdPath = (fileName: string) => path.join(cwd, fileName);
     const readTestFile = async (fileName: string) => (await readFile(cwdPath(fileName))).toString();
 
-    return () => {
+    describe(testName, () => {
         let result: PromiseValue<ReturnType<typeof exec>>;
         beforeAll(async () => {
             // Arrange
             const args = await createTestArgs(cwd);
 
             // Act
-            result = await exec(`ts-node bin/tslint-to-eslint-config ${args}`);
+            try {
+                result = await exec(`ts-node bin/tslint-to-eslint-config ${args}`);
+            } catch (error) {
+                result = error;
+            }
         });
 
         test("configuration output", async () => {
@@ -33,8 +38,6 @@ export const createTests = (testName: string, accept: boolean) => {
             );
         });
 
-        // test("info log output", () => {});
-
         test("stderr", async () => {
             await assertFileContents(cwdPath("stderr.txt"), result.stderr, accept);
         });
@@ -42,5 +45,5 @@ export const createTests = (testName: string, accept: boolean) => {
         test("stdout", async () => {
             await assertFileContents(cwdPath("stdout.txt"), result.stdout, accept);
         });
-    };
+    });
 };

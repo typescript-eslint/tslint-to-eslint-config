@@ -31,10 +31,14 @@ npm run test:end-to-end
 End-to-end tests that execute the `bin/tslint-to-eslint` command and validate outputs are generated from the directories in `test/tests/`.
 Each directory there contains:
 
+-   `test.ts`: Test file that runs `createTests(__dirname);` to set up tests in that directory
 -   `.eslintrc.json`: `.gitignore`d output from the most recent test run
 -   `expected.json`: Expected output ESLint configuration
--   `stderr.txt`: Any output written to the process `stderr`
--   `stdout.txt`: Any output written to the process `stdout`
+-   `stderr.txt`: Expected output written to the process `stderr`
+-   `stdout.txt`: Expected output written to the process `stdout`
 -   `tslint.json`: Original TSLint configuration file to convert
 
 Within each directory, a test suite will execute `bin/tslint-to-eslint` and validate the outputs match what's on disk.
+
+Use `npm run test:end-to-end:accept` to overwrite the expected contents of files with what is actually written.
+These behave similarly to updating snapshots in snapshot testing.

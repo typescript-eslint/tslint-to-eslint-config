@@ -1,0 +1,5 @@
+[91m❌ [39m[31mCould not start tslint-to-eslint:[39m[91m ❌[39m
+[91m[39m[93mCommand failed: tslint --print-config "./tslint.json"[39m
+[93mCould not find configuration path. Try passing a --config to your tslint.json.[39m
+[93m[39m
+[93m[39m

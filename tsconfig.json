@@ -19,5 +19,6 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
         "target": "esnext"
-    }
+    },
+    "exclude": ["test/tests/**/*"]
 }
