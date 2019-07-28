@@ -44,6 +44,7 @@ module.exports = {
         "no-empty-function": 0,
         "no-restricted-syntax": 0,
         "no-param-reassign": 0,
+        "no-return-await": 0,
         "no-shadow": 0,
         "no-undef": 0,
         "no-useless-constructor": 0,

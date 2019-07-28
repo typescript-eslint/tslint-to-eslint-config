@@ -2,10 +2,18 @@ import { ResultStatus, FailedResult, SucceededDataResult } from "../types";
 import { convertConfig, ConvertConfigDependencies } from "./convertConfig";
 import { OriginalConfigurations } from "../input/findOriginalConfigurations";
 
+const stubSettings = {
+    config: "./eslintrc.js",
+};
+
 const createStubDependencies = (
-    overrides: Pick<ConvertConfigDependencies, "findOriginalConfigurations">,
+    overrides: Partial<ConvertConfigDependencies> = {},
 ): ConvertConfigDependencies => ({
     convertRules: jest.fn(),
+    findOriginalConfigurations: jest.fn().mockResolvedValue({
+        data: createStubOriginalConfigurationsData(),
+        status: ResultStatus.Succeeded,
+    }),
     reportConversionResults: jest.fn(),
     simplifyPackageRules: async (_configurations, data) => data,
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
@@ -29,32 +37,37 @@ describe("convertConfig", () => {
         const dependencies = createStubDependencies({
             findOriginalConfigurations: async () => findError,
         });
-        const settings = {
-            config: "./eslintrc.js",
-        };
 
         // Act
-        const result = await convertConfig(dependencies, settings);
+        const result = await convertConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual(findError);
     });
 
-    it("returns a successful result when finding the original configurations succeeds", async () => {
+    it("returns the failure result when writing to the configuration file fails", async () => {
         // Arrange
-        const findSuccess: SucceededDataResult<OriginalConfigurations> = {
-            data: createStubOriginalConfigurationsData(),
-            status: ResultStatus.Succeeded,
-        };
+        const fileWriteError = new Error();
         const dependencies = createStubDependencies({
-            findOriginalConfigurations: async () => findSuccess,
+            writeConversionResults: jest.fn().mockResolvedValueOnce(fileWriteError),
         });
-        const settings = {
-            config: "./eslintrc.js",
-        };
 
         // Act
-        const result = await convertConfig(dependencies, settings);
+        const result = await convertConfig(dependencies, stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            errors: [fileWriteError],
+            status: ResultStatus.Failed,
+        });
+    });
+
+    it("returns a successful result when finding the original configurations succeeds", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+
+        // Act
+        const result = await convertConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual({

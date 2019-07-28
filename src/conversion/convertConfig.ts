@@ -43,11 +43,17 @@ export const convertConfig = async (
     };
 
     // 4. The simplified configuration is written to the output config file
-    await dependencies.writeConversionResults(
+    const fileWriteError = await dependencies.writeConversionResults(
         settings.config,
         simplifiedConfiguration,
         originalConfigurations.data,
     );
+    if (fileWriteError !== undefined) {
+        return {
+            errors: [fileWriteError],
+            status: ResultStatus.Failed,
+        };
+    }
 
     // 5. A summary of the results is printed to the user's console
     dependencies.reportConversionResults(simplifiedConfiguration);
