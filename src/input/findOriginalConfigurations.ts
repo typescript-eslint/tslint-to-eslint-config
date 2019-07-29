@@ -45,11 +45,11 @@ export const findOriginalConfigurations = async (
     }
 
     // Other configuration errors only halt the program if the user asked for them
-    const configurationErrors = ([
+    const configurationErrors = [
         [eslint, rawSettings.eslint],
         [packages, rawSettings.package],
         [typescript, rawSettings.typescript],
-    ] as const).filter(configurationResultIsError);
+    ].filter(configurationResultIsError);
     if (configurationErrors.length !== 0) {
         return {
             complaints: configurationErrors.map(([configuration]) => configuration.message),
@@ -68,8 +68,6 @@ export const findOriginalConfigurations = async (
     };
 };
 
-const configurationResultIsError = (
-    result: readonly [unknown, unknown],
-): result is [Error, string] => {
+const configurationResultIsError = (result: unknown[]): result is [Error, string] => {
     return result[0] instanceof Error && typeof result[1] === "string";
 };
