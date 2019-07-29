@@ -69,7 +69,7 @@ export const findOriginalConfigurations = async (
 };
 
 const configurationResultIsError = (
-    result: readonly [{} | Error | undefined, string | undefined],
+    result: readonly [unknown, unknown],
 ): result is [Error, string] => {
     return result[0] instanceof Error && typeof result[1] === "string";
 };
