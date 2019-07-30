@@ -61,8 +61,8 @@
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test:unit": "jest",
-        "test:end-to-end": "jest --config=test/jest.config.js",
-        "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"",
+        "test:end-to-end": "jest --config=test/jest.config.js --runInBand",
+        "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"  --runInBand",
         "tsc": "tsc"
     },
     "version": "0.2.2"
