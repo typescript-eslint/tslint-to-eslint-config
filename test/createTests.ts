@@ -23,13 +23,7 @@ export type TestSettings = {
 
 jest.setTimeout(10000);
 
-const act = async (testArgs: string[]) => {
-    try {
-        return await exec(`ts-node bin/tslint-to-eslint-config ${testArgs.join(" ")}`);
-    } catch (error) {
-        return error;
-    }
-};
+const binFile = path.join(__dirname, "../bin/tslint-to-eslint-config");
 
 export const createTests = (
     cwd: string,
@@ -39,6 +33,16 @@ export const createTests = (
     const accept = "acceptTestChanges" in globalThis;
     const cwdPath = (fileName: string) => path.join(cwd, fileName);
     const readTestFile = async (fileName: string) => (await readFile(cwdPath(fileName))).toString();
+
+    const act = async (testArgs: string[]) => {
+        try {
+            return await exec(`ts-node ${binFile} ${testArgs.join(" ")}`, {
+                cwd,
+            });
+        } catch (error) {
+            return error;
+        }
+    };
 
     describe(testName, () => {
         test("configuration output", async () => {

@@ -4,7 +4,15 @@ module.exports = {
         "es6": true,
         "node": true
     },
-    "extends": [],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "@typescript-eslint/tslint"
+    ],
     "rules": {
         "@typescript-eslint/array-type": "error",
         "@typescript-eslint/interface-name-prefix": "error",
@@ -38,37 +46,6 @@ module.exports = {
                     ]
                 }
             }
-        ]
-    },
-    "globals": {},
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "tsconfig.json",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "@typescript-eslint/tslint"
-    ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".mjs",
-                    ".js",
-                    ".json"
-                ]
-            }
-        },
-        "import/extensions": [
-            ".js",
-            ".mjs",
-            ".jsx"
-        ],
-        "import/core-modules": [],
-        "import/ignore": [
-            "node_modules",
-            "\\.(coffee|scss|css|less|hbs|svg|json)$"
         ]
     }
 };
