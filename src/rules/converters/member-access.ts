@@ -5,6 +5,11 @@ export const convertMemberAccess: RuleConverter = () => {
         rules: [
             {
                 ruleName: "@typescript-eslint/explicit-member-accessibility",
+                ruleArguments: [
+                    {
+                        overrides: { constructors: "off" },
+                    },
+                ],
             },
         ],
     };
