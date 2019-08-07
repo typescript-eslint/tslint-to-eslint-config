@@ -34,7 +34,7 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 ### CLI Flags
 
-Each of these flags is optional.
+Each of these flags is optional:
 
 -   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
