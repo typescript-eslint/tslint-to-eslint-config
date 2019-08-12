@@ -95,6 +95,7 @@ describe("convertRules", () => {
                     {
                         ruleName: "eslint-rule-a",
                         ruleSeverity: "error",
+                        notices: [],
                     },
                 ],
             ]),
@@ -177,6 +178,51 @@ describe("convertRules", () => {
                         ruleName: "eslint-rule-a",
                         ruleSeverity: "error",
                         notices: [],
+                    },
+                ],
+            ]),
+        );
+    });
+
+    it("merges and deduplicates rule notices", () => {
+        // Arrange
+        const tslintRule: TSLintRuleOptions = {
+            ruleArguments: [],
+            ruleName: "tslint-rule-a",
+            ruleSeverity: "error",
+        };
+        const conversionResult = {
+            rules: [
+                {
+                    ruleName: "eslint-rule-a",
+                    notices: ["notice-1", "notice-2"],
+                },
+                {
+                    ruleName: "eslint-rule-a",
+                    notices: ["notice-1"],
+                },
+            ],
+        };
+        const mergedArguments = [{ merged: true }];
+        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
+        const mergers = new Map([[conversionResult.rules[0].ruleName, () => mergedArguments]]);
+
+        // Act
+        const { converted } = convertRules(
+            { converters, mergers },
+            { [tslintRule.ruleName]: tslintRule },
+        );
+
+        // Assert
+        expect(converted).toEqual(
+            new Map([
+                [
+                    "eslint-rule-a",
+                    {
+                        ruleArguments: mergedArguments,
+                        ruleName: "eslint-rule-a",
+                        ruleSeverity: "error",
+                        notices: ["notice-1", "notice-2"],
                     },
                 ],
             ]),

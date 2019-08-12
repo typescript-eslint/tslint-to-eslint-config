@@ -50,6 +50,7 @@ export const convertRules = (
             const existingConversion = converted.get(changes.ruleName);
             const newConversion = {
                 ...changes,
+                notices: changes.notices || [],
                 ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
             };
 
@@ -78,7 +79,7 @@ export const convertRules = (
                         existingConversion.ruleArguments,
                         newConversion.ruleArguments,
                     ),
-                    notices: [...existingNotices, ...newNotices],
+                    notices: Array.from(new Set([...existingNotices, ...newNotices])),
                 });
             }
         }
