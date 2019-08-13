@@ -48,18 +48,14 @@ export const convertRules = (
 
         for (const changes of conversion.rules) {
             const existingConversion = converted.get(changes.ruleName);
-
             const newConversion = {
                 ...changes,
-                notices: changes.notices || [],
                 ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
             };
 
             if (existingConversion === undefined) {
                 converted.set(changes.ruleName, newConversion);
                 continue;
-            } else {
-                existingConversion.notices = existingConversion.notices || [];
             }
 
             const merger = dependencies.mergers.get(changes.ruleName);
@@ -73,15 +69,16 @@ export const convertRules = (
                     ),
                 );
             } else {
+                const existingNotices = existingConversion.notices || [];
+                const newNotices = newConversion.notices || [];
+
                 converted.set(changes.ruleName, {
                     ...existingConversion,
                     ruleArguments: merger(
                         existingConversion.ruleArguments,
                         newConversion.ruleArguments,
                     ),
-                    notices: Array.from(
-                        new Set([...existingConversion.notices, ...newConversion.notices]),
-                    ),
+                    notices: Array.from(new Set([...existingNotices, ...newNotices])),
                 });
             }
         }
