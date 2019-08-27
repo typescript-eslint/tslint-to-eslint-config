@@ -18,10 +18,11 @@ module.exports = {
     },
     plugins: ["@typescript-eslint"],
     rules: {
-        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+        "@typescript-eslint/consistent-type-definitions": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
         "@typescript-eslint/generic-type-naming": 0,
         "@typescript-eslint/indent": 0,
+        "@typescript-eslint/member-ordering": 0,
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-extra-parens": 0,
         "@typescript-eslint/no-magic-numbers": 0,

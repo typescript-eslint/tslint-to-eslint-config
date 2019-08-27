@@ -6,10 +6,6 @@ import { ErrorSummary } from "./errorSummary";
 export class ConversionError implements ErrorSummary {
     private constructor(private readonly summary: string) {}
 
-    public getSummary(): string {
-        return this.summary;
-    }
-
     public static forMerger = (eslintRule: string) => {
         return new ConversionError(
             [
@@ -18,6 +14,10 @@ export class ConversionError implements ErrorSummary {
             ].join(EOL),
         );
     };
+
+    public getSummary(): string {
+        return this.summary;
+    }
 
     public static forRuleError = (error: Error, tslintRule: TSLintRuleOptions) => {
         return new ConversionError(

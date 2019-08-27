@@ -4,7 +4,7 @@ export const convertMemberOrdering: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "@typescript-eslint/member-ordering",
+                ruleName: "some-rule",
             },
         ],
     };
