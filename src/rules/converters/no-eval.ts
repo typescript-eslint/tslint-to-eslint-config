@@ -4,7 +4,7 @@ export const convertNoEval: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "no-eval",
+                ruleName: "some-rule",
             },
         ],
     };

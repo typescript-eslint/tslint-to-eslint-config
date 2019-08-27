@@ -68,6 +68,6 @@ describe("convertRule", () => {
         const result = convertRule(tslintRule, converters);
 
         // Assert
-        expect(result).toEqual(new ConversionError(error, tslintRule));
+        expect(result).toEqual(ConversionError.forRuleError(error, tslintRule));
     });
 });

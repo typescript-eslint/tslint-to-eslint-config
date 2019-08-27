@@ -1,3 +1,11 @@
-export class ConfigurationError {
-    public constructor(public readonly error: Error, public readonly complaint: string) {}
+import { EOL } from "os";
+
+import { ErrorSummary } from "./errorSummary";
+
+export class ConfigurationError implements ErrorSummary {
+    public constructor(private readonly error: Error, private readonly complaint: string) {}
+
+    public getSummary(): string {
+        return `${this.complaint}: ${this.error.stack}${EOL}`;
+    }
 }

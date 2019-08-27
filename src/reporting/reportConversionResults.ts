@@ -2,8 +2,7 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
-import { ConfigurationError } from "../errors/configurationError";
-import { ConversionError } from "../errors/conversionError";
+import { ErrorSummary } from "../errors/errorSummary";
 import { RuleConversionResults } from "../rules/convertRules";
 import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
 
@@ -43,21 +42,13 @@ const logSuccessfulConversions = (converted: Map<string, ESLintRuleOptions>, log
     logger.stdout.write(chalk.greenBright(` ✨${EOL}`));
 };
 
-const logFailedConversions = (failed: (ConfigurationError | ConversionError)[], logger: Logger) => {
+const logFailedConversions = (failed: ErrorSummary[], logger: Logger) => {
     logger.stderr.write(`${chalk.redBright(`💀 ${failed.length}`)}`);
     logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
     logger.stderr.write(chalk.red(" thrown."));
     logger.stderr.write(chalk.redBright(` 💀${EOL}`));
 
-    logger.info.write(
-        failed
-            .map(failed =>
-                failed instanceof ConfigurationError
-                    ? `${failed.complaint}: ${failed.error.stack}${EOL}`
-                    : `${failed.tslintRule.ruleName} threw an error during conversion: ${failed.error.stack}${EOL}`,
-            )
-            .join(""),
-    );
+    logger.info.write(failed.map(failed => failed.getSummary()).join(""));
 
     logger.stderr.write(chalk.gray(`Check ${logger.debugFileName} for details.${EOL}`));
 };

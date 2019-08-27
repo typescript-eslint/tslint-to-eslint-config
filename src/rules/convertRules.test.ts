@@ -50,7 +50,7 @@ describe("convertRules", () => {
             ruleName: "tslint-rule-a",
             ruleSeverity: "error",
         };
-        const conversionError = new ConversionError(new Error(), tslintRule);
+        const conversionError = ConversionError.forRuleError(new Error(), tslintRule);
         const converters = new Map([[tslintRule.ruleName, () => conversionError]]);
         const mergers = new Map();
 
@@ -128,16 +128,7 @@ describe("convertRules", () => {
         );
 
         // Assert
-        expect(failed).toEqual(
-            jasmine.arrayContaining([
-                jasmine.objectContaining({
-                    error: jasmine.objectContaining({
-                        message: `No merger for multiple output eslint-rule-a rule configurations.`,
-                    }),
-                    tslintRule,
-                }),
-            ]),
-        );
+        expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
     });
 
     it("merges rule arguments two outputs exist for a converted rule with a merger", () => {
