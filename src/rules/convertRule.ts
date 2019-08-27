@@ -14,6 +14,6 @@ export const convertRule = (
     try {
         return converter(tslintRule);
     } catch (error) {
-        return new ConversionError(error, tslintRule);
+        return ConversionError.forRuleError(error, tslintRule);
     }
 };

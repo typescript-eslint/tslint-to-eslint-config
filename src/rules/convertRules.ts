@@ -1,5 +1,5 @@
-import { ConfigurationError } from "../errors/configurationError";
 import { ConversionError } from "../errors/conversionError";
+import { ErrorSummary } from "../errors/errorSummary";
 import { TSLintConfigurationRules } from "../input/findTSLintConfiguration";
 import { RuleConverter } from "./converter";
 import { convertRule } from "./convertRule";
@@ -15,7 +15,7 @@ export type ConvertRulesDependencies = {
 
 export type RuleConversionResults = {
     converted: Map<string, ESLintRuleOptions>;
-    failed: (ConfigurationError | ConversionError)[];
+    failed: ErrorSummary[];
     missing: TSLintRuleOptions[];
     plugins: Set<string>;
 };
@@ -60,14 +60,7 @@ export const convertRules = (
 
             const merger = dependencies.mergers.get(changes.ruleName);
             if (merger === undefined) {
-                failed.push(
-                    new ConversionError(
-                        new Error(
-                            `No merger for multiple output ${changes.ruleName} rule configurations.`,
-                        ),
-                        tslintRule,
-                    ),
-                );
+                failed.push(ConversionError.forMerger(changes.ruleName));
             } else {
                 const existingNotices = existingConversion.notices || [];
                 const newNotices = newConversion.notices || [];

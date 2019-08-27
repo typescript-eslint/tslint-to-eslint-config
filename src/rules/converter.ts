@@ -1,5 +1,5 @@
-import { ConversionError } from "../errors/conversionError";
 import { TSLintRuleOptions } from "./types";
+import { ConversionError } from "../errors/conversionError";
 
 /**
  * Section of a TSLint rule's options used for conversion.
