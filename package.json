@@ -54,7 +54,7 @@
     "name": "tslint-to-eslint-config",
     "repository": {
         "type": "git",
-        "url": "github:typescript-eslint/tslint-to-eslint"
+        "url": "github:typescript-eslint/tslint-to-eslint-config"
     },
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
