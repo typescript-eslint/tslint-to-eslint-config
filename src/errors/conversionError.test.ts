@@ -33,7 +33,7 @@ describe(ConversionError, () => {
 
             // Assert
             expect(summary).toEqual(
-                `Error: multiple output eslint-rule ESLint rule options were generated, but tslint-to-eslint-config doesn't have "merger" logic to deal with this.${EOL}Please file an issue at https://github.com/typescript-eslint/tslint-to-eslint-config/issues/new?template=bug_report.md!`,
+                `Error: multiple output eslint-rule ESLint rule options were generated, but tslint-to-eslint-config doesn't have "merger" logic to deal with this.${EOL}Please file an issue at https://github.com/typescript-eslint/tslint-to-eslint-config/issues/new?template=missing_merger.md 🙏`,
             );
         });
     });
