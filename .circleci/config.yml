@@ -79,7 +79,7 @@ jobs:
 
             - run: npm run prettier
 
-    test:
+    test-end-to-end:
         docker:
             - image: circleci/node:latest
 
@@ -91,7 +91,21 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm run test:unit
+            - run: npm run test:end-to-end
+
+    test-unit:
+        docker:
+            - image: circleci/node:latest
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+
+            - attach_workspace:
+                  at: "."
+
+            - run: npm run test:unit -- --coverage
 
     tsc:
         docker:
@@ -129,7 +143,10 @@ workflows:
             - prettier:
                   requires:
                       - build
-            - test:
+            - test-end-to-end:
+                  requires:
+                      - build
+            - test-unit:
                   requires:
                       - build
             - tsc:
