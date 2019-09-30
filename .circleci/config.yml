@@ -105,7 +105,7 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: ls test -l
+            - run: ls test/tests -l
             - run: ls test/tests -l
             - run: npm run test:unit -- --coverage
 
