@@ -91,6 +91,8 @@ jobs:
             - attach_workspace:
                   at: "."
 
+            - run: ls test/tests -l
+            - run: ls test/tests -l
             - run: npm run test:end-to-end
 
     test-unit:
@@ -105,8 +107,6 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: ls test/tests -l
-            - run: ls test/tests -l
             - run: npm run test:unit -- --coverage
 
     tsc:
