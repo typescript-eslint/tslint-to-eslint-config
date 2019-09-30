@@ -91,8 +91,7 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: ls test/tests -l
-            - run: ls 'test/tests/custom eslint path' -l
+            - run: npm i -g ts-node
             - run: npm run test:end-to-end
 
     test-unit:
