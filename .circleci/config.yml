@@ -92,7 +92,7 @@ jobs:
                   at: "."
 
             - run: ls test/tests -l
-            - run: ls test/tests -l
+            - run: ls 'test/tests/custom eslint path' -l
             - run: npm run test:end-to-end
 
     test-unit:
