@@ -144,9 +144,6 @@ workflows:
             - prettier:
                   requires:
                       - build
-            - test-end-to-end:
-                  requires:
-                      - build
             - test-unit:
                   requires:
                       - build
