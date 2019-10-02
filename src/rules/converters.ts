@@ -103,6 +103,7 @@ import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
+import { convertSpaceWithinParens } from "./converters/space-within-parens";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -235,19 +236,56 @@ export const converters = new Map([
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
+    ["arrow-return-shorthand", convertArrowReturnShorthand],
+    ["curly", convertCurly],
+    ["cyclomatic-complexity", convertCyclomaticComplexity],
+    ["increment-decrement", convertIncrementDecrement],
+    ["linebreak-style", convertLinebreakStyle],
+    ["max-classes-per-file", convertMaxClassesPerFile],
+    ["max-file-line-count", convertMaxFileLineCount],
+    ["max-line-length", convertMaxLineLength],
+    ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
+    ["no-console", convertNoConsole],
+    ["no-empty", convertNoEmpty],
+    ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
+    ["no-invalid-this", convertNoInvalidThis],
+    ["no-magic-numbers", convertNoMagicNumbers],
+    ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
+    ["object-literal-shorthand", convertObjectLiteralShorthand],
+    ["one-variable-per-declaration", convertOneVariablePerDeclaration],
+    ["only-arrow-functions", convertOnlyArrowFunctions],
+    ["prefer-const", convertPreferConst],
+    ["prefer-function-over-method", convertPreferFunctionOverMethod],
+    ["prefer-readonly", convertPreferReadonly],
+    ["prefer-template", convertPreferTemplate],
+    ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["space-within-parens", convertSpaceWithinParens],
+    ["switch-default", convertSwitchDefault],
+    ["no-banned-terms", convertNoBannedTerms],
+    ["no-constant-condition", convertNoConstantCondition],
+    ["no-control-regex", convertNoControlRegex],
+    ["no-multiline-string", convertNoMultilineString],
+    ["no-invalid-regexp", convertNoInvalidRegexp],
+    ["no-octal-literal", convertNoOctalLiteral],
+    ["no-regex-spaces", convertNoRegexSpaces],
+    ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
+    ["quotemark", convertQuotemark],
+    ["triple-equals", convertTripleEquals],
 
-    // These converters are all for rules that need more complex option conversions.
-    // Some of them will likely need to have notices about changed lint behaviors...
-    // If you're willing to take on that work, that'd be great! Please send PRs! 💖
-    // As these are enabled, they should be added in sorted order to the list above.
+    // these converters are all for rules that need more complex option conversions.
+    // some of them will likely need to have notices about changed lint behaviors...
+    // if you're willing to take on that work, that'd be great! Please send PRs! 💖
+    // as these are enabled, they should be added in sorted order to the list above.
 
-    // TSLint core rules:
+    // tSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
-    // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
+    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
+    // ["quotemark", convertQuotemark], // quotes
+    // ["triple-equals", convertTripleEquals], // eqeqeq
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
