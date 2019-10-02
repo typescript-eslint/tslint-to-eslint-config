@@ -13,7 +13,7 @@ If your issue doesn't provide enough info to fully explain or reproduce your bug
 ### 💥 Missing Converter
 
 -   `tslint-to-eslint-config` version: X.X.X
--   ESLint version: X.X.X
+-   `typescript-eslint` version: X.X.X
 
 #### TSLint Rule Name
 
