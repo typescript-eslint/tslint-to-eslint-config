@@ -43,6 +43,7 @@ import { convertNoEmpty } from "./converters/no-empty";
 import { convertNoEmptyInterface } from "./converters/no-empty-interface";
 import { convertNoEval } from "./converters/no-eval";
 import { convertNoExplicitAny } from "./converters/no-explicit-any";
+import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForInArray } from "./converters/no-for-in-array";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
@@ -135,6 +136,7 @@ export const converters = new Map([
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-eval", convertNoEval],
+    ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
