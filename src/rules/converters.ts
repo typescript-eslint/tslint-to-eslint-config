@@ -99,6 +99,7 @@ import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
 import { convertUseIsnan } from "./converters/use-isnan";
+import { convertTripleEquals } from "./converters/triple-equals";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -205,7 +206,7 @@ export const converters = new Map([
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
-
+    ["triple-equals", convertTripleEquals],
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
     // If you're willing to take on that work, that'd be great! Please send PRs! 💖
@@ -223,7 +224,6 @@ export const converters = new Map([
     // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
     // ["quotemark", convertQuotemark], // quotes
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
-    // ["triple-equals", convertTripleEquals], // eqeqeq
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
