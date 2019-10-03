@@ -17,7 +17,7 @@ describe(convertQuotemark, () => {
         });
     });
 
-    test("conversion with an arguments", () => {
+    test("conversion with an argument", () => {
         const result = convertQuotemark({
             ruleArguments: ["double"],
         });
@@ -49,7 +49,7 @@ describe(convertQuotemark, () => {
         });
     });
 
-    test("conversion with multiple arguments", () => {
+    test("conversion with arguments", () => {
         const result = convertQuotemark({
             ruleArguments: ["single", "avoid-template"],
         });
