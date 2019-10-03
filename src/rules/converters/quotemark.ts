@@ -2,17 +2,17 @@ import { RuleConverter } from "../converter";
 
 export const convertQuotemark: RuleConverter = tslintRule => {
     const notices: string[] = [];
-    const ruleArguments: any[] = [];
+    const ruleArguments: Array<string | { avoidEscape: true }> = [];
 
-    ["jsx-single", "jsx-double", "avoid-template"].forEach(rule => {
-        if (tslintRule.ruleArguments.includes(rule)) {
-            notices.push(`Option "${rule}" is not supported by ESLint.`);
+    ["jsx-single", "jsx-double", "avoid-template"].forEach(option => {
+        if (tslintRule.ruleArguments.includes(option)) {
+            notices.push(`Option "${option}" is not supported by ESLint.`);
         }
     });
 
-    ["single", "double", "backtick"].forEach(rule => {
-        if (tslintRule.ruleArguments.includes(rule)) {
-            ruleArguments.push(rule);
+    ["single", "double", "backtick"].forEach(option => {
+        if (tslintRule.ruleArguments.includes(option)) {
+            ruleArguments.push(option);
         }
     });
 
