@@ -86,6 +86,7 @@ import { convertPreferConst } from "./converters/prefer-const";
 import { convertPreferForOf } from "./converters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./converters/prefer-function-over-method";
 import { convertPreferObjectSpread } from "./converters/prefer-object-spread";
+import { convertPreferReadonly } from "./converters/prefer-readonly";
 import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
 import { convertRadix } from "./converters/radix";
@@ -194,6 +195,7 @@ export const converters = new Map([
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["prefer-const", convertPreferConst],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
+    ["prefer-readonly", convertPreferReadonly],
     ["prefer-template", convertPreferTemplate],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["switch-default", convertSwitchDefault],
