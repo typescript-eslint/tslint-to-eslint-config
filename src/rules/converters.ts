@@ -44,6 +44,7 @@ import { convertNoEmptyInterface } from "./converters/no-empty-interface";
 import { convertNoEval } from "./converters/no-eval";
 import { convertNoExplicitAny } from "./converters/no-explicit-any";
 import { convertNoFloatingPromises } from "./converters/no-floating-promises";
+import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
@@ -137,6 +138,7 @@ export const converters = new Map([
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
+    ["no-for-in", convertNoForIn],
     ["no-for-in-array", convertNoForInArray],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
@@ -229,7 +231,6 @@ export const converters = new Map([
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
     // ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
-    // ["no-for-in", convertNoForIn], // no-restricted-syntax config
     // ["no-function-expression", convertNoFunctionExpression], // ban-syntax config
     // ["no-suspicious-comment", convertNoSuspiciousComment],
     // ["no-with-statement", convertNoWithStatement],
