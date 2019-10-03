@@ -1,8 +1,9 @@
 import { RuleConverter } from "../converter";
 
+type QuotemarkRule = string | { avoidEscape: true };
 export const convertQuotemark: RuleConverter = tslintRule => {
     const notices: string[] = [];
-    const ruleArguments: Array<string | { avoidEscape: true }> = [];
+    const ruleArguments: QuotemarkRule[] = [];
 
     ["jsx-single", "jsx-double", "avoid-template"].forEach(option => {
         if (tslintRule.ruleArguments.includes(option)) {
