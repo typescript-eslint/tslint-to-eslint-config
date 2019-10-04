@@ -79,6 +79,7 @@ import { convertNoUnnecessaryQualifier } from "./converters/no-unnecessary-quali
 import { convertNoUnnecessarySemicolons } from "./converters/no-unnecessary-semicolons";
 import { convertNoUnnecessaryTypeAssertion } from "./converters/no-unnecessary-type-assertion";
 import { convertNoUnsafeFinally } from "./converters/no-unsafe-finally";
+import { convertNoUnusedExpression } from "./converters/no-unused-expression";
 import { convertNoUseBeforeDeclare } from "./converters/no-use-before-declare";
 import { convertNoVarKeyword } from "./converters/no-var-keyword";
 import { convertNoVarRequires } from "./converters/no-var-requires";
@@ -171,6 +172,7 @@ export const converters = new Map([
     ["no-unnecessary-qualifier", convertNoUnnecessaryQualifier],
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
+    ["no-unused-expression", convertNoUnusedExpression],
     ["no-use-before-declare", convertNoUseBeforeDeclare],
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
@@ -234,7 +236,6 @@ export const converters = new Map([
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["no-trailing-whitespace", convertNoTrailingWhitespace], //  no-trailing-spaces
-    // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
     // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
     // ["variable-name", convertVariableName], // a bunch of rules...
