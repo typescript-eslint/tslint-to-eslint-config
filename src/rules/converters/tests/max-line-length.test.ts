@@ -29,7 +29,7 @@ describe(convertMaxLineLength, () => {
         });
     });
 
-    test("conversion with two argument and first is false", () => {
+    test("conversion with two arguments and first is false", () => {
         const result = convertMaxLineLength({
             ruleArguments: [false, 123],
         });
