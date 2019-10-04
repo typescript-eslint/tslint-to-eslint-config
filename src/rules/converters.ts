@@ -13,6 +13,7 @@ import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
 import { convertEofline } from "./converters/eofline";
 import { convertMemberAccess } from "./converters/member-access";
+import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
 import { convertIncrementDecrement } from "./converters/increment-decrement";
@@ -123,6 +124,7 @@ export const converters = new Map([
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
     ["eofline", convertEofline],
+    ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
     ["indent", convertIndent],
