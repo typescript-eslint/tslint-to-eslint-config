@@ -80,6 +80,7 @@ import { convertNoUnsafeFinally } from "./converters/no-unsafe-finally";
 import { convertNoUseBeforeDeclare } from "./converters/no-use-before-declare";
 import { convertNoVarKeyword } from "./converters/no-var-keyword";
 import { convertNoVarRequires } from "./converters/no-var-requires";
+import { convertNoVoidExpression } from "./converters/no-void-expression";
 import { convertObjectLiteralKeyQuotes } from "./converters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./converters/object-literal-shorthand";
 import { convertOneVariablePerDeclaration } from "./converters/one-variable-per-declaration";
@@ -168,6 +169,7 @@ export const converters = new Map([
     ["no-use-before-declare", convertNoUseBeforeDeclare],
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
+    ["no-void-expression", convertNoVoidExpression],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-object-spread", convertPreferObjectSpread],
     ["promise-function-async", convertPromiseFunctionAsync],
