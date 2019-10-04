@@ -82,6 +82,7 @@ import { convertNoVarRequires } from "./converters/no-var-requires";
 import { convertObjectLiteralKeyQuotes } from "./converters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./converters/object-literal-shorthand";
 import { convertOneVariablePerDeclaration } from "./converters/one-variable-per-declaration";
+import { convertOnlyArrowFunctions } from "./converters/only-arrow-functions";
 import { convertPreferConst } from "./converters/prefer-const";
 import { convertPreferForOf } from "./converters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./converters/prefer-function-over-method";
@@ -193,6 +194,7 @@ export const converters = new Map([
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
+    ["only-arrow-functions", convertOnlyArrowFunctions],
     ["prefer-const", convertPreferConst],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-readonly", convertPreferReadonly],
