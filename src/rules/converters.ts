@@ -69,6 +69,7 @@ import { convertNoStringLiteral } from "./converters/no-string-literal";
 import { convertNoStringThrow } from "./converters/no-string-throw";
 import { convertNoSwitchCaseFallThrough } from "./converters/no-switch-case-fall-through";
 import { convertNoThisAssignment } from "./converters/no-this-assignment";
+import { convertNoTrailingWhitespace } from "./converters/no-trailing-whitespace";
 import { convertNoUnboundMethod } from "./converters/no-unbound-method";
 import { convertNoUnnecessaryClass } from "./converters/no-unnecessary-class";
 import { convertNoUnnecessaryInitializer } from "./converters/no-unnecessary-initializer";
@@ -155,6 +156,7 @@ export const converters = new Map([
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
+    ["no-trailing-whitespace", convertNoTrailingWhitespace],
     ["no-this-assignment", convertNoThisAssignment],
     ["no-unbound-method", convertNoUnboundMethod],
     ["no-unnecessary-class", convertNoUnnecessaryClass],
