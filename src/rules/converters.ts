@@ -29,6 +29,7 @@ import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-c
 import { convertNewParens } from "./converters/new-parens";
 import { convertNoAngleBracketTypeAssertion } from "./converters/no-angle-bracket-type-assertion";
 import { convertNoArg } from "./converters/no-arg";
+import { convertNoAsyncWithoutAwait } from "./converters/no-async-without-await";
 import { convertNoBannedTerms } from "./converters/no-banned-terms";
 import { convertNoBitwise } from "./converters/no-bitwise";
 import { convertNoConditionalAssignment } from "./converters/no-conditional-assignment";
@@ -136,6 +137,7 @@ export const converters = new Map([
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
+    ["no-async-without-await", convertNoAsyncWithoutAwait],
     ["no-bitwise", convertNoBitwise],
     ["no-conditional-assignment", convertNoConditionalAssignment],
     ["no-construct", convertNoConstruct],
