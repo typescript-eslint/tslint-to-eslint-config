@@ -1,6 +1,21 @@
 import { convertFileNameCasing } from "../file-name-casing";
 
 describe(convertFileNameCasing, () => {
+    test("conversion without parameter", () => {
+        const result = convertFileNameCasing({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "unicorn/filename-case",
+                },
+            ],
+            plugins: ["unicorn"],
+        });
+    });
+
     test("conversion without string value", () => {
         const result = convertFileNameCasing({
             ruleArguments: [true, "camel-case"],
