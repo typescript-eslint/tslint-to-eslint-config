@@ -23,6 +23,7 @@ import { convertLabelPosition } from "./converters/label-position";
 import { convertLinebreakStyle } from "./converters/linebreak-style";
 import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
+import { convertMaxLineLength } from "./converters/max-line-length";
 import { convertMemberOrdering } from "./converters/member-ordering";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
 import { convertNewParens } from "./converters/new-parens";
@@ -185,6 +186,7 @@ export const converters = new Map([
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
     ["max-file-line-count", convertMaxFileLineCount],
+    ["max-line-length", convertMaxLineLength],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
     ["no-console", convertNoConsole],
     ["no-empty", convertNoEmpty],
@@ -217,7 +219,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["max-line-length", convertMaxLineLength], // max-len
     // ["newline-before-return", convertNewlineBeforeReturn],
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
