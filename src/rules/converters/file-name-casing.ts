@@ -15,18 +15,18 @@ export const convertFileNameCasing: RuleConverter = tslintRule => {
 
 const collectArguments = (ruleArguments: any[]) => {
     const notices: string[] = [];
-    let casesMap = new Map();
+    const casesMap = new Map();
     casesMap.set("camel-case", "camelCase");
     casesMap.set("pascal-case", "pascalCase");
     casesMap.set("kebab-case", "kebabCase");
     casesMap.set("snake-case", "snakeCase");
-    let foundCases: { [k: string]: any } = {};
+    const foundCases: { [k: string]: any } = {};
 
     if (ruleArguments.length === 0 || ruleArguments[0] === false || ruleArguments.length < 2) {
         return undefined;
     }
 
-    let casings = ruleArguments[1];
+    const casings = ruleArguments[1];
     if (typeof casings === "string") {
         if (casings === "ignore") {
             notices.push(IGNORE_CASE_NOTICE);
@@ -36,7 +36,7 @@ const collectArguments = (ruleArguments: any[]) => {
     }
 
     if (ruleArguments[1] instanceof Object) {
-        for (let casing in casings) {
+        for (const casing in casings) {
             if (casings[casing] === "ignore") {
                 notices.push(IGNORE_CASE_NOTICE);
             } else {
