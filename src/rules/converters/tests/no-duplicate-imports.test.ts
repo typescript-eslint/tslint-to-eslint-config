@@ -14,4 +14,19 @@ describe(convertNoDuplicateImports, () => {
             ],
         });
     });
+
+    test("conversion with allow-namespace-imports argument", () => {
+        const result = convertNoDuplicateImports({
+            ruleArguments: ["allow-namespace-imports"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    notices: ["ESLint does not support optional config allow-namespace-imports."],
+                    ruleName: "no-duplicate-imports",
+                },
+            ],
+        });
+    });
 });
