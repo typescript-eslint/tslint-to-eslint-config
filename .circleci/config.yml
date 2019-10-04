@@ -91,7 +91,6 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm i -g ts-node
             - run: npm run test:end-to-end
 
     test-unit:

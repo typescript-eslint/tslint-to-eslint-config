@@ -36,7 +36,7 @@ export const createTests = (
 
     const act = async (testArgs: string[]) => {
         try {
-            return await exec(`ts-node ${binFile} ${testArgs.join(" ")}`, {
+            return await exec(`npx ts-node ${binFile} ${testArgs.join(" ")}`, {
                 cwd,
             });
         } catch (error) {
