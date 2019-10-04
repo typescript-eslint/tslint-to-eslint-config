@@ -30,6 +30,15 @@ module.exports = {
         "no-empty": "off",
         "no-empty-functions": "off",
         "no-magic-numbers": "off",
+        "padding-line-between-statements": [
+            "off",
+            "error",
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": "return"
+            }
+        ],
         "prefer-template": "off",
         "@typescript-eslint/tslint/config": [
             "error",
