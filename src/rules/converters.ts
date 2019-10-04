@@ -38,6 +38,7 @@ import { convertNoConstantCondition } from "./converters/no-constant-condition";
 import { convertNoConstruct } from "./converters/no-construct";
 import { convertNoControlRegex } from "./converters/no-control-regex";
 import { convertNoDebugger } from "./converters/no-debugger";
+import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
 import { convertNoEmpty } from "./converters/no-empty";
@@ -140,6 +141,7 @@ export const converters = new Map([
     ["no-conditional-assignment", convertNoConditionalAssignment],
     ["no-construct", convertNoConstruct],
     ["no-debugger", convertNoDebugger],
+    ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-empty-interface", convertNoEmptyInterface],
