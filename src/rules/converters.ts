@@ -107,6 +107,7 @@ import { convertUnnecessaryConstructor } from "./converters/unnecessary-construc
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
+import { convertNoNullKeyword } from "./converters/no-null-keyword";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -215,6 +216,7 @@ export const converters = new Map([
     ["no-constant-condition", convertNoConstantCondition],
     ["no-control-regex", convertNoControlRegex],
     ["no-multiline-string", convertNoMultilineString],
+    ["no-null-keyword", convertNoNullKeyword],
     ["no-invalid-regexp", convertNoInvalidRegexp],
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-regex-spaces", convertNoRegexSpaces],
