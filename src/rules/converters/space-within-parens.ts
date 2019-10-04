@@ -1,7 +1,7 @@
 import { RuleConverter } from "../converter";
 
 export const convertSpaceWithinParens: RuleConverter = tslintRule => {
-    let arg: string = "";
+    let arg = "";
     if (tslintRule.ruleArguments.length === 1) {
         arg = "always";
     } else {
