@@ -23,6 +23,7 @@ import { convertLabelPosition } from "./converters/label-position";
 import { convertLinebreakStyle } from "./converters/linebreak-style";
 import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
+import { convertMaxLineLength } from "./converters/max-line-length";
 import { convertMemberOrdering } from "./converters/member-ordering";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
 import { convertNewParens } from "./converters/new-parens";
@@ -86,6 +87,7 @@ import { convertPreferConst } from "./converters/prefer-const";
 import { convertPreferForOf } from "./converters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./converters/prefer-function-over-method";
 import { convertPreferObjectSpread } from "./converters/prefer-object-spread";
+import { convertPreferReadonly } from "./converters/prefer-readonly";
 import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
 import { convertRadix } from "./converters/radix";
@@ -100,6 +102,7 @@ import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertQuotemark } from "./converters/quotemark";
+import { convertTripleEquals } from "./converters/triple-equals";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -184,6 +187,7 @@ export const converters = new Map([
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
     ["max-file-line-count", convertMaxFileLineCount],
+    ["max-line-length", convertMaxLineLength],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
     ["no-console", convertNoConsole],
     ["no-empty", convertNoEmpty],
@@ -195,6 +199,7 @@ export const converters = new Map([
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["prefer-const", convertPreferConst],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
+    ["prefer-readonly", convertPreferReadonly],
     ["prefer-template", convertPreferTemplate],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["switch-default", convertSwitchDefault],
@@ -207,6 +212,7 @@ export const converters = new Map([
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
     ["quotemark", convertQuotemark],
+    ["triple-equals", convertTripleEquals],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
@@ -216,7 +222,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["max-line-length", convertMaxLineLength], // max-len
     // ["newline-before-return", convertNewlineBeforeReturn],
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
@@ -224,7 +229,6 @@ export const converters = new Map([
     // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
     // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
-    // ["triple-equals", convertTripleEquals], // eqeqeq
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
