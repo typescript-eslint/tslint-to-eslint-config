@@ -12,21 +12,21 @@ export const convertMaxLineLength: RuleConverter = tslintRule => {
 };
 
 const collectArguments = (ruleArguments: any[]) => {
-    if (ruleArguments.length === 0 || ruleArguments[0] === false || ruleArguments.length < 2) {
+    if (ruleArguments.length === 0) {
         return undefined;
     }
 
-    if (ruleArguments.length === 2 && typeof ruleArguments[1] === "number") {
+    const argument = ruleArguments[0];
+
+    if (typeof argument === "number") {
         return {
             ruleArguments: [
                 {
-                    code: ruleArguments[1],
+                    code: argument,
                 },
             ],
         };
     }
-
-    const argument = ruleArguments[1];
 
     return {
         ruleArguments: [
