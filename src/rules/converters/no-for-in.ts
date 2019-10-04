@@ -1,12 +1,10 @@
 import { RuleConverter } from "../converter";
 
-export const convertNoForIn: RuleConverter = tslintRule => {
+export const convertNoForIn: RuleConverter = () => {
     return {
         rules: [
             {
-                ...(tslintRule.ruleArguments.length !== 0 && {
-                    ruleArguments: tslintRule.ruleArguments,
-                }),
+                ruleArguments: ["ForInStatement"],
                 ruleName: "no-restricted-syntax",
             },
         ],
