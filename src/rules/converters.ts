@@ -25,6 +25,7 @@ import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
 import { convertMaxLineLength } from "./converters/max-line-length";
 import { convertMemberOrdering } from "./converters/member-ordering";
+import { convertNewlineBeforeReturn } from "./converters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
 import { convertNewParens } from "./converters/new-parens";
 import { convertNoAngleBracketTypeAssertion } from "./converters/no-angle-bracket-type-assertion";
@@ -132,6 +133,7 @@ export const converters = new Map([
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
     ["new-parens", convertNewParens],
+    ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
@@ -230,7 +232,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["newline-before-return", convertNewlineBeforeReturn],
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["no-trailing-whitespace", convertNoTrailingWhitespace], //  no-trailing-spaces
