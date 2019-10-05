@@ -277,7 +277,7 @@ export const converters = new Map([
     // if you're willing to take on that work, that'd be great! Please send PRs! 💖
     // as these are enabled, they should be added in sorted order to the list above.
 
-    // tSLint core rules:
+    // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
