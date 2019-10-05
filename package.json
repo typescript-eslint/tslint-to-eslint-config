@@ -7,6 +7,7 @@
     },
     "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
     "dependencies": {
+        "@typescript-eslint/eslint-plugin-tslint": "^2.3.2",
         "chalk": "2.4.2",
         "commander": "3.0.2",
         "tslint": "5.20.0",
