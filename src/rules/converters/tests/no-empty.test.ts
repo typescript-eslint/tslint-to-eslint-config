@@ -12,7 +12,7 @@ describe(convertNoEmpty, () => {
                     ruleName: "no-empty",
                 },
                 {
-                    ruleName: "no-empty-functions",
+                    ruleName: "@typescript-eslint/no-empty-function",
                 },
             ],
         });
@@ -30,7 +30,7 @@ describe(convertNoEmpty, () => {
                     ruleName: "no-empty",
                 },
                 {
-                    ruleName: "no-empty-functions",
+                    ruleName: "@typescript-eslint/no-empty-function",
                 },
             ],
         });

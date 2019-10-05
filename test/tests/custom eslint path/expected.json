@@ -9,6 +9,7 @@ module.exports = {
         "@typescript-eslint/array-type": "error",
         "@typescript-eslint/interface-name-prefix": "error",
         "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-param-reassign": "off",
         "@typescript-eslint/no-parameter-properties": "off",
@@ -20,7 +21,6 @@ module.exports = {
         "linebreak-style": "off",
         "no-bitwise": "off",
         "no-empty": "off",
-        "no-empty-functions": "off",
         "no-magic-numbers": "off",
         "padding-line-between-statements": [
             "off",
