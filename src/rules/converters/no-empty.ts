@@ -25,7 +25,7 @@ const convertNoEmptyRule = (tslintRule: RuleConverterOptions) => {
 const convertNoEmptyFunctionRule = (tslintRule: RuleConverterOptions) => {
     return !tslintRule.ruleArguments.includes("allow-empty-functions")
         ? {
-              ruleName: "no-empty-functions",
+              ruleName: "@typescript-eslint/no-empty-function",
           }
         : undefined;
 };

@@ -27,7 +27,7 @@
         "linebreak-style": "off",
         "no-bitwise": "off",
         "no-empty": "off",
-        "no-empty-functions": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "no-magic-numbers": "off",
         "prefer-template": "off",
         "@typescript-eslint/tslint/config": [
