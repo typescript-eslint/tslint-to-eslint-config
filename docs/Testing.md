@@ -42,3 +42,5 @@ Within each directory, a test suite will execute `bin/tslint-to-eslint` and vali
 
 Use `npm run test:end-to-end:accept` to overwrite the expected contents of files with what is actually written.
 These behave similarly to updating snapshots in snapshot testing.
+
+> Note: these end-to-end tests use the compiled result of `npm run tsc`, so if you update source code, re-run `npm run tsc` before `npm run test:end-to-end`.
