@@ -146,6 +146,7 @@ workflows:
             - test-end-to-end:
                   requires:
                       - build
+                      - tsc
             - test-unit:
                   requires:
                       - build
