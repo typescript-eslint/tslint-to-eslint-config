@@ -112,7 +112,9 @@ import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
 
 /**
- * Keys TSLint rule names to their ESLint rule converters. */ export const converters = new Map([
+ * Keys TSLint rule names to their ESLint rule converters.
+ */
+export const converters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
