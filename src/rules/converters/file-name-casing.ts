@@ -1,6 +1,15 @@
 import { RuleConverter } from "../converter";
 
-const IGNORE_CASE_NOTICE = "ESLint (Unicorn plugin) does not support ignore as case";
+const IGNORE_CASE_NOTICE = "ESLint (Unicorn plugin) does not support the 'ignore' case.";
+const CASING_BY_FILETYPE_CHANGE =
+    "ESLint (Unicorn Plugin) does not support file name casing by file type, so all previously configured casings are now allowed.";
+const CASES_MAP: { [s: string]: string } = {
+    "camel-case": "camelCase",
+    "pascal-case": "pascalCase",
+    "kebab-case": "kebabCase",
+    "snake-case": "snakeCase",
+};
+
 export const convertFileNameCasing: RuleConverter = tslintRule => {
     return {
         rules: [
@@ -15,12 +24,7 @@ export const convertFileNameCasing: RuleConverter = tslintRule => {
 
 const collectArguments = (ruleArguments: any[]) => {
     const notices: string[] = [];
-    const casesMap = new Map();
-    casesMap.set("camel-case", "camelCase");
-    casesMap.set("pascal-case", "pascalCase");
-    casesMap.set("kebab-case", "kebabCase");
-    casesMap.set("snake-case", "snakeCase");
-    const foundCases: { [k: string]: any } = {};
+    const foundCases: { [k: string]: boolean } = {};
 
     if (ruleArguments.length === 0 || ruleArguments[0] === false || ruleArguments.length < 2) {
         return undefined;
@@ -31,16 +35,17 @@ const collectArguments = (ruleArguments: any[]) => {
         if (casings === "ignore") {
             notices.push(IGNORE_CASE_NOTICE);
         } else {
-            foundCases[casesMap.get(casings)] = true;
+            foundCases[CASES_MAP[casings]] = true;
         }
     }
 
     if (ruleArguments[1] instanceof Object) {
+        notices.push(CASING_BY_FILETYPE_CHANGE);
         for (const casing in casings) {
             if (casings[casing] === "ignore") {
                 notices.push(IGNORE_CASE_NOTICE);
             } else {
-                foundCases[casesMap.get(casings[casing])] = true;
+                foundCases[CASES_MAP[casings[casing]]] = true;
             }
         }
     }

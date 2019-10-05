@@ -46,7 +46,10 @@ describe(convertFileNameCasing, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint (Unicorn plugin) does not support ignore as case"],
+                    notices: [
+                        "ESLint (Unicorn Plugin) does not support file name casing by file type, so all previously configured casings are now allowed.",
+                        "ESLint (Unicorn plugin) does not support the 'ignore' case.",
+                    ],
                     ruleName: "unicorn/filename-case",
                     ruleArguments: [
                         {
@@ -70,7 +73,7 @@ describe(convertFileNameCasing, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint (Unicorn plugin) does not support ignore as case"],
+                    notices: ["ESLint (Unicorn plugin) does not support the 'ignore' case."],
                     ruleName: "unicorn/filename-case",
                     ruleArguments: [
                         {
@@ -91,7 +94,10 @@ describe(convertFileNameCasing, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint (Unicorn plugin) does not support ignore as case"],
+                    notices: [
+                        "ESLint (Unicorn Plugin) does not support file name casing by file type, so all previously configured casings are now allowed.",
+                        "ESLint (Unicorn plugin) does not support the 'ignore' case.",
+                    ],
                     ruleName: "unicorn/filename-case",
                     ruleArguments: [
                         {
