@@ -13,6 +13,7 @@ import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
 import { convertEofline } from "./converters/eofline";
 import { convertMemberAccess } from "./converters/member-access";
+import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
 import { convertIncrementDecrement } from "./converters/increment-decrement";
@@ -25,6 +26,7 @@ import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
 import { convertMaxLineLength } from "./converters/max-line-length";
 import { convertMemberOrdering } from "./converters/member-ordering";
+import { convertNewlineBeforeReturn } from "./converters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
 import { convertNewParens } from "./converters/new-parens";
 import { convertNoAngleBracketTypeAssertion } from "./converters/no-angle-bracket-type-assertion";
@@ -38,6 +40,7 @@ import { convertNoConstantCondition } from "./converters/no-constant-condition";
 import { convertNoConstruct } from "./converters/no-construct";
 import { convertNoControlRegex } from "./converters/no-control-regex";
 import { convertNoDebugger } from "./converters/no-debugger";
+import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
 import { convertNoEmpty } from "./converters/no-empty";
@@ -116,6 +119,7 @@ export const converters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
+    ["arrow-return-shorthand", convertArrowReturnShorthand],
     ["await-promise", convertAwaitPromise],
     ["ban-comma-operator", convertBanCommaOperator],
     ["ban-ts-ignore", convertBanTsIgnore],
@@ -123,53 +127,77 @@ export const converters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["curly", convertCurly],
+    ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["eofline", convertEofline],
+    ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
+    ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
     ["label-position", convertLabelPosition],
+    ["linebreak-style", convertLinebreakStyle],
+    ["max-classes-per-file", convertMaxClassesPerFile],
+    ["max-file-line-count", convertMaxFileLineCount],
+    ["max-line-length", convertMaxLineLength],
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
     ["new-parens", convertNewParens],
+    ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
+    ["no-banned-terms", convertNoBannedTerms],
     ["no-bitwise", convertNoBitwise],
     ["no-conditional-assignment", convertNoConditionalAssignment],
+    ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
+    ["no-console", convertNoConsole],
+    ["no-constant-condition", convertNoConstantCondition],
     ["no-construct", convertNoConstruct],
+    ["no-control-regex", convertNoControlRegex],
     ["no-debugger", convertNoDebugger],
+    ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-empty-interface", convertNoEmptyInterface],
+    ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
-    ["no-for-in", convertNoForIn],
     ["no-for-in-array", convertNoForInArray],
+    ["no-for-in", convertNoForIn],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
+    ["no-invalid-regexp", convertNoInvalidRegexp],
+    ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
+    ["no-invalid-this", convertNoInvalidThis],
     ["no-irregular-whitespace", convertNoIrregularWhitespace],
+    ["no-magic-numbers", convertNoMagicNumbers],
     ["no-misused-new", convertNoMisusedNew],
+    ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
+    ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-reference", convertNoReference],
+    ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
-    ["no-trailing-whitespace", convertNoTrailingWhitespace],
     ["no-this-assignment", convertNoThisAssignment],
+    ["no-trailing-whitespace", convertNoTrailingWhitespace],
     ["no-unbound-method", convertNoUnboundMethod],
     ["no-unnecessary-class", convertNoUnnecessaryClass],
     ["no-unnecessary-initializer", convertNoUnnecessaryInitializer],
     ["no-unnecessary-qualifier", convertNoUnnecessaryQualifier],
+    ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
     ["no-unused-expression", convertNoUnusedExpression],
@@ -177,11 +205,23 @@ export const converters = new Map([
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
     ["no-void-expression", convertNoVoidExpression],
+    ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
+    ["object-literal-shorthand", convertObjectLiteralShorthand],
+    ["one-variable-per-declaration", convertOneVariablePerDeclaration],
+    ["only-arrow-functions", convertOnlyArrowFunctions],
+    ["prefer-const", convertPreferConst],
     ["prefer-for-of", convertPreferForOf],
+    ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-object-spread", convertPreferObjectSpread],
+    ["prefer-readonly", convertPreferReadonly],
+    ["prefer-template", convertPreferTemplate],
     ["promise-function-async", convertPromiseFunctionAsync],
+    ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["switch-default", convertSwitchDefault],
+    ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],
     ["typeof-compare", convertTypeofCompare],
@@ -189,40 +229,6 @@ export const converters = new Map([
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-isnan", convertUseIsnan],
-    ["arrow-return-shorthand", convertArrowReturnShorthand],
-    ["curly", convertCurly],
-    ["cyclomatic-complexity", convertCyclomaticComplexity],
-    ["increment-decrement", convertIncrementDecrement],
-    ["linebreak-style", convertLinebreakStyle],
-    ["max-classes-per-file", convertMaxClassesPerFile],
-    ["max-file-line-count", convertMaxFileLineCount],
-    ["max-line-length", convertMaxLineLength],
-    ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
-    ["no-console", convertNoConsole],
-    ["no-empty", convertNoEmpty],
-    ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
-    ["no-invalid-this", convertNoInvalidThis],
-    ["no-magic-numbers", convertNoMagicNumbers],
-    ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
-    ["object-literal-shorthand", convertObjectLiteralShorthand],
-    ["one-variable-per-declaration", convertOneVariablePerDeclaration],
-    ["only-arrow-functions", convertOnlyArrowFunctions],
-    ["prefer-const", convertPreferConst],
-    ["prefer-function-over-method", convertPreferFunctionOverMethod],
-    ["prefer-readonly", convertPreferReadonly],
-    ["prefer-template", convertPreferTemplate],
-    ["space-before-function-paren", convertSpaceBeforeFunctionParen],
-    ["switch-default", convertSwitchDefault],
-    ["no-banned-terms", convertNoBannedTerms],
-    ["no-constant-condition", convertNoConstantCondition],
-    ["no-control-regex", convertNoControlRegex],
-    ["no-multiline-string", convertNoMultilineString],
-    ["no-invalid-regexp", convertNoInvalidRegexp],
-    ["no-octal-literal", convertNoOctalLiteral],
-    ["no-regex-spaces", convertNoRegexSpaces],
-    ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
-    ["quotemark", convertQuotemark],
-    ["triple-equals", convertTripleEquals],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
@@ -232,11 +238,8 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["newline-before-return", convertNewlineBeforeReturn],
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
-    // ["no-trailing-whitespace", convertNoTrailingWhitespace], //  no-trailing-spaces
-    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
     // ["variable-name", convertVariableName], // a bunch of rules...
 

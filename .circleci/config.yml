@@ -91,7 +91,6 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm i -g ts-node
             - run: npm run test:end-to-end
 
     test-unit:
@@ -144,6 +143,10 @@ workflows:
             - prettier:
                   requires:
                       - build
+            - test-end-to-end:
+                  requires:
+                      - build
+                      - tsc
             - test-unit:
                   requires:
                       - build
