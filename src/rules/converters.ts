@@ -99,6 +99,7 @@ import { convertPromiseFunctionAsync } from "./converters/promise-function-async
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
+import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -216,6 +217,7 @@ export const converters = new Map([
     ["radix", convertRadix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
