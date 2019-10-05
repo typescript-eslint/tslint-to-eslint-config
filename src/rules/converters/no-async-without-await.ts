@@ -4,7 +4,7 @@ export const convertNoAsyncWithoutAwait: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "require-await",
+                ruleName: "@typescript-eslint/require-await",
             },
         ],
     };
