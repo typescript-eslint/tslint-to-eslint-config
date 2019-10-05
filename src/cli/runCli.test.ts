@@ -2,7 +2,7 @@ import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
-import { ResultStatus, TSLintToESLintResult } from "../types";
+import { ResultStatus, TSLintToESLintResult, SucceededResult } from "../types";
 import { runCli, RunCliDependencies } from "./runCli";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
@@ -128,5 +128,22 @@ describe("runCli", () => {
         // Assert
         expect(status).toBe(ResultStatus.Succeeded);
         expectEqualWrites(dependencies.logger.stdout.write, "✅ All is well! ✅");
+    });
+
+    it("default output should be .eslintrc.js", async () => {
+        let defaultConfig;
+        const dependencies = createStubRunCliDependencies({
+            convertConfig: parsedArgs => {
+                defaultConfig = parsedArgs.config;
+                return Promise.resolve({
+                    status: ResultStatus.Succeeded,
+                });
+            },
+        });
+
+        const status = await runCli(dependencies, createStubArgv());
+
+        expect(status).toBe(ResultStatus.Succeeded);
+        expect(defaultConfig).toEqual("./.eslintrc.js");
     });
 });
