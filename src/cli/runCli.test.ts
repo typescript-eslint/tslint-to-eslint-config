@@ -2,7 +2,7 @@ import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
-import { ResultStatus, TSLintToESLintResult, SucceededResult } from "../types";
+import { ResultStatus, TSLintToESLintResult } from "../types";
 import { runCli, RunCliDependencies } from "./runCli";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
