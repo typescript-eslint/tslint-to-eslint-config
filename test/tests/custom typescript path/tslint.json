@@ -1,7 +1,7 @@
 {
     "rules": {
         "array-type": [true, "array"],
-        "no-floating-promises": false,
+        "no-floating-promises": true,
         "typedef": false
     }
 }

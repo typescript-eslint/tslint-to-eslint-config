@@ -14,6 +14,6 @@ module.exports = {
     ],
     "rules": {
         "@typescript-eslint/array-type": "error",
-        "@typescript-eslint/no-floating-promises": "off"
+        "@typescript-eslint/no-floating-promises": "error"
     }
 };
