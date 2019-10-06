@@ -31,6 +31,7 @@ import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-c
 import { convertNewParens } from "./converters/new-parens";
 import { convertNoAngleBracketTypeAssertion } from "./converters/no-angle-bracket-type-assertion";
 import { convertNoArg } from "./converters/no-arg";
+import { convertNoAsyncWithoutAwait } from "./converters/no-async-without-await";
 import { convertNoBannedTerms } from "./converters/no-banned-terms";
 import { convertNoBitwise } from "./converters/no-bitwise";
 import { convertNoConditionalAssignment } from "./converters/no-conditional-assignment";
@@ -40,6 +41,7 @@ import { convertNoConstantCondition } from "./converters/no-constant-condition";
 import { convertNoConstruct } from "./converters/no-construct";
 import { convertNoControlRegex } from "./converters/no-control-regex";
 import { convertNoDebugger } from "./converters/no-debugger";
+import { convertNoDefaultExport } from "./converters/no-default-export";
 import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
@@ -61,6 +63,7 @@ import { convertNoMisusedNew } from "./converters/no-misused-new";
 import { convertNoMultilineString } from "./converters/no-multiline-string";
 import { convertNoNamespace } from "./converters/no-namespace";
 import { convertNoNonNullAssertion } from "./converters/no-non-null-assertion";
+import { convertNoNullKeyword } from "./converters/no-null-keyword";
 import { convertNoObjectLiteralTypeAssertion } from "./converters/no-object-literal-type-assertion";
 import { convertNoOctalLiteral } from "./converters/no-octal-literal";
 import { convertNoParameterProperties } from "./converters/no-parameter-properties";
@@ -69,6 +72,7 @@ import { convertNoReference } from "./converters/no-reference";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
 import { convertNoReturnAwait } from "./converters/no-return-await";
+import { convertNoShadowedVariable } from "./converters/no-shadowed-variable";
 import { convertNoSparseArrays } from "./converters/no-sparse-arrays";
 import { convertNoStringLiteral } from "./converters/no-string-literal";
 import { convertNoStringThrow } from "./converters/no-string-throw";
@@ -91,6 +95,7 @@ import { convertObjectLiteralKeyQuotes } from "./converters/object-literal-key-q
 import { convertObjectLiteralShorthand } from "./converters/object-literal-shorthand";
 import { convertOneVariablePerDeclaration } from "./converters/one-variable-per-declaration";
 import { convertOnlyArrowFunctions } from "./converters/only-arrow-functions";
+import { convertOrderedImports } from "./converters/ordered-imports";
 import { convertPreferConst } from "./converters/prefer-const";
 import { convertPreferForOf } from "./converters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./converters/prefer-function-over-method";
@@ -100,6 +105,7 @@ import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
+import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
@@ -108,6 +114,7 @@ import { convertTypeofCompare } from "./converters/typeof-compare";
 import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
+import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
@@ -150,6 +157,7 @@ export const converters = new Map([
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
+    ["no-async-without-await", convertNoAsyncWithoutAwait],
     ["no-banned-terms", convertNoBannedTerms],
     ["no-bitwise", convertNoBitwise],
     ["no-conditional-assignment", convertNoConditionalAssignment],
@@ -159,6 +167,7 @@ export const converters = new Map([
     ["no-construct", convertNoConstruct],
     ["no-control-regex", convertNoControlRegex],
     ["no-debugger", convertNoDebugger],
+    ["no-default-export", convertNoDefaultExport],
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
@@ -179,6 +188,7 @@ export const converters = new Map([
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
     ["no-non-null-assertion", convertNoNonNullAssertion],
+    ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
@@ -187,6 +197,7 @@ export const converters = new Map([
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
+    ["no-shadowed-variable", convertNoShadowedVariable],
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
@@ -209,6 +220,7 @@ export const converters = new Map([
     ["object-literal-shorthand", convertObjectLiteralShorthand],
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["only-arrow-functions", convertOnlyArrowFunctions],
+    ["ordered-imports", convertOrderedImports],
     ["prefer-const", convertPreferConst],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
@@ -219,6 +231,7 @@ export const converters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
@@ -228,6 +241,7 @@ export const converters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
 
     // These converters are all for rules that need more complex option conversions.
@@ -239,7 +253,6 @@ export const converters = new Map([
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
     // ["variable-name", convertVariableName], // a bunch of rules...
 
