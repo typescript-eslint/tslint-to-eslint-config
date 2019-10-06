@@ -272,10 +272,10 @@ export const converters = new Map([
     ["quotemark", convertQuotemark],
     ["triple-equals", convertTripleEquals],
 
-    // these converters are all for rules that need more complex option conversions.
-    // some of them will likely need to have notices about changed lint behaviors...
-    // if you're willing to take on that work, that'd be great! Please send PRs! 💖
-    // as these are enabled, they should be added in sorted order to the list above.
+    // These converters are all for rules that need more complex option conversions.
+    // Some of them will likely need to have notices about changed lint behaviors...
+    // If you're willing to take on that work, that'd be great! Please send PRs! 💖
+    // As these are enabled, they should be added in sorted order to the list above.
 
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
