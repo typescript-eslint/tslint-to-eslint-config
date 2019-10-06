@@ -10,7 +10,8 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "@typescript-eslint/tslint"
+        "@typescript-eslint/tslint",
+        "import"
     ],
     "rules": {
         "@typescript-eslint/array-type": "error",
@@ -27,6 +28,7 @@
         "default-case": "off",
         "linebreak-style": "off",
         "no-bitwise": "off",
+        "import/no-default-export": true,
         "no-empty": "off",
         "no-magic-numbers": "off",
         "prefer-template": "off",
