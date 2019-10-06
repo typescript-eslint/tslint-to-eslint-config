@@ -108,6 +108,7 @@ import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
 import { convertUseIsnan } from "./converters/use-isnan";
+import { convertVariableName } from "./converters/variable-name";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
 
@@ -227,6 +228,7 @@ export const converters = new Map([
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-isnan", convertUseIsnan],
+    ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
@@ -240,7 +242,6 @@ export const converters = new Map([
     // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
-    // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
