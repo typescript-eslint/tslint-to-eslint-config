@@ -1,0 +1,2 @@
+✨ 2 rules replaced with their ESLint equivalents. ✨
+✅ All is well! ✅
