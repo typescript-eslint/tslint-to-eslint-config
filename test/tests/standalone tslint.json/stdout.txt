@@ -1,5 +1,6 @@
-✨ 19 rules replaced with their ESLint equivalents. ✨
+✨ 20 rules replaced with their ESLint equivalents. ✨
 ️👀 2 rules do not yet have ESLint equivalents; defaulting to eslint-plugin-tslint. 👀
-⚡ 1 package is required for new ESLint rules. ⚡
+⚡ 2 packages are required for new ESLint rules. ⚡
 	unicorn
+	import
 ✅ All is well! ✅

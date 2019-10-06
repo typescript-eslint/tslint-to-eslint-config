@@ -12,6 +12,7 @@
         "no-any": false,
         "no-bitwise": false,
         "no-empty": false,
+        "no-default-export": true,
         "no-magic-numbers": false,
         "no-import-side-effect": false,
         "no-implicit-dependencies": [true, "dev"],
