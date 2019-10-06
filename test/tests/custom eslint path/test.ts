@@ -4,5 +4,5 @@ const eslint = "./.eslintrc.custom.js";
 
 createTests(__dirname, {
     eslint,
-    extraArgs: ["--eslint", eslint],
+    extraArgs: ["--config", eslint, "--eslint", eslint],
 });
