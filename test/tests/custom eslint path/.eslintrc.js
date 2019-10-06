@@ -4,6 +4,13 @@ module.exports = {
         "es6": true,
         "node": true
     },
+    "extends": [],
+    "rules": {
+        "@typescript-eslint/array-type": "error",
+        "@typescript-eslint/no-floating-promises": "error",
+        "previously-existing-rule": "warning",
+    },
+    "globals": {},
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "tsconfig.json",
@@ -11,12 +18,5 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint"
-    ],
-    "rules": {
-        "max-classes-per-file": [
-            "error",
-            "exclude-class-expressions"
-        ],
-        "no-caller": "error"
-    }
+    ]
 };
