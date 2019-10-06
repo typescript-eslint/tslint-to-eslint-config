@@ -129,4 +129,21 @@ describe("runCli", () => {
         expect(status).toBe(ResultStatus.Succeeded);
         expectEqualWrites(dependencies.logger.stdout.write, "✅ All is well! ✅");
     });
+
+    it("default output should be .eslintrc.js", async () => {
+        let defaultConfig;
+        const dependencies = createStubRunCliDependencies({
+            convertConfig: parsedArgs => {
+                defaultConfig = parsedArgs.config;
+                return Promise.resolve({
+                    status: ResultStatus.Succeeded,
+                });
+            },
+        });
+
+        const status = await runCli(dependencies, createStubArgv());
+
+        expect(status).toBe(ResultStatus.Succeeded);
+        expect(defaultConfig).toEqual("./.eslintrc.js");
+    });
 });

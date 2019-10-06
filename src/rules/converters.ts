@@ -40,6 +40,7 @@ import { convertNoConstantCondition } from "./converters/no-constant-condition";
 import { convertNoConstruct } from "./converters/no-construct";
 import { convertNoControlRegex } from "./converters/no-control-regex";
 import { convertNoDebugger } from "./converters/no-debugger";
+import { convertNoDefaultExport } from "./converters/no-default-export";
 import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
@@ -101,6 +102,7 @@ import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
+import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
@@ -109,6 +111,7 @@ import { convertTypeofCompare } from "./converters/typeof-compare";
 import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
+import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
@@ -160,6 +163,7 @@ export const converters = new Map([
     ["no-construct", convertNoConstruct],
     ["no-control-regex", convertNoControlRegex],
     ["no-debugger", convertNoDebugger],
+    ["no-default-export", convertNoDefaultExport],
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
@@ -221,6 +225,7 @@ export const converters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
@@ -230,6 +235,7 @@ export const converters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
 
     // These converters are all for rules that need more complex option conversions.
