@@ -1,0 +1,4 @@
+❌ Could not start tslint-to-eslint: ❌
+Command failed: tslint --print-config "./tslint.json"
+Failed to load C:\Code\tslint-to-eslint-config\test\tests\standalone tslint.json\tslint.json: Unexpected token < in JSON at position 59 in C:\Code\tslint-to-eslint-config\test\tests\standalone tslint.json\tslint.json
+
