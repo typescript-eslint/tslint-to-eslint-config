@@ -2,7 +2,7 @@ import { RuleConverter } from "../converter";
 
 // for reference, see here
 // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
-export const semicolon: RuleConverter = tslintRule => {
+export const convertSemicolon: RuleConverter = tslintRule => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {
         if (strategy === "always") {
             return "semi";

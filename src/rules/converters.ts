@@ -99,7 +99,7 @@ import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
-import { semicolon } from "./converters/semicolon";
+import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
@@ -218,7 +218,7 @@ export const converters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
-    ["semicolon", semicolon],
+    ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],

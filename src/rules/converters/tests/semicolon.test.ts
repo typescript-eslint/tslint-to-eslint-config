@@ -1,8 +1,8 @@
-import { semicolon } from "../semicolon";
+import { convertSemicolon } from "../semicolon";
 
-describe("semicolon", () => {
+describe(convertSemicolon, () => {
     test("conversion with always", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["always"],
         });
 
@@ -34,7 +34,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with never", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["never"],
         });
 
@@ -66,7 +66,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with always and strict bound class methods", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["always", "strict-bound-class-methods"],
         });
 
@@ -101,7 +101,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with never and strict bound class methods", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["never", "strict-bound-class-methods"],
         });
 
@@ -136,7 +136,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with always and ignore interfaces", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["always", "ignore-interfaces"],
         });
 
@@ -152,7 +152,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with never and ignore interfaces", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["never", "ignore-interfaces"],
         });
 
@@ -168,7 +168,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with always, strict bound class methods and ignore interfaces", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["always", "ignore-interfaces", "strict-bound-class-methods"],
         });
 
@@ -187,7 +187,7 @@ describe("semicolon", () => {
     });
 
     test("conversion with always, strict bound class methods and ignore interfaces", () => {
-        const result = semicolon({
+        const result = convertSemicolon({
             ruleArguments: ["never", "ignore-interfaces", "strict-bound-class-methods"],
         });
 
