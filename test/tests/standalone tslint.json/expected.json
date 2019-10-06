@@ -10,8 +10,7 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "@typescript-eslint/tslint",
-        "import"
+        "@typescript-eslint/tslint"
     ],
     "rules": {
         "@typescript-eslint/array-type": "error",
@@ -26,7 +25,6 @@
         "@typescript-eslint/unbound-method": "off",
         "arrow-body-style": "off",
         "default-case": "off",
-        "import/no-default-export": true,
         "linebreak-style": "off",
         "no-bitwise": "off",
         "no-empty": "off",

@@ -45,6 +45,7 @@ module.exports = {
             "error",
             {
                 "rules": {
+                    "no-default-export": true,
                     "no-implicit-dependencies": [
                         true,
                         "dev"
