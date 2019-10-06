@@ -8,7 +8,7 @@ module.exports = {
     "rules": {
         "@typescript-eslint/array-type": "error",
         "@typescript-eslint/no-floating-promises": "error",
-        "previously-existing-rule": "warning",
+        "previously-existing-rule": "warn",
     },
     "globals": {},
     "parser": "@typescript-eslint/parser",
