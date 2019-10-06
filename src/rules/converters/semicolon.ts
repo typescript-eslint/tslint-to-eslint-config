@@ -1,7 +1,5 @@
 import { RuleConverter } from "../converter";
 
-// for reference, see here
-// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
 export const convertSemicolon: RuleConverter = tslintRule => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {
         if (strategy === "always") {
@@ -23,7 +21,7 @@ export const convertSemicolon: RuleConverter = tslintRule => {
                 ? []
                 : [
                       {
-                          ruleName: "@typescript-estlint/member-delimiter-style",
+                          ruleName: "@typescript-eslint/member-delimiter-style",
                           ruleArguments: [
                               "error",
                               {
@@ -40,13 +38,11 @@ export const convertSemicolon: RuleConverter = tslintRule => {
                       },
                   ]),
         ],
-        notices: [
-            "You must disable the base rule (semi) as it can report incorrect errors.",
-            ...(strictBoundClassMethods
-                ? [
-                      "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
-                  ]
-                : []),
-        ],
+
+        notices: strictBoundClassMethods
+            ? [
+                  "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
+              ]
+            : undefined,
     };
 };

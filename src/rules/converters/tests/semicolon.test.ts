@@ -13,7 +13,7 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["always"],
                 },
                 {
-                    ruleName: "@typescript-estlint/member-delimiter-style",
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -29,7 +29,6 @@ describe(convertSemicolon, () => {
                     ],
                 },
             ],
-            notices: ["You must disable the base rule (semi) as it can report incorrect errors."],
         });
     });
 
@@ -45,7 +44,7 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["never"],
                 },
                 {
-                    ruleName: "@typescript-estlint/member-delimiter-style",
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -61,7 +60,6 @@ describe(convertSemicolon, () => {
                     ],
                 },
             ],
-            notices: ["You must disable the base rule (semi) as it can report incorrect errors."],
         });
     });
 
@@ -77,7 +75,7 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["always"],
                 },
                 {
-                    ruleName: "@typescript-estlint/member-delimiter-style",
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -94,7 +92,6 @@ describe(convertSemicolon, () => {
                 },
             ],
             notices: [
-                "You must disable the base rule (semi) as it can report incorrect errors.",
                 "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
             ],
         });
@@ -112,7 +109,7 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["never"],
                 },
                 {
-                    ruleName: "@typescript-estlint/member-delimiter-style",
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -129,7 +126,6 @@ describe(convertSemicolon, () => {
                 },
             ],
             notices: [
-                "You must disable the base rule (semi) as it can report incorrect errors.",
                 "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
             ],
         });
@@ -147,7 +143,6 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["always"],
                 },
             ],
-            notices: ["You must disable the base rule (semi) as it can report incorrect errors."],
         });
     });
 
@@ -163,7 +158,6 @@ describe(convertSemicolon, () => {
                     ruleArguments: ["never"],
                 },
             ],
-            notices: ["You must disable the base rule (semi) as it can report incorrect errors."],
         });
     });
 
@@ -180,7 +174,6 @@ describe(convertSemicolon, () => {
                 },
             ],
             notices: [
-                "You must disable the base rule (semi) as it can report incorrect errors.",
                 "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
             ],
         });
@@ -199,7 +192,6 @@ describe(convertSemicolon, () => {
                 },
             ],
             notices: [
-                "You must disable the base rule (semi) as it can report incorrect errors.",
                 "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
             ],
         });
