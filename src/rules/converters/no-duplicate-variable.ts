@@ -5,7 +5,7 @@ export const convertNoDuplicateVariable: RuleConverter = tslintRule => {
         rules: [
             {
                 ...(tslintRule.ruleArguments.includes("check-parameters") && {
-                    notices: ["ESLint does not support check parameters."],
+                    notices: ["ESLint does not support check-parameters."],
                 }),
                 ruleName: "no-redeclare",
             },
