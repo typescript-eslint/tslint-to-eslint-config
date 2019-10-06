@@ -39,6 +39,7 @@ describe(convertNoUnusedExpression, () => {
             rules: [
                 {
                     ruleName: "no-unused-expressions",
+                    notices: ["ESLint does not support optional config allow-fast-null-checks."],
                 },
             ],
         });
