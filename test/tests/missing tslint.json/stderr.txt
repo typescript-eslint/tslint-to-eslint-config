@@ -1,4 +1,0 @@
-❌ Could not start tslint-to-eslint: ❌
-Command failed: tslint --print-config "./tslint.json"
-Could not find configuration path. Try passing a --config to your tslint.json.
-
