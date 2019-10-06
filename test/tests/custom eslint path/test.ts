@@ -1,6 +1,6 @@
 import { createTests } from "../../createTests";
 
-const eslint = "./eslintrc.js";
+const eslint = "./.eslintrc.custom.js";
 
 createTests(__dirname, {
     eslint,
