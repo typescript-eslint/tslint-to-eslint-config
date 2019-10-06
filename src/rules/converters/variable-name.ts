@@ -3,31 +3,51 @@ import { RuleConverter } from "../converter";
 export const convertVariableName: RuleConverter = tslintRule => {
     const getCamelCaseRuleOptions = () => {
         const camelCaseOptionNotice: string[] = [];
-        camelCaseOptionNotice.push(
-            "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-        );
-
-        if (
-            tslintRule.ruleArguments.length !== 0 &&
-            tslintRule.ruleArguments.includes("require-const-for-all-caps")
-        ) {
+        if (tslintRule.ruleArguments.includes("check-format")) {
+            if (
+                !tslintRule.ruleArguments.includes("allow-leading-underscore") &&
+                !tslintRule.ruleArguments.includes("allow-trailing-underscore")
+            ) {
+                camelCaseOptionNotice.push(
+                    "Leading and trailing underscores (_) in variable names will now be ignored.",
+                );
+            } else if (
+                tslintRule.ruleArguments.includes("allow-leading-underscore") &&
+                !tslintRule.ruleArguments.includes("allow-trailing-underscore")
+            ) {
+                camelCaseOptionNotice.push(
+                    "Leading undescores in variable names will now be ignored.",
+                );
+            } else if (
+                !tslintRule.ruleArguments.includes("allow-leading-underscore") &&
+                tslintRule.ruleArguments.includes("allow-trailing-underscore")
+            ) {
+                camelCaseOptionNotice.push(
+                    "Trailing undescores in variable names will now be ignored.",
+                );
+            }
+        } else {
             camelCaseOptionNotice.push(
-                'The argument "require-const-for-all-caps" is not needed as ESlint will decide if a variable is a constant (all uppercase). If not, a warning will be thrown.',
+                "Leading and trailing underscores (_) in variable names will now be ignored.",
+            );
+        }
+
+        if (tslintRule.ruleArguments.includes("require-const-for-all-caps")) {
+            camelCaseOptionNotice.push(
+                "ESLint's camel-case will throw a warning if const name is not uppercase.",
             );
         }
 
         if (
-            tslintRule.ruleArguments.length !== 0 &&
-            (tslintRule.ruleArguments.includes("allow-pascal-case") ||
-                tslintRule.ruleArguments.includes("allow-snake-case"))
+            tslintRule.ruleArguments.includes("allow-pascal-case") ||
+            tslintRule.ruleArguments.includes("allow-snake-case")
         ) {
             camelCaseOptionNotice.push(
-                "This rule does not allow pascal neither snake case to variable names. Those are reserved for class names and static methods.",
+                "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
             );
         }
 
         return {
-            arguments: [],
             notices: camelCaseOptionNotice,
         };
     };
@@ -35,36 +55,32 @@ export const convertVariableName: RuleConverter = tslintRule => {
     const getUnderscoreDangleRuleOptions = () => {
         const underscoreDangleOptionArguments: string[] = [];
         const underscoreDangleOptionNotice: string[] = [];
-        underscoreDangleOptionNotice.push(
-            'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
-        );
 
         if (
-            tslintRule.ruleArguments.length !== 0 &&
             tslintRule.ruleArguments.includes("check-format") &&
             (tslintRule.ruleArguments.includes("allow-leading-underscore") ||
                 tslintRule.ruleArguments.includes("allow-trailing-underscore"))
         ) {
             underscoreDangleOptionArguments.push("off");
             underscoreDangleOptionNotice.push(
-                'If either "allow-leading-underscore" or "allow-trailing-underscore" are provided, "no-underscore-dangle" will be turned off.',
+                "Leading and trailing underscores (_) on identifiers will now be ignored.",
+            );
+        } else {
+            underscoreDangleOptionNotice.push(
+                "Leading or trailing underscores (_) on identifiers will now be forbidden.",
             );
         }
 
         return {
-            arguments: underscoreDangleOptionArguments,
+            ruleArguments: underscoreDangleOptionArguments,
             notices: underscoreDangleOptionNotice,
         };
     };
 
     const getBlackListRuleOptions = () => {
         const blackListOptionArguments: string[] = [];
-        const blackListOptionNotice: string[] = [];
 
-        if (
-            tslintRule.ruleArguments.length !== 0 &&
-            tslintRule.ruleArguments.includes("ban-keywords")
-        ) {
+        if (tslintRule.ruleArguments.includes("ban-keywords")) {
             blackListOptionArguments.push(
                 "any",
                 "Number",
@@ -76,37 +92,26 @@ export const convertVariableName: RuleConverter = tslintRule => {
                 "Undefined",
                 "undefined",
             );
-            blackListOptionNotice.push(
-                'If "ban-keywords" was provided, ESLint has to disallows the use of certain TypeScript keywords by using "id-blacklist" rule.',
-            );
         }
 
         return {
-            arguments: blackListOptionArguments,
-            notices: blackListOptionNotice,
+            ruleArguments: blackListOptionArguments,
         };
     };
-
-    const camelCaseOptions = getCamelCaseRuleOptions();
-    const underscoreDangleOptions = getUnderscoreDangleRuleOptions();
-    const idblackListOptions = getBlackListRuleOptions();
 
     return {
         rules: [
             {
                 ruleName: "camelcase",
-                ruleArguments: camelCaseOptions.arguments,
-                notices: camelCaseOptions.notices,
+                ...getCamelCaseRuleOptions(),
             },
             {
                 ruleName: "no-underscore-dangle",
-                ruleArguments: underscoreDangleOptions.arguments,
-                notices: underscoreDangleOptions.notices,
+                ...getUnderscoreDangleRuleOptions(),
             },
             {
                 ruleName: "id-blacklist",
-                ruleArguments: idblackListOptions.arguments,
-                notices: idblackListOptions.notices,
+                ...getBlackListRuleOptions(),
             },
             {
                 ruleName: "id-match",

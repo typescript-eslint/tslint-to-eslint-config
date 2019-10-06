@@ -10,22 +10,20 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -43,23 +41,21 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-                        'The argument "require-const-for-all-caps" is not needed as ESlint will decide if a variable is a constant (all uppercase). If not, a warning will be thrown.',
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
+                        "ESLint's camel-case will throw a warning if const name is not uppercase.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -77,23 +73,21 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-                        "This rule does not allow pascal neither snake case to variable names. Those are reserved for class names and static methods.",
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
+                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -111,23 +105,21 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-                        "This rule does not allow pascal neither snake case to variable names. Those are reserved for class names and static methods.",
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
+                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -145,22 +137,20 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -178,23 +168,18 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
-                    notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-                    ],
+                    notices: ["Leading undescores in variable names will now be ignored."],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
-                        'If either "allow-leading-underscore" or "allow-trailing-underscore" are provided, "no-underscore-dangle" will be turned off.',
+                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
                     ],
                 },
                 {
                     ruleName: "id-blacklist",
                     ruleArguments: [],
-                    notices: [],
                 },
                 {
                     ruleName: "id-match",
@@ -220,19 +205,16 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    ruleArguments: [],
                     notices: [
-                        "By default, this rule looks for any underscores (_) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name.",
-                        'The argument "require-const-for-all-caps" is not needed as ESlint will decide if a variable is a constant (all uppercase). If not, a warning will be thrown.',
-                        "This rule does not allow pascal neither snake case to variable names. Those are reserved for class names and static methods.",
+                        "ESLint's camel-case will throw a warning if const name is not uppercase.",
+                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
                     ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
                     notices: [
-                        'By default, "no-underscore-dangle" will disallows dangling underscores in identifiers.',
-                        'If either "allow-leading-underscore" or "allow-trailing-underscore" are provided, "no-underscore-dangle" will be turned off.',
+                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
                     ],
                 },
                 {
@@ -247,9 +229,6 @@ describe(convertVariableName, () => {
                         "boolean",
                         "Undefined",
                         "undefined",
-                    ],
-                    notices: [
-                        'If "ban-keywords" was provided, ESLint has to disallows the use of certain TypeScript keywords by using "id-blacklist" rule.',
                     ],
                 },
                 {
