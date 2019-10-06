@@ -226,6 +226,7 @@ export const converters = new Map([
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["space-within-parens", convertSpaceWithinParens],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
