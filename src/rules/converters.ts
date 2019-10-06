@@ -108,6 +108,7 @@ import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
 import { convertUseIsnan } from "./converters/use-isnan";
+import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
 
@@ -227,6 +228,7 @@ export const converters = new Map([
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-isnan", convertUseIsnan],
+    ["use-default-type-parameter", convertUseDefaultTypeParameter],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...

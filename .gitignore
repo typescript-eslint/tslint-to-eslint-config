@@ -9,3 +9,5 @@ test/*.js
 ~test/jest.config.js
 !test/tests/**/.eslintrc*
 !test/tests/**/*.log
+#VS Code workspace file
+*.code-workspace
