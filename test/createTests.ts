@@ -27,7 +27,7 @@ const binFile = path.join(__dirname, "../bin/tslint-to-eslint-config");
 
 export const createTests = (
     cwd: string,
-    { eslint = "./.eslintrc.json", extraArgs = [] }: TestSettings = {},
+    { eslint = "./.eslintrc.js", extraArgs = [] }: TestSettings = {},
 ) => {
     const testName = path.basename(cwd);
     const accept = "acceptTestChanges" in globalThis;
@@ -52,7 +52,7 @@ export const createTests = (
             // Act
             await act(testArgs);
 
-            await assertFileContents(cwdPath("expected.json"), await readTestFile(eslint), accept);
+            await assertFileContents(cwdPath("expected.txt"), await readTestFile(eslint), accept);
         });
 
         test("stderr", async () => {

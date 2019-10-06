@@ -32,8 +32,8 @@ End-to-end tests that execute the `bin/tslint-to-eslint` command and validate ou
 Each directory there contains:
 
 -   `test.ts`: Test file that runs `createTests(__dirname);` to set up tests in that directory
--   `.eslintrc.json`: `.gitignore`d output from the most recent test run
--   `expected.json`: Expected output ESLint configuration
+-   `.eslintrc.js`: `.gitignore`d output from the most recent test run
+-   `expected.txt`: Expected output ESLint configuration
 -   `stderr.txt`: Expected output written to the process `stderr`
 -   `stdout.txt`: Expected output written to the process `stdout`
 -   `tslint.json`: Original TSLint configuration file to convert

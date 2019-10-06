@@ -3,6 +3,12 @@ module.exports = {
         "browser": true,
         "node": true
     },
+    "extends": [],
+    "rules": {
+        "@typescript-eslint/array-type": "error",
+        "@typescript-eslint/no-floating-promises": "error"
+    },
+    "globals": {},
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "project": "tsconfig.json",
@@ -11,8 +17,25 @@ module.exports = {
     "plugins": [
         "@typescript-eslint"
     ],
-    "rules": {
-        "@typescript-eslint/array-type": "error",
-        "@typescript-eslint/no-floating-promises": "error"
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".mjs",
+                    ".js",
+                    ".json"
+                ]
+            }
+        },
+        "import/extensions": [
+            ".js",
+            ".mjs",
+            ".jsx"
+        ],
+        "import/core-modules": [],
+        "import/ignore": [
+            "node_modules",
+            "\\.(coffee|scss|css|less|hbs|svg|json)$"
+        ]
     }
 };
