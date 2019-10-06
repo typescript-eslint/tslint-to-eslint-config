@@ -159,7 +159,69 @@ describe(convertVariableName, () => {
         });
     });
 
-    test("conversion with allow-leading-underscore with check-format argument", () => {
+    test("conversion with allow-trailing-underscore without check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: ["allow-trailing-underscore"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "camelcase",
+                    notices: [
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
+                    ],
+                },
+                {
+                    ruleName: "no-underscore-dangle",
+                    ruleArguments: [],
+                    notices: [
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
+                    ],
+                },
+                {
+                    ruleName: "id-blacklist",
+                    ruleArguments: [],
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: ["check-format"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "camelcase",
+                    notices: [
+                        "Leading and trailing underscores (_) in variable names will now be ignored.",
+                    ],
+                },
+                {
+                    ruleName: "no-underscore-dangle",
+                    ruleArguments: [],
+                    notices: [
+                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
+                    ],
+                },
+                {
+                    ruleName: "id-blacklist",
+                    ruleArguments: [],
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with allow-leading-underscore and check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["check-format", "allow-leading-underscore"],
         });
@@ -169,6 +231,68 @@ describe(convertVariableName, () => {
                 {
                     ruleName: "camelcase",
                     notices: ["Leading undescores in variable names will now be ignored."],
+                },
+                {
+                    ruleName: "no-underscore-dangle",
+                    ruleArguments: ["off"],
+                    notices: [
+                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
+                    ],
+                },
+                {
+                    ruleName: "id-blacklist",
+                    ruleArguments: [],
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with allow-trailing-underscore and check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: ["check-format", "allow-trailing-underscore"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "camelcase",
+                    notices: ["Trailing undescores in variable names will now be ignored."],
+                },
+                {
+                    ruleName: "no-underscore-dangle",
+                    ruleArguments: ["off"],
+                    notices: [
+                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
+                    ],
+                },
+                {
+                    ruleName: "id-blacklist",
+                    ruleArguments: [],
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with allow-leading-underscore, allow-trailing-underscore and check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: [
+                "check-format",
+                "allow-leading-underscore",
+                "allow-trailing-underscore",
+            ],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "camelcase",
+                    notices: [],
                 },
                 {
                     ruleName: "no-underscore-dangle",
