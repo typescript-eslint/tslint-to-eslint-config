@@ -6,9 +6,8 @@ export const semicolon: RuleConverter = tslintRule => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {
         if (strategy === "always") {
             return "semi";
-        } else {
-            return "none";
         }
+        return "none";
     };
 
     const ignoreInterfaces = tslintRule.ruleArguments.includes("ignore-interfaces");
