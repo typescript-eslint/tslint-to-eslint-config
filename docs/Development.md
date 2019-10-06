@@ -17,10 +17,10 @@ cd tslint-to-eslint-config
 npm i
 ```
 
-Compile with `npm run tsc` and run tests with `npm run test:unit`.
+Compile with `npm run tsc` and run tests with `npm run test`.
 
 ## Further Reading
 
 -   [Architecture](./Architecture.md): How the general app structure operates
 -   [Dependencies](./Dependencies.md): How functions pass and receive static dependencies
--   [Testing](./Testing.md): Unit and end-to-end tests
+-   [Testing](./Testing.md): Unit tests

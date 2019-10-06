@@ -60,9 +60,7 @@
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
-        "test:unit": "jest",
-        "test:end-to-end": "jest --config=test/jest.config.js --runInBand",
-        "test:end-to-end:accept": "jest --config=test/jest.config.js --globals=\"{\\\"acceptTestChanges\\\": true }\"  --runInBand",
+        "test": "jest",
         "tsc": "tsc"
     },
     "version": "0.2.7"
