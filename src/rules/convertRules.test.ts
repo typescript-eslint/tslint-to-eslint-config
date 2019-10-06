@@ -2,6 +2,16 @@ import { ConversionError } from "../errors/conversionError";
 import { convertRules } from "./convertRules";
 import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
 
+function setupConversionEnvironment(
+    config: { ruleSeverity: TSLintRuleSeverity } = { ruleSeverity: "error" },
+) {
+    const tslintRule = createSampleTsLintRule(config.ruleSeverity);
+    const converters = new Map();
+    const mergers = new Map();
+
+    return { tslintRule, converters, mergers };
+}
+
 function createSampleTsLintRule(ruleSeverity: TSLintRuleSeverity = "error"): TSLintRuleOptions {
     return {
         ruleArguments: [],
@@ -13,9 +23,9 @@ function createSampleTsLintRule(ruleSeverity: TSLintRuleSeverity = "error"): TSL
 describe("convertRules", () => {
     it("doesn't marks a disabled rule as missing when its converter returns undefined", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule("off");
-        const converters = new Map();
-        const mergers = new Map();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment({
+            ruleSeverity: "off",
+        });
 
         // Act
         const { missing } = convertRules(
@@ -29,9 +39,7 @@ describe("convertRules", () => {
 
     it("marks an enabled rule as missing when its converter returns undefined", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
-        const converters = new Map();
-        const mergers = new Map();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
 
         // Act
         const { missing } = convertRules(
@@ -45,10 +53,9 @@ describe("convertRules", () => {
 
     it("marks a conversion as failed when returned a conversion error", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionError = ConversionError.forRuleError(new Error(), tslintRule);
-        const converters = new Map([[tslintRule.ruleName, () => conversionError]]);
-        const mergers = new Map();
+        converters.set(tslintRule.ruleName, () => conversionError);
 
         // Act
         const { failed } = convertRules(
@@ -62,7 +69,7 @@ describe("convertRules", () => {
 
     it("marks a converted rule name as converted when a conversion has rules", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             rules: [
                 {
@@ -70,8 +77,7 @@ describe("convertRules", () => {
                 },
             ],
         };
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map();
+        converters.set(tslintRule.ruleName, () => conversionResult);
 
         // Act
         const { converted } = convertRules(
@@ -95,7 +101,7 @@ describe("convertRules", () => {
 
     it("reports a failure when two outputs exist for a converted rule without a merger", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             rules: [
                 {
@@ -106,8 +112,7 @@ describe("convertRules", () => {
                 },
             ],
         };
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map();
+        converters.set(tslintRule.ruleName, () => conversionResult);
 
         // Act
         const { failed } = convertRules(
@@ -121,7 +126,7 @@ describe("convertRules", () => {
 
     it("merges rule arguments two outputs exist for a converted rule with a merger", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             rules: [
                 {
@@ -132,9 +137,9 @@ describe("convertRules", () => {
                 },
             ],
         };
+        converters.set(tslintRule.ruleName, () => conversionResult);
         const mergedArguments = [{ merged: true }];
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map([[conversionResult.rules[0].ruleName, () => mergedArguments]]);
+        mergers.set(conversionResult.rules[0].ruleName, () => mergedArguments);
 
         // Act
         const { converted } = convertRules(
@@ -160,7 +165,7 @@ describe("convertRules", () => {
 
     it("merges and deduplicates rule notices", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             rules: [
                 {
@@ -173,9 +178,9 @@ describe("convertRules", () => {
                 },
             ],
         };
+        converters.set(tslintRule.ruleName, () => conversionResult);
         const mergedArguments = [{ merged: true }];
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map([[conversionResult.rules[0].ruleName, () => mergedArguments]]);
+        mergers.set(conversionResult.rules[0].ruleName, () => mergedArguments);
 
         // Act
         const { converted } = convertRules(
@@ -201,7 +206,7 @@ describe("convertRules", () => {
 
     it("merges undefined notices", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             rules: [
                 {
@@ -214,9 +219,9 @@ describe("convertRules", () => {
                 },
             ],
         };
+        converters.set(tslintRule.ruleName, () => conversionResult);
         const mergedArguments = [{ merged: true }];
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map([[conversionResult.rules[0].ruleName, () => mergedArguments]]);
+        mergers.set(conversionResult.rules[0].ruleName, () => mergedArguments);
 
         // Act
         const { converted } = convertRules(
@@ -242,13 +247,12 @@ describe("convertRules", () => {
 
     it("marks a new plugin when a conversion has a new plugin", () => {
         // Arrange
-        const tslintRule = createSampleTsLintRule();
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
         const conversionResult = {
             plugins: ["extra-plugin"],
             rules: [],
         };
-        const converters = new Map([[tslintRule.ruleName, () => conversionResult]]);
-        const mergers = new Map();
+        converters.set(tslintRule.ruleName, () => conversionResult);
 
         // Act
         const { plugins } = convertRules(
