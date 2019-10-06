@@ -26,6 +26,7 @@ module.exports = {
         "@typescript-eslint/unbound-method": "off",
         "arrow-body-style": "off",
         "default-case": "off",
+        "import/no-default-export": "error",
         "linebreak-style": "off",
         "no-bitwise": "off",
         "no-empty": "off",
@@ -45,7 +46,6 @@ module.exports = {
             "error",
             {
                 "rules": {
-                    "no-default-export": true,
                     "no-implicit-dependencies": [
                         true,
                         "dev"
