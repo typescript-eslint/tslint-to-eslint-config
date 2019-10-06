@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "max-classes-per-file": [true, "exclude-class-expressions"],
+        "no-arg": true
+    }
+}

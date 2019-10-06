@@ -1,0 +1,5 @@
+{
+    "rules": {
+        "this-definitely-does-not-exist": true
+    }
+}

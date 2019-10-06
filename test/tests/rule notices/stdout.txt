@@ -1,0 +1,5 @@
+✨ 2 rules replaced with their ESLint equivalents. ✨
+📢 1 ESLint rule behaves differently from their TSLint counterparts: 📢
+* max-classes-per-file:
+  - Class expressions will no longer be ignored.
+✅ All is well! ✅
