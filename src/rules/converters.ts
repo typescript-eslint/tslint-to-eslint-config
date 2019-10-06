@@ -69,6 +69,7 @@ import { convertNoReference } from "./converters/no-reference";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
 import { convertNoReturnAwait } from "./converters/no-return-await";
+import { convertNoShadowedVariable } from "./converters/no-shadowed-variable";
 import { convertNoSparseArrays } from "./converters/no-sparse-arrays";
 import { convertNoStringLiteral } from "./converters/no-string-literal";
 import { convertNoStringThrow } from "./converters/no-string-throw";
@@ -186,6 +187,7 @@ export const converters = new Map([
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
+    ["no-shadowed-variable", convertNoShadowedVariable],
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
@@ -237,7 +239,6 @@ export const converters = new Map([
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-shadowed-variable", convertNoShadowedVariable], // no-shadow
     // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
     // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
     // ["variable-name", convertVariableName], // a bunch of rules...
