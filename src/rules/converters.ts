@@ -63,6 +63,7 @@ import { convertNoMisusedNew } from "./converters/no-misused-new";
 import { convertNoMultilineString } from "./converters/no-multiline-string";
 import { convertNoNamespace } from "./converters/no-namespace";
 import { convertNoNonNullAssertion } from "./converters/no-non-null-assertion";
+import { convertNoNullKeyword } from "./converters/no-null-keyword";
 import { convertNoObjectLiteralTypeAssertion } from "./converters/no-object-literal-type-assertion";
 import { convertNoOctalLiteral } from "./converters/no-octal-literal";
 import { convertNoParameterProperties } from "./converters/no-parameter-properties";
@@ -186,6 +187,7 @@ export const converters = new Map([
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
     ["no-non-null-assertion", convertNoNonNullAssertion],
+    ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
