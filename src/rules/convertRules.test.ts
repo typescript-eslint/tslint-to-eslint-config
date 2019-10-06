@@ -1,13 +1,15 @@
 import { ConversionError } from "../errors/conversionError";
 import { convertRules } from "./convertRules";
 import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
+import { RuleConverter } from "./converter";
+import { RuleMerger } from "./merger";
 
 function setupConversionEnvironment(
     config: { ruleSeverity: TSLintRuleSeverity } = { ruleSeverity: "error" },
 ) {
     const tslintRule = createSampleTsLintRule(config.ruleSeverity);
-    const converters = new Map();
-    const mergers = new Map();
+    const converters = new Map<string, RuleConverter>();
+    const mergers = new Map<string, RuleMerger>();
 
     return { tslintRule, converters, mergers };
 }
