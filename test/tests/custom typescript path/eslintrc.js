@@ -39,6 +39,7 @@ module.exports = {
             }
         ],
         "prefer-template": "off",
+        "unicorn/filename-case": "off",
         "@typescript-eslint/tslint/config": [
             "error",
             {
