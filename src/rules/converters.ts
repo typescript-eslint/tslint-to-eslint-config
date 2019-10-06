@@ -109,6 +109,7 @@ import { convertTypeofCompare } from "./converters/typeof-compare";
 import { convertUnifiedSignatures } from "./converters/unified-signatures";
 import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
+import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertQuotemark } from "./converters/quotemark";
 import { convertTripleEquals } from "./converters/triple-equals";
@@ -230,6 +231,7 @@ export const converters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
 
     // These converters are all for rules that need more complex option conversions.
