@@ -12,8 +12,12 @@ export const convertNoUnusedExpression: RuleConverter = tslintRule => {
 };
 
 const collectNoticesAndArguments = (tsLintRuleArguments: any[]) => {
+    const noAllowNewNotice = `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`;
+
     if (tsLintRuleArguments.length === 0) {
-        return undefined;
+        return {
+            notices: [noAllowNewNotice],
+        };
     }
 
     const notices = [];
@@ -21,12 +25,22 @@ const collectNoticesAndArguments = (tsLintRuleArguments: any[]) => {
 
     if (tsLintRuleArguments.includes("allow-tagged-template")) {
         ruleArguments.push({ allowTaggedTemplates: true });
-    } else {
-        notices.push(`ESLint does not support optional config ${tsLintRuleArguments[0]}.`);
+    }
+
+    if (tsLintRuleArguments.includes("allow-fast-null-checks")) {
+        ruleArguments.push({ allowShortCircuit: true });
+    }
+
+    if (!tsLintRuleArguments.includes("allow-new")) {
+        notices.push(noAllowNewNotice);
     }
 
     return {
         ...(notices.length > 0 && { notices }),
-        ...(ruleArguments.length > 0 && { ruleArguments }),
+        ...(ruleArguments.length > 0 && {
+            ruleArguments: [
+                ruleArguments.reduce((value, current) => Object.assign(value, current), {}),
+            ],
+        }),
     };
 };

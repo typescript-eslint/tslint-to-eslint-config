@@ -10,6 +10,27 @@ describe(convertNoUnusedExpression, () => {
             rules: [
                 {
                     ruleName: "no-unused-expressions",
+                    notices: [
+                        `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`,
+                    ],
+                },
+            ],
+        });
+    });
+
+    test("conversion without allow-new argument", () => {
+        const result = convertNoUnusedExpression({
+            ruleArguments: ["allow-fast-null-checks"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "no-unused-expressions",
+                    ruleArguments: [{ allowShortCircuit: true }],
+                    notices: [
+                        `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`,
+                    ],
                 },
             ],
         });
@@ -17,7 +38,7 @@ describe(convertNoUnusedExpression, () => {
 
     test("conversion with allow-tagged-template argument", () => {
         const result = convertNoUnusedExpression({
-            ruleArguments: ["allow-tagged-template"],
+            ruleArguments: ["allow-new", "allow-tagged-template"],
         });
 
         expect(result).toEqual({
@@ -30,16 +51,31 @@ describe(convertNoUnusedExpression, () => {
         });
     });
 
-    test("conversion with argument not equals allow-tagged-template", () => {
+    test("conversion with allow-fast-null-checks argument", () => {
         const result = convertNoUnusedExpression({
-            ruleArguments: ["allow-fast-null-checks"],
+            ruleArguments: ["allow-new", "allow-fast-null-checks"],
         });
 
         expect(result).toEqual({
             rules: [
                 {
                     ruleName: "no-unused-expressions",
-                    notices: ["ESLint does not support optional config allow-fast-null-checks."],
+                    ruleArguments: [{ allowShortCircuit: true }],
+                },
+            ],
+        });
+    });
+
+    test("conversion with multiple arguments", () => {
+        const result = convertNoUnusedExpression({
+            ruleArguments: ["allow-new", "allow-tagged-template", "allow-fast-null-checks"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "no-unused-expressions",
+                    ruleArguments: [{ allowTaggedTemplates: true, allowShortCircuit: true }],
                 },
             ],
         });
