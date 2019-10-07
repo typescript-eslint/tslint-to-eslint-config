@@ -45,6 +45,7 @@ import { convertNoDefaultExport } from "./converters/no-default-export";
 import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
+import { convertNoDuplicateVariable } from "./converters/no-duplicate-variable";
 import { convertNoEmpty } from "./converters/no-empty";
 import { convertNoEmptyInterface } from "./converters/no-empty-interface";
 import { convertNoEval } from "./converters/no-eval";
@@ -76,6 +77,7 @@ import { convertNoShadowedVariable } from "./converters/no-shadowed-variable";
 import { convertNoSparseArrays } from "./converters/no-sparse-arrays";
 import { convertNoStringLiteral } from "./converters/no-string-literal";
 import { convertNoStringThrow } from "./converters/no-string-throw";
+import { convertNoSubmoduleImports } from "./converters/no-submodule-imports";
 import { convertNoSwitchCaseFallThrough } from "./converters/no-switch-case-fall-through";
 import { convertNoThisAssignment } from "./converters/no-this-assignment";
 import { convertNoTrailingWhitespace } from "./converters/no-trailing-whitespace";
@@ -107,6 +109,7 @@ import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
+import { convertSpaceWithinParens } from "./converters/space-within-parens";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -171,6 +174,7 @@ export const converters = new Map([
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
+    ["no-duplicate-variable", convertNoDuplicateVariable],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
@@ -201,6 +205,7 @@ export const converters = new Map([
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
+    ["no-submodule-imports", convertNoSubmoduleImports],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
     ["no-this-assignment", convertNoThisAssignment],
     ["no-trailing-whitespace", convertNoTrailingWhitespace],
@@ -233,6 +238,7 @@ export const converters = new Map([
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["space-within-parens", convertSpaceWithinParens],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
@@ -253,7 +259,6 @@ export const converters = new Map([
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
