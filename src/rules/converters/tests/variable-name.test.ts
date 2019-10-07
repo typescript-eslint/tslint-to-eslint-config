@@ -1,4 +1,13 @@
-import { convertVariableName } from "../variable-name";
+import {
+    convertVariableName,
+    IgnoreLeadingTrailingUnderscoreMsg,
+    ForbiddenLeadingTrailingIdentifierMsg,
+    IgnoreLeadingTrailingIdentifierMsg,
+    ForbiddenPascalSnakeMsg,
+    ConstRequiredForAllCapsMsg,
+    IgnoreOnlyLeadingUnderscoreMsg,
+    IgnoreOnlyTrailingUnderscoreMsg,
+} from "../variable-name";
 
 describe(convertVariableName, () => {
     test("conversion without arguments", () => {
@@ -10,16 +19,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -41,17 +46,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                        "ESLint's camel-case will throw a warning if const name is not uppercase.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ConstRequiredForAllCapsMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -73,17 +73,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -105,17 +100,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -137,16 +127,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -168,16 +154,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -199,16 +181,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "Leading and trailing underscores (_) in variable names will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: [],
-                    notices: [
-                        "Leading or trailing underscores (_) on identifiers will now be forbidden.",
-                    ],
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -230,14 +208,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: ["Leading undescores in variable names will now be ignored."],
+                    notices: [IgnoreOnlyLeadingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
-                    notices: [
-                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -259,14 +235,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: ["Trailing undescores in variable names will now be ignored."],
+                    notices: [IgnoreOnlyTrailingUnderscoreMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
-                    notices: [
-                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -297,9 +271,7 @@ describe(convertVariableName, () => {
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
-                    notices: [
-                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
@@ -329,17 +301,12 @@ describe(convertVariableName, () => {
             rules: [
                 {
                     ruleName: "camelcase",
-                    notices: [
-                        "ESLint's camel-case will throw a warning if const name is not uppercase.",
-                        "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.",
-                    ],
+                    notices: [ConstRequiredForAllCapsMsg, ForbiddenPascalSnakeMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
                     ruleArguments: ["off"],
-                    notices: [
-                        "Leading and trailing underscores (_) on identifiers will now be ignored.",
-                    ],
+                    notices: [IgnoreLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",

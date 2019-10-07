@@ -12,7 +12,6 @@ import { convertClassName } from "./converters/class-name";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
 import { convertEofline } from "./converters/eofline";
-import { convertMemberAccess } from "./converters/member-access";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
@@ -25,6 +24,7 @@ import { convertLinebreakStyle } from "./converters/linebreak-style";
 import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
 import { convertMaxLineLength } from "./converters/max-line-length";
+import { convertMemberAccess } from "./converters/member-access";
 import { convertMemberOrdering } from "./converters/member-ordering";
 import { convertNewlineBeforeReturn } from "./converters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
@@ -105,12 +105,14 @@ import { convertPreferObjectSpread } from "./converters/prefer-object-spread";
 import { convertPreferReadonly } from "./converters/prefer-readonly";
 import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
+import { convertQuotemark } from "./converters/quotemark";
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
 import { convertSwitchDefault } from "./converters/switch-default";
+import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
 import { convertTypeofCompare } from "./converters/typeof-compare";
@@ -120,8 +122,6 @@ import { convertUnnecessaryConstructor } from "./converters/unnecessary-construc
 import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertVariableName } from "./converters/variable-name";
-import { convertQuotemark } from "./converters/quotemark";
-import { convertTripleEquals } from "./converters/triple-equals";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
