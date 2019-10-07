@@ -45,6 +45,7 @@ import { convertNoDefaultExport } from "./converters/no-default-export";
 import { convertNoDuplicateImports } from "./converters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./converters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./converters/no-duplicate-switch-case";
+import { convertNoDuplicateVariable } from "./converters/no-duplicate-variable";
 import { convertNoEmpty } from "./converters/no-empty";
 import { convertNoEmptyInterface } from "./converters/no-empty-interface";
 import { convertNoEval } from "./converters/no-eval";
@@ -172,6 +173,7 @@ export const converters = new Map([
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
+    ["no-duplicate-variable", convertNoDuplicateVariable],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
