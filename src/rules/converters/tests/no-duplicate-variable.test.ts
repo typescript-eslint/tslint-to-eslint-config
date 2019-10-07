@@ -24,7 +24,7 @@ describe(convertNoDuplicateVariable, () => {
             rules: [
                 {
                     ruleName: "no-redeclare",
-                    notices: ["ESLint does not support check parameters."],
+                    notices: ["ESLint does not support check-parameters."],
                 },
             ],
         });
