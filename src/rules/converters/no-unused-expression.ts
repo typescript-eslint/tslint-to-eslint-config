@@ -12,7 +12,7 @@ export const convertNoUnusedExpression: RuleConverter = tslintRule => {
 };
 
 const collectNoticesAndArguments = (tsLintRuleArguments: any[]) => {
-    const noAllowNewNotice = `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`;
+    const noAllowNewNotice = `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`;
 
     if (tsLintRuleArguments.length === 0) {
         return {

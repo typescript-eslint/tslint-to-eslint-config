@@ -11,7 +11,7 @@ describe(convertNoUnusedExpression, () => {
                 {
                     ruleName: "no-unused-expressions",
                     notices: [
-                        `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`,
+                        `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
                 },
             ],
@@ -29,7 +29,7 @@ describe(convertNoUnusedExpression, () => {
                     ruleName: "no-unused-expressions",
                     ruleArguments: [{ allowShortCircuit: true }],
                     notices: [
-                        `The TSLint optional config "allow-new" is the default ESLint behavior and  will no longer be ignored.`,
+                        `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
                 },
             ],
