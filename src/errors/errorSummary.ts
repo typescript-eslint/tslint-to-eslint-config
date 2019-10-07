@@ -1,3 +1,3 @@
-export interface ErrorSummary {
+export type ErrorSummary = {
     getSummary(): string;
-}
+};

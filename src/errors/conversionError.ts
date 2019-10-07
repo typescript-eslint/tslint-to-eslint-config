@@ -15,13 +15,13 @@ export class ConversionError implements ErrorSummary {
         );
     }
 
-    public getSummary(): string {
-        return this.summary;
-    }
-
     public static forRuleError(error: Error, tslintRule: TSLintRuleOptions) {
         return new ConversionError(
             `${tslintRule.ruleName} threw an error during conversion: ${error.stack}${EOL}`,
         );
+    }
+
+    public getSummary(): string {
+        return this.summary;
     }
 }
