@@ -8,6 +8,8 @@ export const convertNoImplicitDependencies: RuleConverter = tslintRule => {
             ruleArgs.push({ devDependencies: false });
         } else if (element === "optional") {
             ruleArgs.push({ optionalDependencies: false });
+        } else {
+            ruleArgs.push({ devDependencies: element });
         }
     });
     return {

@@ -59,4 +59,19 @@ describe(convertNoImplicitDependencies, () => {
             ],
         });
     });
+
+    test("conversion with whitelisted folders argument", () => {
+        const result = convertNoImplicitDependencies({
+            ruleArguments: [["src", "app"]],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: [{ devDependencies: ["src", "app"] }],
+                    ruleName: "import/no-extraneous-dependencies",
+                },
+            ],
+        });
+    });
 });
