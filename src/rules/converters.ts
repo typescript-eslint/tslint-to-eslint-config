@@ -76,6 +76,7 @@ import { convertNoShadowedVariable } from "./converters/no-shadowed-variable";
 import { convertNoSparseArrays } from "./converters/no-sparse-arrays";
 import { convertNoStringLiteral } from "./converters/no-string-literal";
 import { convertNoStringThrow } from "./converters/no-string-throw";
+import { convertNoSubmoduleImports } from "./converters/no-submodule-imports";
 import { convertNoSwitchCaseFallThrough } from "./converters/no-switch-case-fall-through";
 import { convertNoThisAssignment } from "./converters/no-this-assignment";
 import { convertNoTrailingWhitespace } from "./converters/no-trailing-whitespace";
@@ -200,6 +201,7 @@ export const converters = new Map([
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
+    ["no-submodule-imports", convertNoSubmoduleImports],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
     ["no-this-assignment", convertNoThisAssignment],
     ["no-trailing-whitespace", convertNoTrailingWhitespace],
