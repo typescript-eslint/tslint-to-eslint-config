@@ -259,6 +259,9 @@ export const converters = new Map([
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
+    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
+    // ["quotemark", convertQuotemark], // quotes
+    // ["triple-equals", convertTripleEquals], // eqeqeq
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
