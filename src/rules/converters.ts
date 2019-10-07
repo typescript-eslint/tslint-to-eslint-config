@@ -107,6 +107,7 @@ import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
+import { convertSpaceWithinParens } from "./converters/space-within-parens";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -233,6 +234,7 @@ export const converters = new Map([
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
+    ["space-within-parens", convertSpaceWithinParens],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
@@ -254,7 +256,9 @@ export const converters = new Map([
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
     // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
     // ["no-unused-expression", convertNoUnusedExpression], // no-unused-expressions
-    // ["space-within-parens", convertSpaceWithinParens], // space-in-parens
+    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
+    // ["quotemark", convertQuotemark], // quotes
+    // ["triple-equals", convertTripleEquals], // eqeqeq
     // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
