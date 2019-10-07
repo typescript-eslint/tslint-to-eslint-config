@@ -50,6 +50,7 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
+            ruleName: "camelcase",
             notices: camelCaseOptionNotice,
         };
     };
@@ -66,6 +67,7 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
+            ruleName: "no-underscore-dangle",
             ruleArguments: underscoreDangleOptionArguments,
             notices: underscoreDangleOptionNotice,
         };
@@ -89,24 +91,16 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
+            ruleName: "id-blacklist",
             ruleArguments: blackListOptionArguments,
         };
     };
 
     return {
         rules: [
-            {
-                ruleName: "camelcase",
-                ...getCamelCaseRuleOptions(),
-            },
-            {
-                ruleName: "no-underscore-dangle",
-                ...getUnderscoreDangleRuleOptions(),
-            },
-            {
-                ruleName: "id-blacklist",
-                ...getBlackListRuleOptions(),
-            },
+            getCamelCaseRuleOptions(),
+            getUnderscoreDangleRuleOptions(),
+            getBlackListRuleOptions(),
             {
                 ruleName: "id-match",
             },
