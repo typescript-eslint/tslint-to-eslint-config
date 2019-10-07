@@ -10,7 +10,14 @@ export const convertNoSubmoduleImports: RuleConverter = tslintRule => {
             tslintRule.ruleArguments.length < 2
         )
     ) {
-        ruleArguments.push(...tslintRule.ruleArguments);
+        ruleArguments.push(
+            ...tslintRule.ruleArguments.map(ruleArg => {
+                if (typeof ruleArg === "string") {
+                    return ruleArg.concat("/*");
+                }
+                return ruleArg;
+            }),
+        );
     }
 
     return {

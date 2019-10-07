@@ -25,7 +25,7 @@ describe(convertNoSubmoduleImports, () => {
             rules: [
                 {
                     ruleName: "import/no-internal-modules",
-                    ruleArguments: [{ allow: [true, "rxjs"] }],
+                    ruleArguments: [{ allow: [true, "rxjs/*"] }],
                 },
             ],
             plugins: ["eslint-plugin-import"],
