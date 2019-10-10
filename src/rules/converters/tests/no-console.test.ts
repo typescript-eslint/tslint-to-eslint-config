@@ -1,5 +1,15 @@
 import { convertNoConsole } from "../no-console";
 
+const consoleKeysExcluding = (...keys: string[]) => {
+    const knownConsoleKeys = new Set(Object.keys(console));
+
+    for (const key of keys) {
+        knownConsoleKeys.delete(key);
+    }
+
+    return Array.from(knownConsoleKeys);
+};
+
 describe(convertNoConsole, () => {
     test("conversion without arguments", () => {
         const result = convertNoConsole({
@@ -23,7 +33,8 @@ describe(convertNoConsole, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [{ allow: ["info", "log"] }],
+                    notices: ["Custom console methods, if they exist, will no longer be allowed."],
+                    ruleArguments: [{ allow: consoleKeysExcluding("info", "log") }],
                     ruleName: "no-console",
                 },
             ],
