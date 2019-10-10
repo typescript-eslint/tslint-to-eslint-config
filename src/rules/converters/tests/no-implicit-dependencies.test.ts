@@ -12,6 +12,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
+            plugins: ["import"],
         });
     });
 
@@ -27,6 +28,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
+            plugins: ["import"],
         });
     });
 
@@ -42,6 +44,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
+            plugins: ["import"],
         });
     });
 
@@ -57,6 +60,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
+            plugins: ["import"],
         });
     });
 
@@ -68,10 +72,11 @@ describe(convertNoImplicitDependencies, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [{ devDependencies: ["src", "app"] }],
+                    notices: ["ESLint does not support whitelisting modules"],
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
+            plugins: ["import"],
         });
     });
 });
