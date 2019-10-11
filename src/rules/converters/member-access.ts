@@ -1,9 +1,8 @@
 import { RuleConverter } from "../converter";
 
 export enum AccessibilityLevel {
-    Explicit = "explicit", // require an accessor (including public)
-    NoPublic = "no-public", // don't require public
-    Off = "off", // don't check
+    Explicit = "explicit",
+    NoPublic = "no-public",
 }
 
 export enum MemberAccessArguments {
@@ -13,19 +12,19 @@ export enum MemberAccessArguments {
     ParameterProp = "check-parameter-property",
 }
 
+interface IMemberAccessSchema {
+    accessibility: string;
+    overrides?: { [key: string]: string };
+}
+
 export const convertMemberAccess: RuleConverter = tslintRule => {
-    const schema: any = {
+    const tslintRuleArguments = tslintRule.ruleArguments;
+    const schema: IMemberAccessSchema = {
         accessibility: AccessibilityLevel.Explicit,
     };
 
-    if (
-        !(
-            tslintRule.ruleArguments.length === 0 ||
-            tslintRule.ruleArguments[0] === false ||
-            tslintRule.ruleArguments.length < 2
-        )
-    ) {
-        tslintRule.ruleArguments.map(ruleArg => {
+    if (tslintRuleArguments.length >= 2 || tslintRuleArguments[0] !== false) {
+        tslintRuleArguments.forEach(ruleArg => {
             if (typeof ruleArg === "string") {
                 switch (ruleArg) {
                     case MemberAccessArguments.NoPublic:
@@ -53,7 +52,6 @@ export const convertMemberAccess: RuleConverter = tslintRule => {
                         break;
                 }
             }
-            return ruleArg;
         });
     }
 
