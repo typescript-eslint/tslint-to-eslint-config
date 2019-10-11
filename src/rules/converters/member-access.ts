@@ -12,14 +12,14 @@ export enum MemberAccessArguments {
     ParameterProp = "check-parameter-property",
 }
 
-interface IMemberAccessSchema {
+type MemberAccessSchema = {
     accessibility: string;
     overrides?: { [key: string]: string };
-}
+};
 
 export const convertMemberAccess: RuleConverter = tslintRule => {
     const tslintRuleArguments = tslintRule.ruleArguments;
-    const schema: IMemberAccessSchema = {
+    const schema: MemberAccessSchema = {
         accessibility: AccessibilityLevel.Explicit,
     };
 
@@ -47,8 +47,6 @@ export const convertMemberAccess: RuleConverter = tslintRule => {
                             ...schema.overrides,
                             parameterProperties: AccessibilityLevel.Explicit,
                         };
-                        break;
-                    default:
                         break;
                 }
             }
