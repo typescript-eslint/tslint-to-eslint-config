@@ -62,7 +62,7 @@ const logMissingRules = (missing: TSLintRuleOptions[], logger: Logger) => {
                 : " rules do not yet have ESLint equivalents",
         ),
     );
-    logger.stdout.write(chalk.yellow("; defaulting to eslint-plugin-tslint."));
+    logger.stdout.write(chalk.yellow(" (see generated log file); defaulting to eslint-plugin-tslint for these rules."));
     logger.stdout.write(chalk.yellowBright(` 👀${EOL}`));
 
     logger.info.write(
