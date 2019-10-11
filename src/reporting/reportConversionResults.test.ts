@@ -200,7 +200,7 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 2 rules do not yet have ESLint equivalents; defaulting to eslint-plugin-tslint. 👀",
+            "👀 2 rules do not yet have ESLint equivalents (see generated log file); defaulting to eslint-plugin-tslint for these rules. 👀",
         );
         expectEqualWrites(
             logger.info.write,
