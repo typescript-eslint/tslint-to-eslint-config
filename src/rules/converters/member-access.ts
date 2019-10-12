@@ -23,7 +23,7 @@ export const convertMemberAccess: RuleConverter = tslintRule => {
         accessibility: AccessibilityLevel.Explicit,
     };
 
-    if (tslintRuleArguments.length >= 2 || tslintRuleArguments[0] !== false) {
+    if (tslintRuleArguments.length >= 2 || tslintRuleArguments[0] === true) {
         tslintRuleArguments.forEach(ruleArg => {
             if (typeof ruleArg === "string") {
                 switch (ruleArg) {

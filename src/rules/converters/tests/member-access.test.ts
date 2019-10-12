@@ -16,6 +16,21 @@ describe(convertMemberAccess, () => {
         });
     });
 
+    test("conversion with true argument", () => {
+        const result = convertMemberAccess({
+            ruleArguments: [true],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
+                    ruleArguments: [{ accessibility: AccessibilityLevel.Explicit }],
+                },
+            ],
+        });
+    });
+
     test("conversion with no-public argument", () => {
         const result = convertMemberAccess({
             ruleArguments: [true, "no-public"],
