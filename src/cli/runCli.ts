@@ -24,6 +24,12 @@ export const runCli = async (
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
+        .option(
+            "--editor [editor]",
+            "editor configuration file to convert using",
+            undefined,
+            ".vscode/settings.json",
+        )
         .option("-V --version", "output the package version");
 
     const parsedArgv = {
