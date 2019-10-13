@@ -27,7 +27,6 @@ export const runCli = async (
         .option(
             "--editor [editor]",
             "editor configuration file to convert using",
-            undefined,
             ".vscode/settings.json",
         )
         .option("-V --version", "output the package version");
