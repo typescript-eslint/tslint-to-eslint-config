@@ -19,6 +19,7 @@ import { convertIncrementDecrement } from "./converters/increment-decrement";
 import { convertIndent } from "./converters/indent";
 import { convertInterfaceName } from "./converters/interface-name";
 import { convertInterfaceOverTypeLiteral } from "./converters/interface-over-type-literal";
+import { convertJSDocFormat } from "./converters/jsdoc-format";
 import { convertLabelPosition } from "./converters/label-position";
 import { convertLinebreakStyle } from "./converters/linebreak-style";
 import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
@@ -149,6 +150,7 @@ export const converters = new Map([
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
+    ["jsdoc-format", convertJSDocFormat],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
