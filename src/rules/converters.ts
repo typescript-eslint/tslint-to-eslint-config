@@ -54,6 +54,7 @@ import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
 import { convertNoImplicitDependencies } from "./converters/no-implicit-dependencies";
+import { convertNoImportSideEffect } from "./converters/no-import-side-effect";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
 import { convertNoInvalidRegexp } from "./converters/no-invalid-regexp";
@@ -184,6 +185,7 @@ export const converters = new Map([
     ["no-for-in-array", convertNoForInArray],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
