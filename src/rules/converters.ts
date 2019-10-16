@@ -9,6 +9,7 @@ import { convertBanTypes } from "./converters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./converters/binary-expression-operand-order";
 import { convertCallableTypes } from "./converters/callable-types";
 import { convertClassName } from "./converters/class-name";
+import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
 import { convertEofline } from "./converters/eofline";
@@ -139,6 +140,7 @@ export const converters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["eofline", convertEofline],
