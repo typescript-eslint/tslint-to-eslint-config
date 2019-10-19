@@ -1,9 +1,12 @@
 import { RuleConverter } from "../converter";
 
-export const CheckTrailingLowercaseMessage: string =
-    "Only first trailing comment can be configured.";
-export const CapitalizedIgnoreMessage: string =
-    "Only accepts a single string pattern to be ignored.";
+type CommentFormatOptions = {
+    "ignore-words": string[];
+    "ignore-pattern": string;
+};
+
+export const CheckTrailingLowercaseMessage = "Only first trailing comment can be configured.";
+export const CapitalizedIgnoreMessage = "Only accepts a single string pattern to be ignored.";
 
 export const convertCommentFormat: RuleConverter = tslintRule => {
     const capitalizedRuleArguments: string[] = [];
@@ -29,13 +32,10 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
         capitalizedNotices.push(CheckTrailingLowercaseMessage);
     }
 
-    if (typeof tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1] == "object") {
-        const objectArgument: Object =
+    if (typeof tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1] === "object") {
+        const objectArgument: CommentFormatOptions =
             tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1];
-        if (
-            objectArgument.hasOwnProperty("ignore-words") ||
-            objectArgument.hasOwnProperty("ignore-pattern")
-        ) {
+        if (objectArgument["ignore-words"] || objectArgument["ignore-pattern"]) {
             capitalizedNotices.push(CapitalizedIgnoreMessage);
         }
     }
