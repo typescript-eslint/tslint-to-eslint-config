@@ -24,7 +24,7 @@ export const runCli = async (
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option("-c, --convert ", "convert all tslint:disable comments into eslint-disable")
+        .option("-c, --convertComments", "convert all tslint:disable comments into eslint-disable")
         .option("-V --version", "output the package version");
 
     const parsedArgv = {

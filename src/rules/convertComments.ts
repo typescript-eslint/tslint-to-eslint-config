@@ -10,24 +10,39 @@ export type ConvertCommentsResultsDependencies = {
 };
 
 export const convertComments = async (dependencies: ConvertCommentsResultsDependencies) => {
-    const filenames = await dependencies.fileSystem.readDir("", { withFileTypes: true });
+    // TODO: Remove console logs
+    console.log("Started");
+    const filenames = await dependencies.fileSystem.readDir("./", { withFileTypes: true });
     if (!isError(filenames)) {
         const filteredFilenames: string[] = filenames
             .filter(fileEnt => fileEnt.isFile())
             .map(fileEnt => fileEnt.name);
+        // TODO: Remove console logs
+        console.log("Filenames filtered");
+        console.log(filteredFilenames);
         for (const filename of filteredFilenames) {
             const fileContent: string | Error = await dependencies.fileSystem.readFile(filename);
             if (!isError(fileContent)) {
-                replaceComments(filename, fileContent);
+                const writeFileRes = await replaceComments(dependencies, filename, fileContent);
+                if (isError(writeFileRes)) {
+                    return Error("Failed to convert file comments");
+                }
             }
         }
+        return undefined;
+    } else {
+        return Error("Failed to convert file comments");
     }
-    return Promise.resolve();
 };
 
-const replaceComments = (fileName: string, fileContent: string) => {
+const replaceComments = async (
+    dependencies: ConvertCommentsResultsDependencies,
+    fileName: string,
+    fileContent: string,
+) => {
+    // TODO: Include rules on the regexp to properly satisfy comment.end !== match.index + match[0].length check
     const tslintRegex: RegExp = new RegExp(
-        "/[/*]s*tslint:(enable|disable)((?:-next)?-line)?s*?(?:|*/)",
+        /\/[/*]\s*(tslint):(enable|disable)((?:-next)?-line)?\s*?(?:|\*\/)/gm,
     );
     const sourceFile: ts.SourceFile = ts.createSourceFile(
         fileName,
@@ -35,19 +50,25 @@ const replaceComments = (fileName: string, fileContent: string) => {
         ts.ScriptTarget.ES2015,
         /*setParentNodes */ true,
     );
-
     for (
-        let match = tslintRegex.exec(fileContent);
+        let match = tslintRegex.exec(sourceFile.text);
         match !== null;
-        match = tslintRegex.exec(fileContent)
+        match = tslintRegex.exec(sourceFile.text)
     ) {
+        // TODO: Remove console logs
+        console.log("Match");
+        console.log(match);
+        console.log(match[0].length);
         const comment: ts.CommentRange | undefined = getCommentAtPosition(sourceFile, match.index);
+        console.log("comment");
+        console.log(comment);
         if (
             comment === undefined ||
             comment.pos !== match.index ||
             comment.end !== match.index + match[0].length
-        )
+        ) {
             continue;
-        console.log(match);
+        }
     }
+    return await dependencies.fileSystem.writeFile(fileName, fileContent);
 };

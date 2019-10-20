@@ -15,6 +15,7 @@ const createStubDependencies = (
     }),
     reportConversionResults: jest.fn(),
     simplifyPackageRules: async (_configurations, data) => data,
+    convertComments: jest.fn(),
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,
 });

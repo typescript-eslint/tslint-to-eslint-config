@@ -36,6 +36,7 @@ import { converters } from "../rules/converters";
 import { convertRules } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { runCli, RunCliDependencies } from "./runCli";
+import { convertComments, ConvertCommentsResultsDependencies } from "../rules/convertComments";
 
 const convertRulesDependencies = {
     converters,
@@ -67,6 +68,10 @@ const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
 
+const convertCommentsResultsDependencies: ConvertCommentsResultsDependencies = {
+    fileSystem: fsFileSystem,
+};
+
 const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
@@ -79,6 +84,7 @@ const convertConfigDependencies: ConvertConfigDependencies = {
     ),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
+    convertComments: bind(convertComments, convertCommentsResultsDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };
 

@@ -27,7 +27,7 @@ export type TSLintToESLintSettings = {
     /**
      * Opt-in flag to convert `tslint:disable` comments to `eslint-disable`.
      */
-    convert?: boolean;
+    convertComments?: boolean;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;
