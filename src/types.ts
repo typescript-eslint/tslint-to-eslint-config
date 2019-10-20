@@ -23,6 +23,11 @@ export type TSLintToESLintSettings = {
      * Original TypeScript configuration file path, such as `tsconfig.json`.
      */
     typescript?: string;
+
+    /**
+     * Opt-in flag to convert `tslint:disable` comments to `eslint-disable`.
+     */
+    convert?: boolean;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

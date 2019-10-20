@@ -1,9 +1,10 @@
 import * as fs from "fs";
 import { promisify } from "util";
 
-import { FileSystem } from "./fileSystem";
+import { FileSystem, ReadDirOptions } from "./fileSystem";
 
 const readFile = promisify(fs.readFile);
+const readDir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
 
 export const fsFileSystem: FileSystem = {
@@ -24,6 +25,13 @@ export const fsFileSystem: FileSystem = {
     writeFile: async (filePath: string, contents: string) => {
         try {
             return writeFile(filePath, contents);
+        } catch (error) {
+            return error;
+        }
+    },
+    readDir: async (dirPath: string, options: ReadDirOptions) => {
+        try {
+            return readDir(dirPath, options);
         } catch (error) {
             return error;
         }

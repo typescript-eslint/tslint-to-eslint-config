@@ -5,12 +5,14 @@ import { findOriginalConfigurations } from "../input/findOriginalConfigurations"
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
+import { convertComments } from "../rules/convertComments";
 
 export type ConvertConfigDependencies = {
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
+    convertComments: SansDependencies<typeof convertComments>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -51,6 +53,15 @@ export const convertConfig = async (
     if (fileWriteError !== undefined) {
         return {
             errors: [fileWriteError],
+            status: ResultStatus.Failed,
+        };
+    }
+
+    // 4.B Convert comments.
+    const fileCommentsError = await dependencies.convertComments();
+    if (fileCommentsError !== undefined) {
+        return {
+            errors: [fileCommentsError],
             status: ResultStatus.Failed,
         };
     }
