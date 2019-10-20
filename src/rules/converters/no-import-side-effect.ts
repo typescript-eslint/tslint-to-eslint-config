@@ -6,7 +6,9 @@ export const convertNoImportSideEffect: RuleConverter = tsLintRule => {
 
     if (tsLintRule.ruleArguments.length > 0) {
         rules.push({ allow: tsLintRule.ruleArguments[1]["ignore-module"] });
-        notices.push("This now accepts a glob pattern, so your regex may need converted");
+        notices.push(
+            "ESLint's no-import-side-effect now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
+        );
     }
 
     return {

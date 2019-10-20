@@ -27,7 +27,9 @@ describe(convertNoImportSideEffect, () => {
                 {
                     ruleArguments: [{ allow: "(\\.html|\\.css)$" }],
                     ruleName: "no-import-side-effect",
-                    notices: ["This now accepts a glob pattern, so your regex may need converted"],
+                    notices: [
+                        "ESLint's no-import-side-effect now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
+                    ],
                 },
             ],
         });
