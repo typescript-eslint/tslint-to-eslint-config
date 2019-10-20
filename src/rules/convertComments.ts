@@ -40,9 +40,8 @@ const replaceComments = async (
     fileName: string,
     fileContent: string,
 ) => {
-    // TODO: Include rules on the regexp to properly satisfy comment.end !== match.index + match[0].length check
     const tslintRegex: RegExp = new RegExp(
-        /\/[/*]\s*(tslint):(enable|disable)((?:-next)?-line)?\s*?(?:|\*\/)/gm,
+        /\/[\/\*]\s*(tslint):(enable|disable)((?:-next)?-line)?(?::\s)?(:?(?:(?:[\w-]+\/)*[\w-]+\s*\s*)*(?:(?:[\w-]+\/)*[\w-]+\s*)*[\w-]+)?\s*?(?:$|\*\/)/gm,
     );
     const sourceFile: ts.SourceFile = ts.createSourceFile(
         fileName,
@@ -69,6 +68,7 @@ const replaceComments = async (
         ) {
             continue;
         }
+        console.log("Passed Check");
     }
     return await dependencies.fileSystem.writeFile(fileName, fileContent);
 };
