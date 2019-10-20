@@ -1,30 +1,17 @@
-import { Importer } from "../../adapters/importer";
+import { SansDependencies } from "../../binding";
 import { ConfigurationError } from "../../errors/configurationError";
 import { ESLintConfiguration } from "../../input/findESLintConfiguration";
+import { importer } from "../../input/importer";
 import { resolveExtensionNames } from "./resolveExtensionNames";
 
 export type RetrieveExtendsValuesDependencies = {
-    importer: Importer;
+    importer: SansDependencies<typeof importer>;
 };
 
 export type RetrievedExtensionValues = {
     configurationErrors: ConfigurationError[];
     importedExtensions: Partial<ESLintConfiguration>[];
 };
-
-const builtInExtensionGetters = new Map<
-    string,
-    (importer: Importer) => Promise<ESLintConfiguration>
->([
-    [
-        "eslint:all",
-        async importer => (await importer("eslint/conf/eslint-all")) as ESLintConfiguration,
-    ],
-    [
-        "eslint:recommended",
-        async importer => (await importer("eslint/conf/eslint-recommended")) as ESLintConfiguration,
-    ],
-]);
 
 export const retrieveExtendsValues = async (
     dependencies: RetrieveExtendsValuesDependencies,
@@ -34,11 +21,26 @@ export const retrieveExtendsValues = async (
     const configurationErrors: ConfigurationError[] = [];
     const extensionNames = resolveExtensionNames(rawExtensionNames);
 
+    const builtInExtensionGetters = new Map<string, () => Promise<ESLintConfiguration>>([
+        [
+            "eslint:all",
+            async () =>
+                (await dependencies.importer("eslint/conf/eslint-all")) as ESLintConfiguration,
+        ],
+        [
+            "eslint:recommended",
+            async () =>
+                (await dependencies.importer(
+                    "eslint/conf/eslint-recommended",
+                )) as ESLintConfiguration,
+        ],
+    ]);
+
     await Promise.all(
         extensionNames.map(async extensionName => {
             const getBuiltInExtension = builtInExtensionGetters.get(extensionName);
             if (getBuiltInExtension !== undefined) {
-                importedExtensions.push(await getBuiltInExtension(dependencies.importer));
+                importedExtensions.push(await getBuiltInExtension());
                 return;
             }
 

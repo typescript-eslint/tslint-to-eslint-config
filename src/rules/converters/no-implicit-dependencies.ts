@@ -2,7 +2,7 @@ import { RuleConverter } from "../converter";
 
 export const convertNoImplicitDependencies: RuleConverter = tslintRule => {
     const ruleArgs: {
-        [eslintOption in "devDependencies" | "optionalDependencies"]?: boolean
+        [eslintOption in "devDependencies" | "optionalDependencies"]?: boolean;
     }[] = [];
     const notices: string[] = [];
 

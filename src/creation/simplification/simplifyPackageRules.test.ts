@@ -8,6 +8,14 @@ const createStubDependencies = () => ({
     retrieveExtendsValues: jest.fn(),
 });
 
+const createStubESLintConfiguration = (fullExtends: string | string[]) => ({
+    full: {
+        env: {},
+        extends: fullExtends,
+        rules: {},
+    },
+});
+
 describe("simplifyPackageRules", () => {
     it("returns the conversion results directly when there is no loaded eslint configuration", async () => {
         // Arrange
@@ -26,29 +34,10 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toBe(ruleConversionResults);
     });
 
-    it("returns the conversion results directly when the eslint configuration doesn't extend", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-        const eslint = {};
-        const ruleConversionResults = createEmptyConversionResults();
-
-        // Act
-        const simplifiedResults = await simplifyPackageRules(
-            dependencies,
-            eslint,
-            ruleConversionResults,
-        );
-
-        // Assert
-        expect(simplifiedResults).toBe(ruleConversionResults);
-    });
-
     it("returns the conversion results directly when the eslint configuration has an empty extends", async () => {
         // Arrange
         const dependencies = createStubDependencies();
-        const eslint = {
-            extends: [],
-        };
+        const eslint = createStubESLintConfiguration([]);
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
@@ -82,9 +71,7 @@ describe("simplifyPackageRules", () => {
                 importedExtensions: [],
             }),
         };
-        const eslint = {
-            extends: ["extension-name"],
-        };
+        const eslint = createStubESLintConfiguration(["extension-name"]);
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
