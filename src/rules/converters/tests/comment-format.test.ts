@@ -1,8 +1,4 @@
-import {
-    convertCommentFormat,
-    CheckTrailingLowercaseMessage,
-    CapitalizedIgnoreMessage,
-} from "../comment-format";
+import { convertCommentFormat, CapitalizedIgnoreMessage } from "../comment-format";
 
 describe(convertCommentFormat, () => {
     test("conversion without arguments", () => {
@@ -121,7 +117,7 @@ describe(convertCommentFormat, () => {
                 {
                     ruleName: "capitalized-comments",
                     ruleArguments: ["always"],
-                    notices: [CheckTrailingLowercaseMessage, CapitalizedIgnoreMessage],
+                    notices: [CapitalizedIgnoreMessage],
                 },
                 {
                     ruleName: "spaced-comment",

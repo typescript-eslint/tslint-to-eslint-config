@@ -5,7 +5,6 @@ type CommentFormatOptions = {
     "ignore-pattern": string;
 };
 
-export const CheckTrailingLowercaseMessage = "Only first trailing comment can be configured.";
 export const CapitalizedIgnoreMessage = "Only accepts a single string pattern to be ignored.";
 
 export const convertCommentFormat: RuleConverter = tslintRule => {
@@ -16,7 +15,6 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
     const hasCheckSpace = tslintRule.ruleArguments.includes("check-space");
     const hasCheckLowercase = tslintRule.ruleArguments.includes("check-lowercase");
     const hasCheckUppercase = tslintRule.ruleArguments.includes("check-uppercase");
-    const hasCheckTrailingLowercase = tslintRule.ruleArguments.includes("allow-trailing-lowercase");
 
     if (!hasCheckSpace) {
         spaceCommentRuleArguments.push("never");
@@ -28,14 +26,13 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
         capitalizedRuleArguments.push("never");
     }
 
-    if (hasCheckTrailingLowercase) {
-        capitalizedNotices.push(CheckTrailingLowercaseMessage);
-    }
-
     if (typeof tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1] === "object") {
         const objectArgument: CommentFormatOptions =
             tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1];
-        if (objectArgument["ignore-words"] || objectArgument["ignore-pattern"]) {
+        if (
+            (objectArgument["ignore-words"] && objectArgument["ignore-words"].length) ||
+            objectArgument["ignore-pattern"]
+        ) {
             capitalizedNotices.push(CapitalizedIgnoreMessage);
         }
     }
