@@ -1,14 +1,14 @@
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { findConfiguration } from "./findConfiguration";
+import { findReportedConfiguration } from "./findReportedConfiguration";
 
-describe("findConfiguration", () => {
+describe("findReportedConfiguration", () => {
     it("returns stderr as an error when the command fails with a zero exit code", async () => {
         // Arrange
         const stderr = "error";
         const exec = createStubExec({ stderr });
 
         // Act
-        const result = await findConfiguration(exec, "command", "sample.json");
+        const result = await findReportedConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(new Error(stderr));
@@ -20,7 +20,7 @@ describe("findConfiguration", () => {
         const exec = createStubThrowingExec({ stderr });
 
         // Act
-        const result = await findConfiguration(exec, "command", "sample.json");
+        const result = await findReportedConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(new Error(stderr));
@@ -32,7 +32,7 @@ describe("findConfiguration", () => {
         const exec = createStubExec({ stdout });
 
         // Act
-        const result = await findConfiguration(exec, "command", "sample.json");
+        const result = await findReportedConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual(
@@ -49,7 +49,7 @@ describe("findConfiguration", () => {
         const exec = createStubExec({ stdout });
 
         // Act
-        const result = await findConfiguration(exec, "command", "sample.json");
+        const result = await findReportedConfiguration(exec, "command", "sample.json");
 
         // Assert
         expect(result).toEqual({

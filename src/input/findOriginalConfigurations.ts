@@ -17,17 +17,22 @@ export type FindOriginalConfigurationsDependencies = {
     mergeLintConfigurations: typeof mergeLintConfigurations;
 };
 
-export type OriginalConfigurations = {
-    eslint?: ESLintConfiguration;
+export type OriginalConfigurations<Configuration> = {
+    full: Configuration;
+    raw: Partial<Configuration>;
+};
+
+export type AllOriginalConfigurations = {
+    eslint?: OriginalConfigurations<ESLintConfiguration>;
     packages?: PackagesConfiguration;
-    tslint: TSLintConfiguration;
+    tslint: OriginalConfigurations<TSLintConfiguration>;
     typescript?: TypeScriptConfiguration;
 };
 
 export const findOriginalConfigurations = async (
     dependencies: FindOriginalConfigurationsDependencies,
     rawSettings: TSLintToESLintSettings,
-): Promise<ResultWithDataStatus<OriginalConfigurations>> => {
+): Promise<ResultWithDataStatus<AllOriginalConfigurations>> => {
     // Simultaneously search for all required configuration types
     const [eslint, packages, tslint, typescript] = await Promise.all([
         dependencies.findESLintConfiguration(rawSettings),

@@ -1,7 +1,7 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { RuleConversionResults } from "../rules/convertRules";
 import { formatConvertedRules } from "./formatConvertedRules";
-import { OriginalConfigurations } from "../input/findOriginalConfigurations";
+import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { createEnv } from "./eslint/createEnv";
 import { formatOutput } from "./formatting/formatOutput";
 
@@ -13,24 +13,29 @@ export const writeConversionResults = async (
     dependencies: WriteConversionResultsDependencies,
     outputPath: string,
     ruleConversionResults: RuleConversionResults,
-    originalConfigurations: OriginalConfigurations,
+    originalConfigurations: AllOriginalConfigurations,
 ) => {
     const plugins = ["@typescript-eslint"];
+    const { eslint, tslint } = originalConfigurations;
 
     if (ruleConversionResults.missing.length !== 0) {
         plugins.push("@typescript-eslint/tslint");
     }
 
     const output = {
-        ...(originalConfigurations.eslint && originalConfigurations.eslint),
+        ...(eslint && eslint.full),
         env: createEnv(originalConfigurations),
+        ...(eslint && { globals: eslint.raw.globals }),
         parser: "@typescript-eslint/parser",
         parserOptions: {
             project: "tsconfig.json",
             sourceType: "module",
         },
         plugins,
-        rules: formatConvertedRules(ruleConversionResults, originalConfigurations.tslint),
+        rules: {
+            ...(eslint && eslint.full.rules),
+            ...formatConvertedRules(ruleConversionResults, tslint.full),
+        },
     };
 
     return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));

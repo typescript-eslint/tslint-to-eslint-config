@@ -1,9 +1,9 @@
 import { EOL } from "os";
 
-import { nativeImporter } from "../adapters/importer";
-import { processLogger } from "../adapters/processLogger";
 import { childProcessExec } from "../adapters/childProcessExec";
 import { fsFileSystem } from "../adapters/fsFileSystem";
+import { nativeImporter } from "../adapters/nativeImporter";
+import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
 import { ConvertConfigDependencies, convertConfig } from "../conversion/convertConfig";
 import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
@@ -27,6 +27,7 @@ import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
+import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import {
     reportConversionResults,
@@ -42,8 +43,16 @@ const convertRulesDependencies = {
     mergers,
 };
 
+const nativeImporterDependencies: ImporterDependencies = {
+    fileSystem: fsFileSystem,
+    nativeImporter: nativeImporter,
+};
+
+const boundImporter = bind(importer, nativeImporterDependencies);
+
 const findConfigurationDependencies = {
     exec: childProcessExec,
+    importer: boundImporter,
 };
 
 const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
@@ -59,7 +68,7 @@ const reportConversionResultsDependencies: ReportConversionResultsDependencies =
 };
 
 const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
-    importer: nativeImporter,
+    importer: boundImporter,
 };
 
 const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {

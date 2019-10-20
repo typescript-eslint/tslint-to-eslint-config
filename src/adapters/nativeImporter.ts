@@ -1,4 +1,4 @@
-export type Importer = (moduleName: string) => unknown | Error;
+export type NativeImporter = (moduleName: string) => unknown | Error;
 
 export const nativeImporter = async (moduleName: string) => {
     try {
