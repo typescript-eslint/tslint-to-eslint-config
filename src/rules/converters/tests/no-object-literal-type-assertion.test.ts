@@ -9,7 +9,7 @@ describe(convertNoObjectLiteralTypeAssertion, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/no-object-literal-type-assertion",
+                    ruleName: "@typescript-eslint/consistent-type-assertions",
                 },
             ],
         });
