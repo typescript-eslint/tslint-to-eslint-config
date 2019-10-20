@@ -1,16 +1,17 @@
 import * as path from "path";
-import * as stripJsonComments from "strip-json-comments";
+import stripJsonComments from "strip-json-comments";
 
 import { FileSystem } from "../adapters/fileSystem";
 import { NativeImporter } from "../adapters/nativeImporter";
 
 export type ImporterDependencies = {
     fileSystem: Pick<FileSystem, "fileExists" | "readFile">;
+    getCwd: () => string;
     nativeImporter: NativeImporter;
 };
 
 export const importer = async (dependencies: ImporterDependencies, moduleName: string) => {
-    const pathAttempts = [path.join(process.cwd(), moduleName), moduleName];
+    const pathAttempts = [path.join(dependencies.getCwd(), moduleName), moduleName];
 
     const importFile = async (filePath: string) => {
         if (!filePath.endsWith(".json")) {

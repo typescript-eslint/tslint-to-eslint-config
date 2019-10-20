@@ -10,9 +10,7 @@ describe(convertMemberAccess, () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/explicit-member-accessibility",
-                    ruleArguments: [
-                        { overrides: { constructors: "off" } },
-                    ],
+                    ruleArguments: [{ overrides: { constructors: "off" } }],
                 },
             ],
         });

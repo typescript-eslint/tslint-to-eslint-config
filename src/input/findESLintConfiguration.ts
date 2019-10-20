@@ -42,7 +42,7 @@ export const findESLintConfiguration = async (
 ): Promise<OriginalConfigurations<ESLintConfiguration> | Error> => {
     const filePath = rawSettings.eslint || rawSettings.config;
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
-        findRawConfiguration<Partial<ESLintConfiguration>>(dependencies.importer, filePath, {
+        findRawConfiguration<ESLintConfiguration>(dependencies.importer, filePath, {
             extends: [],
         }),
         findReportedConfiguration<Partial<ESLintConfiguration>>(
@@ -60,17 +60,15 @@ export const findESLintConfiguration = async (
         return reportedConfiguration;
     }
 
+    const extensions = [rawConfiguration.extends, [reportedConfiguration.extends || []]].flat(
+        Infinity,
+    );
+
     return {
         full: {
             ...defaultESLintConfiguration,
             ...reportedConfiguration,
-            extends: Array.from(
-                new Set(
-                    [[rawConfiguration.extends || []], [reportedConfiguration.extends || []]].flat(
-                        Infinity,
-                    ),
-                ),
-            ),
+            extends: Array.from(new Set(extensions)),
         },
         raw: rawConfiguration,
     };

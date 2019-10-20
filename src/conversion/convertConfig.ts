@@ -37,7 +37,7 @@ export const convertConfig = async (
     const simplifiedConfiguration = {
         ...ruleConversionResults,
         ...(await dependencies.simplifyPackageRules(
-            originalConfigurations.data.eslint && originalConfigurations.data.eslint.full,
+            originalConfigurations.data.eslint,
             ruleConversionResults,
         )),
     };

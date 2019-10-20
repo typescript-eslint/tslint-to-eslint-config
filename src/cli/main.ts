@@ -45,6 +45,7 @@ const convertRulesDependencies = {
 
 const nativeImporterDependencies: ImporterDependencies = {
     fileSystem: fsFileSystem,
+    getCwd: () => process.cwd(),
     nativeImporter: nativeImporter,
 };
 
