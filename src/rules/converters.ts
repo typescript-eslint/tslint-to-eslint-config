@@ -53,6 +53,7 @@ import { convertNoExplicitAny } from "./converters/no-explicit-any";
 import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
+import { convertNoImplicitDependencies } from "./converters/no-implicit-dependencies";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
 import { convertNoInvalidRegexp } from "./converters/no-invalid-regexp";
@@ -111,6 +112,7 @@ import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
+import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
@@ -181,6 +183,7 @@ export const converters = new Map([
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
+    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
@@ -240,6 +243,7 @@ export const converters = new Map([
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
+    ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
@@ -260,10 +264,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
-    // ["quotemark", convertQuotemark], // quotes
-    // ["triple-equals", convertTripleEquals], // eqeqeq
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
