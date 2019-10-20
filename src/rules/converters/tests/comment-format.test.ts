@@ -81,6 +81,26 @@ describe(convertCommentFormat, () => {
         });
     });
 
+    test("conversion with empty ignore-words argument", () => {
+        const result = convertCommentFormat({
+            ruleArguments: [{ "ignore-words": [] }],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "capitalized-comments",
+                    ruleArguments: [],
+                    notices: [],
+                },
+                {
+                    ruleName: "spaced-comment",
+                    ruleArguments: ["never"],
+                },
+            ],
+        });
+    });
+
     test("conversion with ignore-words argument", () => {
         const result = convertCommentFormat({
             ruleArguments: [{ "ignore-words": ["TODO", "HACK"] }],
