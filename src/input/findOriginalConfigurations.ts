@@ -17,8 +17,18 @@ export type FindOriginalConfigurationsDependencies = {
     mergeLintConfigurations: typeof mergeLintConfigurations;
 };
 
+/**
+ * Both found configurations for a particular linter.
+ */
 export type OriginalConfigurations<Configuration> = {
+    /**
+     * Settings reported by the linter's native --print-config equivalent.
+     */
     full: Configuration;
+
+    /**
+     * Raw import results from `import`ing the configuration file.
+     */
     raw: Partial<Configuration>;
 };
 
