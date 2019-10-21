@@ -7,9 +7,10 @@ import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/findEditorConfiguration.js";
 
 export type RunCliDependencies = {
-    convertConfig: SansDependencies<typeof convertConfig>;
+    convertConfigs: SansDependencies<typeof convertConfig>[];
     logger: Logger;
 };
 
@@ -27,7 +28,7 @@ export const runCli = async (
         .option(
             "--editor [editor]",
             "editor configuration file to convert using",
-            ".vscode/settings.json",
+            DEFAULT_VSCODE_SETTINGS_PATH,
         )
         .option("-V --version", "output the package version");
 
@@ -41,15 +42,13 @@ export const runCli = async (
         return ResultStatus.Succeeded;
     }
 
-    let result: TSLintToESLintResult;
+    let result: TSLintToESLintResult = {
+        errors: [new Error("No configurations provided")],
+        status: ResultStatus.Failed,
+    };
 
-    try {
-        result = await dependencies.convertConfig(parsedArgv);
-    } catch (error) {
-        result = {
-            errors: [error as Error],
-            status: ResultStatus.Failed,
-        };
+    for (const convertConfig of dependencies.convertConfigs) {
+        result = await tryConvertConfig(convertConfig, parsedArgv);
     }
 
     switch (result.status) {
@@ -79,4 +78,22 @@ export const runCli = async (
     }
 
     return result.status;
+};
+
+const tryConvertConfig = async (
+    config: SansDependencies<typeof convertConfig>,
+    argv: Partial<TSLintToESLintSettings>,
+): Promise<TSLintToESLintResult> => {
+    let result: TSLintToESLintResult;
+
+    try {
+        result = await config(argv as TSLintToESLintSettings);
+    } catch (error) {
+        result = {
+            errors: [error as Error],
+            status: ResultStatus.Failed,
+        };
+    }
+
+    return result;
 };
