@@ -7,7 +7,7 @@ import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
 import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
-import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/findEditorConfiguration.js";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/findEditorConfiguration";
 
 export type RunCliDependencies = {
     convertConfigs: SansDependencies<typeof convertConfig>[];
