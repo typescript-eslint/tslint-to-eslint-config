@@ -25,7 +25,7 @@ describe(convertNoImportSideEffect, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [{ allow: "(\\.html|\\.css)$" }],
+                    ruleArguments: [],
                     ruleName: "no-import-side-effect",
                     notices: [
                         "ESLint's no-import-side-effect now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
