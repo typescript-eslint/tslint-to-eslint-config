@@ -9,6 +9,7 @@
     "dependencies": {
         "chalk": "2.4.2",
         "commander": "3.0.2",
+        "strip-json-comments": "^3.0.1",
         "tslint": "5.20.0",
         "typescript": "3.6.3"
     },

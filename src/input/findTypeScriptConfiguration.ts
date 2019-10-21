@@ -1,4 +1,7 @@
-import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
+import {
+    findReportedConfiguration,
+    FindReportedConfigurationDependencies,
+} from "./findReportedConfiguration";
 
 export type TypeScriptConfiguration = {
     compilerOptions: {
@@ -14,10 +17,10 @@ const defaultTypeScriptConfiguration = {
 };
 
 export const findTypeScriptConfiguration = async (
-    dependencies: FindConfigurationDependencies,
+    dependencies: FindReportedConfigurationDependencies,
     config: string | undefined,
 ): Promise<TypeScriptConfiguration | Error> => {
-    const rawConfiguration = await findConfiguration<TypeScriptConfiguration>(
+    const rawConfiguration = await findReportedConfiguration<TypeScriptConfiguration>(
         dependencies.exec,
         "tsc --showConfig -p",
         config || "./tsconfig.json",

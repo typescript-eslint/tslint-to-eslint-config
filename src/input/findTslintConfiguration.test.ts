@@ -1,11 +1,22 @@
-import { findTSLintConfiguration } from "./findTSLintConfiguration";
+import {
+    findTSLintConfiguration,
+    FindTSLintConfigurationDependencies,
+} from "./findTSLintConfiguration";
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 
+const createStubDependencies = (overrides: Partial<FindTSLintConfigurationDependencies> = {}) => ({
+    exec: createStubExec({ stdout: "{}" }),
+    importer: async () => ({}),
+    ...overrides,
+});
+
 describe("findTSLintConfiguration", () => {
-    it("returns an error when one occurs", async () => {
+    it("returns an error when exec returns one", async () => {
         // Arrange
         const stderr = "error";
-        const dependencies = { exec: createStubThrowingExec({ stderr }) };
+        const dependencies = createStubDependencies({
+            exec: createStubThrowingExec({ stderr }),
+        });
 
         // Act
         const result = await findTSLintConfiguration(dependencies, undefined);
@@ -18,10 +29,32 @@ describe("findTSLintConfiguration", () => {
         );
     });
 
+    it("returns an error when importer returns one", async () => {
+        // Arrange
+        const message = "error";
+        const dependencies = createStubDependencies({
+            importer: async () => {
+                throw new Error(message);
+            },
+        });
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message,
+            }),
+        );
+    });
+
     it("replaces an error with a v5.18 request when the --print-config option is unsupported", async () => {
         // Arrange
         const stderr = "unknown option `--print-config";
-        const dependencies = { exec: createStubThrowingExec({ stderr }) };
+        const dependencies = createStubDependencies({
+            exec: createStubThrowingExec({ stderr }),
+        });
 
         // Act
         const result = await findTSLintConfiguration(dependencies, undefined);
@@ -36,7 +69,9 @@ describe("findTSLintConfiguration", () => {
 
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = createStubDependencies({
+            exec: createStubExec(),
+        });
 
         // Act
         await findTSLintConfiguration(dependencies, undefined);
@@ -47,7 +82,9 @@ describe("findTSLintConfiguration", () => {
 
     it("includes a configuration file in the TSLint command when one is provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = createStubDependencies({
+            exec: createStubExec(),
+        });
         const config = "./custom/tslint.json";
 
         // Act
@@ -61,7 +98,18 @@ describe("findTSLintConfiguration", () => {
 
     it("applies TSLint defaults when none are provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec({ stdout: "{}" }) };
+        const raw = {
+            extends: ["raw", "duplicated"],
+        };
+        const reportedExtends = ["reported", "duplicated"];
+        const dependencies = createStubDependencies({
+            exec: createStubExec({
+                stdout: JSON.stringify({
+                    extends: reportedExtends,
+                }),
+            }),
+            importer: async () => raw,
+        });
         const config = "./custom/tslint.json";
 
         // Act
@@ -69,8 +117,12 @@ describe("findTSLintConfiguration", () => {
 
         // Assert
         expect(result).toEqual({
-            rulesDirectory: [],
-            rules: {},
+            full: {
+                extends: ["raw", "duplicated", "reported"],
+                rulesDirectory: [],
+                rules: {},
+            },
+            raw,
         });
     });
 });

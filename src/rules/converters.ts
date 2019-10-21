@@ -9,6 +9,7 @@ import { convertBanTypes } from "./converters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./converters/binary-expression-operand-order";
 import { convertCallableTypes } from "./converters/callable-types";
 import { convertClassName } from "./converters/class-name";
+import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
 import { convertEofline } from "./converters/eofline";
@@ -112,6 +113,7 @@ import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
+import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
 import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
@@ -139,6 +141,7 @@ export const converters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["eofline", convertEofline],
@@ -242,6 +245,7 @@ export const converters = new Map([
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
+    ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
@@ -262,10 +266,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
-    // ["quotemark", convertQuotemark], // quotes
-    // ["triple-equals", convertTripleEquals], // eqeqeq
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
