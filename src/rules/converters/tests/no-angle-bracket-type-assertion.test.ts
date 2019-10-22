@@ -9,7 +9,7 @@ describe(convertNoAngleBracketTypeAssertion, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/no-angle-bracket-type-assertion",
+                    ruleName: "@typescript-eslint/consistent-type-assertions",
                 },
             ],
         });
