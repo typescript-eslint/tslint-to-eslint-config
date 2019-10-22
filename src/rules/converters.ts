@@ -1,4 +1,5 @@
 import { convertAdjacentOverloadSignatures } from "./converters/adjacent-overload-signatures";
+import { convertAlign } from "./converters/align";
 import { convertArrayType } from "./converters/array-type";
 import { convertArrowParens } from "./converters/arrow-parens";
 import { convertArrowReturnShorthand } from "./converters/arrow-return-shorthand";
@@ -55,6 +56,7 @@ import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
 import { convertNoImplicitDependencies } from "./converters/no-implicit-dependencies";
+import { convertNoImportSideEffect } from "./converters/no-import-side-effect";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
 import { convertNoInvalidRegexp } from "./converters/no-invalid-regexp";
@@ -131,6 +133,7 @@ import { convertVariableName } from "./converters/variable-name";
  */
 export const converters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
+    ["align", convertAlign],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
@@ -187,6 +190,7 @@ export const converters = new Map([
     ["no-for-in-array", convertNoForInArray],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],

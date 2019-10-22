@@ -9,7 +9,7 @@ describe(convertInterfaceOverTypeLiteral, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/prefer-interface",
+                    ruleName: "@typescript-eslint/consistent-type-definitions",
                 },
             ],
         });
