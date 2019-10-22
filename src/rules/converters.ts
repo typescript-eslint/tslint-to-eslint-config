@@ -1,4 +1,5 @@
 import { convertAdjacentOverloadSignatures } from "./converters/adjacent-overload-signatures";
+import { convertAlign } from "./converters/align";
 import { convertArrayType } from "./converters/array-type";
 import { convertArrowParens } from "./converters/arrow-parens";
 import { convertArrowReturnShorthand } from "./converters/arrow-return-shorthand";
@@ -131,6 +132,7 @@ import { convertVariableName } from "./converters/variable-name";
  */
 export const converters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
+    ["align", convertAlign],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
