@@ -43,12 +43,13 @@ export const runCli = async (
 
     for (const convertConfig of dependencies.convertConfigs) {
         const result = await tryConvertConfig(convertConfig, parsedArgv);
-        logResult(result, dependencies);
         if (result.status !== ResultStatus.Succeeded) {
+            logErrorResult(result, dependencies);
             return result.status;
         }
     }
 
+    dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
     return ResultStatus.Succeeded;
 };
 
@@ -70,12 +71,8 @@ const tryConvertConfig = async (
     return result;
 };
 
-const logResult = (result: ResultWithStatus, dependencies: RunCliDependencies) => {
+const logErrorResult = (result: ResultWithStatus, dependencies: RunCliDependencies) => {
     switch (result.status) {
-        case ResultStatus.Succeeded:
-            dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
-            break;
-
         case ResultStatus.ConfigurationError:
             dependencies.logger.stderr.write(chalk.redBright("❌ "));
             dependencies.logger.stderr.write(chalk.red("Could not start tslint-to-eslint:"));
