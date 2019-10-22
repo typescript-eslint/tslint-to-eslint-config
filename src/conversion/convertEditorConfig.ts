@@ -62,15 +62,15 @@ export const convertEditorConfig = async (
     const output = newEditorConfiguration;
     const outputPath = settings.editor ? settings.editor : DEFAULT_VSCODE_SETTINGS_PATH;
 
-    try {
-        await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
-    } catch (fileWriteError) {
-        if (fileWriteError !== undefined) {
-            return {
-                errors: [fileWriteError],
-                status: ResultStatus.Failed,
-            };
-        }
+    const fileWriteError = await dependencies.fileSystem.writeFile(
+        outputPath,
+        formatOutput(outputPath, output),
+    );
+    if (fileWriteError !== undefined) {
+        return {
+            errors: [fileWriteError],
+            status: ResultStatus.Failed,
+        };
     }
 
     return {
