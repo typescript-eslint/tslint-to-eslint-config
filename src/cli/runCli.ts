@@ -1,13 +1,12 @@
 import chalk from "chalk";
-import { EOL } from "os";
 import { Command } from "commander";
-
+import { EOL } from "os";
 import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
-import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
 import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/findEditorConfiguration";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
     convertConfigs: SansDependencies<typeof convertConfig>[];
@@ -42,15 +41,36 @@ export const runCli = async (
         return ResultStatus.Succeeded;
     }
 
-    let result: TSLintToESLintResult = {
-        errors: [new Error("No configurations provided")],
-        status: ResultStatus.Failed,
-    };
-
     for (const convertConfig of dependencies.convertConfigs) {
-        result = await tryConvertConfig(convertConfig, parsedArgv);
+        const result = await tryConvertConfig(convertConfig, parsedArgv);
+        logResult(result, dependencies);
+        if (result.status !== ResultStatus.Succeeded) {
+            return result.status;
+        }
     }
 
+    return ResultStatus.Succeeded;
+};
+
+const tryConvertConfig = async (
+    config: SansDependencies<typeof convertConfig>,
+    argv: Partial<TSLintToESLintSettings>,
+): Promise<ResultWithStatus> => {
+    let result: ResultWithStatus;
+
+    try {
+        result = await config(argv as TSLintToESLintSettings);
+    } catch (error) {
+        result = {
+            errors: [error as Error],
+            status: ResultStatus.Failed,
+        };
+    }
+
+    return result;
+};
+
+const logResult = (result: ResultWithStatus, dependencies: RunCliDependencies) => {
     switch (result.status) {
         case ResultStatus.Succeeded:
             dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
@@ -76,24 +96,4 @@ export const runCli = async (
             }
             break;
     }
-
-    return result.status;
-};
-
-const tryConvertConfig = async (
-    config: SansDependencies<typeof convertConfig>,
-    argv: Partial<TSLintToESLintSettings>,
-): Promise<TSLintToESLintResult> => {
-    let result: TSLintToESLintResult;
-
-    try {
-        result = await config(argv as TSLintToESLintSettings);
-    } catch (error) {
-        result = {
-            errors: [error as Error],
-            status: ResultStatus.Failed,
-        };
-    }
-
-    return result;
 };
