@@ -13,6 +13,7 @@ import { convertClassName } from "./converters/class-name";
 import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
+import { convertDeprecation } from "./converters/deprecation";
 import { convertEofline } from "./converters/eofline";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
@@ -147,6 +148,7 @@ export const converters = new Map([
     ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
+    ["deprecation", convertDeprecation],
     ["eofline", convertEofline],
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
