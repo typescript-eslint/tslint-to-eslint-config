@@ -2,6 +2,7 @@ import { EOL } from "os";
 
 import { TSLintRuleOptions } from "../rules/types";
 import { ErrorSummary } from "./errorSummary";
+import { EditorSettingOptions } from "../settings/types";
 
 export class ConversionError implements ErrorSummary {
     private constructor(private readonly summary: string) {}
@@ -18,6 +19,12 @@ export class ConversionError implements ErrorSummary {
     public static forRuleError(error: Error, tslintRule: TSLintRuleOptions) {
         return new ConversionError(
             `${tslintRule.ruleName} threw an error during conversion: ${error.stack}${EOL}`,
+        );
+    }
+
+    public static forSettingError(error: Error, editorSetting: EditorSettingOptions) {
+        return new ConversionError(
+            `${editorSetting.settingName} threw an error during conversion: ${error.stack}${EOL}`,
         );
     }
 
