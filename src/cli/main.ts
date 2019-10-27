@@ -23,6 +23,7 @@ import {
     writeConversionResults,
     WriteConversionResultsDependencies,
 } from "../creation/writeConversionResults";
+import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
@@ -38,14 +39,20 @@ import {
     reportConversionResults,
     ReportConversionResultsDependencies,
 } from "../reporting/reportConversionResults";
-import { converters } from "../rules/converters";
+import { converters as rulesConverters } from "../rules/converters";
+import { converters as settingsConverters } from "../settings/converters";
 import { convertRules } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { runCli, RunCliDependencies } from "./runCli";
+import { convertSettings } from "../settings/convertSettings";
 
 const convertRulesDependencies = {
-    converters,
+    converters: rulesConverters,
     mergers,
+};
+
+const convertSettingsDependencies = {
+    converters: settingsConverters,
 };
 
 const nativeImporterDependencies: ImporterDependencies = {
@@ -91,8 +98,13 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
 };
 
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
+    convertSettings: bind(convertSettings, convertSettingsDependencies),
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
     fileSystem: fsFileSystem,
+    writeConversionResults: bind(
+        writeEditorConfigConversionResults,
+        writeConversionResultsDependencies,
+    ),
 };
 
 const convertConfigDependencies: ConvertConfigDependencies = {

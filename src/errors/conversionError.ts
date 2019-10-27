@@ -2,7 +2,7 @@ import { EOL } from "os";
 
 import { TSLintRuleOptions } from "../rules/types";
 import { ErrorSummary } from "./errorSummary";
-import { EditorSettingOptions } from "../settings/types";
+import { EditorSetting } from "../settings/types";
 
 export class ConversionError implements ErrorSummary {
     private constructor(private readonly summary: string) {}
@@ -22,7 +22,7 @@ export class ConversionError implements ErrorSummary {
         );
     }
 
-    public static forSettingError(error: Error, editorSetting: EditorSettingOptions) {
+    public static forSettingError(error: Error, editorSetting: EditorSetting) {
         return new ConversionError(
             `${editorSetting.settingName} threw an error during conversion: ${error.stack}${EOL}`,
         );
