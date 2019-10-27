@@ -10,8 +10,6 @@ describe(convertQuotemark, () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/quotes",
-                    ruleArguments: [],
-                    notices: [],
                 },
             ],
         });
@@ -25,9 +23,8 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/quotes",
                     ruleArguments: ["double"],
-                    notices: [],
+                    ruleName: "@typescript-eslint/quotes",
                 },
             ],
         });
@@ -41,9 +38,8 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/quotes",
                     ruleArguments: [{ avoidEscape: true }],
-                    notices: [],
+                    ruleName: "@typescript-eslint/quotes",
                 },
             ],
         });
@@ -57,9 +53,9 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/quotes",
-                    ruleArguments: ["single"],
                     notices: ['Option "avoid-template" is not supported by ESLint.'],
+                    ruleArguments: ["single"],
+                    ruleName: "@typescript-eslint/quotes",
                 },
             ],
         });
@@ -73,13 +69,12 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/quotes",
-                    ruleArguments: [],
                     notices: [
                         'Option "jsx-single" is not supported by ESLint.',
                         'Option "jsx-double" is not supported by ESLint.',
                         'Option "avoid-template" is not supported by ESLint.',
                     ],
+                    ruleName: "@typescript-eslint/quotes",
                 },
             ],
         });

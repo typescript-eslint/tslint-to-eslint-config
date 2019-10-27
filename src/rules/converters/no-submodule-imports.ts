@@ -1,21 +1,16 @@
 import { RuleConverter } from "../converter";
 
 export const convertNoSubmoduleImports: RuleConverter = tslintRule => {
-    const ruleArguments: string[] = [];
+    const allow: string[] = [];
 
     if (
-        !(
-            tslintRule.ruleArguments.length === 0 ||
-            tslintRule.ruleArguments[0] === false ||
-            tslintRule.ruleArguments.length < 2
-        )
+        tslintRule.ruleArguments.length !== 0 &&
+        tslintRule.ruleArguments[0] !== false &&
+        tslintRule.ruleArguments.length >= 2
     ) {
-        ruleArguments.push(
+        allow.push(
             ...tslintRule.ruleArguments.map(ruleArg => {
-                if (typeof ruleArg === "string") {
-                    return ruleArg.concat("/*");
-                }
-                return ruleArg;
+                return typeof ruleArg === "string" ? ruleArg.concat("/*") : ruleArg;
             }),
         );
     }
@@ -24,10 +19,7 @@ export const convertNoSubmoduleImports: RuleConverter = tslintRule => {
         rules: [
             {
                 ruleName: "import/no-internal-modules",
-                ...{
-                    ruleArguments:
-                        ruleArguments.length > 0 ? [{ allow: ruleArguments }] : undefined,
-                },
+                ...(allow.length !== 0 && { ruleArguments: [{ allow }] }),
             },
         ],
         plugins: ["eslint-plugin-import"],

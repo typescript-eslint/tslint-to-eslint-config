@@ -26,14 +26,12 @@ const collectArgumentsAndNotices = (ruleArguments: any[]) => {
         };
     }
 
-    const [argument] = ruleArguments;
-
     return {
-        ...("ignore-jsx" in argument && {
+        ...("ignore-jsx" in ruleArguments[0] && {
             notices: ["JSX syntax will no longer be ignored."],
         }),
-        ...("allowed-numbers" in argument && {
-            ruleArguments: [{ ignore: argument["allowed-numbers"] }],
+        ...("allowed-numbers" in ruleArguments[0] && {
+            ruleArguments: [{ ignore: ruleArguments[0]["allowed-numbers"] }],
         }),
     };
 };

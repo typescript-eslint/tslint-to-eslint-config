@@ -31,12 +31,12 @@ const collectArguments = (ruleArguments: any[]) => {
     return {
         ruleArguments: [
             {
-                ...("limit" in argument && { code: argument.limit }),
-                ...("ignore-pattern" in argument && { ignorePattern: argument["ignore-pattern"] }),
-                ...("check-strings" in argument && { ignoreStrings: !argument["check-strings"] }),
                 ...("check-regex" in argument && {
                     ignoreRegExpLiterals: !argument["check-regex"],
                 }),
+                ...("check-strings" in argument && { ignoreStrings: !argument["check-strings"] }),
+                ...("ignore-pattern" in argument && { ignorePattern: argument["ignore-pattern"] }),
+                ...("limit" in argument && { code: argument.limit }),
             },
         ],
     };

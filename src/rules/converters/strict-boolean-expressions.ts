@@ -4,12 +4,13 @@ export const ForbiddenOtherNonBooleanTypes =
     "String, number, enum, and mixed union types are now forbidden.";
 
 export const convertStrictBooleanExpressions: RuleConverter = tslintRule => {
-    const notices: string[] = [];
-    const ruleArguments: { [key: string]: boolean } = {};
+    const ruleArguments: Record<string, boolean> = {};
+    let notices: string[] | undefined;
 
     if (tslintRule.ruleArguments.length >= 2 || tslintRule.ruleArguments[0] === true) {
-        notices.push(ForbiddenOtherNonBooleanTypes);
-        tslintRule.ruleArguments.forEach(ruleArgument => {
+        notices = [ForbiddenOtherNonBooleanTypes];
+
+        for (const ruleArgument of tslintRule.ruleArguments) {
             switch (ruleArgument) {
                 case "allow-undefined-union":
                 case "allow-boolean-or-undefined":
@@ -22,15 +23,15 @@ export const convertStrictBooleanExpressions: RuleConverter = tslintRule => {
                 default:
                     break;
             }
-        });
+        }
     }
 
     return {
         rules: [
             {
+                ...{ notices },
+                ...(Object.keys(ruleArguments).length !== 0 && { ruleArguments: [ruleArguments] }),
                 ruleName: "@typescript-eslint/strict-boolean-expressions",
-                ruleArguments: Object.keys(ruleArguments).length !== 0 ? [ruleArguments] : [],
-                notices,
             },
         ],
     };

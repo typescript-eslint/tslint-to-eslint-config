@@ -1,7 +1,7 @@
 import { RuleConverter } from "../converter";
 
 export const convertNoTrailingWhitespace: RuleConverter = tslintRule => {
-    const ruleArguments: { [eslintOption in "ignoreComments" | "skipBlankLines"]?: true }[] = [];
+    const ruleArguments: Partial<Record<"ignoreComments" | "skipBlankLines", boolean>>[] = [];
     const notices: string[] = [];
 
     if (tslintRule.ruleArguments.includes("ignore-comments")) {
@@ -23,8 +23,8 @@ export const convertNoTrailingWhitespace: RuleConverter = tslintRule => {
     return {
         rules: [
             {
-                ...(notices.length > 0 && { notices }),
-                ...(ruleArguments.length > 0 && { ruleArguments }),
+                ...(notices.length !== 0 && { notices }),
+                ...(ruleArguments.length !== 0 && { ruleArguments }),
                 ruleName: "no-trailing-spaces",
             },
         ],

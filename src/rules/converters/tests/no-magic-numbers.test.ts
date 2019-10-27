@@ -68,8 +68,8 @@ describe(convertNoMagicNumbers, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [{ ignore: [1, 2, 3] }],
                     notices: ["JSX syntax will no longer be ignored."],
+                    ruleArguments: [{ ignore: [1, 2, 3] }],
                     ruleName: "no-magic-numbers",
                 },
             ],

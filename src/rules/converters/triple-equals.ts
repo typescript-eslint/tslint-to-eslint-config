@@ -1,17 +1,17 @@
 import { RuleConverter } from "../converter";
 
+const smartOptionNotice =
+    'Option "smart" allows for comparing two literal values, evaluating the value of typeof and null comparisons.';
+
 export const convertTripleEquals: RuleConverter = tslintRule => {
     const getRuleOptions = () => {
-        const smartOptionNotice =
-            'Option "smart" allows for comparing two literal values, evaluating the value of typeof and null comparisons.';
-
         if (
             tslintRule.ruleArguments.length !== 0 &&
             tslintRule.ruleArguments[0] === "allow-null-check"
         ) {
             return {
-                arguments: ["smart"],
                 notices: [smartOptionNotice],
+                ruleArguments: ["smart"],
             };
         }
 
@@ -20,16 +20,16 @@ export const convertTripleEquals: RuleConverter = tslintRule => {
             tslintRule.ruleArguments[0] === "allow-undefined-check"
         ) {
             return {
-                arguments: ["smart"],
                 notices: [
                     'Option "allow-undefined-check" is not supported by ESLint. Option "smart" is the closest.',
                     smartOptionNotice,
                 ],
+                ruleArguments: ["smart"],
             };
         }
 
         return {
-            arguments: ["always"],
+            ruleArguments: ["always"],
             notices: [],
         };
     };
@@ -39,9 +39,9 @@ export const convertTripleEquals: RuleConverter = tslintRule => {
     return {
         rules: [
             {
-                ruleName: "eqeqeq",
-                ruleArguments: options.arguments,
                 notices: options.notices,
+                ruleArguments: options.ruleArguments,
+                ruleName: "eqeqeq",
             },
         ],
     };

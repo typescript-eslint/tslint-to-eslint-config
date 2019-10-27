@@ -100,7 +100,7 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
         ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
     ) as RuleWithNotices[];
 
-    if (rulesWithNotices.length > 0) {
+    if (rulesWithNotices.length !== 0) {
         logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
         logger.stdout.write(
             chalk.yellowBright(rulesWithNotices.length === 1 ? ` rule behaves` : ` rules behave`),
@@ -109,11 +109,12 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
             chalk.yellowBright(` differently from their TSLint counterparts: 📢${EOL}`),
         );
 
-        rulesWithNotices.forEach(rule => {
+        for (const rule of rulesWithNotices) {
             logger.stdout.write(chalk.yellow(`* ${rule.ruleName}:${EOL}`));
-            rule.notices.forEach(notice => {
+
+            for (const notice of rule.notices) {
                 logger.stdout.write(chalk.yellow(`  - ${notice}${EOL}`));
-            });
-        });
+            }
+        }
     }
 };
