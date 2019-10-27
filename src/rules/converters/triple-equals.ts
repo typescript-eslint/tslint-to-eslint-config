@@ -5,23 +5,27 @@ const smartOptionNotice =
 
 export const convertTripleEquals: RuleConverter = tslintRule => {
     const getRuleOptions = () => {
-        if (tslintRule.ruleArguments.length !== 0) {
-            if (tslintRule.ruleArguments[0] === "allow-null-check") {
-                return {
-                    notices: [smartOptionNotice],
-                    ruleArguments: ["smart"],
-                };
-            }
+        if (
+            tslintRule.ruleArguments.length !== 0 &&
+            tslintRule.ruleArguments[0] === "allow-null-check"
+        ) {
+            return {
+                notices: [smartOptionNotice],
+                ruleArguments: ["smart"],
+            };
+        }
 
-            if (tslintRule.ruleArguments[0] === "allow-undefined-check") {
-                return {
-                    notices: [
-                        'Option "allow-undefined-check" is not supported by ESLint. Option "smart" is the closest.',
-                        smartOptionNotice,
-                    ],
-                    ruleArguments: ["smart"],
-                };
-            }
+        if (
+            tslintRule.ruleArguments.length !== 0 &&
+            tslintRule.ruleArguments[0] === "allow-undefined-check"
+        ) {
+            return {
+                notices: [
+                    'Option "allow-undefined-check" is not supported by ESLint. Option "smart" is the closest.',
+                    smartOptionNotice,
+                ],
+                ruleArguments: ["smart"],
+            };
         }
 
         return {
