@@ -1,8 +1,8 @@
 import { FileSystem } from "../adapters/fileSystem";
+import { EditorConfiguration } from "../input/editorConfiguration";
+import { DeepPartial } from "../input/findConfiguration";
 import { SettingConversionResults } from "../settings/convertSettings";
 import { formatOutput } from "./formatting/formatOutput";
-import { DeepPartial } from "../input/findConfiguration";
-import { EditorConfiguration } from "../input/findEditorConfiguration";
 
 export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;

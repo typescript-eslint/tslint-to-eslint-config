@@ -1,12 +1,10 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { SansDependencies } from "../binding";
-import {
-    DEFAULT_VSCODE_SETTINGS_PATH,
-    findEditorConfiguration,
-} from "../input/findEditorConfiguration";
-import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
-import { convertSettings } from "../settings/convertSettings";
 import { writeConversionResults } from "../creation/writeEditorConfigConversionResults";
+import { findEditorConfiguration } from "../input/findEditorConfiguration";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
+import { convertSettings } from "../settings/convertSettings";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type ConvertEditorConfigDependencies = {
     convertSettings: SansDependencies<typeof convertSettings>;

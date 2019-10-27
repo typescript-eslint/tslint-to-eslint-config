@@ -1,19 +1,7 @@
 import { FileSystem } from "../adapters/fileSystem";
+import { EditorConfiguration } from "./editorConfiguration";
 import { DeepPartial } from "./findConfiguration";
-
-/**
- * TODO: devinmotion: This may be moved into a more centralized place.
- */
-export const DEFAULT_VSCODE_SETTINGS_PATH = ".vscode/settings.json";
-
-/**
- * TODO: devinmotion: This may be moved to special config conversion rules.
- */
-export type EditorConfiguration = {
-    "editor.codeActionsOnSave": {
-        "source.fixAll.tslint": boolean;
-    };
-};
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 
 export type FindEditorConfigurationDependencies = {
     fileSystem: Pick<FileSystem, "readFile">;
