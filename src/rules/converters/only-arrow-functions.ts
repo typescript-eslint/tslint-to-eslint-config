@@ -16,7 +16,7 @@ export const convertOnlyArrowFunctions: RuleConverter = tslintRule => {
     return {
         rules: [
             {
-                ...(notices.length > 0 && { notices }),
+                ...(notices.length !== 0 && { notices }),
                 ruleName: "prefer-arrow/prefer-arrow-functions",
             },
         ],

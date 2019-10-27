@@ -50,8 +50,8 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
-            ruleName: "camelcase",
             notices: camelCaseOptionNotice,
+            ruleName: "camelcase",
         };
     };
 
@@ -67,32 +67,34 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
-            ruleName: "no-underscore-dangle",
-            ruleArguments: underscoreDangleOptionArguments,
             notices: underscoreDangleOptionNotice,
+            ...(underscoreDangleOptionArguments.length !== 0 && {
+                ruleArguments: underscoreDangleOptionArguments,
+            }),
+            ruleName: "no-underscore-dangle",
         };
     };
 
     const getBlackListRuleOptions = () => {
-        const blackListOptionArguments: string[] = [];
-
-        if (tslintRule.ruleArguments.includes("ban-keywords")) {
-            blackListOptionArguments.push(
-                "any",
-                "Number",
-                "number",
-                "String",
-                "string",
-                "Boolean",
-                "boolean",
-                "Undefined",
-                "undefined",
-            );
-        }
+        const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
+            ? [
+                  "any",
+                  "Number",
+                  "number",
+                  "String",
+                  "string",
+                  "Boolean",
+                  "boolean",
+                  "Undefined",
+                  "undefined",
+              ]
+            : [];
 
         return {
+            ...(blackListOptionArguments.length !== 0 && {
+                ruleArguments: blackListOptionArguments,
+            }),
             ruleName: "id-blacklist",
-            ruleArguments: blackListOptionArguments,
         };
     };
 

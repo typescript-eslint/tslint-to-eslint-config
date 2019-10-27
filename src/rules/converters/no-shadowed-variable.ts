@@ -22,11 +22,9 @@ export const convertNoShadowedVariable: RuleConverter = tslintRule => {
             notices.push(UNDERSCORE_DISABLE_NOTICE);
         }
 
-        if (config.temporalDeadZone === false) {
-            ruleArguments.push({ hoist: "never" });
-        } else {
-            ruleArguments.push({ hoist: "all" });
-        }
+        ruleArguments.push({
+            hoist: config.temporalDeadZone === false ? "never" : "all",
+        });
 
         const hasUnsupportedDisables = Object.entries(config).some(
             ([key, value]) => value === false && key !== "underscore" && key !== "temporalDeadZone",
@@ -40,8 +38,8 @@ export const convertNoShadowedVariable: RuleConverter = tslintRule => {
     return {
         rules: [
             {
-                ...(notices.length > 0 && { notices }),
-                ...(ruleArguments.length > 0 && { ruleArguments }),
+                ...(notices.length !== 0 && { notices }),
+                ...(ruleArguments.length !== 0 && { ruleArguments }),
                 ruleName: "no-shadow",
             },
         ],
