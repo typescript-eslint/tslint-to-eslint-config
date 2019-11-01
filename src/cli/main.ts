@@ -35,10 +35,9 @@ import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguratio
 import { findEditorConfiguration } from "../input/findEditorConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import {
-    reportConversionResults,
-    ReportConversionResultsDependencies,
-} from "../reporting/reportConversionResults";
+import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
+import { reportConversionResults } from "../reporting/reportConversionResults";
+import { ReportConversionResultsDependencies } from "../reporting/dependencies";
 import { converters as rulesConverters } from "../rules/converters";
 import { converters as settingsConverters } from "../settings/converters";
 import { convertRules } from "../rules/convertRules";
@@ -100,7 +99,10 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
     convertSettings: bind(convertSettings, convertSettingsDependencies),
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
-    fileSystem: fsFileSystem,
+    reportConversionResults: bind(
+        reportSettingConversionResults,
+        reportConversionResultsDependencies,
+    ),
     writeConversionResults: bind(
         writeEditorConfigConversionResults,
         writeConversionResultsDependencies,

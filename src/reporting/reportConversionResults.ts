@@ -4,11 +4,8 @@ import { EOL } from "os";
 import { Logger } from "../adapters/logger";
 import { ErrorSummary } from "../errors/errorSummary";
 import { RuleConversionResults } from "../rules/convertRules";
-import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
-
-export type ReportConversionResultsDependencies = {
-    logger: Logger;
-};
+import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
+import { ReportConversionResultsDependencies } from "./dependencies";
 
 export const reportConversionResults = (
     dependencies: ReportConversionResultsDependencies,

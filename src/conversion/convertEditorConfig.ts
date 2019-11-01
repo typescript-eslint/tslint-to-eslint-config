@@ -1,15 +1,15 @@
-import { FileSystem } from "../adapters/fileSystem";
 import { SansDependencies } from "../binding";
 import { writeConversionResults } from "../creation/writeEditorConfigConversionResults";
 import { findEditorConfiguration } from "../input/findEditorConfiguration";
 import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
 import { convertSettings } from "../settings/convertSettings";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
+import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
 
 export type ConvertEditorConfigDependencies = {
     convertSettings: SansDependencies<typeof convertSettings>;
     findEditorConfiguration: SansDependencies<typeof findEditorConfiguration>;
-    fileSystem: Pick<FileSystem, "writeFile">;
+    reportConversionResults: SansDependencies<typeof reportSettingConversionResults>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -43,7 +43,7 @@ export const convertEditorConfig = async (
         };
     }
 
-    // TODO: devinmotion: A summary of the results may be printed to the user's console?
+    dependencies.reportConversionResults(settingConversionResults);
 
     return {
         status: ResultStatus.Succeeded,
