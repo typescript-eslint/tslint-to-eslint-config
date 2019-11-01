@@ -1,7 +1,7 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { EditorConfiguration } from "./editorConfiguration";
-import { DeepPartial } from "./findConfiguration";
 import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
+import { DeepPartial } from "./findReportedConfiguration";
 
 export type FindEditorConfigurationDependencies = {
     fileSystem: Pick<FileSystem, "readFile">;
