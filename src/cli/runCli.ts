@@ -5,7 +5,7 @@ import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
-import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings.js";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
