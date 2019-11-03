@@ -1,100 +1,110 @@
 import { RuleConverter } from "../converter";
 
+const unsupportedKeyInEsLint = "typeLiterals";
+
 export const convertTrailingComma: RuleConverter = tslintRule => {
-    const eslintArgs =
-        tslintRule.ruleArguments.length !== 0
-            ? collectArguments(tslintRule.ruleArguments)
-            : undefined;
+    const eslintArgs = tslintRule.ruleArguments.length
+        ? collectArguments(tslintRule.ruleArguments)
+        : undefined;
+
+    const notices = tslintRule.ruleArguments.length
+        ? collectNotices(tslintRule.ruleArguments)
+        : undefined;
 
     return {
         rules: [
             {
                 ruleName: "comma-dangle",
                 ...(eslintArgs && { ruleArguments: [eslintArgs] }),
+                ...(notices && notices.length && { notices }),
             },
         ],
     };
 };
 
-function collectArguments(args: any[]) {
-    const tslintArg: any = args[0];
-    const { multiline, singleline } = tslintArg;
+function collectArguments(args: TSLintArg[]): ESLintArgValue | undefined {
+    const tslintArg = args[0];
+    const { singleline, multiline } = tslintArg;
 
-    if (typeof multiline === "object" || typeof singleline === "object") {
-        const fields = mergePropertyKeys(singleline, multiline);
-        const single = getFieldValue(singleline);
-        const multi = getFieldValue(multiline);
+    if (typeof singleline === "object" || typeof multiline === "object") {
+        const keys = mergePropertyKeys(singleline, multiline);
+        const single = singleline && mapToObjectConfig(singleline);
+        const multi = multiline && mapToObjectConfig(multiline);
 
-        return fields.reduce(
-            (acc, field) => ({
+        return keys.reduce(
+            (acc, key) => ({
                 ...acc,
-                ...collectFields(field, single, multi),
+                ...collectKeys(key as TSLintObjectKey, single, multi),
             }),
             {},
         );
     }
 
-    if (
-        multiline === TSLintValue.Always &&
-        (singleline === undefined || singleline === TSLintValue.Never)
-    ) {
-        return ESLintValue.AlwaysMultiline;
+    if ((singleline === undefined || singleline === "never") && multiline === "always") {
+        return "always-multiline";
     }
 
-    if (multiline === TSLintValue.Always && singleline === TSLintValue.Always) {
-        return ESLintValue.Always;
+    if (singleline === "always" && multiline === "always") {
+        return "always";
     }
 
     return;
 }
 
-function mergePropertyKeys(singleline: any, multiline: any) {
-    const getKeysIfObject = (field: any) => (typeof field === "object" ? Object.keys(field) : []);
+function mergePropertyKeys(
+    singleline: TSLintArgValue | undefined,
+    multiline: TSLintArgValue | undefined,
+): string[] {
+    const getKeysIfObject = (field: TSLintArgValue | undefined): string[] =>
+        typeof field === "object" ? Object.keys(field) : [];
     const singlelineKeys = getKeysIfObject(singleline);
     const multilineKeys = getKeysIfObject(multiline);
 
     const uniqueKeys = [...new Set([...singlelineKeys, ...multilineKeys])];
-    const unsupportedKeyInEsLint = "typeLiterals";
 
     return uniqueKeys.filter(field => field !== unsupportedKeyInEsLint);
 }
 
-function collectFields(fieldName: string, singleline: any, multiline: any) {
+function collectKeys(
+    key: TSLintObjectKey,
+    singleline: TSLintObject | undefined,
+    multiline: TSLintObject | undefined,
+): { [key: string]: ESLintStringValue } {
     const hasSingleline = Boolean(singleline);
-    const hasSinglelineAndFieldExist = Boolean(singleline && singleline[fieldName]);
-    const hasSinglelineAlways = Boolean(singleline && singleline[fieldName] === TSLintValue.Always);
-    const hasMultilineAlways = Boolean(multiline && multiline[fieldName] === TSLintValue.Always);
+    const hasSinglelineAndFieldExist = Boolean(singleline && singleline[key]);
+    const hasSinglelineAlways = Boolean(singleline && singleline[key] === "always");
+    const hasMultilineAlways = Boolean(multiline && multiline[key] === "always");
 
     if (!hasSingleline && hasMultilineAlways) {
         return {
-            [fieldName]: ESLintValue.AlwaysMultiline,
+            [key]: "always-multiline",
         };
     }
 
     if (!hasSinglelineAndFieldExist && hasMultilineAlways) {
         return {
-            [fieldName]: ESLintValue.AlwaysMultiline,
+            [key]: "always-multiline",
         };
     }
 
     if (!hasSinglelineAlways && hasMultilineAlways) {
         return {
-            [fieldName]: ESLintValue.AlwaysMultiline,
+            [key]: "always-multiline",
         };
     }
 
     if (hasSinglelineAlways && hasMultilineAlways) {
         return {
-            [fieldName]: ESLintValue.Always,
+            [key]: "always",
         };
     }
 
     return {
-        [fieldName]: ESLintValue.Never,
+        [key]: "never",
     };
 }
 
-function getFieldValue(value: string | object) {
+function mapToObjectConfig(value: TSLintArgValue): TSLintObject {
     return typeof value === "string"
         ? {
               arrays: value,
@@ -106,15 +116,63 @@ function getFieldValue(value: string | object) {
         : value;
 }
 
-enum TSLintValue {
-    Always = "always",
-    Never = "never",
+function collectNotices(args: TSLintArg[]): string[] {
+    const tslintArg = args[0];
+
+    return [buildNoticeForEsSpecCompliant(tslintArg), buildNoticeForTypeLiterals(tslintArg)].filter(
+        Boolean,
+    );
 }
 
-enum ESLintValue {
-    Never = "never",
-    Always = "always",
-    AlwaysMultiline = "always-multiline",
-    OnlyMultiline = "only-multiline",
-    Ignore = "ignore",
+function buildNoticeForEsSpecCompliant(arg: TSLintArg): string {
+    const unsupportedConfigKey = "esSpecCompliant";
+
+    if (Object.keys(arg).includes(unsupportedConfigKey)) {
+        return `ESLint does not support config property ${unsupportedConfigKey}`;
+    }
+
+    return "";
 }
+
+function buildNoticeForTypeLiterals(arg: TSLintArg): string {
+    const { singleline, multiline } = arg;
+    const hasTypeLiterals = (field: any) =>
+        typeof field === "object" && Object.keys(field).includes(unsupportedKeyInEsLint);
+
+    if (hasTypeLiterals(singleline) || hasTypeLiterals(multiline)) {
+        return `ESLint does not support config property ${unsupportedKeyInEsLint}`;
+    }
+
+    return "";
+}
+
+type TSLintArg = {
+    singleline?: TSLintArgValue;
+    multiline?: TSLintArgValue;
+    esSpecCompliant?: boolean;
+};
+
+type TSLintArgValue = TSLintStringValue | TSLintObject;
+type TSLintObjectKey = keyof TSLintObject;
+
+type TSLintObject = {
+    arrays?: TSLintStringValueForObject;
+    objects?: TSLintStringValueForObject;
+    functions?: TSLintStringValueForObject;
+    imports?: TSLintStringValueForObject;
+    exports?: TSLintStringValueForObject;
+    typeLiterals?: TSLintStringValueForObject;
+};
+type TSLintStringValue = "always" | "never";
+type TSLintStringValueForObject = TSLintStringValue | "ignore";
+
+// ESLint
+type ESLintArgValue = ESLintStringValue | ESLintObject;
+type ESLintStringValue = "never" | "always" | "always-multiline" | "only-multiline" | "ignore";
+type ESLintObject = {
+    arrays?: ESLintStringValue;
+    objects?: ESLintStringValue;
+    functions?: ESLintStringValue;
+    imports?: ESLintStringValue;
+    exports?: ESLintStringValue;
+};

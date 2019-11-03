@@ -102,7 +102,6 @@ describe(convertTrailingComma, () => {
                         functions: "always",
                         imports: "always",
                         exports: "always",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -124,7 +123,6 @@ describe(convertTrailingComma, () => {
                         functions: "always",
                         imports: "always",
                         exports: "always",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -145,7 +143,6 @@ describe(convertTrailingComma, () => {
                         functions: "never",
                         imports: "never",
                         exports: "never",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -164,13 +161,11 @@ describe(convertTrailingComma, () => {
                         objects: "never",
                         arrays: "never",
                         functions: "never",
-                        typeLiterals: "ignore",
                     },
                     multiline: {
                         objects: "never",
                         arrays: "never",
                         functions: "never",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -189,7 +184,6 @@ describe(convertTrailingComma, () => {
                         functions: "always",
                         imports: "always",
                         exports: "always",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -210,7 +204,6 @@ describe(convertTrailingComma, () => {
                         functions: "always",
                         imports: "always",
                         exports: "always",
-                        typeLiterals: "ignore",
                     },
                     multiline: {
                         objects: "always",
@@ -218,7 +211,6 @@ describe(convertTrailingComma, () => {
                         functions: "always",
                         imports: "always",
                         exports: "always",
-                        typeLiterals: "ignore",
                     },
                 },
                 expectedRuleArguments: [
@@ -263,9 +255,101 @@ describe(convertTrailingComma, () => {
                     rules: [
                         {
                             ruleName: "comma-dangle",
-                            ...(testCase.expectedRuleArguments.length !== 0 && {
+                            ...(testCase.expectedRuleArguments.length && {
                                 ruleArguments: testCase.expectedRuleArguments,
                             }),
+                        },
+                    ],
+                });
+            });
+        });
+    });
+
+    describe("conversion with not supported config", () => {
+        const testCases = [
+            {
+                argument: {
+                    esSpecCompliant: true,
+                },
+                expectedRuleArguments: [],
+                expectedNotices: ["ESLint does not support config property esSpecCompliant"],
+            },
+            {
+                argument: {
+                    singleline: {
+                        typeLiterals: "ignore",
+                    },
+                },
+                expectedRuleArguments: [{}],
+                expectedNotices: ["ESLint does not support config property typeLiterals"],
+            },
+            {
+                argument: {
+                    multiline: {
+                        typeLiterals: "ignore",
+                    },
+                },
+                expectedRuleArguments: [{}],
+                expectedNotices: ["ESLint does not support config property typeLiterals"],
+            },
+            {
+                argument: {
+                    esSpecCompliant: true,
+                    singleline: {
+                        typeLiterals: "always",
+                    },
+                },
+                expectedRuleArguments: [{}],
+                expectedNotices: [
+                    "ESLint does not support config property esSpecCompliant",
+                    "ESLint does not support config property typeLiterals",
+                ],
+            },
+            {
+                argument: {
+                    esSpecCompliant: false,
+                    multiline: {
+                        typeLiterals: "always-multiline",
+                    },
+                },
+                expectedRuleArguments: [{}],
+                expectedNotices: [
+                    "ESLint does not support config property esSpecCompliant",
+                    "ESLint does not support config property typeLiterals",
+                ],
+            },
+            {
+                argument: {
+                    esSpecCompliant: false,
+                    singleline: {
+                        typeLiterals: "ignore",
+                    },
+                    multiline: {
+                        typeLiterals: "ignore",
+                    },
+                },
+                expectedRuleArguments: [{}],
+                expectedNotices: [
+                    "ESLint does not support config property esSpecCompliant",
+                    "ESLint does not support config property typeLiterals",
+                ],
+            },
+        ];
+
+        testCases.forEach(testCase => {
+            test(`conversion with arguments ${JSON.stringify(testCase.argument)}`, () => {
+                const result = convertTrailingComma({
+                    ruleArguments: [testCase.argument],
+                });
+
+                expect(result).toEqual({
+                    rules: [
+                        {
+                            ruleName: "comma-dangle",
+                            ...(testCase.expectedRuleArguments.length && {
+                                ruleArguments: testCase.expectedRuleArguments,
+                            }),
+                            notices: testCase.expectedNotices,
                         },
                     ],
                 });
