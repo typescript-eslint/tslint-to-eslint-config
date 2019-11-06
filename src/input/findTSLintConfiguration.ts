@@ -2,8 +2,8 @@ import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
+import { uniqueFromSources } from "../utils";
 import { importer } from "./importer";
-import { isDefined } from "../utils";
 
 export type TSLintConfiguration = {
     extends?: string[];
@@ -44,13 +44,7 @@ export const findTSLintConfiguration = async (
         return rawConfiguration;
     }
 
-    const extensions = Array.from(
-        new Set(
-            [[rawConfiguration.extends], [reportedConfiguration.extends]]
-                .flat(Infinity)
-                .filter(isDefined),
-        ),
-    );
+    const extensions = uniqueFromSources(rawConfiguration.extends, reportedConfiguration.extends);
 
     const rules = {
         ...rawConfiguration.rules,
