@@ -2,6 +2,7 @@ import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
 import { ESLintRuleSeverity } from "../rules/types";
 import { TSLintToESLintSettings } from "../types";
+import { uniqueFromSources } from "../utils";
 import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
 import { OriginalConfigurations } from "./findOriginalConfigurations";
@@ -60,9 +61,7 @@ export const findESLintConfiguration = async (
         return reportedConfiguration;
     }
 
-    const extensions = [rawConfiguration.extends, [reportedConfiguration.extends || []]].flat(
-        Infinity,
-    );
+    const extensions = uniqueFromSources(rawConfiguration.extends, reportedConfiguration.extends);
 
     return {
         full: {

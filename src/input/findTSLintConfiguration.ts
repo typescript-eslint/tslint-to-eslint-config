@@ -2,8 +2,7 @@ import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
-import { flattenTwo } from "../creation/formatting/formatters/flattenTwo";
-import { isDefined } from "../utils";
+import { uniqueFromSources } from "../utils";
 import { importer } from "./importer";
 
 export type TSLintConfiguration = {
@@ -45,7 +44,7 @@ export const findTSLintConfiguration = async (
         return rawConfiguration;
     }
 
-    const extensions = flattenExtensions(rawConfiguration.extends, reportedConfiguration.extends);
+    const extensions = uniqueFromSources(rawConfiguration.extends, reportedConfiguration.extends);
 
     const rules = {
         ...rawConfiguration.rules,
@@ -59,16 +58,4 @@ export const findTSLintConfiguration = async (
         },
         raw: rawConfiguration,
     };
-};
-
-const flattenExtensions = (...sources: (string[] | undefined)[]) => {
-    const items: string[] = [];
-
-    for (const source of sources) {
-        if (source !== undefined) {
-            items.push(...source.filter(isDefined));
-        }
-    }
-
-    return Array.from(new Set(items));
 };
