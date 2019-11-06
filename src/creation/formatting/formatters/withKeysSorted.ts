@@ -1,7 +1,10 @@
 export const withKeysSorted = (input: any) => {
-    return Object.fromEntries(
-        Object.keys(input)
-            .sort((a, b) => a.localeCompare(b))
-            .map(key => [key, input[key]]),
-    );
+    const output: Record<string, any> = {};
+    const keys = Object.keys(input).sort((a, b) => a.localeCompare(b));
+
+    for (const key of keys) {
+        output[key] = input[key];
+    }
+
+    return output;
 };
