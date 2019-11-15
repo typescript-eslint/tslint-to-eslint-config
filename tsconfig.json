@@ -19,7 +19,7 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "target": "esnext"
+        "target": "es2015"
     },
     "exclude": ["test/tests/**/*"]
 }
