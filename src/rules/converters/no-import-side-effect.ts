@@ -4,10 +4,11 @@ export const convertNoImportSideEffect: RuleConverter = tsLintRule => {
     return {
         rules: [
             {
-                ruleName: "no-import-side-effect",
+                plugins: ["eslint-plugin-import"],
+                ruleName: "import/no-unassigned-import",
                 ...(tsLintRule.ruleArguments.length !== 0 && {
                     notices: [
-                        "ESLint's no-import-side-effect now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
+                        "ESLint's import/no-unassigned-import now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
                     ],
                 }),
             },
