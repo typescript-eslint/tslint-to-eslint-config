@@ -1,23 +1,17 @@
 import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
 import { Exec } from "../adapters/exec";
-import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { SansDependencies } from "../binding";
+import { uniqueFromSources } from "../utils";
 import { importer } from "./importer";
 
 export type TSLintConfiguration = {
     extends?: string[];
-    rulesDirectory: string[];
+    rulesDirectory?: string[];
     rules: TSLintConfigurationRules;
 };
 
 export type TSLintConfigurationRules = Record<string, any>;
-
-const defaultTSLintConfiguration = {
-    extends: [],
-    rulesDirectory: [],
-    rules: {},
-};
 
 export type FindTSLintConfigurationDependencies = {
     exec: Exec;
@@ -27,12 +21,10 @@ export type FindTSLintConfigurationDependencies = {
 export const findTSLintConfiguration = async (
     dependencies: FindTSLintConfigurationDependencies,
     config: string | undefined,
-): Promise<OriginalConfigurations<TSLintConfiguration> | Error> => {
+) => {
     const filePath = config || "./tslint.json";
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
-        findRawConfiguration<Partial<TSLintConfiguration>>(dependencies.importer, filePath, {
-            extends: [],
-        }),
+        findRawConfiguration<Partial<TSLintConfiguration>>(dependencies.importer, filePath),
         findReportedConfiguration<TSLintConfiguration>(
             dependencies.exec,
             "tslint --print-config",
@@ -52,15 +44,17 @@ export const findTSLintConfiguration = async (
         return rawConfiguration;
     }
 
+    const extensions = uniqueFromSources(rawConfiguration.extends, reportedConfiguration.extends);
+
+    const rules = {
+        ...rawConfiguration.rules,
+        ...reportedConfiguration.rules,
+    };
+
     return {
         full: {
-            ...defaultTSLintConfiguration,
-            ...rawConfiguration,
-            extends: Array.from(
-                new Set(
-                    [[rawConfiguration.extends], [reportedConfiguration.extends]].flat(Infinity),
-                ),
-            ),
+            ...(extensions.length !== 0 && { extends: extensions }),
+            rules,
         },
         raw: rawConfiguration,
     };

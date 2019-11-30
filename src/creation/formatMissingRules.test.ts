@@ -13,7 +13,7 @@ describe("formatMissingRules", () => {
         ];
 
         // Act
-        const output = formatMissingRules(missing, []);
+        const output = formatMissingRules(missing);
 
         // Assert
         expect(output).toEqual([

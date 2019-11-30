@@ -9,9 +9,8 @@ describe(convertNoImportSideEffect, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [],
-                    ruleName: "no-import-side-effect",
-                    notices: [],
+                    plugins: ["eslint-plugin-import"],
+                    ruleName: "import/no-unassigned-import",
                 },
             ],
         });
@@ -25,11 +24,11 @@ describe(convertNoImportSideEffect, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [],
-                    ruleName: "no-import-side-effect",
+                    plugins: ["eslint-plugin-import"],
                     notices: [
-                        "ESLint's no-import-side-effect now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
+                        "ESLint's import/no-unassigned-import now accepts a glob pattern for ignores; you'll need to manually convert your ignore-module settings.",
                     ],
+                    ruleName: "import/no-unassigned-import",
                 },
             ],
         });

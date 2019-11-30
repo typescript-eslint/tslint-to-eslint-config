@@ -119,8 +119,42 @@ describe("findTSLintConfiguration", () => {
         expect(result).toEqual({
             full: {
                 extends: ["raw", "duplicated", "reported"],
-                rulesDirectory: [],
                 rules: {},
+            },
+            raw,
+        });
+    });
+
+    it("adds reported configuration rules on top of raw rules", async () => {
+        // Arrange
+        const raw = {
+            rules: {
+                "raw-rule": true,
+            },
+        };
+        const reported = {
+            rules: {
+                "reported-rule": true,
+            },
+        };
+        const dependencies = createStubDependencies({
+            exec: createStubExec({
+                stdout: JSON.stringify(reported),
+            }),
+            importer: async () => raw,
+        });
+        const config = "./custom/tslint.json";
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, config);
+
+        // Assert
+        expect(result).toEqual({
+            full: {
+                rules: {
+                    ...raw.rules,
+                    ...reported.rules,
+                },
             },
             raw,
         });

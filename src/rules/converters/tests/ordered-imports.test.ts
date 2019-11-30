@@ -7,12 +7,12 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["import"],
             rules: [
                 {
                     ruleName: "import/order",
                 },
             ],
-            plugins: ["import"],
         });
     });
 
@@ -22,13 +22,13 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["import"],
             rules: [
                 {
                     notices: ['Option "import-sources-order" is not supported by ESLint.'],
                     ruleName: "import/order",
                 },
             ],
-            plugins: ["import"],
         });
     });
 
@@ -38,13 +38,13 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["import"],
             rules: [
                 {
                     notices: ['Option "named-imports-order" is not supported by ESLint.'],
                     ruleName: "import/order",
                 },
             ],
-            plugins: ["import"],
         });
     });
 
@@ -54,17 +54,17 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["import"],
             rules: [
                 {
                     notices: [
                         'Option "import-sources-order" is not supported by ESLint.',
-                        'Option "named-imports-order" is not supported by ESLint.',
                         'Option "module-source-path" is not supported by ESLint.',
+                        'Option "named-imports-order" is not supported by ESLint.',
                     ],
                     ruleName: "import/order",
                 },
             ],
-            plugins: ["import"],
         });
     });
 });

@@ -34,10 +34,10 @@ describe(convertMaxLineLength, () => {
         const result = convertMaxLineLength({
             ruleArguments: [
                 {
-                    limit: 123,
-                    "ignore-pattern": "^import |^export {(.*?)}",
-                    "check-strings": true,
                     "check-regex": true,
+                    "check-strings": true,
+                    "ignore-pattern": "^import |^export {(.*?)}",
+                    limit: 123,
                 },
             ],
         });
@@ -63,8 +63,8 @@ describe(convertMaxLineLength, () => {
         const result = convertMaxLineLength({
             ruleArguments: [
                 {
-                    limit: 123,
                     "check-strings": true,
+                    limit: 123,
                 },
             ],
         });
@@ -113,8 +113,8 @@ describe(convertMaxLineLength, () => {
         const result = convertMaxLineLength({
             ruleArguments: [
                 {
-                    limit: 123,
                     "check-regex": true,
+                    limit: 123,
                 },
             ],
         });
@@ -138,8 +138,8 @@ describe(convertMaxLineLength, () => {
         const result = convertMaxLineLength({
             ruleArguments: [
                 {
-                    limit: 123,
                     "check-regex": false,
+                    limit: 123,
                 },
             ],
         });

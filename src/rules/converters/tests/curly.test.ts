@@ -9,7 +9,6 @@ describe(convertCurly, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [],
                     ruleName: "curly",
                 },
             ],

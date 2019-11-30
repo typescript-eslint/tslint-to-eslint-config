@@ -13,6 +13,7 @@ import { convertClassName } from "./converters/class-name";
 import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
+import { convertDeprecation } from "./converters/deprecation";
 import { convertEofline } from "./converters/eofline";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
@@ -117,6 +118,7 @@ import { convertSpaceBeforeFunctionParen } from "./converters/space-before-funct
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
 import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
+import { convertTrailingComma } from "./converters/trailing-comma";
 import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -147,6 +149,7 @@ export const converters = new Map([
     ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
+    ["deprecation", convertDeprecation],
     ["eofline", convertEofline],
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
@@ -251,6 +254,7 @@ export const converters = new Map([
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],

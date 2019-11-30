@@ -12,17 +12,13 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
     const spaceCommentRuleArguments: string[] = [];
     const capitalizedNotices: string[] = [];
 
-    const hasCheckSpace = tslintRule.ruleArguments.includes("check-space");
-    const hasCheckLowercase = tslintRule.ruleArguments.includes("check-lowercase");
-    const hasCheckUppercase = tslintRule.ruleArguments.includes("check-uppercase");
-
-    if (!hasCheckSpace) {
+    if (!tslintRule.ruleArguments.includes("check-space")) {
         spaceCommentRuleArguments.push("never");
     }
 
-    if (hasCheckUppercase) {
+    if (tslintRule.ruleArguments.includes("check-uppercase")) {
         capitalizedRuleArguments.push("always");
-    } else if (hasCheckLowercase) {
+    } else if (tslintRule.ruleArguments.includes("check-lowercase")) {
         capitalizedRuleArguments.push("never");
     }
 
@@ -41,12 +37,16 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
         rules: [
             {
                 ruleName: "capitalized-comments",
-                ruleArguments: capitalizedRuleArguments,
-                notices: capitalizedNotices,
+                ...(capitalizedRuleArguments.length !== 0 && {
+                    ruleArguments: capitalizedRuleArguments,
+                }),
+                ...(capitalizedNotices.length !== 0 && { notices: capitalizedNotices }),
             },
             {
                 ruleName: "spaced-comment",
-                ruleArguments: spaceCommentRuleArguments,
+                ...(spaceCommentRuleArguments.length !== 0 && {
+                    ruleArguments: spaceCommentRuleArguments,
+                }),
             },
         ],
     };

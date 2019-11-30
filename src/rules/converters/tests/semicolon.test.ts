@@ -9,11 +9,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["always"],
+                    ruleName: "@typescript-eslint/semi",
                 },
                 {
-                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -27,6 +26,7 @@ describe(convertSemicolon, () => {
                             },
                         },
                     ],
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                 },
             ],
         });
@@ -40,11 +40,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["never"],
+                    ruleName: "@typescript-eslint/semi",
                 },
                 {
-                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
                         "error",
                         {
@@ -58,6 +57,7 @@ describe(convertSemicolon, () => {
                             },
                         },
                     ],
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                 },
             ],
         });

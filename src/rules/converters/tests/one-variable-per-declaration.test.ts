@@ -10,6 +10,7 @@ describe(convertOneVariablePerDeclaration, () => {
             rules: [
                 {
                     notices: ["Variables declared in for loops will no longer be checked."],
+                    ruleArguments: ["never"],
                     ruleName: "one-var",
                 },
             ],
@@ -24,6 +25,7 @@ describe(convertOneVariablePerDeclaration, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleArguments: ["never"],
                     ruleName: "one-var",
                 },
             ],

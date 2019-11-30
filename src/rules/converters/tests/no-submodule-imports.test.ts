@@ -7,12 +7,12 @@ describe(convertNoSubmoduleImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
                     ruleName: "import/no-internal-modules",
                 },
             ],
-            plugins: ["eslint-plugin-import"],
         });
     });
 
@@ -22,13 +22,13 @@ describe(convertNoSubmoduleImports, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
-                    ruleName: "import/no-internal-modules",
                     ruleArguments: [{ allow: [true, "rxjs/*"] }],
+                    ruleName: "import/no-internal-modules",
                 },
             ],
-            plugins: ["eslint-plugin-import"],
         });
     });
 });

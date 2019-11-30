@@ -4,7 +4,7 @@ import { importer } from "./importer";
 export const findRawConfiguration = async <Configuration>(
     fileImporter: SansDependencies<typeof importer>,
     filePath: string,
-    defaults: Partial<Configuration>,
+    defaults: Partial<Configuration> = {},
 ): Promise<Configuration | Error> => {
     let results: Configuration;
 

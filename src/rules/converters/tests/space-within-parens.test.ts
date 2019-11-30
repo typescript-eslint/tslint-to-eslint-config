@@ -11,7 +11,6 @@ describe(convertSpaceWithinParens, () => {
                 {
                     ruleArguments: ["never"],
                     ruleName: "@typescript-eslint/space-within-parens",
-                    notices: [],
                 },
             ],
         });
@@ -25,9 +24,9 @@ describe(convertSpaceWithinParens, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    notices: ["The number of spaces will be ignored"],
                     ruleArguments: ["always"],
                     ruleName: "@typescript-eslint/space-within-parens",
-                    notices: ["The number of spaces will be ignored"],
                 },
             ],
         });

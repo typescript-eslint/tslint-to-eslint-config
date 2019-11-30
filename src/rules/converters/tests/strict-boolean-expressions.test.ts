@@ -13,8 +13,6 @@ describe(convertStrictBooleanExpressions, () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/strict-boolean-expressions",
-                    ruleArguments: [],
-                    notices: [],
                 },
             ],
         });
@@ -28,9 +26,8 @@ describe(convertStrictBooleanExpressions, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/strict-boolean-expressions",
-                    ruleArguments: [],
                     notices: [ForbiddenOtherNonBooleanTypes],
+                    ruleName: "@typescript-eslint/strict-boolean-expressions",
                 },
             ],
         });
@@ -44,13 +41,13 @@ describe(convertStrictBooleanExpressions, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/strict-boolean-expressions",
+                    notices: [ForbiddenOtherNonBooleanTypes],
                     ruleArguments: [
                         {
                             allowNullable: true,
                         },
                     ],
-                    notices: [ForbiddenOtherNonBooleanTypes],
+                    ruleName: "@typescript-eslint/strict-boolean-expressions",
                 },
             ],
         });
@@ -64,13 +61,13 @@ describe(convertStrictBooleanExpressions, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/strict-boolean-expressions",
+                    notices: [ForbiddenOtherNonBooleanTypes],
                     ruleArguments: [
                         {
                             ignoreRhs: true,
                         },
                     ],
-                    notices: [ForbiddenOtherNonBooleanTypes],
+                    ruleName: "@typescript-eslint/strict-boolean-expressions",
                 },
             ],
         });
@@ -94,14 +91,14 @@ describe(convertStrictBooleanExpressions, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/strict-boolean-expressions",
+                    notices: [ForbiddenOtherNonBooleanTypes],
                     ruleArguments: [
                         {
                             allowNullable: true,
                             ignoreRhs: true,
                         },
                     ],
-                    notices: [ForbiddenOtherNonBooleanTypes],
+                    ruleName: "@typescript-eslint/strict-boolean-expressions",
                 },
             ],
         });
