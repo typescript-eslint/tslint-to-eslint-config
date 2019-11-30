@@ -34,6 +34,7 @@ export const logMissingConversionTarget = <T>(
     missingOutputMapping: (missing: T) => string,
     missing: T[],
     logger: Logger,
+    additionalWarnings: string[] = [],
 ) => {
     logger.stdout.write(chalk.yellowBright(`️👀 ${missing.length}`));
     logger.stdout.write(
@@ -43,11 +44,16 @@ export const logMissingConversionTarget = <T>(
                 : ` ${conversionTypeName}s do not yet have ESLint equivalents`,
         ),
     );
-    logger.stdout.write(
-        chalk.yellow(
-            ` (see generated log file); defaulting to eslint-plugin-tslint for these ${conversionTypeName}s.`,
-        ),
-    );
+    logger.stdout.write(chalk.yellow(` (see generated log file)`));
+
+    if (additionalWarnings.length > 0) {
+        logger.stdout.write(chalk.yellow("; "));
+    }
+    for (const warning of additionalWarnings) {
+        logger.stdout.write(chalk.yellow(warning));
+    }
+    logger.stdout.write(chalk.yellow("."));
+
     logger.stdout.write(chalk.yellowBright(` 👀${EOL}`));
 
     logger.info.write(missing.map(conversion => missingOutputMapping(conversion)).join(""));

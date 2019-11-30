@@ -28,11 +28,13 @@ export const reportConversionResults = (
     if (ruleConversionResults.missing.length !== 0) {
         const missingSettingOutputMapping = (setting: TSLintRuleOptions) =>
             `${setting.ruleName} does not yet have an ESLint equivalent.${EOL}`;
+        const additionalWarnings = [`defaulting to eslint-plugin-tslint for these rules`];
         logMissingConversionTarget(
             "rule",
             missingSettingOutputMapping,
             ruleConversionResults.missing,
             dependencies.logger,
+            additionalWarnings,
         );
     }
 
