@@ -11,7 +11,7 @@ export type ConvertSettingsDependencies = {
 export type SettingConversionResults = {
     converted: Map<string, EditorSetting>;
     failed: ErrorSummary[];
-    missing: EditorSetting[];
+    missing: Pick<EditorSetting, "settingName">[];
 };
 
 export type EditorConfigurationSettings = Record<string, any>;
@@ -22,14 +22,15 @@ export const convertSettings = (
 ): SettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
-    const missing: EditorSetting[] = [];
+    const missing: Pick<EditorSetting, "settingName">[] = [];
 
     for (const [settingName, value] of Object.entries(rawEditorSettings)) {
         const editorSetting = { settingName, value };
         const conversion = convertSetting(editorSetting, dependencies.converters);
 
         if (conversion === undefined) {
-            missing.push(editorSetting);
+            const { settingName } = editorSetting;
+            missing.push({ settingName });
             continue;
         }
 
@@ -43,7 +44,7 @@ export const convertSettings = (
             const newConversion = { ...changes };
 
             if (existingConversion === undefined) {
-                converted.set(changes.settingName, newConversion);
+                converted.set(settingName, newConversion);
                 continue;
             }
         }

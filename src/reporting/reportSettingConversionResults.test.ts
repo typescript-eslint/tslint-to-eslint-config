@@ -109,7 +109,6 @@ describe("reportSettingConversionResults", () => {
             missing: [
                 {
                     settingName: "tslint-setting-one",
-                    value: "nothing-to-convert-to",
                 },
             ],
         });
@@ -136,11 +135,9 @@ describe("reportSettingConversionResults", () => {
             missing: [
                 {
                     settingName: "tslint-setting-one",
-                    value: "nothing-to-convert-to",
                 },
                 {
                     settingName: "tslint-setting-two",
-                    value: 123,
                 },
             ],
         });

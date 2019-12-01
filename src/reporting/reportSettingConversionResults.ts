@@ -26,7 +26,7 @@ export const reportSettingConversionResults = (
     }
 
     if (settingConversionResults.missing.length !== 0) {
-        const missingSettingOutputMapping = (setting: EditorSetting) =>
+        const missingSettingOutputMapping = (setting: Pick<EditorSetting, "settingName">) =>
             `${setting.settingName} does not yet have an ESLint equivalent.${EOL}`;
         logMissingConversionTarget(
             "setting",
