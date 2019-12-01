@@ -1,7 +1,7 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { EditorConfiguration } from "./editorConfiguration";
-import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 import { DeepPartial } from "./findReportedConfiguration";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 
 export type FindEditorConfigurationDependencies = {
     fileSystem: Pick<FileSystem, "readFile">;
@@ -26,10 +26,10 @@ const readConfiguration = async <Configuration>(
     try {
         const fileContents = await fileSystem.readFile(path);
         if (fileContents instanceof Error) {
-            throw new Error(path);
+            throw new Error(fileContents.message);
         }
         return JSON.parse(fileContents) as DeepPartial<Configuration>;
     } catch (error) {
-        return new Error(`Error parsing configuration: ${error}`);
+        return error;
     }
 };
