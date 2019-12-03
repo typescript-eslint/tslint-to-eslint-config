@@ -40,13 +40,7 @@ export const convertSettings = (
         }
 
         for (const changes of conversion.settings) {
-            const existingConversion = converted.get(changes.settingName);
-            const newConversion = { ...changes };
-
-            if (existingConversion === undefined) {
-                converted.set(settingName, newConversion);
-                continue;
-            }
+            converted.set(settingName, { ...changes });
         }
     }
 
