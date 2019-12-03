@@ -73,14 +73,14 @@ describe("findEditorConfiguration", () => {
 
     it("parses object from configuration path when read successfully", async () => {
         // Arrange
-        const config = {
+        const originalConfig = {
             "typescript.tsdk": "node_modules/typescript/lib",
             "editor.tabSize": 4,
             "editor.codeActionsOnSave": {
                 "source.organizeImports": false,
             },
         };
-        const data = JSON.stringify(config);
+        const data = JSON.stringify(originalConfig);
         const dependencies = createStubDependencies({
             fileSystem: createStubFileSystem({ data }),
         });
@@ -89,6 +89,6 @@ describe("findEditorConfiguration", () => {
         const result = await findEditorConfiguration(dependencies, stubConfigPath);
 
         // Assert
-        expect(result).toEqual(config);
+        expect(result).toEqual(originalConfig);
     });
 });
