@@ -2,9 +2,9 @@ import { SansDependencies } from "../binding";
 import { writeConversionResults } from "../creation/writeEditorConfigConversionResults";
 import { findEditorConfiguration } from "../input/findEditorConfiguration";
 import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
+import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
 import { convertSettings } from "../settings/convertSettings";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
-import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
 
 export type ConvertEditorConfigDependencies = {
     convertSettings: SansDependencies<typeof convertSettings>;
@@ -20,7 +20,10 @@ export const convertEditorConfig = async (
     dependencies: ConvertEditorConfigDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
-    const originalEditorConfiguration = await dependencies.findEditorConfiguration(settings.editor);
+    const editorConfigPath = settings.editor ? settings.editor : DEFAULT_VSCODE_SETTINGS_PATH;
+    const originalEditorConfiguration = await dependencies.findEditorConfiguration(
+        editorConfigPath,
+    );
     if (originalEditorConfiguration instanceof Error) {
         return {
             errors: [originalEditorConfiguration],
@@ -30,7 +33,7 @@ export const convertEditorConfig = async (
 
     const settingConversionResults = dependencies.convertSettings(originalEditorConfiguration);
 
-    const outputPath = settings.editor ? settings.editor : DEFAULT_VSCODE_SETTINGS_PATH;
+    const outputPath = editorConfigPath;
     const fileWriteError = await dependencies.writeConversionResults(
         outputPath,
         settingConversionResults,
