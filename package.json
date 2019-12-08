@@ -5,7 +5,7 @@
     "bugs": {
         "url": "https://github.com/typescript-eslint/tslint-to-eslint-config/issues"
     },
-    "description": "Converts your TSLint configuration to the closest possible ESLint equivalent.",
+    "description": "Converts your TSLint configuration to the closest reasonable ESLint equivalent.",
     "dependencies": {
         "chalk": "3.0.0",
         "commander": "4.0.1",
