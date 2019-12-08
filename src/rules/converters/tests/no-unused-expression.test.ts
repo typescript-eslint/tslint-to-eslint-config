@@ -9,10 +9,10 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-unused-expressions",
                     notices: [
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
+                    ruleName: "no-unused-expressions",
                 },
             ],
         });
@@ -26,11 +26,11 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-unused-expressions",
-                    ruleArguments: [{ allowShortCircuit: true }],
                     notices: [
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
+                    ruleArguments: [{ allowShortCircuit: true }],
+                    ruleName: "no-unused-expressions",
                 },
             ],
         });
@@ -59,8 +59,8 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-unused-expressions",
                     ruleArguments: [{ allowShortCircuit: true }],
+                    ruleName: "no-unused-expressions",
                 },
             ],
         });
@@ -74,8 +74,8 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-unused-expressions",
                     ruleArguments: [{ allowTaggedTemplates: true, allowShortCircuit: true }],
+                    ruleName: "no-unused-expressions",
                 },
             ],
         });

@@ -12,6 +12,11 @@ export const convertCurly: RuleConverter = tslintRule => {
     }
 
     return {
-        rules: [{ ruleArguments, ruleName: "curly" }],
+        rules: [
+            {
+                ...(ruleArguments.length !== 0 && { ruleArguments }),
+                ruleName: "curly",
+            },
+        ],
     };
 };

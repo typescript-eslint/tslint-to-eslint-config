@@ -4,7 +4,7 @@ export const convertNoObjectLiteralTypeAssertion: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "@typescript-eslint/no-object-literal-type-assertion",
+                ruleName: "@typescript-eslint/consistent-type-assertions",
             },
         ],
     };

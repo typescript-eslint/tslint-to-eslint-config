@@ -22,8 +22,11 @@ const createStubDependencies = (
 
 const createStubOriginalConfigurationsData = () => ({
     tslint: {
-        rules: [],
-        rulesDirectory: [],
+        full: {
+            rules: [],
+            rulesDirectory: [],
+        },
+        raw: {},
     },
 });
 

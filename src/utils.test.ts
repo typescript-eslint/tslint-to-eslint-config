@@ -1,4 +1,4 @@
-import { isDefined, isError } from "./utils";
+import { isDefined, isError, uniqueFromSources } from "./utils";
 
 describe("isDefined", () => {
     it("returns true when the item is defined", () => {
@@ -45,5 +45,40 @@ describe("isError", () => {
 
         // Assert
         expect(result).toBe(false);
+    });
+});
+
+describe("uniqueFromSources", () => {
+    it("returns unique items when multiple are given", () => {
+        // Arange
+        const sources = ["a", "b", "b", "c"];
+
+        // Act
+        const result = uniqueFromSources(...sources);
+
+        // Assert
+        expect(result).toEqual(["a", "b", "c"]);
+    });
+
+    it("returns items from a nested array", () => {
+        // Arange
+        const sources = ["a", ["b"], "c"];
+
+        // Act
+        const result = uniqueFromSources(...sources);
+
+        // Assert
+        expect(result).toEqual(["a", "b", "c"]);
+    });
+
+    it("filters out undefined inputs", () => {
+        // Arange
+        const sources = ["a", "b", "c", undefined];
+
+        // Act
+        const result = uniqueFromSources(...sources);
+
+        // Assert
+        expect(result).toEqual(["a", "b", "c"]);
     });
 });

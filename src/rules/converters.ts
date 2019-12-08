@@ -1,4 +1,5 @@
 import { convertAdjacentOverloadSignatures } from "./converters/adjacent-overload-signatures";
+import { convertAlign } from "./converters/align";
 import { convertArrayType } from "./converters/array-type";
 import { convertArrowParens } from "./converters/arrow-parens";
 import { convertArrowReturnShorthand } from "./converters/arrow-return-shorthand";
@@ -9,10 +10,11 @@ import { convertBanTypes } from "./converters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./converters/binary-expression-operand-order";
 import { convertCallableTypes } from "./converters/callable-types";
 import { convertClassName } from "./converters/class-name";
+import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
+import { convertDeprecation } from "./converters/deprecation";
 import { convertEofline } from "./converters/eofline";
-import { convertMemberAccess } from "./converters/member-access";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
@@ -25,6 +27,7 @@ import { convertLinebreakStyle } from "./converters/linebreak-style";
 import { convertMaxClassesPerFile } from "./converters/max-classes-per-file";
 import { convertMaxFileLineCount } from "./converters/max-file-line-count";
 import { convertMaxLineLength } from "./converters/max-line-length";
+import { convertMemberAccess } from "./converters/member-access";
 import { convertMemberOrdering } from "./converters/member-ordering";
 import { convertNewlineBeforeReturn } from "./converters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./converters/newline-per-chained-call";
@@ -53,6 +56,8 @@ import { convertNoExplicitAny } from "./converters/no-explicit-any";
 import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
+import { convertNoImplicitDependencies } from "./converters/no-implicit-dependencies";
+import { convertNoImportSideEffect } from "./converters/no-import-side-effect";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
 import { convertNoInvalidRegexp } from "./converters/no-invalid-regexp";
@@ -105,12 +110,16 @@ import { convertPreferObjectSpread } from "./converters/prefer-object-spread";
 import { convertPreferReadonly } from "./converters/prefer-readonly";
 import { convertPreferTemplate } from "./converters/prefer-template";
 import { convertPromiseFunctionAsync } from "./converters/promise-function-async";
+import { convertQuotemark } from "./converters/quotemark";
 import { convertRadix } from "./converters/radix";
 import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands";
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
+import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
+import { convertTrailingComma } from "./converters/trailing-comma";
+import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
 import { convertTypeofCompare } from "./converters/typeof-compare";
@@ -119,14 +128,14 @@ import { convertUnnecessaryBind } from "./converters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./converters/unnecessary-constructor";
 import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
-import { convertQuotemark } from "./converters/quotemark";
-import { convertTripleEquals } from "./converters/triple-equals";
+import { convertVariableName } from "./converters/variable-name";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
 export const converters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
+    ["align", convertAlign],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
@@ -137,8 +146,10 @@ export const converters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
+    ["deprecation", convertDeprecation],
     ["eofline", convertEofline],
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
@@ -180,7 +191,9 @@ export const converters = new Map([
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
+    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
@@ -239,7 +252,9 @@ export const converters = new Map([
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
+    ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],
@@ -249,6 +264,7 @@ export const converters = new Map([
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
+    ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
@@ -258,11 +274,6 @@ export const converters = new Map([
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
     // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
-    // ["quotemark", convertQuotemark], // quotes
-    // ["triple-equals", convertTripleEquals], // eqeqeq
-    // ["variable-name", convertVariableName], // a bunch of rules...
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],

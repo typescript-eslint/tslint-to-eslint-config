@@ -1,9 +1,9 @@
-import { OriginalConfigurations } from "../../input/findOriginalConfigurations";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 
 export const createEnv = ({
     packages,
     typescript,
-}: Pick<OriginalConfigurations, "packages" | "typescript">) => {
+}: Pick<AllOriginalConfigurations, "packages" | "typescript">) => {
     const browser =
         typescript === undefined ||
         typescript.compilerOptions.lib === undefined ||

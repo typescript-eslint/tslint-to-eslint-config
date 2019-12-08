@@ -5,7 +5,14 @@ export const convertNoConsole: RuleConverter = tslintRule => {
         rules: [
             {
                 ...(tslintRule.ruleArguments.length !== 0 && {
-                    ruleArguments: [{ allow: tslintRule.ruleArguments }],
+                    notices: ["Custom console methods, if they exist, will no longer be allowed."],
+                    ruleArguments: [
+                        {
+                            allow: Object.keys(console).filter(
+                                method => !tslintRule.ruleArguments.includes(method),
+                            ),
+                        },
+                    ],
                 }),
                 ruleName: "no-console",
             },
