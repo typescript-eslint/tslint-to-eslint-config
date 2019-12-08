@@ -2,6 +2,9 @@ import { FileSystem } from "../adapters/fileSystem";
 import { isError } from "../utils";
 import * as utils from "tsutils";
 import * as ts from "typescript";
+import { converters } from "./converters";
+import { formatRawTslintRule } from "./formatRawTslintRule";
+import { ConversionError } from "../errors/conversionError";
 
 // Inspirated by:
 // - https://github.com/Microsoft/TypeScript/issues/21049
@@ -90,7 +93,7 @@ const replaceComments = async (
 
         const parsed = parseComment(commentText);
         if (parsed !== undefined) {
-            const { modifier } = parsed;
+            const { rulesList, isEnabled, modifier } = parsed;
             const switchRange = getSwitchRange(modifier, comment, sourceFile);
             if (switchRange !== undefined) {
                 console.log("---------- COMMENT TEXT -----------");
@@ -99,11 +102,31 @@ const replaceComments = async (
                 console.log(parsed);
                 console.log("SWITCH RANGE");
                 console.log(switchRange);
+                const rulesToSwitch =
+                    rulesList === "all"
+                        ? Array.from(converters.keys())
+                        : rulesList.filter(ruleKey => converters.has(ruleKey));
+                for (const ruleToSwitch of rulesToSwitch) {
+                    switchRulename(ruleToSwitch, isEnabled, switchRange.pos, switchRange.end);
+                }
             }
         }
     });
     return await dependencies.fileSystem.writeFile(fileName, fileContent);
 };
+
+function switchRulename(ruleName: string, _isEnable: boolean, _start: number, _end: number): void {
+    const tslintRuleConverter = converters.get(ruleName);
+    if (tslintRuleConverter) {
+        const tslintRule = formatRawTslintRule(ruleName, { ruleName });
+        const conversion = tslintRuleConverter(tslintRule);
+        if (!(conversion instanceof ConversionError)) {
+            const eslintRules = conversion.rules.map(r => r.ruleName);
+            console.log(`Rulename: ${ruleName}`);
+            console.log(eslintRules);
+        }
+    }
+}
 
 function getSwitchRange(
     modifier: Modifier,
