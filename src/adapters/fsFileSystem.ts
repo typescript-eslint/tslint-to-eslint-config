@@ -6,6 +6,7 @@ import { FileSystem, ReadDirOptions } from "./fileSystem";
 const readFile = promisify(fs.readFile);
 const readDir = promisify(fs.readdir);
 const writeFile = promisify(fs.writeFile);
+const writeFileSync = fs.writeFileSync;
 
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {
@@ -25,6 +26,13 @@ export const fsFileSystem: FileSystem = {
     writeFile: async (filePath: string, contents: string) => {
         try {
             return writeFile(filePath, contents);
+        } catch (error) {
+            return error;
+        }
+    },
+    writeFileSync: (filePath: string, contents: string) => {
+        try {
+            return writeFileSync(filePath, contents);
         } catch (error) {
             return error;
         }

@@ -1,7 +1,7 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { isError } from "../utils";
 import * as utils from "tsutils";
-import * as ts from "typescript";
+import ts from "typescript";
 import { converters } from "./converters";
 import { formatRawTslintRule } from "./formatRawTslintRule";
 import { ConversionError } from "../errors/conversionError";
@@ -10,7 +10,7 @@ import { ConversionError } from "../errors/conversionError";
 // - https://github.com/Microsoft/TypeScript/issues/21049
 // - https://github.com/palantir/tslint/blob/master/src/enableDisableRules.ts
 export type ConvertCommentsResultsDependencies = {
-    fileSystem: Pick<FileSystem, "readDir" | "readFile" | "writeFile">;
+    fileSystem: Pick<FileSystem, "readDir" | "readFile" | "writeFile" | "writeFileSync">;
 };
 
 const tslintRegex: RegExp = new RegExp(/\s*tslint:(enable|disable)(?:-(line|next-line))?(:|\s|$)/g);
@@ -71,8 +71,14 @@ function splitOnSpaces(str: string): string[] {
     return str.split(/\s+/).filter(s => s !== "");
 }
 
+interface IReplacement {
+    start: number;
+    end: number;
+    replacementText: string;
+}
+
 const replaceComments = async (
-    dependencies: ConvertCommentsResultsDependencies,
+    _dependencies: ConvertCommentsResultsDependencies,
     fileName: string,
     fileContent: string,
 ) => {
@@ -86,14 +92,15 @@ const replaceComments = async (
     // If not, it is `MultiLineCommentTrivia` as this method does check if it is a comment...
     // or that's what I think it does.
     utils.forEachComment(sourceFile, (fullText, comment) => {
+        const replacements: IReplacement[] = [];
         const commentText =
             comment.kind === ts.SyntaxKind.SingleLineCommentTrivia
-                ? fullText.substring(comment.pos + 2, comment.end)
-                : fullText.substring(comment.pos + 2, comment.end - 2);
+                ? fullText.substring(comment.pos + 3, comment.end)
+                : fullText.substring(comment.pos + 3, comment.end - 2);
 
         const parsed = parseComment(commentText);
         if (parsed !== undefined) {
-            const { rulesList, isEnabled, modifier } = parsed;
+            const { rulesList, modifier } = parsed;
             const switchRange = getSwitchRange(modifier, comment, sourceFile);
             if (switchRange !== undefined) {
                 console.log("---------- COMMENT TEXT -----------");
@@ -107,15 +114,37 @@ const replaceComments = async (
                         ? Array.from(converters.keys())
                         : rulesList.filter(ruleKey => converters.has(ruleKey));
                 for (const ruleToSwitch of rulesToSwitch) {
-                    switchRulename(ruleToSwitch, isEnabled, switchRange.pos, switchRange.end);
+                    const transformedRules = switchRule(ruleToSwitch);
+                    if (transformedRules) {
+                        replacements.push({
+                            start: switchRange.pos,
+                            end: switchRange.end,
+                            replacementText: transformedRules.join(" "),
+                        });
+                    }
                 }
             }
         }
+        // Reverse the replacement list
+        replacements.reverse();
+
+        const newText = getNewText(fileContent, replacements);
+        console.log("************** NEW FILE BEING WRITTEN ! **************");
+        console.log(newText);
+        // dependencies.fileSystem.writeFileSync(fileName, newText);
     });
-    return await dependencies.fileSystem.writeFile(fileName, fileContent);
+    return true;
 };
 
-function switchRulename(ruleName: string, _isEnable: boolean, _start: number, _end: number): void {
+function getNewText(sourceText: string, replacementsInReverse: IReplacement[]) {
+    for (const { start, end, replacementText } of replacementsInReverse) {
+        sourceText = sourceText.slice(0, start) + replacementText + sourceText.slice(end);
+    }
+
+    return sourceText;
+}
+
+function switchRule(ruleName: string): string[] | null {
     const tslintRuleConverter = converters.get(ruleName);
     if (tslintRuleConverter) {
         const tslintRule = formatRawTslintRule(ruleName, { ruleName });
@@ -124,8 +153,10 @@ function switchRulename(ruleName: string, _isEnable: boolean, _start: number, _e
             const eslintRules = conversion.rules.map(r => r.ruleName);
             console.log(`Rulename: ${ruleName}`);
             console.log(eslintRules);
+            return eslintRules;
         }
     }
+    return null;
 }
 
 function getSwitchRange(
