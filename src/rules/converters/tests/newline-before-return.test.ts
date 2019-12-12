@@ -11,7 +11,6 @@ describe(convertNewlineBeforeReturn, () => {
                 {
                     ruleName: "padding-line-between-statements",
                     ruleArguments: [
-                        "error",
                         {
                             blankLine: "always",
                             next: "return",
