@@ -24,7 +24,6 @@ export const convertSemicolon: RuleConverter = tslintRule => {
                 : [
                       {
                           ruleArguments: [
-                              "error",
                               {
                                   multiline: {
                                       delimiter: getMultilineDelimiter(tslintRule.ruleArguments[0]),
