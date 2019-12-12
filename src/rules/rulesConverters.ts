@@ -277,7 +277,6 @@ export const rulesConverters = new Map([
 
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
-    // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
