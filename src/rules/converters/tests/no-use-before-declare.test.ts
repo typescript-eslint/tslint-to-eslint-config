@@ -9,7 +9,7 @@ describe(convertNoUseBeforeDeclare, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/no-use-before-declare",
+                    ruleName: "@typescript-eslint/no-use-before-define",
                 },
             ],
         });
