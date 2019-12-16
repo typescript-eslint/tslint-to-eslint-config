@@ -30,5 +30,5 @@ export type ConvertedEditorSettingChanges = {
     /**
      * Equivalent ESLint editor setting name that should be enabled.
      */
-    settingName: string;
+    editorSettingName: string;
 };

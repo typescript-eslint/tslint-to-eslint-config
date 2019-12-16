@@ -1,15 +1,15 @@
 import { SansDependencies } from "../binding";
 import { writeConversionResults } from "../creation/writeEditorConfigConversionResults";
+import { convertEditorSettings } from "../editorSettings/convertEditorSettings";
 import { findEditorConfiguration } from "../input/findEditorConfiguration";
 import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
-import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
-import { convertSettings } from "../settings/convertSettings";
+import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type ConvertEditorConfigDependencies = {
-    convertSettings: SansDependencies<typeof convertSettings>;
+    convertEditorSettings: SansDependencies<typeof convertEditorSettings>;
     findEditorConfiguration: SansDependencies<typeof findEditorConfiguration>;
-    reportConversionResults: SansDependencies<typeof reportSettingConversionResults>;
+    reportConversionResults: SansDependencies<typeof reportEditorSettingConversionResults>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -31,7 +31,9 @@ export const convertEditorConfig = async (
         };
     }
 
-    const settingConversionResults = dependencies.convertSettings(originalEditorConfiguration);
+    const settingConversionResults = dependencies.convertEditorSettings(
+        originalEditorConfiguration,
+    );
 
     const outputPath = editorConfigPath;
     const fileWriteError = await dependencies.writeConversionResults(

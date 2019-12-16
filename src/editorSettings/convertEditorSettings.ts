@@ -1,31 +1,31 @@
 import { ConversionError } from "../errors/conversionError";
 import { ErrorSummary } from "../errors/errorSummary";
+import { convertEditorSetting } from "./convertEditorSetting";
 import { EditorSettingConverter } from "./converter";
-import { convertSetting } from "./convertSetting";
 import { EditorSetting } from "./types";
 
 const EDITOR_SETTINGS_PREFIX = "editor.";
 
-export type ConvertSettingsDependencies = {
+export type ConvertEditorSettingsDependencies = {
     converters: Map<string, EditorSettingConverter>;
 };
 
-export type SettingConversionResults = {
+export type EditorSettingConversionResults = {
     converted: Map<string, EditorSetting>;
     failed: ErrorSummary[];
-    missing: Pick<EditorSetting, "settingName">[];
+    missing: Pick<EditorSetting, "editorSettingName">[];
 };
 
 // The entire editor configuration of any keys and values.
 export type EditorConfiguration = Record<string, any>;
 
-export const convertSettings = (
-    dependencies: ConvertSettingsDependencies,
+export const convertEditorSettings = (
+    dependencies: ConvertEditorSettingsDependencies,
     rawEditorConfiguration: EditorConfiguration,
-): SettingConversionResults => {
+): EditorSettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
-    const missing: Pick<EditorSetting, "settingName">[] = [];
+    const missing: Pick<EditorSetting, "editorSettingName">[] = [];
 
     for (const [configurationName, value] of Object.entries(rawEditorConfiguration)) {
         // Configurations other than editor settings will be ignored.
@@ -34,12 +34,12 @@ export const convertSettings = (
             continue;
         }
 
-        const editorSetting = { settingName: configurationName, value };
-        const conversion = convertSetting(editorSetting, dependencies.converters);
+        const editorSetting = { editorSettingName: configurationName, value };
+        const conversion = convertEditorSetting(editorSetting, dependencies.converters);
 
         if (conversion === undefined) {
-            const { settingName } = editorSetting;
-            missing.push({ settingName });
+            const { editorSettingName } = editorSetting;
+            missing.push({ editorSettingName });
             continue;
         }
 
@@ -49,7 +49,7 @@ export const convertSettings = (
         }
 
         for (const changes of conversion.settings) {
-            converted.set(changes.settingName, { ...changes });
+            converted.set(changes.editorSettingName, { ...changes });
         }
     }
 

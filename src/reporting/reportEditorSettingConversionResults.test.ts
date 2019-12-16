@@ -2,18 +2,18 @@ import { EOL } from "os";
 
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
 import { createEmptySettingConversionResults } from "../conversion/conversionResults.stubs";
-import { EditorSetting } from "../settings/types";
-import { reportSettingConversionResults } from "./reportSettingConversionResults";
+import { EditorSetting } from "../editorSettings/types";
+import { reportEditorSettingConversionResults } from "./reportEditorSettingConversionResults";
 
-describe("reportSettingConversionResults", () => {
-    it("logs a successful conversion when there is one converted setting", () => {
+describe("reportEditorSettingConversionResults", () => {
+    it("logs a successful conversion when there is one converted editor setting", () => {
         // Arrange
         const conversionResults = createEmptySettingConversionResults({
             converted: new Map<string, EditorSetting>([
                 [
-                    "tslint-setting-one",
+                    "tslint-editor-setting-one",
                     {
-                        settingName: "tslint-setting-one",
+                        editorSettingName: "tslint-editor-setting-one",
                         value: 42,
                     },
                 ],
@@ -23,12 +23,12 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 1 setting replaced with its ESLint equivalent. ✨${EOL}`,
+            `✨ 1 editor setting replaced with its ESLint equivalent. ✨${EOL}`,
         );
     });
 
@@ -37,16 +37,16 @@ describe("reportSettingConversionResults", () => {
         const conversionResults = createEmptySettingConversionResults({
             converted: new Map<string, EditorSetting>([
                 [
-                    "tslint-setting-one",
+                    "tslint-editor-setting-one",
                     {
-                        settingName: "tslint-setting-one",
+                        editorSettingName: "tslint-editor-setting-one",
                         value: 42,
                     },
                 ],
                 [
-                    "tslint-setting-two",
+                    "tslint-editor-setting-two",
                     {
-                        settingName: "tslint-setting-two",
+                        editorSettingName: "tslint-editor-setting-two",
                         value: 4711,
                     },
                 ],
@@ -56,12 +56,12 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 2 settings replaced with their ESLint equivalents. ✨${EOL}`,
+            `✨ 2 editor settings replaced with their ESLint equivalents. ✨${EOL}`,
         );
     });
 
@@ -74,7 +74,7 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -93,7 +93,7 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -103,12 +103,12 @@ describe("reportSettingConversionResults", () => {
         );
     });
 
-    it("logs a missing setting when there is a missing setting", () => {
+    it("logs a missing editor setting when there is a missing setting", () => {
         // Arrange
         const conversionResults = createEmptySettingConversionResults({
             missing: [
                 {
-                    settingName: "tslint-setting-one",
+                    editorSettingName: "tslint-editor-setting-one",
                 },
             ],
         });
@@ -116,16 +116,16 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 1 setting does not yet have an ESLint equivalent (see generated log file). 👀",
+            "👀 1 editor setting does not yet have an ESLint equivalent (see generated log file). 👀",
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-setting-one does not yet have an ESLint equivalent.",
+            "tslint-editor-setting-one does not yet have an ESLint equivalent.",
         );
     });
 
@@ -134,10 +134,10 @@ describe("reportSettingConversionResults", () => {
         const conversionResults = createEmptySettingConversionResults({
             missing: [
                 {
-                    settingName: "tslint-setting-one",
+                    editorSettingName: "tslint-editor-setting-one",
                 },
                 {
-                    settingName: "tslint-setting-two",
+                    editorSettingName: "tslint-editor-setting-two",
                 },
             ],
         });
@@ -145,17 +145,17 @@ describe("reportSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportSettingConversionResults({ logger }, conversionResults);
+        reportEditorSettingConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 2 settings do not yet have ESLint equivalents (see generated log file). 👀",
+            "👀 2 editor settings do not yet have ESLint equivalents (see generated log file). 👀",
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-setting-one does not yet have an ESLint equivalent.",
-            "tslint-setting-two does not yet have an ESLint equivalent.",
+            "tslint-editor-setting-one does not yet have an ESLint equivalent.",
+            "tslint-editor-setting-two does not yet have an ESLint equivalent.",
         );
     });
 });

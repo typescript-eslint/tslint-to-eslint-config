@@ -2,11 +2,11 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
+import { EditorSetting } from "../editorSettings/types";
 import { ErrorSummary } from "../errors/errorSummary";
 import { ESLintRuleOptions } from "../rules/types";
-import { EditorSetting } from "../settings/types";
 
-export type EditorSettingEntry = Pick<EditorSetting, "settingName">;
+export type EditorSettingEntry = Pick<EditorSetting, "editorSettingName">;
 
 export const logSuccessfulConversions = (
     conversionTypeName: string,

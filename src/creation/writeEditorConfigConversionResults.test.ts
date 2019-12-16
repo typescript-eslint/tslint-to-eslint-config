@@ -1,9 +1,9 @@
 import { createStubFileSystem } from "../adapters/fileSystem.stub";
 import { createEmptySettingConversionResults } from "../conversion/conversionResults.stubs";
+import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
+import { EditorSetting } from "../editorSettings/types";
 import { EditorConfiguration } from "../input/editorConfiguration";
 import { DeepPartial } from "../input/findReportedConfiguration";
-import { SettingConversionResults } from "../settings/convertSettings";
-import { EditorSetting } from "../settings/types";
 import { formatJsonOutput } from "./formatting/formatters/formatJsonOutput";
 import {
     writeConversionResults,
@@ -51,14 +51,14 @@ describe("writeConversionResults", () => {
                     [
                         "eslint-setting-b",
                         {
-                            settingName: "eslint-setting-b",
+                            editorSettingName: "eslint-setting-b",
                             value: 42,
                         },
                     ],
                     [
                         "eslint-setting-a",
                         {
-                            settingName: "eslint-setting-a",
+                            editorSettingName: "eslint-setting-a",
                             value: 4711,
                         },
                     ],
@@ -90,7 +90,7 @@ describe("writeConversionResults", () => {
 
 function setupConversionEnvironment(
     overrides: {
-        conversionResults?: SettingConversionResults;
+        conversionResults?: EditorSettingConversionResults;
         originalConfig?: DeepPartial<EditorConfiguration>;
     } = {},
 ) {
@@ -107,7 +107,7 @@ function setupConversionEnvironment(
                 [
                     "tslint-setting-one",
                     {
-                        settingName: "tslint-setting-one",
+                        editorSettingName: "tslint-setting-one",
                         value: 42,
                     },
                 ],

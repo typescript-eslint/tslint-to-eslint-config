@@ -1,5 +1,5 @@
+import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
 import { RuleConversionResults } from "../rules/convertRules";
-import { SettingConversionResults } from "../settings/convertSettings";
 
 export const createEmptyConversionResults = (
     overrides: Partial<RuleConversionResults> = {},
@@ -12,8 +12,8 @@ export const createEmptyConversionResults = (
 });
 
 export const createEmptySettingConversionResults = (
-    overrides: Partial<SettingConversionResults> = {},
-): SettingConversionResults => ({
+    overrides: Partial<EditorSettingConversionResults> = {},
+): EditorSettingConversionResults => ({
     converted: new Map(),
     failed: [],
     missing: [],

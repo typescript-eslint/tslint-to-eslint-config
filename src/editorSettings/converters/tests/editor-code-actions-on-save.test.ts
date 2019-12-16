@@ -3,7 +3,7 @@ import { convertEditorCodeActionsOnSave } from "../editor-code-actions-on-save";
 describe(convertEditorCodeActionsOnSave, () => {
     test("conversion of 'source.fixAll.tslint' when value is true", () => {
         const result = convertEditorCodeActionsOnSave({
-            settingName: "editor.codeActionsOnSave",
+            editorSettingName: "editor.codeActionsOnSave",
             value: {
                 "source.fixAll.tslint": true,
             },
@@ -12,11 +12,11 @@ describe(convertEditorCodeActionsOnSave, () => {
         expect(result).toEqual({
             settings: [
                 {
-                    settingName: "editor.codeActionsOnSave",
+                    editorSettingName: "editor.codeActionsOnSave",
                     value: {},
                 },
                 {
-                    settingName: "eslint.autoFixOnSave",
+                    editorSettingName: "eslint.autoFixOnSave",
                     value: true,
                 },
             ],
@@ -25,7 +25,7 @@ describe(convertEditorCodeActionsOnSave, () => {
 
     test("conversion of 'source.fixAll.tslint' when value is false", () => {
         const result = convertEditorCodeActionsOnSave({
-            settingName: "editor.codeActionsOnSave",
+            editorSettingName: "editor.codeActionsOnSave",
             value: {
                 "source.fixAll.tslint": false,
             },
@@ -34,11 +34,11 @@ describe(convertEditorCodeActionsOnSave, () => {
         expect(result).toEqual({
             settings: [
                 {
-                    settingName: "editor.codeActionsOnSave",
+                    editorSettingName: "editor.codeActionsOnSave",
                     value: {},
                 },
                 {
-                    settingName: "eslint.autoFixOnSave",
+                    editorSettingName: "eslint.autoFixOnSave",
                     value: false,
                 },
             ],
@@ -47,7 +47,7 @@ describe(convertEditorCodeActionsOnSave, () => {
 
     test("conversion of 'source.fixAll.tslint' without touching any other 'editor.codeActionsOnSave'", () => {
         const result = convertEditorCodeActionsOnSave({
-            settingName: "editor.codeActionsOnSave",
+            editorSettingName: "editor.codeActionsOnSave",
             value: {
                 "one-property": 42,
                 "source.fixAll.tslint": true,
@@ -58,14 +58,14 @@ describe(convertEditorCodeActionsOnSave, () => {
         expect(result).toEqual({
             settings: [
                 {
-                    settingName: "editor.codeActionsOnSave",
+                    editorSettingName: "editor.codeActionsOnSave",
                     value: {
                         "one-property": 42,
                         "another-property": "foo",
                     },
                 },
                 {
-                    settingName: "eslint.autoFixOnSave",
+                    editorSettingName: "eslint.autoFixOnSave",
                     value: true,
                 },
             ],

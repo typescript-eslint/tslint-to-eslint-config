@@ -1,9 +1,9 @@
 import { ConversionError } from "../errors/conversionError";
-import { convertSettings } from "./convertSettings";
+import { convertEditorSettings } from "./convertEditorSettings";
+import { EditorSettingConversionResult, EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
-import { EditorSettingConverter, EditorSettingConversionResult } from "./converter";
 
-describe("convertSettings", () => {
+describe("convertEditorSettings", () => {
     it("skips entire conversion if none of the configurations is an editor setting", () => {
         // Arrange
         const { converters } = setupConversionEnvironment();
@@ -13,7 +13,10 @@ describe("convertSettings", () => {
         };
 
         // Act
-        const { converted, missing, failed } = convertSettings({ converters }, editorConfiguration);
+        const { converted, missing, failed } = convertEditorSettings(
+            { converters },
+            editorConfiguration,
+        );
 
         // Assert
         expect(converted.size).toEqual(0);
@@ -26,7 +29,7 @@ describe("convertSettings", () => {
         const conversionResult: EditorSettingConversionResult = {
             settings: [
                 {
-                    settingName: "editor.eslint-setting-a",
+                    editorSettingName: "editor.eslint-setting-a",
                     value: "a",
                 },
             ],
@@ -36,12 +39,15 @@ describe("convertSettings", () => {
 
         const editorConfiguration = {
             notAnEditorSetting: "a",
-            [editorSetting.settingName]: editorSetting,
+            [editorSetting.editorSettingName]: editorSetting,
             notAnEditorSettingEither: "b",
         };
 
         // Act
-        const { converted, missing, failed } = convertSettings({ converters }, editorConfiguration);
+        const { converted, missing, failed } = convertEditorSettings(
+            { converters },
+            editorConfiguration,
+        );
 
         // Assert
         expect(converted.size).toEqual(1);
@@ -54,25 +60,25 @@ describe("convertSettings", () => {
         const { editorSetting, converters } = setupConversionEnvironment();
 
         // Act
-        const { missing } = convertSettings(
+        const { missing } = convertEditorSettings(
             { converters },
-            { [editorSetting.settingName]: editorSetting },
+            { [editorSetting.editorSettingName]: editorSetting },
         );
 
         // Assert
-        expect(missing).toEqual([{ settingName: editorSetting.settingName }]);
+        expect(missing).toEqual([{ editorSettingName: editorSetting.editorSettingName }]);
     });
 
     it("marks a conversion as failed when returned a conversion error", () => {
         // Arrange
         const { editorSetting, converters } = setupConversionEnvironment();
         const conversionError = ConversionError.forSettingError(new Error(), editorSetting);
-        converters.set(editorSetting.settingName, () => conversionError);
+        converters.set(editorSetting.editorSettingName, () => conversionError);
 
         // Act
-        const { failed } = convertSettings(
+        const { failed } = convertEditorSettings(
             { converters },
-            { [editorSetting.settingName]: editorSetting },
+            { [editorSetting.editorSettingName]: editorSetting },
         );
 
         // Assert
@@ -84,7 +90,7 @@ describe("convertSettings", () => {
         const conversionResult: EditorSettingConversionResult = {
             settings: [
                 {
-                    settingName: "editor.eslint-setting-a",
+                    editorSettingName: "editor.eslint-setting-a",
                     value: "a",
                 },
             ],
@@ -92,9 +98,9 @@ describe("convertSettings", () => {
         const { editorSetting, converters } = setupConversionEnvironment(conversionResult);
 
         // Act
-        const { converted } = convertSettings(
+        const { converted } = convertEditorSettings(
             { converters },
-            { [editorSetting.settingName]: editorSetting.value },
+            { [editorSetting.editorSettingName]: editorSetting.value },
         );
 
         // Assert
@@ -103,7 +109,7 @@ describe("convertSettings", () => {
                 [
                     "editor.eslint-setting-a",
                     {
-                        settingName: "editor.eslint-setting-a",
+                        editorSettingName: "editor.eslint-setting-a",
                         value: "a",
                     },
                 ],
@@ -121,7 +127,7 @@ function setupConversionEnvironment(conversionResult?: EditorSettingConversionRe
 
 function createSampleEditorSetting(): EditorSetting {
     return {
-        settingName: "editor.tslint-setting-a",
+        editorSettingName: "editor.tslint-setting-a",
         value: "a",
     };
 }
@@ -133,7 +139,7 @@ function createConverters(
     const converters = new Map<string, EditorSettingConverter>();
 
     if (conversionResult !== undefined) {
-        converters.set(tslintSetting.settingName, () => conversionResult);
+        converters.set(tslintSetting.editorSettingName, () => conversionResult);
     }
 
     return converters;

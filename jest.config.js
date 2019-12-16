@@ -5,7 +5,7 @@ module.exports = {
         "!./src/**/*.stubs.ts",
         "!./src/adapters/*.ts",
         "!./src/rules/rulesConverters.ts",
-        "!./src/settings/settingsConverters.ts",
+        "!./src/editorSettings/editorSettingsConverters.ts",
         "!./src/rules/mergers.ts",
         "!./src/cli/main.ts",
     ],

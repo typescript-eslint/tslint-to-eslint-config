@@ -1,8 +1,8 @@
 import { FileSystem } from "../adapters/fileSystem";
+import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
 import { EditorConfiguration } from "../input/editorConfiguration";
-import { SettingConversionResults } from "../settings/convertSettings";
-import { formatOutput } from "./formatting/formatOutput";
 import { DeepPartial } from "../input/findReportedConfiguration";
+import { formatOutput } from "./formatting/formatOutput";
 
 export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;
@@ -11,7 +11,7 @@ export type WriteConversionResultsDependencies = {
 export const writeConversionResults = async (
     dependencies: WriteConversionResultsDependencies,
     outputPath: string,
-    conversionResults: SettingConversionResults,
+    conversionResults: EditorSettingConversionResults,
     originalConfiguration: DeepPartial<EditorConfiguration>,
 ) => {
     const output = {
@@ -22,7 +22,7 @@ export const writeConversionResults = async (
     return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };
 
-export const formatConvertedSettings = (conversionResults: SettingConversionResults) => {
+export const formatConvertedSettings = (conversionResults: EditorSettingConversionResults) => {
     const output: { [i: string]: string | any[] } = {};
     const sortedEntries = Array.from(conversionResults.converted).sort(([nameA], [nameB]) =>
         nameA.localeCompare(nameB),

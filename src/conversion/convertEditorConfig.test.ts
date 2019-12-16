@@ -1,4 +1,4 @@
-import { EditorSetting } from "../settings/types";
+import { EditorSetting } from "../editorSettings/types";
 import { FailedResult, ResultStatus } from "../types";
 import { createEmptySettingConversionResults } from "./conversionResults.stubs";
 import { convertEditorConfig, ConvertEditorConfigDependencies } from "./convertEditorConfig";
@@ -11,7 +11,7 @@ const stubSettings = {
 const createStubDependencies = (
     overrides: Partial<ConvertEditorConfigDependencies> = {},
 ): ConvertEditorConfigDependencies => ({
-    convertSettings: jest.fn(),
+    convertEditorSettings: jest.fn(),
     findEditorConfiguration: jest.fn().mockResolvedValue({}),
     reportConversionResults: jest.fn(),
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
@@ -73,7 +73,7 @@ describe("convertEditorConfig", () => {
         await convertEditorConfig(dependencies, stubSettings);
 
         // Assert
-        expect(dependencies.convertSettings).toHaveBeenCalledWith(originalConfig);
+        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(originalConfig);
     });
 
     it("reports conversion results when settings are converted successfully", async () => {
@@ -81,9 +81,9 @@ describe("convertEditorConfig", () => {
         const conversionResults = createEmptySettingConversionResults({
             converted: new Map<string, EditorSetting>([
                 [
-                    "tslint-setting-one",
+                    "tslint-editor-setting-one",
                     {
-                        settingName: "tslint-setting-one",
+                        editorSettingName: "tslint-editor-setting-one",
                         value: 42,
                     },
                 ],
@@ -91,7 +91,7 @@ describe("convertEditorConfig", () => {
         });
 
         const dependencies = createStubDependencies({
-            convertSettings: jest.fn().mockReturnValue(conversionResults),
+            convertEditorSettings: jest.fn().mockReturnValue(conversionResults),
         });
 
         // Act

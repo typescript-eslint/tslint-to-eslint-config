@@ -1,17 +1,17 @@
 import { ConversionError } from "../errors/conversionError";
+import { convertEditorSetting } from "./convertEditorSetting";
 import { EditorSettingConverter } from "./converter";
-import { convertSetting } from "./convertSetting";
 import { EditorSetting } from "./types";
 
-describe("convertSetting", () => {
+describe("convertEditorSetting", () => {
     it("returns undefined when no converter exists for a setting", () => {
         // Arrange
         const converters = new Map();
 
         // Act
-        const result = convertSetting(
+        const result = convertEditorSetting(
             {
-                settingName: "tslint-setting",
+                editorSettingName: "tslint-setting",
                 value: "any value",
             },
             converters,
@@ -26,7 +26,7 @@ describe("convertSetting", () => {
         const converted = {
             settings: [
                 {
-                    settingName: "eslint-setting",
+                    editorSettingName: "eslint-setting",
                     value: "new value",
                 },
             ],
@@ -36,9 +36,9 @@ describe("convertSetting", () => {
         ]);
 
         // Act
-        const result = convertSetting(
+        const result = convertEditorSetting(
             {
-                settingName: "tslint-setting",
+                editorSettingName: "tslint-setting",
                 value: "existing value",
             },
             converters,
@@ -60,12 +60,12 @@ describe("convertSetting", () => {
             ],
         ]);
         const tsLintSetting: EditorSetting = {
-            settingName: "tslint-setting",
+            editorSettingName: "tslint-setting",
             value: "existing value",
         };
 
         // Act
-        const result = convertSetting(tsLintSetting, converters);
+        const result = convertEditorSetting(tsLintSetting, converters);
 
         // Assert
         expect(result).toEqual(ConversionError.forSettingError(error, tsLintSetting));

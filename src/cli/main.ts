@@ -25,6 +25,11 @@ import {
 } from "../creation/writeConversionResults";
 import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
 import {
+    convertEditorSettings,
+    ConvertEditorSettingsDependencies,
+} from "../editorSettings/convertEditorSettings";
+import { editorSettingsConverters } from "../editorSettings/editorSettingsConverters";
+import {
     findEditorConfiguration,
     FindEditorConfigurationDependencies,
 } from "../input/findEditorConfiguration";
@@ -40,12 +45,10 @@ import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import { ReportConversionResultsDependencies } from "../reporting/dependencies";
 import { reportConversionResults } from "../reporting/reportConversionResults";
-import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
+import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
 import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
-import { convertSettings, ConvertSettingsDependencies } from "../settings/convertSettings";
-import { settingsConverters } from "../settings/settingsConverters";
 import { runCli, RunCliDependencies } from "./runCli";
 
 const convertRulesDependencies: ConvertRulesDependencies = {
@@ -53,8 +56,8 @@ const convertRulesDependencies: ConvertRulesDependencies = {
     mergers,
 };
 
-const convertSettingsDependencies: ConvertSettingsDependencies = {
-    converters: settingsConverters,
+const convertEditorSettingsDependencies: ConvertEditorSettingsDependencies = {
+    converters: editorSettingsConverters,
 };
 
 const nativeImporterDependencies: ImporterDependencies = {
@@ -100,10 +103,10 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
 };
 
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
-    convertSettings: bind(convertSettings, convertSettingsDependencies),
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
+    convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
     reportConversionResults: bind(
-        reportSettingConversionResults,
+        reportEditorSettingConversionResults,
         reportConversionResultsDependencies,
     ),
     writeConversionResults: bind(

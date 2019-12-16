@@ -12,11 +12,11 @@ export const convertEditorCodeActionsOnSave: EditorSettingConverter = originalCo
     return {
         settings: [
             {
-                settingName: "editor.codeActionsOnSave",
+                editorSettingName: "editor.codeActionsOnSave",
                 value: codeActionsOnSaveWithoutReplacedProperties,
             },
             {
-                settingName: "eslint.autoFixOnSave",
+                editorSettingName: "eslint.autoFixOnSave",
                 value: originalSourceFixAllTsLint,
             },
         ],

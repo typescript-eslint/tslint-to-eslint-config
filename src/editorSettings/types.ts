@@ -1,4 +1,4 @@
 export type EditorSetting = {
-    settingName: string;
+    editorSettingName: string;
     value: any;
 };

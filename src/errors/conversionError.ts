@@ -1,8 +1,8 @@
 import { EOL } from "os";
 
+import { EditorSetting } from "../editorSettings/types";
 import { TSLintRuleOptions } from "../rules/types";
 import { ErrorSummary } from "./errorSummary";
-import { EditorSetting } from "../settings/types";
 
 export class ConversionError implements ErrorSummary {
     private constructor(private readonly summary: string) {}
@@ -24,7 +24,7 @@ export class ConversionError implements ErrorSummary {
 
     public static forSettingError(error: Error, editorSetting: EditorSetting) {
         return new ConversionError(
-            `${editorSetting.settingName} threw an error during conversion: ${error.stack}${EOL}`,
+            `${editorSetting.editorSettingName} threw an error during conversion: ${error.stack}${EOL}`,
         );
     }
 
