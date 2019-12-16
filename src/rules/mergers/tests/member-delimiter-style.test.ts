@@ -35,6 +35,29 @@ describe(mergeNoMemberDelimiterStyle, () => {
         ]);
     });
 
+    test("original object config existing", () => {
+        const result = mergeNoMemberDelimiterStyle(
+            [
+                {
+                    multiline: {
+                        delimiter: "semi",
+                        requireLast: true,
+                    },
+                },
+            ],
+            undefined,
+        );
+
+        expect(result).toEqual([
+            {
+                multiline: {
+                    delimiter: "semi",
+                    requireLast: true,
+                },
+            },
+        ]);
+    });
+
     test("both object config existing", () => {
         const result = mergeNoMemberDelimiterStyle(
             [

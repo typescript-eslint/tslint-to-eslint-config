@@ -10,10 +10,12 @@ export const mergeNoMemberDelimiterStyle: RuleMerger = (existingOptions, newOpti
 
 const merge = (...objs: Record<string, any>[]) =>
     [...objs].reduce(
-        (acc, obj) =>
-            Object.keys(obj).reduce((_, k) => {
+        (acc, obj) => ({
+            ...acc,
+            ...Object.keys(obj).reduce((_, k) => {
                 acc[k] = obj[k];
                 return acc;
             }, {}),
+        }),
         {},
     );
