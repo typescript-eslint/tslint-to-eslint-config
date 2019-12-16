@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import { EOL } from "os";
+
 import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
