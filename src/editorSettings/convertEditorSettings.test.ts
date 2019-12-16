@@ -127,7 +127,7 @@ function setupConversionEnvironment(conversionResult?: EditorSettingConversionRe
 
 function createSampleEditorSetting(): EditorSetting {
     return {
-        editorSettingName: "editor.tslint-setting-a",
+        editorSettingName: "editor.tslint-editor-setting-a",
         value: "a",
     };
 }

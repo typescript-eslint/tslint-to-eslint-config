@@ -11,7 +11,7 @@ describe("convertEditorSetting", () => {
         // Act
         const result = convertEditorSetting(
             {
-                editorSettingName: "tslint-setting",
+                editorSettingName: "tslint-editor-setting",
                 value: "any value",
             },
             converters,
@@ -32,13 +32,13 @@ describe("convertEditorSetting", () => {
             ],
         };
         const converters = new Map<string, EditorSettingConverter>([
-            ["tslint-setting", () => converted],
+            ["tslint-editor-setting", () => converted],
         ]);
 
         // Act
         const result = convertEditorSetting(
             {
-                editorSettingName: "tslint-setting",
+                editorSettingName: "tslint-editor-setting",
                 value: "existing value",
             },
             converters,
@@ -53,14 +53,14 @@ describe("convertEditorSetting", () => {
         const error = new Error("oh no");
         const converters = new Map<string, EditorSettingConverter>([
             [
-                "tslint-setting",
+                "tslint-editor-setting",
                 () => {
                     throw error;
                 },
             ],
         ]);
         const tsLintSetting: EditorSetting = {
-            editorSettingName: "tslint-setting",
+            editorSettingName: "tslint-editor-setting",
             value: "existing value",
         };
 

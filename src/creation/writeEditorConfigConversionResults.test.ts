@@ -105,9 +105,9 @@ function setupConversionEnvironment(
         conversionResults: createEmptySettingConversionResults({
             converted: new Map<string, EditorSetting>([
                 [
-                    "tslint-setting-one",
+                    "tslint-editor-setting-one",
                     {
-                        editorSettingName: "tslint-setting-one",
+                        editorSettingName: "tslint-editor-setting-one",
                         value: 42,
                     },
                 ],
