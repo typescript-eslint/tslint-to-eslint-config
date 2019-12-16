@@ -101,7 +101,7 @@ describe("convertSettings", () => {
         expect(converted).toEqual(
             new Map([
                 [
-                    "editor.tslint-setting-a",
+                    "editor.eslint-setting-a",
                     {
                         settingName: "editor.eslint-setting-a",
                         value: "a",

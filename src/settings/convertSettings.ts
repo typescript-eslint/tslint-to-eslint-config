@@ -49,7 +49,7 @@ export const convertSettings = (
         }
 
         for (const changes of conversion.settings) {
-            converted.set(configurationName, { ...changes });
+            converted.set(changes.settingName, { ...changes });
         }
     }
 
