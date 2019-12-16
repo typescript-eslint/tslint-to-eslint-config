@@ -24,7 +24,10 @@ import {
     WriteConversionResultsDependencies,
 } from "../creation/writeConversionResults";
 import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
-import { findEditorConfiguration } from "../input/findEditorConfiguration";
+import {
+    findEditorConfiguration,
+    FindEditorConfigurationDependencies,
+} from "../input/findEditorConfiguration";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     findOriginalConfigurations,
@@ -67,8 +70,8 @@ const findConfigurationDependencies = {
     importer: boundImporter,
 };
 
-const findEditorConfigurationDependencies = {
-    fileSystem: fsFileSystem,
+const findEditorConfigurationDependencies: FindEditorConfigurationDependencies = {
+    importer: boundImporter,
 };
 
 const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
