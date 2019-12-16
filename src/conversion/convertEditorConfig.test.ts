@@ -128,10 +128,5 @@ describe("convertEditorConfig", () => {
 
         // Assert
         expect(dependencies.findEditorConfiguration).toHaveBeenCalledWith(expectedEditorPath);
-        // expect(dependencies.writeConversionResults).toHaveBeenCalledWith(
-        //     expectedEditorPath,
-        //     expect.anything(),
-        //     expect.anything(),
-        // );
     });
 });
