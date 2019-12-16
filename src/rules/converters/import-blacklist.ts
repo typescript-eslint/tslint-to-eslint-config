@@ -13,34 +13,42 @@ type ESLintComplexOption = RequireAtLeastOne<{
 }>;
 type ESLintOptions = ESLintSimpleOption | ESLintComplexOption;
 
-export const convertImportBlacklist: RuleConverter = tslintRule => {
-    const tslintRules = tslintRule.ruleArguments;
-    let ruleArguments: ESLintOptions = [];
+const NOTICE_MATCH_PATTERNS =
+    "ESLint and TSLint use different strategies to match patterns. TSLint uses standard regular expressions, but ESLint .gitignore spec.";
 
-    if (tslintRules.every(isString)) {
-        ruleArguments = tslintRules;
+export const convertImportBlacklist: RuleConverter = tslintRule => {
+    let ruleArguments: ESLintOptions = [];
+    const notices = [];
+
+    if (tslintRule.ruleArguments.every(isString)) {
+        ruleArguments = tslintRule.ruleArguments;
     } else {
-        ruleArguments = [
-            tslintRules.reduce((rules, rule) => {
-                if (!Array.isArray(rule)) {
-                    const eslintRule = isString(rule)
-                        ? rule
-                        : {
-                              name: Object.keys(rule)[0],
-                              importNames: Object.values(rule)[0] as string[],
-                          };
-                    return { ...rules, paths: [...(rules.paths || []), eslintRule] };
-                } else if (Array.isArray(rule)) {
-                    return { ...rules, patterns: [...(rules.patterns || []), ...rule] };
-                }
-                return rules;
-            }, {} as ESLintComplexOption),
-        ];
+        const objectOption = tslintRule.ruleArguments.reduce((rules, rule) => {
+            if (!Array.isArray(rule)) {
+                const eslintRule = isString(rule)
+                    ? rule
+                    : {
+                          name: Object.keys(rule)[0],
+                          importNames: Object.values(rule)[0] as string[],
+                      };
+                return { ...rules, paths: [...(rules.paths || []), eslintRule] };
+            }
+
+            return { ...rules, patterns: [...(rules.patterns || []), ...rule] };
+        }, {} as ESLintComplexOption);
+
+        if ("patterns" in objectOption && objectOption.patterns.length > 0) {
+            notices.push(NOTICE_MATCH_PATTERNS);
+        }
+
+        ruleArguments = [objectOption];
     }
+
     return {
         rules: [
             {
                 ruleArguments,
+                ...(notices.length > 0 && { notices }),
                 ruleName: "no-restricted-imports",
             },
         ],
