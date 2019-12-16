@@ -38,20 +38,20 @@ import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import { ReportConversionResultsDependencies } from "../reporting/dependencies";
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
-import { convertRules } from "../rules/convertRules";
+import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
-import { convertSettings } from "../settings/convertSettings";
+import { convertSettings, ConvertSettingsDependencies } from "../settings/convertSettings";
 import { settingsConverters } from "../settings/settingsConverters";
 import { runCli, RunCliDependencies } from "./runCli";
 
-const convertRulesDependencies = {
-    rulesConverters,
+const convertRulesDependencies: ConvertRulesDependencies = {
+    converters: rulesConverters,
     mergers,
 };
 
-const convertSettingsDependencies = {
-    settingsConverters,
+const convertSettingsDependencies: ConvertSettingsDependencies = {
+    converters: settingsConverters,
 };
 
 const nativeImporterDependencies: ImporterDependencies = {
