@@ -3,10 +3,14 @@ import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
 import { ErrorSummary } from "../errors/errorSummary";
+import { ESLintRuleOptions } from "../rules/types";
+import { EditorSetting } from "../settings/types";
 
-export const logSuccessfulConversions = <K, V>(
+export type EditorSettingEntry = Pick<EditorSetting, "settingName">;
+
+export const logSuccessfulConversions = (
     conversionTypeName: string,
-    converted: Map<K, V>,
+    converted: Map<string, EditorSetting | ESLintRuleOptions>,
     logger: Logger,
 ) => {
     logger.stdout.write(chalk.greenBright(`✨ ${converted.size}`));
