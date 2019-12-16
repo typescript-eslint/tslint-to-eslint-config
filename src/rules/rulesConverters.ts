@@ -133,7 +133,7 @@ import { convertVariableName } from "./converters/variable-name";
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
-export const converters = new Map([
+export const rulesConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["align", convertAlign],
     ["array-type", convertArrayType],

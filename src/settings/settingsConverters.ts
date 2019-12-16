@@ -3,4 +3,6 @@ import { convertEditorCodeActionsOnSave } from "./converters/editor-code-actions
 /**
  * Keys TSLint property names in editor settings to their ESLint editor settings converters.
  */
-export const converters = new Map([["editor.codeActionsOnSave", convertEditorCodeActionsOnSave]]);
+export const settingsConverters = new Map([
+    ["editor.codeActionsOnSave", convertEditorCodeActionsOnSave],
+]);

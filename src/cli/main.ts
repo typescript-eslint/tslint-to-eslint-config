@@ -5,15 +5,15 @@ import { fsFileSystem } from "../adapters/fsFileSystem";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
-import { ConvertConfigDependencies, convertConfig } from "../conversion/convertConfig";
+import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
 import {
-    ConvertEditorConfigDependencies,
     convertEditorConfig,
+    ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
 import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
 import {
-    RetrieveExtendsValuesDependencies,
     retrieveExtendsValues,
+    RetrieveExtendsValuesDependencies,
 } from "../creation/simplification/retrieveExtendsValues";
 import {
     simplifyPackageRules,
@@ -24,34 +24,34 @@ import {
     WriteConversionResultsDependencies,
 } from "../creation/writeConversionResults";
 import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
+import { findEditorConfiguration } from "../input/findEditorConfiguration";
+import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
 } from "../input/findOriginalConfigurations";
 import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
-import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
-import { findEditorConfiguration } from "../input/findEditorConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
-import { reportConversionResults } from "../reporting/reportConversionResults";
 import { ReportConversionResultsDependencies } from "../reporting/dependencies";
-import { converters as rulesConverters } from "../rules/converters";
-import { converters as settingsConverters } from "../settings/converters";
+import { reportConversionResults } from "../reporting/reportConversionResults";
+import { reportSettingConversionResults } from "../reporting/reportSettingConversionResults";
 import { convertRules } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
-import { runCli, RunCliDependencies } from "./runCli";
+import { rulesConverters } from "../rules/rulesConverters";
 import { convertSettings } from "../settings/convertSettings";
+import { settingsConverters } from "../settings/settingsConverters";
+import { runCli, RunCliDependencies } from "./runCli";
 
 const convertRulesDependencies = {
-    converters: rulesConverters,
+    rulesConverters,
     mergers,
 };
 
 const convertSettingsDependencies = {
-    converters: settingsConverters,
+    settingsConverters,
 };
 
 const nativeImporterDependencies: ImporterDependencies = {
