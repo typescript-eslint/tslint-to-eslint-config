@@ -74,6 +74,7 @@ import { convertNoObjectLiteralTypeAssertion } from "./converters/no-object-lite
 import { convertNoOctalLiteral } from "./converters/no-octal-literal";
 import { convertNoParameterProperties } from "./converters/no-parameter-properties";
 import { convertNoParameterReassignment } from "./converters/no-parameter-reassignment";
+import { convertNoRedundantJsdoc } from "./converters/no-redundant-jsdoc";
 import { convertNoReference } from "./converters/no-reference";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
@@ -210,6 +211,7 @@ export const rulesConverters = new Map([
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
+    ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
