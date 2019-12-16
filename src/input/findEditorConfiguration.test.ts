@@ -1,40 +1,26 @@
-import { createStubFileSystem, createStubThrowingFileSystem } from "../adapters/fileSystem.stub";
 import {
     findEditorConfiguration,
     FindEditorConfigurationDependencies,
 } from "./findEditorConfiguration";
 
+const stubConfigPath = "temp/";
+
+export const createStubImporter = (filePath = "") =>
+    jest.fn().mockReturnValue(Promise.resolve(filePath));
+
 const createStubDependencies = (overrides: Partial<FindEditorConfigurationDependencies> = {}) => ({
-    fileSystem: createStubFileSystem(),
+    importer: createStubImporter(stubConfigPath),
     ...overrides,
 });
 
-const stubConfigPath = "temp/";
-
 describe("findEditorConfiguration", () => {
-    it("returns an error when fileSystem returns one", async () => {
+    it("returns an error when importer returns one", async () => {
         // Arrange
         const message = "error";
         const dependencies = createStubDependencies({
-            fileSystem: createStubFileSystem({ data: new Error(message) }),
-        });
-
-        // Act
-        const result = await findEditorConfiguration(dependencies, stubConfigPath);
-
-        // Assert
-        expect(result).toEqual(
-            expect.objectContaining({
-                message,
-            }),
-        );
-    });
-
-    it("returns an error when fileSystem throws one", async () => {
-        // Arrange
-        const message = "error";
-        const dependencies = createStubDependencies({
-            fileSystem: createStubThrowingFileSystem({ err: message }),
+            importer: async () => {
+                throw new Error(message);
+            },
         });
 
         // Act
@@ -57,7 +43,7 @@ describe("findEditorConfiguration", () => {
         await findEditorConfiguration(dependencies, configPath);
 
         // Assert
-        expect(dependencies.fileSystem.readFile).toHaveBeenLastCalledWith(configPath);
+        expect(dependencies.importer).toHaveBeenLastCalledWith(configPath);
     });
 
     it("defaults to VS Code editor settings path when config path isn't provided", async () => {
@@ -68,7 +54,7 @@ describe("findEditorConfiguration", () => {
         await findEditorConfiguration(dependencies, undefined);
 
         // Assert
-        expect(dependencies.fileSystem.readFile).toHaveBeenLastCalledWith(".vscode/settings.json");
+        expect(dependencies.importer).toHaveBeenLastCalledWith(".vscode/settings.json");
     });
 
     it("parses object from configuration path when read successfully", async () => {
@@ -80,9 +66,9 @@ describe("findEditorConfiguration", () => {
                 "source.organizeImports": false,
             },
         };
-        const data = JSON.stringify(originalConfig);
+
         const dependencies = createStubDependencies({
-            fileSystem: createStubFileSystem({ data }),
+            importer: async () => originalConfig,
         });
 
         // Act
