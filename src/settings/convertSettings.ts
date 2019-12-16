@@ -4,6 +4,8 @@ import { EditorSettingConverter } from "./converter";
 import { convertSetting } from "./convertSetting";
 import { EditorSetting } from "./types";
 
+const EDITOR_SETTINGS_PREFIX = "editor.";
+
 export type ConvertSettingsDependencies = {
     converters: Map<string, EditorSettingConverter>;
 };
@@ -14,18 +16,25 @@ export type SettingConversionResults = {
     missing: Pick<EditorSetting, "settingName">[];
 };
 
-export type EditorConfigurationSettings = Record<string, any>;
+// The entire editor configuration of any keys and values.
+export type EditorConfiguration = Record<string, any>;
 
 export const convertSettings = (
     dependencies: ConvertSettingsDependencies,
-    rawEditorSettings: EditorConfigurationSettings,
+    rawEditorConfiguration: EditorConfiguration,
 ): SettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
     const missing: Pick<EditorSetting, "settingName">[] = [];
 
-    for (const [settingName, value] of Object.entries(rawEditorSettings)) {
-        const editorSetting = { settingName, value };
+    for (const [configurationName, value] of Object.entries(rawEditorConfiguration)) {
+        // Configurations other than editor settings will be ignored.
+        // See: https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin#configuration
+        if (!configurationName.startsWith(EDITOR_SETTINGS_PREFIX)) {
+            continue;
+        }
+
+        const editorSetting = { settingName: configurationName, value };
         const conversion = convertSetting(editorSetting, dependencies.converters);
 
         if (conversion === undefined) {
@@ -40,7 +49,7 @@ export const convertSettings = (
         }
 
         for (const changes of conversion.settings) {
-            converted.set(settingName, { ...changes });
+            converted.set(configurationName, { ...changes });
         }
     }
 
