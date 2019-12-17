@@ -23,6 +23,11 @@ export type TSLintToESLintSettings = {
      * Original TypeScript configuration file path, such as `tsconfig.json`.
      */
     typescript?: string;
+
+    /**
+     * Original Editor configuration file path, such as `.vscode/settings.json`.
+     */
+    editor?: string;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

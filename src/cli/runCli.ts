@@ -1,15 +1,16 @@
 import chalk from "chalk";
-import { EOL } from "os";
 import { Command } from "commander";
+import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
-import { TSLintToESLintSettings, TSLintToESLintResult, ResultStatus } from "../types";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
-    convertConfig: SansDependencies<typeof convertConfig>;
+    convertConfigs: SansDependencies<typeof convertConfig>[];
     logger: Logger;
 };
 
@@ -24,6 +25,11 @@ export const runCli = async (
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
+        .option(
+            "--editor [editor]",
+            "editor configuration file to convert using",
+            DEFAULT_VSCODE_SETTINGS_PATH,
+        )
         .option("-V --version", "output the package version");
 
     const parsedArgv = {
@@ -36,10 +42,26 @@ export const runCli = async (
         return ResultStatus.Succeeded;
     }
 
-    let result: TSLintToESLintResult;
+    for (const convertConfig of dependencies.convertConfigs) {
+        const result = await tryConvertConfig(convertConfig, parsedArgv);
+        if (result.status !== ResultStatus.Succeeded) {
+            logErrorResult(result, dependencies);
+            return result.status;
+        }
+    }
+
+    dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
+    return ResultStatus.Succeeded;
+};
+
+const tryConvertConfig = async (
+    config: SansDependencies<typeof convertConfig>,
+    argv: Partial<TSLintToESLintSettings>,
+): Promise<ResultWithStatus> => {
+    let result: ResultWithStatus;
 
     try {
-        result = await dependencies.convertConfig(parsedArgv);
+        result = await config(argv as TSLintToESLintSettings);
     } catch (error) {
         result = {
             errors: [error as Error],
@@ -47,11 +69,11 @@ export const runCli = async (
         };
     }
 
-    switch (result.status) {
-        case ResultStatus.Succeeded:
-            dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
-            break;
+    return result;
+};
 
+const logErrorResult = (result: ResultWithStatus, dependencies: RunCliDependencies) => {
+    switch (result.status) {
         case ResultStatus.ConfigurationError:
             dependencies.logger.stderr.write(chalk.redBright("❌ "));
             dependencies.logger.stderr.write(chalk.red("Could not start tslint-to-eslint:"));
@@ -72,6 +94,4 @@ export const runCli = async (
             }
             break;
     }
-
-    return result.status;
 };
