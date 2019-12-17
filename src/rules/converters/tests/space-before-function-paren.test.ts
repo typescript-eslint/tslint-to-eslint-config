@@ -29,4 +29,42 @@ describe(convertSpaceBeforeFunctionParen, () => {
             ],
         });
     });
+
+    test("conversion with all existing arguments", () => {
+        const result = convertSpaceBeforeFunctionParen({
+            ruleArguments: ["anonymous", "named", "asyncArrow", "method", "constructor"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    notices: [
+                        'Option "constructor" is not supported by ESLint.',
+                        'Option "method" is not supported by ESLint.',
+                    ],
+                    ruleArguments: ["anonymous", "named", "asyncArrow"],
+                    ruleName: "space-before-function-paren",
+                },
+            ],
+        });
+    });
+
+    test('conversion with not supported options ["method", "constructor"]', () => {
+        const result = convertSpaceBeforeFunctionParen({
+            ruleArguments: ["method", "constructor"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    notices: [
+                        'Option "constructor" is not supported by ESLint.',
+                        'Option "method" is not supported by ESLint.',
+                    ],
+                    ruleArguments: [],
+                    ruleName: "space-before-function-paren",
+                },
+            ],
+        });
+    });
 });
