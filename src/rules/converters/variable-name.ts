@@ -56,11 +56,11 @@ export const convertVariableName: RuleConverter = tslintRule => {
     };
 
     const getUnderscoreDangleRuleOptions = () => {
-        const underscoreDangleOptionArguments: string[] = [];
+        let underscoreDangleOptionSeverity: string | null = null;
         const underscoreDangleOptionNotice: string[] = [];
 
         if (hasCheckFormat && (allowedLeadingUnderscore || allowedTrailingUnderscore)) {
-            underscoreDangleOptionArguments.push("off");
+            underscoreDangleOptionSeverity = "off";
             underscoreDangleOptionNotice.push(IgnoreLeadingTrailingIdentifierMsg);
         } else {
             underscoreDangleOptionNotice.push(ForbiddenLeadingTrailingIdentifierMsg);
@@ -68,8 +68,8 @@ export const convertVariableName: RuleConverter = tslintRule => {
 
         return {
             notices: underscoreDangleOptionNotice,
-            ...(underscoreDangleOptionArguments.length !== 0 && {
-                ruleArguments: underscoreDangleOptionArguments,
+            ...(underscoreDangleOptionSeverity !== null && {
+                ruleSeverity: underscoreDangleOptionSeverity,
             }),
             ruleName: "no-underscore-dangle",
         };
