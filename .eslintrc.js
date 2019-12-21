@@ -30,5 +30,6 @@ module.exports = {
         "@typescript-eslint/require-await": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/typedef": "off",
+        "no-else-return": "error",
     },
 };
