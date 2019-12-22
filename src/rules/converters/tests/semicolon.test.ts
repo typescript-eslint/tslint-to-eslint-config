@@ -14,7 +14,6 @@ describe(convertSemicolon, () => {
                 },
                 {
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "semi",
@@ -45,7 +44,6 @@ describe(convertSemicolon, () => {
                 },
                 {
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "none",
@@ -77,7 +75,6 @@ describe(convertSemicolon, () => {
                 {
                     ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "semi",
@@ -111,7 +108,6 @@ describe(convertSemicolon, () => {
                 {
                     ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "none",

@@ -41,7 +41,7 @@ export const findESLintConfiguration = async (
     dependencies: FindESLintConfigurationDependencies,
     rawSettings: Pick<TSLintToESLintSettings, "config" | "eslint">,
 ): Promise<OriginalConfigurations<ESLintConfiguration> | Error> => {
-    const filePath = rawSettings.eslint || rawSettings.config;
+    const filePath = rawSettings.eslint ?? rawSettings.config;
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
         findRawConfiguration<ESLintConfiguration>(dependencies.importer, filePath, {
             extends: [],

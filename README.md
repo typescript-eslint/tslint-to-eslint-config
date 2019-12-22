@@ -39,6 +39,7 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 Each of these flags is optional:
 
 -   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
+-   **[`editor`](#editor)**: Path to an editor configuration file to convert linter settings within.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
@@ -58,6 +59,17 @@ The file extension of this path will be used to determine the format of the crea
 
 -   `.js` file paths will be written `module.exports = ...` JavaScript
 -   Other file paths will default to JSON
+
+#### `editor`
+
+```shell
+npx tslint-to-eslint-config --editor ./path/to/.vscode/settings.json
+```
+
+_Default: `.vscode/settings.json`_
+
+Path to an editor configuration file to convert settings settings within.
+Any VS Code style editor settings for TSLint will be converted to their ESLint equivalents.
 
 #### `eslint`
 

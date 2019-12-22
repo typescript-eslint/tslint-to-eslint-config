@@ -24,7 +24,7 @@ export const writeConversionResults = async (
     }
 
     const output = {
-        ...(eslint && eslint.full),
+        ...eslint?.full,
         env: createEnv(originalConfigurations),
         ...(eslint && { globals: eslint.raw.globals }),
         ...(ruleConversionResults.extends && { extends: ruleConversionResults.extends }),
@@ -35,7 +35,7 @@ export const writeConversionResults = async (
         },
         plugins,
         rules: {
-            ...(eslint && eslint.full.rules),
+            ...eslint?.full.rules,
             ...formatConvertedRules(ruleConversionResults, tslint.full),
         },
     };

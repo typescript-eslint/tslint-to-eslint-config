@@ -22,13 +22,13 @@ export const findTSLintConfiguration = async (
     dependencies: FindTSLintConfigurationDependencies,
     config: string | undefined,
 ) => {
-    const filePath = config || "./tslint.json";
+    const filePath = config ?? "./tslint.json";
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
         findRawConfiguration<Partial<TSLintConfiguration>>(dependencies.importer, filePath),
         findReportedConfiguration<TSLintConfiguration>(
             dependencies.exec,
             "tslint --print-config",
-            config || "./tslint.json",
+            filePath,
         ),
     ]);
 

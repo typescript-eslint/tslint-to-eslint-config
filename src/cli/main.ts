@@ -5,11 +5,15 @@ import { fsFileSystem } from "../adapters/fsFileSystem";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
-import { ConvertConfigDependencies, convertConfig } from "../conversion/convertConfig";
+import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
+import {
+    convertEditorConfig,
+    ConvertEditorConfigDependencies,
+} from "../conversion/convertEditorConfig";
 import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
 import {
-    RetrieveExtendsValuesDependencies,
     retrieveExtendsValues,
+    RetrieveExtendsValuesDependencies,
 } from "../creation/simplification/retrieveExtendsValues";
 import {
     simplifyPackageRules,
@@ -19,28 +23,41 @@ import {
     writeConversionResults,
     WriteConversionResultsDependencies,
 } from "../creation/writeConversionResults";
+import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
+import {
+    convertEditorSettings,
+    ConvertEditorSettingsDependencies,
+} from "../editorSettings/convertEditorSettings";
+import { editorSettingsConverters } from "../editorSettings/editorSettingsConverters";
+import {
+    findEditorConfiguration,
+    FindEditorConfigurationDependencies,
+} from "../input/findEditorConfiguration";
+import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
 } from "../input/findOriginalConfigurations";
 import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
-import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import {
-    reportConversionResults,
-    ReportConversionResultsDependencies,
-} from "../reporting/reportConversionResults";
-import { converters } from "../rules/converters";
-import { convertRules } from "../rules/convertRules";
+import { ReportConversionResultsDependencies } from "../reporting/dependencies";
+import { reportConversionResults } from "../reporting/reportConversionResults";
+import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
+import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
+import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
 
-const convertRulesDependencies = {
-    converters,
+const convertRulesDependencies: ConvertRulesDependencies = {
+    converters: rulesConverters,
     mergers,
+};
+
+const convertEditorSettingsDependencies: ConvertEditorSettingsDependencies = {
+    converters: editorSettingsConverters,
 };
 
 const nativeImporterDependencies: ImporterDependencies = {
@@ -53,6 +70,10 @@ const boundImporter = bind(importer, nativeImporterDependencies);
 
 const findConfigurationDependencies = {
     exec: childProcessExec,
+    importer: boundImporter,
+};
+
+const findEditorConfigurationDependencies: FindEditorConfigurationDependencies = {
     importer: boundImporter,
 };
 
@@ -81,6 +102,19 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
 
+const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
+    findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
+    convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
+    reportConversionResults: bind(
+        reportEditorSettingConversionResults,
+        reportConversionResultsDependencies,
+    ),
+    writeConversionResults: bind(
+        writeEditorConfigConversionResults,
+        writeConversionResultsDependencies,
+    ),
+};
+
 const convertConfigDependencies: ConvertConfigDependencies = {
     convertRules: bind(convertRules, convertRulesDependencies),
     findOriginalConfigurations: bind(
@@ -93,7 +127,10 @@ const convertConfigDependencies: ConvertConfigDependencies = {
 };
 
 const runCliDependencies: RunCliDependencies = {
-    convertConfig: bind(convertConfig, convertConfigDependencies),
+    convertConfigs: [
+        bind(convertConfig, convertConfigDependencies),
+        bind(convertEditorConfig, convertEditorConfigDependencies),
+    ],
     logger: processLogger,
 };
 
