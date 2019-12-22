@@ -35,13 +35,15 @@ export const convertCommentFormat: RuleConverter = tslintRule => {
 
     return {
         rules: [
-            {
-                ruleName: "capitalized-comments",
-                ...(capitalizedRuleArguments.length !== 0 && {
-                    ruleArguments: capitalizedRuleArguments,
-                }),
-                ...(capitalizedNotices.length !== 0 && { notices: capitalizedNotices }),
-            },
+            ...(capitalizedRuleArguments.length === 0
+                ? []
+                : [
+                      {
+                          ruleName: "capitalized-comments",
+                          ruleArguments: capitalizedRuleArguments,
+                          ...(capitalizedNotices.length !== 0 && { notices: capitalizedNotices }),
+                      },
+                  ]),
             {
                 ruleName: "spaced-comment",
                 ...(spaceCommentRuleArguments.length !== 0 && {

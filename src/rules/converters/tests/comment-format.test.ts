@@ -9,9 +9,6 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "capitalized-comments",
-                },
-                {
                     ruleArguments: ["never"],
                     ruleName: "spaced-comment",
                 },
@@ -26,9 +23,6 @@ describe(convertCommentFormat, () => {
 
         expect(result).toEqual({
             rules: [
-                {
-                    ruleName: "capitalized-comments",
-                },
                 {
                     ruleName: "spaced-comment",
                 },
@@ -57,15 +51,31 @@ describe(convertCommentFormat, () => {
 
     test("conversion with ignore-pattern argument", () => {
         const result = convertCommentFormat({
-            ruleArguments: [{ "ignore-pattern": "STD\\w{2,3}\\b" }],
+            ruleArguments: ["check-uppercase", { "ignore-pattern": "STD\\w{2,3}\\b" }],
         });
 
         expect(result).toEqual({
             rules: [
                 {
                     notices: [CapitalizedIgnoreMessage],
+                    ruleArguments: ["always"],
                     ruleName: "capitalized-comments",
                 },
+                {
+                    ruleArguments: ["never"],
+                    ruleName: "spaced-comment",
+                },
+            ],
+        });
+    });
+
+    test("conversion with ignore-pattern argument (no check-{lower,upper}case)", () => {
+        const result = convertCommentFormat({
+            ruleArguments: [{ "ignore-pattern": "STD\\w{2,3}\\b" }],
+        });
+
+        expect(result).toEqual({
+            rules: [
                 {
                     ruleArguments: ["never"],
                     ruleName: "spaced-comment",
@@ -76,12 +86,13 @@ describe(convertCommentFormat, () => {
 
     test("conversion with empty ignore-words argument", () => {
         const result = convertCommentFormat({
-            ruleArguments: [{ "ignore-words": [] }],
+            ruleArguments: ["check-uppercase", { "ignore-words": [] }],
         });
 
         expect(result).toEqual({
             rules: [
                 {
+                    ruleArguments: ["always"],
                     ruleName: "capitalized-comments",
                 },
                 {
@@ -92,17 +103,48 @@ describe(convertCommentFormat, () => {
         });
     });
 
+    test("conversion with empty ignore-words argument (no check-{lower,upper}case)", () => {
+        const result = convertCommentFormat({
+            ruleArguments: [{ "ignore-words": [] }],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: ["never"],
+                    ruleName: "spaced-comment",
+                },
+            ],
+        });
+    });
+
     test("conversion with ignore-words argument", () => {
         const result = convertCommentFormat({
-            ruleArguments: [{ "ignore-words": ["TODO", "HACK"] }],
+            ruleArguments: ["check-uppercase", { "ignore-words": ["TODO", "HACK"] }],
         });
 
         expect(result).toEqual({
             rules: [
                 {
                     notices: [CapitalizedIgnoreMessage],
+                    ruleArguments: ["always"],
                     ruleName: "capitalized-comments",
                 },
+                {
+                    ruleArguments: ["never"],
+                    ruleName: "spaced-comment",
+                },
+            ],
+        });
+    });
+
+    test("conversion with ignore-words argument (no check-{lower,upper}case)", () => {
+        const result = convertCommentFormat({
+            ruleArguments: [{ "ignore-words": ["TODO", "HACK"] }],
+        });
+
+        expect(result).toEqual({
+            rules: [
                 {
                     ruleArguments: ["never"],
                     ruleName: "spaced-comment",
