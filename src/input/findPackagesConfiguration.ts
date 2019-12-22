@@ -24,7 +24,7 @@ export const findPackagesConfiguration = async (
     const rawConfiguration = await findReportedConfiguration<PackagesConfiguration>(
         dependencies.exec,
         "cat",
-        config || "./package.json",
+        config ?? "./package.json",
     );
 
     return rawConfiguration instanceof Error

@@ -21,5 +21,6 @@
         "strictPropertyInitialization": true,
         "target": "es2015"
     },
-    "exclude": ["test/tests/**/*"]
+    "exclude": ["test/tests/**/*"],
+    "include": ["src/**/*"]
 }

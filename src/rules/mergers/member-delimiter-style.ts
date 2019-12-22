@@ -5,7 +5,7 @@ export const mergeNoMemberDelimiterStyle: RuleMerger = (existingOptions, newOpti
         return [];
     }
 
-    return [merge((existingOptions || [])[0] || {}, (newOptions || [])[0] || {})];
+    return [merge((existingOptions ?? [])[0] ?? {}, (newOptions ?? [])[0] ?? {})];
 };
 
 const merge = (...objs: Record<string, any>[]) =>
