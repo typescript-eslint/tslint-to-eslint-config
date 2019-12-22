@@ -16,7 +16,7 @@ export const convertTrailingComma: RuleConverter = tslintRule => {
             {
                 ruleName: "comma-dangle",
                 ...(eslintArgs && { ruleArguments: [eslintArgs] }),
-                ...(notices && notices.length && { notices }),
+                ...(notices?.length && { notices }),
             },
         ],
     };
@@ -71,7 +71,7 @@ function collectKeys(
     multiline: TSLintObject | undefined,
 ): { [key: string]: ESLintStringValue } {
     const hasSingleline = Boolean(singleline);
-    const hasSinglelineAndFieldExist = Boolean(singleline && singleline[key]);
+    const hasSinglelineAndFieldExist = Boolean(singleline?.[key]);
     const hasSinglelineAlways = Boolean(singleline && singleline[key] === "always");
     const hasMultilineAlways = Boolean(multiline && multiline[key] === "always");
 

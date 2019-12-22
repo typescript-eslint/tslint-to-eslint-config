@@ -23,7 +23,7 @@ export const findTypeScriptConfiguration = async (
     const rawConfiguration = await findReportedConfiguration<TypeScriptConfiguration>(
         dependencies.exec,
         "tsc --showConfig -p",
-        config || "./tsconfig.json",
+        config ?? "./tsconfig.json",
     );
 
     return rawConfiguration instanceof Error
