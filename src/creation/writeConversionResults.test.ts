@@ -2,8 +2,11 @@ import { createEmptyConversionResults } from "../conversion/conversionResults.st
 import { writeConversionResults } from "./writeConversionResults";
 import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { formatJsonOutput } from "./formatting/formatters/formatJsonOutput";
+import { SimplifiedRuleConversionResults } from "./simplification/simplifyPackageRules";
 
-const createStubOriginalConfigurations = (overrides: Partial<AllOriginalConfigurations> = {}) => ({
+const createStubOriginalConfigurations = (
+    overrides: Partial<AllOriginalConfigurations & SimplifiedRuleConversionResults> = {},
+) => ({
     tslint: {
         full: {
             rulesDirectory: [],
@@ -142,6 +145,44 @@ describe("writeConversionResults", () => {
                     sourceType: "module",
                 },
                 plugins: ["@typescript-eslint"],
+            }),
+        );
+    });
+
+    it("includes extensions when they exist", async () => {
+        // Arrange
+        const extension = ["stub-extension"];
+        const conversionResults = {
+            ...createEmptyConversionResults(),
+            extends: extension,
+        };
+        const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
+
+        // Act
+        await writeConversionResults(
+            { fileSystem },
+            ".eslintrc.json",
+            conversionResults,
+            createStubOriginalConfigurations(),
+        );
+
+        // Assert
+        expect(fileSystem.writeFile).toHaveBeenLastCalledWith(
+            ".eslintrc.json",
+            formatJsonOutput({
+                env: {
+                    browser: true,
+                    es6: true,
+                    node: true,
+                },
+                extends: extension,
+                parser: "@typescript-eslint/parser",
+                parserOptions: {
+                    project: "tsconfig.json",
+                    sourceType: "module",
+                },
+                plugins: ["@typescript-eslint"],
+                rules: {},
             }),
         );
     });
