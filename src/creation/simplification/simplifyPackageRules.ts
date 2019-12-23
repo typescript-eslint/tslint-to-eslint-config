@@ -27,13 +27,18 @@ export type SimplifiedRuleConversionResults = Pick<
 export const simplifyPackageRules = async (
     dependencies: SimplifyPackageRulesDependencies,
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
-    tslint: OriginalConfigurations<TSLintConfiguration>,
+    tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
     ruleConversionResults: SimplifiedRuleConversionResults,
 ): Promise<SimplifiedRuleConversionResults> => {
-    const extendedRulesets = collectTSLintRulesets(tslint);
+    const extendedESLintRulesets = eslint?.full.extends ?? [];
+    const extendedTSLintRulesets = collectTSLintRulesets(tslint);
+    const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
+    if (allExtensions.length === 0) {
+        return ruleConversionResults;
+    }
 
     const { configurationErrors, importedExtensions } = await dependencies.retrieveExtendsValues(
-        uniqueFromSources(eslint?.full.extends ?? [], extendedRulesets),
+        uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
 
     const converted = dependencies.removeExtendsDuplicatedRules(
@@ -43,7 +48,7 @@ export const simplifyPackageRules = async (
 
     return {
         converted,
-        extends: extendedRulesets,
+        extends: allExtensions,
         failed: [...ruleConversionResults.failed, ...configurationErrors],
     };
 };

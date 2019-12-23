@@ -55,7 +55,19 @@ describe("resolveExtensionNames", () => {
         // Assert
         expect(extensionNames).toEqual(["eslint-plugin-value"]);
     });
+
     it("doesn't prepend eslint-plugin- when a plugin starts with eslint:", () => {
+        // Arrange
+        const rawExtensionName = "eslint:recommended";
+
+        // Act
+        const extensionNames = resolveExtensionNames(rawExtensionName);
+
+        // Assert
+        expect(extensionNames).toEqual(["eslint:recommended"]);
+    });
+
+    it("doesn't prepend eslint-plugin- when a plugin starts with plugin:", () => {
         // Arrange
         const rawExtensionName = "eslint:recommended";
 
