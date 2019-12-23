@@ -20,10 +20,17 @@ export const convertEditorConfig = async (
     dependencies: ConvertEditorConfigDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
-    const editorConfigPath = settings.editor ? settings.editor : DEFAULT_VSCODE_SETTINGS_PATH;
+    const editorConfigPath = settings.editor ?? DEFAULT_VSCODE_SETTINGS_PATH;
     const originalEditorConfiguration = await dependencies.findEditorConfiguration(
         editorConfigPath,
     );
+
+    if (originalEditorConfiguration === undefined) {
+        return {
+            status: ResultStatus.Succeeded,
+        };
+    }
+
     if (originalEditorConfiguration instanceof Error) {
         return {
             errors: [originalEditorConfiguration],

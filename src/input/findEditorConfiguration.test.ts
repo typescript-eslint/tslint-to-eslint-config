@@ -1,3 +1,4 @@
+import { createStubFileSystem } from "../adapters/fileSystem.stub";
 import {
     findEditorConfiguration,
     FindEditorConfigurationDependencies,
@@ -10,10 +11,26 @@ export const createStubImporter = (filePath = "") =>
 
 const createStubDependencies = (overrides: Partial<FindEditorConfigurationDependencies> = {}) => ({
     importer: createStubImporter(stubConfigPath),
+    fileSystem: createStubFileSystem(),
     ...overrides,
 });
 
 describe("findEditorConfiguration", () => {
+    it("returns undefined when the file does not exist", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            fileSystem: {
+                fileExists: async () => false,
+            },
+        });
+
+        // Act
+        const result = await findEditorConfiguration(dependencies, stubConfigPath);
+
+        // Assert
+        expect(result).toEqual(undefined);
+    });
+
     it("returns an error when importer returns one", async () => {
         // Arrange
         const message = "error";
@@ -44,17 +61,6 @@ describe("findEditorConfiguration", () => {
 
         // Assert
         expect(dependencies.importer).toHaveBeenLastCalledWith(configPath);
-    });
-
-    it("defaults to VS Code editor settings path when config path isn't provided", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-
-        // Act
-        await findEditorConfiguration(dependencies, undefined);
-
-        // Assert
-        expect(dependencies.importer).toHaveBeenLastCalledWith(".vscode/settings.json");
     });
 
     it("parses object from configuration path when read successfully", async () => {

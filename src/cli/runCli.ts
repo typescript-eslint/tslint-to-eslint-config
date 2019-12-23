@@ -27,7 +27,7 @@ export const runCli = async (
         .option("--typescript [typescript]", "typescript configuration file to convert using")
         .option(
             "--editor [editor]",
-            "editor configuration file to convert using",
+            "editor configuration file to convert",
             DEFAULT_VSCODE_SETTINGS_PATH,
         )
         .option("-V --version", "output the package version");

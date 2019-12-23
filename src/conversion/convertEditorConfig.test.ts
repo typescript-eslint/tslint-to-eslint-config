@@ -19,6 +19,21 @@ const createStubDependencies = (
 });
 
 describe("convertEditorConfig", () => {
+    it("returns a success result when there is no original configuration", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            findEditorConfiguration: async () => undefined,
+        });
+
+        // Act
+        const result = await convertEditorConfig(dependencies, stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            status: ResultStatus.Succeeded,
+        });
+    });
+
     it("returns the failure result when finding the original configurations fails", async () => {
         // Arrange
         const error = new Error();
