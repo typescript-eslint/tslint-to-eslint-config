@@ -8,7 +8,7 @@
 [![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://img.shields.io/badge/chat-gitter-informational.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Code Style: Prettier](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](https://prettier.io)
 
-Converts your TSLint configuration to the closest possible ESLint equivalent.
+Converts your TSLint configuration to the closest reasonable ESLint equivalent.
 
 👉 Did you know [TSLint is being deprecated this year](https://github.com/palantir/tslint/issues/4534)?
 Hooray!

@@ -13,7 +13,7 @@ Within `src/conversion/convertConfig.ts`, the following steps occur:
 
 1. Existing configurations are read from disk
 2. TSLint rules are converted into their ESLint configurations
-3. ESLint configurations are simplified based on extended ESLint presets
+3. ESLint configurations are simplified based on extended ESLint and TSLint presets
 4. The simplified configuration is written to the output config file
 5. A summary of the results is printed to the user's console
 
