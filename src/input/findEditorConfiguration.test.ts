@@ -3,6 +3,7 @@ import {
     findEditorConfiguration,
     FindEditorConfigurationDependencies,
 } from "./findEditorConfiguration";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 
 const stubConfigPath = "temp/";
 
@@ -16,7 +17,22 @@ const createStubDependencies = (overrides: Partial<FindEditorConfigurationDepend
 });
 
 describe("findEditorConfiguration", () => {
-    it("returns undefined when the file does not exist", async () => {
+    it("returns undefined when the file is not specified and does not exist", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            fileSystem: {
+                fileExists: async () => false,
+            },
+        });
+
+        // Act
+        const result = await findEditorConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(undefined);
+    });
+
+    it("returns an error when the file is specified and does not exist", async () => {
         // Arrange
         const dependencies = createStubDependencies({
             fileSystem: {
@@ -28,7 +44,12 @@ describe("findEditorConfiguration", () => {
         const result = await findEditorConfiguration(dependencies, stubConfigPath);
 
         // Assert
-        expect(result).toEqual(undefined);
+        expect(result).toEqual({
+            configPath: stubConfigPath,
+            result: expect.objectContaining({
+                message: `Could not find editor configuration under '${stubConfigPath}'.`,
+            }),
+        });
     });
 
     it("returns an error when importer returns one", async () => {
@@ -44,11 +65,12 @@ describe("findEditorConfiguration", () => {
         const result = await findEditorConfiguration(dependencies, stubConfigPath);
 
         // Assert
-        expect(result).toEqual(
-            expect.objectContaining({
+        expect(result).toEqual({
+            configPath: stubConfigPath,
+            result: expect.objectContaining({
                 message,
             }),
-        );
+        });
     });
 
     it("reads from the given configuration path when one is provided", async () => {
@@ -63,14 +85,30 @@ describe("findEditorConfiguration", () => {
         expect(dependencies.importer).toHaveBeenLastCalledWith(configPath);
     });
 
-    it("parses object from configuration path when read successfully", async () => {
+    it("parses object from the default VS Code configuration path when the file is not specified and read successfully", async () => {
         // Arrange
         const originalConfig = {
             "typescript.tsdk": "node_modules/typescript/lib",
-            "editor.tabSize": 4,
-            "editor.codeActionsOnSave": {
-                "source.organizeImports": false,
-            },
+        };
+
+        const dependencies = createStubDependencies({
+            importer: async () => originalConfig,
+        });
+
+        // Act
+        const result = await findEditorConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual({
+            configPath: DEFAULT_VSCODE_SETTINGS_PATH,
+            result: originalConfig,
+        });
+    });
+
+    it("parses object from configuration path when the file is specified and read successfully", async () => {
+        // Arrange
+        const originalConfig = {
+            "typescript.tsdk": "node_modules/typescript/lib",
         };
 
         const dependencies = createStubDependencies({
@@ -81,6 +119,9 @@ describe("findEditorConfiguration", () => {
         const result = await findEditorConfiguration(dependencies, stubConfigPath);
 
         // Assert
-        expect(result).toEqual(originalConfig);
+        expect(result).toEqual({
+            configPath: stubConfigPath,
+            result: originalConfig,
+        });
     });
 });

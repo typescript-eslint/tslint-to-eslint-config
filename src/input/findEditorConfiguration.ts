@@ -1,9 +1,10 @@
+import { FileSystem } from "../adapters/fileSystem";
 import { SansDependencies } from "../binding";
 import { EditorConfiguration } from "./editorConfiguration";
 import { findRawConfiguration } from "./findRawConfiguration";
 import { DeepPartial } from "./findReportedConfiguration";
 import { importer } from "./importer";
-import { FileSystem } from "../adapters/fileSystem";
+import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 
 export type FindEditorConfigurationDependencies = {
     fileSystem: Pick<FileSystem, "fileExists">;
@@ -12,14 +13,28 @@ export type FindEditorConfigurationDependencies = {
 
 export const findEditorConfiguration = async (
     dependencies: FindEditorConfigurationDependencies,
-    config: string,
-): Promise<DeepPartial<EditorConfiguration> | Error | undefined> => {
-    if (!(await dependencies.fileSystem.fileExists(config))) {
-        return undefined;
+    specifiedConfigPath: string | undefined,
+) => {
+    const attemptingConfigPath = specifiedConfigPath ?? DEFAULT_VSCODE_SETTINGS_PATH;
+
+    if (!(await dependencies.fileSystem.fileExists(attemptingConfigPath))) {
+        return specifiedConfigPath === undefined
+            ? undefined
+            : {
+                  configPath: attemptingConfigPath,
+                  result: new Error(
+                      `Could not find editor configuration under '${attemptingConfigPath}'.`,
+                  ),
+              };
     }
 
-    return await findRawConfiguration<DeepPartial<EditorConfiguration>>(
+    const result = await findRawConfiguration<DeepPartial<EditorConfiguration>>(
         dependencies.importer,
-        config,
+        attemptingConfigPath,
     );
+
+    return {
+        configPath: attemptingConfigPath,
+        result,
+    };
 };

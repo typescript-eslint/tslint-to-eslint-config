@@ -6,7 +6,6 @@ import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { convertConfig } from "../conversion/convertConfig";
-import { DEFAULT_VSCODE_SETTINGS_PATH } from "../input/vsCodeSettings";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
@@ -25,11 +24,7 @@ export const runCli = async (
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option(
-            "--editor [editor]",
-            "editor configuration file to convert",
-            DEFAULT_VSCODE_SETTINGS_PATH,
-        )
+        .option("--editor [editor]", "editor configuration file to convert")
         .option("-V --version", "output the package version");
 
     const parsedArgv = {
