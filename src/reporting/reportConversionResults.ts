@@ -26,15 +26,17 @@ export const reportConversionResults = (
     }
 
     if (ruleConversionResults.missing.length !== 0) {
-        const missingSettingOutputMapping = (setting: TSLintRuleOptions) =>
-            `${setting.ruleName} does not yet have an ESLint equivalent.${EOL}`;
-        const additionalWarnings = [`defaulting to eslint-plugin-tslint for these rules`];
         logMissingConversionTarget(
             "rule",
-            missingSettingOutputMapping,
+            (setting: TSLintRuleOptions) =>
+                `${setting.ruleName} does not yet have an ESLint equivalent.${EOL}`,
             ruleConversionResults.missing,
             dependencies.logger,
-            additionalWarnings,
+            [
+                ruleConversionResults.missing.length === 1
+                    ? "defaulting to eslint-plugin-tslint for it."
+                    : "defaulting to eslint-plugin-tslint for these rules.",
+            ],
         );
     }
 
@@ -54,19 +56,27 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
     ) as RuleWithNotices[];
 
     if (rulesWithNotices.length !== 0) {
-        logger.stdout.write(chalk.yellowBright(`📢 ${rulesWithNotices.length} ESLint`));
-        logger.stdout.write(
-            chalk.yellowBright(rulesWithNotices.length === 1 ? ` rule behaves` : ` rules behave`),
-        );
-        logger.stdout.write(
-            chalk.yellowBright(` differently from their TSLint counterparts: 📢${EOL}`),
-        );
+        logger.stdout.write(chalk.yellowBright(`${EOL}❗ ${rulesWithNotices.length} ESLint`));
+
+        if (rulesWithNotices.length === 1) {
+            logger.stdout.write(
+                chalk.yellowBright(
+                    ` rule behaves differently from its TSLint counterpart ❗${EOL}`,
+                ),
+            );
+        } else {
+            logger.stdout.write(
+                chalk.yellowBright(
+                    ` rules behave differently from their TSLint counterparts ❗${EOL}`,
+                ),
+            );
+        }
 
         for (const rule of rulesWithNotices) {
-            logger.stdout.write(chalk.yellow(`* ${rule.ruleName}:${EOL}`));
+            logger.stdout.write(chalk.yellow(`  * ${rule.ruleName}:${EOL}`));
 
             for (const notice of rule.notices) {
-                logger.stdout.write(chalk.yellow(`  - ${notice}${EOL}`));
+                logger.stdout.write(chalk.yellow(`    - ${notice}${EOL}`));
             }
         }
     }
