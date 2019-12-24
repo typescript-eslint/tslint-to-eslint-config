@@ -74,6 +74,7 @@ const findConfigurationDependencies = {
 };
 
 const findEditorConfigurationDependencies: FindEditorConfigurationDependencies = {
+    fileSystem: fsFileSystem,
     importer: boundImporter,
 };
 

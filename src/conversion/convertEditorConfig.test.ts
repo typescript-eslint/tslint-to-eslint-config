@@ -19,6 +19,21 @@ const createStubDependencies = (
 });
 
 describe("convertEditorConfig", () => {
+    it("returns a success result when there is no original configuration", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            findEditorConfiguration: async () => undefined,
+        });
+
+        // Act
+        const result = await convertEditorConfig(dependencies, stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            status: ResultStatus.Succeeded,
+        });
+    });
+
     it("returns the failure result when finding the original configurations fails", async () => {
         // Arrange
         const error = new Error();
@@ -28,7 +43,10 @@ describe("convertEditorConfig", () => {
         };
 
         const dependencies = createStubDependencies({
-            findEditorConfiguration: async () => error,
+            findEditorConfiguration: async () => ({
+                configPath: "",
+                result: error,
+            }),
         });
 
         // Act
@@ -59,14 +77,12 @@ describe("convertEditorConfig", () => {
         // Arrange
         const originalConfig = {
             "typescript.tsdk": "node_modules/typescript/lib",
-            "editor.tabSize": 4,
-            "editor.codeActionsOnSave": {
-                "source.organizeImports": false,
-            },
         };
 
         const dependencies = createStubDependencies({
-            findEditorConfiguration: jest.fn().mockResolvedValue(originalConfig),
+            findEditorConfiguration: jest.fn().mockResolvedValue({
+                result: originalConfig,
+            }),
         });
 
         // Act
@@ -112,21 +128,5 @@ describe("convertEditorConfig", () => {
         expect(result).toEqual({
             status: ResultStatus.Succeeded,
         });
-    });
-
-    it("uses VS Code default settings path if editor config parameter is undefined", async () => {
-        // Arrange
-        const expectedEditorPath = ".vscode/settings.json";
-        const settings = {
-            config: "./eslintrc.js",
-        };
-
-        const dependencies = createStubDependencies();
-
-        // Act
-        await convertEditorConfig(dependencies, settings);
-
-        // Assert
-        expect(dependencies.findEditorConfiguration).toHaveBeenCalledWith(expectedEditorPath);
     });
 });
