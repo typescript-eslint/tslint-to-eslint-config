@@ -68,7 +68,7 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ Could not start tslint-to-eslint: ❌",
-            complaint,
+            `  ${complaint}`,
         );
     });
 
@@ -93,7 +93,7 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ 1 error running tslint-to-eslint: ❌",
-            `${error.stack}`,
+            `  ${error.stack}`,
         );
     });
 
@@ -121,8 +121,8 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ 2 errors running tslint-to-eslint: ❌",
-            `${errors[0].stack}`,
-            `${errors[1].stack}`,
+            `  ${errors[0].stack}`,
+            `  ${errors[1].stack}`,
         );
     });
 

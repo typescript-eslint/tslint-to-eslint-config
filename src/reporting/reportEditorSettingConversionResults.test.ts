@@ -28,7 +28,7 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 1 editor setting replaced with its ESLint equivalent. ✨${EOL}`,
+            `${EOL}✨ 1 editor setting replaced with its ESLint equivalent. ✨${EOL}`,
         );
     });
 
@@ -61,7 +61,7 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 2 editor settings replaced with their ESLint equivalents. ✨${EOL}`,
+            `${EOL}✨ 2 editor settings replaced with their ESLint equivalents. ✨${EOL}`,
         );
     });
 
@@ -79,8 +79,8 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 1 error thrown. 💀",
-            `Check ${logger.debugFileName} for details.`,
+            `❌ 1 error thrown. ❌`,
+            `  Check ${logger.debugFileName} for details.`,
         );
     });
 
@@ -98,8 +98,8 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 2 errors thrown. 💀",
-            `Check ${logger.debugFileName} for details.`,
+            `❌ 2 errors thrown. ❌`,
+            `  Check ${logger.debugFileName} for details.`,
         );
     });
 
@@ -121,7 +121,8 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 1 editor setting does not yet have an ESLint equivalent (see generated log file). 👀",
+            `❓ 1 editor setting does not yet have an ESLint equivalent ❓`,
+            `  See generated log file.`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -150,7 +151,8 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 2 editor settings do not yet have ESLint equivalents (see generated log file). 👀",
+            `❓ 2 editor settings do not yet have ESLint equivalents ❓`,
+            `  See generated log file.`,
         );
         expectEqualWrites(
             logger.info.write,
