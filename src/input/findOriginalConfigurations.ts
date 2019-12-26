@@ -51,7 +51,7 @@ export const findOriginalConfigurations = async (
         dependencies.findTypeScriptConfiguration(rawSettings.typescript),
     ]);
 
-    // Out of those configurations, only TSLint's is required to run
+    // Out of those configurations, only TSLint's is always required to run
     if (tslint instanceof Error) {
         return {
             complaints: [tslint.message],

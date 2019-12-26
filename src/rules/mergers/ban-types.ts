@@ -9,8 +9,8 @@ export const mergeBanTypes: RuleMerger = (existingOptions, newOptions) => {
     return [
         {
             types: {
-                ...(existingOptions && existingOptions[0].types),
-                ...(newOptions && newOptions[0].types),
+                ...existingOptions?.[0].types,
+                ...newOptions?.[0].types,
             },
         },
     ];

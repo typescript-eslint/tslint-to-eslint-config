@@ -35,11 +35,12 @@ export const convertConfig = async (
         originalConfigurations.data.tslint.full.rules,
     );
 
-    // 3. ESLint configurations are simplified based on extended ESLint presets
+    // 3. ESLint configurations are simplified based on extended ESLint and TSLint presets
     const simplifiedConfiguration = {
         ...ruleConversionResults,
         ...(await dependencies.simplifyPackageRules(
             originalConfigurations.data.eslint,
+            originalConfigurations.data.tslint,
             ruleConversionResults,
         )),
     };

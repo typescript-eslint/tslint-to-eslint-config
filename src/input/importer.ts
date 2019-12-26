@@ -10,7 +10,10 @@ export type ImporterDependencies = {
     nativeImporter: NativeImporter;
 };
 
-export const importer = async (dependencies: ImporterDependencies, moduleName: string) => {
+export const importer = async (
+    dependencies: ImporterDependencies,
+    moduleName: string,
+): Promise<any | Error> => {
     const pathAttempts = [path.join(dependencies.getCwd(), moduleName), moduleName];
 
     const importFile = async (filePath: string) => {

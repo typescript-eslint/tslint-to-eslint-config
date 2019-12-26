@@ -198,8 +198,8 @@ describe(convertVariableName, () => {
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
-                    ruleArguments: ["off"],
                     ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
@@ -224,8 +224,8 @@ describe(convertVariableName, () => {
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
-                    ruleArguments: ["off"],
                     ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
@@ -254,8 +254,8 @@ describe(convertVariableName, () => {
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
-                    ruleArguments: ["off"],
                     ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
@@ -288,8 +288,8 @@ describe(convertVariableName, () => {
                 },
                 {
                     ruleName: "no-underscore-dangle",
-                    ruleArguments: ["off"],
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",

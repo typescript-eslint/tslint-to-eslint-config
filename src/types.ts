@@ -25,6 +25,11 @@ export type TSLintToESLintSettings = {
     typescript?: string;
 
     /**
+     * Original Editor configuration file path, such as `.vscode/settings.json`.
+     */
+    editor?: string;
+
+    /**
      * Opt-in flag to convert `tslint:disable` comments to `eslint-disable`.
      */
     convertComments?: boolean;

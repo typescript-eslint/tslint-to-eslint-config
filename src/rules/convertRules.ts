@@ -62,8 +62,8 @@ export const convertRules = (
             if (merger === undefined) {
                 failed.push(ConversionError.forMerger(changes.ruleName));
             } else {
-                const existingNotices = existingConversion.notices || [];
-                const newNotices = newConversion.notices || [];
+                const existingNotices = existingConversion.notices ?? [];
+                const newNotices = newConversion.notices ?? [];
 
                 converted.set(changes.ruleName, {
                     ...existingConversion,
