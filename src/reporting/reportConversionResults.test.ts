@@ -172,7 +172,7 @@ describe("reportConversionResults", () => {
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-rule-one does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
         );
     });
 
@@ -206,8 +206,8 @@ describe("reportConversionResults", () => {
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-rule-one does not yet have an ESLint equivalent.",
-            "tslint-rule-two does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-two"',
         );
     });
 
