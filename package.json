@@ -61,6 +61,7 @@
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test": "jest",
+        "test:ci": "jest --changedSince=master --coverage",
         "tsc": "tsc"
     },
     "version": "0.5.0"
