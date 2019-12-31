@@ -18,6 +18,7 @@ import { convertEofline } from "./converters/eofline";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
+import { convertImportBlacklist } from "./converters/import-blacklist";
 import { convertIncrementDecrement } from "./converters/increment-decrement";
 import { convertIndent } from "./converters/indent";
 import { convertInterfaceName } from "./converters/interface-name";
@@ -155,6 +156,7 @@ export const rulesConverters = new Map([
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
+    ["import-blacklist", convertImportBlacklist],
     ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
@@ -275,7 +277,6 @@ export const rulesConverters = new Map([
 
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
-    // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
