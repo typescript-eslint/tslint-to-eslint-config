@@ -9,7 +9,7 @@ describe(convertPreferReadonly, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "prefer-readonly",
+                    ruleName: "@typescript-eslint/prefer-readonly",
                 },
             ],
         });
@@ -24,7 +24,7 @@ describe(convertPreferReadonly, () => {
             rules: [
                 {
                     ruleArguments: [{ onlyInlineLambdas: true }],
-                    ruleName: "prefer-readonly",
+                    ruleName: "@typescript-eslint/prefer-readonly",
                 },
             ],
         });
