@@ -7,7 +7,7 @@ export const convertPreferReadonly: RuleConverter = tslintRule => {
                 ...(tslintRule.ruleArguments.includes("only-inline-lambdas") && {
                     ruleArguments: [{ onlyInlineLambdas: true }],
                 }),
-                ruleName: "prefer-readonly",
+                ruleName: "prefer-readonly lol",
             },
         ],
     };
