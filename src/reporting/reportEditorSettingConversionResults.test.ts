@@ -126,7 +126,7 @@ describe("reportEditorSettingConversionResults", () => {
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-editor-setting-one does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one"',
         );
     });
 
@@ -156,8 +156,8 @@ describe("reportEditorSettingConversionResults", () => {
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-editor-setting-one does not yet have an ESLint equivalent.",
-            "tslint-editor-setting-two does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one"',
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-two"',
         );
     });
 });

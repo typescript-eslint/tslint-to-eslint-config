@@ -29,7 +29,7 @@ export const reportConversionResults = (
         logMissingConversionTarget(
             "rule",
             (setting: TSLintRuleOptions) =>
-                `${setting.ruleName} does not yet have an ESLint equivalent.${EOL}`,
+                `tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "${setting.ruleName}"${EOL}`,
             ruleConversionResults.missing,
             dependencies.logger,
             [
