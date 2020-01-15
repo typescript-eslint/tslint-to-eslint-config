@@ -16,7 +16,7 @@ export const convertSpaceWithinParens: RuleConverter = tslintRule => {
             {
                 ...(notices !== undefined && { notices }),
                 ruleArguments: [arg],
-                ruleName: "@typescript-eslint/space-within-parens",
+                ruleName: "space-in-parens",
             },
         ],
     };
