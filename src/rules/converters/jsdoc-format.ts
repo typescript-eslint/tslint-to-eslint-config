@@ -1,9 +1,9 @@
 import { RuleConverter, ConvertedRuleChanges } from "../converter";
 
 export const convertJSDocFormat: RuleConverter = () => {
-    const ruleNames: string[] = [
+    const ruleNames = [
         "jsdoc/check-alignment",
-        "jsdoc/require-jsdoc",
+        "jsdoc/check-indentation",
         "jsdoc/newline-after-description",
     ];
 

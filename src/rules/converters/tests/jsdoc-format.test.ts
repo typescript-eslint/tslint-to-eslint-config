@@ -12,7 +12,7 @@ describe(convertJSDocFormat, () => {
                     ruleName: "jsdoc/check-alignment",
                 },
                 {
-                    ruleName: "jsdoc/require-jsdoc",
+                    ruleName: "jsdoc/check-indentation",
                 },
                 {
                     ruleName: "jsdoc/newline-after-description",
