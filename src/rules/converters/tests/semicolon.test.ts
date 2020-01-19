@@ -9,13 +9,11 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["always"],
+                    ruleName: "@typescript-eslint/semi",
                 },
                 {
-                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "semi",
@@ -27,6 +25,7 @@ describe(convertSemicolon, () => {
                             },
                         },
                     ],
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                 },
             ],
         });
@@ -40,13 +39,11 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["never"],
+                    ruleName: "@typescript-eslint/semi",
                 },
                 {
-                    ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "none",
@@ -58,6 +55,7 @@ describe(convertSemicolon, () => {
                             },
                         },
                     ],
+                    ruleName: "@typescript-eslint/member-delimiter-style",
                 },
             ],
         });
@@ -77,7 +75,6 @@ describe(convertSemicolon, () => {
                 {
                     ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "semi",
@@ -111,7 +108,6 @@ describe(convertSemicolon, () => {
                 {
                     ruleName: "@typescript-eslint/member-delimiter-style",
                     ruleArguments: [
-                        "error",
                         {
                             multiline: {
                                 delimiter: "none",

@@ -1,26 +1,23 @@
 import { RuleConverter } from "../converter";
 
-export const convertOrderedImports: RuleConverter = tslintRule => {
-    const notices: string[] = [];
-    const unsupportedtslintOptions = [
-        "import-sources-order",
-        "named-imports-order",
-        "module-source-path",
-    ];
+const unsupportedTSLintOptions = [
+    "import-sources-order",
+    "module-source-path",
+    "named-imports-order",
+];
 
-    unsupportedtslintOptions.forEach(option => {
-        if (tslintRule.ruleArguments.includes(option)) {
-            notices.push(`Option "${option}" is not supported by ESLint.`);
-        }
-    });
+export const convertOrderedImports: RuleConverter = tslintRule => {
+    const notices = unsupportedTSLintOptions
+        .filter(option => tslintRule.ruleArguments.includes(option))
+        .map(option => `Option "${option}" is not supported by ESLint.`);
 
     return {
+        plugins: ["import"],
         rules: [
             {
-                ...(notices.length > 0 && { notices }),
+                ...(notices.length !== 0 && { notices }),
                 ruleName: "import/order",
             },
         ],
-        plugins: ["import"],
     };
 };

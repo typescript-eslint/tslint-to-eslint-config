@@ -7,12 +7,12 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["prefer-arrow"],
             rules: [
                 {
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
-            plugins: ["prefer-arrow"],
         });
     });
 
@@ -22,13 +22,13 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["prefer-arrow"],
             rules: [
                 {
                     notices: ["ESLint does not support allowing standalone function declarations."],
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
-            plugins: ["prefer-arrow"],
         });
     });
 
@@ -38,6 +38,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["prefer-arrow"],
             rules: [
                 {
                     notices: [
@@ -46,7 +47,6 @@ describe(convertOnlyArrowFunctions, () => {
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
-            plugins: ["prefer-arrow"],
         });
     });
 
@@ -56,6 +56,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["prefer-arrow"],
             rules: [
                 {
                     notices: [
@@ -65,7 +66,6 @@ describe(convertOnlyArrowFunctions, () => {
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
-            plugins: ["prefer-arrow"],
         });
     });
 });

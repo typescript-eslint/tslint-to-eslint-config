@@ -14,17 +14,16 @@ export enum MemberAccessArguments {
 
 type MemberAccessSchema = {
     accessibility: string;
-    overrides?: { [key: string]: string };
+    overrides?: Record<string, string>;
 };
 
 export const convertMemberAccess: RuleConverter = tslintRule => {
-    const tslintRuleArguments = tslintRule.ruleArguments;
     const schema: MemberAccessSchema = {
         accessibility: AccessibilityLevel.Explicit,
     };
 
-    if (tslintRuleArguments.length >= 2 || tslintRuleArguments[0] === true) {
-        tslintRuleArguments.forEach(ruleArg => {
+    if (tslintRule.ruleArguments.length >= 2 || tslintRule.ruleArguments[0] === true) {
+        for (const ruleArg of tslintRule.ruleArguments) {
             if (typeof ruleArg === "string") {
                 switch (ruleArg) {
                     case MemberAccessArguments.NoPublic:
@@ -50,14 +49,14 @@ export const convertMemberAccess: RuleConverter = tslintRule => {
                         break;
                 }
             }
-        });
+        }
     }
 
     return {
         rules: [
             {
-                ruleName: "@typescript-eslint/explicit-member-accessibility",
                 ruleArguments: [schema],
+                ruleName: "@typescript-eslint/explicit-member-accessibility",
             },
         ],
     };

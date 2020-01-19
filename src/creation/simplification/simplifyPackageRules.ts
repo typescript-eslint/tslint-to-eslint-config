@@ -1,27 +1,44 @@
 import { SansDependencies } from "../../binding";
+import { ESLintConfiguration } from "../../input/findESLintConfiguration";
+import { OriginalConfigurations } from "../../input/findOriginalConfigurations";
+import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
+import { uniqueFromSources } from "../../utils";
+import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
-import { ESLintConfiguration } from "../../input/findESLintConfiguration";
 
 export type SimplifyPackageRulesDependencies = {
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
 
-export type SimplifiedRuleConversionResults = Pick<RuleConversionResults, "converted" | "failed">;
+export type SimplifiedRuleConversionResults = Pick<
+    RuleConversionResults,
+    "converted" | "failed"
+> & {
+    extends?: string[];
+};
 
+/**
+ * Given an initial set of rule conversion results and original configurations,
+ * determines which ESLint rulesets to extend from and removes redundant rule values.
+ */
 export const simplifyPackageRules = async (
     dependencies: SimplifyPackageRulesDependencies,
-    eslint: Partial<ESLintConfiguration> | undefined,
+    eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
+    tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
     ruleConversionResults: SimplifiedRuleConversionResults,
 ): Promise<SimplifiedRuleConversionResults> => {
-    if (eslint === undefined || eslint.extends === undefined || eslint.extends.length === 0) {
+    const extendedESLintRulesets = eslint?.full.extends ?? [];
+    const extendedTSLintRulesets = collectTSLintRulesets(tslint);
+    const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
+    if (allExtensions.length === 0) {
         return ruleConversionResults;
     }
 
     const { configurationErrors, importedExtensions } = await dependencies.retrieveExtendsValues(
-        eslint.extends,
+        uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
 
     const converted = dependencies.removeExtendsDuplicatedRules(
@@ -31,6 +48,7 @@ export const simplifyPackageRules = async (
 
     return {
         converted,
+        extends: allExtensions,
         failed: [...ruleConversionResults.failed, ...configurationErrors],
     };
 };

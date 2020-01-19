@@ -1,4 +1,7 @@
-import { findConfiguration, FindConfigurationDependencies } from "./findConfiguration";
+import {
+    findReportedConfiguration,
+    FindReportedConfigurationDependencies,
+} from "./findReportedConfiguration";
 
 export type PackagesConfiguration = {
     dependencies: {
@@ -15,13 +18,13 @@ const defaultPackagesConfiguration = {
 };
 
 export const findPackagesConfiguration = async (
-    dependencies: FindConfigurationDependencies,
+    dependencies: FindReportedConfigurationDependencies,
     config: string | undefined,
 ): Promise<PackagesConfiguration | Error> => {
-    const rawConfiguration = await findConfiguration<PackagesConfiguration>(
+    const rawConfiguration = await findReportedConfiguration<PackagesConfiguration>(
         dependencies.exec,
         "cat",
-        config || "./package.json",
+        config ?? "./package.json",
     );
 
     return rawConfiguration instanceof Error

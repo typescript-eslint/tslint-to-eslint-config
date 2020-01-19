@@ -9,7 +9,6 @@ describe(convertObjectLiteralKeyQuotes, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: [],
                     ruleName: "quote-props",
                 },
             ],

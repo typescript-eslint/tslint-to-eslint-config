@@ -1,7 +1,7 @@
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 
 describe("retrieveExtendsValues", () => {
-    it("retrieves eslint-all when an extension is named eslint:all", async () => {
+    it("retrieves an equivalent ESLint configuration when a retrieved extensions is an ESLint builtin", async () => {
         // Arrange
         const eslintAll = { rules: {} };
         const importer = async (extensionName: string) =>
@@ -16,22 +16,22 @@ describe("retrieveExtendsValues", () => {
         expect(importedExtensions).toEqual([eslintAll]);
     });
 
-    it("retrieves eslint-recommended when an extension is named eslint:recommended", async () => {
+    it("retrieves an equivalent typescript-eslint configuration when a retrieved extensions is a typescript-eslint builtin", async () => {
         // Arrange
-        const eslintRecommended = { rules: {} };
+        const eslintAll = { rules: {} };
         const importer = async (extensionName: string) =>
-            extensionName === "eslint/conf/eslint-recommended"
-                ? eslintRecommended
+            extensionName === "node_modules/@typescript-eslint/eslint-plugin/dist/configs/all.json"
+                ? eslintAll
                 : new Error(`Unknown extension name: '${extensionName}`);
 
         // Act
         const { importedExtensions } = await retrieveExtendsValues(
             { importer },
-            "eslint:recommended",
+            "plugin:@typescript-eslint/all",
         );
 
         // Assert
-        expect(importedExtensions).toEqual([eslintRecommended]);
+        expect(importedExtensions).toEqual([eslintAll]);
     });
 
     it("reports a failure when an extension fails to import", async () => {

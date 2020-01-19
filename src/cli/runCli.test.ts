@@ -8,9 +8,11 @@ import { runCli, RunCliDependencies } from "./runCli";
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
 
 const createStubRunCliDependencies = (
-    overrides: Partial<Pick<RunCliDependencies, "convertConfig">> = {},
+    overrides: Partial<Pick<RunCliDependencies, "convertConfigs">> = {},
 ) => ({
-    convertConfig: async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded }),
+    convertConfigs: [
+        async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded }),
+    ],
     logger: createStubLogger(),
     ...overrides,
 });
@@ -32,7 +34,7 @@ describe("runCli", () => {
         // Arrange
         const message = "Oh no";
         const dependencies = createStubRunCliDependencies({
-            convertConfig: () => Promise.reject(new Error(message)),
+            convertConfigs: [() => Promise.reject(new Error(message))],
         });
 
         // Act
@@ -49,11 +51,13 @@ describe("runCli", () => {
         // Arrange
         const complaint = "too much unit testing coverage";
         const dependencies = createStubRunCliDependencies({
-            convertConfig: () =>
-                Promise.resolve({
-                    complaints: [complaint],
-                    status: ResultStatus.ConfigurationError,
-                }),
+            convertConfigs: [
+                () =>
+                    Promise.resolve({
+                        complaints: [complaint],
+                        status: ResultStatus.ConfigurationError,
+                    }),
+            ],
         });
 
         // Act
@@ -64,7 +68,7 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ Could not start tslint-to-eslint: ❌",
-            complaint,
+            `  ${complaint}`,
         );
     });
 
@@ -72,11 +76,13 @@ describe("runCli", () => {
         // Arrange
         const error = new Error("too much unit testing coverage");
         const dependencies = createStubRunCliDependencies({
-            convertConfig: () =>
-                Promise.resolve({
-                    errors: [error],
-                    status: ResultStatus.Failed,
-                }),
+            convertConfigs: [
+                () =>
+                    Promise.resolve({
+                        errors: [error],
+                        status: ResultStatus.Failed,
+                    }),
+            ],
         });
 
         // Act
@@ -87,7 +93,7 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ 1 error running tslint-to-eslint: ❌",
-            `${error.stack}`,
+            `  ${error.stack}`,
         );
     });
 
@@ -98,11 +104,13 @@ describe("runCli", () => {
             new Error("too much branch coverage"),
         ];
         const dependencies = createStubRunCliDependencies({
-            convertConfig: () =>
-                Promise.resolve({
-                    errors,
-                    status: ResultStatus.Failed,
-                }),
+            convertConfigs: [
+                () =>
+                    Promise.resolve({
+                        errors,
+                        status: ResultStatus.Failed,
+                    }),
+            ],
         });
 
         // Act
@@ -113,8 +121,8 @@ describe("runCli", () => {
         expectEqualWrites(
             dependencies.logger.stderr.write,
             "❌ 2 errors running tslint-to-eslint: ❌",
-            `${errors[0].stack}`,
-            `${errors[1].stack}`,
+            `  ${errors[0].stack}`,
+            `  ${errors[1].stack}`,
         );
     });
 
@@ -133,12 +141,14 @@ describe("runCli", () => {
     it("default output should be .eslintrc.js", async () => {
         let defaultConfig;
         const dependencies = createStubRunCliDependencies({
-            convertConfig: parsedArgs => {
-                defaultConfig = parsedArgs.config;
-                return Promise.resolve({
-                    status: ResultStatus.Succeeded,
-                });
-            },
+            convertConfigs: [
+                parsedArgs => {
+                    defaultConfig = parsedArgs.config;
+                    return Promise.resolve({
+                        status: ResultStatus.Succeeded,
+                    });
+                },
+            ],
         });
 
         const status = await runCli(dependencies, createStubArgv());

@@ -5,20 +5,38 @@ import { simplifyPackageRules } from "./simplifyPackageRules";
 
 const createStubDependencies = () => ({
     removeExtendsDuplicatedRules: jest.fn(),
-    retrieveExtendsValues: jest.fn(),
+    retrieveExtendsValues: async () => ({
+        configurationErrors: [],
+        importedExtensions: [],
+    }),
+});
+
+const createStubESLintConfiguration = (fullExtends: string[]) => ({
+    full: {
+        env: {},
+        extends: fullExtends,
+        rules: {},
+    },
+});
+
+const createStubTSLintConfiguration = () => ({
+    full: {},
+    raw: {},
 });
 
 describe("simplifyPackageRules", () => {
-    it("returns the conversion results directly when there is no loaded eslint configuration", async () => {
+    it("returns the conversion results directly when there is no loaded ESLint configuration and no TSLint extensions", async () => {
         // Arrange
         const dependencies = createStubDependencies();
         const eslint = undefined;
+        const tslint = createStubTSLintConfiguration();
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
         const simplifiedResults = await simplifyPackageRules(
             dependencies,
             eslint,
+            tslint,
             ruleConversionResults,
         );
 
@@ -26,16 +44,18 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toBe(ruleConversionResults);
     });
 
-    it("returns the conversion results directly when the eslint configuration doesn't extend", async () => {
+    it("returns the conversion results directly when there is an empty ESLint configuration and no TSLint extensions", async () => {
         // Arrange
         const dependencies = createStubDependencies();
-        const eslint = {};
+        const eslint = createStubESLintConfiguration([]);
+        const tslint = createStubTSLintConfiguration();
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
         const simplifiedResults = await simplifyPackageRules(
             dependencies,
             eslint,
+            tslint,
             ruleConversionResults,
         );
 
@@ -43,26 +63,7 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toBe(ruleConversionResults);
     });
 
-    it("returns the conversion results directly when the eslint configuration has an empty extends", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-        const eslint = {
-            extends: [],
-        };
-        const ruleConversionResults = createEmptyConversionResults();
-
-        // Act
-        const simplifiedResults = await simplifyPackageRules(
-            dependencies,
-            eslint,
-            ruleConversionResults,
-        );
-
-        // Assert
-        expect(simplifiedResults).toBe(ruleConversionResults);
-    });
-
-    it("includes deduplicated rules and extension failures when the eslint configuration extends", async () => {
+    it("includes deduplicated rules and extension failures when the ESLint configuration extends", async () => {
         // Arrange
         const configurationErrors = [new ConfigurationError(new Error("oh no"), "darn")];
         const deduplicatedRules = new Map<string, ESLintRuleOptions>([
@@ -82,21 +83,23 @@ describe("simplifyPackageRules", () => {
                 importedExtensions: [],
             }),
         };
-        const eslint = {
-            extends: ["extension-name"],
-        };
+        const eslintExtends = ["extension-name"];
+        const eslint = createStubESLintConfiguration(eslintExtends);
+        const tslint = createStubTSLintConfiguration();
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
         const simplifiedResults = await simplifyPackageRules(
             dependencies,
             eslint,
+            tslint,
             ruleConversionResults,
         );
 
         // Assert
         expect(simplifiedResults).toEqual({
             converted: deduplicatedRules,
+            extends: eslintExtends,
             failed: configurationErrors,
         });
     });

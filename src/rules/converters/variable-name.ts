@@ -50,49 +50,51 @@ export const convertVariableName: RuleConverter = tslintRule => {
         }
 
         return {
-            ruleName: "camelcase",
             notices: camelCaseOptionNotice,
+            ruleName: "camelcase",
         };
     };
 
     const getUnderscoreDangleRuleOptions = () => {
-        const underscoreDangleOptionArguments: string[] = [];
+        let underscoreDangleOptionSeverity: string | null = null;
         const underscoreDangleOptionNotice: string[] = [];
 
         if (hasCheckFormat && (allowedLeadingUnderscore || allowedTrailingUnderscore)) {
-            underscoreDangleOptionArguments.push("off");
+            underscoreDangleOptionSeverity = "off";
             underscoreDangleOptionNotice.push(IgnoreLeadingTrailingIdentifierMsg);
         } else {
             underscoreDangleOptionNotice.push(ForbiddenLeadingTrailingIdentifierMsg);
         }
 
         return {
-            ruleName: "no-underscore-dangle",
-            ruleArguments: underscoreDangleOptionArguments,
             notices: underscoreDangleOptionNotice,
+            ...(underscoreDangleOptionSeverity !== null && {
+                ruleSeverity: underscoreDangleOptionSeverity,
+            }),
+            ruleName: "no-underscore-dangle",
         };
     };
 
     const getBlackListRuleOptions = () => {
-        const blackListOptionArguments: string[] = [];
-
-        if (tslintRule.ruleArguments.includes("ban-keywords")) {
-            blackListOptionArguments.push(
-                "any",
-                "Number",
-                "number",
-                "String",
-                "string",
-                "Boolean",
-                "boolean",
-                "Undefined",
-                "undefined",
-            );
-        }
+        const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
+            ? [
+                  "any",
+                  "Number",
+                  "number",
+                  "String",
+                  "string",
+                  "Boolean",
+                  "boolean",
+                  "Undefined",
+                  "undefined",
+              ]
+            : [];
 
         return {
+            ...(blackListOptionArguments.length !== 0 && {
+                ruleArguments: blackListOptionArguments,
+            }),
             ruleName: "id-blacklist",
-            ruleArguments: blackListOptionArguments,
         };
     };
 

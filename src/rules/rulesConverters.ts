@@ -1,4 +1,5 @@
 import { convertAdjacentOverloadSignatures } from "./converters/adjacent-overload-signatures";
+import { convertAlign } from "./converters/align";
 import { convertArrayType } from "./converters/array-type";
 import { convertArrowParens } from "./converters/arrow-parens";
 import { convertArrowReturnShorthand } from "./converters/arrow-return-shorthand";
@@ -9,12 +10,15 @@ import { convertBanTypes } from "./converters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./converters/binary-expression-operand-order";
 import { convertCallableTypes } from "./converters/callable-types";
 import { convertClassName } from "./converters/class-name";
+import { convertCommentFormat } from "./converters/comment-format";
 import { convertCurly } from "./converters/curly";
 import { convertCyclomaticComplexity } from "./converters/cyclomatic-complexity";
+import { convertDeprecation } from "./converters/deprecation";
 import { convertEofline } from "./converters/eofline";
 import { convertFileNameCasing } from "./converters/file-name-casing";
 import { convertForin } from "./converters/forin";
 import { convertFunctionConstructor } from "./converters/function-constructor";
+import { convertImportBlacklist } from "./converters/import-blacklist";
 import { convertIncrementDecrement } from "./converters/increment-decrement";
 import { convertIndent } from "./converters/indent";
 import { convertInterfaceName } from "./converters/interface-name";
@@ -55,6 +59,7 @@ import { convertNoFloatingPromises } from "./converters/no-floating-promises";
 import { convertNoForIn } from "./converters/no-for-in";
 import { convertNoForInArray } from "./converters/no-for-in-array";
 import { convertNoImplicitDependencies } from "./converters/no-implicit-dependencies";
+import { convertNoImportSideEffect } from "./converters/no-import-side-effect";
 import { convertNoInferrableTypes } from "./converters/no-inferrable-types";
 import { convertNoInternalModule } from "./converters/no-internal-module";
 import { convertNoInvalidRegexp } from "./converters/no-invalid-regexp";
@@ -71,6 +76,7 @@ import { convertNoObjectLiteralTypeAssertion } from "./converters/no-object-lite
 import { convertNoOctalLiteral } from "./converters/no-octal-literal";
 import { convertNoParameterProperties } from "./converters/no-parameter-properties";
 import { convertNoParameterReassignment } from "./converters/no-parameter-reassignment";
+import { convertNoRedundantJsdoc } from "./converters/no-redundant-jsdoc";
 import { convertNoReference } from "./converters/no-reference";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
@@ -113,7 +119,9 @@ import { convertRestrictPlusOperands } from "./converters/restrict-plus-operands
 import { convertSemicolon } from "./converters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./converters/space-before-function-paren";
 import { convertSpaceWithinParens } from "./converters/space-within-parens";
+import { convertStrictBooleanExpressions } from "./converters/strict-boolean-expressions";
 import { convertSwitchDefault } from "./converters/switch-default";
+import { convertTrailingComma } from "./converters/trailing-comma";
 import { convertTripleEquals } from "./converters/triple-equals";
 import { convertTypedefWhitespace } from "./converters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./converters/type-literal-delimiter";
@@ -128,8 +136,9 @@ import { convertVariableName } from "./converters/variable-name";
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
-export const converters = new Map([
+export const rulesConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
+    ["align", convertAlign],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
@@ -140,12 +149,15 @@ export const converters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["comment-format", convertCommentFormat],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
+    ["deprecation", convertDeprecation],
     ["eofline", convertEofline],
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
+    ["import-blacklist", convertImportBlacklist],
     ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
@@ -186,6 +198,7 @@ export const converters = new Map([
     ["no-for-in-array", convertNoForInArray],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
@@ -202,6 +215,7 @@ export const converters = new Map([
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
+    ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
@@ -244,7 +258,9 @@ export const converters = new Map([
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
+    ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],
@@ -263,11 +279,6 @@ export const converters = new Map([
 
     // TSLint core rules:
     // ["ban", convertBan], // no-restricted-properties
-    // ["import-blacklist", convertImportBlacklist], // no-restricted-imports
-    // ["no-duplicate-variable", convertNoDuplicateVariable], // no-redeclare
-    // ["no-void-expression", convertNoVoidExpression], // (no exact equivalent)
-    // ["quotemark", convertQuotemark], // quotes
-    // ["triple-equals", convertTripleEquals], // eqeqeq
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],

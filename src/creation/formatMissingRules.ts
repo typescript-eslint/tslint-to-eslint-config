@@ -1,7 +1,7 @@
 import { TSLintRuleOptions } from "../rules/types";
 
-export const formatMissingRules = (missing: TSLintRuleOptions[], rulesDirectory: string[]) => {
-    const rules: { [i: string]: unknown } = {};
+export const formatMissingRules = (missing: TSLintRuleOptions[], rulesDirectory: string[] = []) => {
+    const rules: Record<string, unknown> = {};
 
     for (const rule of missing.sort((a, b) => a.ruleName.localeCompare(b.ruleName))) {
         if (rule.ruleSeverity !== "off") {

@@ -14,15 +14,22 @@ const createStubDependencies = (
         status: ResultStatus.Succeeded,
     }),
     reportConversionResults: jest.fn(),
-    simplifyPackageRules: async (_configurations, data) => data,
+    simplifyPackageRules: async (_configurations, data) => ({
+        ...data,
+        converted: new Map(),
+        failed: [],
+    }),
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,
 });
 
 const createStubOriginalConfigurationsData = () => ({
     tslint: {
-        rules: [],
-        rulesDirectory: [],
+        full: {
+            rules: [],
+            rulesDirectory: [],
+        },
+        raw: {},
     },
 });
 

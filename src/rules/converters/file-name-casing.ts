@@ -24,7 +24,7 @@ export const convertFileNameCasing: RuleConverter = tslintRule => {
 
 const collectArguments = (ruleArguments: any[]) => {
     const notices: string[] = [];
-    const foundCases: { [k: string]: boolean } = {};
+    const cases: Record<string, boolean> = {};
 
     if (ruleArguments.length === 0 || ruleArguments[0] === false || ruleArguments.length < 2) {
         return undefined;
@@ -35,7 +35,7 @@ const collectArguments = (ruleArguments: any[]) => {
         if (casings === "ignore") {
             notices.push(IGNORE_CASE_NOTICE);
         } else {
-            foundCases[CASES_MAP[casings]] = true;
+            cases[CASES_MAP[casings]] = true;
         }
     }
 
@@ -45,17 +45,19 @@ const collectArguments = (ruleArguments: any[]) => {
             if (casings[casing] === "ignore") {
                 notices.push(IGNORE_CASE_NOTICE);
             } else {
-                foundCases[CASES_MAP[casings[casing]]] = true;
+                cases[CASES_MAP[casings[casing]]] = true;
             }
         }
     }
 
     return {
-        ...(notices.length > 0 && { notices }),
-        ruleArguments: [
-            {
-                cases: foundCases,
-            },
-        ],
+        ...(notices.length !== 0 && { notices }),
+        ...(Object.keys(cases).length !== 0 && {
+            ruleArguments: [
+                {
+                    cases,
+                },
+            ],
+        }),
     };
 };

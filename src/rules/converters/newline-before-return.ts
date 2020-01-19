@@ -6,7 +6,6 @@ export const convertNewlineBeforeReturn: RuleConverter = () => {
             {
                 ruleName: "padding-line-between-statements",
                 ruleArguments: [
-                    "error",
                     {
                         blankLine: "always",
                         prev: "*",

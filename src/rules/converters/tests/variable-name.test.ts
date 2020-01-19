@@ -18,17 +18,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreLeadingTrailingUnderscoreMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -45,17 +43,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreLeadingTrailingUnderscoreMsg, ConstRequiredForAllCapsMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -72,17 +68,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -103,13 +97,11 @@ describe(convertVariableName, () => {
                     notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -131,12 +123,10 @@ describe(convertVariableName, () => {
                 },
                 {
                     ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -153,17 +143,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreLeadingTrailingUnderscoreMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -180,17 +168,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreLeadingTrailingUnderscoreMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: [],
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -207,17 +193,16 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreOnlyLeadingUnderscoreMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: ["off"],
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -234,17 +219,16 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [IgnoreOnlyTrailingUnderscoreMsg],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: ["off"],
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -265,17 +249,16 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
                     notices: [],
+                    ruleName: "camelcase",
                 },
                 {
-                    ruleName: "no-underscore-dangle",
-                    ruleArguments: ["off"],
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",
-                    ruleArguments: [],
                 },
                 {
                     ruleName: "id-match",
@@ -305,8 +288,8 @@ describe(convertVariableName, () => {
                 },
                 {
                     ruleName: "no-underscore-dangle",
-                    ruleArguments: ["off"],
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "id-blacklist",

@@ -1,4 +1,7 @@
 import { EOL } from "os";
 
-export const formatJsonOutput = (configuration: unknown) =>
-    `${JSON.stringify(configuration, undefined, 4)}${EOL}`;
+import { withKeysSorted } from "./withKeysSorted";
+
+export const formatJsonOutput = (configuration: any) => {
+    return `${JSON.stringify(withKeysSorted(configuration), undefined, 4)}${EOL}`;
+};

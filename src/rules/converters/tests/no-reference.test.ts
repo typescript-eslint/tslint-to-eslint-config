@@ -9,7 +9,7 @@ describe(convertNoReference, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/no-triple-slash-reference",
+                    ruleName: "@typescript-eslint/triple-slash-reference",
                 },
             ],
         });

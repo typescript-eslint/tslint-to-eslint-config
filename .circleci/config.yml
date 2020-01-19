@@ -9,7 +9,7 @@ references:
 jobs:
     build:
         docker:
-            - image: circleci/node:latest
+            - image: circleci/node:8
 
         working_directory: ~/repo
 
@@ -91,7 +91,7 @@ jobs:
             - attach_workspace:
                   at: "."
 
-            - run: npm run test -- --coverage
+            - run: npm run test:ci
 
     tsc:
         docker:

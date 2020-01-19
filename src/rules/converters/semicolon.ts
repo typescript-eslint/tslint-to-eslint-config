@@ -2,28 +2,28 @@ import { RuleConverter } from "../converter";
 
 export const convertSemicolon: RuleConverter = tslintRule => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {
-        if (strategy === "always") {
-            return "semi";
-        }
-        return "none";
+        return strategy === "always" ? "semi" : "none";
     };
 
     const ignoreInterfaces = tslintRule.ruleArguments.includes("ignore-interfaces");
     const strictBoundClassMethods = tslintRule.ruleArguments.includes("strict-bound-class-methods");
 
     return {
+        ...(strictBoundClassMethods && {
+            notices: [
+                "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
+            ],
+        }),
         rules: [
             {
-                ruleName: "@typescript-eslint/semi",
                 ruleArguments: [tslintRule.ruleArguments[0]],
+                ruleName: "@typescript-eslint/semi",
             },
             ...(ignoreInterfaces
                 ? []
                 : [
                       {
-                          ruleName: "@typescript-eslint/member-delimiter-style",
                           ruleArguments: [
-                              "error",
                               {
                                   multiline: {
                                       delimiter: getMultilineDelimiter(tslintRule.ruleArguments[0]),
@@ -35,14 +35,9 @@ export const convertSemicolon: RuleConverter = tslintRule => {
                                   },
                               },
                           ],
+                          ruleName: "@typescript-eslint/member-delimiter-style",
                       },
                   ]),
         ],
-
-        notices: strictBoundClassMethods
-            ? [
-                  "Option `strict-bound-class-methods` was found, there is no exact equivalent yet supported.",
-              ]
-            : undefined,
     };
 };

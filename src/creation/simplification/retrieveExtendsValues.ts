@@ -1,10 +1,11 @@
-import { Importer } from "../../adapters/importer";
+import { SansDependencies } from "../../binding";
 import { ConfigurationError } from "../../errors/configurationError";
 import { ESLintConfiguration } from "../../input/findESLintConfiguration";
+import { importer } from "../../input/importer";
 import { resolveExtensionNames } from "./resolveExtensionNames";
 
 export type RetrieveExtendsValuesDependencies = {
-    importer: Importer;
+    importer: SansDependencies<typeof importer>;
 };
 
 export type RetrievedExtensionValues = {
@@ -12,20 +13,29 @@ export type RetrievedExtensionValues = {
     importedExtensions: Partial<ESLintConfiguration>[];
 };
 
-const builtInExtensionGetters = new Map<
-    string,
-    (importer: Importer) => Promise<ESLintConfiguration>
->([
+const builtInExtensions = new Map([
+    ["eslint:all", "eslint/conf/eslint-all"],
+    ["eslint:recommended", "eslint/conf/eslint-recommended"],
+]);
+
+const typescriptPluginExtensions = new Map([
     [
-        "eslint:all",
-        async importer => (await importer("eslint/conf/eslint-all")) as ESLintConfiguration,
+        "plugin:@typescript-eslint/all",
+        "node_modules/@typescript-eslint/eslint-plugin/dist/configs/all.json",
     ],
     [
-        "eslint:recommended",
-        async importer => (await importer("eslint/conf/eslint-recommended")) as ESLintConfiguration,
+        "plugin:@typescript-eslint/recommended",
+        "node_modules/@typescript-eslint/eslint-plugin/dist/configs/recommended.json",
+    ],
+    [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "node_modules/@typescript-eslint/eslint-plugin/dist/configs/recommended-requiring-type-checking.json",
     ],
 ]);
 
+/**
+ * Imports any extended ESLint rulesets as ESLint configurations.
+ */
 export const retrieveExtendsValues = async (
     dependencies: RetrieveExtendsValuesDependencies,
     rawExtensionNames: string | string[],
@@ -36,9 +46,22 @@ export const retrieveExtendsValues = async (
 
     await Promise.all(
         extensionNames.map(async extensionName => {
-            const getBuiltInExtension = builtInExtensionGetters.get(extensionName);
-            if (getBuiltInExtension !== undefined) {
-                importedExtensions.push(await getBuiltInExtension(dependencies.importer));
+            const builtInExtension = builtInExtensions.get(extensionName);
+            if (builtInExtension !== undefined) {
+                importedExtensions.push(
+                    (await dependencies.importer(builtInExtension)) as ESLintConfiguration,
+                );
+                return;
+            }
+
+            const typescriptPluginExtension = typescriptPluginExtensions.get(extensionName);
+            if (typescriptPluginExtension !== undefined) {
+                const importedTypeScriptPlugin = (await dependencies.importer(
+                    typescriptPluginExtension,
+                )) as ESLintConfiguration;
+                importedExtensions.push({
+                    rules: importedTypeScriptPlugin.rules,
+                });
                 return;
             }
 

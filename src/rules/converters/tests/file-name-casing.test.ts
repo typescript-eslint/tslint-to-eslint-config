@@ -75,11 +75,6 @@ describe(convertFileNameCasing, () => {
                 {
                     notices: ["ESLint (Unicorn plugin) does not support the 'ignore' case."],
                     ruleName: "unicorn/filename-case",
-                    ruleArguments: [
-                        {
-                            cases: {},
-                        },
-                    ],
                 },
             ],
             plugins: ["unicorn"],
@@ -99,11 +94,6 @@ describe(convertFileNameCasing, () => {
                         "ESLint (Unicorn plugin) does not support the 'ignore' case.",
                     ],
                     ruleName: "unicorn/filename-case",
-                    ruleArguments: [
-                        {
-                            cases: {},
-                        },
-                    ],
                 },
             ],
             plugins: ["unicorn"],

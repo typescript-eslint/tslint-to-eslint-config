@@ -1,12 +1,17 @@
 import { mergeLintConfigurations } from "./mergeLintConfigurations";
 import { ESLintConfiguration } from "./findESLintConfiguration";
+import { OriginalConfigurations } from "./findOriginalConfigurations";
+import { TSLintConfiguration } from "./findTSLintConfiguration";
 
-const stubTSLintConfiguration = {
-    rulesDirectory: [],
-    rules: {
-        disabled: true,
-        enabled: true,
+const stubTSLintConfiguration: OriginalConfigurations<TSLintConfiguration> = {
+    full: {
+        rulesDirectory: [],
+        rules: {
+            disabled: true,
+            enabled: true,
+        },
     },
+    raw: {},
 };
 
 describe("mergeLintConfigurations", () => {
@@ -23,10 +28,13 @@ describe("mergeLintConfigurations", () => {
 
     it("returns the tslint configuration when the eslint configuration doesn't have tslint rules", () => {
         // Arrange
-        const eslint: ESLintConfiguration = {
-            env: {},
-            extends: [],
-            rules: {},
+        const eslint: OriginalConfigurations<ESLintConfiguration> = {
+            full: {
+                env: {},
+                extends: [],
+                rules: {},
+            },
+            raw: {},
         };
 
         // Act
@@ -38,17 +46,20 @@ describe("mergeLintConfigurations", () => {
 
     it("returns the tslint configuration when the eslint configuration's tslint rules are disabled", () => {
         // Arrange
-        const eslint: ESLintConfiguration = {
-            env: {},
-            extends: [],
-            rules: {
-                "@typescript-eslint/tslint/config": [
-                    "off",
-                    {
-                        extra: true,
-                    },
-                ],
+        const eslint: OriginalConfigurations<ESLintConfiguration> = {
+            full: {
+                env: {},
+                extends: [],
+                rules: {
+                    "@typescript-eslint/tslint/config": [
+                        "off",
+                        {
+                            extra: true,
+                        },
+                    ],
+                },
             },
+            raw: {},
         };
 
         // Act
@@ -63,17 +74,20 @@ describe("mergeLintConfigurations", () => {
         const extraRules = {
             extra: true,
         };
-        const eslint: ESLintConfiguration = {
-            env: {},
-            extends: [],
-            rules: {
-                "@typescript-eslint/tslint/config": [
-                    "error",
-                    {
-                        rules: extraRules,
-                    },
-                ],
+        const eslint: OriginalConfigurations<ESLintConfiguration> = {
+            full: {
+                env: {},
+                extends: [],
+                rules: {
+                    "@typescript-eslint/tslint/config": [
+                        "error",
+                        {
+                            rules: extraRules,
+                        },
+                    ],
+                },
             },
+            raw: {},
         };
 
         // Act
@@ -82,9 +96,12 @@ describe("mergeLintConfigurations", () => {
         // Assert
         expect(result).toEqual({
             ...stubTSLintConfiguration,
-            rules: {
-                ...stubTSLintConfiguration.rules,
-                ...extraRules,
+            full: {
+                ...stubTSLintConfiguration.full,
+                rules: {
+                    ...stubTSLintConfiguration.full.rules,
+                    ...extraRules,
+                },
             },
         });
     });

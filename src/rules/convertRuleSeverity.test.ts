@@ -47,7 +47,7 @@ describe("convertRawESLintRuleSeverity", () => {
         expect(converted).toEqual("off");
     });
 
-    it("returns off when the severity is 2", () => {
+    it("returns warn when the severity is 1", () => {
         // Arrange
         const rawSeverity = 1;
 
@@ -58,7 +58,7 @@ describe("convertRawESLintRuleSeverity", () => {
         expect(converted).toEqual("warn");
     });
 
-    it("returns off when the severity is 3", () => {
+    it("returns error when the severity is 2", () => {
         // Arrange
         const rawSeverity = 2;
 

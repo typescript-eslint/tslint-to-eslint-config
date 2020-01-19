@@ -4,7 +4,7 @@ export const convertInterfaceOverTypeLiteral: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "@typescript-eslint/prefer-interface",
+                ruleName: "@typescript-eslint/consistent-type-definitions",
             },
         ],
     };

@@ -57,11 +57,11 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}` +
-                `📢 1 ESLint rule behaves differently from their TSLint counterparts: 📢${EOL}` +
-                `* tslint-rule-one:${EOL}` +
-                `  - 1${EOL}` +
-                `  - 2${EOL}`,
+            `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}`,
+            `❗ 1 ESLint rule behaves differently from its TSLint counterpart ❗`,
+            `  * tslint-rule-one:`,
+            `    - 1`,
+            `    - 2`,
         );
     });
 
@@ -98,14 +98,14 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `✨ 2 rules replaced with their ESLint equivalents. ✨${EOL}` +
-                `📢 2 ESLint rules behave differently from their TSLint counterparts: 📢${EOL}` +
-                `* tslint-rule-one:${EOL}` +
-                `  - 1${EOL}` +
-                `  - 2${EOL}` +
-                `* tslint-rule-two:${EOL}` +
-                `  - 3${EOL}` +
-                `  - 4${EOL}`,
+            `✨ 2 rules replaced with their ESLint equivalents. ✨${EOL}`,
+            `❗ 2 ESLint rules behave differently from their TSLint counterparts ❗`,
+            `  * tslint-rule-one:`,
+            `    - 1`,
+            `    - 2`,
+            `  * tslint-rule-two:`,
+            `    - 3`,
+            `    - 4`,
         );
     });
 
@@ -123,8 +123,8 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 1 error thrown. 💀",
-            `Check ${logger.debugFileName} for details.`,
+            "❌ 1 error thrown. ❌",
+            `  Check ${logger.debugFileName} for details.`,
         );
     });
 
@@ -142,8 +142,8 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "💀 2 errors thrown. 💀",
-            `Check ${logger.debugFileName} for details.`,
+            "❌ 2 errors thrown. ❌",
+            `  Check ${logger.debugFileName} for details.`,
         );
     });
 
@@ -167,11 +167,12 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 1 rule does not yet have an ESLint equivalent (see generated log file); defaulting to eslint-plugin-tslint for these rules. 👀",
+            "❓ 1 rule does not yet have an ESLint equivalent ❓",
+            `  See generated log file; defaulting to eslint-plugin-tslint for it.`,
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-rule-one does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
         );
     });
 
@@ -200,12 +201,13 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "👀 2 rules do not yet have ESLint equivalents (see generated log file); defaulting to eslint-plugin-tslint for these rules. 👀",
+            "❓ 2 rules do not yet have ESLint equivalents ❓",
+            `  See generated log file; defaulting to eslint-plugin-tslint for these rules.`,
         );
         expectEqualWrites(
             logger.info.write,
-            "tslint-rule-one does not yet have an ESLint equivalent.",
-            "tslint-rule-two does not yet have an ESLint equivalent.",
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
+            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-two"',
         );
     });
 
@@ -224,7 +226,7 @@ describe("reportConversionResults", () => {
         expectEqualWrites(
             logger.stdout.write,
             "⚡ 1 package is required for new ESLint rules. ⚡",
-            "\tplugin-one",
+            "  plugin-one",
         );
     });
 
@@ -243,8 +245,8 @@ describe("reportConversionResults", () => {
         expectEqualWrites(
             logger.stdout.write,
             "⚡ 2 packages are required for new ESLint rules. ⚡",
-            "\tplugin-one",
-            "\tplugin-two",
+            "  plugin-one",
+            "  plugin-two",
         );
     });
 });

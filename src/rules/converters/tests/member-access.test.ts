@@ -9,8 +9,8 @@ describe(convertMemberAccess, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                     ruleArguments: [{ accessibility: AccessibilityLevel.Explicit }],
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                 },
             ],
         });
@@ -24,8 +24,8 @@ describe(convertMemberAccess, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                     ruleArguments: [{ accessibility: AccessibilityLevel.Explicit }],
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                 },
             ],
         });
@@ -39,8 +39,8 @@ describe(convertMemberAccess, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                     ruleArguments: [{ accessibility: AccessibilityLevel.NoPublic }],
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                 },
             ],
         });
@@ -54,7 +54,6 @@ describe(convertMemberAccess, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                     ruleArguments: [
                         {
                             accessibility: AccessibilityLevel.Explicit,
@@ -63,6 +62,7 @@ describe(convertMemberAccess, () => {
                             },
                         },
                     ],
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
                 },
             ],
         });
