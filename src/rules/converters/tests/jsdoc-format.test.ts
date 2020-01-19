@@ -1,4 +1,4 @@
-import { convertJSDocFormat } from "../jsdoc-format";
+import { convertJSDocFormat, JSDocNoticeMsg } from "../jsdoc-format";
 
 describe(convertJSDocFormat, () => {
     test("conversion without arguments", () => {
@@ -18,6 +18,7 @@ describe(convertJSDocFormat, () => {
                     ruleName: "jsdoc/newline-after-description",
                 },
             ],
+            notices: [JSDocNoticeMsg],
             plugins: ["eslint-plugin-jsdoc"],
         });
     });

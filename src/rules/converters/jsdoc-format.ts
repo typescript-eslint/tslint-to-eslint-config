@@ -1,5 +1,8 @@
 import { RuleConverter, ConvertedRuleChanges } from "../converter";
 
+export const JSDocNoticeMsg =
+    "ESLint does not support enabling check for multiline comments in the first line";
+
 export const convertJSDocFormat: RuleConverter = () => {
     const ruleNames = [
         "jsdoc/check-alignment",
@@ -13,6 +16,7 @@ export const convertJSDocFormat: RuleConverter = () => {
 
     return {
         rules: [...mappedRuleNames],
+        notices: [JSDocNoticeMsg],
         plugins: ["eslint-plugin-jsdoc"],
     };
 };
