@@ -4,6 +4,7 @@ import { convertArrayType } from "./converters/array-type";
 import { convertArrowParens } from "./converters/arrow-parens";
 import { convertArrowReturnShorthand } from "./converters/arrow-return-shorthand";
 import { convertAwaitPromise } from "./converters/await-promise";
+import { convertBan } from "./converters/ban";
 import { convertBanCommaOperator } from "./converters/ban-comma-operator";
 import { convertBanTsIgnore } from "./converters/ban-ts-ignore";
 import { convertBanTypes } from "./converters/ban-types";
@@ -142,6 +143,7 @@ export const rulesConverters = new Map([
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
     ["await-promise", convertAwaitPromise],
+    ["ban", convertBan], // no-restricted-properties
     ["ban-comma-operator", convertBanCommaOperator],
     ["ban-ts-ignore", convertBanTsIgnore],
     ["ban-types", convertBanTypes],
@@ -276,7 +278,6 @@ export const rulesConverters = new Map([
     // As these are enabled, they should be added in sorted order to the list above.
 
     // TSLint core rules:
-    // ["ban", convertBan], // no-restricted-properties
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
