@@ -9,7 +9,7 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -24,6 +24,7 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -42,7 +43,7 @@ describe(convertCommentFormat, () => {
                     ruleName: "capitalized-comments",
                 },
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -62,7 +63,7 @@ describe(convertCommentFormat, () => {
                     ruleName: "capitalized-comments",
                 },
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -77,7 +78,7 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -96,7 +97,7 @@ describe(convertCommentFormat, () => {
                     ruleName: "capitalized-comments",
                 },
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -111,7 +112,7 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -131,7 +132,7 @@ describe(convertCommentFormat, () => {
                     ruleName: "capitalized-comments",
                 },
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -146,7 +147,7 @@ describe(convertCommentFormat, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["never"],
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],
@@ -172,6 +173,7 @@ describe(convertCommentFormat, () => {
                     ruleName: "capitalized-comments",
                 },
                 {
+                    ruleArguments: ["always", { markers: ["/"] }],
                     ruleName: "spaced-comment",
                 },
             ],

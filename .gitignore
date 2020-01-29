@@ -4,8 +4,10 @@
 *.map
 coverage/
 node_modules/
+pnpm-lock.yaml
 src/**/*.js
 test/*.js
 ~test/jest.config.js
 !test/tests/**/.eslintrc*
 !test/tests/**/*.log
+.idea/
