@@ -18,6 +18,13 @@ module.exports = {
     },
     plugins: ["@typescript-eslint"],
     rules: {
+        "@typescript-eslint/array-type": [
+            "error",
+            {
+                default: "array-simple",
+                readonly: "array-simple",
+            },
+        ],
         "@typescript-eslint/consistent-type-definitions": ["error", "type"],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/generic-type-naming": "off",
