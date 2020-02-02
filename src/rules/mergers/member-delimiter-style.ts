@@ -8,7 +8,7 @@ export const mergeNoMemberDelimiterStyle: RuleMerger = (existingOptions, newOpti
     return [merge((existingOptions ?? [])[0] ?? {}, (newOptions ?? [])[0] ?? {})];
 };
 
-const merge = (...objs: Record<string, any>[]) =>
+const merge = (...objs: Array<Record<string, any>>) =>
     [...objs].reduce(
         (acc, obj) => ({
             ...acc,

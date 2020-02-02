@@ -10,7 +10,7 @@ const UNDERSCORE_DISABLE_NOTICE =
     "provide specific variable names you want to disable the rule for.";
 
 export const convertNoShadowedVariable: RuleConverter = tslintRule => {
-    const ruleArguments: { hoist: "all" | "never" }[] = [];
+    const ruleArguments: Array<{ hoist: "all" | "never" }> = [];
     const notices: string[] = [];
 
     if (tslintRule.ruleArguments.length === 0 || !(tslintRule.ruleArguments[0] instanceof Object)) {

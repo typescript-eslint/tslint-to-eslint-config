@@ -13,7 +13,7 @@ export type ConvertEditorSettingsDependencies = {
 export type EditorSettingConversionResults = {
     converted: Map<string, EditorSetting>;
     failed: ErrorSummary[];
-    missing: Pick<EditorSetting, "editorSettingName">[];
+    missing: Array<Pick<EditorSetting, "editorSettingName">>;
 };
 
 // The entire editor configuration of any keys and values.
@@ -25,7 +25,7 @@ export const convertEditorSettings = (
 ): EditorSettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
-    const missing: Pick<EditorSetting, "editorSettingName">[] = [];
+    const missing: Array<Pick<EditorSetting, "editorSettingName">> = [];
 
     for (const [configurationName, value] of Object.entries(rawEditorConfiguration)) {
         // Configurations other than editor settings will be ignored.

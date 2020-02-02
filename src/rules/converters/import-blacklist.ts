@@ -8,7 +8,7 @@ type ESLintOptionPath = {
 };
 type ESLintSimpleOption = string[];
 type ESLintComplexOption = RequireAtLeastOne<{
-    paths: (string | ESLintOptionPath)[];
+    paths: Array<string | ESLintOptionPath>;
     patterns: string[];
 }>;
 type ESLintOptions = ESLintSimpleOption | ESLintComplexOption;

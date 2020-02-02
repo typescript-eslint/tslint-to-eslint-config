@@ -13,7 +13,7 @@ export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclu
         [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
     }[Keys];
 
-export const uniqueFromSources = <T>(...sources: (T | T[] | undefined)[]) => {
+export const uniqueFromSources = <T>(...sources: Array<T | T[] | undefined>) => {
     const items: T[] = [];
 
     for (const source of sources) {

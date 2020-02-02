@@ -10,7 +10,7 @@ export type RetrieveExtendsValuesDependencies = {
 
 export type RetrievedExtensionValues = {
     configurationErrors: ConfigurationError[];
-    importedExtensions: Partial<ESLintConfiguration>[];
+    importedExtensions: Array<Partial<ESLintConfiguration>>;
 };
 
 const builtInExtensions = new Map([
@@ -40,7 +40,7 @@ export const retrieveExtendsValues = async (
     dependencies: RetrieveExtendsValuesDependencies,
     rawExtensionNames: string | string[],
 ): Promise<RetrievedExtensionValues> => {
-    const importedExtensions: Partial<ESLintConfiguration>[] = [];
+    const importedExtensions: Array<Partial<ESLintConfiguration>> = [];
     const configurationErrors: ConfigurationError[] = [];
     const extensionNames = resolveExtensionNames(rawExtensionNames);
 

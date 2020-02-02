@@ -21,7 +21,7 @@ const prepareTestRule = (
             },
         ],
     ]);
-    const extensions: Partial<ESLintConfiguration>[] = [
+    const extensions: Array<Partial<ESLintConfiguration>> = [
         {
             rules: {
                 [ruleName]: extensionConfiguration,

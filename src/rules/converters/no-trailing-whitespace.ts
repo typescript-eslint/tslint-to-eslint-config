@@ -1,7 +1,7 @@
 import { RuleConverter } from "../converter";
 
 export const convertNoTrailingWhitespace: RuleConverter = tslintRule => {
-    const ruleArguments: Partial<Record<"ignoreComments" | "skipBlankLines", boolean>>[] = [];
+    const ruleArguments: Array<Partial<Record<"ignoreComments" | "skipBlankLines", boolean>>> = [];
     const notices: string[] = [];
 
     if (tslintRule.ruleArguments.includes("ignore-comments")) {

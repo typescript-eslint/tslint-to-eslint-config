@@ -57,6 +57,7 @@
         "url": "github:typescript-eslint/tslint-to-eslint-config"
     },
     "scripts": {
+        "fix": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives --fix",
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",

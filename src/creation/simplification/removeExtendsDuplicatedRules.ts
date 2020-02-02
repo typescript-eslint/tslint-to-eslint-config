@@ -9,7 +9,7 @@ import { ESLintRuleOptions } from "../../rules/types";
 
 export const removeExtendsDuplicatedRules = (
     allRules: Map<string, ESLintRuleOptions>,
-    extensions: Partial<ESLintConfiguration>[],
+    extensions: Array<Partial<ESLintConfiguration>>,
 ): Map<string, ESLintRuleOptions> => {
     const differentRules = new Map<string, ESLintRuleOptions>();
     const mergedExtensionRules = mergeExtensions(extensions);
@@ -23,7 +23,7 @@ export const removeExtendsDuplicatedRules = (
     return differentRules;
 };
 
-const mergeExtensions = (extensions: Partial<ESLintConfiguration>[]) => {
+const mergeExtensions = (extensions: Array<Partial<ESLintConfiguration>>) => {
     const mergedRules = new Map<string, ESLintRuleOptions>();
 
     for (const extension of extensions) {

@@ -9,7 +9,7 @@ import { convertConfig } from "../conversion/convertConfig";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
-    convertConfigs: SansDependencies<typeof convertConfig>[];
+    convertConfigs: Array<SansDependencies<typeof convertConfig>>;
     logger: Logger;
 };
 
