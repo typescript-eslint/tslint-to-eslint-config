@@ -125,10 +125,8 @@ function collectNotices(args: TSLintArg[]): string[] {
 }
 
 function buildNoticeForEsSpecCompliant(arg: TSLintArg): string {
-    const unsupportedConfigKey = "esSpecCompliant";
-
-    if (Object.keys(arg).includes(unsupportedConfigKey)) {
-        return `ESLint does not support config property ${unsupportedConfigKey}`;
+    if (!arg.esSpecCompliant) {
+        return `ESLint only supports esSpecCompliant enabled`;
     }
 
     return "";
