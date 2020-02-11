@@ -6,6 +6,9 @@
         "url": "https://github.com/typescript-eslint/tslint-to-eslint-config/issues"
     },
     "description": "Converts your TSLint configuration to the closest reasonable ESLint equivalent.",
+    "engines": {
+        "node": ">=8.0.0"
+    },
     "dependencies": {
         "chalk": "3.0.0",
         "commander": "4.0.1",
