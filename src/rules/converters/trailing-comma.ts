@@ -125,7 +125,7 @@ function collectNotices(args: TSLintArg[]): string[] {
 }
 
 function buildNoticeForEsSpecCompliant(arg: TSLintArg): string {
-    if (!arg.esSpecCompliant) {
+    if (arg.esSpecCompliant === false) {
         return `ESLint only supports esSpecCompliant enabled`;
     }
 
