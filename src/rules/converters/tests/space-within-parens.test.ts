@@ -16,6 +16,21 @@ describe(convertSpaceWithinParens, () => {
         });
     });
 
+    test("conversion with 0 spaces required", () => {
+        const result = convertSpaceWithinParens({
+            ruleArguments: [0],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: ["never"],
+                    ruleName: "space-in-parens",
+                },
+            ],
+        });
+    });
+
     test("conversion with min spaces arguement", () => {
         const result = convertSpaceWithinParens({
             ruleArguments: [5],
