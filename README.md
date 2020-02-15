@@ -32,7 +32,7 @@ The `tslint-to-eslint-config` command reads in any existing linter, TypeScript, 
 For any TSLint rules with corresponding ESLint equivalents, those equivalents will be used in the new configuration.
 TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tslint](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin-tslint).
 
-> Requires Node 8+ (LTS)
+> Requires Node 10+ (LTS)
 
 ### CLI Flags
 
