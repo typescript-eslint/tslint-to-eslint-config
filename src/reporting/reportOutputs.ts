@@ -12,7 +12,7 @@ export const logSuccessfulConversions = (
     conversionTypeName: string,
     converted: Map<string, EditorSetting | ESLintRuleOptions>,
     logger: Logger,
-) => {
+): void => {
     logger.stdout.write(chalk.greenBright(`✨ ${converted.size}`));
     logger.stdout.write(
         converted.size === 1
@@ -22,7 +22,7 @@ export const logSuccessfulConversions = (
     logger.stdout.write(chalk.greenBright(` ✨${EOL}`));
 };
 
-export const logFailedConversions = (failed: ErrorSummary[], logger: Logger) => {
+export const logFailedConversions = (failed: ErrorSummary[], logger: Logger): void => {
     logger.stderr.write(`${chalk.redBright(`${EOL}❌ ${failed.length}`)}`);
     logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
     logger.stderr.write(chalk.red(" thrown."));
@@ -37,7 +37,7 @@ export const logMissingConversionTarget = <T>(
     missing: T[],
     logger: Logger,
     additionalWarnings: string[] = [],
-) => {
+): void => {
     logger.stdout.write(chalk.yellowBright(`️${EOL}❓ ${missing.length}`));
     logger.stdout.write(
         chalk.yellow(
@@ -65,7 +65,7 @@ export const logMissingConversionTarget = <T>(
     logger.stdout.write(chalk.yellow(EOL));
 };
 
-export const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
+export const logMissingPlugins = (plugins: Set<string>, logger: Logger): void => {
     logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${plugins.size}`));
     logger.stdout.write(chalk.cyan(" package"));
     logger.stdout.write(chalk.cyan(plugins.size === 1 ? " is" : "s are"));

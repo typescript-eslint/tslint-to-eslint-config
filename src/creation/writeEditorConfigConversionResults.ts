@@ -13,7 +13,7 @@ export const writeConversionResults = async (
     outputPath: string,
     conversionResults: EditorSettingConversionResults,
     originalConfiguration: DeepPartial<EditorConfiguration>,
-) => {
+): Promise<undefined | Error> => {
     const output = {
         ...originalConfiguration,
         ...formatConvertedSettings(conversionResults),
@@ -22,7 +22,11 @@ export const writeConversionResults = async (
     return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };
 
-export const formatConvertedSettings = (conversionResults: EditorSettingConversionResults) => {
+export const formatConvertedSettings = (
+    conversionResults: EditorSettingConversionResults,
+): {
+    [i: string]: string | any[];
+} => {
     const output: { [i: string]: string | any[] } = {};
     const sortedEntries = Array.from(conversionResults.converted).sort(([nameA], [nameB]) =>
         nameA.localeCompare(nameB),

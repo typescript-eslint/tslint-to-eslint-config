@@ -18,16 +18,16 @@ export const convertNoShadowedVariable: RuleConverter = tslintRule => {
     } else {
         const config: Record<string, boolean> = tslintRule.ruleArguments[0];
 
-        if (config.underscore === false) {
+        if (!config.underscore) {
             notices.push(UNDERSCORE_DISABLE_NOTICE);
         }
 
         ruleArguments.push({
-            hoist: config.temporalDeadZone === false ? "never" : "all",
+            hoist: !config.temporalDeadZone ? "never" : "all",
         });
 
         const hasUnsupportedDisables = Object.entries(config).some(
-            ([key, value]) => value === false && key !== "underscore" && key !== "temporalDeadZone",
+            ([key, value]) => !value && key !== "underscore" && key !== "temporalDeadZone",
         );
 
         if (hasUnsupportedDisables) {

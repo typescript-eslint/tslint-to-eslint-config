@@ -24,7 +24,9 @@ const createStubWritableStream = () => ({
     write: jest.fn(),
 });
 
-export const createStubLogger = () => ({
+type StubWritableStream = typeof createStubWritableStream;
+
+export const createStubLogger = (): Partial<StubWritableStream> => ({
     debugFileName,
     info: createStubWritableStream(),
     stderr: createStubWritableStream(),
@@ -39,7 +41,7 @@ const removeOddCharactersAndTrim = (text: string) =>
         )
         .trim();
 
-export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]) => {
+export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]): void => {
     const realCalls = removeOddCharactersAndTrim(fn.mock.calls.map(args => args.join("")).join(""));
     const actualCalls = removeOddCharactersAndTrim(actual.join(EOL) + EOL);
 

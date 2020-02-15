@@ -7,7 +7,7 @@ import { ErrorSummary } from "./errorSummary";
 export class ConversionError implements ErrorSummary {
     private constructor(private readonly summary: string) {}
 
-    public static forMerger(eslintRule: string) {
+    public static forMerger(eslintRule: string): ConversionError {
         return new ConversionError(
             [
                 `Error: multiple output ${eslintRule} ESLint rule options were generated, but tslint-to-eslint-config doesn't have "merger" logic to deal with this.`,
@@ -16,13 +16,13 @@ export class ConversionError implements ErrorSummary {
         );
     }
 
-    public static forRuleError(error: Error, tslintRule: TSLintRuleOptions) {
+    public static forRuleError(error: Error, tslintRule: TSLintRuleOptions): ConversionError {
         return new ConversionError(
             `${tslintRule.ruleName} threw an error during conversion: ${error.stack}${EOL}`,
         );
     }
 
-    public static forSettingError(error: Error, editorSetting: EditorSetting) {
+    public static forSettingError(error: Error, editorSetting: EditorSetting): ConversionError {
         return new ConversionError(
             `${editorSetting.editorSettingName} threw an error during conversion: ${error.stack}${EOL}`,
         );

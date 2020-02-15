@@ -1,4 +1,4 @@
-export const resolveExtensionNames = (rawExtensionNames: string | string[]) => {
+export const resolveExtensionNames = (rawExtensionNames: string | string[]): string[] => {
     if (typeof rawExtensionNames === "string") {
         rawExtensionNames = [rawExtensionNames];
     }

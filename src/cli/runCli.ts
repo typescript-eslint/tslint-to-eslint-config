@@ -88,5 +88,9 @@ const logErrorResult = (result: ResultWithStatus, dependencies: RunCliDependenci
                 dependencies.logger.stderr.write(chalk.gray(`  ${error.stack}${EOL}`));
             }
             break;
+
+        case ResultStatus.Succeeded:
+            // TODO: Display a nice message?
+            break;
     }
 };

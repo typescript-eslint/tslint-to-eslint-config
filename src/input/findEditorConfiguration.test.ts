@@ -7,7 +7,7 @@ import { DEFAULT_VSCODE_SETTINGS_PATH } from "./vsCodeSettings";
 
 const stubConfigPath = "temp/";
 
-export const createStubImporter = (filePath = "") =>
+export const createStubImporter = (filePath = ""): jest.Mock =>
     jest.fn().mockReturnValue(Promise.resolve(filePath));
 
 const createStubDependencies = (overrides: Partial<FindEditorConfigurationDependencies> = {}) => ({

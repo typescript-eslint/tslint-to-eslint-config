@@ -6,11 +6,11 @@ import { formatMissingRules } from "./formatMissingRules";
 export const formatConvertedRules = (
     conversionResults: RuleConversionResults,
     tslintConfiguration: TSLintConfiguration,
-) => {
+): { [r: string]: string | any[] } => {
     const output: { [i: string]: string | any[] } = {};
-    const sortedRuleEntries = Array.from(conversionResults.converted).sort(
-        ([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB),
-    );
+    const sortedRuleEntries = Array.from(
+        conversionResults.converted,
+    ).sort(([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB));
 
     for (const [ruleName, rule] of sortedRuleEntries) {
         output[ruleName] = formatConvertedRule(rule);

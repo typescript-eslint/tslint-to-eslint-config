@@ -18,6 +18,7 @@ export type FindTSLintConfigurationDependencies = {
     importer: SansDependencies<typeof importer>;
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const findTSLintConfiguration = async (
     dependencies: FindTSLintConfigurationDependencies,
     config: string | undefined,

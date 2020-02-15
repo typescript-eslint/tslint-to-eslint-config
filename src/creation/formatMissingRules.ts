@@ -1,5 +1,6 @@
 import { TSLintRuleOptions } from "../rules/types";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const formatMissingRules = (missing: TSLintRuleOptions[], rulesDirectory: string[] = []) => {
     const rules: Record<string, unknown> = {};
 

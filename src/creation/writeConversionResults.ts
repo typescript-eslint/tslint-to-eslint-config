@@ -15,7 +15,7 @@ export const writeConversionResults = async (
     outputPath: string,
     ruleConversionResults: RuleConversionResults & SimplifiedRuleConversionResults,
     originalConfigurations: AllOriginalConfigurations,
-) => {
+): Promise<undefined | Error> => {
     const plugins = ["@typescript-eslint"];
     const { eslint, tslint } = originalConfigurations;
 

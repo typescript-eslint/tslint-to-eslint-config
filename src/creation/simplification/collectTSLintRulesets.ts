@@ -15,7 +15,7 @@ const nativeExtensions = new Map([
 
 export const collectTSLintRulesets = (
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
-) => {
+): string[] => {
     const allExtensions = uniqueFromSources(tslint.full.extends, tslint.raw.extends);
 
     const extensions = new Set<string>();

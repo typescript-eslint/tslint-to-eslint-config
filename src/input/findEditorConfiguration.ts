@@ -11,6 +11,7 @@ export type FindEditorConfigurationDependencies = {
     importer: SansDependencies<typeof importer>;
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const findEditorConfiguration = async (
     dependencies: FindEditorConfigurationDependencies,
     specifiedConfigPath: string | undefined,

@@ -15,7 +15,7 @@ import {
 export const reportConversionResults = (
     dependencies: ReportConversionResultsDependencies,
     ruleConversionResults: RuleConversionResults,
-) => {
+): void => {
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
         logNotices(ruleConversionResults.converted, dependencies.logger);

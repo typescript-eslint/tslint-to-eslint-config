@@ -135,7 +135,7 @@ const runCliDependencies: RunCliDependencies = {
     logger: processLogger,
 };
 
-export const main = async (argv: string[]) => {
+export const main = async (argv: string[]): Promise<void> => {
     try {
         const resultStatus = await runCli(runCliDependencies, argv);
         processLogger.info.close();

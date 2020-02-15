@@ -12,7 +12,7 @@ import {
 export const reportEditorSettingConversionResults = (
     dependencies: ReportConversionResultsDependencies,
     editorSettingConversionResults: EditorSettingConversionResults,
-) => {
+): void => {
     if (editorSettingConversionResults.converted.size !== 0) {
         logSuccessfulConversions(
             "editor setting",
