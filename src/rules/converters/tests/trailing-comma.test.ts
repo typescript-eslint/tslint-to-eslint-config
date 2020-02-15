@@ -272,7 +272,6 @@ describe(convertTrailingComma, () => {
                     esSpecCompliant: true,
                 },
                 expectedRuleArguments: [],
-                expectedNotices: ["ESLint does not support config property esSpecCompliant"],
             },
             {
                 argument: {
@@ -300,10 +299,7 @@ describe(convertTrailingComma, () => {
                     },
                 },
                 expectedRuleArguments: [{}],
-                expectedNotices: [
-                    "ESLint does not support config property esSpecCompliant",
-                    "ESLint does not support config property typeLiterals",
-                ],
+                expectedNotices: ["ESLint does not support config property typeLiterals"],
             },
             {
                 argument: {
@@ -314,7 +310,7 @@ describe(convertTrailingComma, () => {
                 },
                 expectedRuleArguments: [{}],
                 expectedNotices: [
-                    "ESLint does not support config property esSpecCompliant",
+                    "ESLint only supports esSpecCompliant enabled",
                     "ESLint does not support config property typeLiterals",
                 ],
             },
@@ -330,7 +326,7 @@ describe(convertTrailingComma, () => {
                 },
                 expectedRuleArguments: [{}],
                 expectedNotices: [
-                    "ESLint does not support config property esSpecCompliant",
+                    "ESLint only supports esSpecCompliant enabled",
                     "ESLint does not support config property typeLiterals",
                 ],
             },
