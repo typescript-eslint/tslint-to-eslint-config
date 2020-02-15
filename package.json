@@ -67,5 +67,5 @@
         "test:ci": "jest --coverage --maxWorkers=2",
         "tsc": "tsc"
     },
-    "version": "0.5.1"
+    "version": "0.5.2"
 }
