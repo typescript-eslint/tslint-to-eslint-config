@@ -33,6 +33,21 @@ describe(convertMemberAccess, () => {
 
     test("conversion with no-public argument", () => {
         const result = convertMemberAccess({
+            ruleArguments: ["no-public"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: [{ accessibility: AccessibilityLevel.NoPublic }],
+                    ruleName: "@typescript-eslint/explicit-member-accessibility",
+                },
+            ],
+        });
+    });
+
+    test("conversion with true and no-public argument", () => {
+        const result = convertMemberAccess({
             ruleArguments: [true, "no-public"],
         });
 
@@ -46,7 +61,7 @@ describe(convertMemberAccess, () => {
         });
     });
 
-    test("conversion with check-accessor argument", () => {
+    test("conversion with true and check-accessor argument", () => {
         const result = convertMemberAccess({
             ruleArguments: [true, "check-accessor"],
         });
@@ -68,7 +83,7 @@ describe(convertMemberAccess, () => {
         });
     });
 
-    test("conversion with check-constructor argument", () => {
+    test("conversion with true and check-constructor argument", () => {
         const result = convertMemberAccess({
             ruleArguments: [true, "check-constructor"],
         });
@@ -90,7 +105,7 @@ describe(convertMemberAccess, () => {
         });
     });
 
-    test("conversion with check-parameter-property argument", () => {
+    test("conversion with true and check-parameter-property argument", () => {
         const result = convertMemberAccess({
             ruleArguments: [true, "check-parameter-property"],
         });
