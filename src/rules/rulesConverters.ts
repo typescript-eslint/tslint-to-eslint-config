@@ -38,6 +38,7 @@ import { convertNoArg } from "./converters/no-arg";
 import { convertNoAsyncWithoutAwait } from "./converters/no-async-without-await";
 import { convertNoBannedTerms } from "./converters/no-banned-terms";
 import { convertNoBitwise } from "./converters/no-bitwise";
+import { convertNoBooleanLiteralCompare } from "./converters/no-boolean-literal-compare";
 import { convertNoConditionalAssignment } from "./converters/no-conditional-assignment";
 import { convertNoConsecutiveBlankLines } from "./converters/no-consecutive-blank-lines";
 import { convertNoConsole } from "./converters/no-console";
@@ -177,6 +178,7 @@ export const rulesConverters = new Map([
     ["no-async-without-await", convertNoAsyncWithoutAwait],
     ["no-banned-terms", convertNoBannedTerms],
     ["no-bitwise", convertNoBitwise],
+    ["no-boolean-literal-compare", convertNoBooleanLiteralCompare],
     ["no-conditional-assignment", convertNoConditionalAssignment],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
     ["no-console", convertNoConsole],
