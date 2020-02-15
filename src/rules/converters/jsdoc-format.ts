@@ -1,7 +1,7 @@
 import { RuleConverter, ConvertedRuleChanges } from "../converter";
 
 export const JSDocNoticeMsg =
-    "ESLint does not support enabling check for multiline comments in the first line";
+    "ESLint does not support enforcing the first line of multiline JSDoc comments be empty.";
 
 export const convertJSDocFormat: RuleConverter = () => {
     const ruleNames = [
