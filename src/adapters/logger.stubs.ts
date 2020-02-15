@@ -3,7 +3,28 @@ import stripAnsi from "strip-ansi";
 
 const debugFileName = "stub-output.log";
 
-const createStubWritableStream = () => ({
+type StubWritableStream = {
+    writable: boolean;
+    addListener: jest.Mock;
+    emit: jest.Mock;
+    end: jest.Mock;
+    eventNames: jest.Mock;
+    getMaxListeners: jest.Mock;
+    listenerCount: jest.Mock;
+    listeners: jest.Mock;
+    off: jest.Mock;
+    on: jest.Mock;
+    once: jest.Mock;
+    prependListener: jest.Mock;
+    prependOnceListener: jest.Mock;
+    rawListeners: jest.Mock;
+    removeAllListeners: jest.Mock;
+    removeListener: jest.Mock;
+    setMaxListeners: jest.Mock;
+    write: jest.Mock;
+};
+
+const createStubWritableStream = (): StubWritableStream => ({
     writable: true,
     addListener: jest.fn(),
     emit: jest.fn(),
@@ -24,9 +45,14 @@ const createStubWritableStream = () => ({
     write: jest.fn(),
 });
 
-type StubWritableStream = typeof createStubWritableStream;
+type StubLogger = {
+    debugFileName: string;
+    info: StubWritableStream;
+    stderr: StubWritableStream;
+    stdout: StubWritableStream;
+};
 
-export const createStubLogger = (): Partial<StubWritableStream> => ({
+export const createStubLogger = (): StubLogger => ({
     debugFileName,
     info: createStubWritableStream(),
     stderr: createStubWritableStream(),
