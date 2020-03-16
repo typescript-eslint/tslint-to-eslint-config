@@ -9,21 +9,6 @@ describe(convertArrowParens, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["as-needed"],
-                    ruleName: "arrow-parens",
-                },
-            ],
-        });
-    });
-
-    test("conversion with an always argument", () => {
-        const result = convertArrowParens({
-            ruleArguments: ["always"],
-        });
-
-        expect(result).toEqual({
-            rules: [
-                {
                     ruleArguments: ["always"],
                     ruleName: "arrow-parens",
                 },
@@ -31,9 +16,9 @@ describe(convertArrowParens, () => {
         });
     });
 
-    test("conversion with an as-needed argument", () => {
+    test("conversion with a ban-single-arg-parens argument", () => {
         const result = convertArrowParens({
-            ruleArguments: ["as-needed"],
+            ruleArguments: ["ban-single-arg-parens"],
         });
 
         expect(result).toEqual({
