@@ -2,7 +2,7 @@ import { FileSystem } from "../adapters/fileSystem";
 import { isError } from "../utils";
 import * as utils from "tsutils";
 import ts from "typescript";
-import { converters } from "./converters";
+import { rulesConverters } from "./rulesConverters";
 import { formatRawTslintRule } from "./formatRawTslintRule";
 import { ConversionError } from "../errors/conversionError";
 
@@ -13,7 +13,7 @@ export type ConvertCommentsResultsDependencies = {
     fileSystem: Pick<FileSystem, "readDir" | "readFile" | "writeFile" | "writeFileSync">;
 };
 
-const tslintRegex: RegExp = new RegExp(/\s*tslint:(enable|disable)(?:-(line|next-line))?(:|\s|$)/g);
+const tslintRegex = new RegExp(/\s*tslint:(enable|disable)(?:-(line|next-line))?(:|\s|$)/g);
 
 export const convertComments = async (dependencies: ConvertCommentsResultsDependencies) => {
     // TODO: Remove console logs
@@ -36,9 +36,8 @@ export const convertComments = async (dependencies: ConvertCommentsResultsDepend
             }
         }
         return undefined;
-    } else {
-        return Error("Failed to convert file comments");
     }
+    return Error("Failed to convert file comments");
 };
 
 type Modifier = "line" | "next-line" | undefined;
@@ -58,7 +57,7 @@ function parseComment(
         // nothing to do here: an explicit separator was specified but no rules to switch
         return undefined;
     }
-    if (rulesList.length === 0 || rulesList.indexOf("all") !== -1) {
+    if (rulesList.length === 0 || rulesList.includes("all")) {
         // if list is empty we default to all enabled rules
         // if `all` is specified we ignore the other rules and take all enabled rules
         rulesList = "all";
@@ -71,11 +70,11 @@ function splitOnSpaces(str: string): string[] {
     return str.split(/\s+/).filter(s => s !== "");
 }
 
-interface IReplacement {
+type IReplacement = {
     start: number;
     end: number;
     replacementText: string;
-}
+};
 
 const replaceComments = async (
     _dependencies: ConvertCommentsResultsDependencies,
@@ -103,16 +102,17 @@ const replaceComments = async (
             const { rulesList, modifier } = parsed;
             const switchRange = getSwitchRange(modifier, comment, sourceFile);
             if (switchRange !== undefined) {
-                console.log("---------- COMMENT TEXT -----------");
+                // Extra log to check what is going on
+                console.log("----------- COMMENT TEXT -----------");
                 console.log(commentText);
-                console.log("PARSED DATA");
+                console.log("----------- PARSED DATA -----------");
                 console.log(parsed);
-                console.log("SWITCH RANGE");
+                console.log("----------- SWITCH RANGE -----------");
                 console.log(switchRange);
                 const rulesToSwitch =
                     rulesList === "all"
-                        ? Array.from(converters.keys())
-                        : rulesList.filter(ruleKey => converters.has(ruleKey));
+                        ? Array.from(rulesConverters.keys())
+                        : rulesList.filter(ruleKey => rulesConverters.has(ruleKey));
                 for (const ruleToSwitch of rulesToSwitch) {
                     const transformedRules = switchRule(ruleToSwitch);
                     if (transformedRules) {
@@ -129,9 +129,13 @@ const replaceComments = async (
         replacements.reverse();
 
         const newText = getNewText(fileContent, replacements);
+        // Check the output before writing to file.
+        console.log("");
         console.log("************** NEW FILE BEING WRITTEN ! **************");
         console.log(newText);
-        // dependencies.fileSystem.writeFileSync(fileName, newText);
+        // Write the file with the changes.
+        // At the moment,
+        _dependencies.fileSystem.writeFileSync(fileName, newText);
     });
     return true;
 };
@@ -145,7 +149,7 @@ function getNewText(sourceText: string, replacementsInReverse: IReplacement[]) {
 }
 
 function switchRule(ruleName: string): string[] | null {
-    const tslintRuleConverter = converters.get(ruleName);
+    const tslintRuleConverter = rulesConverters.get(ruleName);
     if (tslintRuleConverter) {
         const tslintRule = formatRawTslintRule(ruleName, { ruleName });
         const conversion = tslintRuleConverter(tslintRule);
