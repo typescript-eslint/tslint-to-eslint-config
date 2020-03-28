@@ -4,7 +4,7 @@
         "declaration": true,
         "esModuleInterop": true,
         "incremental": true,
-        "lib": ["es2017"],
+        "lib": [],
         "module": "commonjs",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
@@ -19,7 +19,7 @@
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
-        "target": "es2015"
+        "target": "es2018"
     },
     "exclude": ["test/tests/**/*"],
     "include": ["src/**/*"]
