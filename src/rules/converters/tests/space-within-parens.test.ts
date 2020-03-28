@@ -10,7 +10,22 @@ describe(convertSpaceWithinParens, () => {
             rules: [
                 {
                     ruleArguments: ["never"],
-                    ruleName: "@typescript-eslint/space-within-parens",
+                    ruleName: "space-in-parens",
+                },
+            ],
+        });
+    });
+
+    test("conversion with 0 spaces required", () => {
+        const result = convertSpaceWithinParens({
+            ruleArguments: [0],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: ["never"],
+                    ruleName: "space-in-parens",
                 },
             ],
         });
@@ -26,7 +41,7 @@ describe(convertSpaceWithinParens, () => {
                 {
                     notices: ["The number of spaces will be ignored"],
                     ruleArguments: ["always"],
-                    ruleName: "@typescript-eslint/space-within-parens",
+                    ruleName: "space-in-parens",
                 },
             ],
         });

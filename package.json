@@ -6,6 +6,9 @@
         "url": "https://github.com/typescript-eslint/tslint-to-eslint-config/issues"
     },
     "description": "Converts your TSLint configuration to the closest reasonable ESLint equivalent.",
+    "engines": {
+        "node": ">=8.0.0"
+    },
     "dependencies": {
         "chalk": "3.0.0",
         "commander": "4.0.1",
@@ -61,7 +64,8 @@
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test": "jest",
+        "test:ci": "jest --coverage --maxWorkers=2",
         "tsc": "tsc"
     },
-    "version": "0.5.0"
+    "version": "0.5.2"
 }

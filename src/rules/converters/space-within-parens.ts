@@ -4,7 +4,7 @@ export const convertSpaceWithinParens: RuleConverter = tslintRule => {
     let notices: string[] | undefined;
     let arg: string;
 
-    if (tslintRule.ruleArguments.length === 1) {
+    if (tslintRule.ruleArguments.length === 1 && tslintRule.ruleArguments[0] !== 0) {
         arg = "always";
         notices = ["The number of spaces will be ignored"];
     } else {
@@ -16,7 +16,7 @@ export const convertSpaceWithinParens: RuleConverter = tslintRule => {
             {
                 ...(notices !== undefined && { notices }),
                 ruleArguments: [arg],
-                ruleName: "@typescript-eslint/space-within-parens",
+                ruleName: "space-in-parens",
             },
         ],
     };
