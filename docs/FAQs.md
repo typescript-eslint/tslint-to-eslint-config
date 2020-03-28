@@ -21,6 +21,8 @@ Our recommended TSLint-to-ESLint configuration migration approach is:
 2. [Disable complaints on a line-, file-, or rule basis](https://eslint.org/docs/user-guide/configuring) for any rules you do not want to enable and/or are now giving complaints
 3. Add any [community plugins](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#plugins) relevant to your project, then repeat step 2
 
+> 😉 Consider filing granular tickets to track investigating re-enabling disabled lint rules to make sure the work doesn't get forgotten.
+
 ## Should I Use Prettier?
 
 **Yes**.
