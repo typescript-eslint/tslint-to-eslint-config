@@ -4,7 +4,7 @@
 ![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-orange.svg)
 ![TypeScript: Strict](https://img.shields.io/badge/typescript-strict-yellow.svg)
 [![NPM version](https://badge.fury.io/js/tslint-to-eslint-config.svg)](http://badge.fury.io/js/tslint-to-eslint-config)
-[![Circle CI](https://img.shields.io/circleci/build/github/typescript-eslint/tslint-to-eslint-config.svg)](https://circleci.com/gh/typescript-eslint/tslint-to-eslint-config)	
+[![Circle CI](https://img.shields.io/circleci/build/github/typescript-eslint/tslint-to-eslint-config.svg)](https://circleci.com/gh/typescript-eslint/tslint-to-eslint-config)
 [![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://img.shields.io/badge/chat-gitter-informational.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Code Style: Prettier](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](https://prettier.io)
 
@@ -32,7 +32,7 @@ The `tslint-to-eslint-config` command reads in any existing linter, TypeScript, 
 For any TSLint rules with corresponding ESLint equivalents, those equivalents will be used in the new configuration.
 TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tslint](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin-tslint).
 
-> Requires Node 8+ (LTS)
+> Requires Node 10+ (LTS) and TSLint 5.18+
 
 ### CLI Flags
 
