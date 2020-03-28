@@ -10,7 +10,7 @@
 
 Converts your TSLint configuration to the closest reasonable ESLint equivalent.
 
-👉 Did you know [TSLint is being deprecated this year](https://github.com/palantir/tslint/issues/4534)?
+👉 Did you know [TSLint is deprecated](https://github.com/palantir/tslint/issues/4534)?
 Hooray!
 Use `tslint-to-eslint-config` to expedite migrating your project onto ESLint.
 
