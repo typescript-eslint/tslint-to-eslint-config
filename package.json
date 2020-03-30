@@ -14,7 +14,7 @@
         "commander": "4.0.1",
         "strip-json-comments": "3.0.1",
         "tslint": "5.20.1",
-        "typescript": "3.7.4"
+        "typescript": "3.8.3"
     },
     "devDependencies": {
         "@babel/core": "7.7.7",
