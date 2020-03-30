@@ -5,7 +5,7 @@ export const convertBanTypes: RuleConverter = tslintRule => {
         message: string;
     };
 
-    const bannedTypesObj: { [key: string]: ConvertBanTypeArgument | null } = {};
+    const bannedTypesObj: Record<string, ConvertBanTypeArgument | null> = {};
 
     for (const rule of tslintRule.ruleArguments) {
         const typ = rule[0];
