@@ -25,7 +25,7 @@ Our recommended TSLint-to-ESLint configuration migration approach is:
 
 ## Should I Use Prettier?
 
-**Yes, god yes**
+**Yes!**
 
 Formatting responsibilities, such as indentation and line wrapping, are exceedingly difficult to get implement in **linters**, and as such are practically impossible to get correct in them.
 **Formatters** such as [Prettier](https://prettier.io) do a [much better job](https://prettier.io/docs/en/why-prettier.html) of formatting your code.
