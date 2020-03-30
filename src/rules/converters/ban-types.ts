@@ -5,7 +5,7 @@ export const convertBanTypes: RuleConverter = tslintRule => {
         message: string;
     };
 
-    const bannedTypesObj: Record<string, ConvertBanTypeArgument | null> = {};
+    const bannedTypes: Record<string, ConvertBanTypeArgument | null> = {};
 
     for (const rule of tslintRule.ruleArguments) {
         const typ = rule[0];
@@ -13,7 +13,7 @@ export const convertBanTypes: RuleConverter = tslintRule => {
             break;
         }
 
-        bannedTypesObj[typ] = rule[1]
+        bannedTypes[typ] = rule[1]
             ? {
                   message: rule[1],
               }
@@ -21,7 +21,7 @@ export const convertBanTypes: RuleConverter = tslintRule => {
     }
 
     const ruleArguments =
-        Object.keys(bannedTypesObj).length === 0 ? undefined : [{ types: bannedTypesObj }];
+        Object.keys(bannedTypes).length === 0 ? undefined : [{ types: bannedTypes }];
 
     return {
         rules: [
