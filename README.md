@@ -34,6 +34,10 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 > Requires Node 10+ (LTS) and TSLint 5.18+
 
+### FAQs
+
+We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning your conversion from ESLint to TSLint.
+
 ### CLI Flags
 
 Each of these flags is optional:
