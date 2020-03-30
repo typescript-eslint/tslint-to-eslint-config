@@ -29,7 +29,7 @@ Our recommended TSLint-to-ESLint configuration migration approach is:
 
 Formatting responsibilities, such as indentation and line wrapping, are exceedingly difficult to get implement in **linters**, and as such are practically impossible to get correct in them.
 **Formatters** such as [Prettier](https://prettier.io) do a [much better job](https://prettier.io/docs/en/why-prettier.html) of formatting your code.
-See [this issue](https://github.com/typescript-eslint/typescript-eslint/issues/880) for more explanation.
+See [this issue](https://github.com/typescript-eslint/typescript-eslint/issues/1824) for more explanation.
 
 The maintenance teams at both TSLint and typescript-eslint recommend using a formatter such as Prettier to format your code instead of a linter.
 
