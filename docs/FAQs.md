@@ -17,9 +17,11 @@ TSLint's recommendations were solidified several core TypeScript versions ago an
 
 Our recommended TSLint-to-ESLint configuration migration approach is:
 
-1. Switch your configuration to extend from [typescript-eslint's `recommended` and `recommend-requiring-type-checking` rulesets](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md)
+1. Run `tslint-to-eslint-config` on your project
 2. [Disable complaints on a line-, file-, or rule basis](https://eslint.org/docs/user-guide/configuring) for any rules you do not want to enable and/or are now giving complaints
-3. Add any [community plugins](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#plugins) relevant to your project, then repeat step 2
+3. Switch your configuration to extend from [typescript-eslint's `recommended` and `recommend-requiring-type-checking` rulesets](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md)
+4. Repeat step 2
+5. Add any [community plugins](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#plugins) relevant to your project, then repeat step 2
 
 > 😉 Consider filing granular tickets to track investigating re-enabling disabled lint rules to make sure the work doesn't get forgotten.
 
