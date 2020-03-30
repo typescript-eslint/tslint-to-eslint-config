@@ -69,4 +69,18 @@ describe(convertBanTypes, () => {
             ],
         });
     });
+
+    test("conversion with duplicated arguments", () => {
+        const result = convertBanTypes({
+            ruleArguments: ["!!!this-is-not-array!!!"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/ban-types",
+                },
+            ],
+        });
+    });
 });

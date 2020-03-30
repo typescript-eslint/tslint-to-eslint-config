@@ -8,6 +8,10 @@ export const convertBanTypes: RuleConverter = tslintRule => {
     const bannedTypes: Record<string, ConvertBanTypeArgument | null> = {};
 
     for (const rule of tslintRule.ruleArguments) {
+        if (!Array.isArray(rule)) {
+            break;
+        }
+
         const [bannedType, message] = rule;
         if (!bannedType) {
             break;
