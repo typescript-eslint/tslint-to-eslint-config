@@ -133,6 +133,7 @@ import { convertUnnecessaryConstructor } from "./converters/unnecessary-construc
 import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertVariableName } from "./converters/variable-name";
+import { convertNoReferenceImport } from "./converters/no-reference-import";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -219,6 +220,7 @@ export const rulesConverters = new Map([
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference", convertNoReference],
+    ["no-reference-import", convertNoReferenceImport],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
