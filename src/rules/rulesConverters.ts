@@ -79,6 +79,7 @@ import { convertNoParameterProperties } from "./converters/no-parameter-properti
 import { convertNoParameterReassignment } from "./converters/no-parameter-reassignment";
 import { convertNoRedundantJsdoc } from "./converters/no-redundant-jsdoc";
 import { convertNoReference } from "./converters/no-reference";
+import { convertNoReferenceImport } from "./converters/no-reference-import";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
 import { convertNoReturnAwait } from "./converters/no-return-await";
@@ -133,7 +134,6 @@ import { convertUnnecessaryConstructor } from "./converters/unnecessary-construc
 import { convertUseDefaultTypeParameter } from "./converters/use-default-type-parameter";
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertVariableName } from "./converters/variable-name";
-import { convertNoReferenceImport } from "./converters/no-reference-import";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
