@@ -12,7 +12,7 @@
     "dependencies": {
         "chalk": "4.0.0",
         "commander": "5.0.0",
-        "strip-json-comments": "3.0.1",
+        "strip-json-comments": "3.1.0",
         "tslint": "6.1.1",
         "typescript": "3.8.3"
     },
