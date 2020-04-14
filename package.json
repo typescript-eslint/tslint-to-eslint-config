@@ -50,8 +50,7 @@
     "license": "MIT",
     "lint-staged": {
         "**/*.{js,json,ts,xml,yaml}": [
-            "prettier --write",
-            "git add"
+            "prettier --write"
         ]
     },
     "name": "tslint-to-eslint-config",
