@@ -16,7 +16,7 @@ type ESLintOptions = ESLintSimpleOption | ESLintComplexOption;
 const NOTICE_MATCH_PATTERNS =
     "ESLint and TSLint use different strategies to match patterns. TSLint uses standard regular expressions, but ESLint .gitignore spec.";
 
-export const convertImportBlacklist: RuleConverter = tslintRule => {
+export const convertImportBlacklist: RuleConverter = (tslintRule) => {
     let ruleArguments: ESLintOptions = [];
     const notices = [];
 
