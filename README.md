@@ -36,7 +36,7 @@ TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tsli
 
 ### FAQs
 
-We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning your conversion from ESLint to TSLint.
+We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning your conversion from TSLint to ESLint.
 
 ### CLI Flags
 
