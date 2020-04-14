@@ -10,7 +10,7 @@
 
 Converts your TSLint configuration to the closest reasonable ESLint equivalent.
 
-👉 Did you know [TSLint is being deprecated this year](https://github.com/palantir/tslint/issues/4534)?
+👉 Did you know [TSLint is deprecated](https://github.com/palantir/tslint/issues/4534)?
 Hooray!
 Use `tslint-to-eslint-config` to expedite migrating your project onto ESLint.
 
@@ -33,6 +33,10 @@ For any TSLint rules with corresponding ESLint equivalents, those equivalents wi
 TSLint rules without ESLint equivalents will be wrapped with [eslint-plugin-tslint](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin-tslint).
 
 > Requires Node 10+ (LTS) and TSLint 5.18+
+
+### FAQs
+
+We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning your conversion from ESLint to TSLint.
 
 ### CLI Flags
 

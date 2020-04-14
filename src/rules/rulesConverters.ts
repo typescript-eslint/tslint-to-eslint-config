@@ -79,6 +79,7 @@ import { convertNoParameterProperties } from "./converters/no-parameter-properti
 import { convertNoParameterReassignment } from "./converters/no-parameter-reassignment";
 import { convertNoRedundantJsdoc } from "./converters/no-redundant-jsdoc";
 import { convertNoReference } from "./converters/no-reference";
+import { convertNoReferenceImport } from "./converters/no-reference-import";
 import { convertNoRegexSpaces } from "./converters/no-regex-spaces";
 import { convertNoRequireImports } from "./converters/no-require-imports";
 import { convertNoReturnAwait } from "./converters/no-return-await";
@@ -219,6 +220,7 @@ export const rulesConverters = new Map([
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference", convertNoReference],
+    ["no-reference-import", convertNoReferenceImport],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],

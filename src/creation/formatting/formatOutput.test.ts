@@ -1,5 +1,6 @@
 import { EOL } from "os";
 
+import { faqs } from "./formatters/faqs";
 import { formatOutput } from "./formatOutput";
 
 describe("formatOutput", () => {
@@ -13,7 +14,7 @@ describe("formatOutput", () => {
 
         // Assert
         expect(output).toBe(
-            `module.exports = ${JSON.stringify(configuration, undefined, 4)};${EOL}`,
+            `${faqs}module.exports = ${JSON.stringify(configuration, undefined, 4)};${EOL}`,
         );
     });
 
@@ -26,7 +27,7 @@ describe("formatOutput", () => {
         const output = formatOutput(outputPath, configuration);
 
         // Assert
-        expect(output).toBe(`${JSON.stringify(configuration, undefined, 4)}${EOL}`);
+        expect(output).toBe(`${faqs}${JSON.stringify(configuration, undefined, 4)}${EOL}`);
     });
 
     it("formats output as JSON for an unknown dot file path", () => {
@@ -38,7 +39,7 @@ describe("formatOutput", () => {
         const output = formatOutput(outputPath, configuration);
 
         // Assert
-        expect(output).toBe(`${JSON.stringify(configuration, undefined, 4)}${EOL}`);
+        expect(output).toBe(`${faqs}${JSON.stringify(configuration, undefined, 4)}${EOL}`);
     });
 
     it("formats output as JSON for an unknown raw file path", () => {
@@ -50,6 +51,6 @@ describe("formatOutput", () => {
         const output = formatOutput(outputPath, configuration);
 
         // Assert
-        expect(output).toBe(`${JSON.stringify(configuration, undefined, 4)}${EOL}`);
+        expect(output).toBe(`${faqs}${JSON.stringify(configuration, undefined, 4)}${EOL}`);
     });
 });
