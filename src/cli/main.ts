@@ -43,8 +43,11 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import { ReportConversionResultsDependencies } from "../reporting/dependencies";
-import { reportConversionResults } from "../reporting/reportConversionResults";
+import { choosePackageManager } from "../reporting/packages/choosePackageManager";
+import {
+    reportConversionResults,
+    ReportConversionResultsDependencies,
+} from "../reporting/reportConversionResults";
 import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
 import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
@@ -86,7 +89,12 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     mergeLintConfigurations,
 };
 
+const choosePackageManagerDependencies = {
+    fileSystem: fsFileSystem,
+};
+
 const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
+    choosePackageManager: bind(choosePackageManager, choosePackageManagerDependencies),
     logger: processLogger,
 };
 

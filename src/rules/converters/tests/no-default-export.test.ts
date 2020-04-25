@@ -12,7 +12,7 @@ describe(convertNoDefaultExport, () => {
                     ruleName: "import/no-default-export",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 });

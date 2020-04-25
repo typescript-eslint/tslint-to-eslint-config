@@ -8,6 +8,6 @@ export const convertNoNullKeyword: RuleConverter = () => {
                 ruleName: "no-null/no-null",
             },
         ],
-        plugins: ["no-null"],
+        plugins: ["eslint-plugin-no-null"],
     };
 };

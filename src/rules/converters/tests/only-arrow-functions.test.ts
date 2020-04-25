@@ -7,7 +7,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["prefer-arrow"],
+            plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
                     ruleName: "prefer-arrow/prefer-arrow-functions",
@@ -22,7 +22,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["prefer-arrow"],
+            plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
                     notices: ["ESLint does not support allowing standalone function declarations."],
@@ -38,7 +38,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["prefer-arrow"],
+            plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
                     notices: [
@@ -56,7 +56,7 @@ describe(convertOnlyArrowFunctions, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["prefer-arrow"],
+            plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
                     notices: [

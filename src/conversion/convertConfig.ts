@@ -57,7 +57,7 @@ export const convertConfig = async (
     }
 
     // 5. A summary of the results is printed to the user's console
-    dependencies.reportConversionResults(simplifiedConfiguration);
+    await dependencies.reportConversionResults(simplifiedConfiguration);
 
     return {
         status: ResultStatus.Succeeded,

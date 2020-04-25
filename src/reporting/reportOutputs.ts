@@ -5,6 +5,7 @@ import { Logger } from "../adapters/logger";
 import { EditorSetting } from "../editorSettings/types";
 import { ErrorSummary } from "../errors/errorSummary";
 import { ESLintRuleOptions } from "../rules/types";
+import { PackageManager, installationMessages } from "./packages/packageManagers";
 
 export type EditorSettingEntry = Pick<EditorSetting, "editorSettingName">;
 
@@ -65,17 +66,22 @@ export const logMissingConversionTarget = <T>(
     logger.stdout.write(chalk.yellow(EOL));
 };
 
-export const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
-    logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${plugins.size}`));
-    logger.stdout.write(chalk.cyan(" package"));
-    logger.stdout.write(chalk.cyan(plugins.size === 1 ? " is" : "s are"));
-    logger.stdout.write(chalk.cyan(` required for new ESLint rules.`));
-    logger.stdout.write(chalk.cyanBright(` ⚡${EOL}`));
+export const logMissingPackages = (
+    plugins: Set<string>,
+    packageManager: PackageManager,
+    logger: Logger,
+) => {
+    const packageNames = [
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        ...Array.from(plugins),
+    ].sort();
 
-    logger.stdout.write(
-        Array.from(plugins)
-            .map((pluginName) => `  ${chalk.cyanBright(pluginName)}${EOL}`)
-            .join(""),
-    );
-    logger.stdout.write(EOL);
+    logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${packageNames.length}`));
+    logger.stdout.write(chalk.cyan(" packages are required for running with ESLint."));
+    logger.stdout.write(chalk.cyanBright(" ⚡"));
+    logger.stdout.write(`${EOL}  `);
+    logger.stdout.write(chalk.cyan(installationMessages[packageManager](packageNames.join(" "))));
+    logger.stdout.write(EOL.repeat(2));
 };
