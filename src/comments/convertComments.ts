@@ -13,14 +13,15 @@ export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     filePathGlobs: string | string[] | undefined,
 ): Promise<ResultWithStatus> => {
-    if (filePathGlobs === undefined) {
+    const uniqueFilePathGlobs = uniqueFromSources(filePathGlobs);
+    if (uniqueFilePathGlobs.length === 0) {
         return {
             status: ResultStatus.Succeeded,
         };
     }
 
     const [fileGlobErrors, globbedFilePaths] = separateErrors(
-        await Promise.all(uniqueFromSources(filePathGlobs).map(dependencies.globAsync)),
+        await Promise.all(uniqueFilePathGlobs.map(dependencies.globAsync)),
     );
     if (fileGlobErrors.length !== 0) {
         return {
@@ -32,7 +33,7 @@ export const convertComments = async (
     const ruleConversionCache = new Map<string, string | undefined>();
     const fileFailures = (
         await Promise.all(
-            uniqueFromSources(...globbedFilePaths).map(async filePath =>
+            uniqueFromSources(...globbedFilePaths).map(async (filePath) =>
                 dependencies.convertFileComments(filePath, ruleConversionCache),
             ),
         )

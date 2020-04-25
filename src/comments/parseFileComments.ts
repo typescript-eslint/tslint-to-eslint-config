@@ -45,7 +45,7 @@ const parseFileComment = (fullText: string, comment: ts.CommentRange): FileComme
         ? fullText.substring(comment.pos + 2, comment.end)
         : fullText.substring(comment.pos + 2, comment.end - 2)
     ).trim();
-    const match = tslintRegex.exec(commentText);
+    const match = commentText.match(tslintRegex);
     if (match === null) {
         return undefined;
     }

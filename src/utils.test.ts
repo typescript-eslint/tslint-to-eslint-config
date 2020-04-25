@@ -48,6 +48,10 @@ describe("isError", () => {
     });
 });
 
+describe("separateErrors", () => {
+    // ...
+});
+
 describe("uniqueFromSources", () => {
     it("returns unique items when multiple are given", () => {
         // Arange
