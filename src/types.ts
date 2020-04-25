@@ -45,10 +45,7 @@ export enum ResultStatus {
 
 export type ResultWithStatus = ConfigurationErrorResult | FailedResult | SucceededResult;
 
-export type ResultWithDataStatus<Data> =
-    | ConfigurationErrorResult
-    | FailedResult
-    | SucceededDataResult<Data>;
+export type ResultWithDataStatus<Data> = FailedResult | SucceededDataResult<Data>;
 
 export type ConfigurationErrorResult = {
     readonly complaints: string[];

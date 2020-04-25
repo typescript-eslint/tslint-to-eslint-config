@@ -4,7 +4,7 @@ import { EOL } from "os";
 import { Logger } from "../adapters/logger";
 import { RuleConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
-import { ReportConversionResultsDependencies } from "./dependencies";
+import { ReportDependencies } from "./dependencies";
 import {
     logFailedConversions,
     logMissingConversionTarget,
@@ -13,7 +13,7 @@ import {
 } from "./reportOutputs";
 
 export const reportConversionResults = (
-    dependencies: ReportConversionResultsDependencies,
+    dependencies: ReportDependencies,
     ruleConversionResults: RuleConversionResults,
 ) => {
     if (ruleConversionResults.converted.size !== 0) {

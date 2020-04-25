@@ -1,5 +1,5 @@
 import { Logger } from "../adapters/logger";
 
-export type ReportConversionResultsDependencies = {
+export type ReportDependencies = {
     logger: Logger;
 };

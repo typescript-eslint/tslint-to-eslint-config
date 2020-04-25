@@ -1,5 +1,10 @@
 import { SansDependencies } from "../binding";
-import { ResultStatus, TSLintToESLintSettings, ResultWithDataStatus } from "../types";
+import {
+    ConfigurationErrorResult,
+    ResultStatus,
+    ResultWithDataStatus,
+    TSLintToESLintSettings,
+} from "../types";
 import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
 import { PackagesConfiguration, findPackagesConfiguration } from "./findPackagesConfiguration";
 import {
@@ -42,7 +47,7 @@ export type AllOriginalConfigurations = {
 export const findOriginalConfigurations = async (
     dependencies: FindOriginalConfigurationsDependencies,
     rawSettings: TSLintToESLintSettings,
-): Promise<ResultWithDataStatus<AllOriginalConfigurations>> => {
+): Promise<ConfigurationErrorResult | ResultWithDataStatus<AllOriginalConfigurations>> => {
     // Simultaneously search for all required configuration types
     const [eslint, packages, tslint, typescript] = await Promise.all([
         dependencies.findESLintConfiguration(rawSettings),

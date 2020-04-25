@@ -14,6 +14,7 @@ const createStubDependencies = (
         data: createStubOriginalConfigurationsData(),
         status: ResultStatus.Succeeded,
     }),
+    reportCommentResults: jest.fn(),
     reportConversionResults: jest.fn(),
     simplifyPackageRules: async (_configurations, data) => ({
         ...data,

@@ -1,6 +1,6 @@
 import { GlobAsync } from "../adapters/globAsync";
 import { SansDependencies } from "../binding";
-import { ResultStatus, ResultWithStatus } from "../types";
+import { ResultStatus, ResultWithDataStatus } from "../types";
 import { separateErrors, uniqueFromSources, isError } from "../utils";
 import { convertFileComments } from "./convertFileComments";
 
@@ -12,14 +12,8 @@ export type ConvertCommentsDependencies = {
 export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     filePathGlobs: string | string[] | undefined,
-): Promise<ResultWithStatus> => {
+): Promise<ResultWithDataStatus<string[]>> => {
     const uniqueFilePathGlobs = uniqueFromSources(filePathGlobs);
-    if (uniqueFilePathGlobs.length === 0) {
-        return {
-            status: ResultStatus.Succeeded,
-        };
-    }
-
     const [fileGlobErrors, globbedFilePaths] = separateErrors(
         await Promise.all(uniqueFilePathGlobs.map(dependencies.globAsync)),
     );
@@ -31,9 +25,10 @@ export const convertComments = async (
     }
 
     const ruleConversionCache = new Map<string, string | undefined>();
+    const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths);
     const fileFailures = (
         await Promise.all(
-            uniqueFromSources(...globbedFilePaths).map(async (filePath) =>
+            uniqueGlobbedFilePaths.map(async (filePath) =>
                 dependencies.convertFileComments(filePath, ruleConversionCache),
             ),
         )
@@ -46,6 +41,7 @@ export const convertComments = async (
     }
 
     return {
+        data: uniqueGlobbedFilePaths,
         status: ResultStatus.Succeeded,
     };
 };

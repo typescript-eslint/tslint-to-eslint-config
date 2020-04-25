@@ -4,6 +4,7 @@ import { simplifyPackageRules } from "../creation/simplification/simplifyPackage
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { reportConversionResults } from "../reporting/reportConversionResults";
+import { reportCommentResults } from "../reporting/reportCommentResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
@@ -11,6 +12,7 @@ export type ConvertConfigDependencies = {
     convertComments: SansDependencies<typeof convertComments>;
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
+    reportCommentResults: SansDependencies<typeof reportCommentResults>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
@@ -63,6 +65,7 @@ export const convertConfig = async (
 
     // 6. A summary of the results is printed to the user's console
     dependencies.reportConversionResults(simplifiedConfiguration);
+    dependencies.reportCommentResults(settings.comments, commentsResult);
 
     return commentsResult;
 };

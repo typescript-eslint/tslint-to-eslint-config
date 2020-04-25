@@ -19,6 +19,7 @@ describe("convertComments", () => {
 
         // Assert
         expect(result).toEqual({
+            data: [],
             status: ResultStatus.Succeeded,
         });
     });
@@ -66,6 +67,7 @@ describe("convertComments", () => {
 
         // Assert
         expect(result).toEqual({
+            data: ["src/index.ts"],
             status: ResultStatus.Succeeded,
         });
     });

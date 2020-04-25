@@ -49,13 +49,14 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import { ReportConversionResultsDependencies } from "../reporting/dependencies";
+import { ReportDependencies } from "../reporting/dependencies";
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
 import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
+import { reportCommentResults } from "../reporting/reportCommentResults";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: rulesConverters,
@@ -102,7 +103,7 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     mergeLintConfigurations,
 };
 
-const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
+const reportDependencies: ReportDependencies = {
     logger: processLogger,
 };
 
@@ -122,10 +123,7 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
     convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
-    reportConversionResults: bind(
-        reportEditorSettingConversionResults,
-        reportConversionResultsDependencies,
-    ),
+    reportConversionResults: bind(reportEditorSettingConversionResults, reportDependencies),
     writeConversionResults: bind(
         writeEditorConfigConversionResults,
         writeConversionResultsDependencies,
@@ -139,7 +137,8 @@ const convertConfigDependencies: ConvertConfigDependencies = {
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
     ),
-    reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
+    reportCommentResults: bind(reportCommentResults, reportDependencies),
+    reportConversionResults: bind(reportConversionResults, reportDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };

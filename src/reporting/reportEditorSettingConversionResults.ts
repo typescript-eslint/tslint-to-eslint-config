@@ -2,7 +2,7 @@ import { EOL } from "os";
 
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
 import { EditorSetting } from "../editorSettings/types";
-import { ReportConversionResultsDependencies } from "./dependencies";
+import { ReportDependencies } from "./dependencies";
 import {
     logFailedConversions,
     logMissingConversionTarget,
@@ -10,7 +10,7 @@ import {
 } from "./reportOutputs";
 
 export const reportEditorSettingConversionResults = (
-    dependencies: ReportConversionResultsDependencies,
+    dependencies: ReportDependencies,
     editorSettingConversionResults: EditorSettingConversionResults,
 ) => {
     if (editorSettingConversionResults.converted.size !== 0) {
