@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertOneVariablePerDeclaration: RuleConverter = tslintRule => {
+export const convertOneVariablePerDeclaration: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

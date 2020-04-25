@@ -10,7 +10,7 @@ export const convertJSDocFormat: RuleConverter = () => {
         "jsdoc/newline-after-description",
     ];
 
-    const mappedRuleNames: ConvertedRuleChanges[] = ruleNames.map(ruleName => {
+    const mappedRuleNames: ConvertedRuleChanges[] = ruleNames.map((ruleName) => {
         return { ruleName };
     });
 

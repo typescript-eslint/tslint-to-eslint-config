@@ -7,7 +7,7 @@ type ObjectArgument = Record<string, "always" | "never">;
 const isObjectArgument = (argument: unknown): argument is ObjectArgument =>
     typeof argument === "object" && argument !== null;
 
-export const convertSpaceBeforeFunctionParen: RuleConverter = tslintRule => {
+export const convertSpaceBeforeFunctionParen: RuleConverter = (tslintRule) => {
     const argument: unknown = tslintRule.ruleArguments[0];
     const ruleName = "space-before-function-paren";
     if (argument === "always" || argument === "never") {
@@ -15,10 +15,10 @@ export const convertSpaceBeforeFunctionParen: RuleConverter = tslintRule => {
     }
     if (isObjectArgument(argument)) {
         const notices = Object.keys(argument)
-            .filter(option => !SUPPORTED_OPTIONS.includes(option))
-            .map(option => `Option "${option}" is not supported by ESLint.`);
+            .filter((option) => !SUPPORTED_OPTIONS.includes(option))
+            .map((option) => `Option "${option}" is not supported by ESLint.`);
         const filtered = Object.keys(argument)
-            .filter(option => SUPPORTED_OPTIONS.includes(option))
+            .filter((option) => SUPPORTED_OPTIONS.includes(option))
             .reduce<ObjectArgument>((obj, option) => {
                 return { ...obj, [option]: argument[option] };
             }, {});

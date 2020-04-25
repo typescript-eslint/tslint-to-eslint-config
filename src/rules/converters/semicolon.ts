@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertSemicolon: RuleConverter = tslintRule => {
+export const convertSemicolon: RuleConverter = (tslintRule) => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {
         return strategy === "always" ? "semi" : "none";
     };

@@ -3,7 +3,7 @@ import { RuleConverter } from "../converter";
 const smartOptionNotice =
     'Option "smart" allows for comparing two literal values, evaluating the value of typeof and null comparisons.';
 
-export const convertTripleEquals: RuleConverter = tslintRule => {
+export const convertTripleEquals: RuleConverter = (tslintRule) => {
     const getRuleOptions = () => {
         if (
             tslintRule.ruleArguments.length !== 0 &&

@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertLinebreakStyle: RuleConverter = tslintRule => {
+export const convertLinebreakStyle: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

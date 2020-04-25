@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertIncrementDecrement: RuleConverter = tslintRule => {
+export const convertIncrementDecrement: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

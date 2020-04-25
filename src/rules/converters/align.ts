@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertAlign: RuleConverter = tslintRule => {
+export const convertAlign: RuleConverter = (tslintRule) => {
     const alignArguments = tslintRule.ruleArguments.includes("arguments");
     const alignElements = tslintRule.ruleArguments.includes("elements");
     const alignMembers = tslintRule.ruleArguments.includes("members");

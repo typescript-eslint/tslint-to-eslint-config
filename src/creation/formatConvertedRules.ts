@@ -8,9 +8,9 @@ export const formatConvertedRules = (
     tslintConfiguration: TSLintConfiguration,
 ) => {
     const output: { [i: string]: string | any[] } = {};
-    const sortedRuleEntries = Array.from(conversionResults.converted).sort(
-        ([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB),
-    );
+    const sortedRuleEntries = Array.from(
+        conversionResults.converted,
+    ).sort(([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB));
 
     for (const [ruleName, rule] of sortedRuleEntries) {
         output[ruleName] = formatConvertedRule(rule);

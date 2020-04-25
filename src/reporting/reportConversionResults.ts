@@ -52,7 +52,7 @@ type RuleWithNotices = {
 
 const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) => {
     const rulesWithNotices = Array.from(converted.values()).filter(
-        ruleOptions => ruleOptions.notices && ruleOptions.notices.length >= 1,
+        (ruleOptions) => ruleOptions.notices && ruleOptions.notices.length >= 1,
     ) as RuleWithNotices[];
 
     if (rulesWithNotices.length !== 0) {

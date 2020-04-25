@@ -15,7 +15,7 @@ export const IgnoreLeadingTrailingIdentifierMsg =
 export const ForbiddenLeadingTrailingIdentifierMsg =
     "Leading or trailing underscores (_) on identifiers will now be forbidden.";
 
-export const convertVariableName: RuleConverter = tslintRule => {
+export const convertVariableName: RuleConverter = (tslintRule) => {
     const hasCheckFormat = tslintRule.ruleArguments.includes("check-format");
     const allowedLeadingUnderscore = tslintRule.ruleArguments.includes("allow-leading-underscore");
     const allowedTrailingUnderscore = tslintRule.ruleArguments.includes(

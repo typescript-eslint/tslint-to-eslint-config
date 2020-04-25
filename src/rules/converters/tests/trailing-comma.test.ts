@@ -71,7 +71,7 @@ describe(convertTrailingComma, () => {
             },
         ];
 
-        testCases.forEach(testCase => {
+        testCases.forEach((testCase) => {
             test(`conversion with arguments ${JSON.stringify(testCase.argument)}`, () => {
                 const result = convertTrailingComma({
                     ruleArguments: [testCase.argument],
@@ -245,7 +245,7 @@ describe(convertTrailingComma, () => {
             },
         ];
 
-        testCases.forEach(testCase => {
+        testCases.forEach((testCase) => {
             test(`conversion with arguments ${JSON.stringify(testCase.argument)}`, () => {
                 const result = convertTrailingComma({
                     ruleArguments: [testCase.argument],
@@ -332,7 +332,7 @@ describe(convertTrailingComma, () => {
             },
         ];
 
-        testCases.forEach(testCase => {
+        testCases.forEach((testCase) => {
             test(`conversion with arguments ${JSON.stringify(testCase.argument)}`, () => {
                 const result = convertTrailingComma({
                     ruleArguments: [testCase.argument],

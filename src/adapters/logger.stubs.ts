@@ -40,7 +40,9 @@ const removeOddCharactersAndTrim = (text: string) =>
         .trim();
 
 export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]) => {
-    const realCalls = removeOddCharactersAndTrim(fn.mock.calls.map(args => args.join("")).join(""));
+    const realCalls = removeOddCharactersAndTrim(
+        fn.mock.calls.map((args) => args.join("")).join(""),
+    );
     const actualCalls = removeOddCharactersAndTrim(actual.join(EOL) + EOL);
 
     expect(realCalls).toEqual(actualCalls);

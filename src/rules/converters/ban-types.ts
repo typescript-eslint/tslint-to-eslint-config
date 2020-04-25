@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertBanTypes: RuleConverter = tslintRule => {
+export const convertBanTypes: RuleConverter = (tslintRule) => {
     type ConvertBanTypeArgument = {
         message: string;
     };

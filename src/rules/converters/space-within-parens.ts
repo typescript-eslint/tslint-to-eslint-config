@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertSpaceWithinParens: RuleConverter = tslintRule => {
+export const convertSpaceWithinParens: RuleConverter = (tslintRule) => {
     let notices: string[] | undefined;
     let arg: string;
 

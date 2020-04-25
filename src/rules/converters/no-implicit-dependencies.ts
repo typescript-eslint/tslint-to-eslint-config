@@ -4,7 +4,7 @@ type ExtraneousDependenciesArgument = Partial<
     Record<"devDependencies" | "optionalDependencies", boolean>
 >;
 
-export const convertNoImplicitDependencies: RuleConverter = tslintRule => {
+export const convertNoImplicitDependencies: RuleConverter = (tslintRule) => {
     const ruleArguments: ExtraneousDependenciesArgument[] = [];
     const notices: string[] = [];
 
