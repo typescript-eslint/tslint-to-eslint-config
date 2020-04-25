@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertPreferFunctionOverMethod: RuleConverter = tslintRule => {
+export const convertPreferFunctionOverMethod: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

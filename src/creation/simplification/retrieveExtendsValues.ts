@@ -45,7 +45,7 @@ export const retrieveExtendsValues = async (
     const extensionNames = resolveExtensionNames(rawExtensionNames);
 
     await Promise.all(
-        extensionNames.map(async extensionName => {
+        extensionNames.map(async (extensionName) => {
             const builtInExtension = builtInExtensions.get(extensionName);
             if (builtInExtension !== undefined) {
                 importedExtensions.push(

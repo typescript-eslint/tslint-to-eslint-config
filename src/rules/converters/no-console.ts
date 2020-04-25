@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertNoConsole: RuleConverter = tslintRule => {
+export const convertNoConsole: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
@@ -9,7 +9,7 @@ export const convertNoConsole: RuleConverter = tslintRule => {
                     ruleArguments: [
                         {
                             allow: Object.keys(console).filter(
-                                method => !tslintRule.ruleArguments.includes(method),
+                                (method) => !tslintRule.ruleArguments.includes(method),
                             ),
                         },
                     ],

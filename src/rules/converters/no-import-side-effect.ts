@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertNoImportSideEffect: RuleConverter = tsLintRule => {
+export const convertNoImportSideEffect: RuleConverter = (tsLintRule) => {
     return {
         rules: [
             {

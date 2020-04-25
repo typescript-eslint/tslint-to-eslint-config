@@ -48,7 +48,7 @@ export const importer = async (
 
     return new Error(
         `Could not find '${moduleName}' after trying: ${pathAttempts
-            .map(attempt => `'${attempt}'`)
+            .map((attempt) => `'${attempt}'`)
             .join(", ")}`,
     );
 };

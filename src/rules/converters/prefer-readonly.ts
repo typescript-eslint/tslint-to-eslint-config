@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertPreferReadonly: RuleConverter = tslintRule => {
+export const convertPreferReadonly: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

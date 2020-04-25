@@ -7,7 +7,7 @@ type CommentFormatOptions = {
 
 export const CapitalizedIgnoreMessage = "Only accepts a single string pattern to be ignored.";
 
-export const convertCommentFormat: RuleConverter = tslintRule => {
+export const convertCommentFormat: RuleConverter = (tslintRule) => {
     const capitalizedRuleArguments: string[] = [];
     const spaceCommentRuleArguments: string[] = [];
     const capitalizedNotices: string[] = [];

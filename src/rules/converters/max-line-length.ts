@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertMaxLineLength: RuleConverter = tslintRule => {
+export const convertMaxLineLength: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

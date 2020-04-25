@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertCurly: RuleConverter = tslintRule => {
+export const convertCurly: RuleConverter = (tslintRule) => {
     const ruleArguments: string[] = [];
 
     if (tslintRule.ruleArguments.includes("ignore-same-line")) {

@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertOnlyArrowFunctions: RuleConverter = tslintRule => {
+export const convertOnlyArrowFunctions: RuleConverter = (tslintRule) => {
     const notices: string[] = [];
 
     if (tslintRule.ruleArguments.includes("allow-declarations")) {

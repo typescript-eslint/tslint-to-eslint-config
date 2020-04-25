@@ -2,7 +2,7 @@ import { RuleConverter } from "../converter";
 
 type QuotemarkRule = string | { avoidEscape: true };
 
-export const convertQuotemark: RuleConverter = tslintRule => {
+export const convertQuotemark: RuleConverter = (tslintRule) => {
     const notices: string[] = [];
     const ruleArguments: QuotemarkRule[] = [];
 

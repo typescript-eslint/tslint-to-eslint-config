@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertNoConsecutiveBlankLines: RuleConverter = tslintRule => {
+export const convertNoConsecutiveBlankLines: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

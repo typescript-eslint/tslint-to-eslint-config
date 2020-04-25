@@ -142,7 +142,7 @@ describe("runCli", () => {
         let defaultConfig;
         const dependencies = createStubRunCliDependencies({
             convertConfigs: [
-                parsedArgs => {
+                (parsedArgs) => {
                     defaultConfig = parsedArgs.config;
                     return Promise.resolve({
                         status: ResultStatus.Succeeded,

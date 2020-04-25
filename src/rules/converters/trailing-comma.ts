@@ -2,7 +2,7 @@ import { RuleConverter } from "../converter";
 
 const unsupportedKeyInEsLint = "typeLiterals";
 
-export const convertTrailingComma: RuleConverter = tslintRule => {
+export const convertTrailingComma: RuleConverter = (tslintRule) => {
     const eslintArgs = tslintRule.ruleArguments.length
         ? collectArguments(tslintRule.ruleArguments)
         : undefined;
@@ -62,7 +62,7 @@ function mergePropertyKeys(
 
     const uniqueKeys = [...new Set([...singlelineKeys, ...multilineKeys])];
 
-    return uniqueKeys.filter(field => field !== unsupportedKeyInEsLint);
+    return uniqueKeys.filter((field) => field !== unsupportedKeyInEsLint);
 }
 
 function collectKeys(

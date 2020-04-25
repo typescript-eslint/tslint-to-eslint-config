@@ -6,10 +6,10 @@ const unsupportedTSLintOptions = [
     "named-imports-order",
 ];
 
-export const convertOrderedImports: RuleConverter = tslintRule => {
+export const convertOrderedImports: RuleConverter = (tslintRule) => {
     const notices = unsupportedTSLintOptions
-        .filter(option => tslintRule.ruleArguments.includes(option))
-        .map(option => `Option "${option}" is not supported by ESLint.`);
+        .filter((option) => tslintRule.ruleArguments.includes(option))
+        .map((option) => `Option "${option}" is not supported by ESLint.`);
 
     return {
         plugins: ["import"],

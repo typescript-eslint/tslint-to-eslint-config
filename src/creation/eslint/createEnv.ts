@@ -16,7 +16,7 @@ export const createEnv = ({
     const node =
         packages === undefined ||
         [...Object.keys(packages.dependencies), ...Object.keys(packages.devDependencies)].some(
-            dependency => dependency.toLowerCase() === "@types/node",
+            (dependency) => dependency.toLowerCase() === "@types/node",
         );
 
     return {

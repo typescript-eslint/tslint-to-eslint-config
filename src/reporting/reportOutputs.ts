@@ -27,7 +27,7 @@ export const logFailedConversions = (failed: ErrorSummary[], logger: Logger) => 
     logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
     logger.stderr.write(chalk.red(" thrown."));
     logger.stderr.write(chalk.redBright(` ❌${EOL}`));
-    logger.info.write(failed.map(failed => failed.getSummary()).join("\n\n") + "\n\n");
+    logger.info.write(failed.map((failed) => failed.getSummary()).join("\n\n") + "\n\n");
     logger.stderr.write(chalk.gray(`  Check ${logger.debugFileName} for details.${EOL}`));
 };
 
@@ -60,7 +60,7 @@ export const logMissingConversionTarget = <T>(
     }
 
     logger.info.write(
-        chalk.yellow(missing.map(conversion => missingOutputMapping(conversion)).join("")),
+        chalk.yellow(missing.map((conversion) => missingOutputMapping(conversion)).join("")),
     );
     logger.stdout.write(chalk.yellow(EOL));
 };
@@ -74,7 +74,7 @@ export const logMissingPlugins = (plugins: Set<string>, logger: Logger) => {
 
     logger.stdout.write(
         Array.from(plugins)
-            .map(pluginName => `  ${chalk.cyanBright(pluginName)}${EOL}`)
+            .map((pluginName) => `  ${chalk.cyanBright(pluginName)}${EOL}`)
             .join(""),
     );
     logger.stdout.write(EOL);

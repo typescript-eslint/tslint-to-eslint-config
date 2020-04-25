@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertCyclomaticComplexity: RuleConverter = tslintRule => {
+export const convertCyclomaticComplexity: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
