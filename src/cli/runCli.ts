@@ -19,13 +19,13 @@ export const runCli = async (
 ): Promise<ResultStatus> => {
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
+        .option("--comments [files]", "convert tslint:disable comments in matching files")
         .option("--config [config]", "eslint configuration file to output to")
+        .option("--editor [editor]", "editor configuration file to convert")
         .option("--eslint [eslint]", "eslint configuration file to convert using")
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option("--editor [editor]", "editor configuration file to convert")
-        .option("-C --convertComments", "convert all tslint:disable comments into eslint-disable")
         .option("-V --version", "output the package version");
 
     const parsedArgv = {

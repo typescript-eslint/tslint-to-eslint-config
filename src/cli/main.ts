@@ -2,10 +2,20 @@ import { EOL } from "os";
 
 import { childProcessExec } from "../adapters/childProcessExec";
 import { fsFileSystem } from "../adapters/fsFileSystem";
+import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
+import { convertComments, ConvertCommentsDependencies } from "../comments/convertComments";
+import {
+    ConvertFileCommentsDependencies,
+    convertFileComments,
+} from "../comments/convertFileComments";
 import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
+import {
+    replaceFileComments,
+    ReplaceFileCommentsDependencies,
+} from "../comments/replaceFileComments";
 import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
@@ -50,7 +60,20 @@ import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
-import { convertComments, ConvertCommentsResultsDependencies } from "../rules/convertComments";
+
+const replaceFileCommentsDependencies: ReplaceFileCommentsDependencies = {
+    converters: rulesConverters,
+};
+
+const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
+    fileSystem: fsFileSystem,
+    replaceFileComments: bind(replaceFileComments, replaceFileCommentsDependencies),
+};
+
+const convertCommentsDependencies: ConvertCommentsDependencies = {
+    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
+    globAsync,
+};
 
 const convertRulesDependencies: ConvertRulesDependencies = {
     converters: rulesConverters,
@@ -100,10 +123,6 @@ const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
 
-const convertCommentsResultsDependencies: ConvertCommentsResultsDependencies = {
-    fileSystem: fsFileSystem,
-};
-
 const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
@@ -122,6 +141,7 @@ const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
 };
 
 const convertConfigDependencies: ConvertConfigDependencies = {
+    convertComments: bind(convertComments, convertCommentsDependencies),
     convertRules: bind(convertRules, convertRulesDependencies),
     findOriginalConfigurations: bind(
         findOriginalConfigurations,
@@ -129,7 +149,6 @@ const convertConfigDependencies: ConvertConfigDependencies = {
     ),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
-    convertComments: bind(convertComments, convertCommentsResultsDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };
 

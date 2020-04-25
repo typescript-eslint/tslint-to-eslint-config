@@ -1,18 +1,18 @@
 import { SansDependencies } from "../binding";
+import { convertComments } from "../comments/convertComments";
 import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
-import { convertComments } from "../rules/convertComments";
 
 export type ConvertConfigDependencies = {
+    convertComments: SansDependencies<typeof convertComments>;
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
-    convertComments: SansDependencies<typeof convertComments>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -58,19 +58,11 @@ export const convertConfig = async (
         };
     }
 
-    // 4.B Convert comments.
-    const fileCommentsError = await dependencies.convertComments();
-    if (fileCommentsError !== undefined) {
-        return {
-            errors: [fileCommentsError],
-            status: ResultStatus.Failed,
-        };
-    }
+    // 5. Files to transform comments in have source text rewritten using the same rule conversion logic
+    const commentsResult = await dependencies.convertComments(settings.comments);
 
-    // 5. A summary of the results is printed to the user's console
+    // 6. A summary of the results is printed to the user's console
     dependencies.reportConversionResults(simplifiedConfiguration);
 
-    return {
-        status: ResultStatus.Succeeded,
-    };
+    return commentsResult;
 };

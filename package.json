@@ -12,6 +12,7 @@
     "dependencies": {
         "chalk": "4.0.0",
         "commander": "5.0.0",
+        "glob": "^7.1.6",
         "strip-json-comments": "3.1.0",
         "tslint": "6.1.1",
         "typescript": "3.8.3"
@@ -22,6 +23,7 @@
         "@babel/plugin-proposal-optional-chaining": "7.9.0",
         "@babel/preset-env": "7.9.5",
         "@babel/preset-typescript": "7.9.0",
+        "@types/glob": "^7.1.1",
         "@types/jest": "25.2.1",
         "@types/node": "12.12.21",
         "@typescript-eslint/eslint-plugin": "2.28.0",

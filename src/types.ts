@@ -5,6 +5,11 @@ export type TSLintToESLintSettings = {
     config: string;
 
     /**
+     * File globs to convert `tslint:disable` comments within to `eslint-disable`.
+     */
+    comments?: string | string[];
+
+    /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
      */
     eslint?: string;
@@ -28,11 +33,6 @@ export type TSLintToESLintSettings = {
      * Original Editor configuration file path, such as `.vscode/settings.json`.
      */
     editor?: string;
-
-    /**
-     * Opt-in flag to convert `tslint:disable` comments to `eslint-disable`.
-     */
-    convertComments?: boolean;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

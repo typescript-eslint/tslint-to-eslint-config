@@ -2,8 +2,19 @@ export const isDefined = <Item>(item: Item | undefined): item is Item => !!item;
 
 export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;
 
-export type RemoveErrors<Items> = {
-    [P in keyof Items]: Exclude<Items[P], Error>;
+export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]] => {
+    const errors: Error[] = [];
+    const items: Item[] = [];
+
+    for (const item of mixed) {
+        if (item instanceof Error) {
+            errors.push(item);
+        } else {
+            items.push(item);
+        }
+    }
+
+    return [errors, items];
 };
 
 export type PromiseValue<T> = T extends Promise<infer R> ? R : never;
