@@ -42,12 +42,24 @@ We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning yo
 
 Each of these flags is optional:
 
+-   **[`comments`](#comments)**: File glob path(s) to convert TSLint rule flags to ESLint within.
 -   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
 -   **[`editor`](#editor)**: Path to an editor configuration file to convert linter settings within.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
 -   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
+
+#### `comments`
+
+```shell
+npx tslint-to-eslint-config --comments src/**/*.ts
+```
+
+_Default: none_
+
+File glob path(s) to convert [TSLint rule flags](https://palantir.github.io/tslint/usage/rule-flags) to [ESLint inline comments](https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments) in.
+Comments such as `// tslint:disable: tslint-rule-name` will be converted to equivalents like `// eslint-disable eslint-rule-name`.
 
 #### `config`
 
