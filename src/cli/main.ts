@@ -13,10 +13,6 @@ import {
 } from "../comments/convertFileComments";
 import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
 import {
-    replaceFileComments,
-    ReplaceFileCommentsDependencies,
-} from "../comments/replaceFileComments";
-import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
@@ -61,13 +57,9 @@ import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
 
-const replaceFileCommentsDependencies: ReplaceFileCommentsDependencies = {
-    converters: rulesConverters,
-};
-
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
+    converters: rulesConverters,
     fileSystem: fsFileSystem,
-    replaceFileComments: bind(replaceFileComments, replaceFileCommentsDependencies),
 };
 
 const convertCommentsDependencies: ConvertCommentsDependencies = {

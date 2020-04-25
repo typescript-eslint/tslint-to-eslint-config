@@ -9,14 +9,12 @@ export type FileComment = {
     ruleNames: string[];
 };
 
-export type TSLintDirective =
-    | "tslint:disable"
-    | "tslint:disable-next-line"
-    | "tslint:enable"
-    | "tslint:enable-next-line";
+export type TSLintDirective = "tslint:disable" | "tslint:disable-next-line" | "tslint:enable";
 
+/**
+ * @see https://github.com/Microsoft/TypeScript/issues/21049
+ */
 export const parseFileComments = (filePath: string, content: string) => {
-    // See https://github.com/Microsoft/TypeScript/issues/21049
     const sourceFile = ts.createSourceFile(
         filePath,
         content,

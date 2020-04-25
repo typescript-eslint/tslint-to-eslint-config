@@ -71,31 +71,34 @@ describe("convertConfig", () => {
 
     it("returns the failure result when converting comments fails", async () => {
         // Arrange
-        const convertCommentsError = new Error();
+        const convertCommentsResult = {
+            errors: [new Error()],
+            status: ResultStatus.Failed,
+        };
         const dependencies = createStubDependencies({
-            convertComments: jest.fn().mockResolvedValueOnce(convertCommentsError),
+            convertComments: jest.fn().mockResolvedValueOnce(convertCommentsResult),
         });
 
         // Act
         const result = await convertConfig(dependencies, stubSettings);
 
         // Assert
-        expect(result).toEqual({
-            errors: [convertCommentsError],
-            status: ResultStatus.Failed,
-        });
+        expect(result).toEqual(convertCommentsResult);
     });
 
     it("returns a successful result when all steps succeed", async () => {
         // Arrange
-        const dependencies = createStubDependencies();
+        const convertCommentsResult = {
+            status: ResultStatus.Succeeded,
+        };
+        const dependencies = createStubDependencies({
+            convertComments: jest.fn().mockResolvedValueOnce(convertCommentsResult),
+        });
 
         // Act
         const result = await convertConfig(dependencies, stubSettings);
 
         // Assert
-        expect(result).toEqual({
-            status: ResultStatus.Succeeded,
-        });
+        expect(result).toEqual(convertCommentsResult);
     });
 });

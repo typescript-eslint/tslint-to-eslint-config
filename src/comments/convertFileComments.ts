@@ -1,11 +1,11 @@
 import { FileSystem } from "../adapters/fileSystem";
-import { SansDependencies } from "../binding";
 import { parseFileComments } from "./parseFileComments";
 import { replaceFileComments } from "./replaceFileComments";
+import { RuleConverter } from "../rules/converter";
 
 export type ConvertFileCommentsDependencies = {
+    converters: Map<string, RuleConverter>;
     fileSystem: Pick<FileSystem, "readFile" | "writeFile">;
-    replaceFileComments: SansDependencies<typeof replaceFileComments>;
 };
 
 export const convertFileComments = async (
@@ -13,13 +13,20 @@ export const convertFileComments = async (
     filePath: string,
     ruleConversionCache: Map<string, string | undefined>,
 ) => {
-    const content = await dependencies.fileSystem.readFile(filePath);
-    if (content instanceof Error) {
-        return content;
+    const fileContent = await dependencies.fileSystem.readFile(filePath);
+    if (fileContent instanceof Error) {
+        return fileContent;
     }
 
-    const comments = parseFileComments(filePath, content);
-    const newFileContent = dependencies.replaceFileComments(content, comments, ruleConversionCache);
+    const comments = parseFileComments(filePath, fileContent);
+    const newFileContent = replaceFileComments(
+        fileContent,
+        comments,
+        dependencies.converters,
+        ruleConversionCache,
+    );
 
-    return await dependencies.fileSystem.writeFile(filePath, newFileContent);
+    return fileContent === newFileContent
+        ? undefined
+        : await dependencies.fileSystem.writeFile(filePath, newFileContent);
 };
