@@ -12,7 +12,7 @@ describe(convertFileNameCasing, () => {
                     ruleName: "unicorn/filename-case",
                 },
             ],
-            plugins: ["unicorn"],
+            plugins: ["eslint-plugin-unicorn"],
         });
     });
 
@@ -34,7 +34,7 @@ describe(convertFileNameCasing, () => {
                     ],
                 },
             ],
-            plugins: ["unicorn"],
+            plugins: ["eslint-plugin-unicorn"],
         });
     });
 
@@ -61,7 +61,7 @@ describe(convertFileNameCasing, () => {
                     ],
                 },
             ],
-            plugins: ["unicorn"],
+            plugins: ["eslint-plugin-unicorn"],
         });
     });
 
@@ -77,7 +77,7 @@ describe(convertFileNameCasing, () => {
                     ruleName: "unicorn/filename-case",
                 },
             ],
-            plugins: ["unicorn"],
+            plugins: ["eslint-plugin-unicorn"],
         });
     });
 
@@ -96,7 +96,7 @@ describe(convertFileNameCasing, () => {
                     ruleName: "unicorn/filename-case",
                 },
             ],
-            plugins: ["unicorn"],
+            plugins: ["eslint-plugin-unicorn"],
         });
     });
 });

@@ -43,6 +43,7 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
+import { choosePackageManager } from "../reporting/packages/choosePackageManager";
 import {
     reportConversionResults,
     ReportConversionResultsDependencies,
@@ -52,7 +53,6 @@ import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
-import { choosePackageManager } from "../reporting/packages/choosePackageManager";
 
 const convertRulesDependencies: ConvertRulesDependencies = {
     converters: rulesConverters,
