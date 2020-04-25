@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertMaxClassesPerFile: RuleConverter = tslintRule => {
+export const convertMaxClassesPerFile: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

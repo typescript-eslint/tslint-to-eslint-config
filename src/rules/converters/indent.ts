@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertIndent: RuleConverter = tslintRule => {
+export const convertIndent: RuleConverter = (tslintRule) => {
     let indentSize: number | string = 4; // @typescript-eslint/indent default
 
     if (tslintRule.ruleArguments[0] === "tabs") {

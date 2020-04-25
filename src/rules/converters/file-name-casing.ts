@@ -10,7 +10,7 @@ const CASES_MAP: { [s: string]: string } = {
     "snake-case": "snakeCase",
 };
 
-export const convertFileNameCasing: RuleConverter = tslintRule => {
+export const convertFileNameCasing: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

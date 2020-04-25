@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertObjectLiteralKeyQuotes: RuleConverter = tslintRule => {
+export const convertObjectLiteralKeyQuotes: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

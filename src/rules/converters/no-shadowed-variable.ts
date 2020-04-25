@@ -9,7 +9,7 @@ const UNDERSCORE_DISABLE_NOTICE =
     "whether their names start with underscore or not, please use 'allow' in eslint configuration to " +
     "provide specific variable names you want to disable the rule for.";
 
-export const convertNoShadowedVariable: RuleConverter = tslintRule => {
+export const convertNoShadowedVariable: RuleConverter = (tslintRule) => {
     const ruleArguments: { hoist: "all" | "never" }[] = [];
     const notices: string[] = [];
 

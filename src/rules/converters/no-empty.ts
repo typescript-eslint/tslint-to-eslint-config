@@ -1,7 +1,7 @@
 import { RuleConverter, RuleConverterOptions } from "../converter";
 import { isDefined } from "../../utils";
 
-export const convertNoEmpty: RuleConverter = tslintRule => {
+export const convertNoEmpty: RuleConverter = (tslintRule) => {
     return {
         rules: [convertNoEmptyRule(tslintRule), convertNoEmptyFunctionRule(tslintRule)].filter(
             isDefined,

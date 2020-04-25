@@ -17,7 +17,7 @@ type MemberAccessSchema = {
     overrides?: Record<string, string>;
 };
 
-export const convertMemberAccess: RuleConverter = tslintRule => {
+export const convertMemberAccess: RuleConverter = (tslintRule) => {
     const schema: MemberAccessSchema = {
         accessibility: AccessibilityLevel.Explicit,
     };

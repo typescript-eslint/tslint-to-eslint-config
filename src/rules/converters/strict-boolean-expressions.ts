@@ -3,7 +3,7 @@ import { RuleConverter } from "../converter";
 export const ForbiddenOtherNonBooleanTypes =
     "String, number, enum, and mixed union types are now forbidden.";
 
-export const convertStrictBooleanExpressions: RuleConverter = tslintRule => {
+export const convertStrictBooleanExpressions: RuleConverter = (tslintRule) => {
     const ruleArguments: Record<string, boolean> = {};
     let notices: string[] | undefined;
 

@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertArrayType: RuleConverter = tslintRule => {
+export const convertArrayType: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertNoVoidExpression: RuleConverter = tslintRule => {
+export const convertNoVoidExpression: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

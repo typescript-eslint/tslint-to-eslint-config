@@ -1,6 +1,6 @@
 import { RuleConverter } from "../converter";
 
-export const convertObjectLiteralShorthand: RuleConverter = tslintRule => {
+export const convertObjectLiteralShorthand: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
