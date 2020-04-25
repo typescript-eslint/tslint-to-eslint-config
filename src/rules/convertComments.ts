@@ -17,16 +17,16 @@ const tslintRegex = new RegExp(/\s*tslint:(enable|disable)(?:-(line|next-line))?
 
 export const convertComments = async (dependencies: ConvertCommentsResultsDependencies) => {
     // TODO: Remove console logs
-    console.log("Started");
     const filenames = await dependencies.fileSystem.readDir("./", { withFileTypes: true });
     if (!isError(filenames)) {
         const filteredFilenames: string[] = filenames
-            .filter(fileEnt => fileEnt.isFile())
-            .map(fileEnt => fileEnt.name);
+            .filter((fileEnt) => fileEnt.isFile())
+            .map((fileEnt) => fileEnt.name);
         // TODO: Remove console logs
-        console.log("Filenames filtered");
-        console.log(filteredFilenames);
         for (const filename of filteredFilenames) {
+            // todo: cli should pass glob/wildcard
+            if (!filename.includes("index")) continue;
+
             const fileContent: string | Error = await dependencies.fileSystem.readFile(filename);
             if (!isError(fileContent)) {
                 const writeFileRes = await replaceComments(dependencies, filename, fileContent);
@@ -40,7 +40,9 @@ export const convertComments = async (dependencies: ConvertCommentsResultsDepend
     return Error("Failed to convert file comments");
 };
 
-type Modifier = "line" | "next-line" | undefined;
+type CommentKind = ts.SyntaxKind.MultiLineCommentTrivia | ts.SyntaxKind.SingleLineCommentTrivia;
+
+type Modifier = "line" | "next-line" | undefined; // todo: split "line" into "block-start" and "block-end"?
 function parseComment(
     commentText: string,
 ): { rulesList: string[] | "all"; isEnabled: boolean; modifier: Modifier } | undefined {
@@ -67,7 +69,7 @@ function parseComment(
 }
 
 function splitOnSpaces(str: string): string[] {
-    return str.split(/\s+/).filter(s => s !== "");
+    return str.split(/\s+/).filter((s) => s !== "");
 }
 
 type IReplacement = {
@@ -92,34 +94,34 @@ const replaceComments = async (
     // or that's what I think it does.
     utils.forEachComment(sourceFile, (fullText, comment) => {
         const replacements: IReplacement[] = [];
-        const commentText =
-            comment.kind === ts.SyntaxKind.SingleLineCommentTrivia
-                ? fullText.substring(comment.pos + 3, comment.end)
-                : fullText.substring(comment.pos + 3, comment.end - 2);
+        const commentText = (comment.kind === ts.SyntaxKind.SingleLineCommentTrivia
+            ? fullText.substring(comment.pos + 2, comment.end)
+            : fullText.substring(comment.pos + 2, comment.end - 2)
+        ).trim();
 
         const parsed = parseComment(commentText);
         if (parsed !== undefined) {
             const { rulesList, modifier } = parsed;
             const switchRange = getSwitchRange(modifier, comment, sourceFile);
+            console.log({ modifier, comment });
             if (switchRange !== undefined) {
                 // Extra log to check what is going on
-                console.log("----------- COMMENT TEXT -----------");
-                console.log(commentText);
-                console.log("----------- PARSED DATA -----------");
-                console.log(parsed);
-                console.log("----------- SWITCH RANGE -----------");
-                console.log(switchRange);
                 const rulesToSwitch =
                     rulesList === "all"
                         ? Array.from(rulesConverters.keys())
-                        : rulesList.filter(ruleKey => rulesConverters.has(ruleKey));
+                        : rulesList.filter((ruleKey) => rulesConverters.has(ruleKey));
+                console.log({ rulesToSwitch });
                 for (const ruleToSwitch of rulesToSwitch) {
                     const transformedRules = switchRule(ruleToSwitch);
                     if (transformedRules) {
                         replacements.push({
-                            start: switchRange.pos,
-                            end: switchRange.end,
-                            replacementText: transformedRules.join(" "),
+                            start: comment.pos,
+                            end: comment.end,
+                            replacementText: createReplacementText(
+                                comment.kind,
+                                modifier,
+                                transformedRules,
+                            ),
                         });
                     }
                 }
@@ -130,9 +132,6 @@ const replaceComments = async (
 
         const newText = getNewText(fileContent, replacements);
         // Check the output before writing to file.
-        console.log("");
-        console.log("************** NEW FILE BEING WRITTEN ! **************");
-        console.log(newText);
         // Write the file with the changes.
         // At the moment,
         _dependencies.fileSystem.writeFileSync(fileName, newText);
@@ -140,7 +139,21 @@ const replaceComments = async (
     return true;
 };
 
+function createReplacementText(
+    commentKind: CommentKind,
+    _modifier: Modifier,
+    transformedRules: string[],
+) {
+    const directive = "eslint-disable-next-line"; // todo: map from modifier
+    const [left, right] =
+        commentKind === ts.SyntaxKind.SingleLineCommentTrivia ? ["// ", ""] : ["/* ", " */"];
+
+    // todo: no transformed rules?
+    return [left, directive, " ", transformedRules.join(" "), right].join("");
+}
+
 function getNewText(sourceText: string, replacementsInReverse: IReplacement[]) {
+    console.log({ replacementsInReverse });
     for (const { start, end, replacementText } of replacementsInReverse) {
         sourceText = sourceText.slice(0, start) + replacementText + sourceText.slice(end);
     }
@@ -154,9 +167,7 @@ function switchRule(ruleName: string): string[] | null {
         const tslintRule = formatRawTslintRule(ruleName, { ruleName });
         const conversion = tslintRuleConverter(tslintRule);
         if (!(conversion instanceof ConversionError)) {
-            const eslintRules = conversion.rules.map(r => r.ruleName);
-            console.log(`Rulename: ${ruleName}`);
-            console.log(eslintRules);
+            const eslintRules = conversion.rules.map((r) => r.ruleName);
             return eslintRules;
         }
     }
