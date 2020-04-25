@@ -7,7 +7,7 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
                     ruleName: "import/order",
@@ -22,7 +22,7 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
                     notices: ['Option "import-sources-order" is not supported by ESLint.'],
@@ -38,7 +38,7 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
                     notices: ['Option "named-imports-order" is not supported by ESLint.'],
@@ -54,7 +54,7 @@ describe(convertOrderedImports, () => {
         });
 
         expect(result).toEqual({
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
             rules: [
                 {
                     notices: [

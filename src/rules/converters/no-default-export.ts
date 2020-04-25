@@ -7,6 +7,6 @@ export const convertNoDefaultExport: RuleConverter = () => {
                 ruleName: "import/no-default-export",
             },
         ],
-        plugins: ["import"],
+        plugins: ["eslint-plugin-import"],
     };
 };

@@ -27,6 +27,6 @@ export const convertNoImplicitDependencies: RuleConverter = (tslintRule) => {
             },
         ],
 
-        plugins: ["import"],
+        plugins: ["eslint-plugin-import"],
     };
 };

@@ -12,7 +12,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 
@@ -28,7 +28,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 
@@ -44,7 +44,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 
@@ -60,7 +60,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 
@@ -76,7 +76,7 @@ describe(convertNoImplicitDependencies, () => {
                     ruleName: "import/no-extraneous-dependencies",
                 },
             ],
-            plugins: ["import"],
+            plugins: ["eslint-plugin-import"],
         });
     });
 });

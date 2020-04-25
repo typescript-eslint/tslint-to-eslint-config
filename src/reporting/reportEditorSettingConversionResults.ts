@@ -1,16 +1,20 @@
 import { EOL } from "os";
 
+import { Logger } from "../adapters/logger";
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
 import { EditorSetting } from "../editorSettings/types";
-import { ReportConversionResultsDependencies } from "./dependencies";
 import {
     logFailedConversions,
     logMissingConversionTarget,
     logSuccessfulConversions,
 } from "./reportOutputs";
 
+export type ReportEditorSettingConversionResultsDependencies = {
+    logger: Logger;
+};
+
 export const reportEditorSettingConversionResults = (
-    dependencies: ReportConversionResultsDependencies,
+    dependencies: ReportEditorSettingConversionResultsDependencies,
     editorSettingConversionResults: EditorSettingConversionResults,
 ) => {
     if (editorSettingConversionResults.converted.size !== 0) {

@@ -2,20 +2,28 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
+import { SansDependencies } from "../binding";
 import { RuleConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
-import { ReportConversionResultsDependencies } from "./dependencies";
+import { choosePackageManager } from "./packages/choosePackageManager";
 import {
     logFailedConversions,
     logMissingConversionTarget,
-    logMissingPlugins,
+    logMissingPackages,
     logSuccessfulConversions,
 } from "./reportOutputs";
 
-export const reportConversionResults = (
+export type ReportConversionResultsDependencies = {
+    logger: Logger;
+    choosePackageManager: SansDependencies<typeof choosePackageManager>;
+};
+
+export const reportConversionResults = async (
     dependencies: ReportConversionResultsDependencies,
     ruleConversionResults: RuleConversionResults,
 ) => {
+    const packageManager = await dependencies.choosePackageManager();
+
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
         logNotices(ruleConversionResults.converted, dependencies.logger);
@@ -40,9 +48,7 @@ export const reportConversionResults = (
         );
     }
 
-    if (ruleConversionResults.plugins.size !== 0) {
-        logMissingPlugins(ruleConversionResults.plugins, dependencies.logger);
-    }
+    logMissingPackages(ruleConversionResults.plugins, packageManager, dependencies.logger);
 };
 
 type RuleWithNotices = {
