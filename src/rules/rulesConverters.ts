@@ -105,6 +105,7 @@ import { convertNoVarRequires } from "./converters/no-var-requires";
 import { convertNoVoidExpression } from "./converters/no-void-expression";
 import { convertObjectLiteralKeyQuotes } from "./converters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./converters/object-literal-shorthand";
+import { convertOneLine } from "./converters/one-line";
 import { convertOneVariablePerDeclaration } from "./converters/one-variable-per-declaration";
 import { convertOnlyArrowFunctions } from "./converters/only-arrow-functions";
 import { convertOrderedImports } from "./converters/ordered-imports";
@@ -246,6 +247,7 @@ export const rulesConverters = new Map([
     ["no-void-expression", convertNoVoidExpression],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
+    ["one-line", convertOneLine],
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["only-arrow-functions", convertOnlyArrowFunctions],
     ["ordered-imports", convertOrderedImports],
