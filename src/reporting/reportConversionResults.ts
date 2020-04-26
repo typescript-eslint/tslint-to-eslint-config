@@ -49,6 +49,7 @@ export const reportConversionResults = async (
     }
 
     logMissingPackages(ruleConversionResults, packageManager, dependencies.logger);
+    logPrettierExtension(ruleConversionResults, dependencies.logger);
 };
 
 type RuleWithNotices = {
@@ -70,9 +71,9 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
             ? " behaves differently from its TSLint counterpart"
             : "s behave differently from their TSLint counterparts";
 
-    logger.stdout.write(
-        chalk.blueBright(`${EOL}❗ ${rulesWithNotices.length} ESLint rule${behavior} ❗${EOL}`),
-    );
+    logger.stdout.write(chalk.blueBright(`${EOL}❗ ${rulesWithNotices.length}`));
+    logger.stdout.write(chalk.blue(` ESLint rule${behavior} `));
+    logger.stdout.write(chalk.blueBright(`❗${EOL}`));
     logger.stdout.write(chalk.blue(`  Check ${logger.debugFileName} for details.${EOL}`));
     logger.info.write(`${rulesWithNotices.length} ESLint rule${behavior}:${EOL}`);
 
@@ -85,4 +86,23 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
     }
 
     logger.info.write(EOL);
+};
+
+const logPrettierExtension = (
+    ruleConversionResults: SimplifiedResultsConfiguration,
+    logger: Logger,
+) => {
+    if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
+        logger.stdout.write(chalk.redBright(`${EOL}🔥 Prettier`));
+        logger.stdout.write(chalk.red(` plugins are missing from your configuration. `));
+        logger.stdout.write(chalk.redBright(`🔥${EOL}`));
+        logger.stdout.write(chalk.red(`  We highly recommend running `));
+        logger.stdout.write(chalk.redBright(`tslint-to-eslint-config --prettier`));
+        logger.stdout.write(chalk.red(` to disable formatting ESLint rules.${EOL}`));
+        logger.stdout.write(
+            chalk.red(
+                `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.${EOL}`,
+            ),
+        );
+    }
 };

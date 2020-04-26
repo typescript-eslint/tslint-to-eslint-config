@@ -107,7 +107,7 @@ npx tslint-to-eslint-config --prettier
 _Default: `false`_
 
 Add [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) to the list of ESLint plugins.
-We [highly recommend](./docs/FAQs.md##should-i-use-prettier) you use [Prettier](http://prettier.io) for code formatting.
+We [highly recommend](./docs/FAQs.md#should-i-use-prettier) you use [Prettier](http://prettier.io) for code formatting.
 
 #### `tslint`
 
