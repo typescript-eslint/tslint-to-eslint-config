@@ -1,4 +1,4 @@
-import { isDefined, isError, uniqueFromSources } from "./utils";
+import { isDefined, isError, uniqueFromSources, separateErrors } from "./utils";
 
 describe("isDefined", () => {
     it("returns true when the item is defined", () => {
@@ -49,7 +49,16 @@ describe("isError", () => {
 });
 
 describe("separateErrors", () => {
-    // ...
+    it("splits the input array into errors and items", () => {
+        // Arrange
+        const mixed = ["value", new Error()];
+
+        // Act
+        const result = separateErrors(mixed);
+
+        // Assert
+        expect(result).toEqual([[mixed[1]], [mixed[0]]]);
+    });
 });
 
 describe("uniqueFromSources", () => {
