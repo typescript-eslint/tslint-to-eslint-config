@@ -1,5 +1,6 @@
 import { SansDependencies } from "../binding";
 import { ResultStatus, TSLintToESLintSettings, ResultWithDataStatus } from "../types";
+import { isDefined } from "../utils";
 import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
 import { PackagesConfiguration, findPackagesConfiguration } from "./findPackagesConfiguration";
 import {
@@ -8,7 +9,6 @@ import {
 } from "./findTypeScriptConfiguration";
 import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
 import { mergeLintConfigurations } from "./mergeLintConfigurations";
-import { isDefined } from "../utils";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;
