@@ -12,7 +12,7 @@ export const convertOrderedImports: RuleConverter = (tslintRule) => {
         .map((option) => `Option "${option}" is not supported by ESLint.`);
 
     return {
-        plugins: ["import"],
+        plugins: ["eslint-plugin-import"],
         rules: [
             {
                 ...(notices.length !== 0 && { notices }),

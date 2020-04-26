@@ -64,7 +64,7 @@ export const convertConfig = async (
     const commentsResult = await dependencies.convertComments(settings.comments);
 
     // 6. A summary of the results is printed to the user's console
-    dependencies.reportConversionResults(simplifiedConfiguration);
+    await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
     dependencies.reportCommentResults(settings.comments, commentsResult);
 
     return commentsResult;

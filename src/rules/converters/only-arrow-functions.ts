@@ -20,6 +20,6 @@ export const convertOnlyArrowFunctions: RuleConverter = (tslintRule) => {
                 ruleName: "prefer-arrow/prefer-arrow-functions",
             },
         ],
-        plugins: ["prefer-arrow"],
+        plugins: ["eslint-plugin-prefer-arrow"],
     };
 };

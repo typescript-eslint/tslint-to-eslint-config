@@ -11,7 +11,7 @@ export class ConversionError implements ErrorSummary {
         return new ConversionError(
             [
                 `Error: multiple output ${eslintRule} ESLint rule options were generated, but tslint-to-eslint-config doesn't have "merger" logic to deal with this.`,
-                `Please file an issue at https://github.com/typescript-eslint/tslint-to-eslint-config/issues/new?template=missing_merger.md 🙏`,
+                `Please file an issue at https://github.com/typescript-eslint/tslint-to-eslint-config/issues/new?template=missing_merger.md. Thanks!`,
             ].join(EOL),
         );
     }

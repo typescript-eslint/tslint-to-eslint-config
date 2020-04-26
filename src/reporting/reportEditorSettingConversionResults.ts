@@ -1,16 +1,17 @@
-import { EOL } from "os";
-
+import { Logger } from "../adapters/logger";
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
-import { EditorSetting } from "../editorSettings/types";
-import { ReportDependencies } from "./dependencies";
 import {
     logFailedConversions,
     logMissingConversionTarget,
     logSuccessfulConversions,
 } from "./reportOutputs";
 
+export type ReportEditorSettingConversionResultsDependencies = {
+    logger: Logger;
+};
+
 export const reportEditorSettingConversionResults = (
-    dependencies: ReportDependencies,
+    dependencies: ReportEditorSettingConversionResultsDependencies,
     editorSettingConversionResults: EditorSettingConversionResults,
 ) => {
     if (editorSettingConversionResults.converted.size !== 0) {
@@ -26,13 +27,9 @@ export const reportEditorSettingConversionResults = (
     }
 
     if (editorSettingConversionResults.missing.length !== 0) {
-        const missingEditorSettingOutputMapping = (
-            editorSetting: Pick<EditorSetting, "editorSettingName">,
-        ) =>
-            `tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "${editorSetting.editorSettingName}"${EOL}`;
         logMissingConversionTarget(
             "editor setting",
-            missingEditorSettingOutputMapping,
+            (editorSetting) => editorSetting.editorSettingName,
             editorSettingConversionResults.missing,
             dependencies.logger,
         );

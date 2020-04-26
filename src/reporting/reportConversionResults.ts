@@ -2,20 +2,29 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
+import { SansDependencies } from "../binding";
 import { RuleConversionResults } from "../rules/convertRules";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
-import { ReportDependencies } from "./dependencies";
+import { choosePackageManager } from "./packages/choosePackageManager";
 import {
     logFailedConversions,
     logMissingConversionTarget,
-    logMissingPlugins,
+    logMissingPackages,
     logSuccessfulConversions,
 } from "./reportOutputs";
 
-export const reportConversionResults = (
-    dependencies: ReportDependencies,
+export type ReportConversionResultsDependencies = {
+    logger: Logger;
+    choosePackageManager: SansDependencies<typeof choosePackageManager>;
+};
+
+export const reportConversionResults = async (
+    dependencies: ReportConversionResultsDependencies,
+    outputPath: string,
     ruleConversionResults: RuleConversionResults,
 ) => {
+    const packageManager = await dependencies.choosePackageManager();
+
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
         logNotices(ruleConversionResults.converted, dependencies.logger);
@@ -28,21 +37,18 @@ export const reportConversionResults = (
     if (ruleConversionResults.missing.length !== 0) {
         logMissingConversionTarget(
             "rule",
-            (setting: TSLintRuleOptions) =>
-                `tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "${setting.ruleName}"${EOL}`,
+            (setting: TSLintRuleOptions) => setting.ruleName,
             ruleConversionResults.missing,
             dependencies.logger,
             [
-                ruleConversionResults.missing.length === 1
-                    ? "defaulting to eslint-plugin-tslint for it."
-                    : "defaulting to eslint-plugin-tslint for these rules.",
+                `The "@typescript-eslint/tslint/config" section of ${outputPath} configures eslint-plugin-tslint to run ${
+                    ruleConversionResults.missing.length === 1 ? "it" : "them"
+                } in TSLint within ESLint.`,
             ],
         );
     }
 
-    if (ruleConversionResults.plugins.size !== 0) {
-        logMissingPlugins(ruleConversionResults.plugins, dependencies.logger);
-    }
+    logMissingPackages(ruleConversionResults.plugins, packageManager, dependencies.logger);
 };
 
 type RuleWithNotices = {
@@ -55,29 +61,28 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
         (ruleOptions) => ruleOptions.notices && ruleOptions.notices.length >= 1,
     ) as RuleWithNotices[];
 
-    if (rulesWithNotices.length !== 0) {
-        logger.stdout.write(chalk.yellowBright(`${EOL}❗ ${rulesWithNotices.length} ESLint`));
+    if (rulesWithNotices.length === 0) {
+        return;
+    }
 
-        if (rulesWithNotices.length === 1) {
-            logger.stdout.write(
-                chalk.yellowBright(
-                    ` rule behaves differently from its TSLint counterpart ❗${EOL}`,
-                ),
-            );
-        } else {
-            logger.stdout.write(
-                chalk.yellowBright(
-                    ` rules behave differently from their TSLint counterparts ❗${EOL}`,
-                ),
-            );
-        }
+    const behavior =
+        rulesWithNotices.length === 1
+            ? " behaves differently from its TSLint counterpart"
+            : "s behave differently from their TSLint counterparts";
 
-        for (const rule of rulesWithNotices) {
-            logger.stdout.write(chalk.yellow(`  * ${rule.ruleName}:${EOL}`));
+    logger.stdout.write(
+        chalk.blueBright(`${EOL}❗ ${rulesWithNotices.length} ESLint rule${behavior} ❗${EOL}`),
+    );
+    logger.stdout.write(chalk.blue(`  Check ${logger.debugFileName} for details.${EOL}`));
+    logger.info.write(`${rulesWithNotices.length} ESLint rule${behavior}:${EOL}`);
 
-            for (const notice of rule.notices) {
-                logger.stdout.write(chalk.yellow(`    - ${notice}${EOL}`));
-            }
+    for (const rule of rulesWithNotices) {
+        logger.info.write(`  * ${rule.ruleName}:${EOL}`);
+
+        for (const notice of rule.notices) {
+            logger.info.write(`    - ${notice}${EOL}`);
         }
     }
+
+    logger.info.write(EOL);
 };

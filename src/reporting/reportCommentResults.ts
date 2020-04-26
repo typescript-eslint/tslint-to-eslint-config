@@ -1,11 +1,15 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
+import { Logger } from "../adapters/logger";
 import { ResultWithDataStatus, ResultStatus } from "../types";
-import { ReportDependencies } from "./dependencies";
+
+export type ReportCommentResultsDependencies = {
+    logger: Logger;
+};
 
 export const reportCommentResults = (
-    dependencies: ReportDependencies,
+    dependencies: ReportCommentResultsDependencies,
     commentGlobs: string | string[] | undefined,
     commentsResult: ResultWithDataStatus<string[]>,
 ) => {

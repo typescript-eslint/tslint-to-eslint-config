@@ -18,7 +18,7 @@ export const convertFileNameCasing: RuleConverter = (tslintRule) => {
                 ...collectArguments(tslintRule.ruleArguments),
             },
         ],
-        plugins: ["unicorn"],
+        plugins: ["eslint-plugin-unicorn"],
     };
 };
 
