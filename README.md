@@ -109,6 +109,11 @@ _Default: `false`_
 Add [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) to the list of ESLint plugins.
 We [highly recommend](./docs/FAQs.md#should-i-use-prettier) you use [Prettier](http://prettier.io) for code formatting.
 
+If `--prettier` isn't enabled:
+
+-   If the output configuration already doesn't enable any formatting rules, it'll have `eslint-config-prettier` enabled.
+-   Otherwise, a CLI message will suggest running with `--prettier`.
+
 #### `tslint`
 
 ```shell
