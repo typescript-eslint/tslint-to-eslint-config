@@ -17,7 +17,10 @@ const createStubDependencies = (
     simplifyPackageRules: async (_configurations, data) => ({
         ...data,
         converted: new Map(),
+        extends: [],
         failed: [],
+        missing: [],
+        plugins: new Set(),
     }),
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,

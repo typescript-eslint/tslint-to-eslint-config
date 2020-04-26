@@ -25,7 +25,7 @@ const createStubTSLintConfiguration = () => ({
 });
 
 describe("simplifyPackageRules", () => {
-    it("returns the conversion results directly when there is no loaded ESLint configuration and no TSLint extensions", async () => {
+    it("returns equivalent conversion results when there is no loaded ESLint configuration and no TSLint extensions", async () => {
         // Arrange
         const dependencies = createStubDependencies();
         const eslint = undefined;
@@ -41,10 +41,34 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toBe(ruleConversionResults);
+        expect(simplifiedResults).toEqual({
+            ...ruleConversionResults,
+            converted: undefined,
+            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
+        });
     });
 
-    it("returns the conversion results directly when there is an empty ESLint configuration and no TSLint extensions", async () => {
+    it("does not add Prettier extensions when the ugly setting is enabled", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+        const eslint = undefined;
+        const tslint = createStubTSLintConfiguration();
+        const ruleConversionResults = createEmptyConversionResults();
+
+        // Act
+        const simplifiedResults = await simplifyPackageRules(
+            dependencies,
+            eslint,
+            tslint,
+            ruleConversionResults,
+            true,
+        );
+
+        // Assert
+        expect(simplifiedResults).toEqual(ruleConversionResults);
+    });
+
+    it("returns equivalent conversion results when there is an empty ESLint configuration and no TSLint extensions", async () => {
         // Arrange
         const dependencies = createStubDependencies();
         const eslint = createStubESLintConfiguration([]);
@@ -60,7 +84,11 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toBe(ruleConversionResults);
+        expect(simplifiedResults).toEqual({
+            ...ruleConversionResults,
+            converted: undefined,
+            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
+        });
     });
 
     it("includes deduplicated rules and extension failures when the ESLint configuration extends", async () => {
@@ -98,8 +126,13 @@ describe("simplifyPackageRules", () => {
 
         // Assert
         expect(simplifiedResults).toEqual({
+            ...ruleConversionResults,
             converted: deduplicatedRules,
-            extends: eslintExtends,
+            extends: [
+                ...eslintExtends,
+                "eslint-config-prettier",
+                "eslint-config-prettier/@typescript-eslint",
+            ],
             failed: configurationErrors,
         });
     });

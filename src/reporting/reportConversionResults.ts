@@ -3,7 +3,7 @@ import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
-import { RuleConversionResults } from "../rules/convertRules";
+import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
 import { choosePackageManager } from "./packages/choosePackageManager";
 import {
@@ -21,7 +21,7 @@ export type ReportConversionResultsDependencies = {
 export const reportConversionResults = async (
     dependencies: ReportConversionResultsDependencies,
     outputPath: string,
-    ruleConversionResults: RuleConversionResults,
+    ruleConversionResults: SimplifiedResultsConfiguration,
 ) => {
     const packageManager = await dependencies.choosePackageManager();
 

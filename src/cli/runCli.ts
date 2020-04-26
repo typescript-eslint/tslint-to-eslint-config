@@ -20,11 +20,12 @@ export const runCli = async (
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
         .option("--config [config]", "eslint configuration file to output to")
+        .option("--editor [editor]", "editor configuration file to convert")
         .option("--eslint [eslint]", "eslint configuration file to convert using")
         .option("--package [package]", "package configuration file to convert using")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option("--editor [editor]", "editor configuration file to convert")
+        .option("--ugly [ugly]", "disable automatic inclusion of eslint-plugin-prettier")
         .option("-V --version", "output the package version");
 
     const parsedArgv = {

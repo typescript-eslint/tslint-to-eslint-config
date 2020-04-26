@@ -13,10 +13,7 @@ export type SimplifyPackageRulesDependencies = {
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
 
-export type SimplifiedRuleConversionResults = Pick<
-    RuleConversionResults,
-    "converted" | "failed"
-> & {
+export type SimplifiedResultsConfiguration = RuleConversionResults & {
     extends?: string[];
 };
 
@@ -28,11 +25,17 @@ export const simplifyPackageRules = async (
     dependencies: SimplifyPackageRulesDependencies,
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
-    ruleConversionResults: SimplifiedRuleConversionResults,
-): Promise<SimplifiedRuleConversionResults> => {
+    ruleConversionResults: RuleConversionResults,
+    ugly?: boolean,
+): Promise<SimplifiedResultsConfiguration> => {
     const extendedESLintRulesets = eslint?.full.extends ?? [];
     const extendedTSLintRulesets = collectTSLintRulesets(tslint);
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
+
+    if (!ugly) {
+        allExtensions.push("eslint-config-prettier", "eslint-config-prettier/@typescript-eslint");
+    }
+
     if (allExtensions.length === 0) {
         return ruleConversionResults;
     }
@@ -47,6 +50,7 @@ export const simplifyPackageRules = async (
     );
 
     return {
+        ...ruleConversionResults,
         converted,
         extends: allExtensions,
         failed: [...ruleConversionResults.failed, ...configurationErrors],

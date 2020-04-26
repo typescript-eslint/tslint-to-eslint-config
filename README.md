@@ -48,6 +48,7 @@ Each of these flags is optional:
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
 -   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
+-   **[`ugly`](#ugly)**: Disable automatic inclusion of `eslint-config-prettier`.
 
 #### `config`
 
@@ -118,6 +119,19 @@ _Default: `tsconfig.json`_
 
 Path to a TypeScript configuration file to read TypeScript compiler options from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
+
+#### `ugly`
+
+```shell
+npx tslint-to-eslint-config --ugly
+```
+
+_Default: `false`_
+
+`tslint-to-eslint-config` will normally add [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) to the list of ESLint plugins.
+We [highly recommend](./docs/FAQs.md##should-i-use-prettier) you use [Prettier](http://prettier.io) instead of ESLint for your formatting needs.
+
+If you really want, `--ugly` stops the addition of `eslint-config-prettier`.
 
 ## Development
 

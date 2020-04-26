@@ -28,6 +28,11 @@ export type TSLintToESLintSettings = {
      * Original Editor configuration file path, such as `.vscode/settings.json`.
      */
     editor?: string;
+
+    /**
+     * Whether to disable automatic inclusion of `eslint-config-prettier`.
+     */
+    ugly?: boolean;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

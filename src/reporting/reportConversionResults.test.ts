@@ -43,7 +43,7 @@ describe("reportConversionResults", () => {
             logger.stdout.write,
             `✨ 1 rule replaced with its ESLint equivalent. ✨`,
             ``,
-            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
     });
@@ -80,7 +80,7 @@ describe("reportConversionResults", () => {
             `❗ 1 ESLint rule behaves differently from its TSLint counterpart ❗`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
         expectEqualWrites(
@@ -134,7 +134,7 @@ describe("reportConversionResults", () => {
             `❗ 2 ESLint rules behave differently from their TSLint counterparts ❗`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
         expectEqualWrites(
@@ -223,7 +223,7 @@ describe("reportConversionResults", () => {
             `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run it in TSLint within ESLint.`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 4 packages are required for running with ESLint. ⚡`,
+            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint --dev`,
         );
         expectEqualWrites(
@@ -266,7 +266,7 @@ describe("reportConversionResults", () => {
             `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run them in TSLint within ESLint.`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 4 packages are required for running with ESLint. ⚡`,
+            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint --dev`,
         );
         expectEqualWrites(
@@ -295,7 +295,7 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `⚡ 5 packages are required for running with ESLint. ⚡`,
+            `⚡ 5 packages are required for this ESLint configuration. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint plugin-one plugin-two --dev`,
         );
     });
