@@ -1,14 +1,16 @@
 import { ConfigurationError } from "../../errors/configurationError";
 import { ESLintRuleOptions } from "../../rules/types";
 import { createEmptyConversionResults } from "../../conversion/conversionResults.stubs";
-import { simplifyPackageRules } from "./simplifyPackageRules";
+import { simplifyPackageRules, SimplifyPackageRulesDependencies } from "./simplifyPackageRules";
 
-const createStubDependencies = () => ({
+const createStubDependencies = (overrides: Partial<SimplifyPackageRulesDependencies> = {}) => ({
+    addPrettierExtensions: jest.fn(),
     removeExtendsDuplicatedRules: jest.fn(),
     retrieveExtendsValues: async () => ({
         configurationErrors: [],
         importedExtensions: [],
     }),
+    ...overrides,
 });
 
 const createStubESLintConfiguration = (fullExtends: string[]) => ({
@@ -44,9 +46,11 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toEqual(ruleConversionResults);
     });
 
-    it("adds Prettier extensions when the prettier setting is enabled", async () => {
+    it("adds Prettier extensions when addPrettierExtensions returns true", async () => {
         // Arrange
-        const dependencies = createStubDependencies();
+        const dependencies = createStubDependencies({
+            addPrettierExtensions: async () => true,
+        });
         const eslint = undefined;
         const tslint = createStubTSLintConfiguration();
         const ruleConversionResults = createEmptyConversionResults();
@@ -100,13 +104,13 @@ describe("simplifyPackageRules", () => {
                 },
             ],
         ]);
-        const dependencies = {
+        const dependencies = createStubDependencies({
             removeExtendsDuplicatedRules: () => deduplicatedRules,
             retrieveExtendsValues: async () => ({
                 configurationErrors,
                 importedExtensions: [],
             }),
-        };
+        });
         const eslintExtends = ["extension-name"];
         const eslint = createStubESLintConfiguration(eslintExtends);
         const tslint = createStubTSLintConfiguration();

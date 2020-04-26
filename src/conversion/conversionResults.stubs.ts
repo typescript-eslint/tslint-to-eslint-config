@@ -1,9 +1,9 @@
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
-import { RuleConversionResults } from "../rules/convertRules";
+import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
 
 export const createEmptyConversionResults = (
-    overrides: Partial<RuleConversionResults> = {},
-): RuleConversionResults => ({
+    overrides: Partial<SimplifiedResultsConfiguration> = {},
+): SimplifiedResultsConfiguration => ({
     converted: new Map(),
     failed: [],
     missing: [],

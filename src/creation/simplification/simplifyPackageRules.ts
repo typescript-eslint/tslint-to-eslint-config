@@ -5,10 +5,12 @@ import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
 import { uniqueFromSources } from "../../utils";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
+import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 
 export type SimplifyPackageRulesDependencies = {
+    addPrettierExtensions: typeof addPrettierExtensions;
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
@@ -26,13 +28,14 @@ export const simplifyPackageRules = async (
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
     ruleConversionResults: RuleConversionResults,
-    usePrettier?: boolean,
+    prettierRequested?: boolean,
 ): Promise<SimplifiedResultsConfiguration> => {
     const extendedESLintRulesets = eslint?.full.extends ?? [];
     const extendedTSLintRulesets = collectTSLintRulesets(tslint);
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
 
-    if (usePrettier) {
+    // 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
+    if (await dependencies.addPrettierExtensions(ruleConversionResults, prettierRequested)) {
         allExtensions.push("eslint-config-prettier", "eslint-config-prettier/@typescript-eslint");
     }
 

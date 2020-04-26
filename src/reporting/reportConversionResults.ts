@@ -93,9 +93,9 @@ const logPrettierExtension = (
     logger: Logger,
 ) => {
     if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
-        logger.stdout.write(chalk.redBright(`${EOL}🔥 Prettier`));
+        logger.stdout.write(chalk.redBright(`${EOL}☠ Prettier`));
         logger.stdout.write(chalk.red(` plugins are missing from your configuration. `));
-        logger.stdout.write(chalk.redBright(`🔥${EOL}`));
+        logger.stdout.write(chalk.redBright(`☠${EOL}`));
         logger.stdout.write(chalk.red(`  We highly recommend running `));
         logger.stdout.write(chalk.redBright(`tslint-to-eslint-config --prettier`));
         logger.stdout.write(chalk.red(` to disable formatting ESLint rules.${EOL}`));

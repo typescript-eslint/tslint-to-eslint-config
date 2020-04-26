@@ -13,6 +13,8 @@ const createStubDependencies = (packageManager = PackageManager.Yarn) => {
     return { choosePackageManager, logger };
 };
 
+const basicExtends = ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"];
+
 describe("reportConversionResults", () => {
     it("logs a successful conversion without notices when there is one converted rule without notices", async () => {
         // Arrange
@@ -27,6 +29,7 @@ describe("reportConversionResults", () => {
                     },
                 ],
             ]),
+            extends: basicExtends,
         });
 
         const { choosePackageManager, logger } = createStubDependencies();
@@ -43,8 +46,8 @@ describe("reportConversionResults", () => {
             logger.stdout.write,
             `✨ 1 rule replaced with its ESLint equivalent. ✨`,
             ``,
-            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier --dev`,
         );
     });
 
@@ -62,6 +65,7 @@ describe("reportConversionResults", () => {
                     },
                 ],
             ]),
+            extends: basicExtends,
         });
 
         const { choosePackageManager, logger } = createStubDependencies();
@@ -80,8 +84,8 @@ describe("reportConversionResults", () => {
             `❗ 1 ESLint rule behaves differently from its TSLint counterpart ❗`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -115,6 +119,7 @@ describe("reportConversionResults", () => {
                     },
                 ],
             ]),
+            extends: basicExtends,
         });
 
         const { choosePackageManager, logger } = createStubDependencies();
@@ -134,8 +139,8 @@ describe("reportConversionResults", () => {
             `❗ 2 ESLint rules behave differently from their TSLint counterparts ❗`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -153,6 +158,7 @@ describe("reportConversionResults", () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
             failed: [{ getSummary: () => "It broke." }],
+            extends: basicExtends,
         });
 
         const { choosePackageManager, logger } = createStubDependencies();
@@ -175,6 +181,7 @@ describe("reportConversionResults", () => {
     it("logs failed conversions when there are multiple failed conversions", async () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
+            extends: basicExtends,
             failed: [{ getSummary: () => "It broke." }, { getSummary: () => "It really broke." }],
         });
 
@@ -198,6 +205,7 @@ describe("reportConversionResults", () => {
     it("logs a missing rule when there is a missing rule", async () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
+            extends: basicExtends,
             missing: [
                 {
                     ruleArguments: ["a", "b"],
@@ -223,8 +231,8 @@ describe("reportConversionResults", () => {
             `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run it in TSLint within ESLint.`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint --dev`,
+            `⚡ 5 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -236,6 +244,7 @@ describe("reportConversionResults", () => {
     it("logs missing rules when there are missing rules", async () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
+            extends: basicExtends,
             missing: [
                 {
                     ruleArguments: ["a", "b"],
@@ -266,8 +275,8 @@ describe("reportConversionResults", () => {
             `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run them in TSLint within ESLint.`,
             `  Check ${logger.debugFileName} for details.`,
             ``,
-            `⚡ 4 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint --dev`,
+            `⚡ 5 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/tslint-eslint-plugin eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -280,6 +289,7 @@ describe("reportConversionResults", () => {
     it("logs missing plugins when there are missing plugins", async () => {
         // Arrange
         const conversionResults = createEmptyConversionResults({
+            extends: basicExtends,
             plugins: new Set(["plugin-one", "plugin-two"]),
         });
 
@@ -295,8 +305,35 @@ describe("reportConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `⚡ 5 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint plugin-one plugin-two --dev`,
+            `⚡ 6 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier plugin-one plugin-two --dev`,
+        );
+    });
+
+    it("logs a Prettier recommendation when eslint-config-prettier isn't extended", async () => {
+        // Arrange
+        const conversionResults = createEmptyConversionResults({
+            extends: [],
+        });
+
+        const { choosePackageManager, logger } = createStubDependencies();
+
+        // Act
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
+
+        // Assert
+        expectEqualWrites(
+            logger.stdout.write,
+            `⚡ 3 packages are required for this ESLint configuration. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+            ``,
+            `☠ Prettier plugins are missing from your configuration. ☠`,
+            `  We highly recommend running tslint-to-eslint-config --prettier to disable formatting ESLint rules.`,
+            `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.`,
         );
     });
 });
