@@ -1,8 +1,5 @@
-import { EOL } from "os";
-
 import { Logger } from "../adapters/logger";
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
-import { EditorSetting } from "../editorSettings/types";
 import {
     logFailedConversions,
     logMissingConversionTarget,
