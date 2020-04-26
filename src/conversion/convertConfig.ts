@@ -38,7 +38,7 @@ export const convertConfig = async (
         originalConfigurations.data.eslint,
         originalConfigurations.data.tslint,
         ruleConversionResults,
-        settings.ugly,
+        settings.prettier,
     );
 
     // 4. The simplified configuration is written to the output config file

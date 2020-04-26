@@ -41,14 +41,10 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual({
-            ...ruleConversionResults,
-            converted: undefined,
-            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
-        });
+        expect(simplifiedResults).toEqual(ruleConversionResults);
     });
 
-    it("does not add Prettier extensions when the ugly setting is enabled", async () => {
+    it("adds Prettier extensions when the prettier setting is enabled", async () => {
         // Arrange
         const dependencies = createStubDependencies();
         const eslint = undefined;
@@ -65,7 +61,11 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual(ruleConversionResults);
+        expect(simplifiedResults).toEqual({
+            ...ruleConversionResults,
+            converted: undefined,
+            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
+        });
     });
 
     it("returns equivalent conversion results when there is an empty ESLint configuration and no TSLint extensions", async () => {
@@ -84,11 +84,7 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual({
-            ...ruleConversionResults,
-            converted: undefined,
-            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
-        });
+        expect(simplifiedResults).toEqual(ruleConversionResults);
     });
 
     it("includes deduplicated rules and extension failures when the ESLint configuration extends", async () => {
@@ -128,11 +124,7 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toEqual({
             ...ruleConversionResults,
             converted: deduplicatedRules,
-            extends: [
-                ...eslintExtends,
-                "eslint-config-prettier",
-                "eslint-config-prettier/@typescript-eslint",
-            ],
+            extends: [...eslintExtends],
             failed: configurationErrors,
         });
     });

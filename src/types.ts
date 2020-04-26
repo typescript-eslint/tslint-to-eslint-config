@@ -5,6 +5,11 @@ export type TSLintToESLintSettings = {
     config: string;
 
     /**
+     * Original Editor configuration file path, such as `.vscode/settings.json`.
+     */
+    editor?: string;
+
+    /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
      */
     eslint?: string;
@@ -15,6 +20,11 @@ export type TSLintToESLintSettings = {
     package?: string;
 
     /**
+     * Add `eslint-config-prettier` to the plugins list.
+     */
+    prettier?: boolean;
+
+    /**
      * Original TSLint configuration file path, such as `tslint.json`.
      */
     tslint?: string;
@@ -23,16 +33,6 @@ export type TSLintToESLintSettings = {
      * Original TypeScript configuration file path, such as `tsconfig.json`.
      */
     typescript?: string;
-
-    /**
-     * Original Editor configuration file path, such as `.vscode/settings.json`.
-     */
-    editor?: string;
-
-    /**
-     * Whether to disable automatic inclusion of `eslint-config-prettier`.
-     */
-    ugly?: boolean;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;

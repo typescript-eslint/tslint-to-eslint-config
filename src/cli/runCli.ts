@@ -23,9 +23,9 @@ export const runCli = async (
         .option("--editor [editor]", "editor configuration file to convert")
         .option("--eslint [eslint]", "eslint configuration file to convert using")
         .option("--package [package]", "package configuration file to convert using")
+        .option("--prettier [prettier]", "add eslint-config-prettier to the plugins list")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option("--ugly [ugly]", "disable automatic inclusion of eslint-plugin-prettier")
         .option("-V --version", "output the package version");
 
     const parsedArgv = {

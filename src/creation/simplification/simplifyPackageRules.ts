@@ -26,13 +26,13 @@ export const simplifyPackageRules = async (
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
     ruleConversionResults: RuleConversionResults,
-    ugly?: boolean,
+    usePrettier?: boolean,
 ): Promise<SimplifiedResultsConfiguration> => {
     const extendedESLintRulesets = eslint?.full.extends ?? [];
     const extendedTSLintRulesets = collectTSLintRulesets(tslint);
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
 
-    if (!ugly) {
+    if (usePrettier) {
         allExtensions.push("eslint-config-prettier", "eslint-config-prettier/@typescript-eslint");
     }
 
