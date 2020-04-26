@@ -49,7 +49,10 @@ export const reportConversionResults = async (
     }
 
     logMissingPackages(ruleConversionResults, packageManager, dependencies.logger);
-    logPrettierExtension(ruleConversionResults, dependencies.logger);
+
+    if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
+        logPrettierExtension(dependencies.logger);
+    }
 };
 
 type RuleWithNotices = {
@@ -88,21 +91,16 @@ const logNotices = (converted: Map<string, ESLintRuleOptions>, logger: Logger) =
     logger.info.write(EOL);
 };
 
-const logPrettierExtension = (
-    ruleConversionResults: SimplifiedResultsConfiguration,
-    logger: Logger,
-) => {
-    if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
-        logger.stdout.write(chalk.redBright(`${EOL}☠ Prettier`));
-        logger.stdout.write(chalk.red(` plugins are missing from your configuration. `));
-        logger.stdout.write(chalk.redBright(`☠${EOL}`));
-        logger.stdout.write(chalk.red(`  We highly recommend running `));
-        logger.stdout.write(chalk.redBright(`tslint-to-eslint-config --prettier`));
-        logger.stdout.write(chalk.red(` to disable formatting ESLint rules.${EOL}`));
-        logger.stdout.write(
-            chalk.red(
-                `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.${EOL}`,
-            ),
-        );
-    }
+const logPrettierExtension = (logger: Logger) => {
+    logger.stdout.write(chalk.redBright(`${EOL}☠ Prettier`));
+    logger.stdout.write(chalk.red(` plugins are missing from your configuration. `));
+    logger.stdout.write(chalk.redBright(`☠${EOL}`));
+    logger.stdout.write(chalk.red(`  We highly recommend running `));
+    logger.stdout.write(chalk.redBright(`tslint-to-eslint-config --prettier`));
+    logger.stdout.write(chalk.red(` to disable formatting ESLint rules.${EOL}`));
+    logger.stdout.write(
+        chalk.red(
+            `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.${EOL}`,
+        ),
+    );
 };
