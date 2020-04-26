@@ -30,13 +30,9 @@ export const reportEditorSettingConversionResults = (
     }
 
     if (editorSettingConversionResults.missing.length !== 0) {
-        const missingEditorSettingOutputMapping = (
-            editorSetting: Pick<EditorSetting, "editorSettingName">,
-        ) =>
-            `tslint-to-eslint-config does not know the ESLint equivalent for TSLint's "${editorSetting.editorSettingName}"${EOL}`;
         logMissingConversionTarget(
             "editor setting",
-            missingEditorSettingOutputMapping,
+            (editorSetting) => editorSetting.editorSettingName,
             editorSettingConversionResults.missing,
             dependencies.logger,
         );

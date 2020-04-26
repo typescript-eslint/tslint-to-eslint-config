@@ -121,12 +121,13 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `❓ 1 editor setting does not yet have an ESLint equivalent ❓`,
-            `  See generated log file.`,
+            `❓ 1 editor setting is not known by tslint-to-eslint-config to have an ESLint equivalent. ❓`,
+            `  Check ${logger.debugFileName} for details.`,
         );
         expectEqualWrites(
             logger.info.write,
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one"',
+            `1 editor setting is not known by tslint-to-eslint-config to have an ESLint equivalent:`,
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one".',
         );
     });
 
@@ -151,13 +152,14 @@ describe("reportEditorSettingConversionResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `❓ 2 editor settings do not yet have ESLint equivalents ❓`,
-            `  See generated log file.`,
+            `❓ 2 editor settings are not known by tslint-to-eslint-config to have ESLint equivalents. ❓`,
+            `  Check ${logger.debugFileName} for details.`,
         );
         expectEqualWrites(
             logger.info.write,
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one"',
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-two"',
+            `2 editor settings are not known by tslint-to-eslint-config to have ESLint equivalents:`,
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-one".',
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-editor-setting-two".',
         );
     });
 });
