@@ -45,7 +45,7 @@ export const runCli = async (
         }
     }
 
-    dependencies.logger.stdout.write(chalk.greenBright("✅ All is well! ✅\n"));
+    dependencies.logger.stdout.write(chalk.greenBright(`${EOL}✅ All is well! ✅\n`));
     return ResultStatus.Succeeded;
 };
 

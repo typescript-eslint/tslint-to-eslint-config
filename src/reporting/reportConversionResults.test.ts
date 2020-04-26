@@ -19,7 +19,7 @@ describe("reportConversionResults", () => {
         const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
                 [
-                    "tslint-rule-one",
+                    `tslint-rule-one`,
                     {
                         ruleArguments: ["a", "b"],
                         ruleName: "tslint-rule-one",
@@ -32,7 +32,11 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
@@ -49,7 +53,7 @@ describe("reportConversionResults", () => {
         const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
                 [
-                    "tslint-rule-one",
+                    `tslint-rule-one`,
                     {
                         notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
@@ -63,19 +67,28 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
             `✨ 1 rule replaced with its ESLint equivalent. ✨${EOL}`,
             `❗ 1 ESLint rule behaves differently from its TSLint counterpart ❗`,
-            `  * tslint-rule-one:`,
-            `    - 1`,
-            `    - 2`,
+            `  Check ${logger.debugFileName} for details.`,
             ``,
             `⚡ 3 packages are required for running with ESLint. ⚡`,
             `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+        );
+        expectEqualWrites(
+            logger.info.write,
+            `1 ESLint rule behaves differently from its TSLint counterpart:`,
+            `  * tslint-rule-one:`,
+            `    - 1`,
+            `    - 2`,
         );
     });
 
@@ -84,7 +97,7 @@ describe("reportConversionResults", () => {
         const conversionResults = createEmptyConversionResults({
             converted: new Map<string, ESLintRuleOptions>([
                 [
-                    "tslint-rule-one",
+                    `tslint-rule-one`,
                     {
                         notices: ["1", "2"],
                         ruleArguments: ["a", "b"],
@@ -93,7 +106,7 @@ describe("reportConversionResults", () => {
                     },
                 ],
                 [
-                    "tslint-rule-two",
+                    `tslint-rule-two`,
                     {
                         notices: ["3", "4"],
                         ruleArguments: ["c", "d"],
@@ -107,7 +120,11 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
@@ -115,15 +132,20 @@ describe("reportConversionResults", () => {
             `✨ 2 rules replaced with their ESLint equivalents. ✨`,
             ``,
             `❗ 2 ESLint rules behave differently from their TSLint counterparts ❗`,
+            `  Check ${logger.debugFileName} for details.`,
+            ``,
+            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
+        );
+        expectEqualWrites(
+            logger.info.write,
+            `2 ESLint rules behave differently from their TSLint counterparts:`,
             `  * tslint-rule-one:`,
             `    - 1`,
             `    - 2`,
             `  * tslint-rule-two:`,
             `    - 3`,
             `    - 4`,
-            ``,
-            `⚡ 3 packages are required for running with ESLint. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
     });
 
@@ -136,12 +158,16 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "❌ 1 error thrown. ❌",
+            `❌ 1 error thrown. ❌`,
             `  Check ${logger.debugFileName} for details.`,
         );
     });
@@ -155,12 +181,16 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            "❌ 2 errors thrown. ❌",
+            `❌ 2 errors thrown. ❌`,
             `  Check ${logger.debugFileName} for details.`,
         );
     });
@@ -180,20 +210,26 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "❓ 1 rule does not yet have an ESLint equivalent ❓",
-            `  See generated log file; defaulting to eslint-plugin-tslint for it.`,
-            "",
-            "⚡ 3 packages are required for running with ESLint. ⚡",
-            "  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev",
+            `❓ 1 rule is not known by tslint-to-eslint-config to have an ESLint equivalent. ❓`,
+            `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run it in TSLint within ESLint.`,
+            `  Check ${logger.debugFileName} for details.`,
+            ``,
+            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
         expectEqualWrites(
             logger.info.write,
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
+            `1 rule is not known by tslint-to-eslint-config to have an ESLint equivalent:`,
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one".',
         );
     });
 
@@ -217,21 +253,27 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "❓ 2 rules do not yet have ESLint equivalents ❓",
-            `  See generated log file; defaulting to eslint-plugin-tslint for these rules.`,
-            "",
-            "⚡ 3 packages are required for running with ESLint. ⚡",
-            "  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev",
+            `❓ 2 rules are not known by tslint-to-eslint-config to have ESLint equivalents. ❓`,
+            `  The "@typescript-eslint/tslint/config" section of .eslintrc.js configures eslint-plugin-tslint to run them in TSLint within ESLint.`,
+            `  Check ${logger.debugFileName} for details.`,
+            ``,
+            `⚡ 3 packages are required for running with ESLint. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --dev`,
         );
         expectEqualWrites(
             logger.info.write,
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one"',
-            'tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-two"',
+            `2 rules are not known by tslint-to-eslint-config to have ESLint equivalents:`,
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-one".',
+            '  * tslint-to-eslint-config does not know the ESLint equivalent for TSLint\'s "tslint-rule-two".',
         );
     });
 
@@ -244,13 +286,17 @@ describe("reportConversionResults", () => {
         const { choosePackageManager, logger } = createStubDependencies();
 
         // Act
-        await reportConversionResults({ choosePackageManager, logger }, conversionResults);
+        await reportConversionResults(
+            { choosePackageManager, logger },
+            ".eslintrc.js",
+            conversionResults,
+        );
 
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            "⚡ 5 packages are required for running with ESLint. ⚡",
-            "  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint plugin-one plugin-two --dev",
+            `⚡ 5 packages are required for running with ESLint. ⚡`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint plugin-one plugin-two --dev`,
         );
     });
 });
