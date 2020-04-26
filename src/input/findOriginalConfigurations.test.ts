@@ -47,7 +47,7 @@ const createStubDependencies = (
 });
 
 describe("findOriginalConfigurations", () => {
-    it("returns errors when the tslint finder returns an error", async () => {
+    it("returns the error when the tslint finder returns an error", async () => {
         // Arrange
         const complaint = "Complaint from TSLint";
         const dependencies = createStubDependencies({
@@ -60,6 +60,23 @@ describe("findOriginalConfigurations", () => {
         // Assert
         expect(result).toEqual({
             complaints: [complaint],
+            status: ResultStatus.ConfigurationError,
+        });
+    });
+
+    it("returns a package install error when the tslint finder returns a package install error", async () => {
+        // Arrange
+        const complaint = "could not require 'tslint'";
+        const dependencies = createStubDependencies({
+            findTSLintConfiguration: async () => new Error(complaint),
+        });
+
+        // Act
+        const result = await findOriginalConfigurations(dependencies, createRawSettings());
+
+        // Assert
+        expect(result).toEqual({
+            complaints: ["Could not import the 'tslint' module. Do you need to install packages?"],
             status: ResultStatus.ConfigurationError,
         });
     });
