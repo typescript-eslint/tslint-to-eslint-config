@@ -9,14 +9,14 @@ describe(convertOneLine, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["1tbs"],
+                    ruleArguments: ["off"],
                     ruleName: "brace-style",
                 },
             ],
         });
     });
 
-    test("conversion with arguments", () => {
+    test("conversion with some arguments", () => {
         const result = convertOneLine({
             ruleArguments: ["check-catch"],
         });
@@ -25,6 +25,27 @@ describe(convertOneLine, () => {
             rules: [
                 {
                     notices: [CheckAllTokensMsg],
+                    ruleArguments: ["1tbs"],
+                    ruleName: "brace-style",
+                },
+            ],
+        });
+    });
+
+    test("conversion with all arguments", () => {
+        const result = convertOneLine({
+            ruleArguments: [
+                "check-else",
+                "check-catch",
+                "check-finally",
+                "check-open-brace",
+                "check-whitespace",
+            ],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
                     ruleArguments: ["1tbs"],
                     ruleName: "brace-style",
                 },
