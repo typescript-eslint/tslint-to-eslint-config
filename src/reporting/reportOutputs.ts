@@ -78,7 +78,7 @@ export const logMissingPackages = (
     const packageNames = uniqueFromSources([
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
-        ruleConversionResults.missing.length !== 0 && "@typescript-eslint/tslint-eslint-plugin",
+        ruleConversionResults.missing.length !== 0 && "@typescript-eslint/eslint-plugin-tslint",
         "eslint",
         ...Array.from(
             ruleConversionResults.extends?.map((extension) => extension.split("/")[0]) ?? [],
