@@ -5,6 +5,7 @@ import { mergeNoCaller } from "./mergers/no-caller";
 import { mergeNoEval } from "./mergers/no-eval";
 import { mergeNoMemberDelimiterStyle } from "./mergers/member-delimiter-style";
 import { mergeNoUnnecessaryTypeAssertion } from "./mergers/no-unnecessary-type-assertion";
+import { mergeTripleSlashReference } from "./mergers/triple-slash-reference";
 
 export const mergers = new Map([
     ["@typescript-eslint/ban-types", mergeBanTypes],
@@ -12,6 +13,7 @@ export const mergers = new Map([
     ["@typescript-eslint/indent", mergeIndent],
     ["@typescript-eslint/member-delimiter-style", mergeNoMemberDelimiterStyle],
     ["@typescript-eslint/no-unnecessary-type-assertion", mergeNoUnnecessaryTypeAssertion],
+    ["@typescript-eslint/triple-slash-reference", mergeTripleSlashReference],
     ["no-caller", mergeNoCaller],
     ["no-eval", mergeNoEval],
 ]);
