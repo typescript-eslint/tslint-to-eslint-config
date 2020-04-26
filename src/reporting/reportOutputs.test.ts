@@ -1,20 +1,24 @@
-import { PackageManager } from "./packages/packageManagers";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
+import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
+import { PackageManager } from "./packages/packageManagers";
 import { logMissingPackages } from "./reportOutputs";
 
 const createStubDependencies = (packageManager: PackageManager) => ({
-    packageManager,
-    plugins: new Set<string>(),
     logger: createStubLogger(),
+    packageManager,
+    ruleConversionResults: createEmptyConversionResults(),
 });
 
 describe("reportOutputs", () => {
     it("reports an npm command when the package manager is npm", () => {
         // Arrange
-        const { logger, packageManager, plugins } = createStubDependencies(PackageManager.npm);
+        createEmptyConversionResults();
+        const { logger, packageManager, ruleConversionResults } = createStubDependencies(
+            PackageManager.npm,
+        );
 
         // Act
-        logMissingPackages(plugins, packageManager, logger);
+        logMissingPackages(ruleConversionResults, packageManager, logger);
 
         // Assert
         expectEqualWrites(
@@ -26,10 +30,12 @@ describe("reportOutputs", () => {
 
     it("reports a pnpm command when the package manager is pnpm", () => {
         // Arrange
-        const { logger, packageManager, plugins } = createStubDependencies(PackageManager.pnpm);
+        const { logger, packageManager, ruleConversionResults } = createStubDependencies(
+            PackageManager.pnpm,
+        );
 
         // Act
-        logMissingPackages(plugins, packageManager, logger);
+        logMissingPackages(ruleConversionResults, packageManager, logger);
 
         // Assert
         expectEqualWrites(
@@ -41,10 +47,12 @@ describe("reportOutputs", () => {
 
     it("reports a Yarn command when the package manager is Yarn", () => {
         // Arrange
-        const { logger, packageManager, plugins } = createStubDependencies(PackageManager.Yarn);
+        const { logger, packageManager, ruleConversionResults } = createStubDependencies(
+            PackageManager.Yarn,
+        );
 
         // Act
-        logMissingPackages(plugins, packageManager, logger);
+        logMissingPackages(ruleConversionResults, packageManager, logger);
 
         // Assert
         expectEqualWrites(
