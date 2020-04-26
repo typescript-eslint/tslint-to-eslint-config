@@ -10,6 +10,7 @@ import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
+import { addPrettierExtensions } from "../creation/simplification/prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
 import {
     retrieveExtendsValues,
@@ -103,6 +104,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
 };
 
 const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
+    addPrettierExtensions,
     removeExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };

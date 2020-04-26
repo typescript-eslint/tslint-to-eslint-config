@@ -46,6 +46,7 @@ Each of these flags is optional:
 -   **[`editor`](#editor)**: Path to an editor configuration file to convert linter settings within.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
+-   **[`prettier`](#prettier)**: Add `eslint-config-prettier` to the plugins list.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
 -   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
 
@@ -96,6 +97,22 @@ _Default: `package.json`_
 
 Path to a `package.json` file to read dependencies from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
+
+#### `prettier`
+
+```shell
+npx tslint-to-eslint-config --prettier
+```
+
+_Default: `false`_
+
+Add [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) to the list of ESLint plugins.
+We [highly recommend](./docs/FAQs.md#should-i-use-prettier) you use [Prettier](http://prettier.io) for code formatting.
+
+When `--prettier` isn't enabled:
+
+-   If the output configuration already doesn't enable any formatting rules, it'll extend from `eslint-config-prettier`.
+-   Otherwise, a CLI message will suggest running with `--prettier`.
 
 #### `tslint`
 

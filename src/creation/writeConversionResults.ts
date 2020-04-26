@@ -1,10 +1,9 @@
 import { FileSystem } from "../adapters/fileSystem";
-import { RuleConversionResults } from "../rules/convertRules";
 import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { createEnv } from "./eslint/createEnv";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { formatOutput } from "./formatting/formatOutput";
-import { SimplifiedRuleConversionResults } from "./simplification/simplifyPackageRules";
+import { SimplifiedResultsConfiguration } from "./simplification/simplifyPackageRules";
 
 export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;
@@ -13,7 +12,7 @@ export type WriteConversionResultsDependencies = {
 export const writeConversionResults = async (
     dependencies: WriteConversionResultsDependencies,
     outputPath: string,
-    ruleConversionResults: RuleConversionResults & SimplifiedRuleConversionResults,
+    ruleConversionResults: SimplifiedResultsConfiguration,
     originalConfigurations: AllOriginalConfigurations,
 ) => {
     const plugins = ["@typescript-eslint"];
