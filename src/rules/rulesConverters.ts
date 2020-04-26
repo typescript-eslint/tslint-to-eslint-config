@@ -99,6 +99,7 @@ import { convertNoUnnecessarySemicolons } from "./converters/no-unnecessary-semi
 import { convertNoUnnecessaryTypeAssertion } from "./converters/no-unnecessary-type-assertion";
 import { convertNoUnsafeFinally } from "./converters/no-unsafe-finally";
 import { convertNoUnusedExpression } from "./converters/no-unused-expression";
+import { convertNoUnusedVariable } from "./converters/no-unused-variable";
 import { convertNoUseBeforeDeclare } from "./converters/no-use-before-declare";
 import { convertNoVarKeyword } from "./converters/no-var-keyword";
 import { convertNoVarRequires } from "./converters/no-var-requires";
@@ -240,6 +241,7 @@ export const rulesConverters = new Map([
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
     ["no-unused-expression", convertNoUnusedExpression],
+    ["no-unused-variable", convertNoUnusedVariable],
     ["no-use-before-declare", convertNoUseBeforeDeclare],
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
