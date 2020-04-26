@@ -16,31 +16,36 @@ export const reportCommentResults = (
     if (commentGlobs === undefined) {
         dependencies.logger.stdout.write(
             chalk.magentaBright(
-                `♻ Consider using --comment to replace TSLint comment directives in your source files. ♻${EOL}`,
+                `${EOL}♻ Consider using --comment to replace TSLint comment directives in your source files. ♻${EOL}`,
             ),
         );
         return;
     }
 
     if (commentsResult.status === ResultStatus.Failed) {
-        dependencies.logger.info.write(commentsResult.errors.join(EOL.repeat(2)) + EOL.repeat(2));
-        dependencies.logger.stderr.write(
-            chalk.magentaBright(
-                `❌ Failed to fully replace TSLint comment directives in --comment files. ❌${EOL}`,
-            ),
-        );
+        const headline = `${commentsResult.errors.length} error${
+            commentsResult.errors.length === 1 ? "" : "s"
+        } converting TSLint comment directives in --comment files`;
+
+        dependencies.logger.stderr.write(chalk.magentaBright(`${EOL}❌ ${headline}. ❌${EOL}`));
         dependencies.logger.stderr.write(
             chalk.magenta(`  Check ${dependencies.logger.debugFileName} for details.${EOL}`),
         );
+
+        dependencies.logger.info.write(`${headline}:${EOL}`);
+        dependencies.logger.info.write(
+            commentsResult.errors.map((error) => `  * ${error.message}${EOL}`).join(""),
+        );
+        dependencies.logger.info.write(EOL);
         return;
     }
 
-    dependencies.logger.stdout.write(chalk.magentaBright(`♻ ${commentsResult.data.length}`));
+    dependencies.logger.stdout.write(chalk.magentaBright(`${EOL}♻ ${commentsResult.data.length}`));
     dependencies.logger.stdout.write(
         chalk.magenta(` file${commentsResult.data.length === 1 ? "" : "s"}`),
     );
     dependencies.logger.stdout.write(
         chalk.magenta(` of TSLint comment directives converted to ESLint.`),
     );
-    dependencies.logger.stdout.write(chalk.magentaBright(` ♻${EOL}${EOL}`));
+    dependencies.logger.stdout.write(chalk.magentaBright(` ♻${EOL}`));
 };

@@ -17,10 +17,10 @@ describe("reportCommentResults", () => {
         );
     });
 
-    it("logs a complaint when comment conversions failed", () => {
+    it("logs a singular complaint when one comment conversion fails", () => {
         // Arrange
         const logger = createStubLogger();
-        const errors = [new Error()];
+        const errors = [new Error("Hello")];
 
         // Act
         reportCommentResults({ logger }, ["src/index.ts"], { errors, status: ResultStatus.Failed });
@@ -28,8 +28,35 @@ describe("reportCommentResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            `❌ Failed to fully replace TSLint comment directives in --comment files. ❌`,
+            `❌ 1 error converting TSLint comment directives in --comment files. ❌`,
             `  Check ${logger.debugFileName} for details.`,
+        );
+        expectEqualWrites(
+            logger.info.write,
+            `1 error converting TSLint comment directives in --comment files:`,
+            `  * Hello`,
+        );
+    });
+
+    it("logs a plural complaint when multiple comment conversions fail", () => {
+        // Arrange
+        const logger = createStubLogger();
+        const errors = [new Error("Hello"), new Error("World")];
+
+        // Act
+        reportCommentResults({ logger }, ["src/index.ts"], { errors, status: ResultStatus.Failed });
+
+        // Assert
+        expectEqualWrites(
+            logger.stderr.write,
+            `❌ 2 errors converting TSLint comment directives in --comment files. ❌`,
+            `  Check ${logger.debugFileName} for details.`,
+        );
+        expectEqualWrites(
+            logger.info.write,
+            `2 errors converting TSLint comment directives in --comment files:`,
+            `  * Hello`,
+            `  * World`,
         );
     });
 
