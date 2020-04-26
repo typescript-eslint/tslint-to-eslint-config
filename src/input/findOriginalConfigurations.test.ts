@@ -90,6 +90,33 @@ describe("findOriginalConfigurations", () => {
         });
     });
 
+    it.each(["Cannot find module", "could not require", "couldn't find the plugin"])(
+        "returns an error when an optional configuration returns a '%s' error",
+        async (message) => {
+            // Arrange
+            const eslint = new Error(`${message} "example"`);
+            const dependencies = createStubDependencies({
+                findESLintConfiguration: async () => eslint,
+            });
+
+            // Act
+            const result = await findOriginalConfigurations(
+                dependencies,
+                createRawSettings({
+                    eslint: "./eslintrc.js",
+                }),
+            );
+
+            // Assert
+            expect(result).toEqual({
+                complaints: [
+                    `Could not import the "example" module. Do you need to install packages?`,
+                ],
+                status: ResultStatus.ConfigurationError,
+            });
+        },
+    );
+
     it("returns an error when an optional configuration returns an error and the user asked for it", async () => {
         // Arrange
         const eslint = new Error("one");
