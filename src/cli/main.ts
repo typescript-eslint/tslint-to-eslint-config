@@ -104,7 +104,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
 };
 
 const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
-    addPrettierExtensions: addPrettierExtensions,
+    addPrettierExtensions,
     removeExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };

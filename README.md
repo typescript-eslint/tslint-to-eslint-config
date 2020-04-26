@@ -111,7 +111,7 @@ We [highly recommend](./docs/FAQs.md#should-i-use-prettier) you use [Prettier](h
 
 When `--prettier` isn't enabled:
 
--   If the output configuration already doesn't enable any formatting rules, it'll have `eslint-config-prettier` enabled.
+-   If the output configuration already doesn't enable any formatting rules, it'll extend from have `eslint-config-prettier`.
 -   Otherwise, a CLI message will suggest running with `--prettier`.
 
 #### `tslint`
