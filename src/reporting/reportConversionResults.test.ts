@@ -232,7 +232,7 @@ describe("reportConversionResults", () => {
             `  Check ${logger.debugFileName} for details.`,
             ``,
             `⚡ 5 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/eslint-plugin-tslint eslint eslint-config-prettier --dev`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/eslint-plugin-tslint @typescript-eslint/parser eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
@@ -276,7 +276,7 @@ describe("reportConversionResults", () => {
             `  Check ${logger.debugFileName} for details.`,
             ``,
             `⚡ 5 packages are required for this ESLint configuration. ⚡`,
-            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/eslint-plugin-tslint eslint eslint-config-prettier --dev`,
+            `  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/eslint-plugin-tslint @typescript-eslint/parser eslint eslint-config-prettier --dev`,
         );
         expectEqualWrites(
             logger.info.write,
