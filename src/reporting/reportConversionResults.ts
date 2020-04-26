@@ -48,7 +48,7 @@ export const reportConversionResults = async (
         );
     }
 
-    logMissingPackages(ruleConversionResults.plugins, packageManager, dependencies.logger);
+    logMissingPackages(ruleConversionResults, packageManager, dependencies.logger);
 };
 
 type RuleWithNotices = {
