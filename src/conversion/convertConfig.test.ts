@@ -22,6 +22,7 @@ const createStubDependencies = (
         missing: [],
         plugins: new Set(),
     }),
+    logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
     writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
     ...overrides,
 });

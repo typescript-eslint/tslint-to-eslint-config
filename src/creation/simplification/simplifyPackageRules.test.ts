@@ -68,7 +68,10 @@ describe("simplifyPackageRules", () => {
         expect(simplifiedResults).toEqual({
             ...ruleConversionResults,
             converted: undefined,
-            extends: ["eslint-config-prettier", "eslint-config-prettier/@typescript-eslint"],
+            extends: [
+                "plugin:eslint-config-prettier",
+                "plugin:eslint-config-prettier/@typescript-eslint",
+            ],
         });
     });
 

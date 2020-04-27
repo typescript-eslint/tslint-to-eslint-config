@@ -36,7 +36,10 @@ export const simplifyPackageRules = async (
 
     // 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
     if (await dependencies.addPrettierExtensions(ruleConversionResults, prettierRequested)) {
-        allExtensions.push("eslint-config-prettier", "eslint-config-prettier/@typescript-eslint");
+        allExtensions.push(
+            "plugin:eslint-config-prettier",
+            "plugin:eslint-config-prettier/@typescript-eslint",
+        );
     }
 
     if (allExtensions.length === 0) {

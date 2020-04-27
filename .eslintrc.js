@@ -38,6 +38,7 @@ module.exports = {
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/no-untyped-public-signature": "off",
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars-experimental": "off",
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/prefer-readonly-parameter-types": "off",
         "@typescript-eslint/prefer-reduce-type-parameter": "off",

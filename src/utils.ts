@@ -1,6 +1,8 @@
-export const isDefined = <Item>(item: Item | undefined): item is Item => !!item;
+export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
 export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;
+
+export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
 
 export type RemoveErrors<Items> = {
     [P in keyof Items]: Exclude<Items[P], Error>;
