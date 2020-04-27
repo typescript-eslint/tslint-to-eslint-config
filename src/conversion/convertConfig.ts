@@ -2,6 +2,7 @@ import { SansDependencies } from "../binding";
 import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
+import { logMissingPackages } from "../reporting/packages/logMissingPackages";
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
@@ -9,6 +10,7 @@ import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types
 export type ConvertConfigDependencies = {
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
+    logMissingPackages: SansDependencies<typeof logMissingPackages>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
@@ -56,6 +58,10 @@ export const convertConfig = async (
 
     // 5. A summary of the results is printed to the user's console
     await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
+    await dependencies.logMissingPackages(
+        simplifiedConfiguration,
+        originalConfigurations.data.packages,
+    );
 
     return {
         status: ResultStatus.Succeeded,

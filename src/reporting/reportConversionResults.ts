@@ -2,20 +2,16 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
-import { SansDependencies } from "../binding";
 import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
-import { choosePackageManager } from "./packages/choosePackageManager";
 import {
     logFailedConversions,
     logMissingConversionTarget,
-    logMissingPackages,
     logSuccessfulConversions,
 } from "./reportOutputs";
 
 export type ReportConversionResultsDependencies = {
     logger: Logger;
-    choosePackageManager: SansDependencies<typeof choosePackageManager>;
 };
 
 export const reportConversionResults = async (
@@ -23,8 +19,6 @@ export const reportConversionResults = async (
     outputPath: string,
     ruleConversionResults: SimplifiedResultsConfiguration,
 ) => {
-    const packageManager = await dependencies.choosePackageManager();
-
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
         logNotices(ruleConversionResults.converted, dependencies.logger);
@@ -47,8 +41,6 @@ export const reportConversionResults = async (
             ],
         );
     }
-
-    logMissingPackages(ruleConversionResults, packageManager, dependencies.logger);
 
     if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
         logPrettierExtension(dependencies.logger);

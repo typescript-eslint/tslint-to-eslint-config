@@ -44,7 +44,14 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import { choosePackageManager } from "../reporting/packages/choosePackageManager";
+import {
+    ChoosePackageManagerDependencies,
+    choosePackageManager,
+} from "../reporting/packages/choosePackageManager";
+import {
+    logMissingPackages,
+    LogMissingPackagesDependencies,
+} from "../reporting/packages/logMissingPackages";
 import {
     reportConversionResults,
     ReportConversionResultsDependencies,
@@ -90,12 +97,16 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     mergeLintConfigurations,
 };
 
-const choosePackageManagerDependencies = {
+const choosePackageManagerDependencies: ChoosePackageManagerDependencies = {
     fileSystem: fsFileSystem,
 };
 
-const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
+const logMissingPackagesDependencies: LogMissingPackagesDependencies = {
     choosePackageManager: bind(choosePackageManager, choosePackageManagerDependencies),
+    logger: processLogger,
+};
+
+const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
     logger: processLogger,
 };
 
@@ -132,6 +143,7 @@ const convertConfigDependencies: ConvertConfigDependencies = {
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
     ),
+    logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
