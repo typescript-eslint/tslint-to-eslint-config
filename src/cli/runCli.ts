@@ -19,6 +19,10 @@ export const runCli = async (
 ): Promise<ResultStatus> => {
     const command = new Command()
         .usage("[options] <file ...> --language [language]")
+        .option(
+            "--comments [files]",
+            "convert tslint:disable rule flags in globbed files (experimental)",
+        )
         .option("--config [config]", "eslint configuration file to output to")
         .option("--editor [editor]", "editor configuration file to convert")
         .option("--eslint [eslint]", "eslint configuration file to convert using")

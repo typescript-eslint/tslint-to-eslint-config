@@ -8,11 +8,13 @@ const stubSettings = {
 const createStubDependencies = (
     overrides: Partial<ConvertConfigDependencies> = {},
 ): ConvertConfigDependencies => ({
+    convertComments: jest.fn(),
     convertRules: jest.fn(),
     findOriginalConfigurations: jest.fn().mockResolvedValue({
         data: createStubOriginalConfigurationsData(),
         status: ResultStatus.Succeeded,
     }),
+    reportCommentResults: jest.fn(),
     reportConversionResults: jest.fn(),
     simplifyPackageRules: async (_configurations, data) => ({
         ...data,
@@ -72,16 +74,36 @@ describe("convertConfig", () => {
         });
     });
 
-    it("returns a successful result when finding the original configurations succeeds", async () => {
+    it("returns the failure result when converting comments fails", async () => {
         // Arrange
-        const dependencies = createStubDependencies();
+        const convertCommentsResult = {
+            errors: [new Error()],
+            status: ResultStatus.Failed,
+        };
+        const dependencies = createStubDependencies({
+            convertComments: jest.fn().mockResolvedValueOnce(convertCommentsResult),
+        });
 
         // Act
         const result = await convertConfig(dependencies, stubSettings);
 
         // Assert
-        expect(result).toEqual({
+        expect(result).toEqual(convertCommentsResult);
+    });
+
+    it("returns a successful result when all steps succeed", async () => {
+        // Arrange
+        const convertCommentsResult = {
             status: ResultStatus.Succeeded,
+        };
+        const dependencies = createStubDependencies({
+            convertComments: jest.fn().mockResolvedValueOnce(convertCommentsResult),
         });
+
+        // Act
+        const result = await convertConfig(dependencies, stubSettings);
+
+        // Assert
+        expect(result).toEqual(convertCommentsResult);
     });
 });

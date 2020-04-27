@@ -4,11 +4,20 @@ export const isError = <Item>(item: Item | Error): item is Error => item instanc
 
 export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
 
-export type RemoveErrors<Items> = {
-    [P in keyof Items]: Exclude<Items[P], Error>;
-};
+export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]] => {
+    const errors: Error[] = [];
+    const items: Item[] = [];
 
-export type PromiseValue<T> = T extends Promise<infer R> ? R : never;
+    for (const item of mixed) {
+        if (item instanceof Error) {
+            errors.push(item);
+        } else {
+            items.push(item);
+        }
+    }
+
+    return [errors, items];
+};
 
 export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<keyof T, Keys>> &
     {

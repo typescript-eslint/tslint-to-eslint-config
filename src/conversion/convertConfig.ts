@@ -1,16 +1,20 @@
 import { SansDependencies } from "../binding";
+import { convertComments } from "../comments/convertComments";
 import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { logMissingPackages } from "../reporting/packages/logMissingPackages";
 import { reportConversionResults } from "../reporting/reportConversionResults";
+import { reportCommentResults } from "../reporting/reportCommentResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type ConvertConfigDependencies = {
+    convertComments: SansDependencies<typeof convertComments>;
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     logMissingPackages: SansDependencies<typeof logMissingPackages>;
+    reportCommentResults: SansDependencies<typeof reportCommentResults>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
@@ -56,14 +60,16 @@ export const convertConfig = async (
         };
     }
 
-    // 5. A summary of the results is printed to the user's console
+    // 5. Files to transform comments in have source text rewritten using the same rule conversion logic
+    const commentsResult = await dependencies.convertComments(settings.comments);
+
+    // 6. A summary of the results is printed to the user's console
     await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
+    dependencies.reportCommentResults(settings.comments, commentsResult);
     await dependencies.logMissingPackages(
         simplifiedConfiguration,
         originalConfigurations.data.packages,
     );
 
-    return {
-        status: ResultStatus.Succeeded,
-    };
+    return commentsResult;
 };

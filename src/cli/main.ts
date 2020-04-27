@@ -2,9 +2,15 @@ import { EOL } from "os";
 
 import { childProcessExec } from "../adapters/childProcessExec";
 import { fsFileSystem } from "../adapters/fsFileSystem";
+import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
+import { convertComments, ConvertCommentsDependencies } from "../comments/convertComments";
+import {
+    ConvertFileCommentsDependencies,
+    convertFileComments,
+} from "../comments/convertFileComments";
 import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
 import {
     convertEditorConfig,
@@ -45,9 +51,13 @@ import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguratio
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import {
-    ChoosePackageManagerDependencies,
     choosePackageManager,
+    ChoosePackageManagerDependencies,
 } from "../reporting/packages/choosePackageManager";
+import {
+    reportCommentResults,
+    ReportCommentResultsDependencies,
+} from "../reporting/reportCommentResults";
 import {
     logMissingPackages,
     LogMissingPackagesDependencies,
@@ -61,6 +71,16 @@ import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
 import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
+
+const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
+    converters: rulesConverters,
+    fileSystem: fsFileSystem,
+};
+
+const convertCommentsDependencies: ConvertCommentsDependencies = {
+    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
+    globAsync,
+};
 
 const convertRulesDependencies: ConvertRulesDependencies = {
     converters: rulesConverters,
@@ -97,6 +117,10 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     mergeLintConfigurations,
 };
 
+const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
+    logger: processLogger,
+};
+
 const choosePackageManagerDependencies: ChoosePackageManagerDependencies = {
     fileSystem: fsFileSystem,
 };
@@ -124,12 +148,16 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
 
+const reportEditorSettingConversionResultsDependencies = {
+    logger: processLogger,
+};
+
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
     convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
     reportConversionResults: bind(
         reportEditorSettingConversionResults,
-        reportConversionResultsDependencies,
+        reportEditorSettingConversionResultsDependencies,
     ),
     writeConversionResults: bind(
         writeEditorConfigConversionResults,
@@ -138,12 +166,14 @@ const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
 };
 
 const convertConfigDependencies: ConvertConfigDependencies = {
+    convertComments: bind(convertComments, convertCommentsDependencies),
     convertRules: bind(convertRules, convertRulesDependencies),
     findOriginalConfigurations: bind(
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
     ),
     logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
+    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
