@@ -1,8 +1,3 @@
-// import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
-// import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
-// import { PackageManager } from "./packages/packageManagers";
-// import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
-
 import { createStubLogger, expectEqualWrites } from "../../adapters/logger.stubs";
 import { createEmptyConversionResults } from "../../conversion/conversionResults.stubs";
 import { logMissingPackages } from "./logMissingPackages";
