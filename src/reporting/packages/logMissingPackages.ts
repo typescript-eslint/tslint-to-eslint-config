@@ -8,7 +8,6 @@ import { PackagesConfiguration } from "../../input/findPackagesConfiguration";
 import { isTruthy } from "../../utils";
 import { installationMessages } from "../packages/packageManagers";
 import { choosePackageManager } from "./choosePackageManager";
-import { getPackageNameFromExtends } from "./getPackageNameFromExtends";
 
 export type LogMissingPackagesDependencies = {
     choosePackageManager: SansDependencies<typeof choosePackageManager>;
@@ -30,19 +29,24 @@ export const logMissingPackages = async (
     const requiredPackageNames = [
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
+        ruleConversionResults.extends?.join("").includes("eslint-config-prettier") &&
+            "eslint-config-prettier",
         ruleConversionResults.missing.length !== 0 && "@typescript-eslint/eslint-plugin-tslint",
         "eslint",
-        ...Array.from(ruleConversionResults.extends?.map(getPackageNameFromExtends) ?? []),
         ...Array.from(ruleConversionResults.plugins),
     ].filter(isTruthy);
 
-    const missingPackageNames = requiredPackageNames.filter(
-        (packageName) => !existingPackageNames.has(packageName),
-    );
+    const missingPackageNames = requiredPackageNames
+        .filter((packageName) => !existingPackageNames.has(packageName))
+        .sort();
 
     dependencies.logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${missingPackageNames.length}`));
     dependencies.logger.stdout.write(
-        chalk.cyan(" new packages are required for this ESLint configuration."),
+        chalk.cyan(
+            ` new package${
+                missingPackageNames.length === 1 ? " is" : "s are"
+            } required for this ESLint configuration.`,
+        ),
     );
     dependencies.logger.stdout.write(chalk.cyanBright(" ⚡"));
     dependencies.logger.stdout.write(`${EOL}  `);

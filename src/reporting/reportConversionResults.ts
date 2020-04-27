@@ -42,7 +42,7 @@ export const reportConversionResults = async (
         );
     }
 
-    if (!ruleConversionResults.extends?.includes("eslint-config-prettier")) {
+    if (!ruleConversionResults.extends?.join("").includes("eslint-config-prettier")) {
         logPrettierExtension(dependencies.logger);
     }
 };
