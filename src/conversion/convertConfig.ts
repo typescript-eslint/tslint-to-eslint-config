@@ -3,6 +3,7 @@ import { convertComments } from "../comments/convertComments";
 import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
+import { logMissingPackages } from "../reporting/packages/logMissingPackages";
 import { reportConversionResults } from "../reporting/reportConversionResults";
 import { reportCommentResults } from "../reporting/reportCommentResults";
 import { convertRules } from "../rules/convertRules";
@@ -12,6 +13,7 @@ export type ConvertConfigDependencies = {
     convertComments: SansDependencies<typeof convertComments>;
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
+    logMissingPackages: SansDependencies<typeof logMissingPackages>;
     reportCommentResults: SansDependencies<typeof reportCommentResults>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
     simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
@@ -38,14 +40,12 @@ export const convertConfig = async (
     );
 
     // 3. ESLint configurations are simplified based on extended ESLint and TSLint presets
-    const simplifiedConfiguration = {
-        ...ruleConversionResults,
-        ...(await dependencies.simplifyPackageRules(
-            originalConfigurations.data.eslint,
-            originalConfigurations.data.tslint,
-            ruleConversionResults,
-        )),
-    };
+    const simplifiedConfiguration = await dependencies.simplifyPackageRules(
+        originalConfigurations.data.eslint,
+        originalConfigurations.data.tslint,
+        ruleConversionResults,
+        settings.prettier,
+    );
 
     // 4. The simplified configuration is written to the output config file
     const fileWriteError = await dependencies.writeConversionResults(
@@ -66,6 +66,10 @@ export const convertConfig = async (
     // 6. A summary of the results is printed to the user's console
     await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
     dependencies.reportCommentResults(settings.comments, commentsResult);
+    await dependencies.logMissingPackages(
+        simplifiedConfiguration,
+        originalConfigurations.data.packages,
+    );
 
     return commentsResult;
 };

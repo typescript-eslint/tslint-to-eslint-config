@@ -5,18 +5,17 @@ import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
 import { uniqueFromSources } from "../../utils";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
+import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 
 export type SimplifyPackageRulesDependencies = {
+    addPrettierExtensions: typeof addPrettierExtensions;
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
 
-export type SimplifiedRuleConversionResults = Pick<
-    RuleConversionResults,
-    "converted" | "failed"
-> & {
+export type SimplifiedResultsConfiguration = RuleConversionResults & {
     extends?: string[];
 };
 
@@ -28,11 +27,21 @@ export const simplifyPackageRules = async (
     dependencies: SimplifyPackageRulesDependencies,
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
-    ruleConversionResults: SimplifiedRuleConversionResults,
-): Promise<SimplifiedRuleConversionResults> => {
+    ruleConversionResults: RuleConversionResults,
+    prettierRequested?: boolean,
+): Promise<SimplifiedResultsConfiguration> => {
     const extendedESLintRulesets = eslint?.full.extends ?? [];
     const extendedTSLintRulesets = collectTSLintRulesets(tslint);
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
+
+    // 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
+    if (await dependencies.addPrettierExtensions(ruleConversionResults, prettierRequested)) {
+        allExtensions.push(
+            "plugin:eslint-config-prettier",
+            "plugin:eslint-config-prettier/@typescript-eslint",
+        );
+    }
+
     if (allExtensions.length === 0) {
         return ruleConversionResults;
     }
@@ -47,6 +56,7 @@ export const simplifyPackageRules = async (
     );
 
     return {
+        ...ruleConversionResults,
         converted,
         extends: allExtensions,
         failed: [...ruleConversionResults.failed, ...configurationErrors],

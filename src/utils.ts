@@ -1,6 +1,8 @@
-export const isDefined = <Item>(item: Item | undefined): item is Item => !!item;
+export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
 export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;
+
+export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
 
 export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]] => {
     const errors: Error[] = [];
@@ -16,8 +18,6 @@ export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]]
 
     return [errors, items];
 };
-
-export type PromiseValue<T> = T extends Promise<infer R> ? R : never;
 
 export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<keyof T, Keys>> &
     {

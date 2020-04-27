@@ -10,7 +10,21 @@ const createStubDependencies = (
 });
 
 describe("convertComments", () => {
-    it("returns a successful result when there are no file path globs", async () => {
+    it("returns an error when --comment is given as a boolean value", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+
+        // Act
+        const result = await convertComments(dependencies, true);
+
+        // Assert
+        expect(result).toEqual({
+            errors: expect.arrayContaining([expect.any(Error)]),
+            status: ResultStatus.Failed,
+        });
+    });
+
+    it("returns an error when there are no file path globs", async () => {
         // Arrange
         const dependencies = createStubDependencies();
 
@@ -19,8 +33,8 @@ describe("convertComments", () => {
 
         // Assert
         expect(result).toEqual({
-            data: [],
-            status: ResultStatus.Succeeded,
+            errors: expect.arrayContaining([expect.any(Error)]),
+            status: ResultStatus.Failed,
         });
     });
 

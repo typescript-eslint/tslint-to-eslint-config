@@ -5,7 +5,6 @@ import { Logger } from "../adapters/logger";
 import { EditorSetting } from "../editorSettings/types";
 import { ErrorSummary } from "../errors/errorSummary";
 import { ESLintRuleOptions } from "../rules/types";
-import { PackageManager, installationMessages } from "./packages/packageManagers";
 
 export type EditorSettingEntry = Pick<EditorSetting, "editorSettingName">;
 
@@ -66,24 +65,4 @@ export const logMissingConversionTarget = <T>(
             .join(""),
     );
     logger.info.write(EOL);
-};
-
-export const logMissingPackages = (
-    plugins: Set<string>,
-    packageManager: PackageManager,
-    logger: Logger,
-) => {
-    const packageNames = [
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser",
-        "eslint",
-        ...Array.from(plugins),
-    ].sort();
-
-    logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${packageNames.length}`));
-    logger.stdout.write(chalk.cyan(" packages are required for running with ESLint."));
-    logger.stdout.write(chalk.cyanBright(" ⚡"));
-    logger.stdout.write(`${EOL}  `);
-    logger.stdout.write(chalk.cyan(installationMessages[packageManager](packageNames.join(" "))));
-    logger.stdout.write(EOL);
 };

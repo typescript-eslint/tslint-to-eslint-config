@@ -9,11 +9,24 @@ export type ConvertCommentsDependencies = {
     globAsync: GlobAsync;
 };
 
+const noGlobsResult: ResultWithDataStatus<string[]> = {
+    errors: [new Error("--comment requires file path globs to be passed.")],
+    status: ResultStatus.Failed,
+};
+
 export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
-    filePathGlobs: string | string[] | undefined,
+    filePathGlobs: true | string | string[] | undefined,
 ): Promise<ResultWithDataStatus<string[]>> => {
+    if (filePathGlobs === true) {
+        return noGlobsResult;
+    }
+
     const uniqueFilePathGlobs = uniqueFromSources(filePathGlobs);
+    if (uniqueFilePathGlobs.join("") === "") {
+        return noGlobsResult;
+    }
+
     const [fileGlobErrors, globbedFilePaths] = separateErrors(
         await Promise.all(uniqueFilePathGlobs.map(dependencies.globAsync)),
     );

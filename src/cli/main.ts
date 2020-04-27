@@ -16,6 +16,7 @@ import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
+import { addPrettierExtensions } from "../creation/simplification/prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
 import {
     retrieveExtendsValues,
@@ -57,6 +58,10 @@ import {
     reportCommentResults,
     ReportCommentResultsDependencies,
 } from "../reporting/reportCommentResults";
+import {
+    logMissingPackages,
+    LogMissingPackagesDependencies,
+} from "../reporting/packages/logMissingPackages";
 import {
     reportConversionResults,
     ReportConversionResultsDependencies,
@@ -120,8 +125,12 @@ const choosePackageManagerDependencies: ChoosePackageManagerDependencies = {
     fileSystem: fsFileSystem,
 };
 
-const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
+const logMissingPackagesDependencies: LogMissingPackagesDependencies = {
     choosePackageManager: bind(choosePackageManager, choosePackageManagerDependencies),
+    logger: processLogger,
+};
+
+const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
     logger: processLogger,
 };
 
@@ -130,6 +139,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
 };
 
 const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
+    addPrettierExtensions,
     removeExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
@@ -162,6 +172,7 @@ const convertConfigDependencies: ConvertConfigDependencies = {
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
     ),
+    logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
     reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
     simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),

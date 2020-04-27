@@ -9,12 +9,8 @@ export const CapitalizedIgnoreMessage = "Only accepts a single string pattern to
 
 export const convertCommentFormat: RuleConverter = (tslintRule) => {
     const capitalizedRuleArguments: string[] = [];
-    const spaceCommentRuleArguments: string[] = [];
     const capitalizedNotices: string[] = [];
-
-    if (!tslintRule.ruleArguments.includes("check-space")) {
-        spaceCommentRuleArguments.push("never");
-    }
+    const checkSpace = tslintRule.ruleArguments.includes("check-space");
 
     if (tslintRule.ruleArguments.includes("check-uppercase")) {
         capitalizedRuleArguments.push("always");
@@ -44,12 +40,19 @@ export const convertCommentFormat: RuleConverter = (tslintRule) => {
                           ...(capitalizedNotices.length !== 0 && { notices: capitalizedNotices }),
                       },
                   ]),
-            {
-                ruleName: "spaced-comment",
-                ...(spaceCommentRuleArguments.length !== 0 && {
-                    ruleArguments: spaceCommentRuleArguments,
-                }),
-            },
+            ...(checkSpace
+                ? [
+                      {
+                          ruleName: "spaced-comment",
+                          ruleArguments: [
+                              "always",
+                              {
+                                  markers: ["/"],
+                              },
+                          ],
+                      },
+                  ]
+                : []),
         ],
     };
 };

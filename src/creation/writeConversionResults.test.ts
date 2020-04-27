@@ -1,11 +1,11 @@
 import { createEmptyConversionResults } from "../conversion/conversionResults.stubs";
-import { writeConversionResults } from "./writeConversionResults";
 import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { formatJsonOutput } from "./formatting/formatters/formatJsonOutput";
-import { SimplifiedRuleConversionResults } from "./simplification/simplifyPackageRules";
+import { SimplifiedResultsConfiguration } from "./simplification/simplifyPackageRules";
+import { writeConversionResults } from "./writeConversionResults";
 
 const createStubOriginalConfigurations = (
-    overrides: Partial<AllOriginalConfigurations & SimplifiedRuleConversionResults> = {},
+    overrides: Partial<AllOriginalConfigurations & SimplifiedResultsConfiguration> = {},
 ) => ({
     tslint: {
         full: {

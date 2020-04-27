@@ -5,6 +5,7 @@ import {
     ResultWithDataStatus,
     TSLintToESLintSettings,
 } from "../types";
+import { isDefined } from "../utils";
 import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
 import { PackagesConfiguration, findPackagesConfiguration } from "./findPackagesConfiguration";
 import {
@@ -59,20 +60,42 @@ export const findOriginalConfigurations = async (
     // Out of those configurations, only TSLint's is always required to run
     if (tslint instanceof Error) {
         return {
-            complaints: [tslint.message],
+            complaints: [getMissingPackageMessage(tslint) ?? tslint.message],
             status: ResultStatus.ConfigurationError,
         };
     }
 
-    // Other configuration errors only halt the program if the user asked for them
-    const configurationErrors = [
-        [eslint, rawSettings.eslint],
-        [packages, rawSettings.package],
-        [typescript, rawSettings.typescript],
-    ].filter(configurationResultIsError);
-    if (configurationErrors.length !== 0) {
+    const configurationResults = [
+        [eslint, "eslint"],
+        [packages, "package"],
+        [typescript, "typescript"],
+    ] as const;
+
+    // Other configuration errors only halt the program if...
+    const errorMessages = configurationResults
+        .map(([error, key]) => {
+            if (!(error instanceof Error)) {
+                return undefined;
+            }
+
+            // * Their failure was caused by a missing package that needs to be installed
+            const missingPackageMessage = getMissingPackageMessage(error);
+            if (missingPackageMessage !== undefined) {
+                return missingPackageMessage;
+            }
+
+            // * The user explicitly asked for them
+            if (typeof rawSettings[key] === "string") {
+                return error.message;
+            }
+
+            return undefined;
+        })
+        .filter(isDefined);
+
+    if (errorMessages.length !== 0) {
         return {
-            complaints: configurationErrors.map(([configuration]) => configuration.message),
+            complaints: errorMessages,
             status: ResultStatus.ConfigurationError,
         };
     }
@@ -88,6 +111,13 @@ export const findOriginalConfigurations = async (
     };
 };
 
-const configurationResultIsError = (result: unknown[]): result is [Error, string] => {
-    return result[0] instanceof Error && typeof result[1] === "string";
+const getMissingPackageMessage = (error: Error) => {
+    const match = /(Cannot find module|could not require|couldn't find the plugin) ([a-zA-Z0-9-_"'@/]+)/.exec(
+        error.message,
+    );
+    if (match === null) {
+        return undefined;
+    }
+
+    return `Could not import the ${match[2]} module. Do you need to install packages?`;
 };
