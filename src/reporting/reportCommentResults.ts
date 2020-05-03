@@ -10,18 +10,8 @@ export type ReportCommentResultsDependencies = {
 
 export const reportCommentResults = (
     dependencies: ReportCommentResultsDependencies,
-    commentGlobs: string | string[] | undefined,
-    commentsResult: ResultWithDataStatus<string[]>,
+    commentsResult: ResultWithDataStatus<string[] | undefined>,
 ) => {
-    if (commentGlobs === undefined) {
-        dependencies.logger.stdout.write(
-            chalk.magentaBright(
-                `${EOL}♻ Consider using --comment to replace TSLint comment directives in your source files. ♻${EOL}`,
-            ),
-        );
-        return;
-    }
-
     if (commentsResult.status === ResultStatus.Failed) {
         const headline = `${commentsResult.errors.length} error${
             commentsResult.errors.length === 1 ? "" : "s"
@@ -37,6 +27,15 @@ export const reportCommentResults = (
             commentsResult.errors.map((error) => `  * ${error.message}${EOL}`).join(""),
         );
         dependencies.logger.info.write(EOL);
+        return;
+    }
+
+    if (commentsResult.data === undefined) {
+        dependencies.logger.stdout.write(
+            chalk.magentaBright(
+                `${EOL}♻ Consider using --comment to replace TSLint comment directives in your source files. ♻${EOL}`,
+            ),
+        );
         return;
     }
 
