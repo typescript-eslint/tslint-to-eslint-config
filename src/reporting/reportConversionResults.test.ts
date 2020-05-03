@@ -243,7 +243,7 @@ describe("reportConversionResults", () => {
             logger.stdout.write,
             `☠ Prettier plugins are missing from your configuration. ☠`,
             `  We highly recommend running tslint-to-eslint-config --prettier to disable formatting ESLint rules.`,
-            `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.`,
+            `  See https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FAQs.md#should-i-use-prettier.`,
         );
     });
 
@@ -262,7 +262,7 @@ describe("reportConversionResults", () => {
             logger.stdout.write,
             `☠ Prettier plugins are missing from your configuration. ☠`,
             `  We highly recommend running tslint-to-eslint-config --prettier to disable formatting ESLint rules.`,
-            `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.`,
+            `  See https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FAQs.md#should-i-use-prettier.`,
         );
     });
 });
