@@ -92,7 +92,7 @@ const logPrettierExtension = (logger: Logger) => {
     logger.stdout.write(chalk.red(` to disable formatting ESLint rules.${EOL}`));
     logger.stdout.write(
         chalk.red(
-            `  See https://github/typescript-eslint/tslint-to-eslint-config/docs/FAQs.md#should-i-use-prettier.${EOL}`,
+            `  See https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FAQs.md#should-i-use-prettier.${EOL}`,
         ),
     );
 };
