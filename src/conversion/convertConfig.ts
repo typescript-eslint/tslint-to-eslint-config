@@ -65,7 +65,7 @@ export const convertConfig = async (
 
     // 6. A summary of the results is printed to the user's console
     await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
-    dependencies.reportCommentResults(settings.comments, commentsResult);
+    dependencies.reportCommentResults(commentsResult);
     await dependencies.logMissingPackages(
         simplifiedConfiguration,
         originalConfigurations.data.packages,

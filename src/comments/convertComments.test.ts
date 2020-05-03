@@ -10,6 +10,20 @@ const createStubDependencies = (
 });
 
 describe("convertComments", () => {
+    it("returns an empty result when --comment is not provided", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+
+        // Act
+        const result = await convertComments(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual({
+            data: undefined,
+            status: ResultStatus.Succeeded,
+        });
+    });
+
     it("returns an error when --comment is given as a boolean value", async () => {
         // Arrange
         const dependencies = createStubDependencies();

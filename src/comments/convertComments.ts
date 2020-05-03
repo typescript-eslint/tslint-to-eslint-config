@@ -17,7 +17,14 @@ const noGlobsResult: ResultWithDataStatus<string[]> = {
 export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     filePathGlobs: true | string | string[] | undefined,
-): Promise<ResultWithDataStatus<string[]>> => {
+): Promise<ResultWithDataStatus<string[] | undefined>> => {
+    if (filePathGlobs === undefined) {
+        return {
+            data: undefined,
+            status: ResultStatus.Succeeded,
+        };
+    }
+
     if (filePathGlobs === true) {
         return noGlobsResult;
     }

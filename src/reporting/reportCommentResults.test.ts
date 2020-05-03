@@ -3,12 +3,12 @@ import { ResultStatus } from "../types";
 import { reportCommentResults } from "./reportCommentResults";
 
 describe("reportCommentResults", () => {
-    it("logs a suggestion when no comment globs are provided", () => {
+    it("logs a suggestion when no comment globs were requested", () => {
         // Arrange
         const logger = createStubLogger();
 
         // Act
-        reportCommentResults({ logger }, undefined, { data: [], status: ResultStatus.Succeeded });
+        reportCommentResults({ logger }, { data: undefined, status: ResultStatus.Succeeded });
 
         // Assert
         expectEqualWrites(
@@ -23,7 +23,7 @@ describe("reportCommentResults", () => {
         const errors = [new Error("Hello")];
 
         // Act
-        reportCommentResults({ logger }, ["src/index.ts"], { errors, status: ResultStatus.Failed });
+        reportCommentResults({ logger }, { errors, status: ResultStatus.Failed });
 
         // Assert
         expectEqualWrites(
@@ -44,7 +44,7 @@ describe("reportCommentResults", () => {
         const errors = [new Error("Hello"), new Error("World")];
 
         // Act
-        reportCommentResults({ logger }, ["src/index.ts"], { errors, status: ResultStatus.Failed });
+        reportCommentResults({ logger }, { errors, status: ResultStatus.Failed });
 
         // Assert
         expectEqualWrites(
@@ -65,10 +65,13 @@ describe("reportCommentResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportCommentResults({ logger }, ["src/*.ts"], {
-            data: ["src/index.ts"],
-            status: ResultStatus.Succeeded,
-        });
+        reportCommentResults(
+            { logger },
+            {
+                data: ["src/index.ts"],
+                status: ResultStatus.Succeeded,
+            },
+        );
 
         // Assert
         expectEqualWrites(
@@ -82,10 +85,13 @@ describe("reportCommentResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportCommentResults({ logger }, ["src/*.ts"], {
-            data: ["src/index.ts", "src/data.ts"],
-            status: ResultStatus.Succeeded,
-        });
+        reportCommentResults(
+            { logger },
+            {
+                data: ["src/index.ts", "src/data.ts"],
+                status: ResultStatus.Succeeded,
+            },
+        );
 
         // Assert
         expectEqualWrites(
