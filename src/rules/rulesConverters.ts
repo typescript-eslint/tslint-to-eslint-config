@@ -137,6 +137,9 @@ import { convertUseDefaultTypeParameter } from "./converters/use-default-type-pa
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertVariableName } from "./converters/variable-name";
 
+// Codelyzer converters
+import { convertComponentClassSuffix } from "./converters/codelyzer/component-class-suffix";
+
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
@@ -154,6 +157,7 @@ export const rulesConverters = new Map([
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
     ["comment-format", convertCommentFormat],
+    ["component-class-suffix", convertComponentClassSuffix],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
