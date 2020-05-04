@@ -55,7 +55,7 @@ export const simplifyPackageRules = async (
     return {
         ...ruleConversionResults,
         converted,
-        extends: allExtensions,
+        extends: uniqueFromSources(allExtensions),
         failed: [...ruleConversionResults.failed, ...configurationErrors],
     };
 };
