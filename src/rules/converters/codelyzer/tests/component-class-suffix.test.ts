@@ -24,7 +24,11 @@ describe(convertComponentClassSuffix, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["Component", "View"],
+                    ruleArguments: [
+                        {
+                            suffixes: ["Component", "View"],
+                        },
+                    ],
                     ruleName: "@angular-eslint/component-class-suffix",
                 },
             ],

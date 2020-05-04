@@ -5,7 +5,11 @@ export const convertComponentClassSuffix: RuleConverter = (tslintRule) => {
         rules: [
             {
                 ...(tslintRule.ruleArguments.length !== 0 && {
-                    ruleArguments: tslintRule.ruleArguments,
+                    ruleArguments: [
+                        {
+                            suffixes: tslintRule.ruleArguments,
+                        },
+                    ],
                 }),
                 ruleName: "@angular-eslint/component-class-suffix",
             },
