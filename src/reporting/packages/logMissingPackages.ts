@@ -39,6 +39,10 @@ export const logMissingPackages = async (
         .filter((packageName) => !existingPackageNames.has(packageName))
         .sort();
 
+    if (missingPackageNames.length === 0) {
+        return;
+    }
+
     dependencies.logger.stdout.write(chalk.cyanBright(`${EOL}⚡ ${missingPackageNames.length}`));
     dependencies.logger.stdout.write(
         chalk.cyan(
