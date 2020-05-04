@@ -8,28 +8,25 @@ import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
+import { SummarizedResultsConfiguration } from "./types";
 
-export type SimplifyPackageRulesDependencies = {
+export type SummarizePackageRulesDependencies = {
     addPrettierExtensions: typeof addPrettierExtensions;
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
-};
-
-export type SimplifiedResultsConfiguration = RuleConversionResults & {
-    extends?: string[];
 };
 
 /**
  * Given an initial set of rule conversion results and original configurations,
  * determines which ESLint rulesets to extend from and removes redundant rule values.
  */
-export const simplifyPackageRules = async (
-    dependencies: SimplifyPackageRulesDependencies,
+export const summarizePackageRules = async (
+    dependencies: SummarizePackageRulesDependencies,
     eslint: Pick<OriginalConfigurations<ESLintConfiguration>, "full"> | undefined,
     tslint: OriginalConfigurations<Pick<TSLintConfiguration, "extends">>,
     ruleConversionResults: RuleConversionResults,
     prettierRequested?: boolean,
-): Promise<SimplifiedResultsConfiguration> => {
+): Promise<SummarizedResultsConfiguration> => {
     const extendedESLintRulesets = eslint?.full.extends ?? [];
     const extendedTSLintRulesets = collectTSLintRulesets(tslint);
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
@@ -40,22 +37,27 @@ export const simplifyPackageRules = async (
     }
 
     if (allExtensions.length === 0) {
-        return ruleConversionResults;
+        return {
+            ...ruleConversionResults,
+            extends: [],
+            extensionRules: new Map(),
+        };
     }
 
     const { configurationErrors, importedExtensions } = await dependencies.retrieveExtendsValues(
         uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
 
-    const converted = dependencies.removeExtendsDuplicatedRules(
+    const deduplication = dependencies.removeExtendsDuplicatedRules(
         ruleConversionResults.converted,
         importedExtensions,
     );
 
     return {
         ...ruleConversionResults,
-        converted,
+        converted: deduplication.differentRules,
         extends: uniqueFromSources(allExtensions),
+        extensionRules: deduplication.extensionRules,
         failed: [...ruleConversionResults.failed, ...configurationErrors],
     };
 };

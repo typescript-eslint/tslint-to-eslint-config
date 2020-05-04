@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../adapters/logger";
-import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
+import { SummarizedResultsConfiguration } from "../creation/summarization/types";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
 import {
     logFailedConversions,
@@ -17,7 +17,7 @@ export type ReportConversionResultsDependencies = {
 export const reportConversionResults = async (
     dependencies: ReportConversionResultsDependencies,
     outputPath: string,
-    ruleConversionResults: SimplifiedResultsConfiguration,
+    ruleConversionResults: SummarizedResultsConfiguration,
 ) => {
     if (ruleConversionResults.converted.size !== 0) {
         logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
@@ -42,7 +42,7 @@ export const reportConversionResults = async (
         );
     }
 
-    if (!ruleConversionResults.extends?.join("").includes("prettier")) {
+    if (!ruleConversionResults.extends.join("").includes("prettier")) {
         logPrettierExtension(dependencies.logger);
     }
 };

@@ -10,17 +10,17 @@ import { ESLintRuleOptions } from "../../rules/types";
 export const removeExtendsDuplicatedRules = (
     allRules: Map<string, ESLintRuleOptions>,
     extensions: Partial<ESLintConfiguration>[],
-): Map<string, ESLintRuleOptions> => {
+) => {
     const differentRules = new Map<string, ESLintRuleOptions>();
-    const mergedExtensionRules = mergeExtensions(extensions);
+    const extensionRules = mergeExtensions(extensions);
 
     for (const [ruleName, value] of allRules) {
-        if (!ruleValuesAreTheSame(value, mergedExtensionRules.get(ruleName))) {
+        if (ruleValuesAreTheSame(value, extensionRules.get(ruleName))) {
             differentRules.set(ruleName, value);
         }
     }
 
-    return differentRules;
+    return { differentRules, extensionRules };
 };
 
 const mergeExtensions = (extensions: Partial<ESLintConfiguration>[]) => {

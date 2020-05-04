@@ -50,24 +50,6 @@ describe("logMissingPackages", () => {
         );
     });
 
-    it("does not include eslint-config-prettier when there are no extensions", async () => {
-        // Arrange
-        const { choosePackageManager, logger } = createStubDependencies();
-        const ruleConversionResults = createEmptyConversionResults({
-            extends: undefined,
-        });
-
-        // Act
-        await logMissingPackages({ choosePackageManager, logger }, ruleConversionResults);
-
-        // Assert
-        expectEqualWrites(
-            logger.stdout.write,
-            `⚡ 3 new packages are required for this ESLint configuration. ⚡`,
-            `  npm install @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint --save-dev`,
-        );
-    });
-
     it("does not include eslint-config-prettier when extensions don't include eslint-config-prettier", async () => {
         // Arrange
         const { choosePackageManager, logger } = createStubDependencies();

@@ -1,9 +1,9 @@
 import { ConfigurationError } from "../../errors/configurationError";
 import { ESLintRuleOptions } from "../../rules/types";
 import { createEmptyConversionResults } from "../../conversion/conversionResults.stubs";
-import { simplifyPackageRules, SimplifyPackageRulesDependencies } from "./simplifyPackageRules";
+import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summarizePackageRules";
 
-const createStubDependencies = (overrides: Partial<SimplifyPackageRulesDependencies> = {}) => ({
+const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
     addPrettierExtensions: jest.fn(),
     removeExtendsDuplicatedRules: jest.fn(),
     retrieveExtendsValues: async () => ({
@@ -26,7 +26,7 @@ const createStubTSLintConfiguration = () => ({
     raw: {},
 });
 
-describe("simplifyPackageRules", () => {
+describe("summarizePackageRules", () => {
     it("returns equivalent conversion results when there is no loaded ESLint configuration and no TSLint extensions", async () => {
         // Arrange
         const dependencies = createStubDependencies();
@@ -35,7 +35,7 @@ describe("simplifyPackageRules", () => {
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
-        const simplifiedResults = await simplifyPackageRules(
+        const summarizedResults = await summarizePackageRules(
             dependencies,
             eslint,
             tslint,
@@ -43,7 +43,7 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual(ruleConversionResults);
+        expect(summarizedResults).toEqual(ruleConversionResults);
     });
 
     it("adds Prettier extensions when addPrettierExtensions returns true", async () => {
@@ -56,7 +56,7 @@ describe("simplifyPackageRules", () => {
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
-        const simplifiedResults = await simplifyPackageRules(
+        const summarizedResults = await summarizePackageRules(
             dependencies,
             eslint,
             tslint,
@@ -65,7 +65,7 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual({
+        expect(summarizedResults).toEqual({
             ...ruleConversionResults,
             converted: undefined,
             extends: ["prettier", "prettier/@typescript-eslint"],
@@ -80,7 +80,7 @@ describe("simplifyPackageRules", () => {
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
-        const simplifiedResults = await simplifyPackageRules(
+        const summarizedResults = await summarizePackageRules(
             dependencies,
             eslint,
             tslint,
@@ -88,13 +88,13 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual(ruleConversionResults);
+        expect(summarizedResults).toEqual(ruleConversionResults);
     });
 
     it("includes deduplicated rules and extension failures when the ESLint configuration extends", async () => {
         // Arrange
         const configurationErrors = [new ConfigurationError(new Error("oh no"), "darn")];
-        const deduplicatedRules = new Map<string, ESLintRuleOptions>([
+        const differentRules = new Map<string, ESLintRuleOptions>([
             [
                 "rule-name",
                 {
@@ -104,8 +104,9 @@ describe("simplifyPackageRules", () => {
                 },
             ],
         ]);
+        const extensionRules = new Map(differentRules);
         const dependencies = createStubDependencies({
-            removeExtendsDuplicatedRules: () => deduplicatedRules,
+            removeExtendsDuplicatedRules: () => ({ differentRules, extensionRules }),
             retrieveExtendsValues: async () => ({
                 configurationErrors,
                 importedExtensions: [],
@@ -117,7 +118,7 @@ describe("simplifyPackageRules", () => {
         const ruleConversionResults = createEmptyConversionResults();
 
         // Act
-        const simplifiedResults = await simplifyPackageRules(
+        const summarizedResults = await summarizePackageRules(
             dependencies,
             eslint,
             tslint,
@@ -125,9 +126,9 @@ describe("simplifyPackageRules", () => {
         );
 
         // Assert
-        expect(simplifiedResults).toEqual({
+        expect(summarizedResults).toEqual({
             ...ruleConversionResults,
-            converted: deduplicatedRules,
+            converted: differentRules,
             extends: [...eslintExtends],
             failed: configurationErrors,
         });

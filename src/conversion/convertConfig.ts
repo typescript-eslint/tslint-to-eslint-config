@@ -1,6 +1,6 @@
 import { SansDependencies } from "../binding";
 import { convertComments } from "../comments/convertComments";
-import { simplifyPackageRules } from "../creation/simplification/simplifyPackageRules";
+import { summarizePackageRules } from "../creation/summarization/summarizePackageRules";
 import { writeConversionResults } from "../creation/writeConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { logMissingPackages } from "../reporting/packages/logMissingPackages";
@@ -16,7 +16,7 @@ export type ConvertConfigDependencies = {
     logMissingPackages: SansDependencies<typeof logMissingPackages>;
     reportCommentResults: SansDependencies<typeof reportCommentResults>;
     reportConversionResults: SansDependencies<typeof reportConversionResults>;
-    simplifyPackageRules: SansDependencies<typeof simplifyPackageRules>;
+    summarizePackageRules: SansDependencies<typeof summarizePackageRules>;
     writeConversionResults: SansDependencies<typeof writeConversionResults>;
 };
 
@@ -39,18 +39,18 @@ export const convertConfig = async (
         originalConfigurations.data.tslint.full.rules,
     );
 
-    // 3. ESLint configurations are simplified based on extended ESLint and TSLint presets
-    const simplifiedConfiguration = await dependencies.simplifyPackageRules(
+    // 3. ESLint configurations are summarized based on extended ESLint and TSLint presets
+    const summarizedConfiguration = await dependencies.summarizePackageRules(
         originalConfigurations.data.eslint,
         originalConfigurations.data.tslint,
         ruleConversionResults,
         settings.prettier,
     );
 
-    // 4. The simplified configuration is written to the output config file
+    // 4. The summarized configuration is written to the output config file
     const fileWriteError = await dependencies.writeConversionResults(
         settings.config,
-        simplifiedConfiguration,
+        summarizedConfiguration,
         originalConfigurations.data,
     );
     if (fileWriteError !== undefined) {
@@ -64,10 +64,10 @@ export const convertConfig = async (
     const commentsResult = await dependencies.convertComments(settings.comments);
 
     // 6. A summary of the results is printed to the user's console
-    await dependencies.reportConversionResults(settings.config, simplifiedConfiguration);
+    await dependencies.reportConversionResults(settings.config, summarizedConfiguration);
     dependencies.reportCommentResults(commentsResult);
     await dependencies.logMissingPackages(
-        simplifiedConfiguration,
+        summarizedConfiguration,
         originalConfigurations.data.packages,
     );
 

@@ -1,10 +1,12 @@
+import { SummarizedResultsConfiguration } from "../creation/summarization/types";
 import { EditorSettingConversionResults } from "../editorSettings/convertEditorSettings";
-import { SimplifiedResultsConfiguration } from "../creation/simplification/simplifyPackageRules";
 
 export const createEmptyConversionResults = (
-    overrides: Partial<SimplifiedResultsConfiguration> = {},
-): SimplifiedResultsConfiguration => ({
+    overrides: Partial<SummarizedResultsConfiguration> = {},
+): SummarizedResultsConfiguration => ({
     converted: new Map(),
+    extends: [],
+    extensionRules: new Map(),
     failed: [],
     missing: [],
     plugins: new Set(),

@@ -16,10 +16,11 @@ const createStubDependencies = (
     }),
     reportCommentResults: jest.fn(),
     reportConversionResults: jest.fn(),
-    simplifyPackageRules: async (_configurations, data) => ({
+    summarizePackageRules: async (_configurations, data) => ({
         ...data,
         converted: new Map(),
         extends: [],
+        extensionRules: new Map(),
         failed: [],
         missing: [],
         plugins: new Set(),
