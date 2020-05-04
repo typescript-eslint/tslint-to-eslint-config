@@ -9,6 +9,25 @@ const createStubDependencies = (packageManager = PackageManager.npm) => ({
 });
 
 describe("logMissingPackages", () => {
+    it("does nothing when no package are missing", async () => {
+        // Arrange
+        const { choosePackageManager, logger } = createStubDependencies(PackageManager.npm);
+        const ruleConversionResults = createEmptyConversionResults();
+
+        // Act
+        await logMissingPackages({ choosePackageManager, logger }, ruleConversionResults, {
+            dependencies: {
+                "@typescript-eslint/eslint-plugin": "*",
+                "@typescript-eslint/parser": "*",
+                eslint: "*",
+            },
+            devDependencies: {},
+        });
+
+        // Assert
+        expectEqualWrites(logger.stdout.write);
+    });
+
     it("reports a singular message when one package is missing", async () => {
         // Arrange
         const { choosePackageManager, logger } = createStubDependencies(PackageManager.npm);
