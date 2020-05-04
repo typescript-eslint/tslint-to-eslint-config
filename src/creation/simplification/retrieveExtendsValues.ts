@@ -18,7 +18,12 @@ const builtInExtensions = new Map([
     ["eslint:recommended", "eslint/conf/eslint-recommended"],
 ]);
 
-const typescriptPluginExtensions = new Map([
+const pluginExtensions = new Map([
+    ["eslint-plugin-prettier", "node_modules/eslint-config-prettier/index.js"],
+    [
+        "eslint-plugin-prettier/@typescript-eslint",
+        "node_modules/eslint-config-prettier/@typescript-eslint.js",
+    ],
     [
         "plugin:@typescript-eslint/all",
         "node_modules/@typescript-eslint/eslint-plugin/dist/configs/all.json",
@@ -54,10 +59,10 @@ export const retrieveExtendsValues = async (
                 return;
             }
 
-            const typescriptPluginExtension = typescriptPluginExtensions.get(extensionName);
-            if (typescriptPluginExtension !== undefined) {
+            const pluginExtension = pluginExtensions.get(extensionName);
+            if (pluginExtension !== undefined) {
                 const importedTypeScriptPlugin = (await dependencies.importer(
-                    typescriptPluginExtension,
+                    pluginExtension,
                 )) as ESLintConfiguration;
                 importedExtensions.push({
                     rules: importedTypeScriptPlugin.rules,

@@ -13,7 +13,7 @@ export const logSuccessfulConversions = (
     converted: Map<string, EditorSetting | ESLintRuleOptions>,
     logger: Logger,
 ) => {
-    logger.stdout.write(chalk.greenBright(`${EOL} ✨ ${converted.size}`));
+    logger.stdout.write(chalk.greenBright(`${EOL}✨ ${converted.size}`));
     logger.stdout.write(
         converted.size === 1
             ? chalk.green(` ${conversionTypeName} replaced with its ESLint equivalent.`)

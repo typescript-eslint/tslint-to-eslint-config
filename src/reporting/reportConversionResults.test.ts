@@ -5,10 +5,7 @@ import { createEmptyConversionResults } from "../conversion/conversionResults.st
 import { ESLintRuleOptions } from "../rules/types";
 import { reportConversionResults } from "./reportConversionResults";
 
-const basicExtends = [
-    "plugin:eslint-config-prettier",
-    "plugin:eslint-config-prettier/@typescript-eslint",
-];
+const basicExtends = ["prettier", "prettier/@typescript-eslint"];
 
 describe("reportConversionResults", () => {
     it("logs a successful conversion without notices when there is one converted rule without notices", async () => {

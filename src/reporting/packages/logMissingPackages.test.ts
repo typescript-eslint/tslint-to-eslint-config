@@ -71,7 +71,7 @@ describe("logMissingPackages", () => {
         // Arrange
         const { choosePackageManager, logger } = createStubDependencies();
         const ruleConversionResults = createEmptyConversionResults({
-            extends: ["plugin:eslint-config-prettier"],
+            extends: ["prettier"],
         });
 
         // Act

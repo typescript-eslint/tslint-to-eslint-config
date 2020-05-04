@@ -29,8 +29,7 @@ export const logMissingPackages = async (
     const requiredPackageNames = [
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
-        ruleConversionResults.extends?.join("").includes("eslint-config-prettier") &&
-            "eslint-config-prettier",
+        ruleConversionResults.extends?.join("").includes("prettier") && "eslint-config-prettier",
         ruleConversionResults.missing.length !== 0 && "@typescript-eslint/eslint-plugin-tslint",
         "eslint",
         ...Array.from(ruleConversionResults.plugins),
