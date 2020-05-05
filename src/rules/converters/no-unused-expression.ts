@@ -4,7 +4,7 @@ export const convertNoUnusedExpression: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
-                ruleName: "no-unused-expressions",
+                ruleName: "@typescript-eslint/no-unused-expressions",
                 ...collectNoticesAndArguments(tslintRule.ruleArguments),
             },
         ],
