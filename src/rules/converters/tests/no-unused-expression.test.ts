@@ -12,7 +12,7 @@ describe(convertNoUnusedExpression, () => {
                     notices: [
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
-                    ruleName: "no-unused-expressions",
+                    ruleName: "@typescript-eslint/no-unused-expressions",
                 },
             ],
         });
@@ -30,7 +30,7 @@ describe(convertNoUnusedExpression, () => {
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
                     ruleArguments: [{ allowShortCircuit: true }],
-                    ruleName: "no-unused-expressions",
+                    ruleName: "@typescript-eslint/no-unused-expressions",
                 },
             ],
         });
@@ -45,7 +45,7 @@ describe(convertNoUnusedExpression, () => {
             rules: [
                 {
                     ruleArguments: [{ allowTaggedTemplates: true }],
-                    ruleName: "no-unused-expressions",
+                    ruleName: "@typescript-eslint/no-unused-expressions",
                 },
             ],
         });
@@ -60,7 +60,7 @@ describe(convertNoUnusedExpression, () => {
             rules: [
                 {
                     ruleArguments: [{ allowShortCircuit: true }],
-                    ruleName: "no-unused-expressions",
+                    ruleName: "@typescript-eslint/no-unused-expressions",
                 },
             ],
         });
@@ -75,7 +75,7 @@ describe(convertNoUnusedExpression, () => {
             rules: [
                 {
                     ruleArguments: [{ allowTaggedTemplates: true, allowShortCircuit: true }],
-                    ruleName: "no-unused-expressions",
+                    ruleName: "@typescript-eslint/no-unused-expressions",
                 },
             ],
         });
