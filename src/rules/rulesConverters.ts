@@ -139,6 +139,7 @@ import { convertVariableName } from "./converters/variable-name";
 
 // Codelyzer converters
 import { convertComponentClassSuffix } from "./converters/codelyzer/component-class-suffix";
+import { convertComponentMaxInlineDeclarations } from "./converters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./converters/codelyzer/component-selector";
 
 /**
@@ -159,6 +160,7 @@ export const rulesConverters = new Map([
     ["class-name", convertClassName],
     ["comment-format", convertCommentFormat],
     ["component-class-suffix", convertComponentClassSuffix],
+    ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
     ["component-selector", convertComponentSelector],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
