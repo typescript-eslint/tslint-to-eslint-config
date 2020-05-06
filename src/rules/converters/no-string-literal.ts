@@ -4,7 +4,7 @@ export const convertNoStringLiteral: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "dot-notation",
+                ruleName: "@typescript-eslint/dot-notation",
             },
         ],
     };
