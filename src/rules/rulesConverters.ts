@@ -139,6 +139,7 @@ import { convertVariableName } from "./converters/variable-name";
 
 // Codelyzer converters
 import { convertComponentClassSuffix } from "./converters/codelyzer/component-class-suffix";
+import { convertComponentSelector } from "./converters/codelyzer/component-selector";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -158,6 +159,7 @@ export const rulesConverters = new Map([
     ["class-name", convertClassName],
     ["comment-format", convertCommentFormat],
     ["component-class-suffix", convertComponentClassSuffix],
+    ["component-selector", convertComponentSelector],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
