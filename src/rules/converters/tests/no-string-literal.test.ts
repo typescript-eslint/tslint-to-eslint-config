@@ -9,7 +9,7 @@ describe(convertNoStringLiteral, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "dot-notation",
+                    ruleName: "@typescript-eslint/dot-notation",
                 },
             ],
         });
