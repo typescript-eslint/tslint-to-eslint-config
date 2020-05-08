@@ -141,6 +141,7 @@ import { convertVariableName } from "./converters/variable-name";
 import { convertComponentClassSuffix } from "./converters/codelyzer/component-class-suffix";
 import { convertComponentMaxInlineDeclarations } from "./converters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./converters/codelyzer/component-selector";
+import { convertContextualLifecycle } from "./converters/codelyzer/contextual-lifecycle";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -162,6 +163,7 @@ export const rulesConverters = new Map([
     ["component-class-suffix", convertComponentClassSuffix],
     ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
     ["component-selector", convertComponentSelector],
+    ["contextual-lifecycle", convertContextualLifecycle],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
