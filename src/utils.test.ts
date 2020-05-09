@@ -1,4 +1,4 @@
-import { isDefined, isError, uniqueFromSources, separateErrors } from "./utils";
+import { isDefined, isError, uniqueFromSources, separateErrors, removeEmptyMembers } from "./utils";
 
 describe("isDefined", () => {
     it("returns true when the item is defined", () => {
@@ -45,6 +45,41 @@ describe("isError", () => {
 
         // Assert
         expect(result).toBe(false);
+    });
+});
+
+describe("removeEmptyMembers", () => {
+    it("remove an object member when it is empty", () => {
+        // Arrange
+        const items = { kept: { value: true }, removed: {} };
+
+        // Act
+        const result = removeEmptyMembers(items);
+
+        // Assert
+        expect(result).toEqual({ kept: { value: true } });
+    });
+
+    it("removes an array member when it is empty", () => {
+        // Arrange
+        const items = { kept: [true], removed: [] };
+
+        // Act
+        const result = removeEmptyMembers(items);
+
+        // Assert
+        expect(result).toEqual({ kept: [true] });
+    });
+
+    it("keeps a member when it isn't an array or object", () => {
+        // Arrange
+        const items = { kept: true };
+
+        // Act
+        const result = removeEmptyMembers(items);
+
+        // Assert
+        expect(result).toEqual({ kept: true });
     });
 });
 

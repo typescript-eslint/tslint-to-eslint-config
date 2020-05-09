@@ -4,6 +4,21 @@ export const isError = <Item>(item: Item | Error): item is Error => item instanc
 
 export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
 
+export const removeEmptyMembers = <Item>(items: Item): Item => {
+    const result: any = {};
+
+    for (const [key, value] of Object.entries(items)) {
+        if (
+            !(value instanceof Array && value.length === 0) &&
+            !(value instanceof Object && Object.keys(value).length === 0)
+        ) {
+            result[key] = value;
+        }
+    }
+
+    return result;
+};
+
 export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]] => {
     const errors: Error[] = [];
     const items: Item[] = [];
