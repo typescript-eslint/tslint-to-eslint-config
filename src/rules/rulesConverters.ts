@@ -146,6 +146,7 @@ import { convertDirectiveClassSuffix } from "./converters/codelyzer/directive-cl
 import { convertDirectiveSelector } from "./converters/codelyzer/directive-selector";
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -218,8 +219,9 @@ export const rulesConverters = new Map([
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
-    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-host-metadata-property", convertNoHostMetadataProperty],
+    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-internal-module", convertNoInternalModule],
