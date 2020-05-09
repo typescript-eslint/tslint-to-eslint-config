@@ -148,6 +148,7 @@ import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
 import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
+import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -226,6 +227,7 @@ export const rulesConverters = new Map([
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
+    ["no-input-rename", convertNoInputRename],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
     ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
