@@ -147,6 +147,7 @@ import { convertDirectiveSelector } from "./converters/codelyzer/directive-selec
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
+import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -221,6 +222,7 @@ export const rulesConverters = new Map([
     ["no-for-in-array", convertNoForInArray],
     ["no-for-in", convertNoForIn],
     ["no-forward-ref", convertNoForwardRef],
+    ["no-host-metadata-property", convertNoHostMetadataProperty],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
