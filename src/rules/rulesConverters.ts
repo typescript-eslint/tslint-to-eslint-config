@@ -151,6 +151,7 @@ import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-me
 import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
+import { convertNoConflictingLifecycle } from "./converters/codelyzer/no-conflicting-lifecycle";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -207,6 +208,7 @@ export const rulesConverters = new Map([
     ["no-bitwise", convertNoBitwise],
     ["no-boolean-literal-compare", convertNoBooleanLiteralCompare],
     ["no-conditional-assignment", convertNoConditionalAssignment],
+    ["no-conflicting-lifecycle", convertNoConflictingLifecycle],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
     ["no-console", convertNoConsole],
     ["no-constant-condition", convertNoConstantCondition],
