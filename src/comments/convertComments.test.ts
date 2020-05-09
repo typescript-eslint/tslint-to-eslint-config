@@ -10,7 +10,7 @@ const createStubDependencies = (
 });
 
 describe("convertComments", () => {
-    it("returns an empty result when --comment is not provided", async () => {
+    it("returns an empty result when --comments is not provided", async () => {
         // Arrange
         const dependencies = createStubDependencies();
 
@@ -24,7 +24,7 @@ describe("convertComments", () => {
         });
     });
 
-    it("returns an error when --comment is given as a boolean value", async () => {
+    it("returns an error when --comments is given as a boolean value", async () => {
         // Arrange
         const dependencies = createStubDependencies();
 
