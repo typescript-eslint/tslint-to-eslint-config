@@ -145,13 +145,14 @@ import { convertContextualLifecycle } from "./converters/codelyzer/contextual-li
 import { convertDirectiveClassSuffix } from "./converters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./converters/codelyzer/directive-selector";
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
-import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertNoConflictingLifecycle } from "./converters/codelyzer/no-conflicting-lifecycle";
 import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
 import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
 import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
-import { convertNoConflictingLifecycle } from "./converters/codelyzer/no-conflicting-lifecycle";
+import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
+import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -239,6 +240,7 @@ export const rulesConverters = new Map([
     ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
     ["no-invalid-this", convertNoInvalidThis],
     ["no-irregular-whitespace", convertNoIrregularWhitespace],
+    ["no-lifecycle-call", convertNoLifecycleCall],
     ["no-magic-numbers", convertNoMagicNumbers],
     ["no-misused-new", convertNoMisusedNew],
     ["no-multiline-string", convertNoMultilineString],

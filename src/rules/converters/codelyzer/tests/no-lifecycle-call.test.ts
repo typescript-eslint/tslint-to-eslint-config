@@ -1,0 +1,18 @@
+import { convertNoLifecycleCall } from "../no-lifecycle-call";
+
+describe(convertNoLifecycleCall, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoLifecycleCall({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@angular-eslint/no-lifecycle-call",
+                },
+            ],
+            plugins: ["@angular-eslint/eslint-plugin"],
+        });
+    });
+});
