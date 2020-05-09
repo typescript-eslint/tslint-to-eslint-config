@@ -143,6 +143,7 @@ import { convertComponentMaxInlineDeclarations } from "./converters/codelyzer/co
 import { convertComponentSelector } from "./converters/codelyzer/component-selector";
 import { convertContextualLifecycle } from "./converters/codelyzer/contextual-lifecycle";
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
+import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -290,6 +291,7 @@ export const rulesConverters = new Map([
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
+    ["use-pipe-decorator", convertUsePipeDecorator],
     ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
