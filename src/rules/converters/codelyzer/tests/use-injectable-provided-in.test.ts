@@ -1,0 +1,18 @@
+import { convertUseInjectableProvidedIn } from "../use-injectable-provided-in";
+
+describe(convertUseInjectableProvidedIn, () => {
+    test("conversion without arguments", () => {
+        const result = convertUseInjectableProvidedIn({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@angular-eslint/use-injectable-provided-in",
+                },
+            ],
+            plugins: ["@angular-eslint/eslint-plugin"],
+        });
+    });
+});
