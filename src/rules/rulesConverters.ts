@@ -146,6 +146,7 @@ import { convertDirectiveClassSuffix } from "./converters/codelyzer/directive-cl
 import { convertDirectiveSelector } from "./converters/codelyzer/directive-selector";
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
 import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
 
 /**
@@ -220,6 +221,7 @@ export const rulesConverters = new Map([
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
     ["no-for-in", convertNoForIn],
+    ["no-forward-ref", convertNoForwardRef],
     ["no-host-metadata-property", convertNoHostMetadataProperty],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
@@ -240,8 +242,8 @@ export const rulesConverters = new Map([
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
-    ["no-reference", convertNoReference],
     ["no-reference-import", convertNoReferenceImport],
+    ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
