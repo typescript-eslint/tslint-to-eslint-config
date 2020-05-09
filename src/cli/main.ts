@@ -16,16 +16,16 @@ import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
-import { addPrettierExtensions } from "../creation/simplification/prettier/addPrettierExtensions";
-import { removeExtendsDuplicatedRules } from "../creation/simplification/removeExtendsDuplicatedRules";
+import { addPrettierExtensions } from "../creation/summarization/prettier/addPrettierExtensions";
+import { removeExtendsDuplicatedRules } from "../creation/pruning/removeExtendsDuplicatedRules";
 import {
     retrieveExtendsValues,
     RetrieveExtendsValuesDependencies,
-} from "../creation/simplification/retrieveExtendsValues";
+} from "../creation/summarization/retrieveExtendsValues";
 import {
-    simplifyPackageRules,
-    SimplifyPackageRulesDependencies,
-} from "../creation/simplification/simplifyPackageRules";
+    summarizePackageRules,
+    SummarizePackageRulesDependencies,
+} from "../creation/summarization/summarizePackageRules";
 import {
     writeConversionResults,
     WriteConversionResultsDependencies,
@@ -138,7 +138,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
     importer: boundImporter,
 };
 
-const simplifyPackageRulesDependencies: SimplifyPackageRulesDependencies = {
+const summarizePackageRulesDependencies: SummarizePackageRulesDependencies = {
     addPrettierExtensions,
     removeExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
@@ -175,7 +175,7 @@ const convertConfigDependencies: ConvertConfigDependencies = {
     logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
     reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
     reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
-    simplifyPackageRules: bind(simplifyPackageRules, simplifyPackageRulesDependencies),
+    summarizePackageRules: bind(summarizePackageRules, summarizePackageRulesDependencies),
     writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
 };
 

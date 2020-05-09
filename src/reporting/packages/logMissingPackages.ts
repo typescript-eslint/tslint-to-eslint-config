@@ -3,7 +3,7 @@ import { EOL } from "os";
 
 import { Logger } from "../../adapters/logger";
 import { SansDependencies } from "../../binding";
-import { SimplifiedResultsConfiguration } from "../../creation/simplification/simplifyPackageRules";
+import { SummarizedResultsConfiguration } from "../../creation/summarization/types";
 import { PackagesConfiguration } from "../../input/findPackagesConfiguration";
 import { isTruthy } from "../../utils";
 import { installationMessages } from "../packages/packageManagers";
@@ -16,7 +16,7 @@ export type LogMissingPackagesDependencies = {
 
 export const logMissingPackages = async (
     dependencies: LogMissingPackagesDependencies,
-    ruleConversionResults: Pick<SimplifiedResultsConfiguration, "extends" | "missing" | "plugins">,
+    ruleConversionResults: Pick<SummarizedResultsConfiguration, "extends" | "missing" | "plugins">,
     packageConfiguration?: PackagesConfiguration,
 ) => {
     const packageManager = await dependencies.choosePackageManager();
@@ -29,7 +29,7 @@ export const logMissingPackages = async (
     const requiredPackageNames = [
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
-        ruleConversionResults.extends?.join("").includes("prettier") && "eslint-config-prettier",
+        ruleConversionResults.extends.join("").includes("prettier") && "eslint-config-prettier",
         ruleConversionResults.missing.length !== 0 && "@typescript-eslint/eslint-plugin-tslint",
         "eslint",
         ...Array.from(ruleConversionResults.plugins),

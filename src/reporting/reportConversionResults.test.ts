@@ -225,26 +225,7 @@ describe("reportConversionResults", () => {
         );
     });
 
-    it("logs a Prettier recommendation when there are no extensions", async () => {
-        // Arrange
-        const logger = createStubLogger();
-        const conversionResults = createEmptyConversionResults({
-            extends: undefined,
-        });
-
-        // Act
-        await reportConversionResults({ logger }, ".eslintrc.js", conversionResults);
-
-        // Assert
-        expectEqualWrites(
-            logger.stdout.write,
-            `☠ Prettier plugins are missing from your configuration. ☠`,
-            `  We highly recommend running tslint-to-eslint-config --prettier to disable formatting ESLint rules.`,
-            `  See https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FAQs.md#should-i-use-prettier.`,
-        );
-    });
-
-    it("logs a Prettier recommendation when extends don't include eslint-config-prettier", async () => {
+    it("logs a Prettier recommendation when extends doesn't include eslint-config-prettier", async () => {
         // Arrange
         const logger = createStubLogger();
         const conversionResults = createEmptyConversionResults({

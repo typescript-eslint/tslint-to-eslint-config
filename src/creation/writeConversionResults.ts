@@ -3,7 +3,7 @@ import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { createEnv } from "./eslint/createEnv";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { formatOutput } from "./formatting/formatOutput";
-import { SimplifiedResultsConfiguration } from "./simplification/simplifyPackageRules";
+import { SummarizedResultsConfiguration } from "./summarization/types";
 
 export type WriteConversionResultsDependencies = {
     fileSystem: Pick<FileSystem, "writeFile">;
@@ -12,13 +12,13 @@ export type WriteConversionResultsDependencies = {
 export const writeConversionResults = async (
     dependencies: WriteConversionResultsDependencies,
     outputPath: string,
-    ruleConversionResults: SimplifiedResultsConfiguration,
+    summarizedResults: SummarizedResultsConfiguration,
     originalConfigurations: AllOriginalConfigurations,
 ) => {
     const plugins = ["@typescript-eslint"];
     const { eslint, tslint } = originalConfigurations;
 
-    if (ruleConversionResults.missing.length !== 0) {
+    if (summarizedResults.missing.length !== 0) {
         plugins.push("@typescript-eslint/tslint");
     }
 
@@ -26,7 +26,7 @@ export const writeConversionResults = async (
         ...eslint?.full,
         env: createEnv(originalConfigurations),
         ...(eslint && { globals: eslint.raw.globals }),
-        ...(ruleConversionResults.extends && { extends: ruleConversionResults.extends }),
+        ...(summarizedResults.extends?.length !== 0 && { extends: summarizedResults.extends }),
         parser: "@typescript-eslint/parser",
         parserOptions: {
             project: "tsconfig.json",
@@ -34,8 +34,8 @@ export const writeConversionResults = async (
         },
         plugins,
         rules: {
-            ...eslint?.full.rules,
-            ...formatConvertedRules(ruleConversionResults, tslint.full),
+            // ...trimESLintRules(eslint?.full.rules, summarizedResults.extensionRules),
+            ...formatConvertedRules(summarizedResults, tslint.full),
         },
     };
 

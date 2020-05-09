@@ -1,6 +1,6 @@
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
-import { ESLintRuleSeverity } from "../rules/types";
+import { RawESLintRuleSeverity } from "../rules/types";
 import { TSLintToESLintSettings } from "../types";
 import { uniqueFromSources } from "../utils";
 import { findRawConfiguration } from "./findRawConfiguration";
@@ -20,11 +20,9 @@ export type ESLintConfigurationRules = {
 };
 
 export type ESLintConfigurationRuleValue =
-    | 0
-    | 1
-    | 2
-    | ESLintRuleSeverity
-    | [ESLintRuleSeverity, any];
+    | RawESLintRuleSeverity
+    | [RawESLintRuleSeverity]
+    | [RawESLintRuleSeverity, any];
 
 const defaultESLintConfiguration = {
     env: {},
