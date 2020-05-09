@@ -1,7 +1,6 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { createEnv } from "./eslint/createEnv";
-import { trimESLintRules } from "./eslint/trimESLintRules";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { formatOutput } from "./formatting/formatOutput";
 import { SummarizedResultsConfiguration } from "./summarization/types";
@@ -35,7 +34,7 @@ export const writeConversionResults = async (
         },
         plugins,
         rules: {
-            ...trimESLintRules(eslint?.full.rules, summarizedResults.extensionRules),
+            // ...trimESLintRules(eslint?.full.rules, summarizedResults.extensionRules),
             ...formatConvertedRules(summarizedResults, tslint.full),
         },
     };

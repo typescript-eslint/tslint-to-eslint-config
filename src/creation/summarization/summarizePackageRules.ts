@@ -4,7 +4,7 @@ import { OriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
 import { uniqueFromSources } from "../../utils";
-import { removeAllExtendsDuplicatedRules } from "../pruning/removeAllExtendsDuplicatedRules";
+import { removeExtendsDuplicatedRules } from "../pruning/removeExtendsDuplicatedRules";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
@@ -13,7 +13,7 @@ import { normalizeESLintRules } from "./normalizeESLintRules";
 
 export type SummarizePackageRulesDependencies = {
     addPrettierExtensions: typeof addPrettierExtensions;
-    removeAllExtendsDuplicatedRules: typeof removeAllExtendsDuplicatedRules;
+    removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
 
@@ -45,15 +45,14 @@ export const summarizePackageRules = async (
         };
     }
 
+    // 3b. Any ESLint rules that are configured the same as an extended preset are trimmed
     const { configurationErrors, importedExtensions } = await dependencies.retrieveExtendsValues(
         uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
-
-    // 3b. Any ESLint rules that are configured the same as an extended preset are trimmed
-    const deduplicated = dependencies.removeAllExtendsDuplicatedRules(
+    const deduplicated = dependencies.removeExtendsDuplicatedRules(
         new Map([
-            ...Array.from(ruleConversionResults.converted),
             ...Array.from(normalizeESLintRules(eslint?.full.rules)),
+            ...Array.from(ruleConversionResults.converted),
         ]),
         importedExtensions,
     );
