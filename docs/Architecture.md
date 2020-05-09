@@ -15,6 +15,7 @@ Within `src/conversion/convertConfig.ts`, the following steps occur:
 2. TSLint rules are converted into their ESLint configurations
 3. ESLint configurations are summarized based on extended ESLint and TSLint presets
     - 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
+    - 3b. Any ESLint rules that are configured the same as an extended preset are trimmed
 4. The summarized configuration is written to the output config file
 5. Files to transform comments in have source text rewritten using the same rule conversion logic
 6. A summary of the results is printed to the user's console

@@ -9,6 +9,7 @@ import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 import { SummarizedResultsConfiguration } from "./types";
+import { normalizeESLintRules } from "./normalizeESLintRules";
 
 export type SummarizePackageRulesDependencies = {
     addPrettierExtensions: typeof addPrettierExtensions;
@@ -48,16 +49,20 @@ export const summarizePackageRules = async (
         uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
 
-    const deduplication = dependencies.removeAllExtendsDuplicatedRules(
-        ruleConversionResults.converted,
+    // 3b. Any ESLint rules that are configured the same as an extended preset are trimmed
+    const deduplicated = dependencies.removeAllExtendsDuplicatedRules(
+        new Map([
+            ...Array.from(ruleConversionResults.converted),
+            ...Array.from(normalizeESLintRules(eslint?.full.rules)),
+        ]),
         importedExtensions,
     );
 
     return {
         ...ruleConversionResults,
-        converted: deduplication.differentRules,
+        converted: deduplicated.differentRules,
         extends: uniqueFromSources(allExtensions),
-        extensionRules: deduplication.extensionRules,
+        extensionRules: deduplicated.extensionRules,
         failed: [...ruleConversionResults.failed, ...configurationErrors],
     };
 };
