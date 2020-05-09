@@ -15,10 +15,10 @@ export const convertStrictBooleanExpressions: RuleConverter = (tslintRule) => {
                 case "allow-undefined-union":
                 case "allow-boolean-or-undefined":
                 case "allow-null-union":
-                    ruleArguments["allowNullable"] = true;
+                    ruleArguments.allowNullable = true;
                     break;
                 case "ignore-rhs":
-                    ruleArguments["ignoreRhs"] = true;
+                    ruleArguments.ignoreRhs = true;
                     break;
                 default:
                     break;
