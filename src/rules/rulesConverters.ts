@@ -137,6 +137,20 @@ import { convertUseDefaultTypeParameter } from "./converters/use-default-type-pa
 import { convertUseIsnan } from "./converters/use-isnan";
 import { convertVariableName } from "./converters/variable-name";
 
+// Codelyzer converters
+import { convertComponentClassSuffix } from "./converters/codelyzer/component-class-suffix";
+import { convertComponentMaxInlineDeclarations } from "./converters/codelyzer/component-max-inline-declarations";
+import { convertComponentSelector } from "./converters/codelyzer/component-selector";
+import { convertContextualLifecycle } from "./converters/codelyzer/contextual-lifecycle";
+import { convertDirectiveClassSuffix } from "./converters/codelyzer/directive-class-suffix";
+import { convertDirectiveSelector } from "./converters/codelyzer/directive-selector";
+import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
+import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
+import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
+import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
+import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
+
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
@@ -154,9 +168,15 @@ export const rulesConverters = new Map([
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
     ["comment-format", convertCommentFormat],
+    ["component-class-suffix", convertComponentClassSuffix],
+    ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
+    ["component-selector", convertComponentSelector],
+    ["contextual-lifecycle", convertContextualLifecycle],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
+    ["directive-class-suffix", convertDirectiveClassSuffix],
+    ["directive-selector", convertDirectiveSelector],
     ["eofline", convertEofline],
     ["file-name-casing", convertFileNameCasing],
     ["forin", convertForin],
@@ -181,6 +201,7 @@ export const rulesConverters = new Map([
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
     ["no-async-without-await", convertNoAsyncWithoutAwait],
+    ["no-attribute-decorator", convertNoAttributeDecorator],
     ["no-banned-terms", convertNoBannedTerms],
     ["no-bitwise", convertNoBitwise],
     ["no-boolean-literal-compare", convertNoBooleanLiteralCompare],
@@ -201,10 +222,14 @@ export const rulesConverters = new Map([
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
-    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-for-in", convertNoForIn],
+    ["no-forward-ref", convertNoForwardRef],
+    ["no-host-metadata-property", convertNoHostMetadataProperty],
+    ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
+    ["no-input-prefix", convertNoInputPrefix],
+    ["no-input-rename", convertNoInputRename],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
     ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
@@ -221,8 +246,8 @@ export const rulesConverters = new Map([
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
-    ["no-reference", convertNoReference],
     ["no-reference-import", convertNoReferenceImport],
+    ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
@@ -278,6 +303,7 @@ export const rulesConverters = new Map([
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
+    ["use-pipe-decorator", convertUsePipeDecorator],
     ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
