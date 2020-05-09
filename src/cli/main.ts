@@ -16,8 +16,8 @@ import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
-import { removeExtendsDuplicatedRules } from "../creation/pruning/removeExtendsDuplicatedRules";
 import { addPrettierExtensions } from "../creation/summarization/prettier/addPrettierExtensions";
+import { removeExtendsDuplicatedRules } from "../creation/pruning/removeExtendsDuplicatedRules";
 import {
     retrieveExtendsValues,
     RetrieveExtendsValuesDependencies,

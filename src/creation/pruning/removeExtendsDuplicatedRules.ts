@@ -5,7 +5,7 @@ import {
     ESLintConfigurationRuleValue,
 } from "../../input/findESLintConfiguration";
 import { convertRawESLintRuleSeverity } from "../../rules/formats/convertRuleSeverity";
-import { ESLintRuleOptions } from "../../rules/types";
+import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../../rules/types";
 
 /**
  * Finds the ESLint rules that aren't configured the same as their last preset
@@ -27,14 +27,14 @@ export const removeExtendsDuplicatedRules = (
 };
 
 const mergeExtensions = (extensions: Partial<ESLintConfiguration>[]) => {
-    const mergedRules = new Map<string, ESLintRuleOptions>();
+    const mergedRules = new Map<string, ESLintRuleOptionsWithArguments>();
 
     for (const extension of extensions) {
         if (extension.rules === undefined) {
             continue;
         }
 
-        for (const ruleName in extension.rules ?? {}) {
+        for (const ruleName in extension.rules) {
             mergedRules.set(ruleName, formatRuleArguments(ruleName, extension.rules[ruleName]));
         }
     }
@@ -45,7 +45,7 @@ const mergeExtensions = (extensions: Partial<ESLintConfiguration>[]) => {
 const formatRuleArguments = (
     ruleName: string,
     originalValue: ESLintConfigurationRuleValue,
-): ESLintRuleOptions => {
+): ESLintRuleOptionsWithArguments => {
     if (typeof originalValue === "number") {
         return {
             ruleArguments: [],
@@ -71,14 +71,11 @@ const formatRuleArguments = (
 
 const ruleValuesAreTheSame = (
     configurationValue: ESLintRuleOptions,
-    extensionValue: ESLintRuleOptions | undefined,
+    extensionValue: ESLintRuleOptionsWithArguments | undefined,
 ) => {
     return (
         extensionValue !== undefined &&
         configurationValue.ruleSeverity === extensionValue.ruleSeverity &&
-        isDeepStrictEqual(
-            configurationValue.ruleArguments ?? [],
-            extensionValue.ruleArguments ?? [],
-        )
+        isDeepStrictEqual(configurationValue.ruleArguments ?? [], extensionValue.ruleArguments)
     );
 };

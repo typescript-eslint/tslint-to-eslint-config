@@ -16,3 +16,7 @@ export type ESLintRuleOptions = {
     ruleName: string;
     ruleSeverity: ESLintRuleSeverity;
 };
+
+export type ESLintRuleOptionsWithArguments = ESLintRuleOptions & {
+    ruleArguments: any[];
+};

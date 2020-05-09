@@ -19,7 +19,10 @@ export type ESLintConfigurationRules = {
     [i: string]: ESLintConfigurationRuleValue;
 };
 
-export type ESLintConfigurationRuleValue = RawESLintRuleSeverity | [RawESLintRuleSeverity, any];
+export type ESLintConfigurationRuleValue =
+    | RawESLintRuleSeverity
+    | [RawESLintRuleSeverity]
+    | [RawESLintRuleSeverity, any];
 
 const defaultESLintConfiguration = {
     env: {},

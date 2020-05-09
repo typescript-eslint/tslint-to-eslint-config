@@ -1,11 +1,14 @@
 import { ConfigurationError } from "../../errors/configurationError";
-import { ESLintRuleOptions } from "../../rules/types";
+import { ESLintRuleOptionsWithArguments } from "../../rules/types";
 import { createEmptyConversionResults } from "../../conversion/conversionResults.stubs";
 import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summarizePackageRules";
 
 const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
     addPrettierExtensions: jest.fn(),
-    removeExtendsDuplicatedRules: jest.fn(),
+    removeExtendsDuplicatedRules: () => ({
+        differentRules: new Map(),
+        extensionRules: new Map(),
+    }),
     retrieveExtendsValues: async () => ({
         configurationErrors: [],
         importedExtensions: [],
@@ -67,7 +70,7 @@ describe("summarizePackageRules", () => {
         // Assert
         expect(summarizedResults).toEqual({
             ...ruleConversionResults,
-            converted: undefined,
+            converted: new Map(),
             extends: ["prettier", "prettier/@typescript-eslint"],
         });
     });
@@ -94,7 +97,7 @@ describe("summarizePackageRules", () => {
     it("includes deduplicated rules and extension failures when the ESLint configuration extends", async () => {
         // Arrange
         const configurationErrors = [new ConfigurationError(new Error("oh no"), "darn")];
-        const differentRules = new Map<string, ESLintRuleOptions>([
+        const differentRules = new Map<string, ESLintRuleOptionsWithArguments>([
             [
                 "rule-name",
                 {
@@ -128,6 +131,16 @@ describe("summarizePackageRules", () => {
         // Assert
         expect(summarizedResults).toEqual({
             ...ruleConversionResults,
+            extensionRules: new Map([
+                [
+                    "rule-name",
+                    {
+                        ruleArguments: [],
+                        ruleName: "rule-name",
+                        ruleSeverity: "warn",
+                    },
+                ],
+            ]),
             converted: differentRules,
             extends: [...eslintExtends],
             failed: configurationErrors,

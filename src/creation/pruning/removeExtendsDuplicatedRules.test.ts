@@ -7,7 +7,7 @@ import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 
 const prepareTestRule = (
     ruleOptions: Partial<ESLintRuleOptions>,
-    extensionConfiguration: ESLintConfigurationRuleValue = 2,
+    extensionConfiguration: ESLintConfigurationRuleValue,
 ) => {
     const ruleName = "rule-a";
     const allRules = new Map<string, ESLintRuleOptions>([
@@ -72,6 +72,40 @@ describe("removeExtendsDuplicatedRules", () => {
                 ruleSeverity: "warn",
             },
             1,
+        );
+
+        // Act
+        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+
+        // Assert
+        expect(differentRules.size).toBe(0);
+    });
+
+    it("removes a rule when it has no arguments and matches an extended rule with an empty arguments array", () => {
+        // Arrange
+        const { allRules, extensions } = prepareTestRule(
+            {
+                ruleArguments: undefined,
+                ruleSeverity: "error",
+            },
+            ["error"],
+        );
+
+        // Act
+        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+
+        // Assert
+        expect(differentRules.size).toBe(0);
+    });
+
+    it("removes a rule when it has an empty arguments array and matches an extended rule with no arguments", () => {
+        // Arrange
+        const { allRules, extensions } = prepareTestRule(
+            {
+                ruleArguments: [],
+                ruleSeverity: "error",
+            },
+            ["error"],
         );
 
         // Act

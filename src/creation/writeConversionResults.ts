@@ -26,7 +26,7 @@ export const writeConversionResults = async (
         ...eslint?.full,
         env: createEnv(originalConfigurations),
         ...(eslint && { globals: eslint.raw.globals }),
-        ...(summarizedResults.extends && { extends: summarizedResults.extends }),
+        ...(summarizedResults.extends?.length !== 0 && { extends: summarizedResults.extends }),
         parser: "@typescript-eslint/parser",
         parserOptions: {
             project: "tsconfig.json",
