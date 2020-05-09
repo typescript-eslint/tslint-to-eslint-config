@@ -10,7 +10,7 @@ export type ConvertCommentsDependencies = {
 };
 
 const noGlobsResult: ResultWithDataStatus<string[]> = {
-    errors: [new Error("--comment requires file path globs to be passed.")],
+    errors: [new Error("--comments requires file path globs to be passed.")],
     status: ResultStatus.Failed,
 };
 

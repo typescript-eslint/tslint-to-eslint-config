@@ -15,7 +15,7 @@ export const reportCommentResults = (
     if (commentsResult.status === ResultStatus.Failed) {
         const headline = `${commentsResult.errors.length} error${
             commentsResult.errors.length === 1 ? "" : "s"
-        } converting TSLint comment directives in --comment files`;
+        } converting TSLint comment directives in --comments files`;
 
         dependencies.logger.stderr.write(chalk.magentaBright(`${EOL}❌ ${headline}. ❌${EOL}`));
         dependencies.logger.stderr.write(
@@ -33,7 +33,7 @@ export const reportCommentResults = (
     if (commentsResult.data === undefined) {
         dependencies.logger.stdout.write(
             chalk.magentaBright(
-                `${EOL}♻ Consider using --comment to replace TSLint comment directives in your source files. ♻${EOL}`,
+                `${EOL}♻ Consider using --comments to replace TSLint comment directives in your source files. ♻${EOL}`,
             ),
         );
         return;

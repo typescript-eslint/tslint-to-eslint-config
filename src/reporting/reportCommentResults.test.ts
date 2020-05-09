@@ -13,7 +13,7 @@ describe("reportCommentResults", () => {
         // Assert
         expectEqualWrites(
             logger.stdout.write,
-            `♻ Consider using --comment to replace TSLint comment directives in your source files. ♻`,
+            `♻ Consider using --comments to replace TSLint comment directives in your source files. ♻`,
         );
     });
 
@@ -28,12 +28,12 @@ describe("reportCommentResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            `❌ 1 error converting TSLint comment directives in --comment files. ❌`,
+            `❌ 1 error converting TSLint comment directives in --comments files. ❌`,
             `  Check ${logger.debugFileName} for details.`,
         );
         expectEqualWrites(
             logger.info.write,
-            `1 error converting TSLint comment directives in --comment files:`,
+            `1 error converting TSLint comment directives in --comments files:`,
             `  * Hello`,
         );
     });
@@ -49,12 +49,12 @@ describe("reportCommentResults", () => {
         // Assert
         expectEqualWrites(
             logger.stderr.write,
-            `❌ 2 errors converting TSLint comment directives in --comment files. ❌`,
+            `❌ 2 errors converting TSLint comment directives in --comments files. ❌`,
             `  Check ${logger.debugFileName} for details.`,
         );
         expectEqualWrites(
             logger.info.write,
-            `2 errors converting TSLint comment directives in --comment files:`,
+            `2 errors converting TSLint comment directives in --comments files:`,
             `  * Hello`,
             `  * World`,
         );
