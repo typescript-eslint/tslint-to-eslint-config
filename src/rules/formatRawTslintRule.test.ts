@@ -1,4 +1,4 @@
-import { formatRawTslintRule } from "./formatRawTslintRule";
+import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 
 describe("formatRawTslintRule", () => {
     it("supplies default values when none are provided", () => {

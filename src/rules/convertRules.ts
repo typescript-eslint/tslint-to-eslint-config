@@ -3,8 +3,8 @@ import { ErrorSummary } from "../errors/errorSummary";
 import { TSLintConfigurationRules } from "../input/findTSLintConfiguration";
 import { RuleConverter } from "./converter";
 import { convertRule } from "./convertRule";
-import { convertTSLintRuleSeverity } from "./convertRuleSeverity";
-import { formatRawTslintRule } from "./formatRawTslintRule";
+import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity";
+import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 import { RuleMerger } from "./merger";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 

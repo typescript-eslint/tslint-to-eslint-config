@@ -5,7 +5,7 @@ import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summ
 
 const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
     addPrettierExtensions: jest.fn(),
-    removeExtendsDuplicatedRules: jest.fn(),
+    removeAllExtendsDuplicatedRules: jest.fn(),
     retrieveExtendsValues: async () => ({
         configurationErrors: [],
         importedExtensions: [],
@@ -106,7 +106,7 @@ describe("summarizePackageRules", () => {
         ]);
         const extensionRules = new Map(differentRules);
         const dependencies = createStubDependencies({
-            removeExtendsDuplicatedRules: () => ({ differentRules, extensionRules }),
+            removeAllExtendsDuplicatedRules: () => ({ differentRules, extensionRules }),
             retrieveExtendsValues: async () => ({
                 configurationErrors,
                 importedExtensions: [],

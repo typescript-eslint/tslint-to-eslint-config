@@ -1,24 +1,17 @@
-import { isDeepStrictEqual } from "util";
-
 import {
     ESLintConfiguration,
     ESLintConfigurationRuleValue,
 } from "../../input/findESLintConfiguration";
-import { convertRawESLintRuleSeverity } from "../../rules/convertRuleSeverity";
+import { convertRawESLintRuleSeverity } from "../../rules/formats/convertRuleSeverity";
 import { ESLintRuleOptions } from "../../rules/types";
+import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 
-export const removeExtendsDuplicatedRules = (
+export const removeAllExtendsDuplicatedRules = (
     allRules: Map<string, ESLintRuleOptions>,
     extensions: Partial<ESLintConfiguration>[],
 ) => {
-    const differentRules = new Map<string, ESLintRuleOptions>();
     const extensionRules = mergeExtensions(extensions);
-
-    for (const [ruleName, value] of allRules) {
-        if (ruleValuesAreTheSame(value, extensionRules.get(ruleName))) {
-            differentRules.set(ruleName, value);
-        }
-    }
+    const differentRules = removeExtendsDuplicatedRules(allRules, extensionRules);
 
     return { differentRules, extensionRules };
 };
@@ -64,24 +57,4 @@ const formatRuleArguments = (
         ruleName,
         ruleSeverity: convertRawESLintRuleSeverity(originalValue[0]),
     };
-};
-
-const ruleValuesAreTheSame = (
-    configurationValue: ESLintRuleOptions,
-    extensionValue: ESLintRuleOptions | undefined,
-) => {
-    return (
-        extensionValue !== undefined &&
-        configurationValue.ruleSeverity === extensionValue.ruleSeverity &&
-        isDeepStrictEqual(
-            {
-                ruleArguments: [],
-                ...configurationValue.ruleArguments,
-            },
-            {
-                ruleArguments: [],
-                ...extensionValue.ruleArguments,
-            },
-        )
-    );
 };

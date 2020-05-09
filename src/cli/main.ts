@@ -16,8 +16,8 @@ import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
 } from "../conversion/convertEditorConfig";
+import { removeAllExtendsDuplicatedRules } from "../creation/pruning/removeAllExtendsDuplicatedRules";
 import { addPrettierExtensions } from "../creation/summarization/prettier/addPrettierExtensions";
-import { removeExtendsDuplicatedRules } from "../creation/summarization/removeExtendsDuplicatedRules";
 import {
     retrieveExtendsValues,
     RetrieveExtendsValuesDependencies,
@@ -140,7 +140,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
 
 const summarizePackageRulesDependencies: SummarizePackageRulesDependencies = {
     addPrettierExtensions,
-    removeExtendsDuplicatedRules,
+    removeAllExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
 

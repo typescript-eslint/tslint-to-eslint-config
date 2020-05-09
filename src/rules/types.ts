@@ -8,6 +8,8 @@ export type TSLintRuleOptions = {
 
 export type ESLintRuleSeverity = "warn" | "error" | "off";
 
+export type RawESLintRuleSeverity = ESLintRuleSeverity | 0 | 1 | 2;
+
 export type ESLintRuleOptions = {
     notices?: any[];
     ruleArguments?: any[];

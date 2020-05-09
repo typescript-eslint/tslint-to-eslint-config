@@ -3,7 +3,7 @@ import {
     ESLintConfigurationRuleValue,
 } from "../../input/findESLintConfiguration";
 import { ESLintRuleOptions } from "../../rules/types";
-import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
+import { removeAllExtendsDuplicatedRules } from "./removeAllExtendsDuplicatedRules";
 
 const prepareTestRule = (
     ruleOptions: Partial<ESLintRuleOptions>,
@@ -32,7 +32,7 @@ const prepareTestRule = (
     return { ruleName, allRules, extensions };
 };
 
-describe("removeExtendsDuplicatedRules", () => {
+describe("removeAllExtendsDuplicatedRules", () => {
     it("keeps a rule when there are no rules in the extension", () => {
         // Arrange
         const { allRules } = prepareTestRule(
@@ -43,7 +43,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, [{}]);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, [{}]);
 
         // Assert
         expect(differentRules.size).toBe(1);
@@ -59,7 +59,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(1);
@@ -75,7 +75,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(0);
@@ -91,7 +91,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(1);
@@ -107,7 +107,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(0);
@@ -123,7 +123,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(1);
@@ -140,7 +140,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(0);
@@ -157,7 +157,7 @@ describe("removeExtendsDuplicatedRules", () => {
         );
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, extensions);
+        const { differentRules } = removeAllExtendsDuplicatedRules(allRules, extensions);
 
         // Assert
         expect(differentRules.size).toBe(1);

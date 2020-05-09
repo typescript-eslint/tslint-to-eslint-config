@@ -4,15 +4,15 @@ import { OriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
 import { uniqueFromSources } from "../../utils";
+import { removeAllExtendsDuplicatedRules } from "../pruning/removeAllExtendsDuplicatedRules";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
-import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 import { SummarizedResultsConfiguration } from "./types";
 
 export type SummarizePackageRulesDependencies = {
     addPrettierExtensions: typeof addPrettierExtensions;
-    removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
+    removeAllExtendsDuplicatedRules: typeof removeAllExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
 
@@ -48,7 +48,7 @@ export const summarizePackageRules = async (
         uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
 
-    const deduplication = dependencies.removeExtendsDuplicatedRules(
+    const deduplication = dependencies.removeAllExtendsDuplicatedRules(
         ruleConversionResults.converted,
         importedExtensions,
     );
