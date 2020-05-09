@@ -5,6 +5,7 @@ import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
 import { RuleConversionResults } from "../../rules/convertRules";
 import { uniqueFromSources } from "../../utils";
 import { removeExtendsDuplicatedRules } from "../pruning/removeExtendsDuplicatedRules";
+import { normalizeExtensions } from "../pruning/normalizeExtensions";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
@@ -49,12 +50,13 @@ export const summarizePackageRules = async (
     const { configurationErrors, importedExtensions } = await dependencies.retrieveExtendsValues(
         uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets),
     );
+    const extensionRules = normalizeExtensions(importedExtensions);
     const deduplicated = dependencies.removeExtendsDuplicatedRules(
         new Map([
             ...Array.from(normalizeESLintRules(eslint?.full.rules)),
             ...Array.from(ruleConversionResults.converted),
         ]),
-        importedExtensions,
+        extensionRules,
     );
 
     return {

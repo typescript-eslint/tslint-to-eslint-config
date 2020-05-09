@@ -1,4 +1,4 @@
-import { convertRawESLintRuleSeverity } from "./convertRuleSeverity";
+import { convertRawESLintRuleSeverity } from "../../rules/formats/convertRuleSeverity";
 
 describe("convertRawESLintRuleSeverity", () => {
     it("returns off when the severity is 0", () => {

@@ -1,6 +1,6 @@
-import { ESLintRuleSeverity, RawESLintRuleSeverity } from "../types";
+import { ESLintRuleSeverity, RawESLintRuleSeverity } from "../../rules/types";
 
-export const convertRawESLintRuleSeverity = (
+export const normalizeRawESLintRuleSeverity = (
     rawSeverity: RawESLintRuleSeverity,
 ): ESLintRuleSeverity => {
     switch (rawSeverity) {
