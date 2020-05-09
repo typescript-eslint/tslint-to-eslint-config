@@ -46,7 +46,6 @@ describe("writeConversionResults", () => {
                     sourceType: "module",
                 },
                 plugins: ["@typescript-eslint"],
-                rules: {},
             }),
         );
     });
@@ -137,8 +136,6 @@ describe("writeConversionResults", () => {
                     es6: true,
                     node: true,
                 },
-                extends: [],
-                rules: {},
                 parser: "@typescript-eslint/parser",
                 parserOptions: {
                     project: "tsconfig.json",
@@ -182,7 +179,6 @@ describe("writeConversionResults", () => {
                     sourceType: "module",
                 },
                 plugins: ["@typescript-eslint"],
-                rules: {},
             }),
         );
     });
@@ -224,8 +220,6 @@ describe("writeConversionResults", () => {
                     es6: true,
                     node: true,
                 },
-                extends: [],
-                rules: {},
                 globals: {
                     Promise: true,
                 },

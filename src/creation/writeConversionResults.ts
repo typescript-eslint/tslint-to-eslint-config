@@ -1,5 +1,6 @@
 import { FileSystem } from "../adapters/fileSystem";
 import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
+import { removeEmptyMembers } from "../utils";
 import { createEnv } from "./eslint/createEnv";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { formatOutput } from "./formatting/formatOutput";
@@ -22,11 +23,11 @@ export const writeConversionResults = async (
         plugins.push("@typescript-eslint/tslint");
     }
 
-    const output = {
+    const output = removeEmptyMembers({
         ...eslint?.full,
         env: createEnv(originalConfigurations),
         ...(eslint && { globals: eslint.raw.globals }),
-        ...(summarizedResults.extends?.length !== 0 && { extends: summarizedResults.extends }),
+        ...(summarizedResults.extends && { extends: summarizedResults.extends }),
         parser: "@typescript-eslint/parser",
         parserOptions: {
             project: "tsconfig.json",
@@ -37,7 +38,7 @@ export const writeConversionResults = async (
             // ...trimESLintRules(eslint?.full.rules, summarizedResults.extensionRules),
             ...formatConvertedRules(summarizedResults, tslint.full),
         },
-    };
+    });
 
     return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };
