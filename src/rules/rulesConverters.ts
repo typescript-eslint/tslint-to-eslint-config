@@ -148,6 +148,8 @@ import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
 import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-metadata-property";
+import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
+import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
 
 /**
@@ -227,6 +229,8 @@ export const rulesConverters = new Map([
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
     ["no-inferrable-types", convertNoInferrableTypes],
+    ["no-input-prefix", convertNoInputPrefix],
+    ["no-input-rename", convertNoInputRename],
     ["no-inputs-metadata-property", convertNoInputsMetadataProperty],
     ["no-internal-module", convertNoInternalModule],
     ["no-invalid-regexp", convertNoInvalidRegexp],
