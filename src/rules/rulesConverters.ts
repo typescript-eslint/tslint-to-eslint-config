@@ -152,6 +152,7 @@ import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
 import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
+import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
@@ -253,6 +254,7 @@ export const rulesConverters = new Map([
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-output-native", convertNoOutputNative],
+    ["no-outputs-metadata-property", convertNoOutputsMetadataProperty],
     ["no-octal-literal", convertNoOctalLiteral],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
