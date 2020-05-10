@@ -163,6 +163,7 @@ import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-outpu
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
 import { convertTemplateBananaInBox } from "./converters/codelyzer/template-banana-in-box";
 import { convertTemplateNoCallExpression } from "./converters/codelyzer/template-no-call-expression";
+import { convertTemplateNoNegatedAsync } from "./converters/codelyzer/template-no-negated-async";
 import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
 import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
@@ -327,6 +328,7 @@ export const rulesConverters = new Map([
     ["switch-default", convertSwitchDefault],
     ["template-banana-in-box", convertTemplateBananaInBox],
     ["template-no-call-expression", convertTemplateNoCallExpression],
+    ["template-no-negated-async", convertTemplateNoNegatedAsync],
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
