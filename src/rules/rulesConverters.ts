@@ -144,6 +144,7 @@ import { convertComponentSelector } from "./converters/codelyzer/component-selec
 import { convertContextualLifecycle } from "./converters/codelyzer/contextual-lifecycle";
 import { convertDirectiveClassSuffix } from "./converters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./converters/codelyzer/directive-selector";
+import { convertImportDestructuringSpacing } from "./converters/codelyzer/import-destructuring-spacing";
 import { convertNoAttributeDecorator } from "./converters/codelyzer/no-attribute-decorator";
 import { convertNoConflictingLifecycle } from "./converters/codelyzer/no-conflicting-lifecycle";
 import { convertNoForwardRef } from "./converters/codelyzer/no-forward-ref";
@@ -187,6 +188,7 @@ export const rulesConverters = new Map([
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
     ["import-blacklist", convertImportBlacklist],
+    ["import-destructuring-spacing", convertImportDestructuringSpacing],
     ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
