@@ -154,6 +154,7 @@ import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-input
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pipe-transform-interface";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -312,6 +313,7 @@ export const rulesConverters = new Map([
     ["use-injectable-provided-in", convertUseInjectableProvidedIn],
     ["use-isnan", convertUseIsnan],
     ["use-pipe-decorator", convertUsePipeDecorator],
+    ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
