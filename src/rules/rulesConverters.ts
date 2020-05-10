@@ -161,6 +161,7 @@ import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-quer
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
 import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
+import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
@@ -329,6 +330,7 @@ export const rulesConverters = new Map([
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
     ["use-component-selector", convertUseComponentSelector],
+    ["use-component-view-encapsulation", convertUseComponentViewEncapsulation],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-injectable-provided-in", convertUseInjectableProvidedIn],
     ["use-isnan", convertUseIsnan],
