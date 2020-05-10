@@ -151,9 +151,10 @@ import { convertNoHostMetadataProperty } from "./converters/codelyzer/no-host-me
 import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
-import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
+import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
 import { convertNoOutputOnPrefix } from "./converters/codelyzer/no-output-on-prefix";
+import { convertNoUnusedCss } from "./converters/codelyzer/no-unused-css";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
@@ -279,6 +280,7 @@ export const rulesConverters = new Map([
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
+    ["no-unused-css", convertNoUnusedCss],
     ["no-unused-expression", convertNoUnusedExpression],
     ["no-unused-variable", convertNoUnusedVariable],
     ["no-use-before-declare", convertNoUseBeforeDeclare],
