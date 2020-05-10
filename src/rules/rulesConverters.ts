@@ -155,6 +155,7 @@ import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call
 import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
 import { convertNoOutputOnPrefix } from "./converters/codelyzer/no-output-on-prefix";
 import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
+import { convertNoPipeImpure } from "./converters/codelyzer/no-pipe-impure";
 import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-queries-metadata-property";
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
@@ -264,6 +265,7 @@ export const rulesConverters = new Map([
     ["no-outputs-metadata-property", convertNoOutputsMetadataProperty],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
+    ["no-pipe-impure", convertNoPipeImpure],
     ["no-queries-metadata-property", convertNoQueriesMetadataProperty],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference-import", convertNoReferenceImport],
