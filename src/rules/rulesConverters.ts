@@ -156,6 +156,7 @@ import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
 import { convertNoOutputOnPrefix } from "./converters/codelyzer/no-output-on-prefix";
 import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
+import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
@@ -304,6 +305,7 @@ export const rulesConverters = new Map([
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
+    ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
