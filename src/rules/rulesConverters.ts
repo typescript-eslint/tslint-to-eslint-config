@@ -153,6 +153,7 @@ import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
+import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 
 /**
@@ -311,6 +312,7 @@ export const rulesConverters = new Map([
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-injectable-provided-in", convertUseInjectableProvidedIn],
     ["use-isnan", convertUseIsnan],
+    ["use-lifecycle-interface", convertUseLifecycleInterface],
     ["use-pipe-decorator", convertUsePipeDecorator],
     ["variable-name", convertVariableName],
 
