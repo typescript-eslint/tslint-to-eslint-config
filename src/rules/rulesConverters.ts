@@ -152,6 +152,7 @@ import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
+import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 
 /**
@@ -307,6 +308,7 @@ export const rulesConverters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-component-view-encapsulation", convertUseComponentViewEncapsulation],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-isnan", convertUseIsnan],
     ["use-pipe-decorator", convertUsePipeDecorator],
