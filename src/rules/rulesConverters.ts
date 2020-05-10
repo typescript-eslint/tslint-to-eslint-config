@@ -158,6 +158,7 @@ import { convertNoOutputRename } from "./converters/codelyzer/no-output-rename";
 import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
 import { convertNoPipeImpure } from "./converters/codelyzer/no-pipe-impure";
 import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-queries-metadata-property";
+import { convertPreferOnPushComponentChangeDetection } from "./converters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
 import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
@@ -308,6 +309,7 @@ export const rulesConverters = new Map([
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-object-spread", convertPreferObjectSpread],
+    ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
     ["prefer-readonly", convertPreferReadonly],
     ["prefer-template", convertPreferTemplate],
