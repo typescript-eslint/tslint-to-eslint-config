@@ -152,8 +152,20 @@ import { convertNoInputPrefix } from "./converters/codelyzer/no-input-prefix";
 import { convertNoInputRename } from "./converters/codelyzer/no-input-rename";
 import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-inputs-metadata-property";
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
+import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
+import { convertNoOutputOnPrefix } from "./converters/codelyzer/no-output-on-prefix";
+import { convertNoOutputRename } from "./converters/codelyzer/no-output-rename";
+import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
+import { convertNoPipeImpure } from "./converters/codelyzer/no-pipe-impure";
+import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-queries-metadata-property";
+import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
+import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
+import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
 import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
+import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
+import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
+import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pipe-transform-interface";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -250,8 +262,15 @@ export const rulesConverters = new Map([
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-octal-literal", convertNoOctalLiteral],
+    ["no-output-native", convertNoOutputNative],
+    ["no-output-native", convertNoOutputNative],
+    ["no-output-on-prefix", convertNoOutputOnPrefix],
+    ["no-output-rename", convertNoOutputRename],
+    ["no-outputs-metadata-property", convertNoOutputsMetadataProperty],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
+    ["no-pipe-impure", convertNoPipeImpure],
+    ["no-queries-metadata-property", convertNoQueriesMetadataProperty],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference-import", convertNoReferenceImport],
     ["no-reference", convertNoReference],
@@ -289,11 +308,13 @@ export const rulesConverters = new Map([
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-object-spread", convertPreferObjectSpread],
+    ["prefer-output-readonly", convertPreferOutputReadonly],
     ["prefer-readonly", convertPreferReadonly],
     ["prefer-template", convertPreferTemplate],
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
+    ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
@@ -308,10 +329,14 @@ export const rulesConverters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-component-selector", convertUseComponentSelector],
     ["use-component-view-encapsulation", convertUseComponentViewEncapsulation],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
+    ["use-injectable-provided-in", convertUseInjectableProvidedIn],
     ["use-isnan", convertUseIsnan],
+    ["use-lifecycle-interface", convertUseLifecycleInterface],
     ["use-pipe-decorator", convertUsePipeDecorator],
+    ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
 
     // These converters are all for rules that need more complex option conversions.
