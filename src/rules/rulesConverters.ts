@@ -161,6 +161,7 @@ import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-quer
 import { convertPreferOnPushComponentChangeDetection } from "./converters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
+import { convertTemplateCyclomaticComplexity } from "./converters/codelyzer/template-cyclomatic-complexity";
 import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
 import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
@@ -323,6 +324,7 @@ export const rulesConverters = new Map([
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
