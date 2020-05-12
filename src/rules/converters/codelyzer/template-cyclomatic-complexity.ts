@@ -1,9 +1,16 @@
 import { RuleConverter } from "../../converter";
 
-export const convertTemplateCyclomaticComplexity: RuleConverter = () => {
+export const convertTemplateCyclomaticComplexity: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
+                ...(tslintRule.ruleArguments.length === 1 && {
+                    ruleArguments: [
+                        {
+                            maxComplexity: tslintRule.ruleArguments[0],
+                        },
+                    ],
+                }),
                 ruleName: "@angular-eslint/template/cyclomatic-complexity",
             },
         ],
