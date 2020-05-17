@@ -162,6 +162,7 @@ import { convertPreferOnPushComponentChangeDetection } from "./converters/codely
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
 import { convertTemplateBananaInBox } from "./converters/codelyzer/template-banana-in-box";
+import { convertTemplateCyclomaticComplexity } from "./converters/codelyzer/template-cyclomatic-complexity";
 import { convertTemplateNoCallExpression } from "./converters/codelyzer/template-no-call-expression";
 import { convertTemplateNoNegatedAsync } from "./converters/codelyzer/template-no-negated-async";
 import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
@@ -327,6 +328,7 @@ export const rulesConverters = new Map([
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
     ["template-banana-in-box", convertTemplateBananaInBox],
+    ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["template-no-call-expression", convertTemplateNoCallExpression],
     ["template-no-negated-async", convertTemplateNoNegatedAsync],
     ["trailing-comma", convertTrailingComma],
