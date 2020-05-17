@@ -1,11 +1,5 @@
 version: 2.1
 
-references:
-    set_npm_token: &set_npm_token
-        run:
-            name: Add NPM auth token file
-            command: echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
-
 jobs:
     build:
         docker:
@@ -58,10 +52,10 @@ jobs:
         steps:
             - checkout
 
-            - *set_npm_token
-
             - attach_workspace:
                   at: "."
+
+            - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 
             - run: npm publish || exit 0
 
