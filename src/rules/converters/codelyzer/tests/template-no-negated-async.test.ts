@@ -9,10 +9,10 @@ describe(convertTemplateNoNegatedAsync, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@angular-eslint/template-no-negated-async",
+                    ruleName: "@angular-eslint/template/no-negated-async",
                 },
             ],
-            plugins: ["@angular-eslint/eslint-plugin"],
+            plugins: ["@angular-eslint/eslint-plugin-template"],
         });
     });
 });
