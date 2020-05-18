@@ -15,30 +15,6 @@ describe("normalizeESLintRules", () => {
         expect(result).toEqual(new Map());
     });
 
-    it("converts a rule when given as an array", () => {
-        // Arrange
-        const userRules: ESLintConfigurationRules = {
-            [ruleName]: ["error", {}],
-        };
-
-        // Act
-        const result = normalizeESLintRules(userRules);
-
-        // Assert
-        expect(result).toEqual(
-            new Map([
-                [
-                    ruleName,
-                    {
-                        ruleArguments: {},
-                        ruleName: "rule-a",
-                        ruleSeverity: "error",
-                    },
-                ],
-            ]),
-        );
-    });
-
     it("converts a rule when given as a severity level", () => {
         // Arrange
         const userRules: ESLintConfigurationRules = {
@@ -54,7 +30,55 @@ describe("normalizeESLintRules", () => {
                 [
                     ruleName,
                     {
-                        ruleArguments: {},
+                        ruleArguments: [{}],
+                        ruleName: "rule-a",
+                        ruleSeverity: "error",
+                    },
+                ],
+            ]),
+        );
+    });
+
+    it("converts a rule when given as an array", () => {
+        // Arrange
+        const userRules: ESLintConfigurationRules = {
+            [ruleName]: ["error", {}],
+        };
+
+        // Act
+        const result = normalizeESLintRules(userRules);
+
+        // Assert
+        expect(result).toEqual(
+            new Map([
+                [
+                    ruleName,
+                    {
+                        ruleArguments: [{}],
+                        ruleName: "rule-a",
+                        ruleSeverity: "error",
+                    },
+                ],
+            ]),
+        );
+    });
+
+    it("converts a rule when given as an array with multiple arguments", () => {
+        // Arrange
+        const userRules: ESLintConfigurationRules = {
+            [ruleName]: ["error", 4, { value: true }],
+        };
+
+        // Act
+        const result = normalizeESLintRules(userRules);
+
+        // Assert
+        expect(result).toEqual(
+            new Map([
+                [
+                    ruleName,
+                    {
+                        ruleArguments: [4, { value: true }],
                         ruleName: "rule-a",
                         ruleSeverity: "error",
                     },

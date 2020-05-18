@@ -1,5 +1,8 @@
-import { ESLintConfigurationRules } from "../../input/findESLintConfiguration";
-import { ESLintRuleOptions } from "../../rules/types";
+import {
+    ESLintConfigurationRules,
+    ESLintConfigurationRuleValue,
+} from "../../input/findESLintConfiguration";
+import { ESLintRuleOptions, RawESLintRuleSeverity } from "../../rules/types";
 import { normalizeRawESLintRuleSeverity } from "../pruning/normalizeRawESLintRuleSeverity";
 
 /**
@@ -8,13 +11,20 @@ import { normalizeRawESLintRuleSeverity } from "../pruning/normalizeRawESLintRul
 export const normalizeESLintRules = (userRules: ESLintConfigurationRules | undefined) => {
     const output: Map<string, ESLintRuleOptions> = new Map();
 
-    for (const [ruleName, configuration] of Object.entries(userRules ?? {})) {
-        const [rawRuleSeverity, ruleArguments] =
-            configuration instanceof Array ? configuration : [configuration, {}];
+    for (const [ruleName, rawRuleValue] of Object.entries(userRules ?? {})) {
+        const [rawRuleSeverity, ruleArguments] = parseRawRuleValue(rawRuleValue);
         const ruleSeverity = normalizeRawESLintRuleSeverity(rawRuleSeverity);
 
         output.set(ruleName, { ruleArguments, ruleName, ruleSeverity });
     }
 
     return output;
+};
+
+const parseRawRuleValue = (
+    configuration: ESLintConfigurationRuleValue,
+): [RawESLintRuleSeverity, any[]] => {
+    return configuration instanceof Array
+        ? [configuration[0], configuration.slice(1)]
+        : [configuration, [{}]];
 };
