@@ -34,10 +34,7 @@ export const writeConversionResults = async (
             sourceType: "module",
         },
         plugins,
-        rules: {
-            // ...trimESLintRules(eslint?.full.rules, summarizedResults.extensionRules),
-            ...formatConvertedRules(summarizedResults, tslint.full),
-        },
+        rules: formatConvertedRules(summarizedResults, tslint.full),
     });
 
     return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));

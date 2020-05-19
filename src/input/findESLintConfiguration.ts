@@ -21,8 +21,7 @@ export type ESLintConfigurationRules = {
 
 export type ESLintConfigurationRuleValue =
     | RawESLintRuleSeverity
-    | [RawESLintRuleSeverity]
-    | [RawESLintRuleSeverity, any];
+    | [RawESLintRuleSeverity, ...any[]];
 
 const defaultESLintConfiguration = {
     env: {},
