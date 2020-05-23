@@ -1,7 +1,7 @@
 import { Exec } from "../adapters/exec";
 
 export type DeepPartial<T> = {
-    [P in keyof T]: T[P] extends {} ? DeepPartial<T[P]> : T[P];
+    [P in keyof T]?: T[P] extends Record<P, T[P]> ? DeepPartial<T[P]> : T[P];
 };
 
 export type FindReportedConfigurationDependencies = {
