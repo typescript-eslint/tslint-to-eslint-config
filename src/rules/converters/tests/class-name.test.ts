@@ -9,7 +9,7 @@ describe(convertClassName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/class-name-casing",
+                    ruleName: "@typescript-eslint/naming-convention",
                 },
             ],
         });
