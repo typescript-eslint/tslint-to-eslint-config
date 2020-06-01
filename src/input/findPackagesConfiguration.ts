@@ -4,8 +4,8 @@ import {
 } from "./findReportedConfiguration";
 
 export type PackagesConfiguration = {
-    dependencies: Record<string, string>;
-    devDependencies: Record<string, string>;
+    dependencies: Record<string, string | undefined>;
+    devDependencies: Record<string, string | undefined>;
 };
 
 export const findPackagesConfiguration = async (
