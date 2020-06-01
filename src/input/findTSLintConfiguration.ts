@@ -8,7 +8,7 @@ import { importer } from "./importer";
 export type TSLintConfiguration = {
     extends?: string[];
     rulesDirectory?: string[];
-    rules: TSLintConfigurationRules;
+    rules?: TSLintConfigurationRules;
 };
 
 export type TSLintConfigurationRules = Record<string, any>;

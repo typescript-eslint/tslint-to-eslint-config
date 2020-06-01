@@ -14,6 +14,7 @@ import {
 } from "./findTypeScriptConfiguration";
 import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
 import { mergeLintConfigurations } from "./mergeLintConfigurations";
+import { DeepPartial } from "./findReportedConfiguration";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;
@@ -35,7 +36,7 @@ export type OriginalConfigurations<Configuration> = {
     /**
      * Raw import results from `import`ing the configuration file.
      */
-    raw: Partial<Configuration>;
+    raw: DeepPartial<Configuration>;
 };
 
 export type AllOriginalConfigurations = {

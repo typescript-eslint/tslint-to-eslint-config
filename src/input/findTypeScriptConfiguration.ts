@@ -4,9 +4,9 @@ import {
 } from "./findReportedConfiguration";
 
 export type TypeScriptConfiguration = {
-    compilerOptions: {
+    compilerOptions?: {
         lib?: string[];
-        target: string;
+        target?: string;
     };
 };
 
