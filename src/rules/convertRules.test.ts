@@ -5,7 +5,7 @@ import { RuleConverter, ConversionResult } from "./converter";
 import { RuleMerger } from "./merger";
 
 describe("convertRules", () => {
-    it("doesn't crash with a type error when passed undefined configuration", () => {
+    it("doesn't crash when passed an undefined configuration", () => {
         // Arrange
         const { converters, mergers } = setupConversionEnvironment({
             ruleSeverity: "off",

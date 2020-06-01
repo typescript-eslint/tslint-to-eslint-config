@@ -1,5 +1,5 @@
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { findReportedConfiguration, DeepPartial } from "./findReportedConfiguration";
+import { findReportedConfiguration } from "./findReportedConfiguration";
 
 describe("findReportedConfiguration", () => {
     it("returns stderr as an error when the command fails with a zero exit code", async () => {
@@ -55,24 +55,5 @@ describe("findReportedConfiguration", () => {
         expect(result).toEqual({
             rules,
         });
-    });
-
-    it("declares a correct DeepPartial type", () => {
-        type RulesType = {
-            "rule-a": boolean;
-            "rule-b": { component: string; deeper: { key: boolean } };
-        };
-        type PartialRules = DeepPartial<RulesType>;
-
-        type Expected = {
-            "rule-a"?: boolean;
-            "rule-b"?: { component?: string; deeper?: { key?: boolean } };
-        };
-
-        type Equals<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
-            ? true
-            : false;
-        const assertion: Equals<PartialRules, Expected> = true;
-        expect(assertion).toBeTruthy();
     });
 });
