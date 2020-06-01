@@ -23,6 +23,7 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/generic-type-naming": "off",
+        "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/init-declarations": "off",
         "@typescript-eslint/method-signature-style": "off",
         "@typescript-eslint/no-explicit-any": "off",
