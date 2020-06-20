@@ -172,6 +172,9 @@ import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecyc
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pipe-transform-interface";
 
+// ESLint-React converters
+import { convertJsxBooleanValue } from "./converters/eslint-plugin-react/jsx-boolean-value";
+
 /**
  * Keys TSLint rule names to their ESLint rule converters.
  */
@@ -208,6 +211,7 @@ export const rulesConverters = new Map([
     ["interface-name", convertInterfaceName],
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
     ["jsdoc-format", convertJSDocFormat],
+    ["jsx-boolean-value", convertJsxBooleanValue],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
