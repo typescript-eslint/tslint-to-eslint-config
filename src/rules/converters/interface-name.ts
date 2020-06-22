@@ -4,7 +4,7 @@ export const convertInterfaceName: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "@typescript-eslint/interface-name-prefix",
+                ruleName: "@typescript-eslint/naming-convention",
             },
         ],
     };

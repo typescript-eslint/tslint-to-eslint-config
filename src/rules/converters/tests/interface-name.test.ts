@@ -9,7 +9,7 @@ describe(convertInterfaceName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/interface-name-prefix",
+                    ruleName: "@typescript-eslint/naming-convention",
                 },
             ],
         });
