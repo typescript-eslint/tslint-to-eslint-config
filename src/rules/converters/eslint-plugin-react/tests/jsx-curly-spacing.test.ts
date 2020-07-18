@@ -16,12 +16,9 @@ describe(convertJsxCurlySpacing, () => {
         });
     });
 
-    test("conversion with arguments", () => {
+    test("conversion with 'always' argument", () => {
         const alwaysResult = convertJsxCurlySpacing({
             ruleArguments: ["always"],
-        });
-        const neverResult = convertJsxCurlySpacing({
-            ruleArguments: ["never"],
         });
 
         expect(alwaysResult).toEqual({
@@ -37,6 +34,13 @@ describe(convertJsxCurlySpacing, () => {
             ],
             plugins: ["eslint-plugin-react"],
         });
+    });
+
+    test("conversion with 'never' argument", () => {
+        const neverResult = convertJsxCurlySpacing({
+            ruleArguments: ["never"],
+        });
+
         expect(neverResult).toEqual({
             rules: [
                 {
