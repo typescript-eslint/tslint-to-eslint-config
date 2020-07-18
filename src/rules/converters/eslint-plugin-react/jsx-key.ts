@@ -5,7 +5,6 @@ export const convertJsxKey: RuleConverter = () => {
         rules: [
             {
                 ruleName: "react/jsx-key",
-                ruleArguments: ["<enabled>"],
             },
         ],
         plugins: ["eslint-plugin-react"],
