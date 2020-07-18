@@ -16,12 +16,9 @@ describe(convertJsxEqualsSpacing, () => {
         });
     });
 
-    test("conversion with arguments", () => {
+    test("conversion with 'always' argument", () => {
         const alwaysResult = convertJsxEqualsSpacing({
             ruleArguments: ["always"],
-        });
-        const neverResult = convertJsxEqualsSpacing({
-            ruleArguments: ["never"],
         });
 
         expect(alwaysResult).toEqual({
@@ -33,6 +30,13 @@ describe(convertJsxEqualsSpacing, () => {
             ],
             plugins: ["eslint-plugin-react"],
         });
+    });
+
+    test("conversion with 'never' argument", () => {
+        const neverResult = convertJsxEqualsSpacing({
+            ruleArguments: ["never"],
+        });
+
         expect(neverResult).toEqual({
             rules: [
                 {
