@@ -54,7 +54,7 @@ Each of these flags is optional:
 #### `comments`
 
 ```shell
-npx tslint-to-eslint-config --comments src/**/*.ts
+npx tslint-to-eslint-config --comments 'src/**/*.ts'
 ```
 
 _Default: none_
