@@ -29,9 +29,7 @@ export const replaceFileComments = (
     };
 
     for (const comment of [...comments].reverse()) {
-        const directive = comment.directive
-            .replace("tslint:", "eslint-")
-            .replace("next-line", "line");
+        const directive = comment.directive.replace("tslint:", "eslint-");
         const ruleLists = uniqueFromSources(comment.ruleNames.map(getNewRuleLists)).filter(Boolean);
         const [left, right] =
             comment.commentKind === ts.SyntaxKind.SingleLineCommentTrivia

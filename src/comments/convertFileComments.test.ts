@@ -57,14 +57,16 @@ export const b = true;
 // tslint:enable
 export const c = true;
 
-/* tslint:disable */
-export const d = true;
+export const d = true; // tslint:disable-line
 
-/* tslint:disable-next-line */
+/* tslint:disable */
 export const e = true;
 
-/* tslint:enable */
+/* tslint:disable-next-line */
 export const f = true;
+
+/* tslint:enable */
+export const g = true;
 `);
 
         // Act
@@ -77,20 +79,22 @@ export const f = true;
 // eslint-disable
 export const a = true;
 
-// eslint-disable-line
+// eslint-disable-next-line
 export const b = true;
 
 // eslint-enable
 export const c = true;
 
-/* eslint-disable */
-export const d = true;
+export const d = true; // eslint-disable-line
 
-/* eslint-disable-line */
+/* eslint-disable */
 export const e = true;
 
-/* eslint-enable */
+/* eslint-disable-next-line */
 export const f = true;
+
+/* eslint-enable */
+export const g = true;
 `,
         );
     });
@@ -98,7 +102,7 @@ export const f = true;
     it("parses rule names when they exist", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
-// tslint:disable:ts-a
+/* tslint:disable:ts-a */
 export const a = true;
 
 // tslint:disable-next-line: ts-a ts-b
@@ -112,10 +116,10 @@ export const b = true;
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
             stubFileName,
             `
-// eslint-disable es-a
+/* eslint-disable es-a */
 export const a = true;
 
-// eslint-disable-line es-a, es-b1, es-b2
+// eslint-disable-next-line es-a, es-b1, es-b2
 export const b = true;
 `,
         );
@@ -124,7 +128,7 @@ export const b = true;
     it("re-uses a rule conversion from cache when it was already converted", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
-// tslint:disable:ts-a
+/* tslint:disable:ts-a */
 export const a = true;
 `);
 
@@ -135,7 +139,7 @@ export const a = true;
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
             stubFileName,
             `
-// eslint-disable es-cached
+/* eslint-disable es-cached */
 export const a = true;
 `,
         );
@@ -144,7 +148,7 @@ export const a = true;
     it("ignores comment text when there is no matching converter", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
-// tslint:disable:ts-z
+/* tslint:disable:ts-z */
 export const a = true;
 `);
 
@@ -155,7 +159,7 @@ export const a = true;
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
             stubFileName,
             `
-// eslint-disable
+/* eslint-disable */
 export const a = true;
 `,
         );
@@ -164,7 +168,7 @@ export const a = true;
     it("ignores comment text when its matching converter results in an error", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
-// tslint:disable:ts-error
+/* tslint:disable:ts-error */
 export const a = true;
 `);
 
@@ -175,7 +179,7 @@ export const a = true;
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
             stubFileName,
             `
-// eslint-disable
+/* eslint-disable */
 export const a = true;
 `,
         );
