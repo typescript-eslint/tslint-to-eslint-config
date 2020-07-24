@@ -76,13 +76,13 @@ export const g = true;
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
             stubFileName,
             `
-// eslint-disable
+/* eslint-disable */
 export const a = true;
 
 // eslint-disable-next-line
 export const b = true;
 
-// eslint-enable
+/* eslint-enable */
 export const c = true;
 
 export const d = true; // eslint-disable-line
