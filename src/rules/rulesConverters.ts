@@ -175,6 +175,7 @@ import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pip
 // ESLint-React converters
 import { convertJsxBooleanValue } from "./converters/eslint-plugin-react/jsx-boolean-value";
 import { convertJsxEqualsSpacing } from "./converters/eslint-plugin-react/jsx-equals-spacing";
+import { convertJsxKey } from "./converters/eslint-plugin-react/jsx-key";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -214,6 +215,7 @@ export const rulesConverters = new Map([
     ["jsdoc-format", convertJSDocFormat],
     ["jsx-boolean-value", convertJsxBooleanValue],
     ["jsx-equals-spacing", convertJsxEqualsSpacing],
+    ["jsx-key", convertJsxKey],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
