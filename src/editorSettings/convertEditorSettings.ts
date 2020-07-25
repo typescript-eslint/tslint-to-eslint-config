@@ -1,5 +1,6 @@
 import { ConversionError } from "../errors/conversionError";
 import { ErrorSummary } from "../errors/errorSummary";
+import { TSLintToESLintSettings } from "../types";
 import { convertEditorSetting } from "./convertEditorSetting";
 import { EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
@@ -29,6 +30,7 @@ export type EditorConfiguration = Record<string, any>;
 export const convertEditorSettings = (
     dependencies: ConvertEditorSettingsDependencies,
     rawEditorConfiguration: EditorConfiguration,
+    settings: TSLintToESLintSettings,
 ): EditorSettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
@@ -42,7 +44,7 @@ export const convertEditorSettings = (
         }
 
         const editorSetting = { editorSettingName: configurationName, value };
-        const conversion = convertEditorSetting(editorSetting, dependencies.converters);
+        const conversion = convertEditorSetting(editorSetting, dependencies.converters, settings);
 
         if (conversion === undefined) {
             const { editorSettingName } = editorSetting;

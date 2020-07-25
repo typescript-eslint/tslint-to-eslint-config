@@ -1,4 +1,5 @@
 import { ConversionError } from "../errors/conversionError";
+import { createStubTSLintToESLintSettings } from "../settings.stubs";
 import { convertEditorSettings } from "./convertEditorSettings";
 import { EditorSettingConversionResult, EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
@@ -13,7 +14,11 @@ describe("convertEditorSettings", () => {
         };
 
         // Act
-        const result = convertEditorSettings({ converters }, editorConfiguration);
+        const result = convertEditorSettings(
+            { converters },
+            editorConfiguration,
+            createStubTSLintToESLintSettings(),
+        );
 
         // Assert
         expect(result).toEqual({
@@ -41,7 +46,11 @@ describe("convertEditorSettings", () => {
         };
 
         // Act
-        const result = convertEditorSettings({ converters }, editorConfiguration);
+        const result = convertEditorSettings(
+            { converters },
+            editorConfiguration,
+            createStubTSLintToESLintSettings(),
+        );
 
         // Assert
         expect(result).toEqual({
@@ -67,6 +76,7 @@ describe("convertEditorSettings", () => {
         const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
@@ -87,6 +97,7 @@ describe("convertEditorSettings", () => {
         const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
@@ -112,6 +123,7 @@ describe("convertEditorSettings", () => {
         const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting.value },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert

@@ -1,4 +1,5 @@
 import { EditorSetting } from "../editorSettings/types";
+import { createStubTSLintToESLintSettings } from "../settings.stubs";
 import { FailedResult, ResultStatus } from "../types";
 import { createEmptySettingConversionResults } from "./conversionResults.stubs";
 import { convertEditorConfig, ConvertEditorConfigDependencies } from "./convertEditorConfig";
@@ -89,7 +90,10 @@ describe("convertEditorConfig", () => {
         await convertEditorConfig(dependencies, stubSettings);
 
         // Assert
-        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(originalConfig);
+        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(
+            originalConfig,
+            createStubTSLintToESLintSettings(),
+        );
     });
 
     it("reports conversion results when settings are converted successfully", async () => {

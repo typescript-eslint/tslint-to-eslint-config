@@ -1,4 +1,5 @@
 import { ConversionError } from "../errors/conversionError";
+import { TSLintToESLintSettings } from "../types";
 import { EditorSetting } from "./types";
 
 /**
@@ -6,7 +7,8 @@ import { EditorSetting } from "./types";
  */
 export type EditorSettingConverter = (
     tslintEditorSetting: EditorSetting,
-) => ConversionError | EditorSettingConversionResult;
+    settings: TSLintToESLintSettings,
+) => ConversionError | EditorSettingConversionResult | undefined;
 
 /**
  * Successful result from converting a TSLint editor setting to its ESLint equivalents.
