@@ -1,15 +1,7 @@
 import { RuleConverter } from "../converter";
 
-export const IgnoreLeadingTrailingUnderscoreMsg =
-    "Leading and trailing underscores (_) in variable names will now be ignored.";
-export const IgnoreOnlyLeadingUnderscoreMsg =
-    "Leading undescores in variable names will now be ignored.";
-export const IgnoreOnlyTrailingUnderscoreMsg =
-    "Trailing undescores in variable names will now be ignored.";
 export const ConstRequiredForAllCapsMsg =
-    "ESLint's camel-case will throw a warning if const name is not uppercase.";
-export const ForbiddenPascalSnakeMsg =
-    "ESLint's camel-case rule does not allow pascal or snake case variable names. Those cases are reserved for class names and static methods.";
+    "typescript-eslint does not enforce uppercase for const only.";
 export const IgnoreLeadingTrailingIdentifierMsg =
     "Leading and trailing underscores (_) on identifiers will now be ignored.";
 export const ForbiddenLeadingTrailingIdentifierMsg =
@@ -22,36 +14,45 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         "allow-trailing-underscore",
     );
     const constRequiredForAllCaps = tslintRule.ruleArguments.includes("require-const-for-all-caps");
-    const allowPascalSnakeCase =
-        tslintRule.ruleArguments.includes("allow-pascal-case") ||
-        tslintRule.ruleArguments.includes("allow-snake-case");
+    const allowPascalCase = tslintRule.ruleArguments.includes("allow-pascal-case");
+    const allowSnakeCase = tslintRule.ruleArguments.includes("allow-snake-case");
 
     const getCamelCaseRuleOptions = () => {
-        const camelCaseOptionNotice: string[] = [];
+        const camelCaseRules: Record<string, unknown>[] = [];
+        const camelCaseOptionNotices: string[] = [];
+        const formats = ["camelCase", "UPPER_CASE"];
 
-        if (hasCheckFormat) {
-            if (!allowedLeadingUnderscore && !allowedTrailingUnderscore) {
-                camelCaseOptionNotice.push(IgnoreLeadingTrailingUnderscoreMsg);
-            } else if (allowedLeadingUnderscore && !allowedTrailingUnderscore) {
-                camelCaseOptionNotice.push(IgnoreOnlyLeadingUnderscoreMsg);
-            } else if (!allowedLeadingUnderscore && allowedTrailingUnderscore) {
-                camelCaseOptionNotice.push(IgnoreOnlyTrailingUnderscoreMsg);
-            }
+        if (hasCheckFormat && allowPascalCase) {
+            formats.push("PascalCase");
+        }
+        if (hasCheckFormat && allowSnakeCase) {
+            formats.push("snake_case");
+        }
+
+        if (!hasCheckFormat) {
+            camelCaseRules.push({
+                selector: "variable",
+                format: ["camelCase", "UPPER_CASE"],
+                leadingUnderscore: "forbid",
+                trailingUnderscore: "forbid",
+            });
         } else {
-            camelCaseOptionNotice.push(IgnoreLeadingTrailingUnderscoreMsg);
+            camelCaseRules.push({
+                selector: "variable",
+                format: ["camelCase", "UPPER_CASE"],
+                leadingUnderscore: allowedLeadingUnderscore ? "allow" : "forbid",
+                trailingUnderscore: allowedTrailingUnderscore ? "allow" : "forbid",
+            });
         }
 
-        if (constRequiredForAllCaps) {
-            camelCaseOptionNotice.push(ConstRequiredForAllCapsMsg);
-        }
-
-        if (allowPascalSnakeCase) {
-            camelCaseOptionNotice.push(ForbiddenPascalSnakeMsg);
+        if (hasCheckFormat && constRequiredForAllCaps) {
+            camelCaseOptionNotices.push(ConstRequiredForAllCapsMsg);
         }
 
         return {
-            notices: camelCaseOptionNotice,
-            ruleName: "camelcase",
+            ...(camelCaseOptionNotices.length !== 0 && { notices: camelCaseOptionNotices }),
+            ...(camelCaseRules.length !== 0 && { rules: camelCaseRules }),
+            ruleName: "@typescript-eslint/naming-convention",
         };
     };
 

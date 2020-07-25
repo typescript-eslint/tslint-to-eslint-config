@@ -1,12 +1,8 @@
 import {
     convertVariableName,
-    IgnoreLeadingTrailingUnderscoreMsg,
+    ConstRequiredForAllCapsMsg,
     ForbiddenLeadingTrailingIdentifierMsg,
     IgnoreLeadingTrailingIdentifierMsg,
-    ForbiddenPascalSnakeMsg,
-    ConstRequiredForAllCapsMsg,
-    IgnoreOnlyLeadingUnderscoreMsg,
-    IgnoreOnlyTrailingUnderscoreMsg,
 } from "../variable-name";
 
 describe(convertVariableName, () => {
@@ -18,8 +14,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -35,7 +38,7 @@ describe(convertVariableName, () => {
         });
     });
 
-    test("conversion with require-const-for-all-caps argument", () => {
+    test("conversion with require-const-for-all-caps argument without check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["require-const-for-all-caps"],
         });
@@ -43,8 +46,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ConstRequiredForAllCapsMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -60,7 +70,7 @@ describe(convertVariableName, () => {
         });
     });
 
-    test("conversion with allow-pascal-case argument", () => {
+    test("conversion with allow-pascal-case argument without check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["allow-pascal-case"],
         });
@@ -68,8 +78,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -85,7 +102,7 @@ describe(convertVariableName, () => {
         });
     });
 
-    test("conversion with allow-snake-case argument", () => {
+    test("conversion with allow-snake-case argument without check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["allow-snake-case"],
         });
@@ -93,8 +110,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg, ForbiddenPascalSnakeMsg],
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -118,8 +142,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     ruleName: "no-underscore-dangle",
@@ -143,8 +174,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -168,8 +206,48 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreLeadingTrailingUnderscoreMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
+                },
+                {
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                },
+                {
+                    ruleName: "id-blacklist",
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with require-const-for-all-caps argument and check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: ["check-format", "require-const-for-all-caps"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    notices: [ConstRequiredForAllCapsMsg],
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
@@ -193,8 +271,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreOnlyLeadingUnderscoreMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "allow",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
@@ -219,8 +304,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [IgnoreOnlyTrailingUnderscoreMsg],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "allow",
+                        },
+                    ],
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
@@ -249,8 +341,15 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: [],
-                    ruleName: "camelcase",
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "allow",
+                            trailingUnderscore: "allow",
+                        },
+                    ],
                 },
                 {
                     notices: [IgnoreLeadingTrailingIdentifierMsg],
@@ -283,8 +382,16 @@ describe(convertVariableName, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "camelcase",
-                    notices: [ConstRequiredForAllCapsMsg, ForbiddenPascalSnakeMsg],
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "allow",
+                            trailingUnderscore: "allow",
+                        },
+                    ],
+                    notices: [ConstRequiredForAllCapsMsg],
                 },
                 {
                     ruleName: "no-underscore-dangle",
