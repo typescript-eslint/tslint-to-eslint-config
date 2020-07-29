@@ -17,16 +17,17 @@ const collectArguments = (ruleArguments: any[]) => {
         return undefined;
     }
 
-    let forbidArr: any[] = [];
-    for (let i = 0; i < ruleArguments.length; i++) {
-        let forbidObj: any = {};
-        forbidObj.element = ruleArguments[i][0];
+    const forbidArr: any[] = [];
+    for (const element of ruleArguments) {
+        const forbidObj: any = {};
+        forbidObj.element = element[0];
 
-        if (ruleArguments[i].length == 2) {
-            forbidObj.message = ruleArguments[i][1];
+        if (element.length == 2) {
+            forbidObj.message = element[1];
         }
         forbidArr.push(forbidObj);
     }
+
     return {
         ruleArguments: [
             {
