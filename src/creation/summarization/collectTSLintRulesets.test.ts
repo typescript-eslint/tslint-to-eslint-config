@@ -33,6 +33,19 @@ describe("collectTSLintRulesets", () => {
         ]);
     });
 
+    it("includes mapped ESLint extension for a raw TSLint-React extension when it exists", () => {
+        const tslint = {
+            full: {},
+            raw: {
+                extends: ["tslint-react"],
+            },
+        };
+
+        const extensions = collectTSLintRulesets(tslint);
+
+        expect(extensions).toEqual(["plugin:react/recommended"]);
+    });
+
     it("ignores a TSLint extension when it has no mapped ESLint extensions", () => {
         const tslint = {
             full: {
