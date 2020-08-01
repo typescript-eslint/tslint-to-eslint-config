@@ -31,7 +31,7 @@
         "@typescript-eslint/eslint-plugin": "3.7.1",
         "@typescript-eslint/parser": "3.7.1",
         "babel-jest": "26.2.2",
-        "eslint": "7.5.0",
+        "eslint": "7.6.0",
         "husky": "4.2.5",
         "jest": "26.2.2",
         "lint-staged": "10.2.11",
