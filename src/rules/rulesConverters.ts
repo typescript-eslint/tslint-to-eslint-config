@@ -174,6 +174,11 @@ import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pip
 
 // ESLint-React converters
 import { convertJsxBooleanValue } from "./converters/eslint-plugin-react/jsx-boolean-value";
+import { convertJsxCurlySpacing } from "./converters/eslint-plugin-react/jsx-curly-spacing";
+import { convertJsxEqualsSpacing } from "./converters/eslint-plugin-react/jsx-equals-spacing";
+import { convertJsxKey } from "./converters/eslint-plugin-react/jsx-key";
+import { convertJsxNoBind } from "./converters/eslint-plugin-react/jsx-no-bind";
+import { convertJsxWrapMultiline } from "./converters/eslint-plugin-react/jsx-wrap-multiline";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -212,6 +217,11 @@ export const rulesConverters = new Map([
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
     ["jsdoc-format", convertJSDocFormat],
     ["jsx-boolean-value", convertJsxBooleanValue],
+    ["jsx-curly-spacing", convertJsxCurlySpacing],
+    ["jsx-equals-spacing", convertJsxEqualsSpacing],
+    ["jsx-key", convertJsxKey],
+    ["jsx-no-bind", convertJsxNoBind],
+    ["jsx-wrap-multiline", convertJsxWrapMultiline],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],

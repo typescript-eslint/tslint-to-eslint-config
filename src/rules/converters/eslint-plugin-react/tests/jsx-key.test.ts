@@ -1,17 +1,18 @@
-import { convertClassName } from "../class-name";
+import { convertJsxKey } from "../jsx-key";
 
-describe(convertClassName, () => {
+describe(convertJsxKey, () => {
     test("conversion without arguments", () => {
-        const result = convertClassName({
+        const result = convertJsxKey({
             ruleArguments: [],
         });
 
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/naming-convention",
+                    ruleName: "react/jsx-key",
                 },
             ],
+            plugins: ["eslint-plugin-react"],
         });
     });
 });
