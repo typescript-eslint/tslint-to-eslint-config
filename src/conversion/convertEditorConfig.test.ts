@@ -1,5 +1,4 @@
 import { EditorSetting } from "../editorSettings/types";
-import { createStubTSLintToESLintSettings } from "../settings.stubs";
 import { FailedResult, ResultStatus } from "../types";
 import { createEmptySettingConversionResults } from "./conversionResults.stubs";
 import { convertEditorConfig, ConvertEditorConfigDependencies } from "./convertEditorConfig";
