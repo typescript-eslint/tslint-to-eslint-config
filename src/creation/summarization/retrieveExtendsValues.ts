@@ -36,6 +36,7 @@ const pluginExtensions = new Map([
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "node_modules/@typescript-eslint/eslint-plugin/dist/configs/recommended-requiring-type-checking.json",
     ],
+    ["plugin:react/recommended", "node_modules/eslint-plugin-react/index.js"],
 ]);
 
 /**
