@@ -92,7 +92,7 @@ describe("convertEditorConfig", () => {
         // Assert
         expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(
             originalConfig,
-            createStubTSLintToESLintSettings(),
+            stubSettings,
         );
     });
 
