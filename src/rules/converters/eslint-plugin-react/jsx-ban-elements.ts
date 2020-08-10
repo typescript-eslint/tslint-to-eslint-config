@@ -17,21 +17,17 @@ const collectArguments = (ruleArguments: any[]) => {
         return undefined;
     }
 
-    const forbidArr: any[] = [];
-    for (const element of ruleArguments) {
-        const forbidObj: any = {};
-        forbidObj.element = element[0];
-
-        if (element.length == 2) {
-            forbidObj.message = element[1];
-        }
-        forbidArr.push(forbidObj);
-    }
+    const forbiddenElements = ruleArguments.map((ruleArgument) => {
+        return {
+            element: ruleArgument[0],
+            ...(ruleArgument.length === 2 && { message: ruleArgument[1] }),
+        };
+    });
 
     return {
         ruleArguments: [
             {
-                forbid: forbidArr,
+                forbid: forbiddenElements,
             },
         ],
     };
