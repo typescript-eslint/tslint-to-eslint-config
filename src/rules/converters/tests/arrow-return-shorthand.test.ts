@@ -1,4 +1,4 @@
-import { convertArrowReturnShorthand } from "../arrow-return-shorthand";
+import { convertArrowReturnShorthand, ARROW_RETURN_NOTICE } from "../arrow-return-shorthand";
 
 describe(convertArrowReturnShorthand, () => {
     test("conversion without arguments", () => {
@@ -10,6 +10,7 @@ describe(convertArrowReturnShorthand, () => {
             rules: [
                 {
                     ruleName: "arrow-body-style",
+                    notices: [ARROW_RETURN_NOTICE],
                 },
             ],
         });
@@ -25,6 +26,7 @@ describe(convertArrowReturnShorthand, () => {
                 {
                     ruleArguments: ["always"],
                     ruleName: "arrow-body-style",
+                    notices: [ARROW_RETURN_NOTICE],
                 },
             ],
         });
