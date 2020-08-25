@@ -34,7 +34,7 @@
         "eslint": "7.7.0",
         "husky": "4.2.5",
         "jest": "26.4.2",
-        "lint-staged": "10.2.11",
+        "lint-staged": "10.2.12",
         "prettier": "2.1.0",
         "strip-ansi": "6.0.0"
     },
