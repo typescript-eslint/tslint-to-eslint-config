@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "chalk": "4.1.0",
-        "commander": "6.0.0",
+        "commander": "6.1.0",
         "eslint-config-prettier": "6.11.0",
         "glob": "7.1.6",
         "strip-json-comments": "3.1.1",
