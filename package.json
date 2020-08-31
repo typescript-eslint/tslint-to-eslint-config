@@ -19,10 +19,10 @@
         "typescript": "4.0.2"
     },
     "devDependencies": {
-        "@babel/core": "7.11.4",
+        "@babel/core": "7.11.5",
         "@babel/plugin-proposal-nullish-coalescing-operator": "7.10.4",
         "@babel/plugin-proposal-optional-chaining": "7.11.0",
-        "@babel/preset-env": "7.11.0",
+        "@babel/preset-env": "7.11.5",
         "@babel/preset-typescript": "7.10.4",
         "@types/eslint-config-prettier": "6.11.0",
         "@types/glob": "7.1.3",
