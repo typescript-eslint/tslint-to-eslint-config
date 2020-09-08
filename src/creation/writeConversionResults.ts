@@ -16,11 +16,11 @@ export const writeConversionResults = async (
     summarizedResults: SummarizedResultsConfiguration,
     originalConfigurations: AllOriginalConfigurations,
 ) => {
-    const plugins = ["@typescript-eslint"];
+    const plugins = new Set([...summarizedResults.plugins, "@typescript-eslint"]);
     const { eslint, tslint } = originalConfigurations;
 
     if (summarizedResults.missing.length !== 0) {
-        plugins.push("@typescript-eslint/tslint");
+        plugins.add("@typescript-eslint/tslint");
     }
 
     const output = removeEmptyMembers({
@@ -33,7 +33,7 @@ export const writeConversionResults = async (
             project: "tsconfig.json",
             sourceType: "module",
         },
-        plugins,
+        plugins: Array.from(plugins),
         rules: formatConvertedRules(summarizedResults, tslint.full),
     });
 
