@@ -4,12 +4,12 @@
 
 1.  CLI usage starts in `bin/tslint-to-eslint-config`, which immediately calls `src/cli/main.ts`.
 2.  CLI settings are parsed and read in `src/cli/runCli.ts`.
-3.  Linter configuration conversion is run by `src/conversion/convertConfig.ts`.
+3.  Linter configuration conversion is run by `src/conversion/convertLintConfig.ts`.
 4.  Editor configuration conversion is run by `src/conversion/convertEditorConfig.ts`.
 
 ## Linter Configuration Conversion
 
-Within `src/conversion/convertConfig.ts`, the following steps occur:
+Within `src/conversion/convertLintConfig.ts`, the following steps occur:
 
 1. Existing configurations are read from disk
 2. TSLint rules are converted into their ESLint configurations

@@ -8,9 +8,9 @@ import { runCli, RunCliDependencies } from "./runCli";
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
 
 const createStubRunCliDependencies = (
-    overrides: Partial<Pick<RunCliDependencies, "convertConfigs">> = {},
+    overrides: Partial<Pick<RunCliDependencies, "configConverters">> = {},
 ) => ({
-    convertConfigs: [
+    configConverters: [
         async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded }),
     ],
     logger: createStubLogger(),
@@ -34,7 +34,7 @@ describe("runCli", () => {
         // Arrange
         const message = "Oh no";
         const dependencies = createStubRunCliDependencies({
-            convertConfigs: [() => Promise.reject(new Error(message))],
+            configConverters: [() => Promise.reject(new Error(message))],
         });
 
         // Act
@@ -51,7 +51,7 @@ describe("runCli", () => {
         // Arrange
         const complaint = "too much unit testing coverage";
         const dependencies = createStubRunCliDependencies({
-            convertConfigs: [
+            configConverters: [
                 () =>
                     Promise.resolve({
                         complaints: [complaint],
@@ -76,7 +76,7 @@ describe("runCli", () => {
         // Arrange
         const error = new Error("too much unit testing coverage");
         const dependencies = createStubRunCliDependencies({
-            convertConfigs: [
+            configConverters: [
                 () =>
                     Promise.resolve({
                         errors: [error],
@@ -104,7 +104,7 @@ describe("runCli", () => {
             new Error("too much branch coverage"),
         ];
         const dependencies = createStubRunCliDependencies({
-            convertConfigs: [
+            configConverters: [
                 () =>
                     Promise.resolve({
                         errors,
@@ -141,7 +141,7 @@ describe("runCli", () => {
     it("default output should be .eslintrc.js", async () => {
         let defaultConfig;
         const dependencies = createStubRunCliDependencies({
-            convertConfigs: [
+            configConverters: [
                 (parsedArgs) => {
                     defaultConfig = parsedArgs.config;
                     return Promise.resolve({
