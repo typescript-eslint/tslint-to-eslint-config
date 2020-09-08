@@ -28,6 +28,7 @@ module.exports = {
         "@typescript-eslint/init-declarations": "off",
         "@typescript-eslint/method-signature-style": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-implicit-any-catch": "off",
         "@typescript-eslint/no-magic-numbers": "off",
         "@typescript-eslint/no-parameter-properties": "off",
         "@typescript-eslint/no-type-alias": "off",

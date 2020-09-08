@@ -44,8 +44,8 @@ export const runCli = async (
         return ResultStatus.Succeeded;
     }
 
-    for (const convertConfig of dependencies.convertConfigs) {
-        const result = await tryConvertConfig(convertConfig, parsedArgv);
+    for (const configConverter of dependencies.convertConfigs) {
+        const result = await tryConvertConfig(configConverter, parsedArgv);
         if (result.status !== ResultStatus.Succeeded) {
             logErrorResult(result, dependencies);
             return result.status;
@@ -57,13 +57,13 @@ export const runCli = async (
 };
 
 const tryConvertConfig = async (
-    config: SansDependencies<typeof convertConfig>,
+    configConverter: SansDependencies<typeof convertConfig>,
     argv: Partial<TSLintToESLintSettings>,
 ): Promise<ResultWithStatus> => {
     let result: ResultWithStatus;
 
     try {
-        result = await config(argv as TSLintToESLintSettings);
+        result = await configConverter(argv as TSLintToESLintSettings);
     } catch (error) {
         result = {
             errors: [error as Error],
