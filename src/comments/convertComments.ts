@@ -1,5 +1,8 @@
+import minimatch from "minimatch";
+
 import { GlobAsync } from "../adapters/globAsync";
 import { SansDependencies } from "../binding";
+import { TypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { ResultStatus, ResultWithDataStatus } from "../types";
 import { separateErrors, uniqueFromSources, isError } from "../utils";
 import { convertFileComments } from "./convertFileComments";
@@ -9,29 +12,48 @@ export type ConvertCommentsDependencies = {
     globAsync: GlobAsync;
 };
 
-const noGlobsResult: ResultWithDataStatus<string[]> = {
-    errors: [new Error("--comments requires file path globs to be passed.")],
-    status: ResultStatus.Failed,
-};
-
 export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     filePathGlobs: true | string | string[] | undefined,
+    typescriptConfiguration?: TypeScriptConfiguration,
 ): Promise<ResultWithDataStatus<string[] | undefined>> => {
+    let fromTypeScriptConfiguration: TypeScriptConfiguration | undefined;
+
+    if (filePathGlobs === true) {
+        if (!typescriptConfiguration) {
+            return {
+                errors: [
+                    new Error(
+                        "--comments indicated to convert files listed in a tsconfig.json, but one was not found on disk or specified by with --typescript.",
+                    ),
+                ],
+                status: ResultStatus.Failed,
+            };
+        }
+
+        filePathGlobs = [
+            ...(typescriptConfiguration.files ?? []),
+            ...(typescriptConfiguration.include ?? []),
+        ];
+        fromTypeScriptConfiguration = typescriptConfiguration;
+    }
+
     if (filePathGlobs === undefined) {
         return {
             data: undefined,
             status: ResultStatus.Succeeded,
         };
     }
-
-    if (filePathGlobs === true) {
-        return noGlobsResult;
-    }
-
     const uniqueFilePathGlobs = uniqueFromSources(filePathGlobs);
     if (uniqueFilePathGlobs.join("") === "") {
-        return noGlobsResult;
+        return {
+            errors: [
+                new Error(
+                    "--comments found no files. Consider passing no globs to it, to default to all TypeScript files.",
+                ),
+            ],
+            status: ResultStatus.Failed,
+        };
     }
 
     const [fileGlobErrors, globbedFilePaths] = separateErrors(
@@ -45,7 +67,13 @@ export const convertComments = async (
     }
 
     const ruleConversionCache = new Map<string, string | undefined>();
-    const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths);
+    const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths).filter(
+        (filePathGlob) =>
+            !fromTypeScriptConfiguration?.exclude?.some((exclude) =>
+                minimatch(filePathGlob, exclude),
+            ),
+    );
+
     const fileFailures = (
         await Promise.all(
             uniqueGlobbedFilePaths.map(async (filePath) =>
