@@ -27,7 +27,7 @@ export const logFailedConversions = (failed: ErrorSummary[], logger: Logger) => 
     logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
     logger.stderr.write(chalk.red(" thrown."));
     logger.stderr.write(chalk.redBright(` ❌${EOL}`));
-    logger.info.write(failed.map((failed) => failed.getSummary()).join("\n\n") + "\n\n");
+    logger.info.write(failed.map((fail) => fail.getSummary()).join("\n\n") + "\n\n");
     logger.stderr.write(chalk.red(`  Check ${logger.debugFileName} for details.${EOL}`));
 };
 

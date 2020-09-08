@@ -20,6 +20,7 @@ module.exports = {
     rules: {
         "@typescript-eslint/require-array-sort-compare": "off",
         "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+        "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/generic-type-naming": "off",
@@ -27,6 +28,7 @@ module.exports = {
         "@typescript-eslint/init-declarations": "off",
         "@typescript-eslint/method-signature-style": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-implicit-any-catch": "off",
         "@typescript-eslint/no-magic-numbers": "off",
         "@typescript-eslint/no-parameter-properties": "off",
         "@typescript-eslint/no-type-alias": "off",
