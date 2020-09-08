@@ -4,12 +4,11 @@ import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
-import { SansDependencies } from "../binding";
-import { convertConfig } from "../conversion/convertConfig";
+import { ConfigConverter } from "../conversion/configConverter";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
 export type RunCliDependencies = {
-    convertConfigs: SansDependencies<typeof convertConfig>[];
+    configConverters: ConfigConverter[];
     logger: Logger;
 };
 
@@ -44,7 +43,7 @@ export const runCli = async (
         return ResultStatus.Succeeded;
     }
 
-    for (const configConverter of dependencies.convertConfigs) {
+    for (const configConverter of dependencies.configConverters) {
         const result = await tryConvertConfig(configConverter, parsedArgv);
         if (result.status !== ResultStatus.Succeeded) {
             logErrorResult(result, dependencies);
@@ -57,7 +56,7 @@ export const runCli = async (
 };
 
 const tryConvertConfig = async (
-    configConverter: SansDependencies<typeof convertConfig>,
+    configConverter: ConfigConverter,
     argv: Partial<TSLintToESLintSettings>,
 ): Promise<ResultWithStatus> => {
     let result: ResultWithStatus;
