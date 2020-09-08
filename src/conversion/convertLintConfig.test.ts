@@ -1,13 +1,13 @@
 import { ResultStatus, FailedResult } from "../types";
-import { convertConfig, ConvertConfigDependencies } from "./convertConfig";
+import { convertLintConfig, ConvertLintConfigDependencies } from "./convertLintConfig";
 
 const stubSettings = {
     config: "./eslintrc.js",
 };
 
 const createStubDependencies = (
-    overrides: Partial<ConvertConfigDependencies> = {},
-): ConvertConfigDependencies => ({
+    overrides: Partial<ConvertLintConfigDependencies> = {},
+): ConvertLintConfigDependencies => ({
     convertComments: jest.fn(),
     convertRules: jest.fn(),
     findOriginalConfigurations: jest.fn().mockResolvedValue({
@@ -40,7 +40,7 @@ const createStubOriginalConfigurationsData = () => ({
     },
 });
 
-describe("convertConfig", () => {
+describe("convertLintConfig", () => {
     it("returns the failure result when finding the original configurations fails", async () => {
         // Arrange
         const findError: FailedResult = {
@@ -52,7 +52,7 @@ describe("convertConfig", () => {
         });
 
         // Act
-        const result = await convertConfig(dependencies, stubSettings);
+        const result = await convertLintConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual(findError);
@@ -66,7 +66,7 @@ describe("convertConfig", () => {
         });
 
         // Act
-        const result = await convertConfig(dependencies, stubSettings);
+        const result = await convertLintConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual({
@@ -86,7 +86,7 @@ describe("convertConfig", () => {
         });
 
         // Act
-        const result = await convertConfig(dependencies, stubSettings);
+        const result = await convertLintConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual(convertCommentsResult);
@@ -102,7 +102,7 @@ describe("convertConfig", () => {
         });
 
         // Act
-        const result = await convertConfig(dependencies, stubSettings);
+        const result = await convertLintConfig(dependencies, stubSettings);
 
         // Assert
         expect(result).toEqual(convertCommentsResult);

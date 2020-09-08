@@ -11,7 +11,7 @@ import {
     ConvertFileCommentsDependencies,
     convertFileComments,
 } from "../comments/convertFileComments";
-import { convertConfig, ConvertConfigDependencies } from "../conversion/convertConfig";
+import { convertLintConfig, ConvertLintConfigDependencies } from "../conversion/convertLintConfig";
 import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
@@ -165,7 +165,7 @@ const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
     ),
 };
 
-const convertConfigDependencies: ConvertConfigDependencies = {
+const convertLintConfigDependencies: ConvertLintConfigDependencies = {
     convertComments: bind(convertComments, convertCommentsDependencies),
     convertRules: bind(convertRules, convertRulesDependencies),
     findOriginalConfigurations: bind(
@@ -180,8 +180,8 @@ const convertConfigDependencies: ConvertConfigDependencies = {
 };
 
 const runCliDependencies: RunCliDependencies = {
-    convertConfigs: [
-        bind(convertConfig, convertConfigDependencies),
+    configConverters: [
+        bind(convertLintConfig, convertLintConfigDependencies),
         bind(convertEditorConfig, convertEditorConfigDependencies),
     ],
     logger: processLogger,

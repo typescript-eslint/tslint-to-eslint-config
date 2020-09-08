@@ -9,7 +9,7 @@ import { reportCommentResults } from "../reporting/reportCommentResults";
 import { convertRules } from "../rules/convertRules";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
 
-export type ConvertConfigDependencies = {
+export type ConvertLintConfigDependencies = {
     convertComments: SansDependencies<typeof convertComments>;
     convertRules: SansDependencies<typeof convertRules>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
@@ -24,8 +24,8 @@ export type ConvertConfigDependencies = {
  * Root-level driver to convert a TSLint configuration to ESLint.
  * @see `Architecture.md` for documentation.
  */
-export const convertConfig = async (
-    dependencies: ConvertConfigDependencies,
+export const convertLintConfig = async (
+    dependencies: ConvertLintConfigDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
     // 1. Existing configurations are read
