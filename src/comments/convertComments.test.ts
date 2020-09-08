@@ -5,7 +5,7 @@ const createStubDependencies = (
     overrides: Partial<ConvertCommentsDependencies> = {},
 ): ConvertCommentsDependencies => ({
     convertFileComments: jest.fn(),
-    globAsync: jest.fn().mockResolvedValue(["src/index.ts"]),
+    globAsync: jest.fn().mockResolvedValue(["src/a.ts", "src/b.ts"]),
     ...overrides,
 });
 
@@ -24,7 +24,7 @@ describe("convertComments", () => {
         });
     });
 
-    it("returns an error when --comments is given as a boolean value", async () => {
+    it("returns an error when --comments is given as a boolean value without a TypeScript configuration", async () => {
         // Arrange
         const dependencies = createStubDependencies();
 
@@ -35,6 +35,57 @@ describe("convertComments", () => {
         expect(result).toEqual({
             errors: expect.arrayContaining([expect.any(Error)]),
             status: ResultStatus.Failed,
+        });
+    });
+
+    it("includes TypeScript files when --comments is given as a boolean value with a TypeScript files configuration", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            globAsync: jest.fn().mockResolvedValue(["src/a.ts"]),
+        });
+
+        // Act
+        const result = await convertComments(dependencies, true, {
+            files: ["src/a.ts"],
+        });
+
+        // Assert
+        expect(result).toEqual({
+            data: ["src/a.ts"],
+            status: ResultStatus.Succeeded,
+        });
+    });
+
+    it("includes TypeScript inclusions when --comments is given as a boolean value with a TypeScript include configuration", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+
+        // Act
+        const result = await convertComments(dependencies, true, {
+            include: ["src/*.ts"],
+        });
+
+        // Assert
+        expect(result).toEqual({
+            data: ["src/a.ts", "src/b.ts"],
+            status: ResultStatus.Succeeded,
+        });
+    });
+
+    it("excludes TypeScript exclusions when --comments is given as a boolean value with a TypeScript excludes configuration", async () => {
+        // Arrange
+        const dependencies = createStubDependencies();
+
+        // Act
+        const result = await convertComments(dependencies, true, {
+            exclude: ["src/b.ts"],
+            include: ["src/*.ts"],
+        });
+
+        // Assert
+        expect(result).toEqual({
+            data: ["src/a.ts"],
+            status: ResultStatus.Succeeded,
         });
     });
 
@@ -95,7 +146,7 @@ describe("convertComments", () => {
 
         // Assert
         expect(result).toEqual({
-            data: ["src/index.ts"],
+            data: ["src/a.ts", "src/b.ts"],
             status: ResultStatus.Succeeded,
         });
     });

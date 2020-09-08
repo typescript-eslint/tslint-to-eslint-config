@@ -8,6 +8,9 @@ export type TypeScriptConfiguration = {
         lib?: string[];
         target?: string;
     };
+    exclude?: string[];
+    files?: string[];
+    include?: string[];
 };
 
 const defaultTypeScriptConfiguration = {
@@ -29,6 +32,7 @@ export const findTypeScriptConfiguration = async (
     return rawConfiguration instanceof Error
         ? rawConfiguration
         : {
+              ...rawConfiguration,
               compilerOptions: {
                   ...defaultTypeScriptConfiguration.compilerOptions,
                   ...rawConfiguration.compilerOptions,

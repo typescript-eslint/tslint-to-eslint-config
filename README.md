@@ -54,13 +54,21 @@ Each of these flags is optional:
 #### `comments`
 
 ```shell
-npx tslint-to-eslint-config --comments 'src/**/*.ts'
+npx tslint-to-eslint-config --comments
 ```
 
 _Default: none_
 
-File glob path(s) to convert [TSLint rule flags](https://palantir.github.io/tslint/usage/rule-flags) to [ESLint inline comments](https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments) in.
+Indicates to convert from [TSLint rule flags](https://palantir.github.io/tslint/usage/rule-flags) to [ESLint inline comments](https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments).
 Comments such as `// tslint:disable: tslint-rule-name` will be converted to equivalents like `// eslint-disable eslint-rule-name`.
+
+If passed without arguments, respects the `excludes`, `files`, and `includes` in your TypeScript configuration.
+
+Alternately, you can specify which files to convert comments in as globs:
+
+```shell
+npx tslint-to-eslint-config --comments 'src/**/*.ts'
+```
 
 #### `config`
 

@@ -61,7 +61,10 @@ export const convertLintConfig = async (
     }
 
     // 5. Files to transform comments in have source text rewritten using the same rule conversion logic
-    const commentsResult = await dependencies.convertComments(settings.comments);
+    const commentsResult = await dependencies.convertComments(
+        settings.comments,
+        originalConfigurations.data.typescript,
+    );
 
     // 6. A summary of the results is printed to the user's console
     await dependencies.reportConversionResults(settings.config, summarizedConfiguration);
