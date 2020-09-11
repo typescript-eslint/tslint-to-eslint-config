@@ -10,6 +10,7 @@ export const createEmptyConversionResults = (
     failed: [],
     missing: [],
     plugins: new Set(),
+    ruleEquivalents: new Map(),
     ...overrides,
 });
 

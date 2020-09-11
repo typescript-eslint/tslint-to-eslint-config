@@ -60,9 +60,10 @@ export const convertLintConfig = async (
         };
     }
 
-    // 5. Files to transform comments in have source text rewritten using the same rule conversion logic
+    // 5. Files to transform comments in have source text rewritten using the cached rule conversion results
     const commentsResult = await dependencies.convertComments(
         settings.comments,
+        ruleConversionResults.ruleEquivalents,
         originalConfigurations.data.typescript,
     );
 

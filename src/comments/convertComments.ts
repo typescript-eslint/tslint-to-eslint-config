@@ -15,6 +15,7 @@ export type ConvertCommentsDependencies = {
 export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     filePathGlobs: true | string | string[] | undefined,
+    ruleEquivalents: Map<string, string[]>,
     typescriptConfiguration?: TypeScriptConfiguration,
 ): Promise<ResultWithDataStatus<string[] | undefined>> => {
     let fromTypeScriptConfiguration: TypeScriptConfiguration | undefined;
@@ -66,7 +67,7 @@ export const convertComments = async (
         };
     }
 
-    const ruleConversionCache = new Map<string, string | undefined>();
+    const ruleCommentsCache = new Map<string, string[]>();
     const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths).filter(
         (filePathGlob) =>
             !fromTypeScriptConfiguration?.exclude?.some((exclude) =>
@@ -77,7 +78,7 @@ export const convertComments = async (
     const fileFailures = (
         await Promise.all(
             uniqueGlobbedFilePaths.map(async (filePath) =>
-                dependencies.convertFileComments(filePath, ruleConversionCache),
+                dependencies.convertFileComments(filePath, ruleCommentsCache, ruleEquivalents),
             ),
         )
     ).filter(isError);

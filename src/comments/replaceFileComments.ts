@@ -9,23 +9,31 @@ export const replaceFileComments = (
     content: string,
     comments: FileComment[],
     converters: Map<string, RuleConverter>,
-    ruleConversionCache: Map<string, string | undefined>,
+    ruleCommentsCache: Map<string, string[]>,
+    ruleEquivalents: Map<string, string[]>,
 ) => {
     const getNewRuleLists = (ruleName: string) => {
-        if (ruleConversionCache.has(ruleName)) {
-            return ruleConversionCache.get(ruleName);
+        const cached = ruleEquivalents.get(ruleName) ?? ruleCommentsCache.get(ruleName);
+        if (cached !== undefined) {
+            return cached;
         }
 
         const converter = converters.get(ruleName);
         if (converter === undefined) {
-            ruleConversionCache.set(ruleName, undefined);
+            ruleCommentsCache.set(ruleName, []);
             return undefined;
         }
 
         const converted = converter({ ruleArguments: [] });
-        return converted instanceof ConversionError
-            ? undefined
-            : converted.rules.map((conversion) => conversion.ruleName).join(", ");
+        if (converted instanceof ConversionError) {
+            return undefined;
+        }
+
+        const equivalents = converted.rules.map((conversion) => conversion.ruleName);
+
+        ruleCommentsCache.set(ruleName, equivalents);
+
+        return equivalents.join(", ");
     };
 
     for (const comment of [...comments].reverse()) {
