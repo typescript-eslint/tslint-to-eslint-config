@@ -4,13 +4,16 @@ import { convertComments, ConvertCommentsDependencies } from "./convertComments"
 const createStubDependencies = (
     overrides: Partial<ConvertCommentsDependencies> = {},
 ): ConvertCommentsDependencies => ({
+    collectCommentFileNames: async () => ({
+        include: ["a.ts"],
+    }),
     convertFileComments: jest.fn(),
-    globAsync: jest.fn().mockResolvedValue(["src/a.ts", "src/b.ts"]),
+    globAsync: jest.fn().mockResolvedValue(["a.ts", "b.ts"]),
     ...overrides,
 });
 
 describe("convertComments", () => {
-    it("returns an empty result when --comments is not provided", async () => {
+    it("returns an empty result when filePathGlobs is undefined", async () => {
         // Arrange
         const dependencies = createStubDependencies();
 
@@ -24,81 +27,19 @@ describe("convertComments", () => {
         });
     });
 
-    it("returns an error when --comments is given as a boolean value without a TypeScript configuration", async () => {
+    it("returns the failure result when collectCommentFileNames fails", async () => {
         // Arrange
-        const dependencies = createStubDependencies();
+        const error = new Error("Failure!");
+        const dependencies = createStubDependencies({
+            collectCommentFileNames: async () => error,
+        });
 
         // Act
         const result = await convertComments(dependencies, true);
 
         // Assert
         expect(result).toEqual({
-            errors: expect.arrayContaining([expect.any(Error)]),
-            status: ResultStatus.Failed,
-        });
-    });
-
-    it("includes TypeScript files when --comments is given as a boolean value with a TypeScript files configuration", async () => {
-        // Arrange
-        const dependencies = createStubDependencies({
-            globAsync: jest.fn().mockResolvedValue(["src/a.ts"]),
-        });
-
-        // Act
-        const result = await convertComments(dependencies, true, {
-            files: ["src/a.ts"],
-        });
-
-        // Assert
-        expect(result).toEqual({
-            data: ["src/a.ts"],
-            status: ResultStatus.Succeeded,
-        });
-    });
-
-    it("includes TypeScript inclusions when --comments is given as a boolean value with a TypeScript include configuration", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-
-        // Act
-        const result = await convertComments(dependencies, true, {
-            include: ["src/*.ts"],
-        });
-
-        // Assert
-        expect(result).toEqual({
-            data: ["src/a.ts", "src/b.ts"],
-            status: ResultStatus.Succeeded,
-        });
-    });
-
-    it("excludes TypeScript exclusions when --comments is given as a boolean value with a TypeScript excludes configuration", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-
-        // Act
-        const result = await convertComments(dependencies, true, {
-            exclude: ["src/b.ts"],
-            include: ["src/*.ts"],
-        });
-
-        // Assert
-        expect(result).toEqual({
-            data: ["src/a.ts"],
-            status: ResultStatus.Succeeded,
-        });
-    });
-
-    it("returns an error when there are no file path globs", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-
-        // Act
-        const result = await convertComments(dependencies, []);
-
-        // Assert
-        expect(result).toEqual({
-            errors: expect.arrayContaining([expect.any(Error)]),
+            errors: [error],
             status: ResultStatus.Failed,
         });
     });
@@ -120,9 +61,48 @@ describe("convertComments", () => {
         });
     });
 
+    it("returns an error when there are no resultant file paths", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            collectCommentFileNames: async () => ({
+                include: [],
+            }),
+            globAsync: jest.fn().mockResolvedValueOnce([]),
+        });
+
+        // Act
+        const result = await convertComments(dependencies, []);
+
+        // Assert
+        expect(result).toEqual({
+            errors: expect.arrayContaining([expect.any(Error)]),
+            status: ResultStatus.Failed,
+        });
+    });
+
+    it("returns an error when there all globbed file paths are excluded", async () => {
+        // Arrange
+        const dependencies = createStubDependencies({
+            collectCommentFileNames: async () => ({
+                exclude: ["*.ts"],
+                include: ["a.ts"],
+            }),
+            globAsync: jest.fn().mockResolvedValueOnce(["a.ts"]),
+        });
+
+        // Act
+        const result = await convertComments(dependencies, []);
+
+        // Assert
+        expect(result).toEqual({
+            errors: expect.arrayContaining([expect.any(Error)]),
+            status: ResultStatus.Failed,
+        });
+    });
+
     it("returns the failure result when a file conversion fails", async () => {
         // Arrange
-        const fileConversionError = new Error();
+        const fileConversionError = new Error("Failure!");
         const dependencies = createStubDependencies({
             convertFileComments: jest.fn().mockResolvedValueOnce(fileConversionError),
         });
@@ -146,7 +126,7 @@ describe("convertComments", () => {
 
         // Assert
         expect(result).toEqual({
-            data: ["src/a.ts", "src/b.ts"],
+            data: ["a.ts", "b.ts"],
             status: ResultStatus.Succeeded,
         });
     });
