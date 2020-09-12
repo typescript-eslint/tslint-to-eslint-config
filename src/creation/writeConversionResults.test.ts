@@ -60,6 +60,7 @@ describe("writeConversionResults", () => {
                     ruleSeverity: "error",
                 },
             ],
+            plugins: new Set(["eslint-plugin-example"]),
         });
         const fileSystem = { writeFile: jest.fn().mockReturnValue(Promise.resolve()) };
 
@@ -85,7 +86,11 @@ describe("writeConversionResults", () => {
                     project: "tsconfig.json",
                     sourceType: "module",
                 },
-                plugins: ["@typescript-eslint", "@typescript-eslint/tslint"],
+                plugins: [
+                    "eslint-plugin-example",
+                    "@typescript-eslint",
+                    "@typescript-eslint/tslint",
+                ],
                 rules: {
                     "@typescript-eslint/tslint/config": [
                         "error",
