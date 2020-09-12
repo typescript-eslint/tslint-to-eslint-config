@@ -66,6 +66,7 @@ export type SucceededResult = {
     readonly status: ResultStatus.Succeeded;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export type SucceededDataResult<Data> = Data extends void
     ? {
           readonly status: ResultStatus.Succeeded;
