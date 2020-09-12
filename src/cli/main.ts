@@ -6,36 +6,6 @@ import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
-import { convertComments, ConvertCommentsDependencies } from "../comments/convertComments";
-import {
-    ConvertFileCommentsDependencies,
-    convertFileComments,
-} from "../comments/convertFileComments";
-import { convertLintConfig, ConvertLintConfigDependencies } from "../conversion/convertLintConfig";
-import {
-    convertEditorConfig,
-    ConvertEditorConfigDependencies,
-} from "../conversion/convertEditorConfig";
-import { addPrettierExtensions } from "../creation/summarization/prettier/addPrettierExtensions";
-import { removeExtendsDuplicatedRules } from "../creation/pruning/removeExtendsDuplicatedRules";
-import {
-    retrieveExtendsValues,
-    RetrieveExtendsValuesDependencies,
-} from "../creation/summarization/retrieveExtendsValues";
-import {
-    summarizePackageRules,
-    SummarizePackageRulesDependencies,
-} from "../creation/summarization/summarizePackageRules";
-import {
-    writeConversionResults,
-    WriteConversionResultsDependencies,
-} from "../creation/writeConversionResults";
-import { writeConversionResults as writeEditorConfigConversionResults } from "../creation/writeEditorConfigConversionResults";
-import {
-    convertEditorSettings,
-    ConvertEditorSettingsDependencies,
-} from "../editorSettings/convertEditorSettings";
-import { editorSettingsConverters } from "../editorSettings/editorSettingsConverters";
 import {
     findEditorConfiguration,
     FindEditorConfigurationDependencies,
@@ -51,40 +21,84 @@ import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguratio
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 import {
-    choosePackageManager,
-    ChoosePackageManagerDependencies,
-} from "../reporting/packages/choosePackageManager";
-import {
-    reportCommentResults,
     ReportCommentResultsDependencies,
-} from "../reporting/reportCommentResults";
+    reportCommentResults,
+} from "../converters/comments/reporting/reportCommentResults";
 import {
-    logMissingPackages,
-    LogMissingPackagesDependencies,
-} from "../reporting/packages/logMissingPackages";
+    ConvertEditorConfigDependencies,
+    convertEditorConfig,
+} from "../converters/editorConfigs/convertEditorConfig";
 import {
-    reportConversionResults,
+    ConvertEditorSettingsDependencies,
+    convertEditorSettings,
+} from "../converters/editorConfigs/convertEditorSettings";
+import { editorSettingsConverters } from "../converters/editorConfigs/editorSettingsConverters";
+import { reportEditorSettingConversionResults } from "../converters/editorConfigs/reporting/reportEditorSettingConversionResults";
+import {
+    ConvertLintConfigDependencies,
+    convertLintConfig,
+} from "../converters/lintConfigs/convertLintConfig";
+import {
     ReportConversionResultsDependencies,
-} from "../reporting/reportConversionResults";
-import { reportEditorSettingConversionResults } from "../reporting/reportEditorSettingConversionResults";
-import { convertRules, ConvertRulesDependencies } from "../rules/convertRules";
-import { mergers } from "../rules/mergers";
-import { rulesConverters } from "../rules/rulesConverters";
+    reportConfigConversionResults,
+} from "../converters/lintConfigs/reporting/reportConfigConversionResults";
+import {
+    WriteConversionResultsDependencies,
+    writeConfigConversionResults,
+} from "../converters/lintConfigs/writeConfigConversionResults";
+import {
+    ConvertCommentsDependencies,
+    convertComments,
+} from "../converters/comments/convertComments";
+import {
+    ConvertFileCommentsDependencies,
+    convertFileComments,
+} from "../converters/comments/convertFileComments";
+import {
+    ConvertRulesDependencies,
+    convertRules,
+} from "../converters/lintConfigs/rules/convertRules";
+import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters";
+import {
+    RetrieveExtendsValuesDependencies,
+    retrieveExtendsValues,
+} from "../converters/lintConfigs/summarization/retrieveExtendsValues";
+import {
+    SummarizePackageRulesDependencies,
+    summarizePackageRules,
+} from "../converters/lintConfigs/summarization/summarizePackageRules";
+import {
+    ChoosePackageManagerDependencies,
+    choosePackageManager,
+} from "../converters/lintConfigs/reporting/packages/choosePackageManager";
+import {
+    LogMissingPackagesDependencies,
+    logMissingPackages,
+} from "../converters/lintConfigs/reporting/packages/logMissingPackages";
 import { runCli, RunCliDependencies } from "./runCli";
+import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
+import { writeEditorConfigConversionResults } from "../converters/lintConfigs/writeEditorConfigConversionResults";
+import { addPrettierExtensions } from "../converters/lintConfigs/summarization/prettier/addPrettierExtensions";
+import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
-    converters: rulesConverters,
+    converters: ruleConverters,
     fileSystem: fsFileSystem,
+};
+
+const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
+    logger: processLogger,
 };
 
 const convertCommentsDependencies: ConvertCommentsDependencies = {
     convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
     globAsync,
+    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
 };
 
 const convertRulesDependencies: ConvertRulesDependencies = {
-    converters: rulesConverters,
-    mergers,
+    ruleConverters,
+    ruleMergers,
 };
 
 const convertEditorSettingsDependencies: ConvertEditorSettingsDependencies = {
@@ -115,10 +129,6 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
     mergeLintConfigurations,
-};
-
-const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
-    logger: processLogger,
 };
 
 const choosePackageManagerDependencies: ChoosePackageManagerDependencies = {
@@ -155,35 +165,40 @@ const reportEditorSettingConversionResultsDependencies = {
 const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
     findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
     convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
-    reportConversionResults: bind(
+    reportEditorSettingConversionResults: bind(
         reportEditorSettingConversionResults,
         reportEditorSettingConversionResultsDependencies,
     ),
-    writeConversionResults: bind(
+    writeEditorConfigConversionResults: bind(
         writeEditorConfigConversionResults,
         writeConversionResultsDependencies,
     ),
 };
 
 const convertLintConfigDependencies: ConvertLintConfigDependencies = {
-    convertComments: bind(convertComments, convertCommentsDependencies),
     convertRules: bind(convertRules, convertRulesDependencies),
+    logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
+    reportConfigConversionResults: bind(
+        reportConfigConversionResults,
+        reportConversionResultsDependencies,
+    ),
+    summarizePackageRules: bind(summarizePackageRules, summarizePackageRulesDependencies),
+    writeConfigConversionResults: bind(
+        writeConfigConversionResults,
+        writeConversionResultsDependencies,
+    ),
+};
+
+const runCliDependencies: RunCliDependencies = {
+    converters: [
+        bind(convertLintConfig, convertLintConfigDependencies),
+        bind(convertEditorConfig, convertEditorConfigDependencies),
+        bind(convertComments, convertCommentsDependencies),
+    ],
     findOriginalConfigurations: bind(
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
     ),
-    logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
-    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
-    reportConversionResults: bind(reportConversionResults, reportConversionResultsDependencies),
-    summarizePackageRules: bind(summarizePackageRules, summarizePackageRulesDependencies),
-    writeConversionResults: bind(writeConversionResults, writeConversionResultsDependencies),
-};
-
-const runCliDependencies: RunCliDependencies = {
-    configConverters: [
-        bind(convertLintConfig, convertLintConfigDependencies),
-        bind(convertEditorConfig, convertEditorConfigDependencies),
-    ],
     logger: processLogger,
 };
 

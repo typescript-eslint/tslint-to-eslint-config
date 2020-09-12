@@ -1,7 +1,7 @@
 import { EOL } from "os";
 
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
 import { ConversionError } from "./conversionError";
-import { TSLintRuleOptions } from "../rules/types";
 
 describe(ConversionError, () => {
     describe("getSummary", () => {

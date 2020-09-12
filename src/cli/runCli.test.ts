@@ -2,19 +2,20 @@ import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
+import { createStubOriginalConfigurationsData } from "../settings.stubs";
 import { ResultStatus, TSLintToESLintResult } from "../types";
 import { runCli, RunCliDependencies } from "./runCli";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
 
-const createStubRunCliDependencies = (
-    overrides: Partial<Pick<RunCliDependencies, "configConverters">> = {},
-) => ({
-    configConverters: [
-        async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded }),
-    ],
-    logger: createStubLogger(),
+const createStubRunCliDependencies = (overrides: Partial<RunCliDependencies> = {}) => ({
+    converters: [async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded })],
+    findOriginalConfigurations: jest.fn().mockResolvedValue({
+        data: createStubOriginalConfigurationsData(),
+        status: ResultStatus.Succeeded,
+    }),
     ...overrides,
+    logger: createStubLogger(),
 });
 
 describe("runCli", () => {
@@ -30,11 +31,31 @@ describe("runCli", () => {
         expect(dependencies.logger.stdout.write).toHaveBeenLastCalledWith(`${version}${EOL}`);
     });
 
-    it("logs an error to stderr when convertConfig throws an error", async () => {
+    it("logs an error when finding original config data fails", async () => {
         // Arrange
         const message = "Oh no";
         const dependencies = createStubRunCliDependencies({
-            configConverters: [() => Promise.reject(new Error(message))],
+            findOriginalConfigurations: jest.fn().mockResolvedValue({
+                errors: [new Error(message)],
+                status: ResultStatus.Failed,
+            }),
+        });
+
+        // Act
+        const status = await runCli(dependencies, createStubArgv());
+
+        // Assert
+        expect(dependencies.logger.stderr.write).toHaveBeenLastCalledWith(
+            expect.stringMatching(message),
+        );
+        expect(status).toBe(ResultStatus.Failed);
+    });
+
+    it("logs an error when a converter fails", async () => {
+        // Arrange
+        const message = "Oh no";
+        const dependencies = createStubRunCliDependencies({
+            converters: [() => Promise.reject(new Error(message))],
         });
 
         // Act
@@ -51,7 +72,7 @@ describe("runCli", () => {
         // Arrange
         const complaint = "too much unit testing coverage";
         const dependencies = createStubRunCliDependencies({
-            configConverters: [
+            converters: [
                 () =>
                     Promise.resolve({
                         complaints: [complaint],
@@ -76,7 +97,7 @@ describe("runCli", () => {
         // Arrange
         const error = new Error("too much unit testing coverage");
         const dependencies = createStubRunCliDependencies({
-            configConverters: [
+            converters: [
                 () =>
                     Promise.resolve({
                         errors: [error],
@@ -104,7 +125,7 @@ describe("runCli", () => {
             new Error("too much branch coverage"),
         ];
         const dependencies = createStubRunCliDependencies({
-            configConverters: [
+            converters: [
                 () =>
                     Promise.resolve({
                         errors,
@@ -141,7 +162,7 @@ describe("runCli", () => {
     it("default output should be .eslintrc.js", async () => {
         let defaultConfig;
         const dependencies = createStubRunCliDependencies({
-            configConverters: [
+            converters: [
                 (parsedArgs) => {
                     defaultConfig = parsedArgs.config;
                     return Promise.resolve({
