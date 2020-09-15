@@ -1,4 +1,4 @@
-import { RuleMerger } from "../merger";
+import { RuleMerger } from "../ruleMerger";
 
 export const mergeBanTypes: RuleMerger = (existingOptions, newOptions) => {
     if (existingOptions === undefined && newOptions === undefined) {

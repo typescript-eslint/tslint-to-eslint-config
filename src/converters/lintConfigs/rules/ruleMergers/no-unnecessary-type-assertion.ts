@@ -1,4 +1,4 @@
-import { RuleMerger } from "../merger";
+import { RuleMerger } from "../ruleMerger";
 
 export const mergeNoUnnecessaryTypeAssertion: RuleMerger = (existingOptions, newOptions) => {
     if (existingOptions === undefined && newOptions === undefined) {

@@ -4,7 +4,7 @@ import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration
 import { convertRule } from "./convertRule";
 import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity";
 import { formatRawTslintRule } from "./formats/formatRawTslintRule";
-import { RuleMerger } from "./merger";
+import { RuleMerger } from "./ruleMerger";
 import { RuleConverter } from "./ruleConverter";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 

@@ -1,4 +1,4 @@
-import { RuleMerger } from "../merger";
+import { RuleMerger } from "../ruleMerger";
 
 export const mergeNoEval: RuleMerger = (existingOptions, newOptions) => {
     if (existingOptions === undefined && newOptions === undefined) {

@@ -1,4 +1,4 @@
-import { RuleMerger } from "../merger";
+import { RuleMerger } from "../ruleMerger";
 
 const ESLINT_INDENT_DEFAULT = 4;
 
