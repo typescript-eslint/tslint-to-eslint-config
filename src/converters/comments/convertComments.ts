@@ -2,14 +2,15 @@ import minimatch from "minimatch";
 
 import { GlobAsync } from "../../adapters/globAsync";
 import { SansDependencies } from "../../binding";
+import { collectCommentFileNames } from "../../comments/collectCommentFileNames";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { TypeScriptConfiguration } from "../../input/findTypeScriptConfiguration";
 import { ResultWithDataStatus, ResultStatus, TSLintToESLintSettings } from "../../types";
 import { uniqueFromSources, separateErrors, isError } from "../../utils";
 import { convertFileComments } from "./convertFileComments";
 import { reportCommentResults } from "./reporting/reportCommentResults";
 
 export type ConvertCommentsDependencies = {
+    collectCommentFileNames: SansDependencies<typeof collectCommentFileNames>;
     convertFileComments: SansDependencies<typeof convertFileComments>;
     globAsync: GlobAsync;
     reportCommentResults: SansDependencies<typeof reportCommentResults>;
@@ -28,26 +29,28 @@ export const convertComments = async (
         };
     }
 
-    let fromTypeScript: TypeScriptConfiguration | undefined;
+    const commentFileNames = await dependencies.collectCommentFileNames(comments, typescript);
 
-    if (comments === true) {
-        if (!typescript) {
-            return {
-                errors: [
-                    new Error(
-                        "--comments indicated to convert files listed in a tsconfig.json, but one was not found on disk or specified by with --typescript.",
-                    ),
-                ],
-                status: ResultStatus.Failed,
-            };
-        }
-
-        comments = [...(typescript.files ?? []), ...(typescript.include ?? [])];
-        fromTypeScript = typescript;
+    if (commentFileNames instanceof Error) {
+        return {
+            errors: [commentFileNames],
+            status: ResultStatus.Failed,
+        };
     }
 
-    const uniqueFilePathGlobs = uniqueFromSources(comments);
-    if (uniqueFilePathGlobs.join("") === "") {
+    const { exclude, include } = commentFileNames;
+    const [fileGlobErrors, globbedFilePaths] = separateErrors(
+        await Promise.all(include.map(dependencies.globAsync)),
+    );
+
+    if (fileGlobErrors.length !== 0) {
+        return {
+            errors: fileGlobErrors,
+            status: ResultStatus.Failed,
+        };
+    }
+
+    if (globbedFilePaths.join("") === "") {
         return {
             errors: [
                 new Error(
@@ -58,22 +61,22 @@ export const convertComments = async (
         };
     }
 
-    const [fileGlobErrors, globbedFilePaths] = separateErrors(
-        await Promise.all(uniqueFilePathGlobs.map(dependencies.globAsync)),
+    const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths).filter(
+        (filePathGlob) => !exclude?.some((exclusion) => minimatch(filePathGlob, exclusion)),
     );
-    if (fileGlobErrors.length !== 0) {
+
+    if (uniqueGlobbedFilePaths.join("") === "") {
         return {
-            errors: fileGlobErrors,
+            errors: [
+                new Error(
+                    `All files passed to --comments were excluded. Consider removing 'exclude' from your TypeScript configuration.`,
+                ),
+            ],
             status: ResultStatus.Failed,
         };
     }
 
     const ruleConversionCache = new Map<string, string | undefined>();
-    const uniqueGlobbedFilePaths = uniqueFromSources(...globbedFilePaths).filter(
-        (filePathGlob) =>
-            !fromTypeScript?.exclude?.some((exclude) => minimatch(filePathGlob, exclude)),
-    );
-
     const fileFailures = (
         await Promise.all(
             uniqueGlobbedFilePaths.map(async (filePath) =>
@@ -91,6 +94,7 @@ export const convertComments = async (
     dependencies.reportCommentResults(uniqueGlobbedFilePaths);
 
     return {
+        data: uniqueGlobbedFilePaths,
         status: ResultStatus.Succeeded,
     };
 };

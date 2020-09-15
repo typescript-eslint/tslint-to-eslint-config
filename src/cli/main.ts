@@ -80,6 +80,10 @@ import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
 import { writeEditorConfigConversionResults } from "../converters/lintConfigs/writeEditorConfigConversionResults";
 import { addPrettierExtensions } from "../converters/lintConfigs/summarization/prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
+import {
+    collectCommentFileNames,
+    CollectCommentFileNamesDependencies,
+} from "../comments/collectCommentFileNames";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
@@ -88,12 +92,6 @@ const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
 
 const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
     logger: processLogger,
-};
-
-const convertCommentsDependencies: ConvertCommentsDependencies = {
-    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
-    globAsync,
-    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
 };
 
 const convertRulesDependencies: ConvertRulesDependencies = {
@@ -129,6 +127,17 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
     mergeLintConfigurations,
+};
+
+const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies = {
+    findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
+};
+
+const convertCommentsDependencies: ConvertCommentsDependencies = {
+    collectCommentFileNames: bind(collectCommentFileNames, collectCommentFileNamesDependencies),
+    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
+    globAsync,
+    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
 };
 
 const choosePackageManagerDependencies: ChoosePackageManagerDependencies = {

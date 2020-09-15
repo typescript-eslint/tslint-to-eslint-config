@@ -42,7 +42,7 @@ We **strongly** advise reading [docs/FAQs.md](./docs/FAQs.md) before planning yo
 
 Each of these flags is optional:
 
--   **[`comments`](#comments)**: File glob path(s) to convert TSLint rule flags to ESLint within.
+-   **[`comments`](#comments)**: TypeScript configuration or file glob path(s) to convert TSLint rule flags to ESLint within.
 -   **[`config`](#config)**: Path to print the generated ESLint configuration file to.
 -   **[`editor`](#editor)**: Path to an editor configuration file to convert linter settings within.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
@@ -64,7 +64,13 @@ Comments such as `// tslint:disable: tslint-rule-name` will be converted to equi
 
 If passed without arguments, respects the `excludes`, `files`, and `includes` in your TypeScript configuration.
 
-Alternately, you can specify which files to convert comments in as globs:
+If passed a single file path ending with `.json`, that is treated as a TypeScript configuration file describing with files to convert.
+
+```shell
+npx tslint-to-eslint-config --comments tsconfig.json
+```
+
+If passed any other arguments, those are treated as glob paths for file paths to convert:
 
 ```shell
 npx tslint-to-eslint-config --comments 'src/**/*.ts'
