@@ -6,6 +6,10 @@ import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
+import {
+    collectCommentFileNames,
+    CollectCommentFileNamesDependencies,
+} from "../comments/collectCommentFileNames";
 import { convertComments, ConvertCommentsDependencies } from "../comments/convertComments";
 import {
     ConvertFileCommentsDependencies,
@@ -72,16 +76,6 @@ import { mergers } from "../rules/mergers";
 import { rulesConverters } from "../rules/rulesConverters";
 import { runCli, RunCliDependencies } from "./runCli";
 
-const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
-    converters: rulesConverters,
-    fileSystem: fsFileSystem,
-};
-
-const convertCommentsDependencies: ConvertCommentsDependencies = {
-    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
-    globAsync,
-};
-
 const convertRulesDependencies: ConvertRulesDependencies = {
     converters: rulesConverters,
     mergers,
@@ -115,6 +109,21 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
     mergeLintConfigurations,
+};
+
+const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
+    converters: rulesConverters,
+    fileSystem: fsFileSystem,
+};
+
+const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies = {
+    findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
+};
+
+const convertCommentsDependencies: ConvertCommentsDependencies = {
+    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
+    collectCommentFileNames: bind(collectCommentFileNames, collectCommentFileNamesDependencies),
+    globAsync,
 };
 
 const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
