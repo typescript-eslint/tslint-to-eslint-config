@@ -53,7 +53,7 @@ describe(convertIndent, () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/indent",
-                    ruleArguments: ["tabs"],
+                    ruleArguments: ["tab"],
                 },
             ],
         });

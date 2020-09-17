@@ -4,7 +4,7 @@ export const convertIndent: RuleConverter = (tslintRule) => {
     let indentSize: number | string = 4; // @typescript-eslint/indent default
 
     if (tslintRule.ruleArguments[0] === "tabs") {
-        indentSize = "tabs";
+        indentSize = "tab";
     } else if (tslintRule.ruleArguments[1] === 2) {
         indentSize = 2;
     }
