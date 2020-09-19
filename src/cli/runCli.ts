@@ -69,10 +69,11 @@ const tryConvertConfig = async (
     argv: TSLintToESLintSettings,
     originalConfigurations: AllOriginalConfigurations,
 ): Promise<ResultWithStatus> => {
+    const ruleEquivalents = new Map<string, string[]>();
     let result: ResultWithStatus;
 
     try {
-        result = await converter(argv, originalConfigurations);
+        result = await converter(argv, originalConfigurations, ruleEquivalents);
     } catch (error) {
         result = {
             errors: [error as Error],

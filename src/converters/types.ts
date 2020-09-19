@@ -7,4 +7,5 @@ import { ResultWithStatus, TSLintToESLintSettings } from "../types";
 export type Converter = (
     settings: TSLintToESLintSettings,
     originalConfigurations: AllOriginalConfigurations,
+    ruleEquivalents: Map<string, string[]>,
 ) => Promise<ResultWithStatus>;

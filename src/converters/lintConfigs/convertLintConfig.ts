@@ -23,9 +23,11 @@ export const convertLintConfig = async (
     dependencies: ConvertLintConfigDependencies,
     settings: TSLintToESLintSettings,
     originalConfigurations: AllOriginalConfigurations,
+    ruleEquivalents: Map<string, string[]>,
 ): Promise<ResultWithStatus> => {
     const ruleConversionResults = dependencies.convertRules(
         originalConfigurations.tslint.full.rules,
+        ruleEquivalents,
     );
 
     const summarizedConfiguration = await dependencies.summarizePackageRules(

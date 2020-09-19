@@ -15,6 +15,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             undefined,
+            new Map(),
         );
 
         // Assert
@@ -31,6 +32,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -45,6 +47,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -61,6 +64,7 @@ describe("convertRules", () => {
         const { failed } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -79,11 +83,13 @@ describe("convertRules", () => {
         const { tslintRule, converters, mergers } = setupConversionEnvironment({
             conversionResult,
         });
+        const ruleEquivalents = new Map<string, string[]>();
 
         // Act
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            ruleEquivalents,
         );
 
         // Assert
@@ -98,6 +104,7 @@ describe("convertRules", () => {
                 ],
             ]),
         );
+        expect(ruleEquivalents).toEqual(new Map([["tslint-rule-a", ["eslint-rule-a"]]]));
     });
 
     it("reports a failure when two outputs exist for a converted rule without a merger", () => {
@@ -120,13 +127,14 @@ describe("convertRules", () => {
         const { failed } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
         expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
     });
 
-    it("merges rule arguments two outputs exist for a converted rule with a merger", () => {
+    it("merges rule arguments when two outputs exist for a converted rule with a merger", () => {
         // Arrange
         const conversionResult = {
             rules: [
@@ -147,6 +155,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -188,6 +197,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -229,6 +239,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert
@@ -261,6 +272,7 @@ describe("convertRules", () => {
         const { plugins } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
+            new Map(),
         );
 
         // Assert

@@ -38,6 +38,7 @@ describe("convertLintConfig", () => {
             dependencies,
             stubSettings,
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -59,6 +60,7 @@ describe("convertLintConfig", () => {
             dependencies,
             stubSettings,
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert

@@ -23,13 +23,13 @@ export type RuleConversionResults = {
 
 export const convertRules = (
     dependencies: ConvertRulesDependencies,
-    rawTslintRules?: TSLintConfigurationRules,
+    rawTslintRules: TSLintConfigurationRules | undefined,
+    ruleEquivalents: Map<string, string[]>,
 ): RuleConversionResults => {
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];
     const plugins = new Set<string>();
-    const ruleEquivalents = new Map<string, string[]>();
 
     if (rawTslintRules !== undefined) {
         for (const [ruleName, value] of Object.entries(rawTslintRules)) {
