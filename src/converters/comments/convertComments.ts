@@ -20,6 +20,7 @@ export const convertComments = async (
     dependencies: ConvertCommentsDependencies,
     { comments }: Pick<TSLintToESLintSettings, "comments">,
     { typescript }: Pick<AllOriginalConfigurations, "typescript">,
+    ruleEquivalents: Map<string, string[]>,
 ): Promise<ResultWithDataStatus<string[] | undefined>> => {
     if (comments === undefined) {
         dependencies.reportCommentResults();
@@ -76,11 +77,11 @@ export const convertComments = async (
         };
     }
 
-    const ruleConversionCache = new Map<string, string | undefined>();
+    const ruleCommentsCache = new Map<string, string[]>();
     const fileFailures = (
         await Promise.all(
             uniqueGlobbedFilePaths.map(async (filePath) =>
-                dependencies.convertFileComments(filePath, ruleConversionCache),
+                dependencies.convertFileComments(filePath, ruleCommentsCache, ruleEquivalents),
             ),
         )
     ).filter(isError);

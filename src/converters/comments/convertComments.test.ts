@@ -24,6 +24,7 @@ describe("convertComments", () => {
             dependencies,
             { comments: undefined },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -45,6 +46,7 @@ describe("convertComments", () => {
             dependencies,
             { comments: true },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -64,8 +66,13 @@ describe("convertComments", () => {
         // Act
         const result = await convertComments(
             dependencies,
-            { comments: ["*.ts"] },
-            createStubOriginalConfigurationsData(),
+            { comments: true },
+            createStubOriginalConfigurationsData({
+                typescript: {
+                    include: ["src/*.ts"],
+                },
+            }),
+            new Map(),
         );
 
         // Assert
@@ -89,6 +96,7 @@ describe("convertComments", () => {
             dependencies,
             { comments: [] },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -111,8 +119,9 @@ describe("convertComments", () => {
         // Act
         const result = await convertComments(
             dependencies,
-            { comments: [] },
+            { comments: ["*.ts"] },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -134,6 +143,7 @@ describe("convertComments", () => {
             dependencies,
             { comments: ["*.ts"] },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert
@@ -152,6 +162,7 @@ describe("convertComments", () => {
             dependencies,
             { comments: ["*.ts"] },
             createStubOriginalConfigurationsData(),
+            new Map(),
         );
 
         // Assert

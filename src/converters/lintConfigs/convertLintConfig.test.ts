@@ -1,5 +1,6 @@
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { ResultStatus } from "../../types";
+import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
 import { convertLintConfig, ConvertLintConfigDependencies } from "./convertLintConfig";
 
 const stubSettings = {
@@ -8,22 +9,21 @@ const stubSettings = {
 
 const createStubDependencies = (
     overrides: Partial<ConvertLintConfigDependencies> = {},
-): ConvertLintConfigDependencies => ({
-    convertRules: jest.fn(),
-    reportConfigConversionResults: jest.fn(),
-    summarizePackageRules: async (_configurations, data) => ({
-        ...data,
-        converted: new Map(),
-        extends: [],
-        extensionRules: new Map(),
-        failed: [],
-        missing: [],
-        plugins: new Set(),
-    }),
-    logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
-    writeConfigConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
-    ...overrides,
-});
+): ConvertLintConfigDependencies => {
+    const ruleConversionResults = createEmptyConfigConversionResults();
+
+    return {
+        convertRules: jest.fn(),
+        reportConfigConversionResults: jest.fn(),
+        summarizePackageRules: async (_configurations, data) => ({
+            ...ruleConversionResults,
+            ...data,
+        }),
+        logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
+        writeConfigConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
+        ...overrides,
+    };
+};
 
 describe("convertLintConfig", () => {
     it("returns the failure result when writing to the configuration file fails", async () => {

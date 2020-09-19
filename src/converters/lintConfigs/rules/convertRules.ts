@@ -18,6 +18,7 @@ export type RuleConversionResults = {
     failed: ErrorSummary[];
     missing: TSLintRuleOptions[];
     plugins: Set<string>;
+    ruleEquivalents: Map<string, string[]>;
 };
 
 export const convertRules = (
@@ -28,6 +29,7 @@ export const convertRules = (
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];
     const plugins = new Set<string>();
+    const ruleEquivalents = new Map<string, string[]>();
 
     if (rawTslintRules !== undefined) {
         for (const [ruleName, value] of Object.entries(rawTslintRules)) {
@@ -47,7 +49,11 @@ export const convertRules = (
                 continue;
             }
 
+            const equivalents = new Set<string>();
+
             for (const changes of conversion.rules) {
+                equivalents.add(changes.ruleName);
+
                 const existingConversion = converted.get(changes.ruleName);
                 const newConversion = {
                     ...changes,
@@ -82,7 +88,10 @@ export const convertRules = (
                     plugins.add(newPlugin);
                 }
             }
+
+            ruleEquivalents.set(tslintRule.ruleName, Array.from(equivalents));
         }
     }
-    return { converted, failed, missing, plugins };
+
+    return { converted, failed, missing, plugins, ruleEquivalents };
 };

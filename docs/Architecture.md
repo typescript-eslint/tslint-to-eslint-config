@@ -17,7 +17,7 @@ Within `src/conversion/convertLintConfig.ts`, the following steps occur:
     - 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
     - 3b. Any ESLint rules that are configured the same as an extended preset are trimmed
 4. The summarized configuration is written to the output config file
-5. Files to transform comments in have source text rewritten using the same rule conversion logic
+5. Files to transform comments in have source text rewritten using the cached rule conversion results
 6. A summary of the results is printed to the user's console
 
 ### Conversion Results
@@ -50,6 +50,17 @@ It's possible that one ESLint rule will be output by multiple converters.
 These are located in `src/rules/mergers/`, and keyed under their names by the map in `src/rules/mergers.ts`.
 
 For example, `@typescript-eslint/ban-types` spreads both arguments' `types` members into one large `types` object.
+
+## Comment Conversion
+
+Comments are converted after rule conversion by `src/comments/convertComments.ts`.
+Source files are parsed into TypeScript files by `src/comments/parseFileComments.ts`, which then extracts their comment nodes.
+Those comments are parsed for TSLint rule disable or enable comments.
+
+Comments that match will be rewritten in their their file to their new ESLint rule equivalent in `src/comments/replaceFileComments.ts`, as determined by:
+
+1. First, if the `ruleEquivalents` cache received from configuration convertion has the TSLint rule's ESLint equivalents listed, those are used.
+2. Failing that, a comment-specific `ruleCommentsCache` is populated with rules converted ad-hoc with no arguments.
 
 ## Editor Configuration Conversion
 

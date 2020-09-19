@@ -11,7 +11,8 @@ export type ConvertFileCommentsDependencies = {
 export const convertFileComments = async (
     dependencies: ConvertFileCommentsDependencies,
     filePath: string,
-    ruleConversionCache: Map<string, string | undefined>,
+    ruleCommentsCache: Map<string, string[]>,
+    ruleEquivalents: Map<string, string[]>,
 ) => {
     const fileContent = await dependencies.fileSystem.readFile(filePath);
     if (fileContent instanceof Error) {
@@ -23,7 +24,8 @@ export const convertFileComments = async (
         fileContent,
         comments,
         dependencies.converters,
-        ruleConversionCache,
+        ruleCommentsCache,
+        ruleEquivalents,
     );
 
     return fileContent === newFileContent
