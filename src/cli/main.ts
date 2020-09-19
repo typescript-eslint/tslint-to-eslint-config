@@ -7,19 +7,9 @@ import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
 import {
-    findEditorConfiguration,
-    FindEditorConfigurationDependencies,
-} from "../input/findEditorConfiguration";
-import { findESLintConfiguration } from "../input/findESLintConfiguration";
-import {
-    findOriginalConfigurations,
-    FindOriginalConfigurationsDependencies,
-} from "../input/findOriginalConfigurations";
-import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
-import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
-import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
-import { importer, ImporterDependencies } from "../input/importer";
-import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
+    collectCommentFileNames,
+    CollectCommentFileNamesDependencies,
+} from "../comments/collectCommentFileNames";
 import {
     ReportCommentResultsDependencies,
     reportCommentResults,
@@ -81,9 +71,23 @@ import { writeEditorConfigConversionResults } from "../converters/lintConfigs/wr
 import { addPrettierExtensions } from "../converters/lintConfigs/summarization/prettier/addPrettierExtensions";
 import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
 import {
-    collectCommentFileNames,
-    CollectCommentFileNamesDependencies,
-} from "../comments/collectCommentFileNames";
+    ExtractGlobPathsDependencies,
+    extractGlobPaths,
+} from "../converters/comments/extractGlobPaths";
+import {
+    findEditorConfiguration,
+    FindEditorConfigurationDependencies,
+} from "../input/findEditorConfiguration";
+import { findESLintConfiguration } from "../input/findESLintConfiguration";
+import {
+    findOriginalConfigurations,
+    FindOriginalConfigurationsDependencies,
+} from "../input/findOriginalConfigurations";
+import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
+import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
+import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
+import { importer, ImporterDependencies } from "../input/importer";
+import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
@@ -133,10 +137,14 @@ const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies =
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
 };
 
+const extractGlobPathsDependencies: ExtractGlobPathsDependencies = {
+    globAsync,
+};
+
 const convertCommentsDependencies: ConvertCommentsDependencies = {
     collectCommentFileNames: bind(collectCommentFileNames, collectCommentFileNamesDependencies),
     convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
-    globAsync,
+    extractGlobPaths: bind(extractGlobPaths, extractGlobPathsDependencies),
     reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
 };
 

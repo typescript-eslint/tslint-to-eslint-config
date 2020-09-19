@@ -65,6 +65,7 @@ export const convertComments = async (
         };
     }
 
+    // 5. Report out the results of converting the unique globbed file paths.
     dependencies.reportCommentResults(uniqueGlobbedFilePaths);
 
     return {
