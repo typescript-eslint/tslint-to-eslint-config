@@ -18,7 +18,7 @@ describe("convertComments", () => {
         const dependencies = createStubDependencies();
 
         // Act
-        const result = await convertComments(dependencies, undefined);
+        const result = await convertComments(dependencies, undefined, new Map());
 
         // Assert
         expect(result).toEqual({
@@ -35,7 +35,7 @@ describe("convertComments", () => {
         });
 
         // Act
-        const result = await convertComments(dependencies, true);
+        const result = await convertComments(dependencies, true, new Map());
 
         // Assert
         expect(result).toEqual({
@@ -52,7 +52,9 @@ describe("convertComments", () => {
         });
 
         // Act
-        const result = await convertComments(dependencies, ["*.ts"]);
+        const result = await convertComments(dependencies, true, new Map(), {
+            include: ["src/*.ts"],
+        });
 
         // Assert
         expect(result).toEqual({
@@ -71,7 +73,7 @@ describe("convertComments", () => {
         });
 
         // Act
-        const result = await convertComments(dependencies, []);
+        const result = await convertComments(dependencies, [], new Map());
 
         // Assert
         expect(result).toEqual({
@@ -91,7 +93,7 @@ describe("convertComments", () => {
         });
 
         // Act
-        const result = await convertComments(dependencies, []);
+        const result = await convertComments(dependencies, ["*.ts"], new Map());
 
         // Assert
         expect(result).toEqual({
@@ -108,7 +110,7 @@ describe("convertComments", () => {
         });
 
         // Act
-        const result = await convertComments(dependencies, ["*.ts"]);
+        const result = await convertComments(dependencies, ["*.ts"], new Map());
 
         // Assert
         expect(result).toEqual({
@@ -122,7 +124,7 @@ describe("convertComments", () => {
         const dependencies = createStubDependencies();
 
         // Act
-        const result = await convertComments(dependencies, ["*.ts"]);
+        const result = await convertComments(dependencies, ["*.ts"], new Map());
 
         // Assert
         expect(result).toEqual({

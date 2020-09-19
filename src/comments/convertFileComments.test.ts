@@ -26,7 +26,7 @@ describe("convertFileComments", () => {
         const dependencies = createStubDependencies(readFileError);
 
         // Act
-        const result = await convertFileComments(dependencies, stubFileName, new Map());
+        const result = await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(result).toBe(readFileError);
@@ -39,7 +39,7 @@ describe("convertFileComments", () => {
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map());
+        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(dependencies.fileSystem.writeFile).not.toHaveBeenCalled();
@@ -70,7 +70,7 @@ export const g = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map());
+        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -110,7 +110,7 @@ export const b = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map());
+        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -125,7 +125,7 @@ export const b = true;
         );
     });
 
-    it("re-uses a rule conversion from cache when it was already converted", async () => {
+    it("re-uses a rule conversion from conversion cache when it was already converted", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
 /* tslint:disable:ts-a */
@@ -133,7 +133,37 @@ export const a = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map([["ts-a", "es-cached"]]));
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map(),
+            new Map([["ts-a", ["es-cached"]]]),
+        );
+
+        // Assert
+        expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
+            stubFileName,
+            `
+/* eslint-disable es-cached */
+export const a = true;
+`,
+        );
+    });
+
+    it("re-uses a rule conversion from comments cache when it was already converted", async () => {
+        // Arrange
+        const dependencies = createStubDependencies(`
+/* tslint:disable:ts-a */
+export const a = true;
+`);
+
+        // Act
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map([["ts-a", ["es-cached"]]]),
+            new Map(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -153,7 +183,7 @@ export const a = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map());
+        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -173,7 +203,7 @@ export const a = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map());
+        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(

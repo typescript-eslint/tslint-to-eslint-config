@@ -1,4 +1,5 @@
 import { ResultStatus, FailedResult } from "../types";
+import { createEmptyConversionResults } from "./conversionResults.stubs";
 import { convertLintConfig, ConvertLintConfigDependencies } from "./convertLintConfig";
 
 const stubSettings = {
@@ -7,28 +8,27 @@ const stubSettings = {
 
 const createStubDependencies = (
     overrides: Partial<ConvertLintConfigDependencies> = {},
-): ConvertLintConfigDependencies => ({
-    convertComments: jest.fn(),
-    convertRules: jest.fn(),
-    findOriginalConfigurations: jest.fn().mockResolvedValue({
-        data: createStubOriginalConfigurationsData(),
-        status: ResultStatus.Succeeded,
-    }),
-    reportCommentResults: jest.fn(),
-    reportConversionResults: jest.fn(),
-    summarizePackageRules: async (_configurations, data) => ({
-        ...data,
-        converted: new Map(),
-        extends: [],
-        extensionRules: new Map(),
-        failed: [],
-        missing: [],
-        plugins: new Set(),
-    }),
-    logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
-    writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
-    ...overrides,
-});
+): ConvertLintConfigDependencies => {
+    const ruleConversionResults = createEmptyConversionResults();
+
+    return {
+        convertComments: jest.fn(),
+        convertRules: jest.fn().mockReturnValue(ruleConversionResults),
+        findOriginalConfigurations: jest.fn().mockResolvedValue({
+            data: createStubOriginalConfigurationsData(),
+            status: ResultStatus.Succeeded,
+        }),
+        reportCommentResults: jest.fn(),
+        reportConversionResults: jest.fn(),
+        summarizePackageRules: async (_configurations, data) => ({
+            ...ruleConversionResults,
+            ...data,
+        }),
+        logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
+        writeConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
+        ...overrides,
+    };
+};
 
 const createStubOriginalConfigurationsData = () => ({
     tslint: {
