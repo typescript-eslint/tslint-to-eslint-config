@@ -21,6 +21,10 @@ export type RuleConversionResults = {
     ruleEquivalents: Map<string, string[]>;
 };
 
+/**
+ * Converts raw TSLint rules to their ESLint equivalents.
+ * @see `/docs/Architecture/Linting.md` for documentation.
+ */
 export const convertRules = (
     dependencies: ConvertRulesDependencies,
     rawTslintRules: TSLintConfigurationRules | undefined,
@@ -33,9 +37,13 @@ export const convertRules = (
 
     if (rawTslintRules !== undefined) {
         for (const [ruleName, value] of Object.entries(rawTslintRules)) {
+            // 1. The raw TSLint rule is converted to a standardized format.
             const tslintRule = formatRawTslintRule(ruleName, value);
+
+            // 2. The appropriate converter is run for the rule.
             const conversion = convertRule(tslintRule, dependencies.ruleConverters);
 
+            // 3. If the rule is missing or the conversion failed, this is marked.
             if (conversion === undefined) {
                 if (tslintRule.ruleSeverity !== "off") {
                     missing.push(tslintRule);
@@ -51,20 +59,25 @@ export const convertRules = (
 
             const equivalents = new Set<string>();
 
+            // 4. For each output rule equivalent given by the conversion:
             for (const changes of conversion.rules) {
+                // 4a. The output rule name is added to the TSLint rule's equivalency set.
                 equivalents.add(changes.ruleName);
 
+                // 4b. The TSLint rule's config severity is mapped to its ESLint equivalent.
                 const existingConversion = converted.get(changes.ruleName);
                 const newConversion = {
                     ...changes,
                     ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
                 };
 
+                // 4c. If this is the first time the output ESLint rule is seen, it's directly marked as converted.
                 if (existingConversion === undefined) {
                     converted.set(changes.ruleName, newConversion);
                     continue;
                 }
 
+                // 4d. If not, a rule merger is run to combine it with its existing output settings.
                 const merger = dependencies.ruleMergers.get(changes.ruleName);
                 if (merger === undefined) {
                     failed.push(ConversionError.forMerger(changes.ruleName));

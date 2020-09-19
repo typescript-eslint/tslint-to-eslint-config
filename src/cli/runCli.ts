@@ -19,10 +19,14 @@ export type RunCliDependencies = {
     logger: Logger;
 };
 
+/**
+ * @see `/docs/Architecture/README.md` for documentation.
+ */
 export const runCli = async (
     dependencies: RunCliDependencies,
     rawArgv: string[],
 ): Promise<ResultStatus> => {
+    // 1. CLI options are parsed from the raw arguments into a commands object.
     const command = new Command()
         .storeOptionsAsProperties(false)
         .usage("[options] <file ...> --language [language]")
@@ -41,17 +45,20 @@ export const runCli = async (
         ...command.parse(rawArgv).opts(),
     } as TSLintToESLintSettings;
 
+    // 2. If the version should be printed, we do that and stop execution.
     if (command.opts().version) {
         dependencies.logger.stdout.write(`${version}${EOL}`);
         return ResultStatus.Succeeded;
     }
 
+    // 3. Any existing linter and TypeScript configurations are read from disk.
     const originalConfigurations = await dependencies.findOriginalConfigurations(parsedArgv);
     if (originalConfigurations.status !== ResultStatus.Succeeded) {
         logErrorResult(originalConfigurations, dependencies.logger);
         return originalConfigurations.status;
     }
 
+    // 4. Each converter is run, halting execution if it fails.
     for (const converter of dependencies.converters) {
         const result = await tryConvertConfig(converter, parsedArgv, originalConfigurations.data);
         if (result.status !== ResultStatus.Succeeded) {

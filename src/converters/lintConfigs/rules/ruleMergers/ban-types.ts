@@ -5,7 +5,7 @@ export const mergeBanTypes: RuleMerger = (existingOptions, newOptions) => {
         return [];
     }
 
-    // This is mentioned in Architecture.md as an ESLint rule with a merger
+    // This is mentioned in Architecture/Linters.md as an ESLint rule with a merger
     return [
         {
             types: {

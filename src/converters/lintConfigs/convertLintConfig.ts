@@ -25,11 +25,13 @@ export const convertLintConfig = async (
     originalConfigurations: AllOriginalConfigurations,
     ruleEquivalents: Map<string, string[]>,
 ): Promise<ResultWithStatus> => {
+    // 1. Raw TSLint rules are mapped to their ESLint equivalents.
     const ruleConversionResults = dependencies.convertRules(
         originalConfigurations.tslint.full.rules,
         ruleEquivalents,
     );
 
+    // 2. Those ESLint equivalents are deduplicated and relevant preset(s) detected.
     const summarizedConfiguration = await dependencies.summarizePackageRules(
         originalConfigurations.eslint,
         originalConfigurations.tslint,
@@ -37,6 +39,7 @@ export const convertLintConfig = async (
         settings.prettier,
     );
 
+    // 3. Those deduplicated rules and metadata are written to the output configuration file.
     const fileWriteError = await dependencies.writeConfigConversionResults(
         settings.config,
         summarizedConfiguration,
@@ -49,8 +52,8 @@ export const convertLintConfig = async (
         };
     }
 
+    // 4. A summary of conversion results is printed, along with any now-missing packages.
     await dependencies.reportConfigConversionResults(settings.config, summarizedConfiguration);
-
     await dependencies.logMissingPackages(summarizedConfiguration, originalConfigurations.packages);
 
     return {

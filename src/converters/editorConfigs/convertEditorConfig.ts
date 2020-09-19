@@ -22,29 +22,33 @@ export const convertEditorConfig = async (
     dependencies: ConvertEditorConfigDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
-    const conversion = await dependencies.findEditorConfiguration(settings.editor);
-    if (conversion === undefined) {
+    // 1. An existing editor configuration is read from disk.
+    const configuration = await dependencies.findEditorConfiguration(settings.editor);
+
+    // 2. If the existing configuration is not found or errored, nothing else needs to be done.
+    if (configuration === undefined) {
         return {
             status: ResultStatus.Succeeded,
         };
     }
-
-    if (conversion.result instanceof Error) {
+    if (configuration.result instanceof Error) {
         return {
-            errors: [conversion.result],
+            errors: [configuration.result],
             status: ResultStatus.Failed,
         };
     }
 
+    // 3. Configuration settings are converted to their ESLint equivalents.
     const settingConversionResults = dependencies.convertEditorSettings(
-        conversion.result,
+        configuration.result,
         settings,
     );
 
+    // 4. Those ESLint equivalents are written to the configuration file.
     const fileWriteError = await dependencies.writeEditorConfigConversionResults(
-        conversion.configPath,
+        configuration.configPath,
         settingConversionResults,
-        conversion.result,
+        configuration.result,
     );
     if (fileWriteError !== undefined) {
         return {
@@ -53,6 +57,7 @@ export const convertEditorConfig = async (
         };
     }
 
+    // 5. Results from converting are reported to the user.
     dependencies.reportEditorSettingConversionResults(settingConversionResults);
 
     return {
