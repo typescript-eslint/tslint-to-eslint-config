@@ -16,6 +16,7 @@ export type ConvertEditorConfigDependencies = {
 
 /**
  * Root-level driver to convert an editor configuration.
+ * @see `/docs/Architecture/Editors.md` for documentation.
  */
 export const convertEditorConfig = async (
     dependencies: ConvertEditorConfigDependencies,
