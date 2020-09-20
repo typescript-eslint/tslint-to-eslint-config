@@ -1,6 +1,6 @@
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
-import { RawESLintRuleSeverity } from "../rules/types";
+import { RawESLintRuleSeverity } from "../converters/lintConfigs/rules/types";
 import { TSLintToESLintSettings } from "../types";
 import { uniqueFromSources } from "../utils";
 import { findRawConfiguration } from "./findRawConfiguration";

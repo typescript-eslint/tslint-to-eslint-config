@@ -62,3 +62,8 @@ Suppose your method `myMethod`, should take in a `fileSystem`, a `string`, and a
         myMethod: SansDependencies<typeof myMethod>;
     };
     ```
+
+### Adapters
+
+Global Node constructs as `console` are never written to directly by functions; instead, "adapter" wrappers are set up in `src/adapters/*.ts` and provided as dependencies to functions.
+This enables native calls to be directly tested in tests without stubbing out their global equivalents.

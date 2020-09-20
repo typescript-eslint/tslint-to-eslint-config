@@ -7,7 +7,7 @@ export type TSLintToESLintSettings = {
     /**
      * File globs to convert `tslint:disable` comments within to `eslint-disable`.
      */
-    comments?: string | string[];
+    comments?: true | string | string[];
 
     /**
      * Original Editor configuration file path, such as `.vscode/settings.json`.
@@ -66,7 +66,12 @@ export type SucceededResult = {
     readonly status: ResultStatus.Succeeded;
 };
 
-export type SucceededDataResult<Data> = {
-    readonly data: Data;
-    readonly status: ResultStatus.Succeeded;
-};
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+export type SucceededDataResult<Data> = Data extends void
+    ? {
+          readonly status: ResultStatus.Succeeded;
+      }
+    : {
+          readonly data: Data;
+          readonly status: ResultStatus.Succeeded;
+      };

@@ -21,6 +21,6 @@ Compile with `npm run tsc` and run tests with `npm run test`.
 
 ## Further Reading
 
--   [Architecture](./Architecture.md): How the general app structure operates
+-   [Architecture](./Architecture/README.md): How the general app structure operates
 -   [Dependencies](./Dependencies.md): How functions pass and receive static dependencies
 -   [Testing](./Testing.md): Unit tests

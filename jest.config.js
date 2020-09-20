@@ -4,10 +4,10 @@ module.exports = {
         "!./src/**/*.d.ts",
         "!./src/**/*.stubs.ts",
         "!./src/adapters/*.ts",
-        "!./src/rules/rulesConverters.ts",
-        "!./src/editorSettings/editorSettingsConverters.ts",
-        "!./src/rules/mergers.ts",
         "!./src/cli/main.ts",
+        "!./src/converters/editorConfigs/editorSettingsConverters.ts",
+        "!./src/converters/lintConfigs/rules/ruleConverters.ts",
+        "!./src/converters/lintConfigs/rules/ruleMergers.ts",
     ],
     coverageThreshold: {
         global: {

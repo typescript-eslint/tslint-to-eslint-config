@@ -1,7 +1,7 @@
 import { EOL } from "os";
 
-import { EditorSetting } from "../editorSettings/types";
-import { TSLintRuleOptions } from "../rules/types";
+import { EditorSetting } from "../converters/editorConfigs/types";
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
 import { ErrorSummary } from "./errorSummary";
 
 export class ConversionError implements ErrorSummary {
