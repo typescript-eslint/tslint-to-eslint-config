@@ -51,6 +51,17 @@ module.exports = {
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/switch-exhaustiveness-check": "off",
         "@typescript-eslint/typedef": "off",
+        "@typescript-eslint/comma-dangle": [
+            "error",
+            {
+                arrays: "only-multiline",
+                objects: "only-multiline",
+                imports: "only-multiline",
+                functions: "only-multiline",
+                enums: "only-multiline",
+            },
+        ],
+        "comma-dangle": "off",
         "no-else-return": "error",
     },
 };
