@@ -88,6 +88,10 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
+import {
+    findExistingESLintConfiguration,
+    FindExistingESLintConfigurationDependencies,
+} from "../input/findExistingESLintConfiguration";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
@@ -131,6 +135,10 @@ const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependen
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
     mergeLintConfigurations,
+};
+
+const findExistingESLintConfigurationDependencies: FindExistingESLintConfigurationDependencies = {
+    globAsync,
 };
 
 const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies = {
@@ -215,6 +223,10 @@ const runCliDependencies: RunCliDependencies = {
     findOriginalConfigurations: bind(
         findOriginalConfigurations,
         findOriginalConfigurationsDependencies,
+    ),
+    findExistingESLintConfiguration: bind(
+        findExistingESLintConfiguration,
+        findExistingESLintConfigurationDependencies,
     ),
     logger: processLogger,
 };

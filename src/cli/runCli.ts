@@ -6,6 +6,7 @@ import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { Converter } from "../converters/types";
+import { findExistingESLintConfiguration } from "../input/findExistingESLintConfiguration";
 import {
     AllOriginalConfigurations,
     findOriginalConfigurations,
@@ -15,6 +16,7 @@ import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types
 
 export type RunCliDependencies = {
     converters: Converter[];
+    findExistingESLintConfiguration: SansDependencies<typeof findExistingESLintConfiguration>;
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     logger: Logger;
 };
@@ -41,7 +43,6 @@ export const runCli = async (
         .option("-V, --version", "output the package version");
 
     const parsedArgv = {
-        config: "./.eslintrc.js",
         ...command.parse(rawArgv).opts(),
     } as TSLintToESLintSettings;
 
@@ -49,6 +50,21 @@ export const runCli = async (
     if (command.opts().version) {
         dependencies.logger.stdout.write(`${version}${EOL}`);
         return ResultStatus.Succeeded;
+    }
+
+    // 2-B. Lookup the eslint config file `.eslintrc.*` (js, json, yaml) / package.json file
+    const eslintConfiguration = await dependencies.findExistingESLintConfiguration();
+    if (eslintConfiguration.status !== ResultStatus.Succeeded) {
+        logErrorResult(eslintConfiguration, dependencies.logger);
+    } else {
+        if (Array.isArray(eslintConfiguration.data)) {
+            // Pick the first one, it should take into account the order of
+            // preference based on official ESLint Docs.
+            parsedArgv.config = eslintConfiguration.data[0];
+        } else {
+            // TODO: We need to keep the current package.json data
+            parsedArgv.config = "package.json";
+        }
     }
 
     // 3. Any existing linter and TypeScript configurations are read from disk.
