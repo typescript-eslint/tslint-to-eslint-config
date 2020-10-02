@@ -4,9 +4,9 @@ import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.st
 import { createEmptyEditorSettingConversionResults } from "../editorConversionResults.stubs";
 import { EditorSetting } from "../types";
 
-import { reportEditorSettingConversionResults } from "./reportEditorSettingConversionResults";
+import { reportEditorConfigConversionResults } from "./reportEditorConfigConversionResults";
 
-describe("reportEditorSettingConversionResults", () => {
+describe("reportEditorConfigConversionResults", () => {
     it("logs a successful conversion when there is one converted editor setting", () => {
         // Arrange
         const conversionResults = createEmptyEditorSettingConversionResults({
@@ -24,7 +24,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -57,7 +57,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -75,7 +75,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -94,7 +94,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -117,7 +117,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(
@@ -148,7 +148,7 @@ describe("reportEditorSettingConversionResults", () => {
         const logger = createStubLogger();
 
         // Act
-        reportEditorSettingConversionResults({ logger }, conversionResults);
+        reportEditorConfigConversionResults({ logger }, conversionResults);
 
         // Assert
         expectEqualWrites(

@@ -4,20 +4,20 @@ import {
     logFailedConversions,
     logMissingConversionTarget,
 } from "../../../reporting";
-import { EditorSettingConversionResults } from "../convertEditorSettings";
+import { EditorSettingConversionResults } from "../convertEditorConfigs";
 
-export type ReportEditorSettingConversionResultsDependencies = {
+export type ReportEditorConfigConversionResultsDependencies = {
     logger: Logger;
 };
 
-export const reportEditorSettingConversionResults = (
-    dependencies: ReportEditorSettingConversionResultsDependencies,
+export const reportEditorConfigConversionResults = (
+    dependencies: ReportEditorConfigConversionResultsDependencies,
     editorSettingConversionResults: EditorSettingConversionResults,
 ) => {
-    if (editorSettingConversionResults.converted.size !== 0) {
+    if (editorSettingConversionResults.successes.length !== 0) {
         logSuccessfulConversions(
             "editor setting",
-            editorSettingConversionResults.converted,
+            editorSettingConversionResults.successes,
             dependencies.logger,
         );
     }
