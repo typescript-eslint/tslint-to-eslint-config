@@ -4,7 +4,7 @@ import { ESLintRuleOptionsWithArguments } from "../rules/types";
 import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summarizePackageRules";
 
 const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
-    addPrettierExtensions: jest.fn(),
+    checkPrettierExtension: jest.fn(),
     removeExtendsDuplicatedRules: () => ({
         differentRules: new Map(),
         extensionRules: new Map(),
@@ -49,10 +49,10 @@ describe("summarizePackageRules", () => {
         expect(summarizedResults).toEqual(ruleConversionResults);
     });
 
-    it("adds Prettier extensions when addPrettierExtensions returns true", async () => {
+    it("adds Prettier extensions when checkPrettierExtension returns true", async () => {
         // Arrange
         const dependencies = createStubDependencies({
-            addPrettierExtensions: async () => true,
+            checkPrettierExtension: () => true,
         });
         const eslint = undefined;
         const tslint = createStubTSLintConfiguration();

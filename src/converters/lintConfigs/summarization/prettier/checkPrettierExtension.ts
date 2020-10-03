@@ -2,7 +2,7 @@ import prettierRuleSettings from "eslint-config-prettier";
 
 import { RuleConversionResults } from "../../rules/convertRules";
 
-export const addPrettierExtensions = async (
+export const checkPrettierExtension = (
     ruleConversionResults: Pick<RuleConversionResults, "converted">,
     prettierRequested?: boolean,
 ) => {

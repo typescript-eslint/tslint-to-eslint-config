@@ -68,7 +68,7 @@ import {
 import { runCli, RunCliDependencies } from "./runCli";
 import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
 import { writeEditorConfigConversionResults } from "../converters/lintConfigs/writeEditorConfigConversionResults";
-import { addPrettierExtensions } from "../converters/lintConfigs/summarization/prettier/addPrettierExtensions";
+import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension";
 import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
 import {
     ExtractGlobPathsDependencies,
@@ -166,7 +166,7 @@ const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
 };
 
 const summarizePackageRulesDependencies: SummarizePackageRulesDependencies = {
-    addPrettierExtensions,
+    checkPrettierExtension,
     removeExtendsDuplicatedRules,
     retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
