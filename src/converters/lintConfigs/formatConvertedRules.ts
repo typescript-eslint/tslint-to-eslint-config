@@ -7,7 +7,7 @@ export const formatConvertedRules = (
     conversionResults: RuleConversionResults,
     tslintConfiguration: TSLintConfiguration,
 ) => {
-    const output: { [i: string]: string | any[] } = {};
+    const output: Record<string, string | any[]> = {};
     const sortedRuleEntries = Array.from(
         conversionResults.converted,
     ).sort(([ruleNameA], [ruleNameB]) => ruleNameA.localeCompare(ruleNameB));

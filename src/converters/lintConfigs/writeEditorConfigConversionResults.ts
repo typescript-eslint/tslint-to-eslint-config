@@ -23,7 +23,7 @@ export const writeEditorConfigConversionResults = async (
 };
 
 export const formatConvertedSettings = (conversionResults: EditorSettingConversionResults) => {
-    const output: { [i: string]: string | any[] } = {};
+    const output: Record<string, string | any> = {};
     const sortedEntries = Array.from(conversionResults.converted).sort(([nameA], [nameB]) =>
         nameA.localeCompare(nameB),
     );

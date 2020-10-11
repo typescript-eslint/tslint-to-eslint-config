@@ -69,7 +69,7 @@ function collectKeys(
     key: TSLintObjectKey,
     singleline: TSLintObject | undefined,
     multiline: TSLintObject | undefined,
-): { [key: string]: ESLintStringValue } {
+): Record<string, ESLintStringValue> {
     const hasSingleline = Boolean(singleline);
     const hasSinglelineAndFieldExist = Boolean(singleline?.[key]);
     const hasSinglelineAlways = Boolean(singleline && singleline[key] === "always");
