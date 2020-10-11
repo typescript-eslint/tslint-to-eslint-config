@@ -3,7 +3,7 @@ import { RuleConverter } from "../ruleConverter";
 const IGNORE_CASE_NOTICE = "ESLint (Unicorn plugin) does not support the 'ignore' case.";
 const CASING_BY_FILETYPE_CHANGE =
     "ESLint (Unicorn Plugin) does not support file name casing by file type, so all previously configured casings are now allowed.";
-const CASES_MAP: { [s: string]: string } = {
+const CASES_MAP: Record<string, string> = {
     "camel-case": "camelCase",
     "pascal-case": "pascalCase",
     "kebab-case": "kebabCase",
