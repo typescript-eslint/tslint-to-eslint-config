@@ -3,6 +3,6 @@ import { TSLintToESLintSettings } from "../../types";
 export type EditorConfigConverter = (
     rawEditorSettings: string,
     settings: TSLintToESLintSettings,
-) => any;
+) => string;
 
-export type EditorConfigDescriptor = [string, EditorConfigConverter];
+export type EditorConfigDescriptor = readonly [string, EditorConfigConverter];

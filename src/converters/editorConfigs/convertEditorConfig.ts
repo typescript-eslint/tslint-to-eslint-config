@@ -1,31 +1,23 @@
 import { FileSystem } from "../../adapters/fileSystem";
 import { TSLintToESLintSettings } from "../../types";
-import { EditorConfigDescriptor } from "./types";
+import { EditorConfigConverter } from "./types";
 
 export type ConvertEditorConfigDependencies = {
-    editorConfigDescriptors: EditorConfigDescriptor[];
-    fileSystem: Pick<FileSystem, "readFile">;
+    fileSystem: Pick<FileSystem, "readFile" | "writeFile">;
 };
 
 export const convertEditorConfig = async (
     dependencies: ConvertEditorConfigDependencies,
+    converter: EditorConfigConverter,
     requestedPath: string,
     settings: TSLintToESLintSettings,
 ) => {
-    const editorConfigDescriptor = dependencies.editorConfigDescriptors.find(([defaultPath]) =>
-        requestedPathMatchesDefault(defaultPath, requestedPath),
-    );
-    if (!editorConfigDescriptor) {
-        return new Error(`Could not find a matching editor config for '${requestedPath}'.`);
+    const originalFileContents = await dependencies.fileSystem.readFile(requestedPath);
+    if (originalFileContents instanceof Error) {
+        return originalFileContents;
     }
 
-    const fileContents = await dependencies.fileSystem.readFile(requestedPath);
-    if (fileContents instanceof Error) {
-        return fileContents;
-    }
+    const updatedFileContents = converter(originalFileContents, settings);
 
-    return editorConfigDescriptor[1](fileContents, settings);
+    return await dependencies.fileSystem.writeFile(requestedPath, updatedFileContents);
 };
-
-const requestedPathMatchesDefault = (defaultPath: string, requestedPath: string) =>
-    defaultPath.replace(/\W+/g, "") === requestedPath.replace(/\W+/g, "");

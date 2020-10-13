@@ -20,12 +20,20 @@ export const reportConfigConversionResults = async (
     ruleConversionResults: SummarizedConfigResultsConfiguration,
 ) => {
     if (ruleConversionResults.converted.size !== 0) {
-        logSuccessfulConversions("rule", ruleConversionResults.converted, dependencies.logger);
+        logSuccessfulConversions(
+            "rule",
+            "replaced",
+            ruleConversionResults.converted.size,
+            dependencies.logger,
+        );
         logNotices(ruleConversionResults.converted, dependencies.logger);
     }
 
     if (ruleConversionResults.failed.length !== 0) {
-        logFailedConversions(ruleConversionResults.failed, dependencies.logger);
+        logFailedConversions(
+            ruleConversionResults.failed.map((fail) => fail.getSummary()),
+            dependencies.logger,
+        );
     }
 
     if (ruleConversionResults.missing.length !== 0) {

@@ -15,7 +15,6 @@ import {
     reportCommentResults,
 } from "../converters/comments/reporting/reportCommentResults";
 import { convertEditorConfig } from "../converters/editorConfigs/convertEditorConfig";
-import { reportEditorSettingConversionResults } from "../converters/editorConfigs/reporting/reportEditorSettingConversionResults";
 import {
     ConvertLintConfigDependencies,
     convertLintConfig,
@@ -82,6 +81,7 @@ import {
     convertEditorConfigs,
     ConvertEditorConfigsDependencies,
 } from "../converters/editorConfigs/convertEditorConfigs";
+import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
@@ -160,10 +160,6 @@ const writeConversionResultsDependencies: WriteConversionResultsDependencies = {
     fileSystem: fsFileSystem,
 };
 
-const reportEditorSettingConversionResultsDependencies = {
-    logger: processLogger,
-};
-
 const editorConfigDescriptors: EditorConfigDescriptor[] = [
     [".atom/config.cson", convertAtomConfig],
     [".vscode/settings.json", convertVSCodeConfig],
@@ -174,12 +170,16 @@ const convertEditorConfigDependencies = {
     fileSystem: fsFileSystem,
 };
 
+const reportEditorConfigConversionResultsDependencies = {
+    logger: processLogger,
+};
+
 const convertEditorConfigsDependencies: ConvertEditorConfigsDependencies = {
     convertEditorConfig: bind(convertEditorConfig, convertEditorConfigDependencies),
     editorConfigDescriptors,
-    reportEditorSettingConversionResults: bind(
-        reportEditorSettingConversionResults,
-        reportEditorSettingConversionResultsDependencies,
+    reportEditorConfigConversionResults: bind(
+        reportEditorConfigConversionResults,
+        reportEditorConfigConversionResultsDependencies,
     ),
 };
 
