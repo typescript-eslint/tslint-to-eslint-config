@@ -68,6 +68,7 @@ if (result.status !== ResultStatus.Succeeded) {
 
 > ⚠ This area of code is still considered experimental.
 > Use at your own risk.
+> Please file an issue on GitHub if you'd like to see changes.
 
 The individual steps within `convertTSLintConfig` are each available as exported functions as well.
 
@@ -75,9 +76,6 @@ The individual steps within `convertTSLintConfig` are each available as exported
 2. **[`createESLintConfiguration`](#createESLintConfiguration)** creates an raw output ESLint configuration summary from those input configuration values.
 3. `joinConfigConversionResults` turns a raw ESLint configuration summary into  ESLint's configuration shape.
 4. `formatOutput` prints that formatted output into a string per the output file extension.
-
-> Read the docs also dts yo
-> Please file an issue on GitHub if you'd like to see changes.
 
 ### `findOriginalConfigurationsStandalone`
 
