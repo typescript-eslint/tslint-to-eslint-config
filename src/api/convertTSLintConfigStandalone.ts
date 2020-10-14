@@ -1,20 +1,16 @@
-import { createESLintConfiguration } from "../converters/lintConfigs/createESLintConfiguration";
 import { formatOutput } from "../converters/lintConfigs/formatting/formatOutput";
 import {
     joinConfigConversionResults,
     JoinedConversionResult,
 } from "../converters/lintConfigs/joinConfigConversionResults";
-import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import {
     ConfigurationErrorResult,
     LintConfigConversionSettings,
     ResultStatus,
     SucceededDataResult,
 } from "../types";
-import {
-    createESLintConfigurationDependencies,
-    findOriginalConfigurationsDependencies,
-} from "./dependencies";
+import { createESLintConfigurationStandalone } from "./createESLintConfigurationStandalone";
+import { findOriginalConfigurationsStandalone } from "./findOriginalConfigurationsStandalone";
 
 /**
  * Resultant configuration data from converting a TSLint configuration.
@@ -43,19 +39,14 @@ export const convertTSLintConfigStandalone = async (
         ...rawSettings,
         config: ".eslintrc.js",
     };
-    const originalConfigurations = await findOriginalConfigurations(
-        findOriginalConfigurationsDependencies,
-        settings,
-    );
+    const originalConfigurations = await findOriginalConfigurationsStandalone(settings);
     if (originalConfigurations.status !== ResultStatus.Succeeded) {
         return originalConfigurations;
     }
 
-    const summarizedConfiguration = await createESLintConfiguration(
-        createESLintConfigurationDependencies,
+    const summarizedConfiguration = await createESLintConfigurationStandalone(
         originalConfigurations.data,
         settings.prettier,
-        new Map(),
     );
 
     const output = joinConfigConversionResults(

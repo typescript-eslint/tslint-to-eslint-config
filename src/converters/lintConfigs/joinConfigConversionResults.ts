@@ -4,6 +4,9 @@ import { createEnv } from "./eslint/createEnv";
 import { formatConvertedRules } from "./formatConvertedRules";
 import { SummarizedConfigResultsConfiguration } from "./summarization/types";
 
+/**
+ * Turns a raw ESLint configuration summary into ESLint's configuration shape.
+ */
 export const joinConfigConversionResults = (
     summarizedResults: SummarizedConfigResultsConfiguration,
     originalConfigurations: AllOriginalConfigurations,

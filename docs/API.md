@@ -63,3 +63,66 @@ if (result.status !== ResultStatus.Succeeded) {
 ```
 
 > See the provided `.d.ts` TypeScript typings for full descriptions of inputs and outputs.
+
+## Standalone API
+
+> ⚠ This area of code is still considered experimental.
+> Use at your own risk.
+
+The individual steps within `convertTSLintConfig` are each available as exported functions as well.
+
+1. **[`findOriginalConfigurationsStandalone`](#findOriginalConfigurationsStandalone)** takes in an object of original configuration locations and retrieves their raw and computed contents.
+2. **[`createESLintConfiguration`](#createESLintConfiguration)** creates an raw output ESLint configuration summary from those input configuration values.
+3. `joinConfigConversionResults` turns a raw ESLint configuration summary into  ESLint's configuration shape.
+4. `formatOutput` prints that formatted output into a string per the output file extension.
+
+> Read the docs also dts yo
+> Please file an issue on GitHub if you'd like to see changes.
+
+### `findOriginalConfigurationsStandalone`
+
+Reading in from the default file locations, including `.eslintrc.js`:
+
+```ts
+import { findOriginalConfigurations } from "tslint-to-eslint-config";
+
+const originalConfigurations = await findOriginalConfigurations();
+```
+
+Overriding some configuration file locations to read from:
+
+```ts
+import { findOriginalConfigurations } from "tslint-to-eslint-config";
+
+const originalConfigurations = await findOriginalConfigurations({
+    config: "./path/to/.eslintrc.json",
+    tslint: "./another/path/to/tslint.custom.json",
+});
+```
+
+### `createESLintConfiguration`
+
+Generating an ESLint configuration from the contents of a local `tslint.json`:
+
+```ts
+import { createESLintConfiguration } from "tslint-to-eslint-config";
+
+const summarizedConfiguration = await createESLintConfiguration({
+    tslint: {
+        raw: require("./tslint.json"),
+    },
+});
+```
+
+Using the full configuration values from disk:
+
+```ts
+import { createESLintConfiguration, findOriginalConfigurations } from "tslint-to-eslint-config";
+
+const originalConfigurations = await findOriginalConfigurations();
+const summarizedConfiguration = await createESLintConfiguration(originalConfigurations);
+
+const raw = joinConfigConversionResults(summarizedConfiguration, originalConfigurations.data);
+
+const formatted = formatOutput("eslintrc.js", raw);
+```

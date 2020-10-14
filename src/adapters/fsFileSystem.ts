@@ -8,6 +8,7 @@ const writeFile = promisify(fs.writeFile);
 
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {
+        throw new Error("hi fileExists: " + filePath);
         try {
             return fs.existsSync(filePath);
         } catch (error) {
@@ -15,6 +16,7 @@ export const fsFileSystem: FileSystem = {
         }
     },
     readFile: async (filePath: string) => {
+        throw new Error("hi readFile: " + filePath);
         try {
             return (await readFile(filePath)).toString();
         } catch (error) {
@@ -22,6 +24,7 @@ export const fsFileSystem: FileSystem = {
         }
     },
     writeFile: async (filePath: string, contents: string) => {
+        throw new Error("hi writeFile: " + filePath);
         try {
             return writeFile(filePath, contents);
         } catch (error) {
