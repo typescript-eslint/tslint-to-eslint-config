@@ -1,5 +1,3 @@
-// export { formatOutput } from "../converters/lintConfigs/formatting/formatOutput";
-// export { joinConfigConversionResults } from "../converters/lintConfigs/joinConfigConversionResults";
 import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
 import { ConfigurationLocations } from "../types";
 import { findOriginalConfigurationsDependencies } from "./dependencies";
