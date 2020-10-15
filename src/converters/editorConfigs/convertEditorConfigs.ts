@@ -61,5 +61,5 @@ export const convertEditorConfigs = async (
           };
 };
 
-const defaultPathMatches = (defaultPath: string, otherPath: string) =>
-    defaultPath.replace(/\W+/g, "") === otherPath.replace(/\W+/g, "");
+const defaultPathMatches = (defaultPath: string, requestedPath: string) =>
+    requestedPath.replace(/\W+/g, "").endsWith(defaultPath.replace(/\W+/g, ""));
