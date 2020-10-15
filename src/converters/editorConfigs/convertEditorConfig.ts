@@ -17,7 +17,8 @@ export const convertEditorConfig = async (
         return originalFileContents;
     }
 
-    const updatedFileContents = converter(originalFileContents, settings);
+    const conversion = converter(originalFileContents, settings);
+    const error = await dependencies.fileSystem.writeFile(requestedPath, conversion.contents);
 
-    return await dependencies.fileSystem.writeFile(requestedPath, updatedFileContents);
+    return error ?? conversion;
 };

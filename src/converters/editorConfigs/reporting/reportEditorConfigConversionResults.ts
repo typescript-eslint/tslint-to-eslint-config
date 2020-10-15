@@ -1,10 +1,10 @@
 import { Logger } from "../../../adapters/logger";
-import { logSuccessfulConversions, logFailedConversions } from "../../../reporting";
-
-export type EditorSettingConversionResults = {
-    failed: Error[];
-    successes: string[];
-};
+import {
+    logSuccessfulConversions,
+    logFailedConversions,
+    logMissingConversionTarget,
+} from "../../../reporting";
+import { EditorConfigsConversionResults } from "../types";
 
 export type ReportEditorConfigConversionResultsDependencies = {
     logger: Logger;
@@ -12,20 +12,31 @@ export type ReportEditorConfigConversionResultsDependencies = {
 
 export const reportEditorConfigConversionResults = (
     dependencies: ReportEditorConfigConversionResultsDependencies,
-    results: EditorSettingConversionResults,
+    results: EditorConfigsConversionResults,
 ) => {
-    if (results.successes.length !== 0) {
+    if (results.successes.size !== 0) {
         logSuccessfulConversions(
             "editor file",
             "augmented",
-            results.successes.length,
+            results.successes.size,
             dependencies.logger,
         );
+
+        for (const [filePath, success] of results.successes) {
+            if (success.missing.length) {
+                logMissingConversionTarget(
+                    `${filePath} editor setting`,
+                    (editorSetting) => editorSetting,
+                    success.missing,
+                    dependencies.logger,
+                );
+            }
+        }
     }
 
-    if (results.failed.length !== 0) {
+    if (results.failed.size !== 0) {
         logFailedConversions(
-            results.failed.map((fail) => fail.message),
+            Array.from(results.failed.values()).map((fail) => fail.message),
             dependencies.logger,
         );
     }

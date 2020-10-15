@@ -4,6 +4,14 @@ import * as path from "path";
 import { parseJson } from "../../../utils";
 import { EditorConfigConverter } from "../types";
 
+const knownMissingSettings = [
+    "tslint.alwaysShowRuleFailuresAsWarnings",
+    "tslint.exclude",
+    "tslint.ignoreDefinitionFiles",
+    "tslint.jsEnable",
+    "tslint.suppressWhileTypeErrorsPresent",
+];
+
 export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, settings) => {
     const editorSettings = parseJson(rawEditorSettings);
     const autoFixOnSave = editorSettings["editor.codeActionsOnSave"]?.["source.fixAll.tslint"];
@@ -16,7 +24,7 @@ export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, se
             path.dirname(settings.config),
         );
 
-    return JSON.stringify(
+    const contents = JSON.stringify(
         merge(
             {},
             editorSettings,
@@ -31,5 +39,11 @@ export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, se
                 },
             },
         ),
+        null,
+        4,
     );
+
+    const missing = knownMissingSettings.filter((setting) => editorSettings[setting]);
+
+    return { contents, missing };
 };

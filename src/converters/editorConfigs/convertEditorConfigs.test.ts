@@ -1,3 +1,4 @@
+import { ResultStatus } from "../../types";
 import { convertEditorConfigs, ConvertEditorConfigsDependencies } from "./convertEditorConfigs";
 
 const stubConfigPath = "stub.json";
@@ -19,24 +20,28 @@ const createSettings = (requestedPath?: string) => ({
 describe("convertEditorConfigs", () => {
     it("reports an error when an unknown editor config path is requested", async () => {
         // Arrange
+        const unknownPath = "unknown/path.txt";
         const dependencies = createStubDependencies();
-        const settings = createSettings("unknown/path.txt");
+        const settings = createSettings(unknownPath);
 
         // Act
-        await convertEditorConfigs(dependencies, settings);
+        const result = await convertEditorConfigs(dependencies, settings);
 
         // Assert
+        const error = expect.objectContaining({
+            message: `Unknown editor config path requested: 'unknown/path.txt'.`,
+        });
         expect(dependencies.reportEditorConfigConversionResults).toHaveBeenCalledWith({
-            failed: [
-                expect.objectContaining({
-                    message: `Unknown editor config path requested: 'unknown/path.txt'.`,
-                }),
-            ],
-            successes: [stubConfigPath],
+            failed: new Map([[unknownPath, error]]),
+            successes: new Map(),
+        });
+        expect(result).toEqual({
+            errors: [error],
+            status: ResultStatus.Failed,
         });
     });
 
-    it("reports an error when converting a requested editor config reports an error", async () => {
+    it("reports an error when converting an editor config reports an error", async () => {
         // Arrange
         const error = new Error("Oh no!");
         const dependencies = createStubDependencies({
@@ -45,63 +50,40 @@ describe("convertEditorConfigs", () => {
         const settings = createSettings(stubConfigPath);
 
         // Act
-        await convertEditorConfigs(dependencies, settings);
+        const result = await convertEditorConfigs(dependencies, settings);
 
         // Assert
         expect(dependencies.reportEditorConfigConversionResults).toHaveBeenCalledWith({
-            failed: [error],
-            successes: [],
+            failed: new Map([[stubConfigPath, error]]),
+            successes: new Map(),
+        });
+        expect(result).toEqual({
+            errors: [error],
+            status: ResultStatus.Failed,
         });
     });
 
-    it("reports a success when converting a requested editor config reports a success", async () => {
+    it("reports a success when converting an editor config reports a success", async () => {
         // Arrange
+        const success = {
+            contents: "Hello, world!",
+            missing: [],
+        };
         const dependencies = createStubDependencies({
-            convertEditorConfig: jest.fn().mockResolvedValue(undefined),
+            convertEditorConfig: jest.fn().mockResolvedValue(success),
         });
         const settings = createSettings(stubConfigPath);
 
         // Act
-        await convertEditorConfigs(dependencies, settings);
+        const result = await convertEditorConfigs(dependencies, settings);
 
         // Assert
         expect(dependencies.reportEditorConfigConversionResults).toHaveBeenCalledWith({
-            failed: [],
-            successes: [stubConfigPath],
+            failed: new Map(),
+            successes: new Map([[stubConfigPath, success]]),
         });
-    });
-
-    it("does not report an error when converting a default editor config reports an error", async () => {
-        // Arrange
-        const dependencies = createStubDependencies({
-            convertEditorConfig: jest.fn().mockResolvedValue(new Error("Oh no!")),
-        });
-        const settings = createSettings();
-
-        // Act
-        await convertEditorConfigs(dependencies, settings);
-
-        // Assert
-        expect(dependencies.reportEditorConfigConversionResults).toHaveBeenCalledWith({
-            failed: [],
-            successes: [],
-        });
-    });
-
-    it("reports a success when converting a default editor config reports a success", async () => {
-        // Arrange
-        const dependencies = createStubDependencies({
-            convertEditorConfig: jest.fn().mockResolvedValue(undefined),
-        });
-        const settings = createSettings();
-
-        // Act
-        await convertEditorConfigs(dependencies, settings);
-
-        // Assert
-        expect(dependencies.reportEditorConfigConversionResults).toHaveBeenCalledWith({
-            failed: [],
-            successes: [stubConfigPath],
+        expect(result).toEqual({
+            status: ResultStatus.Succeeded,
         });
     });
 });

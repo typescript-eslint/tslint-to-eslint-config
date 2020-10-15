@@ -36,6 +36,14 @@ import {
     convertFileComments,
 } from "../converters/comments/convertFileComments";
 import {
+    convertEditorConfigs,
+    ConvertEditorConfigsDependencies,
+} from "../converters/editorConfigs/convertEditorConfigs";
+import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
+import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
+import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
+import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
+import {
     ConvertRulesDependencies,
     convertRules,
 } from "../converters/lintConfigs/rules/convertRules";
@@ -74,14 +82,6 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
-import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
-import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
-import {
-    convertEditorConfigs,
-    ConvertEditorConfigsDependencies,
-} from "../converters/editorConfigs/convertEditorConfigs";
-import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
 
 const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,

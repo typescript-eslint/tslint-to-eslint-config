@@ -1,11 +1,14 @@
 import * as CsonParser from "cson-parser";
 import { merge } from "lodash";
 
+const knownMissingSettings = ["enableSemanticRules", "rulesDirectory"];
+
 export const convertAtomConfig = (rawEditorSettings: string) => {
     const editorSettings = CsonParser.parse(rawEditorSettings);
-    const useLocalTslint = editorSettings["linter-tslint"]?.useLocalTslint;
+    const linterSettings = editorSettings["linter-tslint"];
+    const useLocalTslint = linterSettings?.useLocalTslint;
 
-    return CsonParser.stringify(
+    const contents = CsonParser.stringify(
         merge(
             editorSettings,
             useLocalTslint !== undefined && {
@@ -16,5 +19,11 @@ export const convertAtomConfig = (rawEditorSettings: string) => {
                 },
             },
         ),
+        null,
+        4,
     );
+
+    const missing = knownMissingSettings.filter((setting) => linterSettings?.[setting]);
+
+    return { contents, missing };
 };

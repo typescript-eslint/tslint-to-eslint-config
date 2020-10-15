@@ -13,7 +13,10 @@ describe("convertVSCodeConfig", () => {
         const result = convertVSCodeConfig(JSON.stringify(editorSettings), stubSettings);
 
         // Assert
-        expect(result).toEqual(JSON.stringify(editorSettings));
+        expect(result).toEqual({
+            contents: JSON.stringify(editorSettings, null, 4),
+            missing: [],
+        });
     });
 
     it("includes eslint.autoFixOnSave when source.fixAll.tslint exists", () => {
@@ -29,15 +32,20 @@ describe("convertVSCodeConfig", () => {
         const result = convertVSCodeConfig(JSON.stringify(editorSettings), stubSettings);
 
         // Assert
-        expect(result).toEqual(
-            JSON.stringify({
-                "editor.codeActionsOnSave": {
-                    "source.fixAll.tslint": true,
-                    "eslint.autoFixOnSave": true,
+        expect(result).toEqual({
+            contents: JSON.stringify(
+                {
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.tslint": true,
+                        "eslint.autoFixOnSave": true,
+                    },
+                    unrelated: true,
                 },
-                unrelated: true,
-            }),
-        );
+                null,
+                4,
+            ),
+            missing: [],
+        });
     });
 
     it("does not include configFile when tslint.configFile does not match the output config", () => {
@@ -51,7 +59,10 @@ describe("convertVSCodeConfig", () => {
         const result = convertVSCodeConfig(JSON.stringify(editorSettings), stubSettings);
 
         // Assert
-        expect(result).toEqual(JSON.stringify(editorSettings));
+        expect(result).toEqual({
+            contents: JSON.stringify(editorSettings, null, 4),
+            missing: [],
+        });
     });
 
     it("includes configFile when tslint.configFile matches", () => {
@@ -65,14 +76,45 @@ describe("convertVSCodeConfig", () => {
         const result = convertVSCodeConfig(JSON.stringify(editorSettings), stubSettings);
 
         // Assert
-        expect(result).toEqual(
-            JSON.stringify({
-                "tslint.configFile": "./tslint.json",
-                unrelated: true,
-                "eslint.options": {
-                    configFile: stubSettings.config,
+        expect(result).toEqual({
+            contents: JSON.stringify(
+                {
+                    "tslint.configFile": "./tslint.json",
+                    unrelated: true,
+                    "eslint.options": {
+                        configFile: stubSettings.config,
+                    },
                 },
-            }),
-        );
+                null,
+                4,
+            ),
+            missing: [],
+        });
+    });
+
+    it("includes missing notices when known missing settings are included", () => {
+        // Arrange
+        const editorSettings = {
+            "tslint.alwaysShowRuleFailuresAsWarnings": true,
+            "tslint.exclude": true,
+            "tslint.ignoreDefinitionFiles": true,
+            "tslint.jsEnable": true,
+            "tslint.suppressWhileTypeErrorsPresent": true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings), stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            contents: JSON.stringify(editorSettings, null, 4),
+            missing: [
+                "tslint.alwaysShowRuleFailuresAsWarnings",
+                "tslint.exclude",
+                "tslint.ignoreDefinitionFiles",
+                "tslint.jsEnable",
+                "tslint.suppressWhileTypeErrorsPresent",
+            ],
+        });
     });
 });

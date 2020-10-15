@@ -11,7 +11,10 @@ describe("convertAtomConfig", () => {
         const result = convertAtomConfig(CsonParser.stringify(editorSettings));
 
         // Assert
-        expect(result).toEqual(CsonParser.stringify(editorSettings));
+        expect(result).toEqual({
+            contents: CsonParser.stringify(editorSettings, null, 4),
+            missing: [],
+        });
     });
 
     it("includes useGlobalEslint when useLocalTslint exists", () => {
@@ -27,18 +30,42 @@ describe("convertAtomConfig", () => {
         const result = convertAtomConfig(CsonParser.stringify(editorSettings));
 
         // Assert
-        expect(result).toEqual(
-            CsonParser.stringify({
-                "linter-tslint": {
-                    useLocalTslint: true,
-                },
-                unrelated: true,
-                "linter-eslint": {
-                    global: {
-                        useGlobalEslint: false,
+        expect(result).toEqual({
+            contents: CsonParser.stringify(
+                {
+                    "linter-tslint": {
+                        useLocalTslint: true,
+                    },
+                    unrelated: true,
+                    "linter-eslint": {
+                        global: {
+                            useGlobalEslint: false,
+                        },
                     },
                 },
-            }),
-        );
+                null,
+                4,
+            ),
+            missing: [],
+        });
+    });
+
+    it("includes missing notices when known missing settings are included", () => {
+        // Arrange
+        const editorSettings = {
+            "linter-tslint": {
+                enableSemanticRules: true,
+                rulesDirectory: true,
+            },
+        };
+
+        // Act
+        const result = convertAtomConfig(CsonParser.stringify(editorSettings));
+
+        // Assert
+        expect(result).toEqual({
+            contents: CsonParser.stringify(editorSettings, null, 4),
+            missing: ["enableSemanticRules", "rulesDirectory"],
+        });
     });
 });

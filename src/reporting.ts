@@ -57,7 +57,7 @@ export const logMissingConversionTarget = <T>(
     missingOutputMapping: (missing: T) => string,
     missing: T[],
     logger: Logger,
-    additionalWarnings: string[],
+    additionalWarnings: string[] = [],
 ) => {
     const headline =
         missing.length === 1

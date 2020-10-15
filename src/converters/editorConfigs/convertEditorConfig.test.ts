@@ -24,21 +24,46 @@ describe("convertEditorConfig", () => {
         expect(result).toEqual(error);
     });
 
-    it("writes the file when conversion succeeds", async () => {
+    it("returns an error when writing to a file fails", async () => {
         // Arrange
         const originalFileContents = "Hello";
-        const converter = (input: string) => `${input} world!`;
+        const error = new Error("Oh no!");
+        const converter = (input: string) => ({
+            contents: `${input} world!`,
+            missing: [],
+        });
         const dependencies = {
             fileSystem: {
                 readFile: jest.fn().mockResolvedValue(originalFileContents),
-                writeFile: jest.fn(),
+                writeFile: jest.fn().mockResolvedValue(error),
             },
         };
 
         // Act
-        await convertEditorConfig(dependencies, converter, stubPath, stubSettings);
+        const result = await convertEditorConfig(dependencies, converter, stubPath, stubSettings);
 
         // Assert
-        expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(stubPath, "Hello world!");
+        expect(result).toEqual(error);
+    });
+
+    it("returns the conversion data when writing to a file succeeds", async () => {
+        // Arrange
+        const originalFileContents = "Hello";
+        const converter = (input: string) => ({
+            contents: `${input} world!`,
+            missing: [],
+        });
+        const dependencies = {
+            fileSystem: {
+                readFile: jest.fn().mockResolvedValue(originalFileContents),
+                writeFile: jest.fn().mockResolvedValue(undefined),
+            },
+        };
+
+        // Act
+        const result = await convertEditorConfig(dependencies, converter, stubPath, stubSettings);
+
+        // Assert
+        expect(result).toEqual(converter(originalFileContents));
     });
 });

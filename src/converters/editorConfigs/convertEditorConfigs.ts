@@ -3,7 +3,7 @@ import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../ty
 import { uniqueFromSources } from "../../utils";
 import { convertEditorConfig } from "./convertEditorConfig";
 import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults";
-import { EditorConfigDescriptor } from "./types";
+import { EditorConfigDescriptor, EditorConfigsConversionResults } from "./types";
 
 export type ConvertEditorConfigsDependencies = {
     convertEditorConfig: SansDependencies<typeof convertEditorConfig>;
@@ -16,65 +16,47 @@ export const convertEditorConfigs = async (
     dependencies: ConvertEditorConfigsDependencies,
     settings: TSLintToESLintSettings,
 ): Promise<ResultWithStatus> => {
-    const failed: Error[] = [];
-    const successes: string[] = [];
+    const results: EditorConfigsConversionResults = {
+        failed: new Map(),
+        successes: new Map(),
+    };
     const requestedPaths = uniqueFromSources(settings.editor);
 
-    // 1. Requested paths ??? with error reporting ???
     await Promise.all(
         requestedPaths.map(async (requestedPath) => {
             const descriptor = dependencies.editorConfigDescriptors.find(([defaultPath]) =>
                 defaultPathMatches(defaultPath, requestedPath),
             );
             if (!descriptor) {
-                failed.push(new Error(`Unknown editor config path requested: '${requestedPath}'.`));
+                results.failed.set(
+                    requestedPath,
+                    new Error(`Unknown editor config path requested: '${requestedPath}'.`),
+                );
                 return;
             }
 
-            const error = await dependencies.convertEditorConfig(
+            const result = await dependencies.convertEditorConfig(
                 descriptor[1],
                 requestedPath,
                 settings,
             );
 
-            if (error) {
-                failed.push(error);
+            if (result instanceof Error) {
+                results.failed.set(requestedPath, result);
             } else {
-                successes.push(requestedPath);
+                results.successes.set(requestedPath, result);
             }
         }),
     );
 
-    // 2. Default paths ??? without error reporting ???
-    // (yes, this works, .convertEditorConfig has the readFile attempt)
-    // (todo, change to only if requested paths is true bool?)
-    await Promise.all(
-        dependencies.editorConfigDescriptors
-            .filter(
-                ([defaultPath]) =>
-                    !requestedPaths.some((success) => defaultPathMatches(defaultPath, success)),
-            )
-            .map(async ([defaultPath, converter]) => {
-                const error = await dependencies.convertEditorConfig(
-                    converter,
-                    defaultPath,
-                    settings,
-                );
+    dependencies.reportEditorConfigConversionResults(results);
 
-                if (!error) {
-                    successes.push(defaultPath);
-                }
-            }),
-    );
-
-    dependencies.reportEditorConfigConversionResults({ failed, successes });
-
-    return failed.length === 0
+    return results.failed.size === 0
         ? {
               status: ResultStatus.Succeeded,
           }
         : {
-              errors: failed,
+              errors: Array.from(results.failed.values()),
               status: ResultStatus.Failed,
           };
 };
