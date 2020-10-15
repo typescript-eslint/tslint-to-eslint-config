@@ -8,12 +8,12 @@ import { normalizeExtensions } from "../pruning/normalizeExtensions";
 import { RuleConversionResults } from "../rules/convertRules";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { normalizeESLintRules } from "./normalizeESLintRules";
-import { addPrettierExtensions } from "./prettier/addPrettierExtensions";
+import { checkPrettierExtension } from "./prettier/checkPrettierExtension";
 import { retrieveExtendsValues } from "./retrieveExtendsValues";
 import { SummarizedConfigResultsConfiguration } from "./types";
 
 export type SummarizePackageRulesDependencies = {
-    addPrettierExtensions: typeof addPrettierExtensions;
+    checkPrettierExtension: typeof checkPrettierExtension;
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
 };
@@ -34,7 +34,7 @@ export const summarizePackageRules = async (
     const allExtensions = uniqueFromSources(extendedESLintRulesets, extendedTSLintRulesets);
 
     // 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
-    if (await dependencies.addPrettierExtensions(ruleConversionResults, prettierRequested)) {
+    if (dependencies.checkPrettierExtension(ruleConversionResults, prettierRequested)) {
         allExtensions.push("prettier", "prettier/@typescript-eslint");
     }
 
