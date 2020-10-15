@@ -70,14 +70,15 @@ if (result.status !== ResultStatus.Succeeded) {
 > Use at your own risk.
 > Please file an issue on GitHub if you'd like to see changes.
 
-The individual steps within `convertTSLintConfig` are each available as exported functions as well.
+Portions of the individual steps within `convertTSLintConfig` are each available as exported functions as well.
 
-1. **[`findOriginalConfigurationsStandalone`](#findOriginalConfigurationsStandalone)** takes in an object of original configuration locations and retrieves their raw and computed contents.
-2. **[`createESLintConfiguration`](#createESLintConfiguration)** creates an raw output ESLint configuration summary from those input configuration values.
-3. `joinConfigConversionResults` turns a raw ESLint configuration summary into  ESLint's configuration shape.
-4. `formatOutput` prints that formatted output into a string per the output file extension.
+* **[`findOriginalConfigurations`](#findOriginalConfigurations)** takes in an object of original configuration locations and retrieves their raw and computed contents.
+    * **[`findReportedConfiguration`](#findReportedConfiguration)** runs a config print command and parses its output as JSON.
+* **[`createESLintConfiguration`](#createESLintConfiguration)** creates an raw output ESLint configuration summary from those input configuration values.
+    * `joinConfigConversionResults` turns a raw ESLint configuration summary into  ESLint's configuration shape.
+    * `formatOutput` prints that formatted output into a string per the output file extension.
 
-### `findOriginalConfigurationsStandalone`
+### `findOriginalConfigurations`
 
 Reading in from the default file locations, including `.eslintrc.js`:
 
@@ -98,15 +99,26 @@ const originalConfigurations = await findOriginalConfigurations({
 });
 ```
 
+#### `findReportedConfiguration`
+
+Retrieving the reported contents of a TSLint configuration:
+
+```ts
+import { findReportedConfiguration } from "tslint-to-eslint-config";
+
+const full = await findReportedConfiguration("npx tslint --print-config", "./tslint.json");
+```
+
 ### `createESLintConfiguration`
 
 Generating an ESLint configuration from the contents of a local `tslint.json`:
 
 ```ts
-import { createESLintConfiguration } from "tslint-to-eslint-config";
+import { createESLintConfiguration, findReportedConfiguration } from "tslint-to-eslint-config";
 
 const summarizedConfiguration = await createESLintConfiguration({
     tslint: {
+        full: await findReportedConfiguration("npx tslint --print-config", "./tslint.json"),
         raw: require("./tslint.json"),
     },
 });
