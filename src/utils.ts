@@ -1,4 +1,4 @@
-import stripJsonComments from "strip-json-comments";
+import JSON5 from "json5";
 
 export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
@@ -55,4 +55,4 @@ export const uniqueFromSources = <T>(...sources: (T | T[] | undefined)[]) => {
     return Array.from(new Set(items));
 };
 
-export const parseJson = (text: string) => JSON.parse(stripJsonComments(text));
+export const parseJson = (text: string) => JSON5.parse(text);
