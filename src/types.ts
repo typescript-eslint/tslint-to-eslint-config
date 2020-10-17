@@ -10,9 +10,9 @@ export type TSLintToESLintSettings = {
     comments?: true | string | string[];
 
     /**
-     * Original Editor configuration file path, such as `.vscode/settings.json`.
+     * Original Editor configuration file path(s), such as `.vscode/settings.json`.
      */
-    editor?: string;
+    editor?: string | string[];
 
     /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.

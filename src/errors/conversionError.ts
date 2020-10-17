@@ -1,11 +1,12 @@
 import { EOL } from "os";
 
-import { EditorSetting } from "../converters/editorConfigs/types";
 import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
 import { ErrorSummary } from "./errorSummary";
 
-export class ConversionError implements ErrorSummary {
-    private constructor(private readonly summary: string) {}
+export class ConversionError extends Error implements ErrorSummary {
+    private constructor(private readonly summary: string) {
+        super(summary);
+    }
 
     public static forMerger(eslintRule: string) {
         return new ConversionError(
@@ -19,12 +20,6 @@ export class ConversionError implements ErrorSummary {
     public static forRuleError(error: Error, tslintRule: TSLintRuleOptions) {
         return new ConversionError(
             `${tslintRule.ruleName} threw an error during conversion: ${error.stack}${EOL}`,
-        );
-    }
-
-    public static forSettingError(error: Error, editorSetting: EditorSetting) {
-        return new ConversionError(
-            `${editorSetting.editorSettingName} threw an error during conversion: ${error.stack}${EOL}`,
         );
     }
 

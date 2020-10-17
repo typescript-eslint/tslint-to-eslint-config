@@ -1,137 +1,69 @@
-import { ResultStatus, FailedResult } from "../../types";
-import { convertEditorConfig, ConvertEditorConfigDependencies } from "./convertEditorConfig";
-import { createEmptyEditorSettingConversionResults } from "./editorConversionResults.stubs";
-import { EditorSetting } from "./types";
+import { convertEditorConfig } from "./convertEditorConfig";
+
+const stubPath = "./vscode/settings.json";
 
 const stubSettings = {
-    config: "./eslintrc.js",
-    editor: "./my-editor/settings.json",
+    config: ".eslintrc.js",
 };
 
-const createStubDependencies = (
-    overrides: Partial<ConvertEditorConfigDependencies> = {},
-): ConvertEditorConfigDependencies => ({
-    convertEditorSettings: jest.fn(),
-    findEditorConfiguration: jest.fn().mockResolvedValue({}),
-    reportEditorSettingConversionResults: jest.fn(),
-    writeEditorConfigConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
-    ...overrides,
-});
-
 describe("convertEditorConfig", () => {
-    it("returns a success result when there is no original configuration", async () => {
+    it("returns an error when reading the file fails", async () => {
         // Arrange
-        const dependencies = createStubDependencies({
-            findEditorConfiguration: async () => undefined,
-        });
-
-        // Act
-        const result = await convertEditorConfig(dependencies, stubSettings);
-
-        // Assert
-        expect(result).toEqual({
-            status: ResultStatus.Succeeded,
-        });
-    });
-
-    it("returns the failure result when finding the original configurations fails", async () => {
-        // Arrange
-        const error = new Error();
-        const findError: FailedResult = {
-            errors: [error],
-            status: ResultStatus.Failed,
+        const error = new Error("Oh no");
+        const dependencies = {
+            fileSystem: {
+                readFile: jest.fn().mockResolvedValue(error),
+                writeFile: jest.fn(),
+            },
         };
 
-        const dependencies = createStubDependencies({
-            findEditorConfiguration: async () => ({
-                configPath: "",
-                result: error,
-            }),
-        });
-
         // Act
-        const result = await convertEditorConfig(dependencies, stubSettings);
+        const result = await convertEditorConfig(dependencies, jest.fn(), stubPath, stubSettings);
 
         // Assert
-        expect(result).toEqual(findError);
+        expect(result).toEqual(error);
     });
 
-    it("returns the failure result when writing to the configuration file fails", async () => {
+    it("returns an error when writing to a file fails", async () => {
         // Arrange
-        const fileWriteError = new Error();
-        const dependencies = createStubDependencies({
-            writeEditorConfigConversionResults: jest.fn().mockResolvedValueOnce(fileWriteError),
+        const originalFileContents = "Hello";
+        const error = new Error("Oh no!");
+        const converter = (input: string) => ({
+            contents: `${input} world!`,
+            missing: [],
         });
-
-        // Act
-        const result = await convertEditorConfig(dependencies, stubSettings);
-
-        // Assert
-        expect(result).toEqual({
-            errors: [fileWriteError],
-            status: ResultStatus.Failed,
-        });
-    });
-
-    it("converts conversion results when finding the original configurations succeeds", async () => {
-        // Arrange
-        const originalConfig = {
-            "typescript.tsdk": "node_modules/typescript/lib",
+        const dependencies = {
+            fileSystem: {
+                readFile: jest.fn().mockResolvedValue(originalFileContents),
+                writeFile: jest.fn().mockResolvedValue(error),
+            },
         };
 
-        const dependencies = createStubDependencies({
-            findEditorConfiguration: jest.fn().mockResolvedValue({
-                result: originalConfig,
-            }),
-        });
-
         // Act
-        await convertEditorConfig(dependencies, stubSettings);
+        const result = await convertEditorConfig(dependencies, converter, stubPath, stubSettings);
 
         // Assert
-        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(
-            originalConfig,
-            stubSettings,
-        );
+        expect(result).toEqual(error);
     });
 
-    it("reports conversion results when settings are converted successfully", async () => {
+    it("returns the conversion data when writing to a file succeeds", async () => {
         // Arrange
-        const conversionResults = createEmptyEditorSettingConversionResults({
-            converted: new Map<string, EditorSetting>([
-                [
-                    "tslint-editor-setting-one",
-                    {
-                        editorSettingName: "tslint-editor-setting-one",
-                        value: 42,
-                    },
-                ],
-            ]),
+        const originalFileContents = "Hello";
+        const converter = (input: string) => ({
+            contents: `${input} world!`,
+            missing: [],
         });
-
-        const dependencies = createStubDependencies({
-            convertEditorSettings: jest.fn().mockReturnValue(conversionResults),
-        });
+        const dependencies = {
+            fileSystem: {
+                readFile: jest.fn().mockResolvedValue(originalFileContents),
+                writeFile: jest.fn().mockResolvedValue(undefined),
+            },
+        };
 
         // Act
-        await convertEditorConfig(dependencies, stubSettings);
+        const result = await convertEditorConfig(dependencies, converter, stubPath, stubSettings);
 
         // Assert
-        expect(dependencies.reportEditorSettingConversionResults).toHaveBeenCalledWith(
-            conversionResults,
-        );
-    });
-
-    it("returns a successful result when finding the original configurations succeeds", async () => {
-        // Arrange
-        const dependencies = createStubDependencies();
-
-        // Act
-        const result = await convertEditorConfig(dependencies, stubSettings);
-
-        // Assert
-        expect(result).toEqual({
-            status: ResultStatus.Succeeded,
-        });
+        expect(result).toEqual(converter(originalFileContents));
     });
 });

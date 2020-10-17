@@ -1,8 +1,8 @@
 import * as path from "path";
-import stripJsonComments from "strip-json-comments";
 
 import { FileSystem } from "../adapters/fileSystem";
 import { NativeImporter } from "../adapters/nativeImporter";
+import { parseJson } from "../utils";
 
 export type ImporterDependencies = {
     fileSystem: Pick<FileSystem, "fileExists" | "readFile">;
@@ -31,7 +31,7 @@ export const importer = async (
         }
 
         try {
-            return JSON.parse(stripJsonComments(rawJsonContents));
+            return parseJson(rawJsonContents);
         } catch (error) {
             return error;
         }
