@@ -56,3 +56,5 @@ export const uniqueFromSources = <T>(...sources: (T | T[] | undefined)[]) => {
 };
 
 export const parseJson = (text: string) => JSON5.parse(text);
+
+console.log("HI", parseJson(`{ /* hi */ "wat": true }`));

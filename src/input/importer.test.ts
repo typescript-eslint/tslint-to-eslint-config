@@ -122,7 +122,7 @@ describe("importer", () => {
         // Assert
         expect(imported).toEqual(
             expect.objectContaining({
-                message: "Unexpected token N in JSON at position 0",
+                message: "JSON5: invalid character 'O' at 1:2",
             }),
         );
     });
