@@ -12,6 +12,10 @@ export type ConvertEditorConfigsDependencies = {
         typeof reportEditorConfigConversionResults
     >;
 };
+
+/**
+ * @see /docs/Editors.md for documentation.
+ */
 export const convertEditorConfigs = async (
     dependencies: ConvertEditorConfigsDependencies,
     settings: TSLintToESLintSettings,
@@ -20,10 +24,13 @@ export const convertEditorConfigs = async (
         failed: new Map(),
         successes: new Map(),
     };
+
+    // 1. Requested `--editor` paths are deduplicated into the list of file paths to convert.
     const requestedPaths = uniqueFromSources(settings.editor);
 
     await Promise.all(
         requestedPaths.map(async (requestedPath) => {
+            // 2. Each path is mapped, if possible, to its editor's converter function.
             const descriptor = dependencies.editorConfigDescriptors.find(([defaultPath]) =>
                 defaultPathMatches(defaultPath, requestedPath),
             );
@@ -35,6 +42,7 @@ export const convertEditorConfigs = async (
                 return;
             }
 
+            // 3. Results from calling `convertEditorConfig` on that file and configuration are stored.
             const result = await dependencies.convertEditorConfig(
                 descriptor[1],
                 requestedPath,
@@ -49,6 +57,7 @@ export const convertEditorConfigs = async (
         }),
     );
 
+    // 4. Results of converting are reported to the console and back to the calling code.
     dependencies.reportEditorConfigConversionResults(results);
 
     return results.failed.size === 0
