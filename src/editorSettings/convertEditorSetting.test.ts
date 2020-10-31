@@ -2,6 +2,7 @@ import { ConversionError } from "../errors/conversionError";
 import { convertEditorSetting } from "./convertEditorSetting";
 import { EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
+import { createStubTSLintToESLintSettings } from "../settings.stubs";
 
 describe("convertEditorSetting", () => {
     it("returns undefined when no converter exists for a setting", () => {
@@ -15,6 +16,7 @@ describe("convertEditorSetting", () => {
                 value: "any value",
             },
             converters,
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
@@ -42,6 +44,7 @@ describe("convertEditorSetting", () => {
                 value: "existing value",
             },
             converters,
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
@@ -65,7 +68,11 @@ describe("convertEditorSetting", () => {
         };
 
         // Act
-        const result = convertEditorSetting(tsLintSetting, converters);
+        const result = convertEditorSetting(
+            tsLintSetting,
+            converters,
+            createStubTSLintToESLintSettings(),
+        );
 
         // Assert
         expect(result).toEqual(ConversionError.forSettingError(error, tsLintSetting));

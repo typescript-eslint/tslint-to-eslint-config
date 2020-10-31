@@ -63,6 +63,20 @@ describe("createEnv", () => {
         });
     });
 
+    it("handles an environment where typescript configuration files are mostly undefined", () => {
+        // Arrange
+        const packages = undefined;
+        const typescript = {};
+
+        // Act
+        const env = createEnv({ packages, typescript });
+
+        // Assert
+        expect(env).not.toContain({
+            browser: expect.any(Boolean),
+        });
+    });
+
     it("returns browser as true if a typescript lib is dom", () => {
         // Arrange
         const packages = undefined;

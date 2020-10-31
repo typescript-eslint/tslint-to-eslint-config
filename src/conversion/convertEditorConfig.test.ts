@@ -89,7 +89,10 @@ describe("convertEditorConfig", () => {
         await convertEditorConfig(dependencies, stubSettings);
 
         // Assert
-        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(originalConfig);
+        expect(dependencies.convertEditorSettings).toHaveBeenCalledWith(
+            originalConfig,
+            stubSettings,
+        );
     });
 
     it("reports conversion results when settings are converted successfully", async () => {

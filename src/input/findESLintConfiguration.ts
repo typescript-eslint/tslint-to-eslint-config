@@ -9,10 +9,10 @@ import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { importer } from "./importer";
 
 export type ESLintConfiguration = {
-    env: Record<string, boolean>;
-    extends: string | string[];
-    globals?: Record<string, boolean>;
-    rules: ESLintConfigurationRules;
+    env?: Record<string, boolean | undefined>;
+    extends?: string | string[];
+    globals?: Record<string, boolean | undefined>;
+    rules?: ESLintConfigurationRules;
 };
 
 export type ESLintConfigurationRules = {
@@ -21,8 +21,7 @@ export type ESLintConfigurationRules = {
 
 export type ESLintConfigurationRuleValue =
     | RawESLintRuleSeverity
-    | [RawESLintRuleSeverity]
-    | [RawESLintRuleSeverity, any];
+    | [RawESLintRuleSeverity, ...any[]];
 
 const defaultESLintConfiguration = {
     env: {},
@@ -44,7 +43,7 @@ export const findESLintConfiguration = async (
         findRawConfiguration<ESLintConfiguration>(dependencies.importer, filePath, {
             extends: [],
         }),
-        findReportedConfiguration<Partial<ESLintConfiguration>>(
+        findReportedConfiguration<ESLintConfiguration>(
             dependencies.exec,
             "eslint --print-config",
             filePath,

@@ -21,10 +21,7 @@ export const convertCommentFormat: RuleConverter = (tslintRule) => {
     if (typeof tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1] === "object") {
         const objectArgument: CommentFormatOptions =
             tslintRule.ruleArguments[tslintRule.ruleArguments.length - 1];
-        if (
-            (objectArgument["ignore-words"] && objectArgument["ignore-words"].length) ||
-            objectArgument["ignore-pattern"]
-        ) {
+        if (objectArgument["ignore-words"]?.length || objectArgument["ignore-pattern"]) {
             capitalizedNotices.push(CapitalizedIgnoreMessage);
         }
     }

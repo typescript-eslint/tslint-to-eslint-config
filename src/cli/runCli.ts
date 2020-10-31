@@ -18,6 +18,7 @@ export const runCli = async (
     rawArgv: string[],
 ): Promise<ResultStatus> => {
     const command = new Command()
+        .storeOptionsAsProperties(false)
         .usage("[options] <file ...> --language [language]")
         .option(
             "--comments [files]",
@@ -30,14 +31,15 @@ export const runCli = async (
         .option("--prettier [prettier]", "add eslint-config-prettier to the plugins list")
         .option("--tslint [tslint]", "tslint configuration file to convert using")
         .option("--typescript [typescript]", "typescript configuration file to convert using")
-        .option("-V --version", "output the package version");
+        .option("-V, --version", "output the package version");
 
     const parsedArgv = {
         config: "./.eslintrc.js",
-        ...(command.parse(rawArgv) as Partial<TSLintToESLintSettings>),
+        ...command.parse(rawArgv).opts(),
     };
 
-    if ({}.hasOwnProperty.call(parsedArgv, "version")) {
+    const programOptions = command.opts();
+    if (programOptions.version) {
         dependencies.logger.stdout.write(`${version}${EOL}`);
         return ResultStatus.Succeeded;
     }

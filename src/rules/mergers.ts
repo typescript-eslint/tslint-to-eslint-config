@@ -1,6 +1,7 @@
 import { mergeBanTypes } from "./mergers/ban-types";
 import { mergeConsistentTypeAssertions } from "./mergers/consistent-type-assertions";
 import { mergeIndent } from "./mergers/indent";
+import { mergeNamingConvention } from "./mergers/naming-convention";
 import { mergeNoCaller } from "./mergers/no-caller";
 import { mergeNoEval } from "./mergers/no-eval";
 import { mergeNoMemberDelimiterStyle } from "./mergers/member-delimiter-style";
@@ -12,6 +13,7 @@ export const mergers = new Map([
     ["@typescript-eslint/consistent-type-assertions", mergeConsistentTypeAssertions],
     ["@typescript-eslint/indent", mergeIndent],
     ["@typescript-eslint/member-delimiter-style", mergeNoMemberDelimiterStyle],
+    ["@typescript-eslint/naming-convention", mergeNamingConvention],
     ["@typescript-eslint/no-unnecessary-type-assertion", mergeNoUnnecessaryTypeAssertion],
     ["@typescript-eslint/triple-slash-reference", mergeTripleSlashReference],
     ["no-caller", mergeNoCaller],

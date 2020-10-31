@@ -6,12 +6,12 @@ export const createEnv = ({
 }: Pick<AllOriginalConfigurations, "packages" | "typescript">) => {
     const browser =
         typescript === undefined ||
-        typescript.compilerOptions.lib === undefined ||
+        typescript.compilerOptions?.lib === undefined ||
         typescript.compilerOptions.lib.includes("dom");
 
     const es6 =
         typescript === undefined ||
-        !["es3", "es5"].includes(typescript.compilerOptions.target.toLowerCase());
+        !["es3", "es5"].includes(typescript.compilerOptions?.target?.toLowerCase() ?? "");
 
     const node =
         packages === undefined ||

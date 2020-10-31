@@ -5,6 +5,19 @@ import { RuleConverter, ConversionResult } from "./converter";
 import { RuleMerger } from "./merger";
 
 describe("convertRules", () => {
+    it("doesn't crash when passed an undefined configuration", () => {
+        // Arrange
+        const { converters, mergers } = setupConversionEnvironment({
+            ruleSeverity: "off",
+        });
+
+        // Act
+        const { missing } = convertRules({ converters, mergers }, undefined);
+
+        // Assert
+        expect(missing).toEqual([]);
+    });
+
     it("doesn't marks a disabled rule as missing when its converter returns undefined", () => {
         // Arrange
         const { tslintRule, converters, mergers } = setupConversionEnvironment({

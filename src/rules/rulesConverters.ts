@@ -154,13 +154,33 @@ import { convertNoInputsMetadataProperty } from "./converters/codelyzer/no-input
 import { convertNoLifecycleCall } from "./converters/codelyzer/no-lifecycle-call";
 import { convertNoOutputNative } from "./converters/codelyzer/no-output-native";
 import { convertNoOutputOnPrefix } from "./converters/codelyzer/no-output-on-prefix";
+import { convertNoOutputRename } from "./converters/codelyzer/no-output-rename";
 import { convertNoOutputsMetadataProperty } from "./converters/codelyzer/no-outputs-metadata-property";
+import { convertNoPipeImpure } from "./converters/codelyzer/no-pipe-impure";
+import { convertNoQueriesMetadataProperty } from "./converters/codelyzer/no-queries-metadata-property";
+import { convertPreferOnPushComponentChangeDetection } from "./converters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./converters/codelyzer/prefer-output-readonly";
+import { convertRelativeUrlPrefix } from "./converters/codelyzer/relative-url-prefix";
+import { convertTemplateBananaInBox } from "./converters/codelyzer/template-banana-in-box";
+import { convertTemplateCyclomaticComplexity } from "./converters/codelyzer/template-cyclomatic-complexity";
 import { convertTemplateNoAutofocus } from "./converters/codelyzer/template-no-autofocus";
+import { convertTemplateNoCallExpression } from "./converters/codelyzer/template-no-call-expression";
+import { convertTemplateNoNegatedAsync } from "./converters/codelyzer/template-no-negated-async";
+import { convertUseComponentSelector } from "./converters/codelyzer/use-component-selector";
+import { convertUseComponentViewEncapsulation } from "./converters/codelyzer/use-component-view-encapsulation";
 import { convertUseInjectableProvidedIn } from "./converters/codelyzer/use-injectable-provided-in";
 import { convertUseLifecycleInterface } from "./converters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./converters/codelyzer/use-pipe-decorator";
 import { convertUsePipeTransformInterface } from "./converters/codelyzer/use-pipe-transform-interface";
+
+// ESLint-React converters
+import { convertJsxBanElements } from "./converters/eslint-plugin-react/jsx-ban-elements";
+import { convertJsxBooleanValue } from "./converters/eslint-plugin-react/jsx-boolean-value";
+import { convertJsxCurlySpacing } from "./converters/eslint-plugin-react/jsx-curly-spacing";
+import { convertJsxEqualsSpacing } from "./converters/eslint-plugin-react/jsx-equals-spacing";
+import { convertJsxKey } from "./converters/eslint-plugin-react/jsx-key";
+import { convertJsxNoBind } from "./converters/eslint-plugin-react/jsx-no-bind";
+import { convertJsxWrapMultiline } from "./converters/eslint-plugin-react/jsx-wrap-multiline";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -198,6 +218,13 @@ export const rulesConverters = new Map([
     ["interface-name", convertInterfaceName],
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
     ["jsdoc-format", convertJSDocFormat],
+    ["jsx-ban-elements", convertJsxBanElements],
+    ["jsx-boolean-value", convertJsxBooleanValue],
+    ["jsx-curly-spacing", convertJsxCurlySpacing],
+    ["jsx-equals-spacing", convertJsxEqualsSpacing],
+    ["jsx-key", convertJsxKey],
+    ["jsx-no-bind", convertJsxNoBind],
+    ["jsx-wrap-multiline", convertJsxWrapMultiline],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
@@ -256,12 +283,16 @@ export const rulesConverters = new Map([
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
-    ["no-output-native", convertNoOutputNative],
-    ["no-outputs-metadata-property", convertNoOutputsMetadataProperty],
     ["no-octal-literal", convertNoOctalLiteral],
+    ["no-output-native", convertNoOutputNative],
+    ["no-output-native", convertNoOutputNative],
     ["no-output-on-prefix", convertNoOutputOnPrefix],
+    ["no-output-rename", convertNoOutputRename],
+    ["no-outputs-metadata-property", convertNoOutputsMetadataProperty],
     ["no-parameter-properties", convertNoParameterProperties],
     ["no-parameter-reassignment", convertNoParameterReassignment],
+    ["no-pipe-impure", convertNoPipeImpure],
+    ["no-queries-metadata-property", convertNoQueriesMetadataProperty],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
     ["no-reference-import", convertNoReferenceImport],
     ["no-reference", convertNoReference],
@@ -299,19 +330,25 @@ export const rulesConverters = new Map([
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-object-spread", convertPreferObjectSpread],
+    ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
     ["prefer-readonly", convertPreferReadonly],
     ["prefer-template", convertPreferTemplate],
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
+    ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["template-banana-in-box", convertTemplateBananaInBox],
+    ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["template-no-autofocus", convertTemplateNoAutofocus],
+    ["template-no-call-expression", convertTemplateNoCallExpression],
+    ["template-no-negated-async", convertTemplateNoNegatedAsync],
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
@@ -320,6 +357,8 @@ export const rulesConverters = new Map([
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
+    ["use-component-selector", convertUseComponentSelector],
+    ["use-component-view-encapsulation", convertUseComponentViewEncapsulation],
     ["use-default-type-parameter", convertUseDefaultTypeParameter],
     ["use-injectable-provided-in", convertUseInjectableProvidedIn],
     ["use-isnan", convertUseIsnan],

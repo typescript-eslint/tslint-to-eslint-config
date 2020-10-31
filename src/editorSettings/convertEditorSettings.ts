@@ -1,10 +1,18 @@
 import { ConversionError } from "../errors/conversionError";
 import { ErrorSummary } from "../errors/errorSummary";
+import { TSLintToESLintSettings } from "../types";
 import { convertEditorSetting } from "./convertEditorSetting";
 import { EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
 
-const EDITOR_SETTINGS_PREFIX = "editor.";
+const knownEditorSettings = new Set([
+    "tslint.configFile",
+    "tslint.jsEnable",
+    "tslint.ignoreDefinitionFiles",
+    "tslint.exclude",
+    "tslint.alwaysShowRuleFailuresAsWarnings",
+    "tslint.suppressWhileTypeErrorsPresent",
+]);
 
 export type ConvertEditorSettingsDependencies = {
     converters: Map<string, EditorSettingConverter>;
@@ -22,6 +30,7 @@ export type EditorConfiguration = Record<string, any>;
 export const convertEditorSettings = (
     dependencies: ConvertEditorSettingsDependencies,
     rawEditorConfiguration: EditorConfiguration,
+    settings: TSLintToESLintSettings,
 ): EditorSettingConversionResults => {
     const converted = new Map<string, EditorSetting>();
     const failed: ConversionError[] = [];
@@ -30,12 +39,12 @@ export const convertEditorSettings = (
     for (const [configurationName, value] of Object.entries(rawEditorConfiguration)) {
         // Configurations other than editor settings will be ignored.
         // See: https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin#configuration
-        if (!configurationName.startsWith(EDITOR_SETTINGS_PREFIX)) {
+        if (!knownEditorSettings.has(configurationName)) {
             continue;
         }
 
         const editorSetting = { editorSettingName: configurationName, value };
-        const conversion = convertEditorSetting(editorSetting, dependencies.converters);
+        const conversion = convertEditorSetting(editorSetting, dependencies.converters, settings);
 
         if (conversion === undefined) {
             const { editorSettingName } = editorSetting;

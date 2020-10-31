@@ -1,4 +1,5 @@
 import { ConversionError } from "../errors/conversionError";
+import { createStubTSLintToESLintSettings } from "../settings.stubs";
 import { convertEditorSettings } from "./convertEditorSettings";
 import { EditorSettingConversionResult, EditorSettingConverter } from "./converter";
 import { EditorSetting } from "./types";
@@ -13,29 +14,30 @@ describe("convertEditorSettings", () => {
         };
 
         // Act
-        const { converted, missing, failed } = convertEditorSettings(
+        const result = convertEditorSettings(
             { converters },
             editorConfiguration,
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
-        expect(converted.size).toEqual(0);
-        expect(missing.length).toEqual(0);
-        expect(failed.length).toEqual(0);
+        expect(result).toEqual({
+            converted: new Map(),
+            failed: [],
+            missing: [],
+        });
     });
 
     it("skips a configuration if not an editor setting", () => {
         // Arrange
-        const conversionResult: EditorSettingConversionResult = {
+        const { editorSetting, converters } = setupConversionEnvironment({
             settings: [
                 {
                     editorSettingName: "editor.eslint-setting-a",
                     value: "a",
                 },
             ],
-        };
-
-        const { editorSetting, converters } = setupConversionEnvironment(conversionResult);
+        });
 
         const editorConfiguration = {
             notAnEditorSetting: "a",
@@ -44,15 +46,26 @@ describe("convertEditorSettings", () => {
         };
 
         // Act
-        const { converted, missing, failed } = convertEditorSettings(
+        const result = convertEditorSettings(
             { converters },
             editorConfiguration,
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
-        expect(converted.size).toEqual(1);
-        expect(missing.length).toEqual(0);
-        expect(failed.length).toEqual(0);
+        expect(result).toEqual({
+            converted: new Map([
+                [
+                    "editor.eslint-setting-a",
+                    {
+                        editorSettingName: "editor.eslint-setting-a",
+                        value: "a",
+                    },
+                ],
+            ]),
+            failed: [],
+            missing: [],
+        });
     });
 
     it("marks a setting as missing when its converter returns undefined", () => {
@@ -60,13 +73,18 @@ describe("convertEditorSettings", () => {
         const { editorSetting, converters } = setupConversionEnvironment();
 
         // Act
-        const { missing } = convertEditorSettings(
+        const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
-        expect(missing).toEqual([{ editorSettingName: editorSetting.editorSettingName }]);
+        expect(result).toEqual({
+            converted: new Map(),
+            failed: [],
+            missing: [{ editorSettingName: editorSetting.editorSettingName }],
+        });
     });
 
     it("marks a conversion as failed when returned a conversion error", () => {
@@ -76,45 +94,52 @@ describe("convertEditorSettings", () => {
         converters.set(editorSetting.editorSettingName, () => conversionError);
 
         // Act
-        const { failed } = convertEditorSettings(
+        const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
-        expect(failed).toEqual([conversionError]);
+        expect(result).toEqual({
+            converted: new Map(),
+            failed: [conversionError],
+            missing: [],
+        });
     });
 
     it("marks a converted setting name as converted when a conversion has settings", () => {
         // Arrange
-        const conversionResult: EditorSettingConversionResult = {
+        const { editorSetting, converters } = setupConversionEnvironment({
             settings: [
                 {
-                    editorSettingName: "editor.eslint-setting-a",
+                    editorSettingName: "eslint.configFile",
                     value: "a",
                 },
             ],
-        };
-        const { editorSetting, converters } = setupConversionEnvironment(conversionResult);
+        });
 
         // Act
-        const { converted } = convertEditorSettings(
+        const result = convertEditorSettings(
             { converters },
             { [editorSetting.editorSettingName]: editorSetting.value },
+            createStubTSLintToESLintSettings(),
         );
 
         // Assert
-        expect(converted).toEqual(
-            new Map([
+        expect(result).toEqual({
+            converted: new Map([
                 [
-                    "editor.eslint-setting-a",
+                    "eslint.configFile",
                     {
-                        editorSettingName: "editor.eslint-setting-a",
+                        editorSettingName: "eslint.configFile",
                         value: "a",
                     },
                 ],
             ]),
-        );
+            failed: [],
+            missing: [],
+        });
     });
 });
 
@@ -127,7 +152,7 @@ function setupConversionEnvironment(conversionResult?: EditorSettingConversionRe
 
 function createSampleEditorSetting(): EditorSetting {
     return {
-        editorSettingName: "editor.tslint-editor-setting-a",
+        editorSettingName: "tslint.configFile",
         value: "a",
     };
 }

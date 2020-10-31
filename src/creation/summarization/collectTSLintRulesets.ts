@@ -11,6 +11,7 @@ const nativeExtensions = new Map([
             "plugin:@typescript-eslint/recommended-requiring-type-checking",
         ],
     ],
+    ["tslint-react", ["plugin:react/recommended"]],
 ]);
 
 export const collectTSLintRulesets = (

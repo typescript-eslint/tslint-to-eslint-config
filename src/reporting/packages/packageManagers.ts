@@ -1,7 +1,7 @@
 export enum PackageManager {
-    npm,
-    pnpm,
-    Yarn,
+    npm = 0,
+    pnpm = 1,
+    Yarn = 2,
 }
 
 export const preferredLockfiles = new Map([

@@ -10,7 +10,7 @@ export const mergeLintConfigurations = (
         return tslint;
     }
 
-    const mappedConfig = eslint.full.rules["@typescript-eslint/tslint/config"];
+    const mappedConfig = eslint.full.rules?.["@typescript-eslint/tslint/config"];
     if (!(mappedConfig instanceof Array) || mappedConfig[0] === "off") {
         return tslint;
     }

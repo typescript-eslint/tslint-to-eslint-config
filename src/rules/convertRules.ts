@@ -22,66 +22,67 @@ export type RuleConversionResults = {
 
 export const convertRules = (
     dependencies: ConvertRulesDependencies,
-    rawTslintRules: TSLintConfigurationRules,
+    rawTslintRules?: TSLintConfigurationRules,
 ): RuleConversionResults => {
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];
     const plugins = new Set<string>();
 
-    for (const [ruleName, value] of Object.entries(rawTslintRules)) {
-        const tslintRule = formatRawTslintRule(ruleName, value);
-        const conversion = convertRule(tslintRule, dependencies.converters);
+    if (rawTslintRules !== undefined) {
+        for (const [ruleName, value] of Object.entries(rawTslintRules)) {
+            const tslintRule = formatRawTslintRule(ruleName, value);
+            const conversion = convertRule(tslintRule, dependencies.converters);
 
-        if (conversion === undefined) {
-            if (tslintRule.ruleSeverity !== "off") {
-                missing.push(tslintRule);
-            }
+            if (conversion === undefined) {
+                if (tslintRule.ruleSeverity !== "off") {
+                    missing.push(tslintRule);
+                }
 
-            continue;
-        }
-
-        if (conversion instanceof ConversionError) {
-            failed.push(conversion);
-            continue;
-        }
-
-        for (const changes of conversion.rules) {
-            const existingConversion = converted.get(changes.ruleName);
-            const newConversion = {
-                ...changes,
-                ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
-            };
-
-            if (existingConversion === undefined) {
-                converted.set(changes.ruleName, newConversion);
                 continue;
             }
 
-            const merger = dependencies.mergers.get(changes.ruleName);
-            if (merger === undefined) {
-                failed.push(ConversionError.forMerger(changes.ruleName));
-            } else {
-                const existingNotices = existingConversion.notices ?? [];
-                const newNotices = newConversion.notices ?? [];
-
-                converted.set(changes.ruleName, {
-                    ...existingConversion,
-                    ruleArguments: merger(
-                        existingConversion.ruleArguments,
-                        newConversion.ruleArguments,
-                    ),
-                    notices: Array.from(new Set([...existingNotices, ...newNotices])),
-                });
+            if (conversion instanceof ConversionError) {
+                failed.push(conversion);
+                continue;
             }
-        }
 
-        if (conversion.plugins !== undefined) {
-            for (const newPlugin of conversion.plugins) {
-                plugins.add(newPlugin);
+            for (const changes of conversion.rules) {
+                const existingConversion = converted.get(changes.ruleName);
+                const newConversion = {
+                    ...changes,
+                    ruleSeverity: convertTSLintRuleSeverity(tslintRule.ruleSeverity),
+                };
+
+                if (existingConversion === undefined) {
+                    converted.set(changes.ruleName, newConversion);
+                    continue;
+                }
+
+                const merger = dependencies.mergers.get(changes.ruleName);
+                if (merger === undefined) {
+                    failed.push(ConversionError.forMerger(changes.ruleName));
+                } else {
+                    const existingNotices = existingConversion.notices ?? [];
+                    const newNotices = newConversion.notices ?? [];
+
+                    converted.set(changes.ruleName, {
+                        ...existingConversion,
+                        ruleArguments: merger(
+                            existingConversion.ruleArguments,
+                            newConversion.ruleArguments,
+                        ),
+                        notices: Array.from(new Set([...existingNotices, ...newNotices])),
+                    });
+                }
+            }
+
+            if (conversion.plugins !== undefined) {
+                for (const newPlugin of conversion.plugins) {
+                    plugins.add(newPlugin);
+                }
             }
         }
     }
-
     return { converted, failed, missing, plugins };
 };

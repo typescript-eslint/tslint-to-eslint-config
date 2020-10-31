@@ -33,7 +33,10 @@ export const convertEditorConfig = async (
         };
     }
 
-    const settingConversionResults = dependencies.convertEditorSettings(conversion.result);
+    const settingConversionResults = dependencies.convertEditorSettings(
+        conversion.result,
+        settings,
+    );
 
     const fileWriteError = await dependencies.writeConversionResults(
         conversion.configPath,
