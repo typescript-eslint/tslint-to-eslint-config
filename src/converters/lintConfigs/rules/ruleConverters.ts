@@ -367,7 +367,7 @@ export const ruleConverters = new Map([
     ["use-pipe-decorator", convertUsePipeDecorator],
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
-    ["rxjs/no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
