@@ -183,6 +183,7 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 
 //eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -368,6 +369,7 @@ export const ruleConverters = new Map([
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
