@@ -1,18 +1,18 @@
+import { FileSystem } from "../../adapters/fileSystem";
 import { SansDependencies } from "../../binding";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { TSLintToESLintSettings, ResultWithStatus, ResultStatus } from "../../types";
+import { createESLintConfiguration } from "./createESLintConfiguration";
+import { formatOutput } from "./formatting/formatOutput";
+import { joinConfigConversionResults } from "./joinConfigConversionResults";
 import { logMissingPackages } from "./reporting/packages/logMissingPackages";
 import { reportConfigConversionResults } from "./reporting/reportConfigConversionResults";
-import { convertRules } from "./rules/convertRules";
-import { summarizePackageRules } from "./summarization/summarizePackageRules";
-import { writeConfigConversionResults } from "./writeConfigConversionResults";
 
 export type ConvertLintConfigDependencies = {
-    convertRules: SansDependencies<typeof convertRules>;
+    createESLintConfiguration: SansDependencies<typeof createESLintConfiguration>;
+    fileSystem: Pick<FileSystem, "writeFile">;
     logMissingPackages: SansDependencies<typeof logMissingPackages>;
     reportConfigConversionResults: SansDependencies<typeof reportConfigConversionResults>;
-    summarizePackageRules: SansDependencies<typeof summarizePackageRules>;
-    writeConfigConversionResults: SansDependencies<typeof writeConfigConversionResults>;
 };
 
 /**
@@ -25,25 +25,20 @@ export const convertLintConfig = async (
     originalConfigurations: AllOriginalConfigurations,
     ruleEquivalents: Map<string, string[]>,
 ): Promise<ResultWithStatus> => {
-    // 1. Raw TSLint rules are mapped to their ESLint equivalents.
-    const ruleConversionResults = dependencies.convertRules(
-        originalConfigurations.tslint.full.rules,
+    // 1. Deduplicated ESLint rules and metadata are generated from raw TSLint rules.
+    const summarizedConfiguration = await dependencies.createESLintConfiguration(
+        originalConfigurations,
+        settings.prettier,
         ruleEquivalents,
     );
 
-    // 2. Those ESLint equivalents are deduplicated and relevant preset(s) detected.
-    const summarizedConfiguration = await dependencies.summarizePackageRules(
-        originalConfigurations.eslint,
-        originalConfigurations.tslint,
-        ruleConversionResults,
-        settings.prettier,
-    );
+    // 2. Those deduplicated rules and metadata are written to the output configuration file.
+    const output = joinConfigConversionResults(summarizedConfiguration, originalConfigurations);
 
-    // 3. Those deduplicated rules and metadata are written to the output configuration file.
-    const fileWriteError = await dependencies.writeConfigConversionResults(
+    // 3. That ESLint configuration output is written to the output configuration file.
+    const fileWriteError = await dependencies.fileSystem.writeFile(
         settings.config,
-        summarizedConfiguration,
-        originalConfigurations,
+        formatOutput(settings.config, output),
     );
     if (fileWriteError !== undefined) {
         return {
@@ -52,7 +47,7 @@ export const convertLintConfig = async (
         };
     }
 
-    // 4. A summary of conversion results is printed, along with any now-missing packages.
+    // 5. A summary of conversion results is printed, along with any now-missing packages.
     await dependencies.reportConfigConversionResults(settings.config, summarizedConfiguration);
     await dependencies.logMissingPackages(summarizedConfiguration, originalConfigurations.packages);
 
