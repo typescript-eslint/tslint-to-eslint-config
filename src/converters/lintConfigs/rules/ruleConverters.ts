@@ -185,6 +185,12 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 
 // eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
+import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
+import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
+import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
+import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
+import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
@@ -374,6 +380,12 @@ export const ruleConverters = new Map([
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
+    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
+    ["rxjs-no-internal", convertNoInternal],
+    ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
+    ["rxjs-no-redundant-notify", convertNoRedundantNotify],
+    ["rxjs-no-sharereplay", convertNoShareReplay],
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
 

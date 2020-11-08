@@ -62,6 +62,7 @@
             "prettier --write"
         ]
     },
+    "main": "./src/index.js",
     "name": "tslint-to-eslint-config",
     "repository": {
         "type": "git",

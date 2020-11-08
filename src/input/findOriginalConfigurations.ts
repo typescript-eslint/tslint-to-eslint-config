@@ -1,9 +1,9 @@
 import { SansDependencies } from "../binding";
 import {
     ConfigurationErrorResult,
+    ConfigurationLocations,
     ResultStatus,
-    ResultWithDataStatus,
-    TSLintToESLintSettings,
+    SucceededDataResult,
 } from "../types";
 import { isDefined } from "../utils";
 import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
@@ -46,16 +46,19 @@ export type AllOriginalConfigurations = {
     typescript?: TypeScriptConfiguration;
 };
 
+/**
+ * Searches for all relevant input configurations on disk.
+ */
 export const findOriginalConfigurations = async (
     dependencies: FindOriginalConfigurationsDependencies,
-    rawSettings: TSLintToESLintSettings,
-): Promise<ConfigurationErrorResult | ResultWithDataStatus<AllOriginalConfigurations>> => {
+    locations: ConfigurationLocations,
+): Promise<ConfigurationErrorResult | SucceededDataResult<AllOriginalConfigurations>> => {
     // Simultaneously search for all required configuration types
     const [eslint, packages, tslint, typescript] = await Promise.all([
-        dependencies.findESLintConfiguration(rawSettings),
-        dependencies.findPackagesConfiguration(rawSettings.package),
-        dependencies.findTSLintConfiguration(rawSettings.tslint),
-        dependencies.findTypeScriptConfiguration(rawSettings.typescript),
+        dependencies.findESLintConfiguration(locations),
+        dependencies.findPackagesConfiguration(locations.package),
+        dependencies.findTSLintConfiguration(locations.tslint),
+        dependencies.findTypeScriptConfiguration(locations.typescript),
     ]);
 
     // Out of those configurations, only TSLint's is always required to run
@@ -86,7 +89,7 @@ export const findOriginalConfigurations = async (
             }
 
             // * The user explicitly asked for them
-            if (typeof rawSettings[key] === "string") {
+            if (typeof locations[key] === "string") {
                 return error.message;
             }
 

@@ -1,15 +1,13 @@
-export type TSLintToESLintSettings = {
+/**
+ * Configuration file paths to read from.
+ */
+export type ConfigurationLocations = {
     /**
      * Output ESLint configuration file path, such as `.eslintrc.js`.
      */
     config: string;
 
-    /**
-     * File globs to convert `tslint:disable` comments within to `eslint-disable`.
-     */
-    comments?: true | string | string[];
-
-    /**
+    /*
      * Original Editor configuration file path(s), such as `.vscode/settings.json`.
      */
     editor?: string | string[];
@@ -25,11 +23,6 @@ export type TSLintToESLintSettings = {
     package?: string;
 
     /**
-     * Add `eslint-config-prettier` to the plugins list.
-     */
-    prettier?: boolean;
-
-    /**
      * Original TSLint configuration file path, such as `tslint.json`.
      */
     tslint?: string;
@@ -38,6 +31,31 @@ export type TSLintToESLintSettings = {
      * Original TypeScript configuration file path, such as `tsconfig.json`.
      */
     typescript?: string;
+};
+
+/**
+ * Settings to find and convert configurations to an ESLint configuration.
+ */
+export type LintConfigConversionSettings = ConfigurationLocations & {
+    /**
+     * Whether to add `eslint-config-prettier` to the plugins list.
+     */
+    prettier?: boolean;
+};
+
+/**
+ * Base settings to run conversions with.
+ */
+export type TSLintToESLintSettings = LintConfigConversionSettings & {
+    /**
+     * File globs to convert `tslint:disable` comments within to `eslint-disable`.
+     */
+    comments?: true | string | string[];
+
+    /**
+     * Original Editor configuration file path, such as `.vscode/settings.json`.
+     */
+    editor?: string;
 };
 
 export type TSLintToESLintResult = ResultWithStatus;
