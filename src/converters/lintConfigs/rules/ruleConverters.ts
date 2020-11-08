@@ -193,11 +193,11 @@ import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-intern
 import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
 import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
 import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
+import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
 /**
- * Keys TSLint rule names to their ESLint rule converters.
  */
 export const ruleConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
@@ -390,6 +390,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
     ["rxjs-no-redundant-notify", convertNoRedundantNotify],
     ["rxjs-no-sharereplay", convertNoShareReplay],
+    ["rxjs-no-subject-value", convertNoSubjectValue],
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
 
