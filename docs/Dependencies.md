@@ -8,7 +8,7 @@ Its dependencies object is manually created in `src/cli/main.ts` and bound to th
 ## When to Use Dependencies
 
 Most functions don't need a `dependencies` object.
-Only add one if something should be stubbed out during tests.
+Only add one if something should be stubbed out during tests _or_ should be available to multiple callers.
 
 ## How to Use Dependencies
 
