@@ -13,7 +13,7 @@ export type ImporterDependencies = {
 
 export const importerDependencies: ImporterDependencies = {
     fileSystem: fsFileSystem,
-    getCwd: () => process.cwd(),
+    getCwd: process.cwd.bind(process),
     nativeImporter,
 };
 
