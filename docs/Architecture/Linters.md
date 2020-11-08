@@ -3,10 +3,13 @@
 TSLint-to-ESLint linter configuration conversion is the first root-level converter run.
 Within `src/converters/lintConfigs/convertLintConfig.ts`, the following steps occur:
 
-1. Raw TSLint rules are mapped to their ESLint equivalents.
-2. Those ESLint equivalents are deduplicated and relevant preset(s) detected.
-3. Those deduplicated rules and metadata are written to the output configuration file.
-4. A summary of conversion results is printed, along with any now-missing packages.
+1. Deduplicated ESLint rules and metadata are generated from raw TSLint rules.
+    1a. Raw TSLint rules are mapped to their ESLint equivalents.
+    1b. Those ESLint equivalents are deduplicated and relevant preset(s) detected.
+2. Those deduplicated rules and metadata are written to the output configuration file.
+3. A summary of conversion results is printed, along with any now-missing packages.
+
+> Stepss 1 and 2 are the logic exported by the [Node API](../API.md) as [`convertTSLintConfig`](../API.md#convertTSLintConfig).
 
 ## Rule Conversion
 
