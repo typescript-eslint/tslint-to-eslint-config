@@ -183,8 +183,9 @@ import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
 import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
 
-//eslint-plugin-rxjs converters
+// eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -372,6 +373,7 @@ export const ruleConverters = new Map([
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
