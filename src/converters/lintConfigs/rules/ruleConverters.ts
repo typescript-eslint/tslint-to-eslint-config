@@ -186,12 +186,14 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 // eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
 import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
 import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
 import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
+import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
