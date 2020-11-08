@@ -186,6 +186,7 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 // eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
@@ -381,6 +382,7 @@ export const ruleConverters = new Map([
     ["variable-name", convertVariableName],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-create", convertNoCreate],
+    ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
     ["rxjs-no-internal", convertNoInternal],
