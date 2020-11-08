@@ -15,9 +15,7 @@ export type ESLintConfiguration = {
     rules?: ESLintConfigurationRules;
 };
 
-export type ESLintConfigurationRules = {
-    [i: string]: ESLintConfigurationRuleValue;
-};
+export type ESLintConfigurationRules = Record<string, ESLintConfigurationRuleValue>;
 
 export type ESLintConfigurationRuleValue =
     | RawESLintRuleSeverity

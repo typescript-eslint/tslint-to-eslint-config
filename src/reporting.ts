@@ -2,7 +2,6 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "./adapters/logger";
-import { ErrorSummary } from "./errors/errorSummary";
 import { ResultWithStatus, ResultStatus } from "./types";
 
 export const logErrorResult = (result: ResultWithStatus, logger: Logger) => {
@@ -31,24 +30,25 @@ export const logErrorResult = (result: ResultWithStatus, logger: Logger) => {
 
 export const logSuccessfulConversions = (
     conversionTypeName: string,
-    converted: Map<unknown, unknown>,
+    action: string,
+    quantity: number,
     logger: Logger,
 ) => {
-    logger.stdout.write(chalk.greenBright(`${EOL}✨ ${converted.size}`));
+    logger.stdout.write(chalk.greenBright(`${EOL}✨ ${quantity}`));
     logger.stdout.write(
-        converted.size === 1
-            ? chalk.green(` ${conversionTypeName} replaced with its ESLint equivalent.`)
-            : chalk.green(` ${conversionTypeName}s replaced with their ESLint equivalents.`),
+        quantity === 1
+            ? chalk.green(` ${conversionTypeName} ${action} with its ESLint equivalent.`)
+            : chalk.green(` ${conversionTypeName}s ${action} with their ESLint equivalents.`),
     );
     logger.stdout.write(chalk.greenBright(` ✨${EOL}`));
 };
 
-export const logFailedConversions = (failed: ErrorSummary[], logger: Logger) => {
+export const logFailedConversions = (failed: string[], logger: Logger) => {
     logger.stderr.write(`${chalk.redBright(`${EOL}❌ ${failed.length}`)}`);
     logger.stderr.write(chalk.red(` error${failed.length === 1 ? "" : "s"}`));
     logger.stderr.write(chalk.red(" thrown."));
     logger.stderr.write(chalk.redBright(` ❌${EOL}`));
-    logger.info.write(failed.map((fail) => fail.getSummary()).join("\n\n") + "\n\n");
+    logger.info.write(failed.join("\n\n") + "\n\n");
     logger.stderr.write(chalk.red(`  Check ${logger.debugFileName} for details.${EOL}`));
 };
 

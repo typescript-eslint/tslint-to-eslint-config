@@ -1,1 +1,1 @@
-export type EditorConfiguration = { [key: string]: any };
+export type EditorConfiguration = Record<string, any>;

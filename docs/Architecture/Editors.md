@@ -1,13 +1,11 @@
 # Editors
 
-Editor lint configurations are converted by `src/converters/editorConfigs/convertEditorConfig.ts`.
-Any setting that matches a known built-in TSLint setting will be replaced with the ESLint equivalent.
+Editor lint configurations are converted by `src/converters/editorConfigs/convertEditorConfigs.ts`, which calls to a neighboring `convertEditorConfig.ts` on each file path.
 
-For now, only VS Code editor settings are accounted for.
-Eventually this will be refactored to allow other editors such as Atom.
-
-1. An existing editor configuration is read from disk.
-2. If the existing configuration is not found or errored, nothing else needs to be done.
-3. Configuration settings are converted to their ESLint equivalents.
-4. Those ESLint equivalents are written to the configuration file.
-5. Results from converting are reported to the user.
+1. Requested `--editor` paths are deduplicated into the list of file paths to convert.
+2. Each path is mapped, if possible, to its editor's converter function.
+3. Results from calling `convertEditorConfig` on that file and configuration are stored.
+    a. The requested path's contents are read from disk.
+    b. That converter function is run on the file path.
+    c. If no error occurred, the description of changed settings is reported.
+3. Results of converting are reported to the console and back to the calling code.

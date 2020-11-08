@@ -17,12 +17,6 @@ import {
     convertEditorConfig,
 } from "../converters/editorConfigs/convertEditorConfig";
 import {
-    ConvertEditorSettingsDependencies,
-    convertEditorSettings,
-} from "../converters/editorConfigs/convertEditorSettings";
-import { editorSettingsConverters } from "../converters/editorConfigs/editorSettingsConverters";
-import { reportEditorSettingConversionResults } from "../converters/editorConfigs/reporting/reportEditorSettingConversionResults";
-import {
     ConvertLintConfigDependencies,
     convertLintConfig,
 } from "../converters/lintConfigs/convertLintConfig";
@@ -61,16 +55,11 @@ import {
 } from "../converters/lintConfigs/reporting/packages/logMissingPackages";
 import { RunCliDependencies } from "../cli/runCli";
 import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
-import { writeEditorConfigConversionResults } from "../converters/lintConfigs/writeEditorConfigConversionResults";
 import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
 import {
     ExtractGlobPathsDependencies,
     extractGlobPaths,
 } from "../converters/comments/extractGlobPaths";
-import {
-    findEditorConfiguration,
-    FindEditorConfigurationDependencies,
-} from "../input/findEditorConfiguration";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     findOriginalConfigurations,
@@ -86,6 +75,14 @@ import {
     CreateESLintConfigurationDependencies,
 } from "../converters/lintConfigs/createESLintConfiguration";
 import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension";
+import {
+    convertEditorConfigs,
+    ConvertEditorConfigsDependencies,
+} from "../converters/editorConfigs/convertEditorConfigs";
+import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
+import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
+import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
+import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
 export const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
     fileSystem: fsFileSystem,
@@ -100,10 +97,6 @@ export const convertRulesDependencies: ConvertRulesDependencies = {
     ruleMergers,
 };
 
-export const convertEditorSettingsDependencies: ConvertEditorSettingsDependencies = {
-    converters: editorSettingsConverters,
-};
-
 export const nativeImporterDependencies: ImporterDependencies = {
     fileSystem: fsFileSystem,
     getCwd: () => process.cwd(),
@@ -114,11 +107,6 @@ export const boundImporter = bind(importer, nativeImporterDependencies);
 
 export const findConfigurationDependencies = {
     exec: childProcessExec,
-    importer: boundImporter,
-};
-
-export const findEditorConfigurationDependencies: FindEditorConfigurationDependencies = {
-    fileSystem: fsFileSystem,
     importer: boundImporter,
 };
 
@@ -182,15 +170,24 @@ export const writeConversionResultsDependencies = {
 };
 
 export const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
-    findEditorConfiguration: bind(findEditorConfiguration, findEditorConfigurationDependencies),
-    convertEditorSettings: bind(convertEditorSettings, convertEditorSettingsDependencies),
-    reportEditorSettingConversionResults: bind(
-        reportEditorSettingConversionResults,
-        reportEditorSettingConversionResultsDependencies,
-    ),
-    writeEditorConfigConversionResults: bind(
-        writeEditorConfigConversionResults,
-        writeConversionResultsDependencies,
+    fileSystem: fsFileSystem,
+};
+
+export const editorConfigDescriptors: EditorConfigDescriptor[] = [
+    [".atom/config.cson", convertAtomConfig],
+    [".vscode/settings.json", convertVSCodeConfig],
+];
+
+export const reportEditorConfigConversionResultsDependencies = {
+    logger: processLogger,
+};
+
+export const convertEditorConfigsDependencies: ConvertEditorConfigsDependencies = {
+    convertEditorConfig: bind(convertEditorConfig, convertEditorConfigDependencies),
+    editorConfigDescriptors,
+    reportEditorConfigConversionResults: bind(
+        reportEditorConfigConversionResults,
+        reportEditorConfigConversionResultsDependencies,
     ),
 };
 
@@ -210,7 +207,7 @@ export const convertLintConfigDependencies: ConvertLintConfigDependencies = {
 export const runCliDependencies: RunCliDependencies = {
     converters: [
         bind(convertLintConfig, convertLintConfigDependencies),
-        bind(convertEditorConfig, convertEditorConfigDependencies),
+        bind(convertEditorConfigs, convertEditorConfigsDependencies),
         bind(convertComments, convertCommentsDependencies),
     ],
     findOriginalConfigurations: bind(

@@ -7,6 +7,11 @@ export type ConfigurationLocations = {
      */
     config: string;
 
+    /*
+     * Original Editor configuration file path(s), such as `.vscode/settings.json`.
+     */
+    editor?: string | string[];
+
     /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
      */

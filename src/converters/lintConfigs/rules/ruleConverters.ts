@@ -162,8 +162,10 @@ import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
 import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
+import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
 import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
 import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
+import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
 import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
 import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
 import { convertUseComponentSelector } from "./ruleConverters/codelyzer/use-component-selector";
@@ -180,6 +182,10 @@ import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/js
 import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
 import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
+
+// eslint-plugin-rxjs converters
+import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -343,8 +349,10 @@ export const ruleConverters = new Map([
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["template-accessibility-tabindex-no-positive", convertTemplateAccessibilityTabindexNoPositive],
     ["template-banana-in-box", convertTemplateBananaInBox],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
+    ["template-no-autofocus", convertTemplateNoAutofocus],
     ["template-no-call-expression", convertTemplateNoCallExpression],
     ["template-no-negated-async", convertTemplateNoNegatedAsync],
     ["trailing-comma", convertTrailingComma],
@@ -364,6 +372,8 @@ export const ruleConverters = new Map([
     ["use-pipe-decorator", convertUsePipeDecorator],
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
+    ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
