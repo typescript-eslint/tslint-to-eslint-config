@@ -1,4 +1,4 @@
-import { SansDependencies } from "../../../binding";
+import { bind, SansDependencies } from "../../../binding";
 import { ESLintConfiguration } from "../../../input/findESLintConfiguration";
 import { OriginalConfigurations } from "../../../input/findOriginalConfigurations";
 import { TSLintConfiguration } from "../../../input/findTSLintConfiguration";
@@ -9,13 +9,19 @@ import { RuleConversionResults } from "../rules/convertRules";
 import { collectTSLintRulesets } from "./collectTSLintRulesets";
 import { normalizeESLintRules } from "./normalizeESLintRules";
 import { checkPrettierExtension } from "./prettier/checkPrettierExtension";
-import { retrieveExtendsValues } from "./retrieveExtendsValues";
+import { retrieveExtendsValues, retrieveExtendsValuesDependencies } from "./retrieveExtendsValues";
 import { SummarizedConfigResultsConfiguration } from "./types";
 
 export type SummarizePackageRulesDependencies = {
     checkPrettierExtension: typeof checkPrettierExtension;
     removeExtendsDuplicatedRules: typeof removeExtendsDuplicatedRules;
     retrieveExtendsValues: SansDependencies<typeof retrieveExtendsValues>;
+};
+
+export const summarizePackageRulesDependencies: SummarizePackageRulesDependencies = {
+    checkPrettierExtension,
+    removeExtendsDuplicatedRules,
+    retrieveExtendsValues: bind(retrieveExtendsValues, retrieveExtendsValuesDependencies),
 };
 
 /**

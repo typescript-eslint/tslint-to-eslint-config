@@ -1,12 +1,16 @@
 import minimatch from "minimatch";
 
-import { GlobAsync } from "../../adapters/globAsync";
+import { globAsync, GlobAsync } from "../../adapters/globAsync";
 import { CommentFileNames } from "../../comments/collectCommentFileNames";
 import { ResultStatus, ResultWithDataStatus } from "../../types";
 import { separateErrors, uniqueFromSources } from "../../utils";
 
 export type ExtractGlobPathsDependencies = {
     globAsync: GlobAsync;
+};
+
+export const extractGlobPathsDependencies: ExtractGlobPathsDependencies = {
+    globAsync,
 };
 
 export const extractGlobPaths = async (

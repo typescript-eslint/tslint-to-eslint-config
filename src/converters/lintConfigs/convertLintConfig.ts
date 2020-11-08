@@ -1,18 +1,41 @@
 import { FileSystem } from "../../adapters/fileSystem";
-import { SansDependencies } from "../../binding";
+import { fsFileSystem } from "../../adapters/fsFileSystem";
+import { bind, SansDependencies } from "../../binding";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { TSLintToESLintSettings, ResultWithStatus, ResultStatus } from "../../types";
-import { createESLintConfiguration } from "./createESLintConfiguration";
+import {
+    createESLintConfiguration,
+    createESLintConfigurationDependencies,
+} from "./createESLintConfiguration";
 import { formatOutput } from "./formatting/formatOutput";
 import { joinConfigConversionResults } from "./joinConfigConversionResults";
-import { logMissingPackages } from "./reporting/packages/logMissingPackages";
-import { reportConfigConversionResults } from "./reporting/reportConfigConversionResults";
+import {
+    logMissingPackages,
+    logMissingPackagesDependencies,
+} from "./reporting/packages/logMissingPackages";
+import {
+    reportConfigConversionResults,
+    reportConversionResultsDependencies,
+} from "./reporting/reportConfigConversionResults";
 
 export type ConvertLintConfigDependencies = {
     createESLintConfiguration: SansDependencies<typeof createESLintConfiguration>;
     fileSystem: Pick<FileSystem, "writeFile">;
     logMissingPackages: SansDependencies<typeof logMissingPackages>;
     reportConfigConversionResults: SansDependencies<typeof reportConfigConversionResults>;
+};
+
+export const convertLintConfigDependencies: ConvertLintConfigDependencies = {
+    createESLintConfiguration: bind(
+        createESLintConfiguration,
+        createESLintConfigurationDependencies,
+    ),
+    fileSystem: fsFileSystem,
+    logMissingPackages: bind(logMissingPackages, logMissingPackagesDependencies),
+    reportConfigConversionResults: bind(
+        reportConfigConversionResults,
+        reportConversionResultsDependencies,
+    ),
 };
 
 /**

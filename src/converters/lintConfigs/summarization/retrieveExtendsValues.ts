@@ -1,11 +1,15 @@
-import { SansDependencies } from "../../../binding";
+import { bind, SansDependencies } from "../../../binding";
 import { ConfigurationError } from "../../../errors/configurationError";
 import { ESLintConfiguration } from "../../../input/findESLintConfiguration";
-import { importer } from "../../../input/importer";
+import { importer, importerDependencies } from "../../../input/importer";
 import { resolveExtensionNames } from "./resolveExtensionNames";
 
 export type RetrieveExtendsValuesDependencies = {
     importer: SansDependencies<typeof importer>;
+};
+
+export const retrieveExtendsValuesDependencies: RetrieveExtendsValuesDependencies = {
+    importer: bind(importer, importerDependencies),
 };
 
 export type RetrievedExtensionValues = {

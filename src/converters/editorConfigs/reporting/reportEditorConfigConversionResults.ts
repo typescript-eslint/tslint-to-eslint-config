@@ -1,4 +1,5 @@
 import { Logger } from "../../../adapters/logger";
+import { processLogger } from "../../../adapters/processLogger";
 import {
     logSuccessfulConversions,
     logFailedConversions,
@@ -8,6 +9,10 @@ import { EditorConfigsConversionResults } from "../types";
 
 export type ReportEditorConfigConversionResultsDependencies = {
     logger: Logger;
+};
+
+export const reportEditorConfigConversionResultsDependencies = {
+    logger: processLogger,
 };
 
 export const reportEditorConfigConversionResults = (

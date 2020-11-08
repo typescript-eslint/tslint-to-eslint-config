@@ -2,9 +2,14 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../../../adapters/logger";
+import { processLogger } from "../../../adapters/processLogger";
 
 export type ReportCommentResultsDependencies = {
     logger: Logger;
+};
+
+export const reportCommentResultsDependencies: ReportCommentResultsDependencies = {
+    logger: processLogger,
 };
 
 export const reportCommentResults = (

@@ -1,8 +1,7 @@
 import { EOL } from "os";
 
 import { processLogger } from "../adapters/processLogger";
-import { runCliDependencies } from "../api/dependencies";
-import { runCli } from "../cli/runCli";
+import { runCli, runCliDependencies } from "../cli/runCli";
 
 export const main = async (argv: string[]) => {
     try {

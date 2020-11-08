@@ -1,9 +1,14 @@
 import { FileSystem } from "../../adapters/fileSystem";
+import { fsFileSystem } from "../../adapters/fsFileSystem";
 import { TSLintToESLintSettings } from "../../types";
 import { EditorConfigConverter } from "./types";
 
 export type ConvertEditorConfigDependencies = {
     fileSystem: Pick<FileSystem, "readFile" | "writeFile">;
+};
+
+export const convertEditorConfigDependencies: ConvertEditorConfigDependencies = {
+    fileSystem: fsFileSystem,
 };
 
 /**

@@ -1,13 +1,20 @@
 import * as path from "path";
 
 import { FileSystem } from "../adapters/fileSystem";
-import { NativeImporter } from "../adapters/nativeImporter";
+import { fsFileSystem } from "../adapters/fsFileSystem";
+import { nativeImporter, NativeImporter } from "../adapters/nativeImporter";
 import { parseJson } from "../utils";
 
 export type ImporterDependencies = {
     fileSystem: Pick<FileSystem, "fileExists" | "readFile">;
     getCwd: () => string;
     nativeImporter: NativeImporter;
+};
+
+export const importerDependencies: ImporterDependencies = {
+    fileSystem: fsFileSystem,
+    getCwd: () => process.cwd(),
+    nativeImporter,
 };
 
 export const importer = async (

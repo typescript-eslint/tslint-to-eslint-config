@@ -4,11 +4,25 @@ import { EOL } from "os";
 
 import { version } from "../../package.json";
 import { Logger } from "../adapters/logger";
-import { SansDependencies } from "../binding";
+import { processLogger } from "../adapters/processLogger";
+import { bind, SansDependencies } from "../binding";
+import {
+    convertComments,
+    convertCommentsDependencies,
+} from "../converters/comments/convertComments";
+import {
+    convertEditorConfigs,
+    convertEditorConfigsDependencies,
+} from "../converters/editorConfigs/convertEditorConfigs";
+import {
+    convertLintConfig,
+    convertLintConfigDependencies,
+} from "../converters/lintConfigs/convertLintConfig";
 import { Converter } from "../converters/types";
 import {
     AllOriginalConfigurations,
     findOriginalConfigurations,
+    findOriginalConfigurationsDependencies,
 } from "../input/findOriginalConfigurations";
 import { logErrorResult } from "../reporting";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
@@ -17,6 +31,19 @@ export type RunCliDependencies = {
     converters: Converter[];
     findOriginalConfigurations: SansDependencies<typeof findOriginalConfigurations>;
     logger: Logger;
+};
+
+export const runCliDependencies: RunCliDependencies = {
+    converters: [
+        bind(convertLintConfig, convertLintConfigDependencies),
+        bind(convertEditorConfigs, convertEditorConfigsDependencies),
+        bind(convertComments, convertCommentsDependencies),
+    ],
+    findOriginalConfigurations: bind(
+        findOriginalConfigurations,
+        findOriginalConfigurationsDependencies,
+    ),
+    logger: processLogger,
 };
 
 /**

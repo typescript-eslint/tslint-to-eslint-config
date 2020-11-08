@@ -2,16 +2,22 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../../../../adapters/logger";
-import { SansDependencies } from "../../../../binding";
+import { processLogger } from "../../../../adapters/processLogger";
+import { bind, SansDependencies } from "../../../../binding";
 import { PackagesConfiguration } from "../../../../input/findPackagesConfiguration";
 import { isTruthy } from "../../../../utils";
 import { SummarizedConfigResultsConfiguration } from "../../summarization/types";
-import { choosePackageManager } from "./choosePackageManager";
+import { choosePackageManager, choosePackageManagerDependencies } from "./choosePackageManager";
 import { installationMessages } from "./packageManagers";
 
 export type LogMissingPackagesDependencies = {
     choosePackageManager: SansDependencies<typeof choosePackageManager>;
     logger: Logger;
+};
+
+export const logMissingPackagesDependencies: LogMissingPackagesDependencies = {
+    choosePackageManager: bind(choosePackageManager, choosePackageManagerDependencies),
+    logger: processLogger,
 };
 
 export const logMissingPackages = async (

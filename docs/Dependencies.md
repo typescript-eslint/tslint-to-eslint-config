@@ -1,3 +1,5 @@
+# TODO: REWRITE IF CHANGES DEEMED ACCEPTABLE
+
 # Dependencies
 
 Functions are created using a variant of [Dependency Injection](http://en.wikipedia.org/wiki/Dependency_Injection).

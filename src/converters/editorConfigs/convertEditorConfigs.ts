@@ -1,8 +1,13 @@
-import { SansDependencies } from "../../binding";
+import { bind, SansDependencies } from "../../binding";
 import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types";
 import { uniqueFromSources } from "../../utils";
-import { convertEditorConfig } from "./convertEditorConfig";
-import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults";
+import { convertEditorConfig, convertEditorConfigDependencies } from "./convertEditorConfig";
+import { convertAtomConfig } from "./converters/convertAtomConfig";
+import { convertVSCodeConfig } from "./converters/convertVSCodeConfig";
+import {
+    reportEditorConfigConversionResults,
+    reportEditorConfigConversionResultsDependencies,
+} from "./reporting/reportEditorConfigConversionResults";
 import { EditorConfigDescriptor, EditorConfigsConversionResults } from "./types";
 
 export type ConvertEditorConfigsDependencies = {
@@ -11,6 +16,20 @@ export type ConvertEditorConfigsDependencies = {
     reportEditorConfigConversionResults: SansDependencies<
         typeof reportEditorConfigConversionResults
     >;
+};
+
+export const editorConfigDescriptors: EditorConfigDescriptor[] = [
+    [".atom/config.cson", convertAtomConfig],
+    [".vscode/settings.json", convertVSCodeConfig],
+];
+
+export const convertEditorConfigsDependencies: ConvertEditorConfigsDependencies = {
+    convertEditorConfig: bind(convertEditorConfig, convertEditorConfigDependencies),
+    editorConfigDescriptors,
+    reportEditorConfigConversionResults: bind(
+        reportEditorConfigConversionResults,
+        reportEditorConfigConversionResultsDependencies,
+    ),
 };
 
 /**

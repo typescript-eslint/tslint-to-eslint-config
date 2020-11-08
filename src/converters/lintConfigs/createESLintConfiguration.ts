@@ -1,11 +1,19 @@
-import { SansDependencies } from "../../binding";
+import { bind, SansDependencies } from "../../binding";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { convertRules } from "./rules/convertRules";
-import { summarizePackageRules } from "./summarization/summarizePackageRules";
+import { convertRules, convertRulesDependencies } from "./rules/convertRules";
+import {
+    summarizePackageRules,
+    summarizePackageRulesDependencies,
+} from "./summarization/summarizePackageRules";
 
 export type CreateESLintConfigurationDependencies = {
     convertRules: SansDependencies<typeof convertRules>;
     summarizePackageRules: SansDependencies<typeof summarizePackageRules>;
+};
+
+export const createESLintConfigurationDependencies: CreateESLintConfigurationDependencies = {
+    convertRules: bind(convertRules, convertRulesDependencies),
+    summarizePackageRules: bind(summarizePackageRules, summarizePackageRulesDependencies),
 };
 
 export const createESLintConfiguration = async (

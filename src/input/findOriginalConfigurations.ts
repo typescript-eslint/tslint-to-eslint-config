@@ -1,4 +1,4 @@
-import { SansDependencies } from "../binding";
+import { bind, SansDependencies } from "../binding";
 import {
     ConfigurationErrorResult,
     ConfigurationLocations,
@@ -15,6 +15,7 @@ import {
 import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
 import { mergeLintConfigurations } from "./mergeLintConfigurations";
 import { DeepPartial } from "./findReportedConfiguration";
+import { findConfigurationDependencies } from "./dependencies";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;
@@ -22,6 +23,14 @@ export type FindOriginalConfigurationsDependencies = {
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
     findTSLintConfiguration: SansDependencies<typeof findTSLintConfiguration>;
     mergeLintConfigurations: typeof mergeLintConfigurations;
+};
+
+export const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
+    findESLintConfiguration: bind(findESLintConfiguration, findConfigurationDependencies),
+    findPackagesConfiguration: bind(findPackagesConfiguration, findConfigurationDependencies),
+    findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
+    findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
+    mergeLintConfigurations,
 };
 
 /**

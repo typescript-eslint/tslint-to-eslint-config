@@ -1,17 +1,30 @@
-import { SansDependencies } from "../../binding";
-import { collectCommentFileNames } from "../../comments/collectCommentFileNames";
+import { bind, SansDependencies } from "../../binding";
+import {
+    collectCommentFileNames,
+    collectCommentFileNamesDependencies,
+} from "../../comments/collectCommentFileNames";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { ResultWithDataStatus, ResultStatus, TSLintToESLintSettings } from "../../types";
 import { isError } from "../../utils";
-import { convertFileComments } from "./convertFileComments";
-import { extractGlobPaths } from "./extractGlobPaths";
-import { reportCommentResults } from "./reporting/reportCommentResults";
+import { convertFileComments, convertFileCommentsDependencies } from "./convertFileComments";
+import { extractGlobPaths, extractGlobPathsDependencies } from "./extractGlobPaths";
+import {
+    reportCommentResults,
+    reportCommentResultsDependencies,
+} from "./reporting/reportCommentResults";
 
 export type ConvertCommentsDependencies = {
     collectCommentFileNames: SansDependencies<typeof collectCommentFileNames>;
     convertFileComments: SansDependencies<typeof convertFileComments>;
     extractGlobPaths: SansDependencies<typeof extractGlobPaths>;
     reportCommentResults: SansDependencies<typeof reportCommentResults>;
+};
+
+export const convertCommentsDependencies: ConvertCommentsDependencies = {
+    collectCommentFileNames: bind(collectCommentFileNames, collectCommentFileNamesDependencies),
+    convertFileComments: bind(convertFileComments, convertFileCommentsDependencies),
+    extractGlobPaths: bind(extractGlobPaths, extractGlobPathsDependencies),
+    reportCommentResults: bind(reportCommentResults, reportCommentResultsDependencies),
 };
 
 /**

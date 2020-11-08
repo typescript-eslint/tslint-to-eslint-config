@@ -1,4 +1,5 @@
-import { SansDependencies } from "../binding";
+import { bind, SansDependencies } from "../binding";
+import { findConfigurationDependencies } from "../input/dependencies";
 import {
     findTypeScriptConfiguration,
     TypeScriptConfiguration,
@@ -7,6 +8,10 @@ import { uniqueFromSources } from "../utils";
 
 export type CollectCommentFileNamesDependencies = {
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
+};
+
+export const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies = {
+    findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
 };
 
 export type CommentFileNames = {

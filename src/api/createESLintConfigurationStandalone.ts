@@ -1,4 +1,7 @@
-import { createESLintConfiguration } from "../converters/lintConfigs/createESLintConfiguration";
+import {
+    createESLintConfiguration,
+    createESLintConfigurationDependencies,
+} from "../converters/lintConfigs/createESLintConfiguration";
 import { ESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     AllOriginalConfigurations,
@@ -7,7 +10,6 @@ import {
 import { PackagesConfiguration } from "../input/findPackagesConfiguration";
 import { TSLintConfiguration } from "../input/findTSLintConfiguration";
 import { TypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
-import { createESLintConfigurationDependencies } from "./dependencies";
 
 export type AllOriginalConfigurationsOptionally = {
     eslint?: Partial<OriginalConfigurations<ESLintConfiguration>>;

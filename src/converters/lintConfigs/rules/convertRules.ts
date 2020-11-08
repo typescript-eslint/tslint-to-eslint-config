@@ -1,3 +1,5 @@
+import { ruleConverters } from "../../../converters/lintConfigs/rules/ruleConverters";
+import { ruleMergers } from "../../../converters/lintConfigs/rules/ruleMergers";
 import { ConversionError } from "../../../errors/conversionError";
 import { ErrorSummary } from "../../../errors/errorSummary";
 import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration";
@@ -11,6 +13,11 @@ import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;
     ruleMergers: Map<string, RuleMerger>;
+};
+
+export const convertRulesDependencies: ConvertRulesDependencies = {
+    ruleConverters,
+    ruleMergers,
 };
 
 export type RuleConversionResults = {

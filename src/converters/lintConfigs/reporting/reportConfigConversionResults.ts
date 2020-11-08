@@ -2,6 +2,7 @@ import chalk from "chalk";
 import { EOL } from "os";
 
 import { Logger } from "../../../adapters/logger";
+import { processLogger } from "../../../adapters/processLogger";
 import {
     logSuccessfulConversions,
     logFailedConversions,
@@ -12,6 +13,10 @@ import { SummarizedConfigResultsConfiguration } from "../summarization/types";
 
 export type ReportConversionResultsDependencies = {
     logger: Logger;
+};
+
+export const reportConversionResultsDependencies: ReportConversionResultsDependencies = {
+    logger: processLogger,
 };
 
 export const reportConfigConversionResults = async (

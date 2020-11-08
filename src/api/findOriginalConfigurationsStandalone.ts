@@ -1,6 +1,8 @@
-import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
+import {
+    findOriginalConfigurations,
+    findOriginalConfigurationsDependencies,
+} from "../input/findOriginalConfigurations";
 import { ConfigurationLocations } from "../types";
-import { findOriginalConfigurationsDependencies } from "./dependencies";
 
 /**
  * Retrieves the raw and computed contents of original configuration files.
