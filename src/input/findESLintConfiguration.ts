@@ -1,7 +1,7 @@
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
 import { RawESLintRuleSeverity } from "../converters/lintConfigs/rules/types";
-import { TSLintToESLintSettings } from "../types";
+import { ConfigurationLocations } from "../types";
 import { uniqueFromSources } from "../utils";
 import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
@@ -34,7 +34,7 @@ export type FindESLintConfigurationDependencies = {
 
 export const findESLintConfiguration = async (
     dependencies: FindESLintConfigurationDependencies,
-    config: Pick<TSLintToESLintSettings, "config" | "eslint">,
+    config: Pick<ConfigurationLocations, "config" | "eslint">,
 ): Promise<OriginalConfigurations<ESLintConfiguration> | Error> => {
     const filePath = config.eslint ?? config.config;
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
