@@ -64,13 +64,13 @@ if (result.status !== ResultStatus.Succeeded) {
 
 > See the provided `.d.ts` TypeScript typings for full descriptions of inputs and outputs.
 
-## Standalone API
+## Standalone Lint Conversion API
 
 > ⚠ This area of code is still considered experimental.
 > Use at your own risk.
 > Please file an issue on GitHub if you'd like to see changes.
 
-Portions of the individual steps within `convertTSLintConfig` are each available as exported functions as well.
+Portions of the individual lint conversion steps within `convertTSLintConfig` are each available as exported functions as well.
 
 * **[`findOriginalConfigurations`](#findOriginalConfigurations)** takes in an object of original configuration locations and retrieves their raw and computed contents.
     * **[`findReportedConfiguration`](#findReportedConfiguration)** runs a config print command and parses its output as JSON.
@@ -135,4 +135,60 @@ const summarizedConfiguration = await createESLintConfiguration(originalConfigur
 const raw = joinConfigConversionResults(summarizedConfiguration, originalConfigurations.data);
 
 const formatted = formatOutput("eslintrc.js", raw);
+```
+
+## Standalone Comment Conversion API
+
+> ⚠ This area of code is still considered experimental.
+> Use at your own risk.
+> Please file an issue on GitHub if you'd like to see changes.
+
+The individual per-file conversion logic within `convertComments` is available as a standalone function:
+
+### `convertFileComments`
+
+Takes in a file's content and path, and returns the content with inline lint comments converted from TSLint to ESLint:
+
+```ts
+import { convertFileComments } from "tslint-to-eslint-config";
+
+// "// eslint-disable-next-line"
+const newContents = convertFileComments({
+    fileContent: "// tslint:disable-next-line",
+    filePath: "a.ts",
+});
+```
+
+If using this function across multiple files, pass it a `ruleCommentsCache` so it can skip some conversion calculations for a mild performance boost:
+
+```ts
+import { convertFileComments } from "tslint-to-eslint-config";
+
+const ruleCommentsCache = new Map<string, string[]>();
+
+const firstNewContents = convertFileComments({
+    fileContent: "...",
+    filePath: "a.ts",
+    ruleCommentsCache,
+});
+
+const secondNewContents = convertFileComments({
+    fileContent: "...",
+    filePath: "b.tsx",
+    ruleCommentsCache,
+});
+```
+
+If running alongside a lint config conversion, pass the filled out `ruleEquivalents` map for more accurate conversions of TSLint rules whose ESLint equivalents change on different arguments:
+
+```ts
+import { convertFileComments, createESLintConfiguration } from "tslint-to-eslint-config";
+
+const { ruleEquivalents } = await createESLintConfiguration(originalConfigurations);
+
+convertFileComments({
+    fileContent: "...",
+    filePath: "a.ts",
+    ruleEquivalents,
+})
 ```
