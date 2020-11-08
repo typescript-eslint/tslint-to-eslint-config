@@ -187,6 +187,7 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
+import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 
 /**
@@ -377,6 +378,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-redundant-notify", convertNoRedundantNotify],
+    ["rxjs-no-sharereplay", convertNoShareReplay],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
 
     // These converters are all for rules that need more complex option conversions.
