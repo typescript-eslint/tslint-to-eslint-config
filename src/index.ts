@@ -4,4 +4,5 @@ export { findOriginalConfigurationsStandalone as findOriginalConfigurations } fr
 export { findReportedConfigurationStandalone as findReportedConfiguration } from "./api/findReportedConfigurationStandalone";
 export { formatOutput } from "./converters/lintConfigs/formatting/formatOutput";
 export { joinConfigConversionResults } from "./converters/lintConfigs/joinConfigConversionResults";
+export * from "./converters/lintConfigs/rules/types";
 export * from "./types";
