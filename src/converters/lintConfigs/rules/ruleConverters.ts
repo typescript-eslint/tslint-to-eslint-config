@@ -188,6 +188,7 @@ import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
+import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
 import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
 import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
@@ -381,6 +382,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
     ["rxjs-no-internal", convertNoInternal],
+    ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
     ["rxjs-no-redundant-notify", convertNoRedundantNotify],
     ["rxjs-no-sharereplay", convertNoShareReplay],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
