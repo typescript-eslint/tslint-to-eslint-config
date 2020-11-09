@@ -1,18 +1,13 @@
-import { FileSystem } from "../../adapters/fileSystem";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { removeEmptyMembers } from "../../utils";
 import { createEnv } from "./eslint/createEnv";
 import { formatConvertedRules } from "./formatConvertedRules";
-import { formatOutput } from "./formatting/formatOutput";
 import { SummarizedConfigResultsConfiguration } from "./summarization/types";
 
-export type WriteConversionResultsDependencies = {
-    fileSystem: Pick<FileSystem, "writeFile">;
-};
-
-export const writeConfigConversionResults = async (
-    dependencies: WriteConversionResultsDependencies,
-    outputPath: string,
+/**
+ * Turns a raw ESLint configuration summary into ESLint's configuration shape.
+ */
+export const joinConfigConversionResults = (
     summarizedResults: SummarizedConfigResultsConfiguration,
     originalConfigurations: AllOriginalConfigurations,
 ) => {
@@ -23,7 +18,7 @@ export const writeConfigConversionResults = async (
         plugins.add("@typescript-eslint/tslint");
     }
 
-    const output = removeEmptyMembers({
+    return removeEmptyMembers({
         ...eslint?.full,
         env: createEnv(originalConfigurations),
         ...(eslint && { globals: eslint.raw.globals }),
@@ -36,6 +31,6 @@ export const writeConfigConversionResults = async (
         plugins: Array.from(plugins),
         rules: formatConvertedRules(summarizedResults, tslint.full),
     });
-
-    return await dependencies.fileSystem.writeFile(outputPath, formatOutput(outputPath, output));
 };
+
+export type JoinedConversionResult = ReturnType<typeof joinConfigConversionResults>;

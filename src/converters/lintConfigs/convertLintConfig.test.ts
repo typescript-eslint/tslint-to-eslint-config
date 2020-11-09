@@ -13,14 +13,10 @@ const createStubDependencies = (
     const ruleConversionResults = createEmptyConfigConversionResults();
 
     return {
-        convertRules: jest.fn(),
-        reportConfigConversionResults: jest.fn(),
-        summarizePackageRules: async (_configurations, data) => ({
-            ...ruleConversionResults,
-            ...data,
-        }),
-        logMissingPackages: jest.fn().mockReturnValue(Promise.resolve()),
-        writeConfigConversionResults: jest.fn().mockReturnValue(Promise.resolve()),
+        createESLintConfiguration: jest.fn().mockResolvedValue(ruleConversionResults),
+        fileSystem: { writeFile: jest.fn() },
+        logMissingPackages: jest.fn().mockResolvedValue(undefined),
+        reportConfigConversionResults: jest.fn().mockResolvedValue(undefined),
         ...overrides,
     };
 };
@@ -30,7 +26,9 @@ describe("convertLintConfig", () => {
         // Arrange
         const fileWriteError = new Error();
         const dependencies = createStubDependencies({
-            writeConfigConversionResults: jest.fn().mockResolvedValueOnce(fileWriteError),
+            fileSystem: {
+                writeFile: jest.fn().mockResolvedValue(fileWriteError),
+            },
         });
 
         // Act
@@ -53,7 +51,11 @@ describe("convertLintConfig", () => {
         const convertCommentsResult = {
             status: ResultStatus.Succeeded,
         };
-        const dependencies = createStubDependencies();
+        const dependencies = createStubDependencies({
+            fileSystem: {
+                writeFile: jest.fn().mockResolvedValue(undefined),
+            },
+        });
 
         // Act
         const result = await convertLintConfig(
