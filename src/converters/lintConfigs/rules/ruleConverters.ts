@@ -199,6 +199,7 @@ import { convertNoSubjectUnubscribe } from "./ruleConverters/eslint-plugin-rxjs/
 import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
+import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -400,6 +401,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-subject-value", convertNoSubjectValue],
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
+    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
