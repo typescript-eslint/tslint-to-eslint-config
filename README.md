@@ -162,6 +162,18 @@ _Default: `tsconfig.json`_
 Path to a TypeScript configuration file to read TypeScript compiler options from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
 
+
+## Node API
+
+You can use `tslint-to-eslint-config` programmatically via its exported functions.
+See [docs/API](./docs/API.md) for details.
+
+```ts
+import { convertLintConfig } from "tslint-to-eslint-config";
+
+const result = await convertLintConfig();
+```
+
 ## Development
 
 See the [Code of Conduct](./.github/CODE_OF_CONDUCT.md) and [general development docs](./docs/Development.md). 💖
