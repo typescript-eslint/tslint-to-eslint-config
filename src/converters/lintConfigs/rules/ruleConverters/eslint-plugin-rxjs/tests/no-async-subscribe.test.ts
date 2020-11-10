@@ -9,7 +9,7 @@ describe(convertNoAsyncSubscribe, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "no-async-subscribe",
+                    ruleName: "rxjs/no-async-subscribe",
                 },
             ],
             plugins: ["eslint-plugin-rxjs"],

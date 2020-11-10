@@ -185,6 +185,7 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 
 // eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
 import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
@@ -198,6 +199,7 @@ import { convertNoSubjectUnubscribe } from "./ruleConverters/eslint-plugin-rxjs/
 import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
+import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -385,6 +387,7 @@ export const ruleConverters = new Map([
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
     ["variable-name", convertVariableName],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
     ["rxjs-no-create", convertNoCreate],
     ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
@@ -398,6 +401,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-subject-value", convertNoSubjectValue],
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
+    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
 
     // These converters are all for rules that need more complex option conversions.
     // Some of them will likely need to have notices about changed lint behaviors...
