@@ -67,6 +67,24 @@ describe("findTSLintConfiguration", () => {
         );
     });
 
+    it("replaces an error with a file-not-found complaint when the file path is not found", async () => {
+        // Arrange
+        const stderr = "Could not find configuration path.";
+        const dependencies = createStubDependencies({
+            exec: createStubThrowingExec({ stderr }),
+        });
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message: `Could not find your TSLint configuration file at './tslint.json'. Try providing a different --tslint path.`,
+            }),
+        );
+    });
+
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
         const dependencies = createStubDependencies({
