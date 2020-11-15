@@ -1,3 +1,4 @@
+export { convertFileCommentsStandalone as convertFileComments } from "./api/convertFileCommentsStandalone";
 export { convertTSLintConfigStandalone as convertTSLintConfig } from "./api/convertTSLintConfigStandalone";
 export { createESLintConfigurationStandalone as createESLintConfiguration } from "./api/createESLintConfigurationStandalone";
 export { findOriginalConfigurationsStandalone as findOriginalConfigurations } from "./api/findOriginalConfigurationsStandalone";
