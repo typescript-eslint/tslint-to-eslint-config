@@ -66,10 +66,6 @@ if (result.status !== ResultStatus.Succeeded) {
 
 ## Standalone Lint Conversion API
 
-> ⚠ This area of code is still considered experimental.
-> Use at your own risk.
-> Please file an issue on GitHub if you'd like to see changes.
-
 Portions of the individual lint conversion steps within `convertTSLintConfig` are each available as exported functions as well.
 
 * **[`findOriginalConfigurations`](#findOriginalConfigurations)** takes in an object of original configuration locations and retrieves their raw and computed contents.
@@ -138,10 +134,6 @@ const formatted = formatOutput("eslintrc.js", raw);
 ```
 
 ## Standalone Comment Conversion API
-
-> ⚠ This area of code is still considered experimental.
-> Use at your own risk.
-> Please file an issue on GitHub if you'd like to see changes.
 
 The individual per-file conversion logic within `convertComments` is available as a standalone function:
 
