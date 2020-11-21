@@ -49,6 +49,25 @@ describe("findTSLintConfiguration", () => {
         );
     });
 
+    it("replaces an error with a v5.18 request when the tslint command is not found", async () => {
+        // Arrange
+        const stderr = "/bin/sh tslint: command not found";
+        const dependencies = createStubDependencies({
+            exec: createStubThrowingExec({ stderr }),
+        });
+
+        // Act
+        const result = await findTSLintConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(result).toEqual(
+            expect.objectContaining({
+                message:
+                    "The 'tslint' command was not found. Either install it globally or add it as a devDependency of this repository.",
+            }),
+        );
+    });
+
     it("replaces an error with a v5.18 request when the --print-config option is unsupported", async () => {
         // Arrange
         const stderr = "unknown option `--print-config";

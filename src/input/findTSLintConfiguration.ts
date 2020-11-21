@@ -20,6 +20,13 @@ export type FindTSLintConfigurationDependencies = {
 
 const knownErrors = [
     [
+        "command not found",
+        () =>
+            new Error(
+                "The 'tslint' command was not found. Either install it globally or add it as a devDependency of this repository.",
+            ),
+    ],
+    [
         "unknown option `--print-config",
         () => new Error("TSLint v5.18 required. Please update your version."),
     ],
