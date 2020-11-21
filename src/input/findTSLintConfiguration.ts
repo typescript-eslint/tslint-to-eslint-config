@@ -18,6 +18,20 @@ export type FindTSLintConfigurationDependencies = {
     importer: SansDependencies<typeof importer>;
 };
 
+const knownErrors = [
+    [
+        "unknown option `--print-config",
+        () => new Error("TSLint v5.18 required. Please update your version."),
+    ],
+    [
+        "Could not find configuration path.",
+        (filePath: string) =>
+            new Error(
+                `Could not find your TSLint configuration file at '${filePath}'. Try providing a different --tslint path.`,
+            ),
+    ],
+] as const;
+
 export const findTSLintConfiguration = async (
     dependencies: FindTSLintConfigurationDependencies,
     config: string | undefined,
@@ -33,11 +47,11 @@ export const findTSLintConfiguration = async (
     ]);
 
     if (reportedConfiguration instanceof Error) {
-        if (reportedConfiguration.message.includes("unknown option `--print-config")) {
-            return new Error("TSLint v5.18 required. Please update your version.");
-        }
-
-        return reportedConfiguration;
+        return (
+            knownErrors.find(([knownError]) =>
+                reportedConfiguration.message.includes(knownError),
+            )?.[1](filePath) ?? reportedConfiguration
+        );
     }
 
     if (rawConfiguration instanceof Error) {
