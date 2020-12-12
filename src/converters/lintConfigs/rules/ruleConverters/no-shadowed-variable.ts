@@ -40,7 +40,7 @@ export const convertNoShadowedVariable: RuleConverter = (tslintRule) => {
             {
                 ...(notices.length !== 0 && { notices }),
                 ...(ruleArguments.length !== 0 && { ruleArguments }),
-                ruleName: "no-shadow",
+                ruleName: "@typescript-eslint/no-shadow",
             },
         ],
     };

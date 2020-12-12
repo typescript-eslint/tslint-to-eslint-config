@@ -10,7 +10,7 @@ describe(convertNoShadowedVariable, () => {
             rules: [
                 {
                     ruleArguments: [{ hoist: "all" }],
-                    ruleName: "no-shadow",
+                    ruleName: "@typescript-eslint/no-shadow",
                 },
             ],
         });
@@ -25,7 +25,7 @@ describe(convertNoShadowedVariable, () => {
             rules: [
                 {
                     ruleArguments: [{ hoist: "all" }],
-                    ruleName: "no-shadow",
+                    ruleName: "@typescript-eslint/no-shadow",
                 },
             ],
         });
@@ -40,7 +40,7 @@ describe(convertNoShadowedVariable, () => {
             rules: [
                 {
                     ruleArguments: [{ hoist: "all" }],
-                    ruleName: "no-shadow",
+                    ruleName: "@typescript-eslint/no-shadow",
                 },
             ],
         });
@@ -55,7 +55,7 @@ describe(convertNoShadowedVariable, () => {
             rules: [
                 {
                     ruleArguments: [{ hoist: "never" }],
-                    ruleName: "no-shadow",
+                    ruleName: "@typescript-eslint/no-shadow",
                 },
             ],
         });
@@ -77,7 +77,7 @@ describe(convertNoShadowedVariable, () => {
                             "depending on the type of declaration, so all kinds of declarations are checked.",
                     ],
                     ruleArguments: [{ hoist: "all" }],
-                    ruleName: "no-shadow",
+                    ruleName: "@typescript-eslint/no-shadow",
                 },
             ],
         });
