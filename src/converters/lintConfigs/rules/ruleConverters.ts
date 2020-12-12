@@ -176,6 +176,7 @@ import { convertUsePipeDecorator } from "./ruleConverters/codelyzer/use-pipe-dec
 import { convertUsePipeTransformInterface } from "./ruleConverters/codelyzer/use-pipe-transform-interface";
 
 // ESLint-React converters
+import { convertJsxBanProps } from "./ruleConverters/eslint-plugin-react/jsx-ban-props";
 import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx-boolean-value";
 import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
 import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
@@ -237,6 +238,7 @@ export const ruleConverters = new Map([
     ["interface-name", convertInterfaceName],
     ["interface-over-type-literal", convertInterfaceOverTypeLiteral],
     ["jsdoc-format", convertJSDocFormat],
+    ["jsx-ban-props", convertJsxBanProps],
     ["jsx-boolean-value", convertJsxBooleanValue],
     ["jsx-curly-spacing", convertJsxCurlySpacing],
     ["jsx-equals-spacing", convertJsxEqualsSpacing],
