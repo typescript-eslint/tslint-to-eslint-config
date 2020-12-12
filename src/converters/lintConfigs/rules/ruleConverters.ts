@@ -181,6 +181,7 @@ import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx
 import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
 import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
 import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
+import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-lambda";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
 
 // eslint-plugin-rxjs converters
@@ -242,6 +243,7 @@ export const ruleConverters = new Map([
     ["jsx-equals-spacing", convertJsxEqualsSpacing],
     ["jsx-key", convertJsxKey],
     ["jsx-no-bind", convertJsxNoBind],
+    ["jsx-no-lambda", convertJsxNoLambda],
     ["jsx-wrap-multiline", convertJsxWrapMultiline],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
