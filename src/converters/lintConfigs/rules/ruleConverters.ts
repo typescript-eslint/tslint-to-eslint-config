@@ -180,6 +180,7 @@ import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx
 import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
 import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
 import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
+import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
 import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
 
@@ -242,6 +243,7 @@ export const ruleConverters = new Map([
     ["jsx-equals-spacing", convertJsxEqualsSpacing],
     ["jsx-key", convertJsxKey],
     ["jsx-no-bind", convertJsxNoBind],
+    ["jsx-space-before-trailing-slash", convertJsxSpaceBeforeTrailingSlash],
     ["jsx-wrap-multiline", convertJsxWrapMultiline],
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
