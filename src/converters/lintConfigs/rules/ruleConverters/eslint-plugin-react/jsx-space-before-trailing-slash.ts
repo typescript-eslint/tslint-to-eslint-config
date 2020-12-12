@@ -6,7 +6,8 @@ export const convertJsxSpaceBeforeTrailingSlash: RuleConverter = () => {
             {
                 ruleArguments: [
                     {
-                        beforeSelfClosing: "always",
+                        afterOpening: "allow",
+                        closingSlash: "allow",
                     },
                 ],
                 ruleName: "react/jsx-tag-spacing",

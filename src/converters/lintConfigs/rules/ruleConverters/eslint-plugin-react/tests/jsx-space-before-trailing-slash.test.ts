@@ -11,7 +11,8 @@ describe(convertJsxSpaceBeforeTrailingSlash, () => {
                 {
                     ruleArguments: [
                         {
-                            beforeSelfClosing: "always",
+                            afterOpening: "allow",
+                            closingSlash: "allow",
                         },
                     ],
                     ruleName: "react/jsx-tag-spacing",
