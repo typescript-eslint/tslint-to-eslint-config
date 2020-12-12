@@ -4,7 +4,12 @@ export const convertJsxSpaceBeforeTrailingSlash: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "react/jsx-space-before-closing",
+                ruleArguments: [
+                    {
+                        beforeSelfClosing: "always",
+                    },
+                ],
+                ruleName: "react/jsx-tag-spacing",
             },
         ],
         plugins: ["eslint-plugin-react"],

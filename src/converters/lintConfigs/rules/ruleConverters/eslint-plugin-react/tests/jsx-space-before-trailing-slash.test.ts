@@ -9,7 +9,12 @@ describe(convertJsxSpaceBeforeTrailingSlash, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "react/jsx-space-before-trailing-slash",
+                    ruleArguments: [
+                        {
+                            beforeSelfClosing: "always",
+                        },
+                    ],
+                    ruleName: "react/jsx-tag-spacing",
                 },
             ],
             plugins: ["eslint-plugin-react"],
