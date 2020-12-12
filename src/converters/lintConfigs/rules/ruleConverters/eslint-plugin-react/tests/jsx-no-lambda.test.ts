@@ -10,7 +10,7 @@ describe(convertJsxNoLambda, () => {
             rules: [
                 {
                     notices: ["ESLint rule 'jsx-no-bind' also checks for Function.bind"],
-                    ruleName: "react/jsx-key",
+                    ruleName: "react/jsx-no-bind",
                 },
             ],
             plugins: ["eslint-plugin-react"],
