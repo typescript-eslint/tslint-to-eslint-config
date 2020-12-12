@@ -26,7 +26,7 @@ describe(convertJsxBanProps, () => {
                 {
                     ruleArguments: [
                         {
-                            propName: "someProp",
+                            forbid: "someProp",
                         },
                     ],
                     ruleName: "react/forbid-component-props",
@@ -46,11 +46,13 @@ describe(convertJsxBanProps, () => {
                 {
                     ruleArguments: [
                         {
-                            propName: "someProp",
+                            forbid: "someProp",
                         },
                         {
-                            message: "Optional explanation",
-                            propName: "anotherProp",
+                            forbid: {
+                                message: "Optional explanation",
+                                propName: "anotherProp",
+                            },
                         },
                     ],
                     ruleName: "react/forbid-component-props",

@@ -6,8 +6,13 @@ export const convertJsxBanProps: RuleConverter = (tslintRule) => {
             {
                 ...(tslintRule.ruleArguments.length !== 0 && {
                     ruleArguments: tslintRule.ruleArguments.map((ruleArgument) => ({
-                        ...(ruleArgument.length === 2 && { message: ruleArgument[1] }),
-                        propName: ruleArgument[0],
+                        forbid:
+                            ruleArgument.length === 1
+                                ? ruleArgument[0]
+                                : {
+                                      message: ruleArgument[1],
+                                      propName: ruleArgument[0],
+                                  },
                     })),
                 }),
                 ruleName: "react/forbid-component-props",
