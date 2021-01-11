@@ -6,13 +6,6 @@ describe(convertUsePipeDecorator, () => {
             ruleArguments: [],
         });
 
-        expect(result).toEqual({
-            rules: [
-                {
-                    ruleName: "@angular-eslint/use-pipe-decorator",
-                },
-            ],
-            plugins: ["@angular-eslint/eslint-plugin"],
-        });
+        expect(result).toEqual({ rules: [] });
     });
 });
