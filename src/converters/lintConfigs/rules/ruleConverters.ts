@@ -173,6 +173,7 @@ import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codely
 import { convertTemplateConditionalComplexity } from "./ruleConverters/codelyzer/template-conditional-complexity";
 import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
 import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
+import { convertTemplateNoAny } from "./ruleConverters/codelyzer/template-no-any";
 import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
 import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
 import { convertTemplateNoDistractingElements } from "./ruleConverters/codelyzer/template-no-distracting-elements";
@@ -391,6 +392,7 @@ export const ruleConverters = new Map([
     ["template-click-events-have-key-events", convertTemplateClickEventsHaveKeyEvents],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
+    ["template-no-any", convertTemplateNoAny],
     ["template-no-autofocus", convertTemplateNoAutofocus],
     ["template-no-call-expression", convertTemplateNoCallExpression],
     ["template-no-distracting-elements", convertTemplateNoDistractingElements],
