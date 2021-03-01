@@ -170,6 +170,7 @@ import { convertTemplateAccessibilityTableScope } from "./ruleConverters/codelyz
 import { convertTemplateAccessibilityValidAria } from "./ruleConverters/codelyzer/template-accessibility-valid-aria";
 import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
 import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-click-events-have-key-events";
+import { convertTemplateConditionalComplexity } from "./ruleConverters/codelyzer/template-conditional-complexity";
 import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
 import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
 import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
@@ -386,6 +387,7 @@ export const ruleConverters = new Map([
     ["template-accessibility-table-scope", convertTemplateAccessibilityTableScope],
     ["template-accessibility-valid-aria", convertTemplateAccessibilityValidAria],
     ["template-banana-in-box", convertTemplateBananaInBox],
+    ["template-conditional-complexity", convertTemplateConditionalComplexity],
     ["template-click-events-have-key-events", convertTemplateClickEventsHaveKeyEvents],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
