@@ -174,6 +174,7 @@ import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/
 import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
 import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
 import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
+import { convertTemplateNoDistractingElements } from "./ruleConverters/codelyzer/template-no-distracting-elements";
 import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
 import { convertUseComponentSelector } from "./ruleConverters/codelyzer/use-component-selector";
 import { convertUseComponentViewEncapsulation } from "./ruleConverters/codelyzer/use-component-view-encapsulation";
@@ -390,6 +391,7 @@ export const ruleConverters = new Map([
     ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
     ["template-no-autofocus", convertTemplateNoAutofocus],
     ["template-no-call-expression", convertTemplateNoCallExpression],
+    ["template-no-distracting-elements", convertTemplateNoDistractingElements],
     ["template-no-negated-async", convertTemplateNoNegatedAsync],
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
