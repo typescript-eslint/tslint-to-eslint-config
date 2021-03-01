@@ -164,6 +164,7 @@ import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-o
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
 import { convertTemplateAccessibilityAltText } from "./ruleConverters/codelyzer/template-accessibility-alt-text";
 import { convertTemplateAccessibilityElementsContent } from "./ruleConverters/codelyzer/template-accessibility-elements-content";
+import { convertTemplateAccessibilityLabelFor } from "./ruleConverters/codelyzer/template-accessibility-label-for";
 import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
 import { convertTemplateAccessibilityTableScope } from "./ruleConverters/codelyzer/template-accessibility-table-scope";
 import { convertTemplateAccessibilityValidAria } from "./ruleConverters/codelyzer/template-accessibility-valid-aria";
@@ -378,6 +379,7 @@ export const ruleConverters = new Map([
     ["switch-default", convertSwitchDefault],
     ["template-accessibility-alt-text", convertTemplateAccessibilityAltText],
     ["template-accessibility-elements-content", convertTemplateAccessibilityElementsContent],
+    ["template-accessibility-label-for", convertTemplateAccessibilityLabelFor],
     ["template-accessibility-tabindex-no-positive", convertTemplateAccessibilityTabindexNoPositive],
     ["template-accessibility-table-scope", convertTemplateAccessibilityTableScope],
     ["template-accessibility-valid-aria", convertTemplateAccessibilityValidAria],
