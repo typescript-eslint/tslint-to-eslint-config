@@ -178,6 +178,7 @@ import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-
 import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
 import { convertTemplateNoDistractingElements } from "./ruleConverters/codelyzer/template-no-distracting-elements";
 import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
+import { convertTemplateUseTrackByFunction } from "./ruleConverters/codelyzer/template-use-track-by-function";
 import { convertUseComponentSelector } from "./ruleConverters/codelyzer/use-component-selector";
 import { convertUseComponentViewEncapsulation } from "./ruleConverters/codelyzer/use-component-view-encapsulation";
 import { convertUseInjectableProvidedIn } from "./ruleConverters/codelyzer/use-injectable-provided-in";
@@ -397,6 +398,7 @@ export const ruleConverters = new Map([
     ["template-no-call-expression", convertTemplateNoCallExpression],
     ["template-no-distracting-elements", convertTemplateNoDistractingElements],
     ["template-no-negated-async", convertTemplateNoNegatedAsync],
+    ["template-use-track-by-function", convertTemplateUseTrackByFunction],
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
