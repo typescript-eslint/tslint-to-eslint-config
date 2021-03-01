@@ -162,10 +162,16 @@ import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
 import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
-import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
+import { convertTemplateAccessibilityAltText } from "./ruleConverters/codelyzer/template-accessibility-alt-text";
+import { convertTemplateAccessibilityElementsContent } from "./ruleConverters/codelyzer/template-accessibility-elements-content";
+import { convertTemplateAccessibilityLabelFor } from "./ruleConverters/codelyzer/template-accessibility-label-for";
 import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
+import { convertTemplateAccessibilityTableScope } from "./ruleConverters/codelyzer/template-accessibility-table-scope";
+import { convertTemplateAccessibilityValidAria } from "./ruleConverters/codelyzer/template-accessibility-valid-aria";
 import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
+import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-click-events-have-key-events";
 import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
+import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
 import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
 import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
 import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
@@ -372,10 +378,16 @@ export const ruleConverters = new Map([
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
-    ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
+    ["template-accessibility-alt-text", convertTemplateAccessibilityAltText],
+    ["template-accessibility-elements-content", convertTemplateAccessibilityElementsContent],
+    ["template-accessibility-label-for", convertTemplateAccessibilityLabelFor],
     ["template-accessibility-tabindex-no-positive", convertTemplateAccessibilityTabindexNoPositive],
+    ["template-accessibility-table-scope", convertTemplateAccessibilityTableScope],
+    ["template-accessibility-valid-aria", convertTemplateAccessibilityValidAria],
     ["template-banana-in-box", convertTemplateBananaInBox],
+    ["template-click-events-have-key-events", convertTemplateClickEventsHaveKeyEvents],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
+    ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
     ["template-no-autofocus", convertTemplateNoAutofocus],
     ["template-no-call-expression", convertTemplateNoCallExpression],
     ["template-no-negated-async", convertTemplateNoNegatedAsync],
