@@ -3,7 +3,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    extends: ["plugin:@typescript-eslint/all", "prettier", "prettier/@typescript-eslint"],
+    extends: ["plugin:@typescript-eslint/all", "prettier"],
     overrides: [
         {
             files: ["*.stubs.ts", "*.test.ts"],
