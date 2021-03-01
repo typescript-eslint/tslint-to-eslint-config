@@ -162,6 +162,7 @@ import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
 import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
+import { convertTemplateAccessibilityAltText } from "./ruleConverters/codelyzer/template-accessibility-alt-text";
 import { convertTemplateAccessibilityElementsContent } from "./ruleConverters/codelyzer/template-accessibility-elements-content";
 import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
 import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
@@ -372,6 +373,7 @@ export const ruleConverters = new Map([
     ["space-within-parens", convertSpaceWithinParens],
     ["strict-boolean-expressions", convertStrictBooleanExpressions],
     ["switch-default", convertSwitchDefault],
+    ["template-accessibility-alt-text", convertTemplateAccessibilityAltText],
     ["template-accessibility-elements-content", convertTemplateAccessibilityElementsContent],
     ["template-accessibility-tabindex-no-positive", convertTemplateAccessibilityTabindexNoPositive],
     ["template-banana-in-box", convertTemplateBananaInBox],
