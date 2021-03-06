@@ -142,6 +142,7 @@ import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/componen
 import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
 import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
+import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextual-decorator";
 import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
 import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
@@ -237,6 +238,7 @@ export const ruleConverters = new Map([
     ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
     ["component-selector", convertComponentSelector],
     ["contextual-lifecycle", convertContextualLifecycle],
+    ["contextual-decorator", convertContextualDecorator],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
