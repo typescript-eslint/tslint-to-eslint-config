@@ -172,6 +172,7 @@ import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-
 import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-click-events-have-key-events";
 import { convertTemplateConditionalComplexity } from "./ruleConverters/codelyzer/template-conditional-complexity";
 import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
+import { convertTemplateI18N } from "./ruleConverters/codelyzer/template-i18n";
 import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
 import { convertTemplateNoAny } from "./ruleConverters/codelyzer/template-no-any";
 import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
@@ -392,6 +393,7 @@ export const ruleConverters = new Map([
     ["template-conditional-complexity", convertTemplateConditionalComplexity],
     ["template-click-events-have-key-events", convertTemplateClickEventsHaveKeyEvents],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
+    ["template-i18n", convertTemplateI18N],
     ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
     ["template-no-any", convertTemplateNoAny],
     ["template-no-autofocus", convertTemplateNoAutofocus],
