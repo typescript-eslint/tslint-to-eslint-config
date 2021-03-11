@@ -21,6 +21,8 @@ Consider taking a peek at the relevant documentation: 🤔
 
 ## Usage
 
+> ⚠ Coming from Angular? Use **[angular-eslint](https://github.com/angular-eslint/angular-eslint#migrating-an-angular-cli-project-from-codelyzer-and-tslint)** instead to coordinate around this tool and others.
+
 ```shell
 npx tslint-to-eslint-config
 ```
@@ -161,7 +163,6 @@ _Default: `tsconfig.json`_
 
 Path to a TypeScript configuration file to read TypeScript compiler options from.
 This will help inform the generated ESLint configuration file's [env](https://eslint.org/docs/user-guide/configuring#specifying-parser-options) settings.
-
 
 ## Node API
 
