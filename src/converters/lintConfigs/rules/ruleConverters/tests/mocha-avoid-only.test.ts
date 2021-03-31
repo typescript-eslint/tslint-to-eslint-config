@@ -7,6 +7,7 @@ describe(convertMochaAvoidOnly, () => {
         });
 
         expect(result).toEqual({
+            plugins: ["eslint-plugin-jest"],
             rules: [
                 {
                     ruleName: "jest/no-focused-tests",

@@ -9,7 +9,6 @@ describe(convertAwaitPromise, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    plugins: ["eslint-plugin-jest"],
                     ruleName: "@typescript-eslint/await-thenable",
                 },
             ],
