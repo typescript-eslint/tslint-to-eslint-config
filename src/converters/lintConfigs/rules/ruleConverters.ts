@@ -31,6 +31,7 @@ import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
 import { convertMaxLineLength } from "./ruleConverters/max-line-length";
 import { convertMemberAccess } from "./ruleConverters/member-access";
 import { convertMemberOrdering } from "./ruleConverters/member-ordering";
+import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
 import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
 import { convertNewParens } from "./ruleConverters/new-parens";
@@ -272,6 +273,7 @@ export const ruleConverters = new Map([
     ["max-line-length", convertMaxLineLength],
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
+    ["mocha-avoid-only", convertMochaAvoidOnly],
     ["new-parens", convertNewParens],
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
