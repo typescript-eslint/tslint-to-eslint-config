@@ -1,4 +1,5 @@
 import { RuleConverter } from "../ruleConverter";
+import { ESLintRuleSeverity } from "../types";
 
 export const ConstRequiredForAllCapsMsg =
     "typescript-eslint does not enforce uppercase for const only.";
@@ -57,7 +58,7 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
     };
 
     const getUnderscoreDangleRuleOptions = () => {
-        let underscoreDangleOptionSeverity: string | null = null;
+        let underscoreDangleOptionSeverity: ESLintRuleSeverity | undefined;
         const underscoreDangleOptionNotice: string[] = [];
 
         if (hasCheckFormat && (allowedLeadingUnderscore || allowedTrailingUnderscore)) {
@@ -69,7 +70,7 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
 
         return {
             notices: underscoreDangleOptionNotice,
-            ...(underscoreDangleOptionSeverity !== null && {
+            ...(underscoreDangleOptionSeverity !== undefined && {
                 ruleSeverity: underscoreDangleOptionSeverity,
             }),
             ruleName: "no-underscore-dangle",
@@ -79,16 +80,16 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
     const getBlackListRuleOptions = () => {
         const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
             ? [
-                  "any",
-                  "Number",
-                  "number",
-                  "String",
-                  "string",
-                  "Boolean",
-                  "boolean",
-                  "Undefined",
-                  "undefined",
-              ]
+                    "any",
+                    "Number",
+                    "number",
+                    "String",
+                    "string",
+                    "Boolean",
+                    "boolean",
+                    "Undefined",
+                    "undefined",
+                ]
             : [];
 
         return {

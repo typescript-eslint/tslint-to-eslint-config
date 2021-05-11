@@ -1,4 +1,4 @@
-import { TSLintRuleOptions } from "./types";
+import { ESLintRuleSeverity, TSLintRuleOptions } from "./types";
 import { ConversionError } from "../../../errors/conversionError";
 
 /**
@@ -51,4 +51,9 @@ export type ConvertedRuleChanges = {
      * Equivalent ESLint rule name that should be enabled.
      */
     ruleName: string;
+
+    /**
+     * Custom severity for the output rule.
+     */
+    ruleSeverity?: ESLintRuleSeverity;
 };
