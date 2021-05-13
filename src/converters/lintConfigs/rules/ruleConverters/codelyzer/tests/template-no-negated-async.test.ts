@@ -9,6 +9,9 @@ describe(convertTemplateNoNegatedAsync, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "@angular-eslint/template/eqeqeq",
+                },
+                {
                     ruleName: "@angular-eslint/template/no-negated-async",
                 },
             ],
