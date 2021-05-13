@@ -9,7 +9,7 @@ describe(convertTemplateAccessibilityLabelFor, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@angular-eslint/template/accessibility-label-for",
+                    ruleName: "@angular-eslint/template/accessibility-label-has-associated-control",
                 },
             ],
             plugins: ["@angular-eslint/eslint-plugin-template"],
@@ -18,11 +18,13 @@ describe(convertTemplateAccessibilityLabelFor, () => {
 
     test("conversion with arguments", () => {
         const result = convertTemplateAccessibilityLabelFor({
-            ruleArguments: [{
-                controlComponents: ["app-input", "app-select"],
-                labelAttributes: ["id"],
-                labelComponents: ["app-label"],
-            }],
+            ruleArguments: [
+                {
+                    controlComponents: ["app-input", "app-select"],
+                    labelAttributes: ["id"],
+                    labelComponents: ["app-label"],
+                },
+            ],
         });
 
         expect(result).toEqual({
@@ -31,11 +33,15 @@ describe(convertTemplateAccessibilityLabelFor, () => {
                     ruleArguments: [
                         {
                             controlComponents: ["app-input", "app-select"],
-                            labelAttributes: ["id"],
-                            labelComponents: ["app-label"],
-                        }
+                            labelComponents: [
+                                {
+                                    inputs: ["id"],
+                                    selector: "app-label",
+                                },
+                            ],
+                        },
                     ],
-                    ruleName: "@angular-eslint/template/accessibility-label-for",
+                    ruleName: "@angular-eslint/template/accessibility-label-has-associated-control",
                 },
             ],
             plugins: ["@angular-eslint/eslint-plugin-template"],
