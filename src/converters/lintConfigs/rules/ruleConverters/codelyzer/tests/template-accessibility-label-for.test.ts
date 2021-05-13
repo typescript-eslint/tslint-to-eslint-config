@@ -47,4 +47,35 @@ describe(convertTemplateAccessibilityLabelFor, () => {
             plugins: ["@angular-eslint/eslint-plugin-template"],
         });
     });
+
+    test("conversion with arguments, missing labelAttributes", () => {
+        const result = convertTemplateAccessibilityLabelFor({
+            ruleArguments: [
+                {
+                    controlComponents: ["app-input", "app-select"],
+                    labelComponents: ["app-label"],
+                },
+            ],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: [
+                        {
+                            controlComponents: ["app-input", "app-select"],
+                            labelComponents: [
+                                {
+                                    inputs: [],
+                                    selector: "app-label",
+                                },
+                            ],
+                        },
+                    ],
+                    ruleName: "@angular-eslint/template/accessibility-label-has-associated-control",
+                },
+            ],
+            plugins: ["@angular-eslint/eslint-plugin-template"],
+        });
+    });
 });
