@@ -53,6 +53,7 @@ import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
 import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
+import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
 import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
 import { convertNoEval } from "./ruleConverters/no-eval";
@@ -301,6 +302,7 @@ export const ruleConverters = new Map([
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-duplicate-variable", convertNoDuplicateVariable],
+    ["no-dynamic-delete", convertNoDynamicDelete],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
