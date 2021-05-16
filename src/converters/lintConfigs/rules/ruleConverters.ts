@@ -206,6 +206,7 @@ import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-
 import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
 import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
+import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
 import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
@@ -428,6 +429,7 @@ export const ruleConverters = new Map([
     ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
     ["rxjs-no-create", convertNoCreate],
     ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
+    ["rxjs-no-finnish", convertNoFinnish],
     ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
