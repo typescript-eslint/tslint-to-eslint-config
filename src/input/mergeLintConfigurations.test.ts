@@ -6,10 +6,7 @@ import { TSLintConfiguration } from "./findTSLintConfiguration";
 const stubTSLintConfiguration: OriginalConfigurations<TSLintConfiguration> = {
     full: {
         rulesDirectory: [],
-        rules: {
-            disabled: true,
-            enabled: true,
-        },
+        rules: {},
     },
     raw: {},
 };

@@ -9,7 +9,7 @@ export const createStubOriginalConfigurationsData = (
 ): AllOriginalConfigurations => ({
     tslint: {
         full: {
-            rules: [],
+            rules: {},
             rulesDirectory: [],
         },
         raw: {},
