@@ -118,6 +118,7 @@ import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
 import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
 import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
+import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
 import { convertPreferTemplate } from "./ruleConverters/prefer-template";
 import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
 import { convertQuotemark } from "./ruleConverters/quotemark";
@@ -383,6 +384,7 @@ export const ruleConverters = new Map([
     ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
     ["prefer-readonly", convertPreferReadonly],
+    ["prefer-switch", convertPreferSwitch],
     ["prefer-template", convertPreferTemplate],
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
