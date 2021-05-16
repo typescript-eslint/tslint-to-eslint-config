@@ -9,7 +9,7 @@ describe(convertNoParameterReassignment, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "@typescript-eslint/no-param-reassign",
+                    ruleName: "no-param-reassign",
                 },
             ],
         });

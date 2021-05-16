@@ -26,7 +26,7 @@ export const convertSemicolon: RuleConverter = (tslintRule) => {
                           ruleArguments: [
                               {
                                   multiline: {
-                                      delimiter: getMultilineDelimiter(tslintRule.ruleArguments[0]),
+                                      delimiter: getMultilineDelimiter(tslintRule.ruleArguments[0] as "always" | "never"),
                                       requireLast: true,
                                   },
                                   singleline: {

@@ -7,6 +7,7 @@ import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 import { RuleMerger } from "./ruleMerger";
 import { RuleConverter } from "./ruleConverter";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
+import { Entries } from "../../../utils";
 
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;
@@ -36,7 +37,7 @@ export const convertRules = (
     const plugins = new Set<string>();
 
     if (rawTslintRules !== undefined) {
-        for (const [ruleName, value] of Object.entries(rawTslintRules)) {
+        for (const [ruleName, value] of Object.entries(rawTslintRules) as Entries<TSLintConfigurationRules>) {
             // 1. The raw TSLint rule is converted to a standardized format.
             const tslintRule = formatRawTslintRule(ruleName, value);
 

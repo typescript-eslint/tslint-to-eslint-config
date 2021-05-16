@@ -1,10 +1,10 @@
 import { RuleConverter } from "../ruleConverter";
 
-export const convertNoParameterReassignment: RuleConverter = () => {
+export const convertNoDynamicDelete: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "no-param-reassign",
+                ruleName: "@typescript-eslint/no-dynamic-delete",
             },
         ],
     };

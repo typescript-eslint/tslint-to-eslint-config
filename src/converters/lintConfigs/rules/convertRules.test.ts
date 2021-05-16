@@ -15,7 +15,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             undefined,
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -32,7 +32,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -47,7 +47,7 @@ describe("convertRules", () => {
         const { missing } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -64,7 +64,7 @@ describe("convertRules", () => {
         const { failed } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -127,7 +127,7 @@ describe("convertRules", () => {
         const { failed } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -155,7 +155,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -197,7 +197,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -239,7 +239,7 @@ describe("convertRules", () => {
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -272,7 +272,7 @@ describe("convertRules", () => {
         const { plugins } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert

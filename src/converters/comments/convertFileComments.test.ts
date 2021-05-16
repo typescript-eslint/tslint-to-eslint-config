@@ -26,7 +26,12 @@ describe("convertFileComments", () => {
         const dependencies = createStubDependencies(readFileError);
 
         // Act
-        const result = await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        const result = await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(result).toBe(readFileError);
@@ -39,7 +44,12 @@ describe("convertFileComments", () => {
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).not.toHaveBeenCalled();
@@ -70,7 +80,12 @@ export const g = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -110,7 +125,12 @@ export const b = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -136,7 +156,7 @@ export const a = true;
         await convertFileComments(
             dependencies,
             stubFileName,
-            new Map(),
+            new Map<string, string[]>(),
             new Map([["ts-a", ["es-cached"]]]),
         );
 
@@ -162,7 +182,7 @@ export const a = true;
             dependencies,
             stubFileName,
             new Map([["ts-a", ["es-cached"]]]),
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert
@@ -183,7 +203,12 @@ export const a = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
@@ -203,7 +228,12 @@ export const a = true;
 `);
 
         // Act
-        await convertFileComments(dependencies, stubFileName, new Map(), new Map());
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
 
         // Assert
         expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(

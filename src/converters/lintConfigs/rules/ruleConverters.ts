@@ -31,6 +31,7 @@ import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
 import { convertMaxLineLength } from "./ruleConverters/max-line-length";
 import { convertMemberAccess } from "./ruleConverters/member-access";
 import { convertMemberOrdering } from "./ruleConverters/member-ordering";
+import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
 import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
 import { convertNewParens } from "./ruleConverters/new-parens";
@@ -52,6 +53,7 @@ import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
 import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
+import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
 import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
 import { convertNoEval } from "./ruleConverters/no-eval";
@@ -110,12 +112,11 @@ import { convertOneLine } from "./ruleConverters/one-line";
 import { convertOneVariablePerDeclaration } from "./ruleConverters/one-variable-per-declaration";
 import { convertOnlyArrowFunctions } from "./ruleConverters/only-arrow-functions";
 import { convertOrderedImports } from "./ruleConverters/ordered-imports";
-import { convertPreferArrayLiteral } from "./ruleConverters/prefer-array-literal";
-import { convertPreferConst } from "./ruleConverters/prefer-const";
+import { convertPreferConditionalExpression } from "./ruleConverters/prefer-conditional-expression";
 import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
-import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
 import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
 import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
+import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
 import { convertPreferTemplate } from "./ruleConverters/prefer-template";
 import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
 import { convertQuotemark } from "./ruleConverters/quotemark";
@@ -205,8 +206,11 @@ import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/js
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
 import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
+import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
 import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
+import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
 import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
 import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
@@ -273,6 +277,7 @@ export const ruleConverters = new Map([
     ["max-line-length", convertMaxLineLength],
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
+    ["mocha-avoid-only", convertMochaAvoidOnly],
     ["new-parens", convertNewParens],
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
@@ -297,6 +302,7 @@ export const ruleConverters = new Map([
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-duplicate-variable", convertNoDuplicateVariable],
+    ["no-dynamic-delete", convertNoDynamicDelete],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
@@ -369,6 +375,7 @@ export const ruleConverters = new Map([
     ["ordered-imports", convertOrderedImports],
     ["pipe-prefix", convertPipePrefix],
     ["prefer-array-literal", convertPreferArrayLiteral],
+    ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
@@ -376,6 +383,7 @@ export const ruleConverters = new Map([
     ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
     ["prefer-readonly", convertPreferReadonly],
+    ["prefer-switch", convertPreferSwitch],
     ["prefer-template", convertPreferTemplate],
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
@@ -425,8 +433,11 @@ export const ruleConverters = new Map([
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
     ["rxjs-no-create", convertNoCreate],
+    ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
+    ["rxjs-no-finnish", convertNoFinnish],
     ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
+    ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
     ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
     ["rxjs-no-index", convertNoIndex],
     ["rxjs-no-internal", convertNoInternal],

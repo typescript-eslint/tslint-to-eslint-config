@@ -33,7 +33,7 @@ describe("removeExtendsDuplicatedRules", () => {
         });
 
         // Act
-        const { differentRules } = removeExtendsDuplicatedRules(allRules, new Map());
+        const { differentRules } = removeExtendsDuplicatedRules(allRules, new Map<string, ESLintRuleOptionsWithArguments>());
 
         // Assert
         expect(differentRules.size).toBe(1);

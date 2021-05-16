@@ -28,8 +28,10 @@ export const convertImportBlacklist: RuleConverter = (tslintRule) => {
                 const eslintRule = isString(rule)
                     ? rule
                     : {
-                          name: Object.keys(rule)[0],
-                          importNames: Object.values(rule)[0] as string[],
+                          name: Object.keys(rule as Record<string, unknown>)[0],
+                          importNames: Object.values(
+                              rule as Record<string, unknown>,
+                          )[0] as string[],
                       };
                 return { ...rules, paths: [...(rules.paths || []), eslintRule] };
             }
@@ -55,6 +57,6 @@ export const convertImportBlacklist: RuleConverter = (tslintRule) => {
     };
 };
 
-function isString(value: string): boolean {
+function isString(value: any): boolean {
     return typeof value === "string";
 }

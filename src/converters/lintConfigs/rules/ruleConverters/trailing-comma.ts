@@ -4,11 +4,11 @@ const unsupportedKeyInEsLint = "typeLiterals";
 
 export const convertTrailingComma: RuleConverter = (tslintRule) => {
     const eslintArgs = tslintRule.ruleArguments.length
-        ? collectArguments(tslintRule.ruleArguments)
+        ? collectArguments(tslintRule.ruleArguments as TSLintArg[])
         : undefined;
 
     const notices = tslintRule.ruleArguments.length
-        ? collectNotices(tslintRule.ruleArguments)
+        ? collectNotices(tslintRule.ruleArguments as TSLintArg[])
         : undefined;
 
     return {
@@ -134,8 +134,9 @@ function buildNoticeForEsSpecCompliant(arg: TSLintArg): string {
 
 function buildNoticeForTypeLiterals(arg: TSLintArg): string {
     const { singleline, multiline } = arg;
-    const hasTypeLiterals = (field: any) =>
-        typeof field === "object" && Object.keys(field).includes(unsupportedKeyInEsLint);
+    const hasTypeLiterals = (field: TSLintArgValue | undefined) =>
+        typeof field === "object" &&
+        (Object.keys(field) as (keyof TSLintObject)[]).includes(unsupportedKeyInEsLint);
 
     if (hasTypeLiterals(singleline) || hasTypeLiterals(multiline)) {
         return `ESLint does not support config property ${unsupportedKeyInEsLint}`;

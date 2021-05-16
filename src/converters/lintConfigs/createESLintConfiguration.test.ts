@@ -17,7 +17,7 @@ describe("createESLintConfiguration", () => {
             dependencies,
             originalConfigurations,
             true,
-            new Map(),
+            new Map<string, string[]>(),
         );
 
         // Assert

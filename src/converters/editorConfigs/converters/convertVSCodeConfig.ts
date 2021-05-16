@@ -13,12 +13,16 @@ const knownMissingSettings = [
 ];
 
 export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, settings) => {
-    const editorSettings = parseJson(rawEditorSettings);
-    const autoFixOnSave = editorSettings["editor.codeActionsOnSave"]?.["source.fixAll.tslint"];
+    const editorSettings: Record<string, string | number | symbol> = parseJson(rawEditorSettings);
+    const autoFixOnSave =
+        editorSettings["editor.codeActionsOnSave"] &&
+        typeof editorSettings["editor.codeActionsOnSave"] === "object" &&
+        editorSettings["editor.codeActionsOnSave"]?.["source.fixAll.tslint"];
 
     // Only create a new config file path if the input and output configs roughly match
     const eslintPathMatches =
         editorSettings["tslint.configFile"] &&
+        typeof editorSettings["tslint.configFile"] === "string" &&
         !path.relative(
             path.dirname(editorSettings["tslint.configFile"]),
             path.dirname(settings.config),
