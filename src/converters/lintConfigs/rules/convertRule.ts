@@ -13,7 +13,10 @@ export const convertRule = (
 
     try {
         return converter(tslintRule);
-    } catch (error) {
-        return ConversionError.forRuleError(error, tslintRule);
+    } catch (error: unknown) {
+        // TODO: Maybe we can provide a different error message for generic errors.
+        return error instanceof ConversionError
+            ? ConversionError.forRuleError(error, tslintRule)
+            : ConversionError.forRuleError(error as ConversionError, tslintRule);
     }
 };

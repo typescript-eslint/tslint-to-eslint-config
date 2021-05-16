@@ -1,15 +1,19 @@
 import JSON5 from "json5";
 
+export type Entries<T> = {
+    [K in keyof T]: [K, T[K]];
+}[keyof T][];
+
 export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
 export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;
 
 export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
 
-export const removeEmptyMembers = <Item>(items: Item): Item => {
-    const result: any = {};
+export const removeEmptyMembers = <T extends Record<string, unknown>>(items: T): T => {
+    const result = {} as T;
 
-    for (const [key, value] of Object.entries(items)) {
+    for (const [key, value] of Object.entries(items) as Entries<T>) {
         if (
             !(value instanceof Array && value.length === 0) &&
             !(value instanceof Object && Object.keys(value).length === 0)

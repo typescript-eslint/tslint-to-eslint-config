@@ -6,7 +6,7 @@ import { TSLintRuleOptions } from "./types";
 describe("convertRule", () => {
     it("returns undefined when no converter exists for a rule", () => {
         // Arrange
-        const converters = new Map();
+        const converters = new Map<string, RuleConverter>();
 
         // Act
         const result = convertRule(
