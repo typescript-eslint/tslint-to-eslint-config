@@ -5,6 +5,7 @@ export const mergeNoMemberDelimiterStyle: RuleMerger = (existingOptions, newOpti
         return [];
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return [merge((existingOptions ?? [])[0] ?? {}, (newOptions ?? [])[0] ?? {})];
 };
 

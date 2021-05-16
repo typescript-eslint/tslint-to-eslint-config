@@ -4,6 +4,7 @@ import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
 import { uniqueFromSources } from "../utils";
 import { importer } from "./importer";
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
 
 export type TSLintConfiguration = {
     extends?: string[];
@@ -11,7 +12,7 @@ export type TSLintConfiguration = {
     rules?: TSLintConfigurationRules;
 };
 
-export type TSLintConfigurationRules = Record<string, any>;
+export type TSLintConfigurationRules = Record<string, Partial<TSLintRuleOptions>>;
 
 export type FindTSLintConfigurationDependencies = {
     exec: Exec;

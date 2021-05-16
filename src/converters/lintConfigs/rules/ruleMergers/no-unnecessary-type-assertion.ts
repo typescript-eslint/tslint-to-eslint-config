@@ -20,6 +20,7 @@ export const mergeNoUnnecessaryTypeAssertion: RuleMerger = (existingOptions, new
             typesToIgnore = [];
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         typesToIgnore.push(...options[0].typesToIgnore);
     }
 
