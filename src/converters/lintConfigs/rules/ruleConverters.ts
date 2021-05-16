@@ -53,6 +53,7 @@ import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
 import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
+import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
 import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
 import { convertNoEval } from "./ruleConverters/no-eval";
@@ -218,6 +219,7 @@ import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-su
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import _ from "lodash";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -298,6 +300,7 @@ export const ruleConverters = new Map([
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-duplicate-variable", convertNoDuplicateVariable],
+    ["no-dynamic-delete", convertNoDynamicDelete],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
