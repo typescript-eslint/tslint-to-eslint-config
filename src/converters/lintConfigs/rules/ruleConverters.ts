@@ -219,7 +219,6 @@ import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-su
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
-import _ from "lodash";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
