@@ -112,6 +112,7 @@ import { convertOneLine } from "./ruleConverters/one-line";
 import { convertOneVariablePerDeclaration } from "./ruleConverters/one-variable-per-declaration";
 import { convertOnlyArrowFunctions } from "./ruleConverters/only-arrow-functions";
 import { convertOrderedImports } from "./ruleConverters/ordered-imports";
+import { convertPreferConditionalExpression } from "./ruleConverters/prefer-conditional-expression";
 import { convertPreferConst } from "./ruleConverters/prefer-const";
 import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
@@ -374,6 +375,7 @@ export const ruleConverters = new Map([
     ["only-arrow-functions", convertOnlyArrowFunctions],
     ["ordered-imports", convertOrderedImports],
     ["pipe-prefix", convertPipePrefix],
+    ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
