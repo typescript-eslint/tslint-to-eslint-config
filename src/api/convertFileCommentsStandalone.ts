@@ -33,8 +33,8 @@ export type ConvertFileCommentsStandaloneDependencies = {
 export const convertFileCommentsStandalone = ({
     fileContent,
     filePath,
-    ruleCommentsCache = new Map(),
-    ruleEquivalents = new Map(),
+    ruleCommentsCache = new Map<string, string[]>(),
+    ruleEquivalents = new Map<string, string[]>(),
 }: ConvertFileCommentsStandaloneDependencies) => {
     const comments = parseFileComments(filePath, fileContent);
 
