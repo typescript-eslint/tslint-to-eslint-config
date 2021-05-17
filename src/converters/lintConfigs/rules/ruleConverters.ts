@@ -150,6 +150,7 @@ import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextua
 import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextual-decorator";
 import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
+import { convertImportDestructuringSpacing } from "./ruleConverters/codelyzer/import-destructuring-spacing";
 import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
 import { convertNoConflictingLifecycle } from "./ruleConverters/codelyzer/no-conflicting-lifecycle";
 import { convertNoForwardRef } from "./ruleConverters/codelyzer/no-forward-ref";
@@ -165,6 +166,7 @@ import { convertNoOutputsMetadataProperty } from "./ruleConverters/codelyzer/no-
 import { convertNoPipeImpure } from "./ruleConverters/codelyzer/no-pipe-impure";
 import { convertNoQueriesMetadataProperty } from "./ruleConverters/codelyzer/no-queries-metadata-property";
 import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
+import { convertPreferInlineDecorator } from "./ruleConverters/codelyzer/prefer-inline-decorator";
 import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
@@ -258,6 +260,7 @@ export const ruleConverters = new Map([
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
     ["import-blacklist", convertImportBlacklist],
+    ["import-destructuring-spacing", convertImportDestructuringSpacing],
     ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
@@ -380,6 +383,7 @@ export const ruleConverters = new Map([
     ["prefer-array-literal", convertPreferArrayLiteral],
     ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
+    ["prefer-inline-decorator", convertPreferInlineDecorator],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-object-spread", convertPreferObjectSpread],
