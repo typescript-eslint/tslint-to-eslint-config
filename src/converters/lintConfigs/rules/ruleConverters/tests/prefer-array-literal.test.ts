@@ -9,6 +9,10 @@ describe(convertPreferArrayLiteral, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-array-constructor",
+                    ruleSeverity: "off"
+                },
+                {
                     ruleName: "@typescript-eslint/no-array-constructor",
                 },
             ],
