@@ -57,6 +57,7 @@ import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variab
 import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
 import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
+import { convertNoEmptyLineAfterOpeningBrace } from "./ruleConverters/no-empty-line-after-opening-brace";
 import { convertNoEval } from "./ruleConverters/no-eval";
 import { convertNoExplicitAny } from "./ruleConverters/no-explicit-any";
 import { convertNoFloatingPromises } from "./ruleConverters/no-floating-promises";
@@ -309,6 +310,7 @@ export const ruleConverters = new Map([
     ["no-duplicate-variable", convertNoDuplicateVariable],
     ["no-dynamic-delete", convertNoDynamicDelete],
     ["no-empty-interface", convertNoEmptyInterface],
+    ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
@@ -465,7 +467,6 @@ export const ruleConverters = new Map([
 
     // tslint-microsoft-contrib rules:
     // ["max-func-body-length", convertMaxFuncBodyLength],
-    // ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
     // ["no-function-expression", convertNoFunctionExpression], // ban-syntax config
     // ["no-suspicious-comment", convertNoSuspiciousComment],
     // ["no-with-statement", convertNoWithStatement],
