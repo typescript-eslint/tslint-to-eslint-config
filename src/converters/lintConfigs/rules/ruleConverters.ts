@@ -49,6 +49,7 @@ import { convertNoConstruct } from "./ruleConverters/no-construct";
 import { convertNoControlRegex } from "./ruleConverters/no-control-regex";
 import { convertNoDebugger } from "./ruleConverters/no-debugger";
 import { convertNoDefaultExport } from "./ruleConverters/no-default-export";
+import { convertNoDocumentWrite } from "./ruleConverters/no-document-write";
 import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
@@ -301,6 +302,7 @@ export const ruleConverters = new Map([
     ["no-control-regex", convertNoControlRegex],
     ["no-debugger", convertNoDebugger],
     ["no-default-export", convertNoDefaultExport],
+    ["no-document-write", convertNoDocumentWrite],
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
