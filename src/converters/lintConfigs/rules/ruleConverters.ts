@@ -106,6 +106,7 @@ import { convertNoUseBeforeDeclare } from "./ruleConverters/no-use-before-declar
 import { convertNoVarKeyword } from "./ruleConverters/no-var-keyword";
 import { convertNoVarRequires } from "./ruleConverters/no-var-requires";
 import { convertNoVoidExpression } from "./ruleConverters/no-void-expression";
+import { convertNoWithStatement } from "./ruleConverters/no-with-statement";
 import { convertObjectLiteralKeyQuotes } from "./ruleConverters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./ruleConverters/object-literal-shorthand";
 import { convertOneLine } from "./ruleConverters/one-line";
@@ -370,6 +371,7 @@ export const ruleConverters = new Map([
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
     ["no-void-expression", convertNoVoidExpression],
+    ["no-with-statement", convertNoWithStatement],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
     ["one-line", convertOneLine],
@@ -466,5 +468,4 @@ export const ruleConverters = new Map([
     // ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
     // ["no-function-expression", convertNoFunctionExpression], // ban-syntax config
     // ["no-suspicious-comment", convertNoSuspiciousComment],
-    // ["no-with-statement", convertNoWithStatement],
 ]);
