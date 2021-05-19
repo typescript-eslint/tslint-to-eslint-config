@@ -90,6 +90,7 @@ import { convertNoSparseArrays } from "./ruleConverters/no-sparse-arrays";
 import { convertNoStringLiteral } from "./ruleConverters/no-string-literal";
 import { convertNoStringThrow } from "./ruleConverters/no-string-throw";
 import { convertNoSubmoduleImports } from "./ruleConverters/no-submodule-imports";
+import { convertNoSuspiciousComment } from "./ruleConverters/no-suspicious-comment";
 import { convertNoSwitchCaseFallThrough } from "./ruleConverters/no-switch-case-fall-through";
 import { convertNoThisAssignment } from "./ruleConverters/no-this-assignment";
 import { convertNoTrailingWhitespace } from "./ruleConverters/no-trailing-whitespace";
@@ -354,6 +355,7 @@ export const ruleConverters = new Map([
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
     ["no-submodule-imports", convertNoSubmoduleImports],
+    ["no-suspicious-comment", convertNoSuspiciousComment],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
     ["no-this-assignment", convertNoThisAssignment],
     ["no-trailing-whitespace", convertNoTrailingWhitespace],
