@@ -124,6 +124,7 @@ import { convertPreferTemplate } from "./ruleConverters/prefer-template";
 import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
 import { convertQuotemark } from "./ruleConverters/quotemark";
 import { convertRadix } from "./ruleConverters/radix";
+import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
 import { convertSemicolon } from "./ruleConverters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./ruleConverters/space-before-function-paren";
@@ -391,6 +392,7 @@ export const ruleConverters = new Map([
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
+    ["react-no-dangerous-html", convertReactNoDangerousHtml],
     ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["semicolon", convertSemicolon],
