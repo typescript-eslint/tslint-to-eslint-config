@@ -27,6 +27,7 @@ import { convertJSDocFormat } from "./ruleConverters/jsdoc-format";
 import { convertLabelPosition } from "./ruleConverters/label-position";
 import { convertLinebreakStyle } from "./ruleConverters/linebreak-style";
 import { convertMaxClassesPerFile } from "./ruleConverters/max-classes-per-file";
+import { convertMaxFuncBodyLength } from "./ruleConverters/max-func-body-length";
 import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
 import { convertMaxLineLength } from "./ruleConverters/max-line-length";
 import { convertMemberAccess } from "./ruleConverters/member-access";
@@ -276,6 +277,7 @@ export const ruleConverters = new Map([
     ["label-position", convertLabelPosition],
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
+    ["max-func-body-length", convertMaxFuncBodyLength],
     ["max-file-line-count", convertMaxFileLineCount],
     ["max-line-length", convertMaxLineLength],
     ["member-access", convertMemberAccess],
