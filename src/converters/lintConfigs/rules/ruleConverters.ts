@@ -47,6 +47,7 @@ import { convertNoConsole } from "./ruleConverters/no-console";
 import { convertNoConstantCondition } from "./ruleConverters/no-constant-condition";
 import { convertNoConstruct } from "./ruleConverters/no-construct";
 import { convertNoControlRegex } from "./ruleConverters/no-control-regex";
+import { convertNoCookies } from "./ruleConverters/no-cookies";
 import { convertNoDebugger } from "./ruleConverters/no-debugger";
 import { convertNoDefaultExport } from "./ruleConverters/no-default-export";
 import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports";
@@ -299,6 +300,7 @@ export const ruleConverters = new Map([
     ["no-constant-condition", convertNoConstantCondition],
     ["no-construct", convertNoConstruct],
     ["no-control-regex", convertNoControlRegex],
+    ["no-cookies", convertNoCookies],
     ["no-debugger", convertNoDebugger],
     ["no-default-export", convertNoDefaultExport],
     ["no-duplicate-imports", convertNoDuplicateImports],
