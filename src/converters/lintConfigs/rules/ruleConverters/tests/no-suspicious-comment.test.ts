@@ -29,7 +29,7 @@ describe(convertNoSuspiciousComment, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint's no-warning-comments does not allow an array of terms to ignore."],
+                    notices: ["ESLint's no-warning-comments does not allow an array of terms to match."],
                     ruleArguments: [
                         {
                             location: "anywhere",

@@ -5,7 +5,7 @@ export const convertNoSuspiciousComment: RuleConverter = (tslintRule) => {
         rules: [
             {
                 ...(tslintRule.ruleArguments.length !== 0
-                    ? { notices: ["ESLint's no-warning-comments does not allow an array of terms to ignore."] }
+                    ? { notices: ["ESLint's no-warning-comments does not allow an array of terms to match."] }
                     : {}),
                 ruleArguments: [
                     {
