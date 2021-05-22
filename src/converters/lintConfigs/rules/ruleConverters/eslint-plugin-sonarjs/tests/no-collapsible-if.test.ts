@@ -1,0 +1,18 @@
+import { convertNoCollapsibleIf } from "../no-collapsible-if";
+
+describe(convertNoCollapsibleIf, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoCollapsibleIf({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "sonarjs/no-collapsible-if",
+                },
+            ],
+            plugins: ["eslint-plugin-sonarjs"],
+        });
+    });
+});
