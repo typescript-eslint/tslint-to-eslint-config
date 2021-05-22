@@ -10,7 +10,7 @@ describe(convertUnderscoreConsistentInvocation, () => {
             plugins: ["eslint-plugin-lodash"],
             rules: [
                 {
-                    ruleArguments: ['never', 0],
+                    ruleArguments: ['never'],
                     ruleName: "lodash/chaining",
                 },
             ],
@@ -26,7 +26,7 @@ describe(convertUnderscoreConsistentInvocation, () => {
             plugins: ["eslint-plugin-lodash"],
             rules: [
                 {
-                    ruleArguments: ['never', 0],
+                    ruleArguments: ['never'],
                     ruleName: "lodash/chaining",
                 },
             ],

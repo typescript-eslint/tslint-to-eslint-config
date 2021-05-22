@@ -5,10 +5,9 @@ export const convertUnderscoreConsistentInvocation: RuleConverter = (tslintRule)
         plugins: ["eslint-plugin-lodash"],
         rules: [
             {
-                ruleArguments: [
-                    tslintRule.ruleArguments.length === 0 || tslintRule.ruleArguments[0] === 'instance' ? 'never' : 'always',
-                    0,
-                ],
+                ruleArguments: tslintRule.ruleArguments.length === 0 || tslintRule.ruleArguments[0] === 'instance'
+                    ? ['never']
+                    : ['always', 0],
                 ruleName: "lodash/chaining",
             },
         ],
