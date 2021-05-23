@@ -9,7 +9,7 @@ import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 import { RuleMerger } from "./ruleMerger";
 import { RuleConverter } from "./ruleConverter";
 import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
-import { Entries } from "../../../utils";
+import { Entries, uniqueFromSources } from "../../../utils";
 
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;
@@ -80,8 +80,11 @@ export const convertRules = (
                     continue;
                 }
 
-                // 4d. First it merges the notices, since that is always needed.
-                existingConversion.notices = mergeNotices(existingConversion, newConversion);
+                // 4d. First it deduplicates and merges notices.
+                existingConversion.notices = uniqueFromSources(
+                    existingConversion.notices,
+                    newConversion.notices,
+                );
                 converted.set(changes.ruleName, existingConversion);
 
                 // 4e. If the existing output has the same arguments as the new output don't bother with a merger.
@@ -116,10 +119,3 @@ export const convertRules = (
 
     return { converted, failed, missing, plugins, ruleEquivalents };
 };
-
-function mergeNotices(existingConversion: ESLintRuleOptions, newConversion: ESLintRuleOptions) {
-    const existingNotices = existingConversion.notices ?? [];
-    const newNotices = newConversion.notices ?? [];
-
-    return Array.from(new Set([...existingNotices, ...newNotices]));
-}

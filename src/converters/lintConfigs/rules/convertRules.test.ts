@@ -107,107 +107,87 @@ describe("convertRules", () => {
         expect(ruleEquivalents).toEqual(new Map([["tslint-rule-a", ["eslint-rule-a"]]]));
     });
 
-    describe("runs without an argument merger when both rules have the same arguments", () => {
-        [
-            { ruleArguments: undefined, testCase: "no arguments" },
-            { ruleArguments: [5], testCase: "number argument" },
-            { ruleArguments: ["allow-something"], testCase: "string argument" },
-            { ruleArguments: [{ max: 50 }], testCase: "object argument" },
-            { ruleArguments: [5, "allow-something", { max: 50 }], testCase: "multiple arguments" },
-        ].forEach(({ ruleArguments, testCase }) => {
-            it(testCase, () => {
-                // Arrange
-                const conversionResult = {
-                    rules: [
+    test.each([[undefined], [[5, "allow-something", { max: 50 }]]])(
+        "runs without an argument merger when both rules have the same arguments",
+        (ruleArguments) => {
+            // Arrange
+            const conversionResult = {
+                rules: [
+                    {
+                        ruleArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                    {
+                        ruleArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                ],
+            };
+            const { tslintRule, converters, mergers } = setupConversionEnvironment({
+                conversionResult,
+            });
+
+            // Act
+            const { converted, failed } = convertRules(
+                { ruleConverters: converters, ruleMergers: mergers },
+                { [tslintRule.ruleName]: tslintRule },
+                new Map<string, string[]>(),
+            );
+
+            // Assert
+            expect(converted).toEqual(
+                new Map([
+                    [
+                        "eslint-rule-a",
                         {
                             ruleArguments,
                             ruleName: "eslint-rule-a",
-                        },
-                        {
-                            ruleArguments,
-                            ruleName: "eslint-rule-a",
+                            ruleSeverity: "error",
+                            notices: [],
                         },
                     ],
-                };
-                const { tslintRule, converters, mergers } = setupConversionEnvironment({
-                    conversionResult,
-                });
+                ]),
+            );
+            expect(failed).toEqual([]);
+        },
+    );
 
-                // Act
-                const { converted, failed } = convertRules(
-                    { ruleConverters: converters, ruleMergers: mergers },
-                    { [tslintRule.ruleName]: tslintRule },
-                    new Map<string, string[]>(),
-                );
-
-                // Assert
-                expect(converted).toEqual(
-                    new Map([
-                        [
-                            "eslint-rule-a",
-                            {
-                                ruleArguments,
-                                ruleName: "eslint-rule-a",
-                                ruleSeverity: "error",
-                                notices: [],
-                            },
-                        ],
-                    ]),
-                );
-                expect(failed).toEqual([]);
+    test.each([
+        [[[0]], [[1]]],
+        [[[""]], [["allow-something"]]],
+        [[[{ max: 0 }]], [[{ max: 50 }]]],
+        [[[0, "", { max: 0 }]], [[5, "allow-something", { max: 50 }]]],
+    ])(
+        "reports a failure when two outputs with different arguments exist for a converted rule without a merger",
+        ([existingArguments, newArguments]) => {
+            // Arrange
+            const conversionResult = {
+                rules: [
+                    {
+                        ruleArguments: existingArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                    {
+                        ruleArguments: newArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                ],
+            };
+            const { tslintRule, converters, mergers } = setupConversionEnvironment({
+                conversionResult,
             });
-        });
-    });
 
-    describe("reports a failure when two outputs with different arguments exist for a converted rule without a merger", () => {
-        [
-            { existingArguments: [0], newArguments: [1], testCase: "number arguments" },
-            {
-                existingArguments: [""],
-                newArguments: ["allow-something"],
-                testCase: "string arguments",
-            },
-            {
-                existingArguments: [{ max: 0 }],
-                newArguments: [{ max: 50 }],
-                testCase: "object arguments",
-            },
-            {
-                existingArguments: [0, "", { max: 0 }],
-                newArguments: [5, "allow-something", { max: 50 }],
-                testCase: "multiple arguments",
-            },
-        ].forEach(({ existingArguments, newArguments, testCase }) => {
-            it(testCase, () => {
-                // Arrange
-                const conversionResult = {
-                    rules: [
-                        {
-                            ruleArguments: existingArguments,
-                            ruleName: "eslint-rule-a",
-                        },
-                        {
-                            ruleArguments: newArguments,
-                            ruleName: "eslint-rule-a",
-                        },
-                    ],
-                };
-                const { tslintRule, converters, mergers } = setupConversionEnvironment({
-                    conversionResult,
-                });
+            // Act
+            const { failed } = convertRules(
+                { ruleConverters: converters, ruleMergers: mergers },
+                { [tslintRule.ruleName]: tslintRule },
+                new Map<string, string[]>(),
+            );
 
-                // Act
-                const { failed } = convertRules(
-                    { ruleConverters: converters, ruleMergers: mergers },
-                    { [tslintRule.ruleName]: tslintRule },
-                    new Map<string, string[]>(),
-                );
-
-                // Assert
-                expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
-            });
-        });
-    });
+            // Assert
+            expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
+        },
+    );
 
     it("merges rule arguments when two outputs with different arguments exist for a converted rule with a merger", () => {
         // Arrange
@@ -279,7 +259,6 @@ describe("convertRules", () => {
 
         // Assert
         expect([
-            // don't care if arguments merger ran or not
             new Map([
                 [
                     "eslint-rule-a",
@@ -332,7 +311,6 @@ describe("convertRules", () => {
 
         // Assert
         expect([
-            // don't care if arguments merger ran or not
             new Map([
                 [
                     "eslint-rule-a",
