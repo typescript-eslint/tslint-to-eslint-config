@@ -70,6 +70,7 @@
     },
     "scripts": {
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
+        "new-converter": "node ./script/new-converter",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test": "jest",
