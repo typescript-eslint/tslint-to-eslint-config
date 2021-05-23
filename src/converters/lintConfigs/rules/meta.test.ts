@@ -2,12 +2,15 @@ import { promises as fs } from "fs";
 import { resolve, join } from "path";
 
 describe("@typescript-eslint rules that require another rule be disabled", () => {
-    const rootDirToSearch = join(__dirname, "ruleConverters");
     let converterFiles: string[] = [];
 
     beforeAll(async () => {
-        converterFiles = (await getFiles(rootDirToSearch)).filter(
+        const rootDirToSearch = join(__dirname, "ruleConverters");
+        const converterFilePaths = (await getFiles(rootDirToSearch)).filter(
             (filePath) => filePath.endsWith(".ts") && !filePath.endsWith(".test.ts"),
+        );
+        converterFiles = await Promise.all(
+            converterFilePaths.map(async (filePath) => (await fs.readFile(filePath)).toString()),
         );
     });
 
@@ -49,17 +52,15 @@ describe("@typescript-eslint rules that require another rule be disabled", () =>
         ["@typescript-eslint/space-infix-ops", "space-infix-ops"],
     ])(
         '"%s" requires to disable "%s" but it is not disabled in the converter.',
-        async (rule, disabledRule) => {
-            await Promise.all(
-                converterFiles.map((filePath) => checkFile(filePath, rule, disabledRule)),
-            );
+        (rule, disabledRule) => {
+            converterFiles.forEach((content) => {
+                checkFile(content, rule, disabledRule);
+            });
         },
     );
 });
 
-async function checkFile(filePath: string, rule: string, disabledRule: string) {
-    const content = (await fs.readFile(filePath)).toString();
-
+function checkFile(content: string, rule: string, disabledRule: string) {
     if (
         content.includes(`ruleName: "${rule}"`) &&
         !content.includes(`ruleName: "${disabledRule}"`) &&
