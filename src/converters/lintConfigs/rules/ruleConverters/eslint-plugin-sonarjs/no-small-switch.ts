@@ -7,6 +7,6 @@ export const convertNoSmallSwitch: RuleConverter = () => {
                 ruleName: "sonarjs/no-small-switch",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

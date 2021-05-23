@@ -7,6 +7,6 @@ export const convertNoUnusedArray: RuleConverter = () => {
                 ruleName: "sonarjs/no-unused-collection",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

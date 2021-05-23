@@ -7,6 +7,6 @@ export const convertNoSameLineConditional: RuleConverter = () => {
                 ruleName: "sonarjs/no-same-line-conditional",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

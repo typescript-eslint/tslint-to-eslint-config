@@ -12,7 +12,7 @@ describe(convertNoDuplicatedBranches, () => {
                     ruleName: "sonarjs/no-duplicated-branches",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

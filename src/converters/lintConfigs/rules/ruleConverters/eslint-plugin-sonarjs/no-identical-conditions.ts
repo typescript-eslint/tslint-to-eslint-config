@@ -7,6 +7,6 @@ export const convertNoIdenticalConditions: RuleConverter = () => {
                 ruleName: "sonarjs/no-identical-conditions",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

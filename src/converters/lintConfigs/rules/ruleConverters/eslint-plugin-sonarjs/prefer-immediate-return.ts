@@ -7,6 +7,6 @@ export const convertPreferImmediateReturn: RuleConverter = () => {
                 ruleName: "sonarjs/prefer-immediate-return",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

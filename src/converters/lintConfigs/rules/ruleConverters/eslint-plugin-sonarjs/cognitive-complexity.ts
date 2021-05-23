@@ -10,6 +10,6 @@ export const convertCognitiveComplexity: RuleConverter = (tslintRule) => {
                 ruleName: "sonarjs/cognitive-complexity",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

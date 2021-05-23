@@ -10,6 +10,6 @@ export const convertMaxSwitchCases: RuleConverter = (tslintRule) => {
                 ruleName: "sonarjs/max-switch-cases",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

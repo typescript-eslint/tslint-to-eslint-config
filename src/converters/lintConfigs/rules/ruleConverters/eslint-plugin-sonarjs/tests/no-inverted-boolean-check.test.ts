@@ -12,7 +12,7 @@ describe(convertNoInvertedBooleanCheck, () => {
                     ruleName: "sonarjs/no-inverted-boolean-check",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

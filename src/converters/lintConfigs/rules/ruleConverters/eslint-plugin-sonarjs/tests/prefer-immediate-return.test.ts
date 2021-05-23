@@ -12,7 +12,7 @@ describe(convertPreferImmediateReturn, () => {
                     ruleName: "sonarjs/prefer-immediate-return",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

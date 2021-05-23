@@ -12,7 +12,7 @@ describe(convertNoSameLineConditional, () => {
                     ruleName: "sonarjs/no-same-line-conditional",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

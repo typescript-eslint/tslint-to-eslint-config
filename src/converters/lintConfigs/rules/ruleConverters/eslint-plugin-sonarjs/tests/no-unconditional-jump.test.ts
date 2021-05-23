@@ -12,7 +12,7 @@ describe(convertNoUnconditionalJump, () => {
                     ruleName: "sonarjs/no-one-iteration-loop",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

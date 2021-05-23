@@ -12,7 +12,7 @@ describe(convertNoUselessCatch, () => {
                     ruleName: "sonarjs/no-useless-catch",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

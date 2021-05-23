@@ -7,6 +7,6 @@ export const convertNoIdenticalExpressions: RuleConverter = () => {
                 ruleName: "sonarjs/no-identical-expressions",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

@@ -12,7 +12,7 @@ describe(convertNoCollectionSizeMischeck, () => {
                     ruleName: "sonarjs/no-collection-size-mischeck",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

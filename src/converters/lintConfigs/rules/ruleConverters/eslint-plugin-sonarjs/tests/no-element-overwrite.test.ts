@@ -12,7 +12,7 @@ describe(convertNoElementOverwrite, () => {
                     ruleName: "sonarjs/no-element-overwrite",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

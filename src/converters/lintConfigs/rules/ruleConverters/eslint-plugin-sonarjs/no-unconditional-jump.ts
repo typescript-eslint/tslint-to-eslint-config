@@ -7,6 +7,6 @@ export const convertNoUnconditionalJump: RuleConverter = () => {
                 ruleName: "sonarjs/no-one-iteration-loop",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

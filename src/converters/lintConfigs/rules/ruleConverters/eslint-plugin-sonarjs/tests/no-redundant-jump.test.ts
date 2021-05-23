@@ -12,7 +12,7 @@ describe(convertNoRedundantJump, () => {
                     ruleName: "sonarjs/no-redundant-jump",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

@@ -12,7 +12,7 @@ describe(convertNoDuplicateString, () => {
                     ruleName: "sonarjs/no-duplicate-string",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 
@@ -28,7 +28,7 @@ describe(convertNoDuplicateString, () => {
                     ruleName: "sonarjs/no-duplicate-string",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

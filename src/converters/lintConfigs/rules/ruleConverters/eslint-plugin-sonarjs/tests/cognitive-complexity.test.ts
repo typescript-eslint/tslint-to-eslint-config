@@ -12,7 +12,7 @@ describe(convertCognitiveComplexity, () => {
                     ruleName: "sonarjs/cognitive-complexity",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 
@@ -28,7 +28,7 @@ describe(convertCognitiveComplexity, () => {
                     ruleName: "sonarjs/cognitive-complexity",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

@@ -12,7 +12,7 @@ describe(convertNoUnusedArray, () => {
                     ruleName: "sonarjs/no-unused-collection",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

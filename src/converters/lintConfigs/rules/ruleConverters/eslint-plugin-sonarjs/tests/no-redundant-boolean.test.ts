@@ -12,7 +12,7 @@ describe(convertNoRedundantBoolean, () => {
                     ruleName: "sonarjs/no-redundant-boolean",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

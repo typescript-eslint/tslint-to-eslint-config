@@ -10,6 +10,6 @@ export const convertNoDuplicateString: RuleConverter = (tslintRule) => {
                 ruleName: "sonarjs/no-duplicate-string",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

@@ -12,7 +12,7 @@ describe(convertMaxSwitchCases, () => {
                     ruleName: "sonarjs/max-switch-cases",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 
@@ -28,7 +28,7 @@ describe(convertMaxSwitchCases, () => {
                     ruleName: "sonarjs/max-switch-cases",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

@@ -7,6 +7,6 @@ export const convertNoCollectionSizeMischeck: RuleConverter = () => {
                 ruleName: "sonarjs/no-collection-size-mischeck",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };

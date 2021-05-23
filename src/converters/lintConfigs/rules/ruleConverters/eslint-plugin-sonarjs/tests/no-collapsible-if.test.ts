@@ -12,7 +12,7 @@ describe(convertNoCollapsibleIf, () => {
                     ruleName: "sonarjs/no-collapsible-if",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

@@ -12,7 +12,7 @@ describe(convertNoIdenticalFunctions, () => {
                     ruleName: "sonarjs/no-identical-functions",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

@@ -12,7 +12,7 @@ describe(convertNoUseOfEmptyReturnValue, () => {
                     ruleName: "sonarjs/no-use-of-empty-return-value",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

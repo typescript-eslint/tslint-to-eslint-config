@@ -12,7 +12,7 @@ describe(convertNoSmallSwitch, () => {
                     ruleName: "sonarjs/no-small-switch",
                 },
             ],
-            plugins: ["eslint-plugin-sonarjs"],
+            plugins: ["sonarjs"],
         });
     });
 });

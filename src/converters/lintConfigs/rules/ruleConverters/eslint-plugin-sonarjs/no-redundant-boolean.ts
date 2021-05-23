@@ -7,6 +7,6 @@ export const convertNoRedundantBoolean: RuleConverter = () => {
                 ruleName: "sonarjs/no-redundant-boolean",
             },
         ],
-        plugins: ["eslint-plugin-sonarjs"],
+        plugins: ["sonarjs"],
     };
 };
