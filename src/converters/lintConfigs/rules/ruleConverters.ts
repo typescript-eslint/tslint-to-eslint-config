@@ -237,6 +237,7 @@ import { convertCognitiveComplexity } from "./ruleConverters/eslint-plugin-sonar
 import { convertConsecutiveOverloads } from "./ruleConverters/eslint-plugin-sonarjs/consecutive-overloads";
 import { convertMaxSwitchCases } from "./ruleConverters/eslint-plugin-sonarjs/max-switch-cases";
 import { convertNoAllDuplicatedBranches } from "./ruleConverters/eslint-plugin-sonarjs/no-all-duplicated-branches";
+import { convertNoAlphabeticalSort } from "./ruleConverters/eslint-plugin-sonarjs/no-alphabetical-sort";
 import { convertNoBigFunction } from "./ruleConverters/eslint-plugin-sonarjs/no-big-function";
 import { convertNoCollapsibleIf } from "./ruleConverters/eslint-plugin-sonarjs/no-collapsible-if";
 import { convertNoCollectionSizeMischeck } from "./ruleConverters/eslint-plugin-sonarjs/no-collection-size-mischeck";
@@ -334,6 +335,7 @@ export const ruleConverters = new Map([
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
     ["no-all-duplicated-branches", convertNoAllDuplicatedBranches],
+    ["no-alphabetical-sort", convertNoAlphabeticalSort],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
