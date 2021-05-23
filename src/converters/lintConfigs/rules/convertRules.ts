@@ -1,3 +1,5 @@
+import { isEqual } from "lodash";
+
 import { ConversionError } from "../../../errors/conversionError";
 import { ErrorSummary } from "../../../errors/errorSummary";
 import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration";
@@ -78,21 +80,26 @@ export const convertRules = (
                     continue;
                 }
 
-                // 4d. If not, a rule merger is run to combine it with its existing output settings.
+                // 4d. First it merges the notices, since that is always needed.
+                existingConversion.notices = mergeNotices(existingConversion, newConversion);
+                converted.set(changes.ruleName, existingConversion);
+
+                // 4e. If the existing output has the same arguments as the new output don't bother with a merger.
+                if (isEqual(existingConversion.ruleArguments, newConversion.ruleArguments)) {
+                    continue;
+                }
+
+                // 4f. If not, a rule merger is run to combine it with its existing output settings.
                 const merger = dependencies.ruleMergers.get(changes.ruleName);
                 if (merger === undefined) {
                     failed.push(ConversionError.forMerger(changes.ruleName));
                 } else {
-                    const existingNotices = existingConversion.notices ?? [];
-                    const newNotices = newConversion.notices ?? [];
-
                     converted.set(changes.ruleName, {
                         ...existingConversion,
                         ruleArguments: merger(
                             existingConversion.ruleArguments,
                             newConversion.ruleArguments,
                         ),
-                        notices: Array.from(new Set([...existingNotices, ...newNotices])),
                     });
                 }
             }
@@ -109,3 +116,10 @@ export const convertRules = (
 
     return { converted, failed, missing, plugins, ruleEquivalents };
 };
+
+function mergeNotices(existingConversion: ESLintRuleOptions, newConversion: ESLintRuleOptions) {
+    const existingNotices = existingConversion.notices ?? [];
+    const newNotices = newConversion.notices ?? [];
+
+    return Array.from(new Set([...existingNotices, ...newNotices]));
+}
