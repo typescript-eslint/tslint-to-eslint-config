@@ -5,6 +5,10 @@ export const convertNoExtraSemicolon: RuleConverter = () => {
         rules: [
             {
                 ruleName: "no-extra-semi",
+                ruleSeverity: "off",
+            },
+            {
+                ruleName: "@typescript-eslint/no-extra-semi",
             },
         ],
     };

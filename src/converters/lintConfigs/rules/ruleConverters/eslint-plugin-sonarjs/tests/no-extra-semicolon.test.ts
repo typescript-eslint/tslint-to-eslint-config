@@ -10,6 +10,10 @@ describe(convertNoExtraSemicolon, () => {
             rules: [
                 {
                     ruleName: "no-extra-semi",
+                    ruleSeverity: "off",
+                },
+                {
+                    ruleName: "@typescript-eslint/no-extra-semi",
                 },
             ],
         });
