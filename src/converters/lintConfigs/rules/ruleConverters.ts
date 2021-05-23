@@ -256,6 +256,7 @@ import { convertNoMultilineStringLiterals } from "./ruleConverters/eslint-plugin
 import { convertNoRedundantBoolean } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-boolean";
 import { convertNoRedundantJump } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-jump";
 import { convertNoRedundantParentheses } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-parentheses";
+import { convertNoReturnTypeAny } from "./ruleConverters/eslint-plugin-sonarjs/no-return-type-any";
 import { convertNoSameLineConditional } from "./ruleConverters/eslint-plugin-sonarjs/no-same-line-conditional";
 import { convertNoSelfAssignment } from "./ruleConverters/eslint-plugin-sonarjs/no-self-assignment";
 import { convertNoSmallSwitch } from "./ruleConverters/eslint-plugin-sonarjs/no-small-switch";
@@ -419,6 +420,7 @@ export const ruleConverters = new Map([
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
+    ["no-return-type-any", convertNoReturnTypeAny],
     ["no-same-line-conditional", convertNoSameLineConditional],
     ["no-self-assignment", convertNoSelfAssignment],
     ["no-shadowed-variable", convertNoShadowedVariable],
