@@ -140,6 +140,7 @@ import { convertTripleEquals } from "./ruleConverters/triple-equals";
 import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
 import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
+import { convertUnderscoreConsistentInvocation } from "./ruleConverters/underscore-consistent-invocation";
 import { convertUnifiedSignatures } from "./ruleConverters/unified-signatures";
 import { convertUnnecessaryBind } from "./ruleConverters/unnecessary-bind";
 import { convertUnnecessaryConstructor } from "./ruleConverters/unnecessary-constructor";
@@ -431,6 +432,7 @@ export const ruleConverters = new Map([
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],
     ["typeof-compare", convertTypeofCompare],
+    ["underscore-consistent-invocation", convertUnderscoreConsistentInvocation],
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
