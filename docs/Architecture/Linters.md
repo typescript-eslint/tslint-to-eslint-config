@@ -52,7 +52,7 @@ These are located in `src/rules/mergers/`, and keyed under their names by the ma
 
 For example, `@typescript-eslint/ban-types` spreads both arguments' `types` members into one large `types` object.
 
-> A merger does not need to be created if the rule does not accept any configuration.
+> A merger does not need to be created if the rule does not accept any configuration or all converters output exactly the same configuration.
 
 ## Package Summaries
 
