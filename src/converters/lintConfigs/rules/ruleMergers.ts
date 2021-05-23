@@ -2,6 +2,7 @@ import { mergeBanTypes } from "./ruleMergers/ban-types";
 import { mergeConsistentTypeAssertions } from "./ruleMergers/consistent-type-assertions";
 import { mergeIndent } from "./ruleMergers/indent";
 import { mergeNamingConvention } from "./ruleMergers/naming-convention";
+import { mergeNoEmpty } from "./ruleMergers/no-empty";
 import { mergeNoEval } from "./ruleMergers/no-eval";
 import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style";
 import { mergeNoUnnecessaryTypeAssertion } from "./ruleMergers/no-unnecessary-type-assertion";
@@ -15,5 +16,6 @@ export const ruleMergers = new Map([
     ["@typescript-eslint/naming-convention", mergeNamingConvention],
     ["@typescript-eslint/no-unnecessary-type-assertion", mergeNoUnnecessaryTypeAssertion],
     ["@typescript-eslint/triple-slash-reference", mergeTripleSlashReference],
+    ["no-empty", mergeNoEmpty],
     ["no-eval", mergeNoEval],
 ]);
