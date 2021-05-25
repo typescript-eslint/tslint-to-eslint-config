@@ -14,7 +14,7 @@ describe("@typescript-eslint rules that require another rule be disabled", () =>
         );
     });
 
-    // Source: https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/docs/rules
+    // Source: https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/README.md#extension-rules
     test.each([
         ["@typescript-eslint/brace-style", "brace-style"],
         ["@typescript-eslint/comma-dangle", "comma-dangle"],
@@ -32,6 +32,7 @@ describe("@typescript-eslint rules that require another rule be disabled", () =>
         ["@typescript-eslint/no-empty-function", "no-empty-function"],
         ["@typescript-eslint/no-extra-parens", "no-extra-parens"],
         ["@typescript-eslint/no-extra-semi", "no-extra-semi"],
+        ["@typescript-eslint/no-implied-eval", "no-implied-eval"],
         ["@typescript-eslint/no-invalid-this", "no-invalid-this"],
         ["@typescript-eslint/no-loop-func", "no-loop-func"],
         ["@typescript-eslint/no-loss-of-precision", "no-loss-of-precision"],
