@@ -80,14 +80,14 @@ export const convertRules = (
                     continue;
                 }
 
-                // 4d. First it deduplicates and merges notices.
+                // 4d. Notices are merged and deduplicated.
                 existingConversion.notices = uniqueFromSources(
                     existingConversion.notices,
                     newConversion.notices,
                 );
                 converted.set(changes.ruleName, existingConversion);
 
-                // 4e. If the existing output has the same arguments as the new output don't bother with a merger.
+                // 4e. If the existing output has the same arguments as the new output, merge lookups are skipped.
                 if (isEqual(existingConversion.ruleArguments, newConversion.ruleArguments)) {
                     continue;
                 }
