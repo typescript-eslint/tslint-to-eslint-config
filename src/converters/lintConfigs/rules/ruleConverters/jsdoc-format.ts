@@ -1,4 +1,4 @@
-import { ConvertedRuleChanges,RuleConverter } from "../ruleConverter";
+import { ConvertedRuleChanges, RuleConverter } from "../ruleConverter";
 
 export const JSDocNoticeMsg =
     "ESLint does not support enforcing the first line of multiline JSDoc comments be empty.";

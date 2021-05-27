@@ -1,4 +1,4 @@
-import { CheckAllTokensMsg,convertOneLine } from "../one-line";
+import { CheckAllTokensMsg, convertOneLine } from "../one-line";
 
 describe(convertOneLine, () => {
     test("conversion without arguments", () => {

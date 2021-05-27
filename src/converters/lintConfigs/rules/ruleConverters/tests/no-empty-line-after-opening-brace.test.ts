@@ -9,14 +9,16 @@ describe(convertNoEmptyLineAfterOpeningBrace, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint's padded-blocks rule also bans a blank line before a closing brace."],
+                    notices: [
+                        "ESLint's padded-blocks rule also bans a blank line before a closing brace.",
+                    ],
                     ruleArguments: [
                         {
                             blocks: "never",
                         },
                         {
-                            "allowSingleLineBlocks": true,
-                        }
+                            allowSingleLineBlocks: true,
+                        },
                     ],
                     ruleName: "padded-blocks",
                 },

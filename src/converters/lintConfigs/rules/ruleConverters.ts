@@ -133,7 +133,7 @@ import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
 import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
 import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
-import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
+import { convertNoDynamicDelete } from "./ruleConverters/no-dynamic-delete";
 import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
 import { convertNoEmptyLineAfterOpeningBrace } from "./ruleConverters/no-empty-line-after-opening-brace";

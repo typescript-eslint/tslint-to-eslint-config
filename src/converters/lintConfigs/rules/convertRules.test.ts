@@ -1,6 +1,6 @@
 import { ConversionError } from "../../../errors/conversionError";
 import { convertRules } from "./convertRules";
-import { ConversionResult,RuleConverter } from "./ruleConverter";
+import { ConversionResult, RuleConverter } from "./ruleConverter";
 import { RuleMerger } from "./ruleMerger";
 import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
 
