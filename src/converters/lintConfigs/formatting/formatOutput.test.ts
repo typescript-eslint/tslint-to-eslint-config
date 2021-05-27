@@ -1,7 +1,7 @@
 import { EOL } from "os";
 
-import { faqs } from "./formatters/faqs";
 import { formatOutput } from "./formatOutput";
+import { faqs } from "./formatters/faqs";
 
 describe("formatOutput", () => {
     it("formats output as JavaScript for a .js file path", () => {

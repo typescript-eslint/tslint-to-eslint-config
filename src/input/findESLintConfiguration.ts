@@ -3,9 +3,9 @@ import { SansDependencies } from "../binding";
 import { RawESLintRuleSeverity } from "../converters/lintConfigs/rules/types";
 import { ConfigurationLocations } from "../types";
 import { uniqueFromSources } from "../utils";
+import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { findRawConfiguration } from "./findRawConfiguration";
 import { findReportedConfiguration } from "./findReportedConfiguration";
-import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { importer } from "./importer";
 
 export type ESLintConfiguration = {

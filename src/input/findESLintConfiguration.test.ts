@@ -1,9 +1,9 @@
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
+import { TSLintToESLintSettings } from "../types";
 import {
     findESLintConfiguration,
     FindESLintConfigurationDependencies,
 } from "./findESLintConfiguration";
-import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { TSLintToESLintSettings } from "../types";
 
 const createStubDependencies = (overrides: Partial<FindESLintConfigurationDependencies> = {}) => ({
     exec: createStubExec({ stdout: "{}" }),

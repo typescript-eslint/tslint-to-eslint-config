@@ -1,5 +1,5 @@
 import { FileSystem } from "../../../../adapters/fileSystem";
-import { preferredLockfiles, PackageManager } from "./packageManagers";
+import { PackageManager,preferredLockfiles } from "./packageManagers";
 
 export type ChoosePackageManagerDependencies = {
     fileSystem: Pick<FileSystem, "fileExists">;

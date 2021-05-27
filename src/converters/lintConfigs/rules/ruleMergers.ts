@@ -1,10 +1,10 @@
 import { mergeBanTypes } from "./ruleMergers/ban-types";
 import { mergeConsistentTypeAssertions } from "./ruleMergers/consistent-type-assertions";
 import { mergeIndent } from "./ruleMergers/indent";
+import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style";
 import { mergeNamingConvention } from "./ruleMergers/naming-convention";
 import { mergeNoCaller } from "./ruleMergers/no-caller";
 import { mergeNoEval } from "./ruleMergers/no-eval";
-import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style";
 import { mergeNoUnnecessaryTypeAssertion } from "./ruleMergers/no-unnecessary-type-assertion";
 import { mergeTripleSlashReference } from "./ruleMergers/triple-slash-reference";
 

@@ -1,10 +1,10 @@
-import { findRawConfiguration } from "./findRawConfiguration";
-import { findReportedConfiguration } from "./findReportedConfiguration";
 import { Exec } from "../adapters/exec";
 import { SansDependencies } from "../binding";
-import { uniqueFromSources } from "../utils";
-import { importer } from "./importer";
 import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
+import { uniqueFromSources } from "../utils";
+import { findRawConfiguration } from "./findRawConfiguration";
+import { findReportedConfiguration } from "./findReportedConfiguration";
+import { importer } from "./importer";
 
 export type TSLintConfiguration = {
     extends?: string[];

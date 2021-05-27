@@ -10,11 +10,89 @@ import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
 import { convertClassName } from "./ruleConverters/class-name";
+import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/component-class-suffix";
+import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
+import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
+import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextual-decorator";
+import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
+import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
+import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
+import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
+import { convertNoConflictingLifecycle } from "./ruleConverters/codelyzer/no-conflicting-lifecycle";
+import { convertNoForwardRef } from "./ruleConverters/codelyzer/no-forward-ref";
+import { convertNoHostMetadataProperty } from "./ruleConverters/codelyzer/no-host-metadata-property";
+import { convertNoInputPrefix } from "./ruleConverters/codelyzer/no-input-prefix";
+import { convertNoInputRename } from "./ruleConverters/codelyzer/no-input-rename";
+import { convertNoInputsMetadataProperty } from "./ruleConverters/codelyzer/no-inputs-metadata-property";
+import { convertNoLifecycleCall } from "./ruleConverters/codelyzer/no-lifecycle-call";
+import { convertNoOutputNative } from "./ruleConverters/codelyzer/no-output-native";
+import { convertNoOutputOnPrefix } from "./ruleConverters/codelyzer/no-output-on-prefix";
+import { convertNoOutputRename } from "./ruleConverters/codelyzer/no-output-rename";
+import { convertNoOutputsMetadataProperty } from "./ruleConverters/codelyzer/no-outputs-metadata-property";
+import { convertNoPipeImpure } from "./ruleConverters/codelyzer/no-pipe-impure";
+import { convertNoQueriesMetadataProperty } from "./ruleConverters/codelyzer/no-queries-metadata-property";
+import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
+import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
+import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
+import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
+import { convertTemplateAccessibilityAltText } from "./ruleConverters/codelyzer/template-accessibility-alt-text";
+import { convertTemplateAccessibilityElementsContent } from "./ruleConverters/codelyzer/template-accessibility-elements-content";
+import { convertTemplateAccessibilityLabelFor } from "./ruleConverters/codelyzer/template-accessibility-label-for";
+import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
+import { convertTemplateAccessibilityTableScope } from "./ruleConverters/codelyzer/template-accessibility-table-scope";
+import { convertTemplateAccessibilityValidAria } from "./ruleConverters/codelyzer/template-accessibility-valid-aria";
+import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
+import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-click-events-have-key-events";
+import { convertTemplateConditionalComplexity } from "./ruleConverters/codelyzer/template-conditional-complexity";
+import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
+import { convertTemplateI18N } from "./ruleConverters/codelyzer/template-i18n";
+import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
+import { convertTemplateNoAny } from "./ruleConverters/codelyzer/template-no-any";
+import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
+import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
+import { convertTemplateNoDistractingElements } from "./ruleConverters/codelyzer/template-no-distracting-elements";
+import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
+import { convertTemplateUseTrackByFunction } from "./ruleConverters/codelyzer/template-use-track-by-function";
+import { convertUseComponentSelector } from "./ruleConverters/codelyzer/use-component-selector";
+import { convertUseComponentViewEncapsulation } from "./ruleConverters/codelyzer/use-component-view-encapsulation";
+import { convertUseInjectableProvidedIn } from "./ruleConverters/codelyzer/use-injectable-provided-in";
+import { convertUseLifecycleInterface } from "./ruleConverters/codelyzer/use-lifecycle-interface";
+import { convertUsePipeDecorator } from "./ruleConverters/codelyzer/use-pipe-decorator";
+import { convertUsePipeTransformInterface } from "./ruleConverters/codelyzer/use-pipe-transform-interface";
 import { convertCommentFormat } from "./ruleConverters/comment-format";
 import { convertCurly } from "./ruleConverters/curly";
 import { convertCyclomaticComplexity } from "./ruleConverters/cyclomatic-complexity";
 import { convertDeprecation } from "./ruleConverters/deprecation";
 import { convertEofline } from "./ruleConverters/eofline";
+import { convertJsxBanProps } from "./ruleConverters/eslint-plugin-react/jsx-ban-props";
+import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx-boolean-value";
+import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
+import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
+import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
+import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
+import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-lambda";
+import { convertJsxSelfClose } from "./ruleConverters/eslint-plugin-react/jsx-self-close";
+import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
+import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
+import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
+import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
+import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
+import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
+import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
+import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
+import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
+import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
+import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
+import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
+import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
+import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
+import { convertNoSubjectUnubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-subject-unsubscribe";
+import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
+import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
+import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
+import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
 import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
 import { convertForin } from "./ruleConverters/forin";
 import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
@@ -27,15 +105,15 @@ import { convertJSDocFormat } from "./ruleConverters/jsdoc-format";
 import { convertLabelPosition } from "./ruleConverters/label-position";
 import { convertLinebreakStyle } from "./ruleConverters/linebreak-style";
 import { convertMaxClassesPerFile } from "./ruleConverters/max-classes-per-file";
-import { convertMaxFuncBodyLength } from "./ruleConverters/max-func-body-length";
 import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
+import { convertMaxFuncBodyLength } from "./ruleConverters/max-func-body-length";
 import { convertMaxLineLength } from "./ruleConverters/max-line-length";
 import { convertMemberAccess } from "./ruleConverters/member-access";
 import { convertMemberOrdering } from "./ruleConverters/member-ordering";
 import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
+import { convertNewParens } from "./ruleConverters/new-parens";
 import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
-import { convertNewParens } from "./ruleConverters/new-parens";
 import { convertNoAngleBracketTypeAssertion } from "./ruleConverters/no-angle-bracket-type-assertion";
 import { convertNoArg } from "./ruleConverters/no-arg";
 import { convertNoAsyncWithoutAwait } from "./ruleConverters/no-async-without-await";
@@ -137,8 +215,8 @@ import { convertStrictBooleanExpressions } from "./ruleConverters/strict-boolean
 import { convertSwitchDefault } from "./ruleConverters/switch-default";
 import { convertTrailingComma } from "./ruleConverters/trailing-comma";
 import { convertTripleEquals } from "./ruleConverters/triple-equals";
-import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
+import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
 import { convertUnderscoreConsistentInvocation } from "./ruleConverters/underscore-consistent-invocation";
 import { convertUnifiedSignatures } from "./ruleConverters/unified-signatures";
@@ -147,90 +225,6 @@ import { convertUnnecessaryConstructor } from "./ruleConverters/unnecessary-cons
 import { convertUseDefaultTypeParameter } from "./ruleConverters/use-default-type-parameter";
 import { convertUseIsnan } from "./ruleConverters/use-isnan";
 import { convertVariableName } from "./ruleConverters/variable-name";
-
-// Codelyzer converters
-import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/component-class-suffix";
-import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
-import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
-import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
-import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextual-decorator";
-import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
-import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
-import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
-import { convertNoConflictingLifecycle } from "./ruleConverters/codelyzer/no-conflicting-lifecycle";
-import { convertNoForwardRef } from "./ruleConverters/codelyzer/no-forward-ref";
-import { convertNoHostMetadataProperty } from "./ruleConverters/codelyzer/no-host-metadata-property";
-import { convertNoInputPrefix } from "./ruleConverters/codelyzer/no-input-prefix";
-import { convertNoInputRename } from "./ruleConverters/codelyzer/no-input-rename";
-import { convertNoInputsMetadataProperty } from "./ruleConverters/codelyzer/no-inputs-metadata-property";
-import { convertNoLifecycleCall } from "./ruleConverters/codelyzer/no-lifecycle-call";
-import { convertNoOutputNative } from "./ruleConverters/codelyzer/no-output-native";
-import { convertNoOutputOnPrefix } from "./ruleConverters/codelyzer/no-output-on-prefix";
-import { convertNoOutputRename } from "./ruleConverters/codelyzer/no-output-rename";
-import { convertNoOutputsMetadataProperty } from "./ruleConverters/codelyzer/no-outputs-metadata-property";
-import { convertNoPipeImpure } from "./ruleConverters/codelyzer/no-pipe-impure";
-import { convertNoQueriesMetadataProperty } from "./ruleConverters/codelyzer/no-queries-metadata-property";
-import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
-import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
-import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
-import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
-import { convertTemplateAccessibilityAltText } from "./ruleConverters/codelyzer/template-accessibility-alt-text";
-import { convertTemplateAccessibilityElementsContent } from "./ruleConverters/codelyzer/template-accessibility-elements-content";
-import { convertTemplateAccessibilityLabelFor } from "./ruleConverters/codelyzer/template-accessibility-label-for";
-import { convertTemplateAccessibilityTabindexNoPositive } from "./ruleConverters/codelyzer/template-accessibility-tabindex-no-positive";
-import { convertTemplateAccessibilityTableScope } from "./ruleConverters/codelyzer/template-accessibility-table-scope";
-import { convertTemplateAccessibilityValidAria } from "./ruleConverters/codelyzer/template-accessibility-valid-aria";
-import { convertTemplateBananaInBox } from "./ruleConverters/codelyzer/template-banana-in-box";
-import { convertTemplateClickEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-click-events-have-key-events";
-import { convertTemplateConditionalComplexity } from "./ruleConverters/codelyzer/template-conditional-complexity";
-import { convertTemplateCyclomaticComplexity } from "./ruleConverters/codelyzer/template-cyclomatic-complexity";
-import { convertTemplateI18N } from "./ruleConverters/codelyzer/template-i18n";
-import { convertTemplateMouseEventsHaveKeyEvents } from "./ruleConverters/codelyzer/template-mouse-events-have-key-events";
-import { convertTemplateNoAny } from "./ruleConverters/codelyzer/template-no-any";
-import { convertTemplateNoAutofocus } from "./ruleConverters/codelyzer/template-no-autofocus";
-import { convertTemplateNoCallExpression } from "./ruleConverters/codelyzer/template-no-call-expression";
-import { convertTemplateNoDistractingElements } from "./ruleConverters/codelyzer/template-no-distracting-elements";
-import { convertTemplateNoNegatedAsync } from "./ruleConverters/codelyzer/template-no-negated-async";
-import { convertTemplateUseTrackByFunction } from "./ruleConverters/codelyzer/template-use-track-by-function";
-import { convertUseComponentSelector } from "./ruleConverters/codelyzer/use-component-selector";
-import { convertUseComponentViewEncapsulation } from "./ruleConverters/codelyzer/use-component-view-encapsulation";
-import { convertUseInjectableProvidedIn } from "./ruleConverters/codelyzer/use-injectable-provided-in";
-import { convertUseLifecycleInterface } from "./ruleConverters/codelyzer/use-lifecycle-interface";
-import { convertUsePipeDecorator } from "./ruleConverters/codelyzer/use-pipe-decorator";
-import { convertUsePipeTransformInterface } from "./ruleConverters/codelyzer/use-pipe-transform-interface";
-
-// ESLint-React converters
-import { convertJsxBanProps } from "./ruleConverters/eslint-plugin-react/jsx-ban-props";
-import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx-boolean-value";
-import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
-import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
-import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
-import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
-import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
-import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-lambda";
-import { convertJsxSelfClose } from "./ruleConverters/eslint-plugin-react/jsx-self-close";
-import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
-
-// eslint-plugin-rxjs converters
-import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
-import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
-import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
-import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
-import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
-import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
-import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
-import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
-import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
-import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
-import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
-import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
-import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
-import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
-import { convertNoSubjectUnubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-subject-unsubscribe";
-import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
-import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
-import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
-import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -315,7 +309,7 @@ export const ruleConverters = new Map([
     ["no-duplicate-variable", convertNoDuplicateVariable],
     ["no-dynamic-delete", convertNoDynamicDelete],
     ["no-empty-interface", convertNoEmptyInterface],
-    ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
+    ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
     ["no-floating-promises", convertNoFloatingPromises],
@@ -464,17 +458,4 @@ export const ruleConverters = new Map([
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
     ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
-
-    // These converters are all for rules that need more complex option conversions.
-    // Some of them will likely need to have notices about changed lint behaviors...
-    // If you're willing to take on that work, that'd be great! Please send PRs! 💖
-    // As these are enabled, they should be added in sorted order to the list above.
-
-    // TSLint core rules:
-    // ["ban", convertBan], // no-restricted-properties
-
-    // tslint-microsoft-contrib rules:
-    // ["max-func-body-length", convertMaxFuncBodyLength],
-    // ["no-function-expression", convertNoFunctionExpression], // ban-syntax config
-    // ["no-suspicious-comment", convertNoSuspiciousComment],
 ]);

@@ -1,5 +1,5 @@
-import { ESLintRuleSeverity, TSLintRuleOptions } from "./types";
 import { ConversionError } from "../../../errors/conversionError";
+import { ESLintRuleSeverity, TSLintRuleOptions } from "./types";
 
 /**
  * Section of a TSLint rule's options used for conversion.

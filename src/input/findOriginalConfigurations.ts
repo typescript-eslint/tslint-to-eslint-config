@@ -6,15 +6,15 @@ import {
     SucceededDataResult,
 } from "../types";
 import { isDefined } from "../utils";
-import { findESLintConfiguration, ESLintConfiguration } from "./findESLintConfiguration";
-import { PackagesConfiguration, findPackagesConfiguration } from "./findPackagesConfiguration";
+import { ESLintConfiguration,findESLintConfiguration } from "./findESLintConfiguration";
+import { findPackagesConfiguration,PackagesConfiguration } from "./findPackagesConfiguration";
+import { DeepPartial } from "./findReportedConfiguration";
+import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
 import {
     findTypeScriptConfiguration,
     TypeScriptConfiguration,
 } from "./findTypeScriptConfiguration";
-import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
 import { mergeLintConfigurations } from "./mergeLintConfigurations";
-import { DeepPartial } from "./findReportedConfiguration";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;

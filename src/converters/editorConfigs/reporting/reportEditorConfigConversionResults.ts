@@ -1,8 +1,8 @@
 import { Logger } from "../../../adapters/logger";
 import {
-    logSuccessfulConversions,
     logFailedConversions,
     logMissingConversionTarget,
+    logSuccessfulConversions,
 } from "../../../reporting";
 import { EditorConfigsConversionResults } from "../types";
 

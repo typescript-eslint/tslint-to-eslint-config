@@ -1,13 +1,13 @@
 import { ConversionError } from "../../../errors/conversionError";
 import { ErrorSummary } from "../../../errors/errorSummary";
 import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration";
+import { Entries } from "../../../utils";
 import { convertRule } from "./convertRule";
 import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity";
 import { formatRawTslintRule } from "./formats/formatRawTslintRule";
-import { RuleMerger } from "./ruleMerger";
 import { RuleConverter } from "./ruleConverter";
-import { TSLintRuleOptions, ESLintRuleOptions } from "./types";
-import { Entries } from "../../../utils";
+import { RuleMerger } from "./ruleMerger";
+import { ESLintRuleOptions,TSLintRuleOptions } from "./types";
 
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;

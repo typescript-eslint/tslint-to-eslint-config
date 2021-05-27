@@ -22,5 +22,6 @@ Compile with `npm run tsc` and run tests with `npm run test`.
 ## Further Reading
 
 -   [Architecture](./Architecture/README.md): How the general app structure operates
+-   [Creating a Rule Converter](./Creating%20a%20Rule%20Converter.md): How to quickly add a missing converter for a TSLint rule
 -   [Dependencies](./Dependencies.md): How functions pass and receive static dependencies
 -   [Testing](./Testing.md): Unit tests

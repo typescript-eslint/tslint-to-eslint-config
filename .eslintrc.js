@@ -16,7 +16,7 @@ module.exports = {
     parserOptions: {
         project: "tsconfig.json",
     },
-    plugins: ["@typescript-eslint"],
+    plugins: ["@typescript-eslint", "simple-import-sort"],
     rules: {
         "@typescript-eslint/comma-dangle": [
             "error",
@@ -64,5 +64,7 @@ module.exports = {
         "@typescript-eslint/typedef": "off",
         "comma-dangle": "off",
         "no-else-return": "error",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
     },
 };

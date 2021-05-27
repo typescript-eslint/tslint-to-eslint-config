@@ -5,6 +5,7 @@ const { upperFirst, camelCase } = require("lodash");
 (async () => {
     const command = new Command()
         .option("--eslint [eslint]", "name of the original ESLint rule")
+        .option("--sameArguments [sameArguments]", "whether to copy over ruleArguments")
         .option("--tslint [tslint]", "name of the original TSLint rule");
 
     const args = command.parse(process.argv).opts();
@@ -20,16 +21,25 @@ const { upperFirst, camelCase } = require("lodash");
         ? `
         plugins: ["${args.eslint.split("/")[0]}"],`
         : "";
+    const [functionArguments, ruleArguments] = args.sameArguments
+        ? [
+              "tslintRule",
+              `
+                ...(tslintRule.ruleArguments.length !== 0 && {
+                    ruleArguments: tslintRule.ruleArguments,
+                }),`,
+          ]
+        : ["", ""];
 
     await fs.writeFile(
         `./src/converters/lintConfigs/rules/ruleConverters/${args.tslint}.ts`,
         `
     import { RuleConverter } from "../ruleConverter";
 
-export const convert${tslintPascalCase}: RuleConverter = () => {
+export const convert${tslintPascalCase}: RuleConverter = (${functionArguments}) => {
     return {${plugins}
         rules: [
-            {
+            {${ruleArguments}
                 ruleName: "${args.eslint}",
             },
         ],
@@ -37,6 +47,26 @@ export const convert${tslintPascalCase}: RuleConverter = () => {
 };
 `.trimLeft(),
     );
+
+    const ruleArgumentsTest = args.sameArguments
+        ? `
+        
+    test("conversion with an argument", () => {
+        const result = convert${tslintPascalCase}({
+            ruleArguments: ["TODO"],
+        });
+
+        expect(result).toEqual({${plugins.replace("\n", "\n    ")}
+            rules: [
+                {
+                    ruleArguments: ["TODO"],
+                    ruleName: "${args.eslint}",
+                },
+            ],
+        });
+    });
+        `
+        : "";
 
     await fs.writeFile(
         `./src/converters/lintConfigs/rules/ruleConverters/tests/${args.tslint}.test.ts`,
@@ -56,7 +86,7 @@ describe(convert${tslintPascalCase}, () => {
                 },
             ],
         });
-    });
+    });${ruleArgumentsTest}
 });
 `.trimLeft(),
     );
