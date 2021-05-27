@@ -4,62 +4,75 @@ import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
+import { RunCliDependencies } from "../cli/runCli";
 import {
     collectCommentFileNames,
     CollectCommentFileNamesDependencies,
 } from "../comments/collectCommentFileNames";
 import {
-    ReportCommentResultsDependencies,
-    reportCommentResults,
-} from "../converters/comments/reporting/reportCommentResults";
-import {
-    ConvertEditorConfigDependencies,
-    convertEditorConfig,
-} from "../converters/editorConfigs/convertEditorConfig";
-import {
-    ConvertLintConfigDependencies,
-    convertLintConfig,
-} from "../converters/lintConfigs/convertLintConfig";
-import {
-    ReportConversionResultsDependencies,
-    reportConfigConversionResults,
-} from "../converters/lintConfigs/reporting/reportConfigConversionResults";
-import {
-    ConvertCommentsDependencies,
     convertComments,
+    ConvertCommentsDependencies,
 } from "../converters/comments/convertComments";
 import {
-    ConvertFileCommentsDependencies,
     convertFileComments,
+    ConvertFileCommentsDependencies,
 } from "../converters/comments/convertFileComments";
 import {
-    ConvertRulesDependencies,
-    convertRules,
-} from "../converters/lintConfigs/rules/convertRules";
-import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters";
+    extractGlobPaths,
+    ExtractGlobPathsDependencies,
+} from "../converters/comments/extractGlobPaths";
 import {
-    RetrieveExtendsValuesDependencies,
-    retrieveExtendsValues,
-} from "../converters/lintConfigs/summarization/retrieveExtendsValues";
+    reportCommentResults,
+    ReportCommentResultsDependencies,
+} from "../converters/comments/reporting/reportCommentResults";
 import {
-    SummarizePackageRulesDependencies,
-    summarizePackageRules,
-} from "../converters/lintConfigs/summarization/summarizePackageRules";
+    convertEditorConfig,
+    ConvertEditorConfigDependencies,
+} from "../converters/editorConfigs/convertEditorConfig";
 import {
-    ChoosePackageManagerDependencies,
-    choosePackageManager,
-} from "../converters/lintConfigs/reporting/packages/choosePackageManager";
+    convertEditorConfigs,
+    ConvertEditorConfigsDependencies,
+} from "../converters/editorConfigs/convertEditorConfigs";
+import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
+import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
+import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
+import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
 import {
-    LogMissingPackagesDependencies,
-    logMissingPackages,
-} from "../converters/lintConfigs/reporting/packages/logMissingPackages";
-import { RunCliDependencies } from "../cli/runCli";
-import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
+    convertLintConfig,
+    ConvertLintConfigDependencies,
+} from "../converters/lintConfigs/convertLintConfig";
+import {
+    createESLintConfiguration,
+    CreateESLintConfigurationDependencies,
+} from "../converters/lintConfigs/createESLintConfiguration";
 import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
 import {
-    ExtractGlobPathsDependencies,
-    extractGlobPaths,
-} from "../converters/comments/extractGlobPaths";
+    choosePackageManager,
+    ChoosePackageManagerDependencies,
+} from "../converters/lintConfigs/reporting/packages/choosePackageManager";
+import {
+    logMissingPackages,
+    LogMissingPackagesDependencies,
+} from "../converters/lintConfigs/reporting/packages/logMissingPackages";
+import {
+    reportConfigConversionResults,
+    ReportConversionResultsDependencies,
+} from "../converters/lintConfigs/reporting/reportConfigConversionResults";
+import {
+    convertRules,
+    ConvertRulesDependencies,
+} from "../converters/lintConfigs/rules/convertRules";
+import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters";
+import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
+import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension";
+import {
+    retrieveExtendsValues,
+    RetrieveExtendsValuesDependencies,
+} from "../converters/lintConfigs/summarization/retrieveExtendsValues";
+import {
+    summarizePackageRules,
+    SummarizePackageRulesDependencies,
+} from "../converters/lintConfigs/summarization/summarizePackageRules";
 import { findESLintConfiguration } from "../input/findESLintConfiguration";
 import {
     findOriginalConfigurations,
@@ -70,19 +83,6 @@ import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
 import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
 import { importer, ImporterDependencies } from "../input/importer";
 import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
-import {
-    createESLintConfiguration,
-    CreateESLintConfigurationDependencies,
-} from "../converters/lintConfigs/createESLintConfiguration";
-import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension";
-import {
-    convertEditorConfigs,
-    ConvertEditorConfigsDependencies,
-} from "../converters/editorConfigs/convertEditorConfigs";
-import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
-import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
-import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
-import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
 export const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
     fileSystem: fsFileSystem,

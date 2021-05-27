@@ -1,4 +1,4 @@
-import { convertCommentFormat, CapitalizedIgnoreMessage } from "../comment-format";
+import { CapitalizedIgnoreMessage,convertCommentFormat } from "../comment-format";
 
 describe(convertCommentFormat, () => {
     test("conversion without arguments", () => {

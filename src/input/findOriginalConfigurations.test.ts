@@ -1,11 +1,11 @@
+import { ResultStatus, TSLintToESLintSettings } from "../types";
+import { ESLintConfiguration } from "./findESLintConfiguration";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
     OriginalConfigurations,
 } from "./findOriginalConfigurations";
-import { ResultStatus, TSLintToESLintSettings } from "../types";
 import { TSLintConfiguration } from "./findTSLintConfiguration";
-import { ESLintConfiguration } from "./findESLintConfiguration";
 
 const createRawSettings = (overrides: Partial<TSLintToESLintSettings> = {}) => ({
     config: "./eslintrc.js",

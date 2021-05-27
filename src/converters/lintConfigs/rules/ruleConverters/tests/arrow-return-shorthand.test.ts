@@ -1,4 +1,4 @@
-import { convertArrowReturnShorthand, ARROW_RETURN_NOTICE } from "../arrow-return-shorthand";
+import { ARROW_RETURN_NOTICE,convertArrowReturnShorthand } from "../arrow-return-shorthand";
 
 describe(convertArrowReturnShorthand, () => {
     test("conversion without arguments", () => {
