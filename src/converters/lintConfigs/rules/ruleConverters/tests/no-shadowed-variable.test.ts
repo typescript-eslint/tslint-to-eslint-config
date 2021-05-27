@@ -9,6 +9,10 @@ describe(convertNoShadowedVariable, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-shadow",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ hoist: "all" }],
                     ruleName: "@typescript-eslint/no-shadow",
                 },
@@ -23,6 +27,10 @@ describe(convertNoShadowedVariable, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "no-shadow",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleArguments: [{ hoist: "all" }],
                     ruleName: "@typescript-eslint/no-shadow",
@@ -39,6 +47,10 @@ describe(convertNoShadowedVariable, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-shadow",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ hoist: "all" }],
                     ruleName: "@typescript-eslint/no-shadow",
                 },
@@ -54,6 +66,10 @@ describe(convertNoShadowedVariable, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-shadow",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ hoist: "never" }],
                     ruleName: "@typescript-eslint/no-shadow",
                 },
@@ -68,6 +84,10 @@ describe(convertNoShadowedVariable, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "no-shadow",
+                    ruleSeverity: "off",
+                },
                 {
                     notices: [
                         "ESLint does not support disabling shadowed variable checks based on " +

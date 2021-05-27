@@ -9,6 +9,10 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "quotes",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/quotes",
                 },
             ],
@@ -22,6 +26,10 @@ describe(convertQuotemark, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "quotes",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleArguments: ["double"],
                     ruleName: "@typescript-eslint/quotes",
@@ -38,6 +46,10 @@ describe(convertQuotemark, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "quotes",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ avoidEscape: true }],
                     ruleName: "@typescript-eslint/quotes",
                 },
@@ -52,6 +64,10 @@ describe(convertQuotemark, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "quotes",
+                    ruleSeverity: "off",
+                },
                 {
                     notices: ['Option "avoid-template" is not supported by ESLint.'],
                     ruleArguments: ["single"],
@@ -68,6 +84,10 @@ describe(convertQuotemark, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "quotes",
+                    ruleSeverity: "off",
+                },
                 {
                     notices: [
                         'Option "jsx-single" is not supported by ESLint.',

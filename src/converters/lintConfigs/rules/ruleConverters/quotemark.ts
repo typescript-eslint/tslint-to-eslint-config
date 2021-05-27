@@ -25,6 +25,10 @@ export const convertQuotemark: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
+                ruleName: "quotes",
+                ruleSeverity: "off",
+            },
+            {
                 ...(notices.length !== 0 && { notices }),
                 ...(ruleArguments.length !== 0 && { ruleArguments }),
                 ruleName: "@typescript-eslint/quotes",

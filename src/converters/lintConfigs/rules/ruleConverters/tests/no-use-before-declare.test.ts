@@ -9,6 +9,10 @@ describe(convertNoUseBeforeDeclare, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-use-before-define",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/no-use-before-define",
                 },
             ],
