@@ -1,4 +1,5 @@
 import { assignWith, isObject } from "lodash";
+
 import { RuleMerger } from "../ruleMerger";
 
 const NO_USE_BEFORE_DEFINE_DEFAULT_OPTS = {
