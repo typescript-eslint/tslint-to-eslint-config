@@ -1,0 +1,18 @@
+import { convertNoAlphabeticalSort } from "../no-alphabetical-sort";
+
+describe(convertNoAlphabeticalSort, () => {
+    test("conversion without arguments", () => {
+        const result = convertNoAlphabeticalSort({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: [{ ignoreStringArrays: true }],
+                    ruleName: "@typescript-eslint/require-array-sort-compare",
+                },
+            ],
+        });
+    });
+});
