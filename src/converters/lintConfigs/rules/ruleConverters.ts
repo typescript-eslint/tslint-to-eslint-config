@@ -93,6 +93,43 @@ import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-su
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import { convertCognitiveComplexity } from "./ruleConverters/eslint-plugin-sonarjs/cognitive-complexity";
+import { convertConsecutiveOverloads } from "./ruleConverters/eslint-plugin-sonarjs/consecutive-overloads";
+import { convertMaxSwitchCases } from "./ruleConverters/eslint-plugin-sonarjs/max-switch-cases";
+import { convertNoAllDuplicatedBranches } from "./ruleConverters/eslint-plugin-sonarjs/no-all-duplicated-branches";
+import { convertNoAlphabeticalSort } from "./ruleConverters/eslint-plugin-sonarjs/no-alphabetical-sort";
+import { convertNoBigFunction } from "./ruleConverters/eslint-plugin-sonarjs/no-big-function";
+import { convertNoCollapsibleIf } from "./ruleConverters/eslint-plugin-sonarjs/no-collapsible-if";
+import { convertNoCollectionSizeMischeck } from "./ruleConverters/eslint-plugin-sonarjs/no-collection-size-mischeck";
+import { convertNoDuplicateString } from "./ruleConverters/eslint-plugin-sonarjs/no-duplicate-string";
+import { convertNoDuplicatedBranches } from "./ruleConverters/eslint-plugin-sonarjs/no-duplicated-branches";
+import { convertNoElementOverwrite } from "./ruleConverters/eslint-plugin-sonarjs/no-element-overwrite";
+import { convertNoEmptyDestructuring } from "./ruleConverters/eslint-plugin-sonarjs/no-empty-destructuring";
+import { convertNoEmptyNestedBlocks } from "./ruleConverters/eslint-plugin-sonarjs/no-empty-nested-blocks";
+import { convertNoExtraSemicolon } from "./ruleConverters/eslint-plugin-sonarjs/no-extra-semicolon";
+import { convertNoIdenticalConditions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-conditions";
+import { convertNoIdenticalExpressions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-expressions";
+import { convertNoIdenticalFunctions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-functions";
+import { convertNoInMisuse } from "./ruleConverters/eslint-plugin-sonarjs/no-in-misuse";
+import { convertNoInvalidAwait } from "./ruleConverters/eslint-plugin-sonarjs/no-invalid-await";
+import { convertNoInvertedBooleanCheck } from "./ruleConverters/eslint-plugin-sonarjs/no-inverted-boolean-check";
+import { convertNoMultilineStringLiterals } from "./ruleConverters/eslint-plugin-sonarjs/no-multiline-string-literals";
+import { convertNoRedundantBoolean } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-boolean";
+import { convertNoRedundantJump } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-jump";
+import { convertNoRedundantParentheses } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-parentheses";
+import { convertNoSameLineConditional } from "./ruleConverters/eslint-plugin-sonarjs/no-same-line-conditional";
+import { convertNoSelfAssignment } from "./ruleConverters/eslint-plugin-sonarjs/no-self-assignment";
+import { convertNoSmallSwitch } from "./ruleConverters/eslint-plugin-sonarjs/no-small-switch";
+import { convertNoUnconditionalJump } from "./ruleConverters/eslint-plugin-sonarjs/no-unconditional-jump";
+import { convertNoUnusedArray } from "./ruleConverters/eslint-plugin-sonarjs/no-unused-array";
+import { convertNoUseOfEmptyReturnValue } from "./ruleConverters/eslint-plugin-sonarjs/no-use-of-empty-return-value";
+import { convertNoUselessCast } from "./ruleConverters/eslint-plugin-sonarjs/no-useless-cast";
+import { convertNoUselessCatch } from "./ruleConverters/eslint-plugin-sonarjs/no-useless-catch";
+import { convertNoVariableUsageBeforeDeclaration } from "./ruleConverters/eslint-plugin-sonarjs/no-variable-usage-before-declaration";
+import { convertParametersMaxNumber } from "./ruleConverters/eslint-plugin-sonarjs/parameters-max-number";
+import { convertPreferDefaultLast } from "./ruleConverters/eslint-plugin-sonarjs/prefer-default-last";
+import { convertPreferImmediateReturn } from "./ruleConverters/eslint-plugin-sonarjs/prefer-immediate-return";
+import { convertUsePrimitiveType } from "./ruleConverters/eslint-plugin-sonarjs/use-primitive-type";
 import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
 import { convertForin } from "./ruleConverters/forin";
 import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
@@ -242,10 +279,12 @@ export const ruleConverters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["cognitive-complexity", convertCognitiveComplexity],
     ["comment-format", convertCommentFormat],
     ["component-class-suffix", convertComponentClassSuffix],
     ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
     ["component-selector", convertComponentSelector],
+    ["consecutive-overloads", convertConsecutiveOverloads],
     ["contextual-decorator", convertContextualDecorator],
     ["contextual-lifecycle", convertContextualLifecycle],
     ["curly", convertCurly],
@@ -279,20 +318,26 @@ export const ruleConverters = new Map([
     ["max-file-line-count", convertMaxFileLineCount],
     ["max-func-body-length", convertMaxFuncBodyLength],
     ["max-line-length", convertMaxLineLength],
+    ["max-switch-cases", convertMaxSwitchCases],
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
     ["mocha-avoid-only", convertMochaAvoidOnly],
     ["new-parens", convertNewParens],
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
+    ["no-all-duplicated-branches", convertNoAllDuplicatedBranches],
+    ["no-alphabetical-sort", convertNoAlphabeticalSort],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
     ["no-async-without-await", convertNoAsyncWithoutAwait],
     ["no-attribute-decorator", convertNoAttributeDecorator],
     ["no-banned-terms", convertNoBannedTerms],
+    ["no-big-function", convertNoBigFunction],
     ["no-bitwise", convertNoBitwise],
     ["no-boolean-literal-compare", convertNoBooleanLiteralCompare],
+    ["no-collapsible-if", convertNoCollapsibleIf],
+    ["no-collection-size-mischeck", convertNoCollectionSizeMischeck],
     ["no-conditional-assignment", convertNoConditionalAssignment],
     ["no-conflicting-lifecycle", convertNoConflictingLifecycle],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
@@ -304,40 +349,52 @@ export const ruleConverters = new Map([
     ["no-default-export", convertNoDefaultExport],
     ["no-delete-expression", convertNoDeleteExpression],
     ["no-duplicate-imports", convertNoDuplicateImports],
+    ["no-duplicate-string", convertNoDuplicateString],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-duplicate-variable", convertNoDuplicateVariable],
+    ["no-duplicated-branches", convertNoDuplicatedBranches],
     ["no-dynamic-delete", convertNoDynamicDelete],
+    ["no-element-overwrite", convertNoElementOverwrite],
+    ["no-empty-destructuring", convertNoEmptyDestructuring],
     ["no-empty-interface", convertNoEmptyInterface],
     ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace],
+    ["no-empty-nested-blocks", convertNoEmptyNestedBlocks],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
+    ["no-extra-semicolon", convertNoExtraSemicolon],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
     ["no-for-in", convertNoForIn],
     ["no-forward-ref", convertNoForwardRef],
     ["no-host-metadata-property", convertNoHostMetadataProperty],
+    ["no-identical-conditions", convertNoIdenticalConditions],
+    ["no-identical-expressions", convertNoIdenticalExpressions],
+    ["no-identical-functions", convertNoIdenticalFunctions],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
+    ["no-in-misuse", convertNoInMisuse],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-input-prefix", convertNoInputPrefix],
     ["no-input-rename", convertNoInputRename],
     ["no-inputs-metadata-property", convertNoInputsMetadataProperty],
     ["no-internal-module", convertNoInternalModule],
+    ["no-invalid-await", convertNoInvalidAwait],
     ["no-invalid-regexp", convertNoInvalidRegexp],
     ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
     ["no-invalid-this", convertNoInvalidThis],
+    ["no-inverted-boolean-check", convertNoInvertedBooleanCheck],
     ["no-irregular-whitespace", convertNoIrregularWhitespace],
     ["no-lifecycle-call", convertNoLifecycleCall],
     ["no-magic-numbers", convertNoMagicNumbers],
     ["no-misused-new", convertNoMisusedNew],
+    ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-octal-literal", convertNoOctalLiteral],
-    ["no-output-native", convertNoOutputNative],
     ["no-output-native", convertNoOutputNative],
     ["no-output-on-prefix", convertNoOutputOnPrefix],
     ["no-output-rename", convertNoOutputRename],
@@ -346,13 +403,19 @@ export const ruleConverters = new Map([
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-pipe-impure", convertNoPipeImpure],
     ["no-queries-metadata-property", convertNoQueriesMetadataProperty],
+    ["no-redundant-boolean", convertNoRedundantBoolean],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
+    ["no-redundant-jump", convertNoRedundantJump],
+    ["no-redundant-parentheses", convertNoRedundantParentheses],
     ["no-reference-import", convertNoReferenceImport],
     ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
+    ["no-same-line-conditional", convertNoSameLineConditional],
+    ["no-self-assignment", convertNoSelfAssignment],
     ["no-shadowed-variable", convertNoShadowedVariable],
+    ["no-small-switch", convertNoSmallSwitch],
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
@@ -362,17 +425,23 @@ export const ruleConverters = new Map([
     ["no-this-assignment", convertNoThisAssignment],
     ["no-trailing-whitespace", convertNoTrailingWhitespace],
     ["no-unbound-method", convertNoUnboundMethod],
+    ["no-unconditional-jump", convertNoUnconditionalJump],
     ["no-unnecessary-class", convertNoUnnecessaryClass],
     ["no-unnecessary-initializer", convertNoUnnecessaryInitializer],
     ["no-unnecessary-qualifier", convertNoUnnecessaryQualifier],
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
+    ["no-unused-array", convertNoUnusedArray],
     ["no-unused-expression", convertNoUnusedExpression],
     ["no-unused-variable", convertNoUnusedVariable],
     ["no-use-before-declare", convertNoUseBeforeDeclare],
+    ["no-use-of-empty-return-value", convertNoUseOfEmptyReturnValue],
+    ["no-useless-cast", convertNoUselessCast],
+    ["no-useless-catch", convertNoUselessCatch],
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
+    ["no-variable-usage-before-declaration", convertNoVariableUsageBeforeDeclaration],
     ["no-void-expression", convertNoVoidExpression],
     ["no-with-statement", convertNoWithStatement],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
@@ -381,12 +450,15 @@ export const ruleConverters = new Map([
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["only-arrow-functions", convertOnlyArrowFunctions],
     ["ordered-imports", convertOrderedImports],
+    ["parameters-max-number", convertParametersMaxNumber],
     ["pipe-prefix", convertPipePrefix],
     ["prefer-array-literal", convertPreferArrayLiteral],
     ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
+    ["prefer-default-last", convertPreferDefaultLast],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
+    ["prefer-immediate-return", convertPreferImmediateReturn],
     ["prefer-object-spread", convertPreferObjectSpread],
     ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
@@ -457,5 +529,6 @@ export const ruleConverters = new Map([
     ["use-lifecycle-interface", convertUseLifecycleInterface],
     ["use-pipe-decorator", convertUsePipeDecorator],
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
+    ["use-primitive-type", convertUsePrimitiveType],
     ["variable-name", convertVariableName],
 ]);
