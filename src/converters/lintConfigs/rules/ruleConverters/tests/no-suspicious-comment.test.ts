@@ -12,8 +12,8 @@ describe(convertNoSuspiciousComment, () => {
                     ruleArguments: [
                         {
                             location: "anywhere",
-                            terms: ['BUG', 'HACK', 'FIXME', 'LATER', 'LATER2', 'TODO']
-                        }
+                            terms: ["BUG", "HACK", "FIXME", "LATER", "LATER2", "TODO"],
+                        },
                     ],
                     ruleName: "no-warning-comments",
                 },
@@ -29,12 +29,14 @@ describe(convertNoSuspiciousComment, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    notices: ["ESLint's no-warning-comments does not allow an array of terms to match."],
+                    notices: [
+                        "ESLint's no-warning-comments does not allow an array of terms to match.",
+                    ],
                     ruleArguments: [
                         {
                             location: "anywhere",
-                            terms: ['BUG', 'HACK', 'FIXME', 'LATER', 'LATER2', 'TODO']
-                        }
+                            terms: ["BUG", "HACK", "FIXME", "LATER", "LATER2", "TODO"],
+                        },
                     ],
                     ruleName: "no-warning-comments",
                 },

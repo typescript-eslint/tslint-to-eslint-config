@@ -1,7 +1,7 @@
-import { mergeLintConfigurations } from "./mergeLintConfigurations";
 import { ESLintConfiguration } from "./findESLintConfiguration";
 import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { TSLintConfiguration } from "./findTSLintConfiguration";
+import { mergeLintConfigurations } from "./mergeLintConfigurations";
 
 const stubTSLintConfiguration: OriginalConfigurations<TSLintConfiguration> = {
     full: {

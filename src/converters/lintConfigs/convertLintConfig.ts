@@ -1,7 +1,7 @@
 import { FileSystem } from "../../adapters/fileSystem";
 import { SansDependencies } from "../../binding";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { TSLintToESLintSettings, ResultWithStatus, ResultStatus } from "../../types";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types";
 import { createESLintConfiguration } from "./createESLintConfiguration";
 import { formatOutput } from "./formatting/formatOutput";
 import { joinConfigConversionResults } from "./joinConfigConversionResults";
