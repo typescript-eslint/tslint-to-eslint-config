@@ -38,7 +38,7 @@
         "@typescript-eslint/parser": "4.25.0",
         "babel-jest": "27.0.1",
         "eslint": "7.27.0",
-        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "6.0.0",
         "jest": "27.0.1",
         "lint-staged": "11.0.0",
