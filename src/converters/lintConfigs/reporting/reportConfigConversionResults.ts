@@ -7,7 +7,7 @@ import {
     logMissingConversionTarget,
     logSuccessfulConversions,
 } from "../../../reporting";
-import { ESLintRuleOptions,TSLintRuleOptions } from "../rules/types";
+import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
 import { SummarizedConfigResultsConfiguration } from "../summarization/types";
 
 export type ReportConversionResultsDependencies = {

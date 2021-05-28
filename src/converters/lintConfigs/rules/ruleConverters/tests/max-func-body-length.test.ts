@@ -32,17 +32,19 @@ describe(convertMaxFuncBodyLength, () => {
 
     test("conversion with a max object", () => {
         const result = convertMaxFuncBodyLength({
-            ruleArguments: [{
-                "ctor-body-length": 15,
-                "func-body-length": 5,
-            }],
+            ruleArguments: [
+                {
+                    "ctor-body-length": 15,
+                    "func-body-length": 5,
+                },
+            ],
         });
 
         expect(result).toEqual({
             rules: [
                 {
                     notices: [
-                        "ESLint's max-statements rule only supports a single maximum function length."
+                        "ESLint's max-statements rule only supports a single maximum function length.",
                     ],
                     ruleArguments: [15],
                     ruleName: "max-statements",
@@ -53,11 +55,13 @@ describe(convertMaxFuncBodyLength, () => {
 
     test("conversion with the ignore-comments option", () => {
         const result = convertMaxFuncBodyLength({
-            ruleArguments: [{
-                "ctor-body-length": 15,
-                "func-body-length": 5,
-                "ignore-comments": true,
-            }],
+            ruleArguments: [
+                {
+                    "ctor-body-length": 15,
+                    "func-body-length": 5,
+                    "ignore-comments": true,
+                },
+            ],
         });
 
         expect(result).toEqual({
@@ -65,7 +69,7 @@ describe(convertMaxFuncBodyLength, () => {
                 {
                     notices: [
                         "ESLint's max-statements rule only supports a single maximum function length.",
-                        "ESLint's max-statements rule does not have an option to ignore comments."
+                        "ESLint's max-statements rule does not have an option to ignore comments.",
                     ],
                     ruleArguments: [15],
                     ruleName: "max-statements",

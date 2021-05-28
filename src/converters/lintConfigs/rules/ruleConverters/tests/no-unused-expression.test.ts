@@ -9,6 +9,10 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-unused-expressions",
+                    ruleSeverity: "off",
+                },
+                {
                     notices: [
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
                     ],
@@ -25,6 +29,10 @@ describe(convertNoUnusedExpression, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "no-unused-expressions",
+                    ruleSeverity: "off",
+                },
                 {
                     notices: [
                         `The TSLint optional config "allow-new" is the default ESLint behavior and will no longer be ignored.`,
@@ -44,6 +52,10 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-unused-expressions",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ allowTaggedTemplates: true }],
                     ruleName: "@typescript-eslint/no-unused-expressions",
                 },
@@ -59,6 +71,10 @@ describe(convertNoUnusedExpression, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-unused-expressions",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: [{ allowShortCircuit: true }],
                     ruleName: "@typescript-eslint/no-unused-expressions",
                 },
@@ -73,6 +89,10 @@ describe(convertNoUnusedExpression, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "no-unused-expressions",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleArguments: [{ allowTaggedTemplates: true, allowShortCircuit: true }],
                     ruleName: "@typescript-eslint/no-unused-expressions",

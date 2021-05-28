@@ -10,7 +10,7 @@ describe(convertUnderscoreConsistentInvocation, () => {
             plugins: ["eslint-plugin-lodash"],
             rules: [
                 {
-                    ruleArguments: ['never'],
+                    ruleArguments: ["never"],
                     ruleName: "lodash/chaining",
                 },
             ],
@@ -19,14 +19,14 @@ describe(convertUnderscoreConsistentInvocation, () => {
 
     test("conversion with an instance argument", () => {
         const result = convertUnderscoreConsistentInvocation({
-            ruleArguments: ['instance'],
+            ruleArguments: ["instance"],
         });
 
         expect(result).toEqual({
             plugins: ["eslint-plugin-lodash"],
             rules: [
                 {
-                    ruleArguments: ['never'],
+                    ruleArguments: ["never"],
                     ruleName: "lodash/chaining",
                 },
             ],
@@ -35,14 +35,14 @@ describe(convertUnderscoreConsistentInvocation, () => {
 
     test("conversion with a static argument", () => {
         const result = convertUnderscoreConsistentInvocation({
-            ruleArguments: ['static'],
+            ruleArguments: ["static"],
         });
 
         expect(result).toEqual({
             plugins: ["eslint-plugin-lodash"],
             rules: [
                 {
-                    ruleArguments: ['always', 0],
+                    ruleArguments: ["always", 0],
                     ruleName: "lodash/chaining",
                 },
             ],

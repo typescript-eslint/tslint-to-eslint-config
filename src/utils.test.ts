@@ -1,4 +1,4 @@
-import { isDefined, isError, removeEmptyMembers,separateErrors, uniqueFromSources } from "./utils";
+import { isDefined, isError, removeEmptyMembers, separateErrors, uniqueFromSources } from "./utils";
 
 describe("isDefined", () => {
     it("returns true when the item is defined", () => {

@@ -9,6 +9,10 @@ describe(convertNoAsyncWithoutAwait, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "require-await",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/require-await",
                 },
             ],

@@ -9,6 +9,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: ["always"],
                     ruleName: "@typescript-eslint/semi",
                 },
@@ -39,6 +43,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleArguments: ["never"],
                     ruleName: "@typescript-eslint/semi",
                 },
@@ -68,6 +76,10 @@ describe(convertSemicolon, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["always"],
@@ -102,6 +114,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["never"],
                 },
@@ -135,6 +151,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["always"],
                 },
@@ -150,6 +170,10 @@ describe(convertSemicolon, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["never"],
                 },
@@ -164,6 +188,10 @@ describe(convertSemicolon, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["always"],
@@ -182,6 +210,10 @@ describe(convertSemicolon, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "semi",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/semi",
                     ruleArguments: ["never"],

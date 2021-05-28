@@ -1,13 +1,15 @@
+import { isEqual } from "lodash";
+
 import { ConversionError } from "../../../errors/conversionError";
 import { ErrorSummary } from "../../../errors/errorSummary";
 import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration";
-import { Entries } from "../../../utils";
+import { Entries, uniqueFromSources } from "../../../utils";
 import { convertRule } from "./convertRule";
 import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity";
 import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 import { RuleConverter } from "./ruleConverter";
 import { RuleMerger } from "./ruleMerger";
-import { ESLintRuleOptions,TSLintRuleOptions } from "./types";
+import { ESLintRuleOptions, TSLintRuleOptions } from "./types";
 
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;
@@ -37,7 +39,9 @@ export const convertRules = (
     const plugins = new Set<string>();
 
     if (rawTslintRules !== undefined) {
-        for (const [ruleName, value] of Object.entries(rawTslintRules) as Entries<TSLintConfigurationRules>) {
+        for (const [ruleName, value] of Object.entries(
+            rawTslintRules,
+        ) as Entries<TSLintConfigurationRules>) {
             // 1. The raw TSLint rule is converted to a standardized format.
             const tslintRule = formatRawTslintRule(ruleName, value);
 
@@ -78,21 +82,29 @@ export const convertRules = (
                     continue;
                 }
 
-                // 4d. If not, a rule merger is run to combine it with its existing output settings.
+                // 4d. Notices are merged and deduplicated.
+                existingConversion.notices = uniqueFromSources(
+                    existingConversion.notices,
+                    newConversion.notices,
+                );
+                converted.set(changes.ruleName, existingConversion);
+
+                // 4e. If the existing output has the same arguments as the new output, merge lookups are skipped.
+                if (isEqual(existingConversion.ruleArguments, newConversion.ruleArguments)) {
+                    continue;
+                }
+
+                // 4f. If not, a rule merger is run to combine it with its existing output settings.
                 const merger = dependencies.ruleMergers.get(changes.ruleName);
                 if (merger === undefined) {
                     failed.push(ConversionError.forMerger(changes.ruleName));
                 } else {
-                    const existingNotices = existingConversion.notices ?? [];
-                    const newNotices = newConversion.notices ?? [];
-
                     converted.set(changes.ruleName, {
                         ...existingConversion,
                         ruleArguments: merger(
                             existingConversion.ruleArguments,
                             newConversion.ruleArguments,
                         ),
-                        notices: Array.from(new Set([...existingNotices, ...newNotices])),
                     });
                 }
             }
