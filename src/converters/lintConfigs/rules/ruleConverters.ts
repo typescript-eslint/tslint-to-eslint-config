@@ -175,6 +175,7 @@ import { convertNoEmpty } from "./ruleConverters/no-empty";
 import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
 import { convertNoEmptyLineAfterOpeningBrace } from "./ruleConverters/no-empty-line-after-opening-brace";
 import { convertNoEval } from "./ruleConverters/no-eval";
+import { convertNoExecScript } from "./ruleConverters/no-exec-script";
 import { convertNoExplicitAny } from "./ruleConverters/no-explicit-any";
 import { convertNoFloatingPromises } from "./ruleConverters/no-floating-promises";
 import { convertNoForIn } from "./ruleConverters/no-for-in";
@@ -362,6 +363,7 @@ export const ruleConverters = new Map([
     ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace],
     ["no-empty-nested-blocks", convertNoEmptyNestedBlocks],
     ["no-empty", convertNoEmpty],
+    ["no-exec-script", convertNoExecScript],
     ["no-eval", convertNoEval],
     ["no-extra-semicolon", convertNoExtraSemicolon],
     ["no-floating-promises", convertNoFloatingPromises],
