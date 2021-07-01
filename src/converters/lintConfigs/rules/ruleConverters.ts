@@ -234,6 +234,7 @@ import { convertOneLine } from "./ruleConverters/one-line";
 import { convertOneVariablePerDeclaration } from "./ruleConverters/one-variable-per-declaration";
 import { convertOnlyArrowFunctions } from "./ruleConverters/only-arrow-functions";
 import { convertOrderedImports } from "./ruleConverters/ordered-imports";
+import { convertPossibleTimingAttack } from "./ruleConverters/possible-timing-attack";
 import { convertPreferArrayLiteral } from "./ruleConverters/prefer-array-literal";
 import { convertPreferConditionalExpression } from "./ruleConverters/prefer-conditional-expression";
 import { convertPreferConst } from "./ruleConverters/prefer-const";
@@ -457,6 +458,7 @@ export const ruleConverters = new Map([
     ["ordered-imports", convertOrderedImports],
     ["parameters-max-number", convertParametersMaxNumber],
     ["pipe-prefix", convertPipePrefix],
+    ["possible-timing-attack", convertPossibleTimingAttack],
     ["prefer-array-literal", convertPreferArrayLiteral],
     ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
