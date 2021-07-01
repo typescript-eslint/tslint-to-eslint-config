@@ -193,6 +193,7 @@ import { convertNoMagicNumbers } from "./ruleConverters/no-magic-numbers";
 import { convertNoMisusedNew } from "./ruleConverters/no-misused-new";
 import { convertNoMultilineString } from "./ruleConverters/no-multiline-string";
 import { convertNoNamespace } from "./ruleConverters/no-namespace";
+import { convertNonLiteralRequire } from "./ruleConverters/non-literal-require";
 import { convertNoNonNullAssertion } from "./ruleConverters/no-non-null-assertion";
 import { convertNoNullKeyword } from "./ruleConverters/no-null-keyword";
 import { convertNoObjectLiteralTypeAssertion } from "./ruleConverters/no-object-literal-type-assertion";
@@ -397,6 +398,7 @@ export const ruleConverters = new Map([
     ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
+    ["non-literal-require", convertNonLiteralRequire],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
