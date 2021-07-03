@@ -43,7 +43,7 @@
         "jest": "27.0.6",
         "lint-staged": "11.0.0",
         "prettier": "2.3.2",
-        "strip-ansi": "7.0.0"
+        "strip-ansi": "6.0.0"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
     "keywords": [
