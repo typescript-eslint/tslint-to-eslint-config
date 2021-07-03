@@ -253,6 +253,7 @@ import { convertQuotemark } from "./ruleConverters/quotemark";
 import { convertRadix } from "./ruleConverters/radix";
 import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
+import { convertReactA11yProptypes } from "./ruleConverters/react-a11y-proptypes";
 import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-spacing";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
@@ -488,6 +489,7 @@ export const ruleConverters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["react-a11y-anchors", convertReactA11yAnchors],
+    ["react-a11y-proptypes", convertReactA11yProptypes],
     ["react-no-dangerous-html", convertReactNoDangerousHtml],
     ["react-tsx-curly-spacing", convertReactTsxCurlySpacing],
     ["relative-url-prefix", convertRelativeUrlPrefix],
