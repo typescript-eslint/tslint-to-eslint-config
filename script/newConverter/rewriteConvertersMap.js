@@ -1,6 +1,5 @@
 const { promises: fs } = require("fs");
-const { EOL } = require("node:os");
-const path = require("path");
+const { EOL } = require("os");
 
 const filePath = "./src/converters/lintConfigs/rules/ruleConverters.ts";
 
