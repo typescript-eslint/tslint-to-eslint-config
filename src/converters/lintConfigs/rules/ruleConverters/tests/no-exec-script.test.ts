@@ -13,7 +13,7 @@ describe(convertNoExecScript, () => {
                         {
                             message: "Forbidden call to execScript",
                             selector: 'CallExpression[callee.name="execScript"]',
-                        }
+                        },
                     ],
                     ruleName: "restricted-syntax",
                 },

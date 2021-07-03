@@ -8,8 +8,8 @@ export const convertReactTsxCurlySpacing: RuleConverter = (tslintRule) => {
                 ruleArguments: [
                     {
                         ...(tslintRule.ruleArguments.length > 1 && tslintRule.ruleArguments[1]),
-                        'when': tslintRule.ruleArguments[0],
-                    }
+                        when: tslintRule.ruleArguments[0],
+                    },
                 ],
                 ruleName: "react/jsx-curly-spacing",
             },

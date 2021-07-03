@@ -7,7 +7,7 @@ describe(convertReactNoDangerousHtml, () => {
         });
 
         expect(result).toEqual({
-            plugins: ['eslint-plugin-react'],
+            plugins: ["eslint-plugin-react"],
             rules: [
                 {
                     ruleName: "react/no-danger",

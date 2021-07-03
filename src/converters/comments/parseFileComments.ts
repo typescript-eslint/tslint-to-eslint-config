@@ -39,9 +39,10 @@ export const parseFileComments = (filePath: string, content: string) => {
 const tslintRegex = new RegExp(/tslint:(enable|disable)(?:-(line|next-line))?(:|\s|$)/g);
 
 const parseFileComment = (fullText: string, comment: ts.CommentRange): FileComment | undefined => {
-    const commentText = (comment.kind === ts.SyntaxKind.SingleLineCommentTrivia
-        ? fullText.substring(comment.pos + 2, comment.end)
-        : fullText.substring(comment.pos + 2, comment.end - 2)
+    const commentText = (
+        comment.kind === ts.SyntaxKind.SingleLineCommentTrivia
+            ? fullText.substring(comment.pos + 2, comment.end)
+            : fullText.substring(comment.pos + 2, comment.end - 2)
     ).trim();
     const match = commentText.match(tslintRegex);
     if (match === null) {

@@ -42,7 +42,8 @@ export const runCli = async (
 
     const parsedArgv = {
         config: "./.eslintrc.js",
-        ...command.parse(rawArgv).opts(),
+        // eslint-disable-next-line -- this gets deduced as the same type, for some erroneous reason
+        ...(command.parse(rawArgv).opts() as Partial<TSLintToESLintSettings>),
     } as TSLintToESLintSettings;
 
     // 2. If the version should be printed, we do that and stop execution.

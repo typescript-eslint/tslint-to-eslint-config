@@ -116,9 +116,10 @@ export const findOriginalConfigurations = async (
 };
 
 const getMissingPackageMessage = (error: Error) => {
-    const match = /(Cannot find module|could not require|couldn't find the plugin) ([a-zA-Z0-9-_"'@/]+)/.exec(
-        error.message.split("\n").slice(0, 2).join("\n"),
-    );
+    const match =
+        /(Cannot find module|could not require|couldn't find the plugin) ([a-zA-Z0-9-_"'@/]+)/.exec(
+            error.message.split("\n").slice(0, 2).join("\n"),
+        );
     if (match === null) {
         return undefined;
     }
