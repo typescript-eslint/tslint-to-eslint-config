@@ -19,7 +19,7 @@ const { writeConverterTest } = require("./writeConverterTest");
         }
     }
 
-    const tslintPascalCase = upperFirst(camelCase(args.tslint));
+    const tslintPascalCase = upperFirst(camelCase(args.tslint)).replace("A11Y", "A11y");
     const plugins = args.eslint.includes("/")
         ? `
         plugins: ["${args.eslint.split("/")[0]}"],`
