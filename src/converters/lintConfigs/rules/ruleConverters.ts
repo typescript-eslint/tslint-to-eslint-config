@@ -167,6 +167,7 @@ import { convertNoCookies } from "./ruleConverters/no-cookies";
 import { convertNoDebugger } from "./ruleConverters/no-debugger";
 import { convertNoDefaultExport } from "./ruleConverters/no-default-export";
 import { convertNoDeleteExpression } from "./ruleConverters/no-delete-expression";
+import { convertNoDocumentDomain } from "./ruleConverters/no-document-domain";
 import { convertNoDocumentWrite } from "./ruleConverters/no-document-write";
 import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports";
 import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
@@ -194,7 +195,6 @@ import { convertNoMagicNumbers } from "./ruleConverters/no-magic-numbers";
 import { convertNoMisusedNew } from "./ruleConverters/no-misused-new";
 import { convertNoMultilineString } from "./ruleConverters/no-multiline-string";
 import { convertNoNamespace } from "./ruleConverters/no-namespace";
-import { convertNonLiteralFsPath } from "./ruleConverters/non-literal-fs-path";
 import { convertNoNonNullAssertion } from "./ruleConverters/no-non-null-assertion";
 import { convertNoNullKeyword } from "./ruleConverters/no-null-keyword";
 import { convertNoObjectLiteralTypeAssertion } from "./ruleConverters/no-object-literal-type-assertion";
@@ -230,6 +230,7 @@ import { convertNoVarKeyword } from "./ruleConverters/no-var-keyword";
 import { convertNoVarRequires } from "./ruleConverters/no-var-requires";
 import { convertNoVoidExpression } from "./ruleConverters/no-void-expression";
 import { convertNoWithStatement } from "./ruleConverters/no-with-statement";
+import { convertNonLiteralFsPath } from "./ruleConverters/non-literal-fs-path";
 import { convertNonLiteralRequire } from "./ruleConverters/non-literal-require";
 import { convertObjectLiteralKeyQuotes } from "./ruleConverters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./ruleConverters/object-literal-shorthand";
@@ -359,6 +360,7 @@ export const ruleConverters = new Map([
     ["no-debugger", convertNoDebugger],
     ["no-default-export", convertNoDefaultExport],
     ["no-delete-expression", convertNoDeleteExpression],
+    ["no-document-domain", convertNoDocumentDomain],
     ["no-document-write", convertNoDocumentWrite],
     ["no-duplicate-imports", convertNoDuplicateImports],
     ["no-duplicate-string", convertNoDuplicateString],
