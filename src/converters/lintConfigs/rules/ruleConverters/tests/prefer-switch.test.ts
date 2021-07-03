@@ -18,7 +18,7 @@ describe(convertPreferSwitch, () => {
 
     test("conversion with 'min-cases' argument", () => {
         const result = convertPreferSwitch({
-            ruleArguments: [{ 'min-cases': 4 }],
+            ruleArguments: [{ "min-cases": 4 }],
         });
 
         expect(result).toEqual({
