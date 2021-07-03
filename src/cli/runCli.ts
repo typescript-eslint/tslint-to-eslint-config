@@ -42,7 +42,7 @@ export const runCli = async (
 
     const parsedArgv = {
         config: "./.eslintrc.js",
-        ...command.parse(rawArgv).opts(),
+        ...(command.parse(rawArgv).opts() as Partial<TSLintToESLintSettings>),
     } as TSLintToESLintSettings;
 
     // 2. If the version should be printed, we do that and stop execution.
