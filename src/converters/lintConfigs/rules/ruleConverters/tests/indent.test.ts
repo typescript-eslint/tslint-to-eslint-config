@@ -9,6 +9,10 @@ describe(convertIndent, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/indent",
                 },
             ],
@@ -22,6 +26,10 @@ describe(convertIndent, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [2],
@@ -38,6 +46,10 @@ describe(convertIndent, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/indent",
                 },
             ],
@@ -51,6 +63,10 @@ describe(convertIndent, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: ["tab"],

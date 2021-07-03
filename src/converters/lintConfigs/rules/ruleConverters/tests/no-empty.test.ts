@@ -12,6 +12,10 @@ describe(convertNoEmpty, () => {
                     ruleName: "no-empty",
                 },
                 {
+                    ruleName: "no-empty-function",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/no-empty-function",
                 },
             ],
@@ -28,6 +32,10 @@ describe(convertNoEmpty, () => {
                 {
                     ruleArguments: [{ allowEmptyCatch: true }],
                     ruleName: "no-empty",
+                },
+                {
+                    ruleName: "no-empty-function",
+                    ruleSeverity: "off",
                 },
                 {
                     ruleName: "@typescript-eslint/no-empty-function",

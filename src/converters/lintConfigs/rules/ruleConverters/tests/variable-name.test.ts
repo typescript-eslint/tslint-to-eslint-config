@@ -1,6 +1,6 @@
 import {
-    convertVariableName,
     ConstRequiredForAllCapsMsg,
+    convertVariableName,
     ForbiddenLeadingTrailingIdentifierMsg,
     IgnoreLeadingTrailingIdentifierMsg,
 } from "../variable-name";

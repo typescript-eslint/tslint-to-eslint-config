@@ -11,24 +11,24 @@ const parseExtras = (ruleArguments: any[]) => {
     if (typeof max === "number") {
         return {
             ruleArguments: [max],
-        }
+        };
     }
 
     const notices = [
-        "ESLint's max-statements rule only supports a single maximum function length."
+        "ESLint's max-statements rule only supports a single maximum function length.",
     ];
 
     if (max["ignore-comments"]) {
-        notices.push("ESLint's max-statements rule does not have an option to ignore comments.")
+        notices.push("ESLint's max-statements rule does not have an option to ignore comments.");
     }
 
     return {
         notices,
         ruleArguments: [
             Math.max(...Object.values(max as Record<string, number | string>).filter(isNumber)),
-        ]
-    }
-}
+        ],
+    };
+};
 
 export const convertMaxFuncBodyLength: RuleConverter = (tslintRule) => {
     return {

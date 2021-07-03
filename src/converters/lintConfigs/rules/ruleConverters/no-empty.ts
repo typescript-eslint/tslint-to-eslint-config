@@ -1,11 +1,8 @@
-import { isDefined } from "../../../../utils";
-import { RuleConverter, RuleConverterOptions } from "../ruleConverter";
+import { ConvertedRuleChanges, RuleConverter, RuleConverterOptions } from "../ruleConverter";
 
 export const convertNoEmpty: RuleConverter = (tslintRule) => {
     return {
-        rules: [convertNoEmptyRule(tslintRule), convertNoEmptyFunctionRule(tslintRule)].filter(
-            isDefined,
-        ),
+        rules: [convertNoEmptyRule(tslintRule), ...convertNoEmptyFunctionRule(tslintRule)],
     };
 };
 
@@ -22,10 +19,16 @@ const convertNoEmptyRule = (tslintRule: RuleConverterOptions) => {
     };
 };
 
-const convertNoEmptyFunctionRule = (tslintRule: RuleConverterOptions) => {
+const convertNoEmptyFunctionRule = (tslintRule: RuleConverterOptions): ConvertedRuleChanges[] => {
     return tslintRule.ruleArguments.includes("allow-empty-functions")
-        ? undefined
-        : {
-              ruleName: "@typescript-eslint/no-empty-function",
-          };
+        ? []
+        : [
+              {
+                  ruleName: "no-empty-function",
+                  ruleSeverity: "off",
+              },
+              {
+                  ruleName: "@typescript-eslint/no-empty-function",
+              },
+          ];
 };
