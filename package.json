@@ -33,7 +33,7 @@
         "@types/json5": "0.0.30",
         "@types/lodash": "4.14.170",
         "@types/minimatch": "3.0.4",
-        "@types/node": "14.17.4",
+        "@types/node": "16.0.0",
         "@typescript-eslint/eslint-plugin": "4.28.1",
         "@typescript-eslint/parser": "4.28.1",
         "babel-jest": "27.0.6",
@@ -43,7 +43,7 @@
         "jest": "27.0.6",
         "lint-staged": "11.0.0",
         "prettier": "2.3.2",
-        "strip-ansi": "6.0.0"
+        "strip-ansi": "7.0.0"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
     "keywords": [
