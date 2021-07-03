@@ -18,9 +18,11 @@ describe(convertReactA11yAccessibleHeadings, () => {
 
     test("conversion with an argument", () => {
         const result = convertReactA11yAccessibleHeadings({
-            ruleArguments: [{
-                maxHeadingLength: 23,
-            }],
+            ruleArguments: [
+                {
+                    maxHeadingLength: 23,
+                },
+            ],
         });
 
         expect(result).toEqual({

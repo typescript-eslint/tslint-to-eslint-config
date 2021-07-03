@@ -7,8 +7,9 @@ export const convertNoCookies: RuleConverter = () => {
                 ruleArguments: [
                     {
                         message: "Forbidden call to document.cookie",
-                        selector: 'MemberExpression[object.name="document"][property.name="cookie"]',
-                    }
+                        selector:
+                            'MemberExpression[object.name="document"][property.name="cookie"]',
+                    },
                 ],
                 ruleName: "restricted-syntax",
             },
