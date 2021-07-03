@@ -1,4 +1,7 @@
-import { convertPreferConditionalExpression, PREFER_CONDITIONAL_EXPRESSION_NOTICE } from "../prefer-conditional-expression";
+import {
+    convertPreferConditionalExpression,
+    PREFER_CONDITIONAL_EXPRESSION_NOTICE,
+} from "../prefer-conditional-expression";
 
 describe(convertPreferConditionalExpression, () => {
     test("conversion without arguments", () => {
@@ -18,7 +21,7 @@ describe(convertPreferConditionalExpression, () => {
 
     test("conversion with 'check-else-if' argument", () => {
         const result = convertPreferConditionalExpression({
-            ruleArguments: ['check-else-if'],
+            ruleArguments: ["check-else-if"],
         });
 
         expect(result).toEqual({

@@ -10,145 +10,11 @@ import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
 import { convertClassName } from "./ruleConverters/class-name";
-import { convertCommentFormat } from "./ruleConverters/comment-format";
-import { convertCurly } from "./ruleConverters/curly";
-import { convertCyclomaticComplexity } from "./ruleConverters/cyclomatic-complexity";
-import { convertDeprecation } from "./ruleConverters/deprecation";
-import { convertEofline } from "./ruleConverters/eofline";
-import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
-import { convertForin } from "./ruleConverters/forin";
-import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
-import { convertImportBlacklist } from "./ruleConverters/import-blacklist";
-import { convertIncrementDecrement } from "./ruleConverters/increment-decrement";
-import { convertIndent } from "./ruleConverters/indent";
-import { convertInterfaceName } from "./ruleConverters/interface-name";
-import { convertInterfaceOverTypeLiteral } from "./ruleConverters/interface-over-type-literal";
-import { convertJSDocFormat } from "./ruleConverters/jsdoc-format";
-import { convertLabelPosition } from "./ruleConverters/label-position";
-import { convertLinebreakStyle } from "./ruleConverters/linebreak-style";
-import { convertMaxClassesPerFile } from "./ruleConverters/max-classes-per-file";
-import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
-import { convertMaxLineLength } from "./ruleConverters/max-line-length";
-import { convertMemberAccess } from "./ruleConverters/member-access";
-import { convertMemberOrdering } from "./ruleConverters/member-ordering";
-import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
-import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
-import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
-import { convertNewParens } from "./ruleConverters/new-parens";
-import { convertNoAngleBracketTypeAssertion } from "./ruleConverters/no-angle-bracket-type-assertion";
-import { convertNoArg } from "./ruleConverters/no-arg";
-import { convertNoAsyncWithoutAwait } from "./ruleConverters/no-async-without-await";
-import { convertNoBannedTerms } from "./ruleConverters/no-banned-terms";
-import { convertNoBitwise } from "./ruleConverters/no-bitwise";
-import { convertNoBooleanLiteralCompare } from "./ruleConverters/no-boolean-literal-compare";
-import { convertNoConditionalAssignment } from "./ruleConverters/no-conditional-assignment";
-import { convertNoConsecutiveBlankLines } from "./ruleConverters/no-consecutive-blank-lines";
-import { convertNoConsole } from "./ruleConverters/no-console";
-import { convertNoConstantCondition } from "./ruleConverters/no-constant-condition";
-import { convertNoConstruct } from "./ruleConverters/no-construct";
-import { convertNoControlRegex } from "./ruleConverters/no-control-regex";
-import { convertNoDebugger } from "./ruleConverters/no-debugger";
-import { convertNoDefaultExport } from "./ruleConverters/no-default-export";
-import { convertNoDocumentWrite } from "./ruleConverters/no-document-write";
-import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports";
-import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
-import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
-import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
-import { convertNoDynamicDelete } from './ruleConverters/no-dynamic-delete';
-import { convertNoEmpty } from "./ruleConverters/no-empty";
-import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
-import { convertNoEval } from "./ruleConverters/no-eval";
-import { convertNoExplicitAny } from "./ruleConverters/no-explicit-any";
-import { convertNoFloatingPromises } from "./ruleConverters/no-floating-promises";
-import { convertNoForIn } from "./ruleConverters/no-for-in";
-import { convertNoForInArray } from "./ruleConverters/no-for-in-array";
-import { convertNoImplicitDependencies } from "./ruleConverters/no-implicit-dependencies";
-import { convertNoImportSideEffect } from "./ruleConverters/no-import-side-effect";
-import { convertNoInferrableTypes } from "./ruleConverters/no-inferrable-types";
-import { convertNoInternalModule } from "./ruleConverters/no-internal-module";
-import { convertNoInvalidRegexp } from "./ruleConverters/no-invalid-regexp";
-import { convertNoInvalidTemplateStrings } from "./ruleConverters/no-invalid-template-strings";
-import { convertNoInvalidThis } from "./ruleConverters/no-invalid-this";
-import { convertNoIrregularWhitespace } from "./ruleConverters/no-irregular-whitespace";
-import { convertNoMagicNumbers } from "./ruleConverters/no-magic-numbers";
-import { convertNoMisusedNew } from "./ruleConverters/no-misused-new";
-import { convertNoMultilineString } from "./ruleConverters/no-multiline-string";
-import { convertNoNamespace } from "./ruleConverters/no-namespace";
-import { convertNoNonNullAssertion } from "./ruleConverters/no-non-null-assertion";
-import { convertNoNullKeyword } from "./ruleConverters/no-null-keyword";
-import { convertNoObjectLiteralTypeAssertion } from "./ruleConverters/no-object-literal-type-assertion";
-import { convertNoOctalLiteral } from "./ruleConverters/no-octal-literal";
-import { convertNoParameterProperties } from "./ruleConverters/no-parameter-properties";
-import { convertNoParameterReassignment } from "./ruleConverters/no-parameter-reassignment";
-import { convertNoRedundantJsdoc } from "./ruleConverters/no-redundant-jsdoc";
-import { convertNoReference } from "./ruleConverters/no-reference";
-import { convertNoReferenceImport } from "./ruleConverters/no-reference-import";
-import { convertNoRegexSpaces } from "./ruleConverters/no-regex-spaces";
-import { convertNoRequireImports } from "./ruleConverters/no-require-imports";
-import { convertNoReturnAwait } from "./ruleConverters/no-return-await";
-import { convertNoShadowedVariable } from "./ruleConverters/no-shadowed-variable";
-import { convertNoSparseArrays } from "./ruleConverters/no-sparse-arrays";
-import { convertNoStringLiteral } from "./ruleConverters/no-string-literal";
-import { convertNoStringThrow } from "./ruleConverters/no-string-throw";
-import { convertNoSubmoduleImports } from "./ruleConverters/no-submodule-imports";
-import { convertNoSwitchCaseFallThrough } from "./ruleConverters/no-switch-case-fall-through";
-import { convertNoThisAssignment } from "./ruleConverters/no-this-assignment";
-import { convertNoTrailingWhitespace } from "./ruleConverters/no-trailing-whitespace";
-import { convertNoUnboundMethod } from "./ruleConverters/no-unbound-method";
-import { convertNoUnnecessaryClass } from "./ruleConverters/no-unnecessary-class";
-import { convertNoUnnecessaryInitializer } from "./ruleConverters/no-unnecessary-initializer";
-import { convertNoUnnecessaryQualifier } from "./ruleConverters/no-unnecessary-qualifier";
-import { convertNoUnnecessarySemicolons } from "./ruleConverters/no-unnecessary-semicolons";
-import { convertNoUnnecessaryTypeAssertion } from "./ruleConverters/no-unnecessary-type-assertion";
-import { convertNoUnsafeFinally } from "./ruleConverters/no-unsafe-finally";
-import { convertNoUnusedExpression } from "./ruleConverters/no-unused-expression";
-import { convertNoUnusedVariable } from "./ruleConverters/no-unused-variable";
-import { convertNoUseBeforeDeclare } from "./ruleConverters/no-use-before-declare";
-import { convertNoVarKeyword } from "./ruleConverters/no-var-keyword";
-import { convertNoVarRequires } from "./ruleConverters/no-var-requires";
-import { convertNoVoidExpression } from "./ruleConverters/no-void-expression";
-import { convertObjectLiteralKeyQuotes } from "./ruleConverters/object-literal-key-quotes";
-import { convertObjectLiteralShorthand } from "./ruleConverters/object-literal-shorthand";
-import { convertOneLine } from "./ruleConverters/one-line";
-import { convertOneVariablePerDeclaration } from "./ruleConverters/one-variable-per-declaration";
-import { convertOnlyArrowFunctions } from "./ruleConverters/only-arrow-functions";
-import { convertOrderedImports } from "./ruleConverters/ordered-imports";
-import { convertPreferArrayLiteral } from "./ruleConverters/prefer-array-literal";
-import { convertPreferConditionalExpression } from "./ruleConverters/prefer-conditional-expression";
-import { convertPreferConst } from "./ruleConverters/prefer-const";
-import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
-import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
-import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
-import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
-import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
-import { convertPreferTemplate } from "./ruleConverters/prefer-template";
-import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
-import { convertQuotemark } from "./ruleConverters/quotemark";
-import { convertRadix } from "./ruleConverters/radix";
-import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
-import { convertSemicolon } from "./ruleConverters/semicolon";
-import { convertSpaceBeforeFunctionParen } from "./ruleConverters/space-before-function-paren";
-import { convertSpaceWithinParens } from "./ruleConverters/space-within-parens";
-import { convertStrictBooleanExpressions } from "./ruleConverters/strict-boolean-expressions";
-import { convertSwitchDefault } from "./ruleConverters/switch-default";
-import { convertTrailingComma } from "./ruleConverters/trailing-comma";
-import { convertTripleEquals } from "./ruleConverters/triple-equals";
-import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
-import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
-import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
-import { convertUnifiedSignatures } from "./ruleConverters/unified-signatures";
-import { convertUnnecessaryBind } from "./ruleConverters/unnecessary-bind";
-import { convertUnnecessaryConstructor } from "./ruleConverters/unnecessary-constructor";
-import { convertUseDefaultTypeParameter } from "./ruleConverters/use-default-type-parameter";
-import { convertUseIsnan } from "./ruleConverters/use-isnan";
-import { convertVariableName } from "./ruleConverters/variable-name";
-
-// Codelyzer converters
 import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/component-class-suffix";
 import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
-import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
 import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextual-decorator";
+import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
 import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
 import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
@@ -193,22 +59,22 @@ import { convertUseInjectableProvidedIn } from "./ruleConverters/codelyzer/use-i
 import { convertUseLifecycleInterface } from "./ruleConverters/codelyzer/use-lifecycle-interface";
 import { convertUsePipeDecorator } from "./ruleConverters/codelyzer/use-pipe-decorator";
 import { convertUsePipeTransformInterface } from "./ruleConverters/codelyzer/use-pipe-transform-interface";
-
-// ESLint-React converters
+import { convertCommentFormat } from "./ruleConverters/comment-format";
+import { convertCurly } from "./ruleConverters/curly";
+import { convertCyclomaticComplexity } from "./ruleConverters/cyclomatic-complexity";
+import { convertDeprecation } from "./ruleConverters/deprecation";
+import { convertEofline } from "./ruleConverters/eofline";
 import { convertJsxBanProps } from "./ruleConverters/eslint-plugin-react/jsx-ban-props";
 import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx-boolean-value";
 import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
 import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
 import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
-import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
 import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
 import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-lambda";
 import { convertJsxSelfClose } from "./ruleConverters/eslint-plugin-react/jsx-self-close";
+import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
-
-// eslint-plugin-rxjs converters
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
-import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
 import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
 import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
@@ -216,6 +82,7 @@ import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
 import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
+import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
 import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
@@ -226,6 +93,182 @@ import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-su
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import { convertCognitiveComplexity } from "./ruleConverters/eslint-plugin-sonarjs/cognitive-complexity";
+import { convertConsecutiveOverloads } from "./ruleConverters/eslint-plugin-sonarjs/consecutive-overloads";
+import { convertMaxSwitchCases } from "./ruleConverters/eslint-plugin-sonarjs/max-switch-cases";
+import { convertNoAllDuplicatedBranches } from "./ruleConverters/eslint-plugin-sonarjs/no-all-duplicated-branches";
+import { convertNoAlphabeticalSort } from "./ruleConverters/eslint-plugin-sonarjs/no-alphabetical-sort";
+import { convertNoBigFunction } from "./ruleConverters/eslint-plugin-sonarjs/no-big-function";
+import { convertNoCollapsibleIf } from "./ruleConverters/eslint-plugin-sonarjs/no-collapsible-if";
+import { convertNoCollectionSizeMischeck } from "./ruleConverters/eslint-plugin-sonarjs/no-collection-size-mischeck";
+import { convertNoDuplicateString } from "./ruleConverters/eslint-plugin-sonarjs/no-duplicate-string";
+import { convertNoDuplicatedBranches } from "./ruleConverters/eslint-plugin-sonarjs/no-duplicated-branches";
+import { convertNoElementOverwrite } from "./ruleConverters/eslint-plugin-sonarjs/no-element-overwrite";
+import { convertNoEmptyDestructuring } from "./ruleConverters/eslint-plugin-sonarjs/no-empty-destructuring";
+import { convertNoEmptyNestedBlocks } from "./ruleConverters/eslint-plugin-sonarjs/no-empty-nested-blocks";
+import { convertNoExtraSemicolon } from "./ruleConverters/eslint-plugin-sonarjs/no-extra-semicolon";
+import { convertNoIdenticalConditions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-conditions";
+import { convertNoIdenticalExpressions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-expressions";
+import { convertNoIdenticalFunctions } from "./ruleConverters/eslint-plugin-sonarjs/no-identical-functions";
+import { convertNoInMisuse } from "./ruleConverters/eslint-plugin-sonarjs/no-in-misuse";
+import { convertNoInvalidAwait } from "./ruleConverters/eslint-plugin-sonarjs/no-invalid-await";
+import { convertNoInvertedBooleanCheck } from "./ruleConverters/eslint-plugin-sonarjs/no-inverted-boolean-check";
+import { convertNoMultilineStringLiterals } from "./ruleConverters/eslint-plugin-sonarjs/no-multiline-string-literals";
+import { convertNoRedundantBoolean } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-boolean";
+import { convertNoRedundantJump } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-jump";
+import { convertNoRedundantParentheses } from "./ruleConverters/eslint-plugin-sonarjs/no-redundant-parentheses";
+import { convertNoSameLineConditional } from "./ruleConverters/eslint-plugin-sonarjs/no-same-line-conditional";
+import { convertNoSelfAssignment } from "./ruleConverters/eslint-plugin-sonarjs/no-self-assignment";
+import { convertNoSmallSwitch } from "./ruleConverters/eslint-plugin-sonarjs/no-small-switch";
+import { convertNoUnconditionalJump } from "./ruleConverters/eslint-plugin-sonarjs/no-unconditional-jump";
+import { convertNoUnusedArray } from "./ruleConverters/eslint-plugin-sonarjs/no-unused-array";
+import { convertNoUseOfEmptyReturnValue } from "./ruleConverters/eslint-plugin-sonarjs/no-use-of-empty-return-value";
+import { convertNoUselessCast } from "./ruleConverters/eslint-plugin-sonarjs/no-useless-cast";
+import { convertNoUselessCatch } from "./ruleConverters/eslint-plugin-sonarjs/no-useless-catch";
+import { convertNoVariableUsageBeforeDeclaration } from "./ruleConverters/eslint-plugin-sonarjs/no-variable-usage-before-declaration";
+import { convertParametersMaxNumber } from "./ruleConverters/eslint-plugin-sonarjs/parameters-max-number";
+import { convertPreferDefaultLast } from "./ruleConverters/eslint-plugin-sonarjs/prefer-default-last";
+import { convertPreferImmediateReturn } from "./ruleConverters/eslint-plugin-sonarjs/prefer-immediate-return";
+import { convertUsePrimitiveType } from "./ruleConverters/eslint-plugin-sonarjs/use-primitive-type";
+import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
+import { convertForin } from "./ruleConverters/forin";
+import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
+import { convertImportBlacklist } from "./ruleConverters/import-blacklist";
+import { convertIncrementDecrement } from "./ruleConverters/increment-decrement";
+import { convertIndent } from "./ruleConverters/indent";
+import { convertInterfaceName } from "./ruleConverters/interface-name";
+import { convertInterfaceOverTypeLiteral } from "./ruleConverters/interface-over-type-literal";
+import { convertJSDocFormat } from "./ruleConverters/jsdoc-format";
+import { convertLabelPosition } from "./ruleConverters/label-position";
+import { convertLinebreakStyle } from "./ruleConverters/linebreak-style";
+import { convertMaxClassesPerFile } from "./ruleConverters/max-classes-per-file";
+import { convertMaxFileLineCount } from "./ruleConverters/max-file-line-count";
+import { convertMaxFuncBodyLength } from "./ruleConverters/max-func-body-length";
+import { convertMaxLineLength } from "./ruleConverters/max-line-length";
+import { convertMemberAccess } from "./ruleConverters/member-access";
+import { convertMemberOrdering } from "./ruleConverters/member-ordering";
+import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
+import { convertNewParens } from "./ruleConverters/new-parens";
+import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
+import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
+import { convertNoAngleBracketTypeAssertion } from "./ruleConverters/no-angle-bracket-type-assertion";
+import { convertNoArg } from "./ruleConverters/no-arg";
+import { convertNoAsyncWithoutAwait } from "./ruleConverters/no-async-without-await";
+import { convertNoBannedTerms } from "./ruleConverters/no-banned-terms";
+import { convertNoBitwise } from "./ruleConverters/no-bitwise";
+import { convertNoBooleanLiteralCompare } from "./ruleConverters/no-boolean-literal-compare";
+import { convertNoConditionalAssignment } from "./ruleConverters/no-conditional-assignment";
+import { convertNoConsecutiveBlankLines } from "./ruleConverters/no-consecutive-blank-lines";
+import { convertNoConsole } from "./ruleConverters/no-console";
+import { convertNoConstantCondition } from "./ruleConverters/no-constant-condition";
+import { convertNoConstruct } from "./ruleConverters/no-construct";
+import { convertNoControlRegex } from "./ruleConverters/no-control-regex";
+import { convertNoCookies } from "./ruleConverters/no-cookies";
+import { convertNoDebugger } from "./ruleConverters/no-debugger";
+import { convertNoDefaultExport } from "./ruleConverters/no-default-export";
+import { convertNoDeleteExpression } from "./ruleConverters/no-delete-expression";
+import { convertNoDocumentWrite } from "./ruleConverters/no-document-write";
+import { convertNoDuplicateImports } from "./ruleConverters/no-duplicate-imports";
+import { convertNoDuplicateSuper } from "./ruleConverters/no-duplicate-super";
+import { convertNoDuplicateSwitchCase } from "./ruleConverters/no-duplicate-switch-case";
+import { convertNoDuplicateVariable } from "./ruleConverters/no-duplicate-variable";
+import { convertNoDynamicDelete } from "./ruleConverters/no-dynamic-delete";
+import { convertNoEmpty } from "./ruleConverters/no-empty";
+import { convertNoEmptyInterface } from "./ruleConverters/no-empty-interface";
+import { convertNoEmptyLineAfterOpeningBrace } from "./ruleConverters/no-empty-line-after-opening-brace";
+import { convertNoEval } from "./ruleConverters/no-eval";
+import { convertNoExecScript } from "./ruleConverters/no-exec-script";
+import { convertNoExplicitAny } from "./ruleConverters/no-explicit-any";
+import { convertNoFloatingPromises } from "./ruleConverters/no-floating-promises";
+import { convertNoForIn } from "./ruleConverters/no-for-in";
+import { convertNoForInArray } from "./ruleConverters/no-for-in-array";
+import { convertNoImplicitDependencies } from "./ruleConverters/no-implicit-dependencies";
+import { convertNoImportSideEffect } from "./ruleConverters/no-import-side-effect";
+import { convertNoInferrableTypes } from "./ruleConverters/no-inferrable-types";
+import { convertNoInternalModule } from "./ruleConverters/no-internal-module";
+import { convertNoInvalidRegexp } from "./ruleConverters/no-invalid-regexp";
+import { convertNoInvalidTemplateStrings } from "./ruleConverters/no-invalid-template-strings";
+import { convertNoInvalidThis } from "./ruleConverters/no-invalid-this";
+import { convertNoIrregularWhitespace } from "./ruleConverters/no-irregular-whitespace";
+import { convertNoMagicNumbers } from "./ruleConverters/no-magic-numbers";
+import { convertNoMisusedNew } from "./ruleConverters/no-misused-new";
+import { convertNoMultilineString } from "./ruleConverters/no-multiline-string";
+import { convertNoNamespace } from "./ruleConverters/no-namespace";
+import { convertNoNonNullAssertion } from "./ruleConverters/no-non-null-assertion";
+import { convertNoNullKeyword } from "./ruleConverters/no-null-keyword";
+import { convertNoObjectLiteralTypeAssertion } from "./ruleConverters/no-object-literal-type-assertion";
+import { convertNoOctalLiteral } from "./ruleConverters/no-octal-literal";
+import { convertNoParameterProperties } from "./ruleConverters/no-parameter-properties";
+import { convertNoParameterReassignment } from "./ruleConverters/no-parameter-reassignment";
+import { convertNoRedundantJsdoc } from "./ruleConverters/no-redundant-jsdoc";
+import { convertNoReference } from "./ruleConverters/no-reference";
+import { convertNoReferenceImport } from "./ruleConverters/no-reference-import";
+import { convertNoRegexSpaces } from "./ruleConverters/no-regex-spaces";
+import { convertNoRequireImports } from "./ruleConverters/no-require-imports";
+import { convertNoReturnAwait } from "./ruleConverters/no-return-await";
+import { convertNoShadowedVariable } from "./ruleConverters/no-shadowed-variable";
+import { convertNoSparseArrays } from "./ruleConverters/no-sparse-arrays";
+import { convertNoStringLiteral } from "./ruleConverters/no-string-literal";
+import { convertNoStringThrow } from "./ruleConverters/no-string-throw";
+import { convertNoSubmoduleImports } from "./ruleConverters/no-submodule-imports";
+import { convertNoSuspiciousComment } from "./ruleConverters/no-suspicious-comment";
+import { convertNoSwitchCaseFallThrough } from "./ruleConverters/no-switch-case-fall-through";
+import { convertNoThisAssignment } from "./ruleConverters/no-this-assignment";
+import { convertNoTrailingWhitespace } from "./ruleConverters/no-trailing-whitespace";
+import { convertNoUnboundMethod } from "./ruleConverters/no-unbound-method";
+import { convertNoUnnecessaryClass } from "./ruleConverters/no-unnecessary-class";
+import { convertNoUnnecessaryInitializer } from "./ruleConverters/no-unnecessary-initializer";
+import { convertNoUnnecessaryQualifier } from "./ruleConverters/no-unnecessary-qualifier";
+import { convertNoUnnecessarySemicolons } from "./ruleConverters/no-unnecessary-semicolons";
+import { convertNoUnnecessaryTypeAssertion } from "./ruleConverters/no-unnecessary-type-assertion";
+import { convertNoUnsafeFinally } from "./ruleConverters/no-unsafe-finally";
+import { convertNoUnusedExpression } from "./ruleConverters/no-unused-expression";
+import { convertNoUnusedVariable } from "./ruleConverters/no-unused-variable";
+import { convertNoUseBeforeDeclare } from "./ruleConverters/no-use-before-declare";
+import { convertNoVarKeyword } from "./ruleConverters/no-var-keyword";
+import { convertNoVarRequires } from "./ruleConverters/no-var-requires";
+import { convertNoVoidExpression } from "./ruleConverters/no-void-expression";
+import { convertNoWithStatement } from "./ruleConverters/no-with-statement";
+import { convertNonLiteralRequire } from "./ruleConverters/non-literal-require";
+import { convertObjectLiteralKeyQuotes } from "./ruleConverters/object-literal-key-quotes";
+import { convertObjectLiteralShorthand } from "./ruleConverters/object-literal-shorthand";
+import { convertOneLine } from "./ruleConverters/one-line";
+import { convertOneVariablePerDeclaration } from "./ruleConverters/one-variable-per-declaration";
+import { convertOnlyArrowFunctions } from "./ruleConverters/only-arrow-functions";
+import { convertOrderedImports } from "./ruleConverters/ordered-imports";
+import { convertPossibleTimingAttack } from "./ruleConverters/possible-timing-attack";
+import { convertPreferArrayLiteral } from "./ruleConverters/prefer-array-literal";
+import { convertPreferConditionalExpression } from "./ruleConverters/prefer-conditional-expression";
+import { convertPreferConst } from "./ruleConverters/prefer-const";
+import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
+import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
+import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
+import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
+import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
+import { convertPreferTemplate } from "./ruleConverters/prefer-template";
+import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
+import { convertQuotemark } from "./ruleConverters/quotemark";
+import { convertRadix } from "./ruleConverters/radix";
+import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
+import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
+import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
+import { convertSemicolon } from "./ruleConverters/semicolon";
+import { convertSpaceBeforeFunctionParen } from "./ruleConverters/space-before-function-paren";
+import { convertSpaceWithinParens } from "./ruleConverters/space-within-parens";
+import { convertStrictBooleanExpressions } from "./ruleConverters/strict-boolean-expressions";
+import { convertSwitchDefault } from "./ruleConverters/switch-default";
+import { convertTrailingComma } from "./ruleConverters/trailing-comma";
+import { convertTripleEquals } from "./ruleConverters/triple-equals";
+import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
+import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
+import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
+import { convertUnderscoreConsistentInvocation } from "./ruleConverters/underscore-consistent-invocation";
+import { convertUnifiedSignatures } from "./ruleConverters/unified-signatures";
+import { convertUnnecessaryBind } from "./ruleConverters/unnecessary-bind";
+import { convertUnnecessaryConstructor } from "./ruleConverters/unnecessary-constructor";
+import { convertUseDefaultTypeParameter } from "./ruleConverters/use-default-type-parameter";
+import { convertUseIsnan } from "./ruleConverters/use-isnan";
+import { convertVariableName } from "./ruleConverters/variable-name";
 
 /**
  * Keys TSLint rule names to their ESLint rule converters.
@@ -243,12 +286,15 @@ export const ruleConverters = new Map([
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
     ["class-name", convertClassName],
+    ["cognitive-complexity", convertCognitiveComplexity],
     ["comment-format", convertCommentFormat],
     ["component-class-suffix", convertComponentClassSuffix],
     ["component-max-inline-declarations", convertComponentMaxInlineDeclarations],
     ["component-selector", convertComponentSelector],
-    ["contextual-lifecycle", convertContextualLifecycle],
+    ["consecutive-overloads", convertConsecutiveOverloads],
     ["contextual-decorator", convertContextualDecorator],
+    ["contextual-lifecycle", convertContextualLifecycle],
+    ["convert-react-a11y-accessible-headings", convertReactA11yAccessibleHeadings],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
@@ -278,21 +324,28 @@ export const ruleConverters = new Map([
     ["linebreak-style", convertLinebreakStyle],
     ["max-classes-per-file", convertMaxClassesPerFile],
     ["max-file-line-count", convertMaxFileLineCount],
+    ["max-func-body-length", convertMaxFuncBodyLength],
     ["max-line-length", convertMaxLineLength],
+    ["max-switch-cases", convertMaxSwitchCases],
     ["member-access", convertMemberAccess],
     ["member-ordering", convertMemberOrdering],
     ["mocha-avoid-only", convertMochaAvoidOnly],
     ["new-parens", convertNewParens],
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
+    ["no-all-duplicated-branches", convertNoAllDuplicatedBranches],
+    ["no-alphabetical-sort", convertNoAlphabeticalSort],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
     ["no-any", convertNoExplicitAny],
     ["no-arg", convertNoArg],
     ["no-async-without-await", convertNoAsyncWithoutAwait],
     ["no-attribute-decorator", convertNoAttributeDecorator],
     ["no-banned-terms", convertNoBannedTerms],
+    ["no-big-function", convertNoBigFunction],
     ["no-bitwise", convertNoBitwise],
     ["no-boolean-literal-compare", convertNoBooleanLiteralCompare],
+    ["no-collapsible-if", convertNoCollapsibleIf],
+    ["no-collection-size-mischeck", convertNoCollectionSizeMischeck],
     ["no-conditional-assignment", convertNoConditionalAssignment],
     ["no-conflicting-lifecycle", convertNoConflictingLifecycle],
     ["no-consecutive-blank-lines", convertNoConsecutiveBlankLines],
@@ -300,43 +353,59 @@ export const ruleConverters = new Map([
     ["no-constant-condition", convertNoConstantCondition],
     ["no-construct", convertNoConstruct],
     ["no-control-regex", convertNoControlRegex],
+    ["no-cookies", convertNoCookies],
     ["no-debugger", convertNoDebugger],
     ["no-default-export", convertNoDefaultExport],
+    ["no-delete-expression", convertNoDeleteExpression],
     ["no-document-write", convertNoDocumentWrite],
     ["no-duplicate-imports", convertNoDuplicateImports],
+    ["no-duplicate-string", convertNoDuplicateString],
     ["no-duplicate-super", convertNoDuplicateSuper],
     ["no-duplicate-switch-case", convertNoDuplicateSwitchCase],
     ["no-duplicate-variable", convertNoDuplicateVariable],
+    ["no-duplicated-branches", convertNoDuplicatedBranches],
     ["no-dynamic-delete", convertNoDynamicDelete],
+    ["no-element-overwrite", convertNoElementOverwrite],
+    ["no-empty-destructuring", convertNoEmptyDestructuring],
     ["no-empty-interface", convertNoEmptyInterface],
+    ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace],
+    ["no-empty-nested-blocks", convertNoEmptyNestedBlocks],
     ["no-empty", convertNoEmpty],
     ["no-eval", convertNoEval],
+    ["no-exec-script", convertNoExecScript],
+    ["no-extra-semicolon", convertNoExtraSemicolon],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
     ["no-for-in", convertNoForIn],
     ["no-forward-ref", convertNoForwardRef],
     ["no-host-metadata-property", convertNoHostMetadataProperty],
+    ["no-identical-conditions", convertNoIdenticalConditions],
+    ["no-identical-expressions", convertNoIdenticalExpressions],
+    ["no-identical-functions", convertNoIdenticalFunctions],
     ["no-implicit-dependencies", convertNoImplicitDependencies],
     ["no-import-side-effect", convertNoImportSideEffect],
+    ["no-in-misuse", convertNoInMisuse],
     ["no-inferrable-types", convertNoInferrableTypes],
     ["no-input-prefix", convertNoInputPrefix],
     ["no-input-rename", convertNoInputRename],
     ["no-inputs-metadata-property", convertNoInputsMetadataProperty],
     ["no-internal-module", convertNoInternalModule],
+    ["no-invalid-await", convertNoInvalidAwait],
     ["no-invalid-regexp", convertNoInvalidRegexp],
     ["no-invalid-template-strings", convertNoInvalidTemplateStrings],
     ["no-invalid-this", convertNoInvalidThis],
+    ["no-inverted-boolean-check", convertNoInvertedBooleanCheck],
     ["no-irregular-whitespace", convertNoIrregularWhitespace],
     ["no-lifecycle-call", convertNoLifecycleCall],
     ["no-magic-numbers", convertNoMagicNumbers],
     ["no-misused-new", convertNoMisusedNew],
+    ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
     ["no-octal-literal", convertNoOctalLiteral],
-    ["no-output-native", convertNoOutputNative],
     ["no-output-native", convertNoOutputNative],
     ["no-output-on-prefix", convertNoOutputOnPrefix],
     ["no-output-rename", convertNoOutputRename],
@@ -345,45 +414,64 @@ export const ruleConverters = new Map([
     ["no-parameter-reassignment", convertNoParameterReassignment],
     ["no-pipe-impure", convertNoPipeImpure],
     ["no-queries-metadata-property", convertNoQueriesMetadataProperty],
+    ["no-redundant-boolean", convertNoRedundantBoolean],
     ["no-redundant-jsdoc", convertNoRedundantJsdoc],
+    ["no-redundant-jump", convertNoRedundantJump],
+    ["no-redundant-parentheses", convertNoRedundantParentheses],
     ["no-reference-import", convertNoReferenceImport],
     ["no-reference", convertNoReference],
     ["no-regex-spaces", convertNoRegexSpaces],
     ["no-require-imports", convertNoRequireImports],
     ["no-return-await", convertNoReturnAwait],
+    ["no-same-line-conditional", convertNoSameLineConditional],
+    ["no-self-assignment", convertNoSelfAssignment],
     ["no-shadowed-variable", convertNoShadowedVariable],
+    ["no-small-switch", convertNoSmallSwitch],
     ["no-sparse-arrays", convertNoSparseArrays],
     ["no-string-literal", convertNoStringLiteral],
     ["no-string-throw", convertNoStringThrow],
     ["no-submodule-imports", convertNoSubmoduleImports],
+    ["no-suspicious-comment", convertNoSuspiciousComment],
     ["no-switch-case-fall-through", convertNoSwitchCaseFallThrough],
     ["no-this-assignment", convertNoThisAssignment],
     ["no-trailing-whitespace", convertNoTrailingWhitespace],
     ["no-unbound-method", convertNoUnboundMethod],
+    ["no-unconditional-jump", convertNoUnconditionalJump],
     ["no-unnecessary-class", convertNoUnnecessaryClass],
     ["no-unnecessary-initializer", convertNoUnnecessaryInitializer],
     ["no-unnecessary-qualifier", convertNoUnnecessaryQualifier],
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
     ["no-unnecessary-type-assertion", convertNoUnnecessaryTypeAssertion],
     ["no-unsafe-finally", convertNoUnsafeFinally],
+    ["no-unused-array", convertNoUnusedArray],
     ["no-unused-expression", convertNoUnusedExpression],
     ["no-unused-variable", convertNoUnusedVariable],
     ["no-use-before-declare", convertNoUseBeforeDeclare],
+    ["no-use-of-empty-return-value", convertNoUseOfEmptyReturnValue],
+    ["no-useless-cast", convertNoUselessCast],
+    ["no-useless-catch", convertNoUselessCatch],
     ["no-var-keyword", convertNoVarKeyword],
     ["no-var-requires", convertNoVarRequires],
+    ["no-variable-usage-before-declaration", convertNoVariableUsageBeforeDeclaration],
     ["no-void-expression", convertNoVoidExpression],
+    ["no-with-statement", convertNoWithStatement],
+    ["non-literal-require", convertNonLiteralRequire],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
     ["one-line", convertOneLine],
     ["one-variable-per-declaration", convertOneVariablePerDeclaration],
     ["only-arrow-functions", convertOnlyArrowFunctions],
     ["ordered-imports", convertOrderedImports],
+    ["parameters-max-number", convertParametersMaxNumber],
     ["pipe-prefix", convertPipePrefix],
+    ["possible-timing-attack", convertPossibleTimingAttack],
     ["prefer-array-literal", convertPreferArrayLiteral],
     ["prefer-conditional-expression", convertPreferConditionalExpression],
     ["prefer-const", convertPreferConst],
+    ["prefer-default-last", convertPreferDefaultLast],
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
+    ["prefer-immediate-return", convertPreferImmediateReturn],
     ["prefer-object-spread", convertPreferObjectSpread],
     ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
@@ -393,8 +481,28 @@ export const ruleConverters = new Map([
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
+    ["react-a11y-anchors", convertReactA11yAnchors],
     ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
+    ["rxjs-no-create", convertNoCreate],
+    ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
+    ["rxjs-no-finnish", convertNoFinnish],
+    ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
+    ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
+    ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
+    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
+    ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
+    ["rxjs-no-index", convertNoIndex],
+    ["rxjs-no-internal", convertNoInternal],
+    ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
+    ["rxjs-no-redundant-notify", convertNoRedundantNotify],
+    ["rxjs-no-sharereplay", convertNoShareReplay],
+    ["rxjs-no-subject-unsubscribe", convertNoSubjectUnubscribe],
+    ["rxjs-no-subject-value", convertNoSubjectValue],
+    ["rxjs-no-unbound-methods", convertNoUnboundMethods],
+    ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
+    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],
@@ -407,8 +515,8 @@ export const ruleConverters = new Map([
     ["template-accessibility-table-scope", convertTemplateAccessibilityTableScope],
     ["template-accessibility-valid-aria", convertTemplateAccessibilityValidAria],
     ["template-banana-in-box", convertTemplateBananaInBox],
-    ["template-conditional-complexity", convertTemplateConditionalComplexity],
     ["template-click-events-have-key-events", convertTemplateClickEventsHaveKeyEvents],
+    ["template-conditional-complexity", convertTemplateConditionalComplexity],
     ["template-cyclomatic-complexity", convertTemplateCyclomaticComplexity],
     ["template-i18n", convertTemplateI18N],
     ["template-mouse-events-have-key-events", convertTemplateMouseEventsHaveKeyEvents],
@@ -423,6 +531,7 @@ export const ruleConverters = new Map([
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
     ["typedef-whitespace", convertTypedefWhitespace],
     ["typeof-compare", convertTypeofCompare],
+    ["underscore-consistent-invocation", convertUnderscoreConsistentInvocation],
     ["unified-signatures", convertUnifiedSignatures],
     ["unnecessary-bind", convertUnnecessaryBind],
     ["unnecessary-constructor", convertUnnecessaryConstructor],
@@ -434,39 +543,6 @@ export const ruleConverters = new Map([
     ["use-lifecycle-interface", convertUseLifecycleInterface],
     ["use-pipe-decorator", convertUsePipeDecorator],
     ["use-pipe-transform-interface", convertUsePipeTransformInterface],
+    ["use-primitive-type", convertUsePrimitiveType],
     ["variable-name", convertVariableName],
-    ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
-    ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
-    ["rxjs-no-create", convertNoCreate],
-    ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
-    ["rxjs-no-finnish", convertNoFinnish],
-    ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
-    ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
-    ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
-    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
-    ["rxjs-no-index", convertNoIndex],
-    ["rxjs-no-internal", convertNoInternal],
-    ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
-    ["rxjs-no-redundant-notify", convertNoRedundantNotify],
-    ["rxjs-no-sharereplay", convertNoShareReplay],
-    ["rxjs-no-subject-unsubscribe", convertNoSubjectUnubscribe],
-    ["rxjs-no-subject-value", convertNoSubjectValue],
-    ["rxjs-no-unbound-methods", convertNoUnboundMethods],
-    ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
-    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
-
-    // These converters are all for rules that need more complex option conversions.
-    // Some of them will likely need to have notices about changed lint behaviors...
-    // If you're willing to take on that work, that'd be great! Please send PRs! 💖
-    // As these are enabled, they should be added in sorted order to the list above.
-
-    // TSLint core rules:
-    // ["ban", convertBan], // no-restricted-properties
-
-    // tslint-microsoft-contrib rules:
-    // ["max-func-body-length", convertMaxFuncBodyLength],
-    // ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace], // padded-blocks
-    // ["no-function-expression", convertNoFunctionExpression], // ban-syntax config
-    // ["no-suspicious-comment", convertNoSuspiciousComment],
-    // ["no-with-statement", convertNoWithStatement],
 ]);

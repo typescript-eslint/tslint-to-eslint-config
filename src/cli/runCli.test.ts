@@ -63,7 +63,7 @@ describe("runCli", () => {
 
         // Assert
         expect(dependencies.logger.stderr.write).toHaveBeenLastCalledWith(
-            jasmine.stringMatching(message),
+            expect.stringMatching(message),
         );
         expect(status).toBe(ResultStatus.Failed);
     });

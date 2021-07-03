@@ -2,6 +2,7 @@
 *.log
 *.map
 coverage/
+script/
 src/**/*.stubs.*
 src/**/*.test.*
 src/**/*.ts

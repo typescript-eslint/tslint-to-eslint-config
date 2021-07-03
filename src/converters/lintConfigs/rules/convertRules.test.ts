@@ -1,7 +1,7 @@
 import { ConversionError } from "../../../errors/conversionError";
 import { convertRules } from "./convertRules";
+import { ConversionResult, RuleConverter } from "./ruleConverter";
 import { RuleMerger } from "./ruleMerger";
-import { RuleConverter, ConversionResult } from "./ruleConverter";
 import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
 
 describe("convertRules", () => {
@@ -107,41 +107,98 @@ describe("convertRules", () => {
         expect(ruleEquivalents).toEqual(new Map([["tslint-rule-a", ["eslint-rule-a"]]]));
     });
 
-    it("reports a failure when two outputs exist for a converted rule without a merger", () => {
+    test.each([[undefined], [[5, "allow-something", { max: 50 }]]])(
+        "runs without an argument merger when both rules have the same arguments",
+        (ruleArguments) => {
+            // Arrange
+            const conversionResult = {
+                rules: [
+                    {
+                        ruleArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                    {
+                        ruleArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                ],
+            };
+            const { tslintRule, converters, mergers } = setupConversionEnvironment({
+                conversionResult,
+            });
+
+            // Act
+            const { converted, failed } = convertRules(
+                { ruleConverters: converters, ruleMergers: mergers },
+                { [tslintRule.ruleName]: tslintRule },
+                new Map<string, string[]>(),
+            );
+
+            // Assert
+            expect(converted).toEqual(
+                new Map([
+                    [
+                        "eslint-rule-a",
+                        {
+                            ruleArguments,
+                            ruleName: "eslint-rule-a",
+                            ruleSeverity: "error",
+                            notices: [],
+                        },
+                    ],
+                ]),
+            );
+            expect(failed).toEqual([]);
+        },
+    );
+
+    test.each([
+        [[[0]], [[1]]],
+        [[[""]], [["allow-something"]]],
+        [[[{ max: 0 }]], [[{ max: 50 }]]],
+        [[[0, "", { max: 0 }]], [[5, "allow-something", { max: 50 }]]],
+    ])(
+        "reports a failure when two outputs with different arguments exist for a converted rule without a merger",
+        ([existingArguments, newArguments]) => {
+            // Arrange
+            const conversionResult = {
+                rules: [
+                    {
+                        ruleArguments: existingArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                    {
+                        ruleArguments: newArguments,
+                        ruleName: "eslint-rule-a",
+                    },
+                ],
+            };
+            const { tslintRule, converters, mergers } = setupConversionEnvironment({
+                conversionResult,
+            });
+
+            // Act
+            const { failed } = convertRules(
+                { ruleConverters: converters, ruleMergers: mergers },
+                { [tslintRule.ruleName]: tslintRule },
+                new Map<string, string[]>(),
+            );
+
+            // Assert
+            expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
+        },
+    );
+
+    it("merges rule arguments when two outputs with different arguments exist for a converted rule with a merger", () => {
         // Arrange
         const conversionResult = {
             rules: [
                 {
+                    ruleArguments: [0],
                     ruleName: "eslint-rule-a",
                 },
                 {
-                    ruleName: "eslint-rule-a",
-                },
-            ],
-        };
-        const { tslintRule, converters, mergers } = setupConversionEnvironment({
-            conversionResult,
-        });
-
-        // Act
-        const { failed } = convertRules(
-            { ruleConverters: converters, ruleMergers: mergers },
-            { [tslintRule.ruleName]: tslintRule },
-            new Map<string, string[]>(),
-        );
-
-        // Assert
-        expect(failed).toEqual([ConversionError.forMerger("eslint-rule-a")]);
-    });
-
-    it("merges rule arguments when two outputs exist for a converted rule with a merger", () => {
-        // Arrange
-        const conversionResult = {
-            rules: [
-                {
-                    ruleName: "eslint-rule-a",
-                },
-                {
+                    ruleArguments: [1],
                     ruleName: "eslint-rule-a",
                 },
             ],
@@ -201,7 +258,7 @@ describe("convertRules", () => {
         );
 
         // Assert
-        expect(converted).toEqual(
+        expect([
             new Map([
                 [
                     "eslint-rule-a",
@@ -213,7 +270,17 @@ describe("convertRules", () => {
                     },
                 ],
             ]),
-        );
+            new Map([
+                [
+                    "eslint-rule-a",
+                    {
+                        ruleName: "eslint-rule-a",
+                        ruleSeverity: "error",
+                        notices: ["notice-1", "notice-2"],
+                    },
+                ],
+            ]),
+        ]).toContainEqual(converted);
     });
 
     it("merges undefined notices", () => {
@@ -243,7 +310,7 @@ describe("convertRules", () => {
         );
 
         // Assert
-        expect(converted).toEqual(
+        expect([
             new Map([
                 [
                     "eslint-rule-a",
@@ -255,7 +322,17 @@ describe("convertRules", () => {
                     },
                 ],
             ]),
-        );
+            new Map([
+                [
+                    "eslint-rule-a",
+                    {
+                        ruleName: "eslint-rule-a",
+                        ruleSeverity: "error",
+                        notices: [],
+                    },
+                ],
+            ]),
+        ]).toContainEqual(converted);
     });
 
     it("marks a new plugin when a conversion has a new plugin", () => {

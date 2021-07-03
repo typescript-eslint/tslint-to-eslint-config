@@ -1,7 +1,7 @@
 import { SansDependencies } from "../../binding";
 import { collectCommentFileNames } from "../../comments/collectCommentFileNames";
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { ResultWithDataStatus, ResultStatus, TSLintToESLintSettings } from "../../types";
+import { ResultStatus, ResultWithDataStatus, TSLintToESLintSettings } from "../../types";
 import { isError } from "../../utils";
 import { convertFileComments } from "./convertFileComments";
 import { extractGlobPaths } from "./extractGlobPaths";
