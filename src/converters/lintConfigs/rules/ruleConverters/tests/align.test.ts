@@ -9,6 +9,10 @@ describe(convertAlign, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/indent",
                 },
             ],
@@ -22,6 +26,10 @@ describe(convertAlign, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [
@@ -43,6 +51,10 @@ describe(convertAlign, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [
                         4,
@@ -62,6 +74,10 @@ describe(convertAlign, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [
@@ -83,6 +99,10 @@ describe(convertAlign, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [
                         4,
@@ -103,6 +123,10 @@ describe(convertAlign, () => {
 
         expect(result).toEqual({
             rules: [
+                {
+                    ruleName: "indent",
+                    ruleSeverity: "off",
+                },
                 {
                     ruleName: "@typescript-eslint/indent",
                     ruleArguments: [

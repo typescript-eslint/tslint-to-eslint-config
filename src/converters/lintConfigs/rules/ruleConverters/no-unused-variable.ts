@@ -8,6 +8,10 @@ export const convertNoUnusedVariable: RuleConverter = () => {
     return {
         rules: [
             {
+                ruleName: "no-unused-vars",
+                ruleSeverity: "off",
+            },
+            {
                 ruleName: "@typescript-eslint/no-unused-vars",
                 notices: [NO_UNUSED_VARIABLE_NOTICE],
             },

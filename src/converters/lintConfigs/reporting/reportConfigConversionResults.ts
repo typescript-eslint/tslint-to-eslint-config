@@ -3,11 +3,11 @@ import { EOL } from "os";
 
 import { Logger } from "../../../adapters/logger";
 import {
-    logSuccessfulConversions,
     logFailedConversions,
     logMissingConversionTarget,
+    logSuccessfulConversions,
 } from "../../../reporting";
-import { TSLintRuleOptions, ESLintRuleOptions } from "../rules/types";
+import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
 import { SummarizedConfigResultsConfiguration } from "../summarization/types";
 
 export type ReportConversionResultsDependencies = {

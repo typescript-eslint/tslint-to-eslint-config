@@ -16,6 +16,10 @@ export const convertSemicolon: RuleConverter = (tslintRule) => {
         }),
         rules: [
             {
+                ruleName: "semi",
+                ruleSeverity: "off",
+            },
+            {
                 ruleArguments: [tslintRule.ruleArguments[0]],
                 ruleName: "@typescript-eslint/semi",
             },
@@ -26,7 +30,9 @@ export const convertSemicolon: RuleConverter = (tslintRule) => {
                           ruleArguments: [
                               {
                                   multiline: {
-                                      delimiter: getMultilineDelimiter(tslintRule.ruleArguments[0] as "always" | "never"),
+                                      delimiter: getMultilineDelimiter(
+                                          tslintRule.ruleArguments[0] as "always" | "never",
+                                      ),
                                       requireLast: true,
                                   },
                                   singleline: {

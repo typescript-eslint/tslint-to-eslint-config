@@ -5,7 +5,7 @@ export const convertPreferArrayLiteral: RuleConverter = () => {
         rules: [
             {
                 ruleName: "no-array-constructor",
-                ruleSeverity: "off"
+                ruleSeverity: "off",
             },
             {
                 ruleName: "@typescript-eslint/no-array-constructor",

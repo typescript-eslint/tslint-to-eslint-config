@@ -8,7 +8,9 @@ export const convertTemplateI18N: RuleConverter = (tslintRule) => {
                     ruleArguments: [
                         {
                             ...(tslintRule.ruleArguments.includes("check-id") && { checkId: true }),
-                            ...(tslintRule.ruleArguments.includes("check-text") && { checkText: true }),
+                            ...(tslintRule.ruleArguments.includes("check-text") && {
+                                checkText: true,
+                            }),
                         },
                     ],
                 }),
