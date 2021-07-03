@@ -23,6 +23,8 @@ Those are run by `src/converters/lintConfigs/rules/convertRules.ts`, which takes
     * The output rule name is added to the TSLint rule's equivalency set.
     * The TSLint rule's config severity is mapped to its ESLint equivalent.
     * If this is the first time the output ESLint rule is seen, it's directly marked as converted.
+    * Notices are merged and deduplicated.
+    * If the existing output has the same arguments as the new output, merge lookups are skipped.
     * If not, a rule merger is run to combine it with its existing output settings.
 
 ### Rule Converters
@@ -51,6 +53,8 @@ It's possible that one ESLint rule will be output by multiple converters.
 These are located in `src/rules/mergers/`, and keyed under their names by the map in `src/rules/mergers.ts`.
 
 For example, `@typescript-eslint/ban-types` spreads both arguments' `types` members into one large `types` object.
+
+> A merger does not need to be created if the rule does not accept any configuration or all converters output exactly the same configuration.
 
 ## Package Summaries
 

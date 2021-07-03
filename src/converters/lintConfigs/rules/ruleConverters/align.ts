@@ -30,6 +30,10 @@ export const convertAlign: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {
+                ruleName: "indent",
+                ruleSeverity: "off",
+            },
+            {
                 ruleName: "@typescript-eslint/indent",
                 ...{ ruleArguments },
             },

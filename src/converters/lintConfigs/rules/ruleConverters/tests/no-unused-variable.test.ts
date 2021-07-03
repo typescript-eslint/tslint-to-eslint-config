@@ -9,6 +9,10 @@ describe(convertNoUnusedVariable, () => {
         expect(result).toEqual({
             rules: [
                 {
+                    ruleName: "no-unused-vars",
+                    ruleSeverity: "off",
+                },
+                {
                     ruleName: "@typescript-eslint/no-unused-vars",
                     notices: [NO_UNUSED_VARIABLE_NOTICE],
                 },

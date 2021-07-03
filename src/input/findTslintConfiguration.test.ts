@@ -1,8 +1,8 @@
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 import {
     findTSLintConfiguration,
     FindTSLintConfigurationDependencies,
 } from "./findTSLintConfiguration";
-import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 
 const createStubDependencies = (overrides: Partial<FindTSLintConfigurationDependencies> = {}) => ({
     exec: createStubExec({ stdout: "{}" }),

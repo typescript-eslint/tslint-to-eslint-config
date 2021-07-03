@@ -1,5 +1,5 @@
-import { findPackagesConfiguration } from "./findPackagesConfiguration";
 import { createStubExec } from "../adapters/exec.stubs";
+import { findPackagesConfiguration } from "./findPackagesConfiguration";
 
 describe("findPackagesConfiguration", () => {
     it("defaults the configuration file when one isn't provided", async () => {

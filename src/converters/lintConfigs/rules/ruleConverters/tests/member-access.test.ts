@@ -1,4 +1,4 @@
-import { convertMemberAccess, AccessibilityLevel } from "../member-access";
+import { AccessibilityLevel, convertMemberAccess } from "../member-access";
 
 describe(convertMemberAccess, () => {
     test("conversion without arguments", () => {

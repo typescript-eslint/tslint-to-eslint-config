@@ -80,16 +80,16 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
     const getBlackListRuleOptions = () => {
         const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
             ? [
-                    "any",
-                    "Number",
-                    "number",
-                    "String",
-                    "string",
-                    "Boolean",
-                    "boolean",
-                    "Undefined",
-                    "undefined",
-                ]
+                  "any",
+                  "Number",
+                  "number",
+                  "String",
+                  "string",
+                  "Boolean",
+                  "boolean",
+                  "Undefined",
+                  "undefined",
+              ]
             : [];
 
         return {
