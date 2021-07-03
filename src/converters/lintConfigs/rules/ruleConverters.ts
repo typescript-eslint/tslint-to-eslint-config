@@ -193,7 +193,6 @@ import { convertNoMagicNumbers } from "./ruleConverters/no-magic-numbers";
 import { convertNoMisusedNew } from "./ruleConverters/no-misused-new";
 import { convertNoMultilineString } from "./ruleConverters/no-multiline-string";
 import { convertNoNamespace } from "./ruleConverters/no-namespace";
-import { convertNonLiteralRequire } from "./ruleConverters/non-literal-require";
 import { convertNoNonNullAssertion } from "./ruleConverters/no-non-null-assertion";
 import { convertNoNullKeyword } from "./ruleConverters/no-null-keyword";
 import { convertNoObjectLiteralTypeAssertion } from "./ruleConverters/no-object-literal-type-assertion";
@@ -229,6 +228,7 @@ import { convertNoVarKeyword } from "./ruleConverters/no-var-keyword";
 import { convertNoVarRequires } from "./ruleConverters/no-var-requires";
 import { convertNoVoidExpression } from "./ruleConverters/no-void-expression";
 import { convertNoWithStatement } from "./ruleConverters/no-with-statement";
+import { convertNonLiteralRequire } from "./ruleConverters/non-literal-require";
 import { convertObjectLiteralKeyQuotes } from "./ruleConverters/object-literal-key-quotes";
 import { convertObjectLiteralShorthand } from "./ruleConverters/object-literal-shorthand";
 import { convertOneLine } from "./ruleConverters/one-line";
@@ -248,6 +248,7 @@ import { convertPreferTemplate } from "./ruleConverters/prefer-template";
 import { convertPromiseFunctionAsync } from "./ruleConverters/promise-function-async";
 import { convertQuotemark } from "./ruleConverters/quotemark";
 import { convertRadix } from "./ruleConverters/radix";
+import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
 import { convertSemicolon } from "./ruleConverters/semicolon";
@@ -292,6 +293,7 @@ export const ruleConverters = new Map([
     ["consecutive-overloads", convertConsecutiveOverloads],
     ["contextual-decorator", convertContextualDecorator],
     ["contextual-lifecycle", convertContextualLifecycle],
+    ["convert-react-a11y-accessible-headings", convertReactA11yAccessibleHeadings],
     ["curly", convertCurly],
     ["cyclomatic-complexity", convertCyclomaticComplexity],
     ["deprecation", convertDeprecation],
@@ -367,8 +369,8 @@ export const ruleConverters = new Map([
     ["no-empty-line-after-opening-brace", convertNoEmptyLineAfterOpeningBrace],
     ["no-empty-nested-blocks", convertNoEmptyNestedBlocks],
     ["no-empty", convertNoEmpty],
-    ["no-exec-script", convertNoExecScript],
     ["no-eval", convertNoEval],
+    ["no-exec-script", convertNoExecScript],
     ["no-extra-semicolon", convertNoExtraSemicolon],
     ["no-floating-promises", convertNoFloatingPromises],
     ["no-for-in-array", convertNoForInArray],
@@ -398,7 +400,6 @@ export const ruleConverters = new Map([
     ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
-    ["non-literal-require", convertNonLiteralRequire],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
@@ -452,6 +453,7 @@ export const ruleConverters = new Map([
     ["no-variable-usage-before-declaration", convertNoVariableUsageBeforeDeclaration],
     ["no-void-expression", convertNoVoidExpression],
     ["no-with-statement", convertNoWithStatement],
+    ["non-literal-require", convertNonLiteralRequire],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
     ["one-line", convertOneLine],
@@ -477,8 +479,8 @@ export const ruleConverters = new Map([
     ["promise-function-async", convertPromiseFunctionAsync],
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
-    ["relative-url-prefix", convertRelativeUrlPrefix],
     ["react-a11y-anchors", convertReactA11yAnchors],
+    ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-create", convertNoCreate],
