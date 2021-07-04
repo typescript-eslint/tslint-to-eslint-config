@@ -225,6 +225,44 @@ describe("reportConfigConversionResults", () => {
         );
     });
 
+    it("logs obsolete conversions when there is one obsolete conversion", async () => {
+        // Arrange
+        const logger = createStubLogger();
+        const conversionResults = createEmptyConfigConversionResults({
+            extends: basicExtends,
+            obsolete: new Set(["obsolete"]),
+        });
+
+        // Act
+        await reportConfigConversionResults({ logger }, ".eslintrc.js", conversionResults);
+
+        // Assert
+        expectEqualWrites(
+            logger.stdout.write,
+            `🦖 1 rule is obsolete and does not have an ESLint equivalent. 🦖`,
+            `  Check ${logger.debugFileName} for details.`,
+        );
+    });
+
+    it("logs obsolete conversions when there are multiple obsolete conversions", async () => {
+        // Arrange
+        const logger = createStubLogger();
+        const conversionResults = createEmptyConfigConversionResults({
+            extends: basicExtends,
+            obsolete: new Set(["obsolete-a", "obsolete-b"]),
+        });
+
+        // Act
+        await reportConfigConversionResults({ logger }, ".eslintrc.js", conversionResults);
+
+        // Assert
+        expectEqualWrites(
+            logger.stdout.write,
+            `🦖 2 rules are obsolete and do not have ESLint equivalents. 🦖`,
+            `  Check ${logger.debugFileName} for details.`,
+        );
+    });
+
     it("logs a Prettier recommendation when extends doesn't include eslint-config-prettier", async () => {
         // Arrange
         const logger = createStubLogger();
