@@ -6,9 +6,9 @@ describe("findPackagesConfiguration", () => {
         // Arrange
         const dependencies = {
             fileSystem: createStubFileSystem({
-                data: "{}"
-            })
-        }
+                data: "{}",
+            }),
+        };
 
         // Act
         await findPackagesConfiguration(dependencies, undefined);
@@ -21,9 +21,9 @@ describe("findPackagesConfiguration", () => {
         // Arrange
         const dependencies = {
             fileSystem: createStubFileSystem({
-                data: "{}"
-            })
-        }
+                data: "{}",
+            }),
+        };
         const config = "./custom/package.json";
 
         // Act
@@ -38,9 +38,9 @@ describe("findPackagesConfiguration", () => {
         const error = new Error("Oh no!");
         const dependencies = {
             fileSystem: createStubFileSystem({
-                data: error
-            })
-        }
+                data: error,
+            }),
+        };
         const config = "./custom/package.json";
 
         // Act
@@ -54,9 +54,9 @@ describe("findPackagesConfiguration", () => {
         // Arrange
         const dependencies = {
             fileSystem: createStubFileSystem({
-                data: "{}"
-            })
-        }
+                data: "{}",
+            }),
+        };
         const config = "./package.json";
 
         // Act
@@ -76,14 +76,14 @@ describe("findPackagesConfiguration", () => {
                 eslint: "^11.22.33",
             },
             devDependencies: {
-                tslint: "^12.34.56"
-            }
-        }
+                tslint: "^12.34.56",
+            },
+        };
         const dependencies = {
             fileSystem: createStubFileSystem({
-                data: JSON.stringify(data)
-            })
-        }
+                data: JSON.stringify(data),
+            }),
+        };
         const config = "./package.json";
 
         // Act

@@ -7,7 +7,7 @@ export type PackagesConfiguration = {
 
 export type FindPackagesConfigurationDependencies = {
     fileSystem: Pick<FileSystem, "readFile">;
-}
+};
 
 export const findPackagesConfiguration = async (
     dependencies: FindPackagesConfigurationDependencies,
@@ -18,7 +18,7 @@ export const findPackagesConfiguration = async (
         return rawConfiguration;
     }
 
-    const configuration = (JSON.parse(rawConfiguration)) as PackagesConfiguration;
+    const configuration = JSON.parse(rawConfiguration) as PackagesConfiguration;
 
     return {
         dependencies: {
