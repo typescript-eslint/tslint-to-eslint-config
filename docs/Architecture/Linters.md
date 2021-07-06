@@ -18,7 +18,7 @@ Those are run by `src/converters/lintConfigs/rules/convertRules.ts`, which takes
 
 1. The raw TSLint rule is converted to a standardized format.
 2. The appropriate converter is run for the rule.
-3. If the rule is missing or the conversion failed, this is marked.
+3. If the rule is missing or obsolete, or the conversion failed, this is marked.
 4. For each output rule equivalent given by the conversion:
     * The output rule name is added to the TSLint rule's equivalency set.
     * The TSLint rule's config severity is mapped to its ESLint equivalent.
@@ -34,7 +34,7 @@ Each TSLint rule should output at least one ESLint rule as the equivalent.
 
 Each converter for a TSLint rule takes an arguments object for the rule, and returns an array of objects containing:
 
--   `rules`: At least one equivalent ESLint rule and options
+-   `rules`: At least one equivalent ESLint rule and options, _or_ none if obsolete
 -   `notices`: Any extra info that should be printed after conversion
 -   `plugins`: Any plugins that should now be installed if not already
 

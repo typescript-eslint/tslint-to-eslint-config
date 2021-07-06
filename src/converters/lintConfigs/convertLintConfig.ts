@@ -17,7 +17,7 @@ export type ConvertLintConfigDependencies = {
 
 /**
  * Root-level driver to convert a TSLint configuration to ESLint.
- * @see `/docs/Architecture/Linting.md` for documentation.
+ * @see `/docs/Architecture/Linters.md` for documentation.
  */
 export const convertLintConfig = async (
     dependencies: ConvertLintConfigDependencies,
