@@ -31,7 +31,7 @@
         "@types/glob": "7.1.4",
         "@types/jest": "26.0.24",
         "@types/json5": "0.0.30",
-        "@types/lodash": "4.14.170",
+        "@types/lodash": "4.14.171",
         "@types/minimatch": "3.0.4",
         "@types/node": "16.0.0",
         "@typescript-eslint/eslint-plugin": "4.28.2",
