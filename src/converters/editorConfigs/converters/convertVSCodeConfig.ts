@@ -12,15 +12,6 @@ const knownMissingSettings = [
     "tslint.suppressWhileTypeErrorsPresent",
 ];
 
-const getJsonRoot = (sourceFile: ts.SourceFile) => {
-    const [rootStatement] = sourceFile.statements;
-
-    return ts.isExpressionStatement(rootStatement) && ts.isObjectLiteralExpression(rootStatement.expression)
-        ? rootStatement.expression
-        : undefined;
-}
-
-
 export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, settings) => {
     const editorSettings: Record<string, string | number | symbol> = parseJson(rawEditorSettings);
     const missing = knownMissingSettings.filter((setting) => editorSettings[setting]);
@@ -39,17 +30,14 @@ export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, se
             path.dirname(settings.config),
         );
 
-    // We can bail without making changes if there are no changes we need to make...
+    // We can bail without making changes if there are no changes we need to make
     if (!autoFixOnSave && !eslintPathMatches) {
         return { contents: rawEditorSettings, missing };
     }
 
-    // ...or the JSON file doesn't seem to be a normal {} object root
+    // Since we've found at least one matching setting, we know the source structure is a proper {}
     const sourceFile = ts.createSourceFile("settings.json", rawEditorSettings, ts.ScriptTarget.Latest, /*setParentNodes*/ true, ts.ScriptKind.JSON);
-    const jsonRoot = getJsonRoot(sourceFile);
-    if (!jsonRoot) {
-        return { contents: rawEditorSettings, missing };
-    }
+    const jsonRoot = (sourceFile.statements[0] as ts.ExpressionStatement).expression as ts.ObjectLiteralExpression;
 
     const propertyIndexByName = (properties: ts.NodeArray<ts.ObjectLiteralElementLike>, name: string) =>
         properties.findIndex(property => property.name && ts.isStringLiteral(property.name) && property.name.text === name);
@@ -69,9 +57,7 @@ export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, se
                                     `"${setting}"`,
                                     typeof value === "string"
                                         ? context.factory.createStringLiteral(value)
-                                        : value
-                                            ? context.factory.createTrue()
-                                            : context.factory.createFalse()
+                                        : context.factory.createTrue()
                                 )
                             ],
                             true
@@ -83,15 +69,10 @@ export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, se
 
                 if (existingIndex !== -1) {
                     const existingProperty = originalProperties[existingIndex];
-                    if (
-                        !ts.isPropertyAssignment(existingProperty)
-                        || !ts.isObjectLiteralExpression(existingProperty.initializer)
-                        || propertyIndexByName(existingProperty.initializer.properties, `"${parent}"`) === -1) {
-                        return node;
-                    }
-
                     const updatedProperties = [...node.properties];
-                    updatedProperties[existingIndex] = createNewChild(existingProperty.initializer.properties)
+
+                    // We know these casts should be safe because we previously found a matching parent object for the property
+                    updatedProperties[existingIndex] = createNewChild(((existingProperty as ts.PropertyAssignment).initializer as ts.ObjectLiteralExpression).properties as ts.NodeArray<ts.ObjectLiteralElementLike> | undefined)
                     node = context.factory.createObjectLiteralExpression(updatedProperties, true);
                 } else {
                     node = context.factory.createObjectLiteralExpression([...node.properties, createNewChild()], true);
