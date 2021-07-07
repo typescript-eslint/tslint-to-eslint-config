@@ -1,31 +1,31 @@
-import { FileSystem } from "../adapters/fileSystem";
+import {
+    findReportedConfiguration,
+    FindReportedConfigurationDependencies,
+} from "./findReportedConfiguration";
 
 export type PackagesConfiguration = {
     dependencies: Record<string, string | undefined>;
     devDependencies: Record<string, string | undefined>;
 };
 
-export type FindPackagesConfigurationDependencies = {
-    fileSystem: Pick<FileSystem, "readFile">;
-};
-
 export const findPackagesConfiguration = async (
-    dependencies: FindPackagesConfigurationDependencies,
-    config = "./package.json",
+    dependencies: FindReportedConfigurationDependencies,
+    config: string | undefined,
 ): Promise<PackagesConfiguration | Error> => {
-    const rawConfiguration = await dependencies.fileSystem.readFile(config);
-    if (rawConfiguration instanceof Error) {
-        return rawConfiguration;
-    }
+    const rawConfiguration = await findReportedConfiguration<PackagesConfiguration>(
+        dependencies.exec,
+        "cat",
+        config ?? "./package.json",
+    );
 
-    const configuration = JSON.parse(rawConfiguration) as PackagesConfiguration;
-
-    return {
-        dependencies: {
-            ...configuration.dependencies,
-        },
-        devDependencies: {
-            ...configuration.devDependencies,
-        },
-    };
+    return rawConfiguration instanceof Error
+        ? rawConfiguration
+        : {
+            dependencies: {
+                ...rawConfiguration.dependencies,
+            },
+            devDependencies: {
+                ...rawConfiguration.devDependencies,
+            },
+        };
 };

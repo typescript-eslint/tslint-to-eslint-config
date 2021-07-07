@@ -110,16 +110,9 @@ export const findConfigurationDependencies = {
     importer: boundImporter,
 };
 
-export const findPackagesConfigurationDependencies = {
-    fileSystem: fsFileSystem,
-};
-
 export const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: bind(findESLintConfiguration, findConfigurationDependencies),
-    findPackagesConfiguration: bind(
-        findPackagesConfiguration,
-        findPackagesConfigurationDependencies,
-    ),
+    findPackagesConfiguration: bind(findPackagesConfiguration, findConfigurationDependencies),
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
     findTSLintConfiguration: bind(findTSLintConfiguration, findConfigurationDependencies),
     mergeLintConfigurations,
