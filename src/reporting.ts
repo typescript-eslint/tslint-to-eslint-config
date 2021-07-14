@@ -87,3 +87,19 @@ export const logMissingConversionTarget = <T>(
     );
     logger.info.write(EOL);
 };
+
+export const logObsoleteRules = (ruleNames: string[], logger: Logger) => {
+    const headline =
+        ruleNames.length === 1
+            ? ` rule is obsolete and does not have an ESLint equivalent`
+            : ` rules are obsolete and do not have ESLint equivalents`;
+
+    logger.stdout.write(chalk.magentaBright(`️${EOL}🦖 ${ruleNames.length}`));
+    logger.stdout.write(chalk.magenta(`${headline}.`));
+    logger.stdout.write(chalk.magentaBright(` 🦖${EOL}`));
+    logger.stdout.write(chalk.magenta(`  Check ${logger.debugFileName} for details.${EOL}`));
+
+    logger.info.write(ruleNames.map((ruleName) => `  * ${ruleName}${EOL}`).join(""));
+
+    logger.info.write(EOL);
+};
