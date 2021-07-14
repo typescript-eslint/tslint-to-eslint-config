@@ -71,6 +71,22 @@ describe("convertRules", () => {
         expect(failed).toEqual([conversionError]);
     });
 
+    it("marks a converted rule as obsolete when it has no output rules", () => {
+        // Arrange
+        const { tslintRule, converters, mergers } = setupConversionEnvironment();
+        converters.set(tslintRule.ruleName, () => ({}));
+
+        // Act
+        const { obsolete } = convertRules(
+            { ruleConverters: converters, ruleMergers: mergers },
+            { [tslintRule.ruleName]: tslintRule },
+            new Map<string, string[]>(),
+        );
+
+        // Assert
+        expect(Array.from(obsolete)).toEqual([tslintRule.ruleName]);
+    });
+
     it("marks a converted rule name as converted when a conversion has rules", () => {
         // Arrange
         const conversionResult = {
