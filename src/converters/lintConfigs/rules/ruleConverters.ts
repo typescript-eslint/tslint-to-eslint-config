@@ -255,6 +255,7 @@ import { convertQuotemark } from "./ruleConverters/quotemark";
 import { convertRadix } from "./ruleConverters/radix";
 import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
+import { convertReactA11yAriaUnsupportedElements } from "./ruleConverters/react-a11y-aria-unsupported-elements";
 import { convertReactA11yImageButtonHasAlt } from "./ruleConverters/react-a11y-image-button-has-alt";
 import { convertReactA11yImgHasAlt } from "./ruleConverters/react-a11y-img-has-alt";
 import { convertReactA11yLang } from "./ruleConverters/react-a11y-lang";
@@ -498,6 +499,7 @@ export const ruleConverters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["react-a11y-anchors", convertReactA11yAnchors],
+    ["react-a11y-aria-unsupported-elements", convertReactA11yAriaUnsupportedElements],
     ["react-a11y-image-button-has-alt", convertReactA11yImageButtonHasAlt],
     ["react-a11y-img-has-alt", convertReactA11yImgHasAlt],
     ["react-a11y-lang", convertReactA11yLang],
