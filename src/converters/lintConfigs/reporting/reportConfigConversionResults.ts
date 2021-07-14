@@ -5,6 +5,7 @@ import { Logger } from "../../../adapters/logger";
 import {
     logFailedConversions,
     logMissingConversionTarget,
+    logObsoleteRules,
     logSuccessfulConversions,
 } from "../../../reporting";
 import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
@@ -48,6 +49,10 @@ export const reportConfigConversionResults = async (
                 } in TSLint within ESLint.`,
             ],
         );
+    }
+
+    if (ruleConversionResults.obsolete.size !== 0) {
+        logObsoleteRules(Array.from(ruleConversionResults.obsolete), dependencies.logger);
     }
 
     if (!ruleConversionResults.extends.join("").includes("prettier")) {

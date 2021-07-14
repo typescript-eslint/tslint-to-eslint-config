@@ -29,7 +29,7 @@ export const replaceFileComments = (
             return undefined;
         }
 
-        const equivalents = converted.rules.map((conversion) => conversion.ruleName);
+        const equivalents = converted.rules?.map((conversion) => conversion.ruleName) ?? [];
 
         ruleCommentsCache.set(ruleName, equivalents);
 
