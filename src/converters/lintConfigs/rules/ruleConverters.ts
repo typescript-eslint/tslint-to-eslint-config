@@ -256,7 +256,10 @@ import { convertRadix } from "./ruleConverters/radix";
 import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
 import { convertReactA11yAriaUnsupportedElements } from "./ruleConverters/react-a11y-aria-unsupported-elements";
+import { convertReactA11yImageButtonHasAlt } from "./ruleConverters/react-a11y-image-button-has-alt";
+import { convertReactA11yImgHasAlt } from "./ruleConverters/react-a11y-img-has-alt";
 import { convertReactA11yProps } from "./ruleConverters/react-a11y-props";
+import { convertReactA11yRoleHasRequiredAriaProps } from "./ruleConverters/react-a11y-role-has-required-aria-props";
 import { convertReactA11yTabIndexNoPositive } from "./ruleConverters/react-a11y-tabindex-no-positive";
 import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-spacing";
@@ -496,7 +499,10 @@ export const ruleConverters = new Map([
     ["radix", convertRadix],
     ["react-a11y-anchors", convertReactA11yAnchors],
     ["react-a11y-aria-unsupported-elements", convertReactA11yAriaUnsupportedElements],
+    ["react-a11y-image-button-has-alt", convertReactA11yImageButtonHasAlt],
+    ["react-a11y-img-has-alt", convertReactA11yImgHasAlt],
     ["react-a11y-props", convertReactA11yProps],
+    ["react-a11y-role-has-required-aria-props", convertReactA11yRoleHasRequiredAriaProps],
     ["react-a11y-tabindex-no-positive", convertReactA11yTabIndexNoPositive],
     ["react-no-dangerous-html", convertReactNoDangerousHtml],
     ["react-tsx-curly-spacing", convertReactTsxCurlySpacing],
