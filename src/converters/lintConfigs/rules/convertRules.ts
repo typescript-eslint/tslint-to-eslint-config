@@ -21,12 +21,13 @@ export type RuleConversionResults = {
     failed: ErrorSummary[];
     missing: TSLintRuleOptions[];
     plugins: Set<string>;
+    obsolete: Set<string>;
     ruleEquivalents: Map<string, string[]>;
 };
 
 /**
  * Converts raw TSLint rules to their ESLint equivalents.
- * @see `/docs/Architecture/Linting.md` for documentation.
+ * @see `/docs/Architecture/Linters.md` for documentation.
  */
 export const convertRules = (
     dependencies: ConvertRulesDependencies,
@@ -36,6 +37,7 @@ export const convertRules = (
     const converted = new Map<string, ESLintRuleOptions>();
     const failed: ConversionError[] = [];
     const missing: TSLintRuleOptions[] = [];
+    const obsolete = new Set<string>();
     const plugins = new Set<string>();
 
     if (rawTslintRules !== undefined) {
@@ -48,7 +50,7 @@ export const convertRules = (
             // 2. The appropriate converter is run for the rule.
             const conversion = convertRule(tslintRule, dependencies.ruleConverters);
 
-            // 3. If the rule is missing or the conversion failed, this is marked.
+            // 3. If the rule is missing or obsolete, or the conversion failed, this is marked.
             if (conversion === undefined) {
                 if (tslintRule.ruleSeverity !== "off") {
                     missing.push(tslintRule);
@@ -59,6 +61,11 @@ export const convertRules = (
 
             if (conversion instanceof ConversionError) {
                 failed.push(conversion);
+                continue;
+            }
+
+            if (!conversion.rules) {
+                obsolete.add(tslintRule.ruleName);
                 continue;
             }
 
@@ -119,5 +126,5 @@ export const convertRules = (
         }
     }
 
-    return { converted, failed, missing, plugins, ruleEquivalents };
+    return { converted, failed, missing, obsolete, plugins, ruleEquivalents };
 };
