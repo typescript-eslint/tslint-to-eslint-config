@@ -21,6 +21,16 @@ module.exports.writeConverterTest = async ({ args, tslintPascalCase, plugins }) 
         `
         : "";
 
+    const body = args.eslint
+        ? `
+            rules: [
+                {
+                    ruleName: "${args.eslint}",
+                },
+            ],
+        `
+        : "";
+
     await fs.writeFile(
         `./src/converters/lintConfigs/rules/ruleConverters/tests/${args.tslint}.test.ts`,
         `
@@ -32,13 +42,7 @@ describe(convert${tslintPascalCase}, () => {
             ruleArguments: [],
         });
 
-        expect(result).toEqual({${plugins.replace("\n", "\n    ")}
-            rules: [
-                {
-                    ruleName: "${args.eslint}",
-                },
-            ],
-        });
+        expect(result).toEqual({${plugins.replace("\n", "\n    ")}${body}});
     });${ruleArgumentsTest}
 });
 `.trimLeft(),

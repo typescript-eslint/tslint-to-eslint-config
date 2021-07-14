@@ -13,17 +13,20 @@ const { writeConverterTest } = require("./writeConverterTest");
 
     const args = command.parse(process.argv).opts();
 
-    for (const arg of ["eslint", "tslint"]) {
-        if (!args[arg]) {
-            throw new Error(`Missing --${arg} option.`);
-        }
+    if (!args.tslint) {
+        throw new Error(`Missing --tslint option.`);
+    }
+
+    if (args.sameArguments && !args.eslint) {
+        throw new Error(`Cannot use --sameArguments without --eslint.`);
     }
 
     const tslintPascalCase = upperFirst(camelCase(args.tslint)).replace("A11Y", "A11y");
-    const plugins = args.eslint.includes("/")
-        ? `
+    const plugins =
+        args.eslint && args.eslint.includes("/")
+            ? `
         plugins: ["${args.eslint.split("/")[0]}"],`
-        : "";
+            : "";
 
     await rewriteConvertersMap({ args, tslintPascalCase });
     await writeConverter({ args, plugins, tslintPascalCase });
