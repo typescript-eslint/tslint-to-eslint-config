@@ -257,6 +257,7 @@ import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
 import { convertReactA11yImageButtonHasAlt } from "./ruleConverters/react-a11y-image-button-has-alt";
 import { convertReactA11yImgHasAlt } from "./ruleConverters/react-a11y-img-has-alt";
+import { convertReactA11yLang } from "./ruleConverters/react-a11y-lang";
 import { convertReactA11yProps } from "./ruleConverters/react-a11y-props";
 import { convertReactA11yRoleHasRequiredAriaProps } from "./ruleConverters/react-a11y-role-has-required-aria-props";
 import { convertReactA11yTabIndexNoPositive } from "./ruleConverters/react-a11y-tabindex-no-positive";
@@ -499,6 +500,7 @@ export const ruleConverters = new Map([
     ["react-a11y-anchors", convertReactA11yAnchors],
     ["react-a11y-image-button-has-alt", convertReactA11yImageButtonHasAlt],
     ["react-a11y-img-has-alt", convertReactA11yImgHasAlt],
+    ["react-a11y-lang", convertReactA11yLang],
     ["react-a11y-props", convertReactA11yProps],
     ["react-a11y-role-has-required-aria-props", convertReactA11yRoleHasRequiredAriaProps],
     ["react-a11y-tabindex-no-positive", convertReactA11yTabIndexNoPositive],
