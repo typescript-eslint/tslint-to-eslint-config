@@ -14,3 +14,9 @@ If the lint rule includes arguments, add the `--sameArguments` flag above to hav
 ```shell
 node ./script/newConverter --eslint output-name --tslint input-name --sameArguments
 ```
+
+If the original TSLint rule is obsolete and does not have an ESLint equivalent, you can omit `--eslint`:
+
+```shell
+node ./script/newConverter --tslint input-name
+```

@@ -134,6 +134,7 @@ import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
 import { convertForin } from "./ruleConverters/forin";
 import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
 import { convertImportBlacklist } from "./ruleConverters/import-blacklist";
+import { convertImportDestructuringSpacing } from "./ruleConverters/import-destructuring-spacing";
 import { convertIncrementDecrement } from "./ruleConverters/increment-decrement";
 import { convertIndent } from "./ruleConverters/indent";
 import { convertInterfaceName } from "./ruleConverters/interface-name";
@@ -244,6 +245,7 @@ import { convertPreferConditionalExpression } from "./ruleConverters/prefer-cond
 import { convertPreferConst } from "./ruleConverters/prefer-const";
 import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
+import { convertPreferInlineDecorator } from "./ruleConverters/prefer-inline-decorator";
 import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
 import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
 import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
@@ -253,7 +255,9 @@ import { convertQuotemark } from "./ruleConverters/quotemark";
 import { convertRadix } from "./ruleConverters/radix";
 import { convertReactA11yAccessibleHeadings } from "./ruleConverters/react-a11y-accessible-headings";
 import { convertReactA11yAnchors } from "./ruleConverters/react-a11y-anchors";
+import { convertReactA11yProps } from "./ruleConverters/react-a11y-props";
 import { convertReactA11yRoleHasRequiredAriaProps } from "./ruleConverters/react-a11y-role-has-required-aria-props";
+import { convertReactA11yTabIndexNoPositive } from "./ruleConverters/react-a11y-tabindex-no-positive";
 import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-spacing";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
@@ -310,6 +314,7 @@ export const ruleConverters = new Map([
     ["forin", convertForin],
     ["function-constructor", convertFunctionConstructor],
     ["import-blacklist", convertImportBlacklist],
+    ["import-destructuring-spacing", convertImportDestructuringSpacing],
     ["increment-decrement", convertIncrementDecrement],
     ["indent", convertIndent],
     ["interface-name", convertInterfaceName],
@@ -479,6 +484,7 @@ export const ruleConverters = new Map([
     ["prefer-for-of", convertPreferForOf],
     ["prefer-function-over-method", convertPreferFunctionOverMethod],
     ["prefer-immediate-return", convertPreferImmediateReturn],
+    ["prefer-inline-decorator", convertPreferInlineDecorator],
     ["prefer-object-spread", convertPreferObjectSpread],
     ["prefer-on-push-component-change-detection", convertPreferOnPushComponentChangeDetection],
     ["prefer-output-readonly", convertPreferOutputReadonly],
@@ -489,7 +495,9 @@ export const ruleConverters = new Map([
     ["quotemark", convertQuotemark],
     ["radix", convertRadix],
     ["react-a11y-anchors", convertReactA11yAnchors],
+    ["react-a11y-props", convertReactA11yProps],
     ["react-a11y-role-has-required-aria-props", convertReactA11yRoleHasRequiredAriaProps],
+    ["react-a11y-tabindex-no-positive", convertReactA11yTabIndexNoPositive],
     ["react-no-dangerous-html", convertReactNoDangerousHtml],
     ["react-tsx-curly-spacing", convertReactTsxCurlySpacing],
     ["relative-url-prefix", convertRelativeUrlPrefix],
