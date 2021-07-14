@@ -271,8 +271,8 @@ import { convertStrictBooleanExpressions } from "./ruleConverters/strict-boolean
 import { convertSwitchDefault } from "./ruleConverters/switch-default";
 import { convertTrailingComma } from "./ruleConverters/trailing-comma";
 import { convertTripleEquals } from "./ruleConverters/triple-equals";
-import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
+import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
 import { convertUnderscoreConsistentInvocation } from "./ruleConverters/underscore-consistent-invocation";
 import { convertUnifiedSignatures } from "./ruleConverters/unified-signatures";
