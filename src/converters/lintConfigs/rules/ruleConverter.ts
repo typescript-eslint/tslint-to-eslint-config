@@ -28,9 +28,9 @@ export type ConversionResult = {
     plugins?: string[];
 
     /**
-     * At least one equivalent ESLint rule and options.
+     * At least one equivalent ESLint rule and options, if not obsolete.
      */
-    rules: ConvertedRuleChanges[];
+    rules?: ConvertedRuleChanges[];
 };
 
 /**

@@ -55,6 +55,40 @@ describe("convertFileComments", () => {
         expect(dependencies.fileSystem.writeFile).not.toHaveBeenCalled();
     });
 
+    it("ignores comment contents when an input rule is obsolete", async () => {
+        // Arrange
+        const dependencies = {
+            ...createStubDependencies(`
+// tslint:disable
+export const a = true;
+
+// tslint:disable:obsolete
+export const b = true;
+`),
+            converters: new Map([["obsolete", () => ({})]]),
+        };
+
+        // Act
+        await convertFileComments(
+            dependencies,
+            stubFileName,
+            new Map<string, string[]>(),
+            new Map<string, string[]>(),
+        );
+
+        // Assert
+        expect(dependencies.fileSystem.writeFile).toHaveBeenCalledWith(
+            stubFileName,
+            `
+/* eslint-disable */
+export const a = true;
+
+/* eslint-disable */
+export const b = true;
+`,
+        );
+    });
+
     it("parses TSLint directives to their matching ESLint directives", async () => {
         // Arrange
         const dependencies = createStubDependencies(`
