@@ -21,11 +21,11 @@ export const findPackagesConfiguration = async (
     return rawConfiguration instanceof Error
         ? rawConfiguration
         : {
-            dependencies: {
-                ...rawConfiguration.dependencies,
-            },
-            devDependencies: {
-                ...rawConfiguration.devDependencies,
-            },
-        };
+              dependencies: {
+                  ...rawConfiguration.dependencies,
+              },
+              devDependencies: {
+                  ...rawConfiguration.devDependencies,
+              },
+          };
 };
