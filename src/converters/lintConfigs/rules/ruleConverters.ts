@@ -263,6 +263,7 @@ import { convertReactA11yLang } from "./ruleConverters/react-a11y-lang";
 import { convertReactA11yProps } from "./ruleConverters/react-a11y-props";
 import { convertReactA11yRole } from "./ruleConverters/react-a11y-role";
 import { convertReactA11yRoleHasRequiredAriaProps } from "./ruleConverters/react-a11y-role-has-required-aria-props";
+import { convertReactA11yRoleSupportsAriaProps } from "./ruleConverters/react-a11y-role-supports-aria-props";
 import { convertReactA11yTabIndexNoPositive } from "./ruleConverters/react-a11y-tabindex-no-positive";
 import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-spacing";
@@ -508,6 +509,7 @@ export const ruleConverters = new Map([
     ["react-a11y-lang", convertReactA11yLang],
     ["react-a11y-props", convertReactA11yProps],
     ["react-a11y-role-has-required-aria-props", convertReactA11yRoleHasRequiredAriaProps],
+    ["react-a11y-role-supports-aria-props", convertReactA11yRoleSupportsAriaProps],
     ["react-a11y-role", convertReactA11yRole],
     ["react-a11y-tabindex-no-positive", convertReactA11yTabIndexNoPositive],
     ["react-no-dangerous-html", convertReactNoDangerousHtml],
