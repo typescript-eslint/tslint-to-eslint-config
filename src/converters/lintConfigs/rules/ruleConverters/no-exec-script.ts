@@ -10,7 +10,7 @@ export const convertNoExecScript: RuleConverter = () => {
                         selector: 'CallExpression[callee.name="execScript"]',
                     },
                 ],
-                ruleName: "restricted-syntax",
+                ruleName: "no-restricted-syntax",
             },
         ],
     };

@@ -11,7 +11,7 @@ export const convertNoCookies: RuleConverter = () => {
                             'MemberExpression[object.name="document"][property.name="cookie"]',
                     },
                 ],
-                ruleName: "restricted-syntax",
+                ruleName: "no-restricted-syntax",
             },
         ],
     };
