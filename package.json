@@ -36,11 +36,11 @@
         "@types/node": "16.0.0",
         "@typescript-eslint/eslint-plugin": "4.29.3",
         "@typescript-eslint/parser": "4.29.3",
-        "babel-jest": "27.0.6",
+        "babel-jest": "27.1.0",
         "eslint": "7.32.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.2",
-        "jest": "27.0.6",
+        "jest": "27.1.0",
         "lint-staged": "11.1.2",
         "prettier": "2.3.2",
         "strip-ansi": "6.0.0"
