@@ -262,6 +262,7 @@ import { convertReactA11yEventHasRole } from "./ruleConverters/react-a11y-event-
 import { convertReactA11yImageButtonHasAlt } from "./ruleConverters/react-a11y-image-button-has-alt";
 import { convertReactA11yImgHasAlt } from "./ruleConverters/react-a11y-img-has-alt";
 import { convertReactA11yLang } from "./ruleConverters/react-a11y-lang";
+import { convertReactA11yNoOnchange } from "./ruleConverters/react-a11y-no-onchange";
 import { convertReactA11yProps } from "./ruleConverters/react-a11y-props";
 import { convertReactA11yProptypes } from "./ruleConverters/react-a11y-proptypes";
 import { convertReactA11yRole } from "./ruleConverters/react-a11y-role";
@@ -513,6 +514,7 @@ export const ruleConverters = new Map([
     ["react-a11y-image-button-has-alt", convertReactA11yImageButtonHasAlt],
     ["react-a11y-img-has-alt", convertReactA11yImgHasAlt],
     ["react-a11y-lang", convertReactA11yLang],
+    ["react-a11y-no-onchange", convertReactA11yNoOnchange],
     ["react-a11y-props", convertReactA11yProps],
     ["react-a11y-proptypes", convertReactA11yProptypes],
     ["react-a11y-role-has-required-aria-props", convertReactA11yRoleHasRequiredAriaProps],
