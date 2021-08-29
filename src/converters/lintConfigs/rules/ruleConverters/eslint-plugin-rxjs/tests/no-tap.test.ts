@@ -9,7 +9,8 @@ describe(convertNoTap, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "rxjs/no-tap",
+                    ruleArguments: [{ tap: true }],
+                    ruleName: "rxjs/ban-operators",
                 },
             ],
             plugins: ["eslint-plugin-rxjs"],

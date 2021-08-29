@@ -4,7 +4,8 @@ export const convertNoTap: RuleConverter = () => {
     return {
         rules: [
             {
-                ruleName: "rxjs/no-tap",
+                ruleArguments: [{ tap: true }],
+                ruleName: "rxjs/ban-operators",
             },
         ],
         plugins: ["eslint-plugin-rxjs"],
