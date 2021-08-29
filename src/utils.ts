@@ -4,6 +4,8 @@ export type Entries<T> = {
     [K in keyof T]: [K, T[K]];
 }[keyof T][];
 
+export const asError = (error: unknown) => (error instanceof Error ? error : new Error(`${error}`));
+
 export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
 export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;

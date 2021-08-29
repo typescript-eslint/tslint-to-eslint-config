@@ -1,4 +1,5 @@
 import { SansDependencies } from "../binding";
+import { asError } from "../utils";
 import { importer } from "./importer";
 
 export const findRawConfiguration = async <Configuration>(
@@ -11,7 +12,7 @@ export const findRawConfiguration = async <Configuration>(
     try {
         results = (await fileImporter(filePath)) as Configuration;
     } catch (error) {
-        return error;
+        return asError(error);
     }
 
     return {
