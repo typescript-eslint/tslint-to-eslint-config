@@ -3,6 +3,7 @@ import { EOL } from "os";
 import { processLogger } from "../adapters/processLogger";
 import { runCliDependencies } from "../api/dependencies";
 import { runCli } from "../cli/runCli";
+import { asError } from "../utils";
 
 export const main = async (argv: string[]) => {
     try {
@@ -14,7 +15,9 @@ export const main = async (argv: string[]) => {
         }
     } catch (error) {
         processLogger.info.close();
-        processLogger.stdout.write(`Error in tslint-to-eslint-config: ${error.stack}${EOL}`);
+        processLogger.stdout.write(
+            `Error in tslint-to-eslint-config: ${asError(error).stack}${EOL}`,
+        );
         process.exitCode = 1;
     }
 };

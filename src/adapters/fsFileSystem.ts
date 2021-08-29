@@ -1,31 +1,29 @@
 import * as fs from "fs";
-import { promisify } from "util";
 
+import { asError } from "../utils";
 import { FileSystem } from "./fileSystem";
-
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
 
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {
         try {
             return fs.existsSync(filePath);
-        } catch (error) {
+        } catch {
             return false;
         }
     },
     readFile: async (filePath: string) => {
         try {
-            return (await readFile(filePath)).toString();
+            return (await fs.promises.readFile(filePath)).toString();
         } catch (error) {
-            return error;
+            return asError(error);
         }
     },
     writeFile: async (filePath: string, contents: string) => {
         try {
-            return writeFile(filePath, contents);
+            await fs.promises.writeFile(filePath, contents);
+            return undefined;
         } catch (error) {
-            return error;
+            return asError(error);
         }
     },
 };

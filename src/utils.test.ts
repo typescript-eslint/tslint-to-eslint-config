@@ -1,4 +1,35 @@
-import { isDefined, isError, removeEmptyMembers, separateErrors, uniqueFromSources } from "./utils";
+import {
+    asError,
+    isDefined,
+    isError,
+    removeEmptyMembers,
+    separateErrors,
+    uniqueFromSources,
+} from "./utils";
+
+describe("asError", () => {
+    it("returns the input when the input is an error", () => {
+        // Arrange
+        const input = new Error("Oh no!");
+
+        // Act
+        const result = asError(input);
+
+        // Assert
+        expect(result).toBe(input);
+    });
+
+    it("returns an equivalent error when the input is not an error", () => {
+        // Arrange
+        const input = "Oh no!";
+
+        // Act
+        const result = asError(input);
+
+        // Assert
+        expect(result).toEqual(new Error(input));
+    });
+});
 
 describe("isDefined", () => {
     it("returns true when the item is defined", () => {
