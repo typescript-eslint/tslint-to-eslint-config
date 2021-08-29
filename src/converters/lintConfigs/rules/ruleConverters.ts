@@ -184,6 +184,7 @@ import { convertNoExplicitAny } from "./ruleConverters/no-explicit-any";
 import { convertNoFloatingPromises } from "./ruleConverters/no-floating-promises";
 import { convertNoForIn } from "./ruleConverters/no-for-in";
 import { convertNoForInArray } from "./ruleConverters/no-for-in-array";
+import { convertNoFunctionExpression } from "./ruleConverters/no-function-expression";
 import { convertNoImplicitDependencies } from "./ruleConverters/no-implicit-dependencies";
 import { convertNoImportSideEffect } from "./ruleConverters/no-import-side-effect";
 import { convertNoInferrableTypes } from "./ruleConverters/no-inferrable-types";
@@ -219,6 +220,7 @@ import { convertNoThisAssignment } from "./ruleConverters/no-this-assignment";
 import { convertNoTrailingWhitespace } from "./ruleConverters/no-trailing-whitespace";
 import { convertNoUnboundMethod } from "./ruleConverters/no-unbound-method";
 import { convertNoUnnecessaryClass } from "./ruleConverters/no-unnecessary-class";
+import { convertNoUnnecessaryFieldInitialization } from "./ruleConverters/no-unnecessary-field-initialization";
 import { convertNoUnnecessaryInitializer } from "./ruleConverters/no-unnecessary-initializer";
 import { convertNoUnnecessaryQualifier } from "./ruleConverters/no-unnecessary-qualifier";
 import { convertNoUnnecessarySemicolons } from "./ruleConverters/no-unnecessary-semicolons";
@@ -268,6 +270,7 @@ import { convertReactA11yRoleSupportsAriaProps } from "./ruleConverters/react-a1
 import { convertReactA11yTabIndexNoPositive } from "./ruleConverters/react-a11y-tabindex-no-positive";
 import { convertReactNoDangerousHtml } from "./ruleConverters/react-no-dangerous-html";
 import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-spacing";
+import { convertReactUnusedPropsAndState } from "./ruleConverters/react-unused-props-and-state";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
 import { convertSemicolon } from "./ruleConverters/semicolon";
 import { convertSpaceBeforeFunctionParen } from "./ruleConverters/space-before-function-paren";
@@ -397,6 +400,7 @@ export const ruleConverters = new Map([
     ["no-for-in-array", convertNoForInArray],
     ["no-for-in", convertNoForIn],
     ["no-forward-ref", convertNoForwardRef],
+    ["no-function-expression", convertNoFunctionExpression],
     ["no-host-metadata-property", convertNoHostMetadataProperty],
     ["no-identical-conditions", convertNoIdenticalConditions],
     ["no-identical-expressions", convertNoIdenticalExpressions],
@@ -421,6 +425,7 @@ export const ruleConverters = new Map([
     ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
+    ["no-unnecessary-field-initialization", convertNoUnnecessaryFieldInitialization],
     ["non-literal-fs-path", convertNonLiteralFsPath],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
@@ -516,6 +521,7 @@ export const ruleConverters = new Map([
     ["react-a11y-tabindex-no-positive", convertReactA11yTabIndexNoPositive],
     ["react-no-dangerous-html", convertReactNoDangerousHtml],
     ["react-tsx-curly-spacing", convertReactTsxCurlySpacing],
+    ["react-unused-props-and-state", convertReactUnusedPropsAndState],
     ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
