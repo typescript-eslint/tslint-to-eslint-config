@@ -1,6 +1,6 @@
 import { RuleConverter } from "../../ruleConverter";
 
-export const convertNoUnsafeTakeUntil: RuleConverter = (tslintRule) => {
+export const convertNoUnsafeTakeuntil: RuleConverter = (tslintRule) => {
     return {
         rules: [
             {

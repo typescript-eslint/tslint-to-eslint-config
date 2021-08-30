@@ -74,14 +74,18 @@ import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-
 import { convertJsxSelfClose } from "./ruleConverters/eslint-plugin-react/jsx-self-close";
 import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
 import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
+import { convertAdd } from "./ruleConverters/eslint-plugin-rxjs/add";
 import { convertBanObservables } from "./ruleConverters/eslint-plugin-rxjs/ban-observables";
 import { convertBanOperators } from "./ruleConverters/eslint-plugin-rxjs/ban-operators";
+import { convertDeepOperators } from "./ruleConverters/eslint-plugin-rxjs/deep-operators";
 import { convertFinnish } from "./ruleConverters/eslint-plugin-rxjs/finnish";
 import { convertJust } from "./ruleConverters/eslint-plugin-rxjs/just";
+import { convertNoAdd } from "./ruleConverters/eslint-plugin-rxjs/no-add";
 import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
 import { convertNoCompat } from "./ruleConverters/eslint-plugin-rxjs/no-compat";
 import { convertNoConnectable } from "./ruleConverters/eslint-plugin-rxjs/no-connectable";
 import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoDeepOperators } from "./ruleConverters/eslint-plugin-rxjs/no-deep-operators";
 import { convertNoExplicitGenerics } from "./ruleConverters/eslint-plugin-rxjs/no-explicit-generics";
 import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
 import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
@@ -91,11 +95,13 @@ import { convertNoIgnoredObservable } from "./ruleConverters/eslint-plugin-rxjs/
 import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
 import { convertNoIgnoredSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscribe";
 import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
-import { convertNoIgnoredTakeWhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
+import { convertNoIgnoredTakewhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
 import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
 import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
 import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
 import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
+import { convertNoOperator } from "./ruleConverters/eslint-plugin-rxjs/no-operator";
+import { convertNoPatched } from "./ruleConverters/eslint-plugin-rxjs/no-patched";
 import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
 import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
 import { convertNoSubclass } from "./ruleConverters/eslint-plugin-rxjs/no-subclass";
@@ -106,9 +112,14 @@ import { convertNoToPromise } from "./ruleConverters/eslint-plugin-rxjs/no-topro
 import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
 import { convertNoUnsafeCatch } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-catch";
 import { convertNoUnsafeFirst } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-first";
+import { convertNoUnsafeScope } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-scope";
 import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
 import { convertNoUnsafeSwitchmap } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-switchmap";
-import { convertNoUnsafeTakeUntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import { convertNoUnsafeTakeuntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import { convertNoUnsafeTakewhile } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takewhile";
+import { convertNoUnusedAdd } from "./ruleConverters/eslint-plugin-rxjs/no-unused-add";
+import { convertNoWholesale } from "./ruleConverters/eslint-plugin-rxjs/no-wholesale";
+import { convertPreferAdd } from "./ruleConverters/eslint-plugin-rxjs/prefer-add";
 import { convertPreferAngularAsyncPipe } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-async-pipe";
 import { convertPreferAngularComposition } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-composition";
 import { convertPreferAngularTakeuntil } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-takeuntil";
@@ -548,14 +559,18 @@ export const ruleConverters = new Map([
     ["react-unused-props-and-state", convertReactUnusedPropsAndState],
     ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["rxjs-add", convertAdd],
     ["rxjs-ban-observables", convertBanObservables],
     ["rxjs-ban-operators", convertBanOperators],
+    ["rxjs-deep-operators", convertDeepOperators],
     ["rxjs-finnish", convertFinnish],
     ["rxjs-just", convertJust],
+    ["rxjs-no-add", convertNoAdd],
     ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-compat", convertNoCompat],
     ["rxjs-no-connectable", convertNoConnectable],
     ["rxjs-no-create", convertNoCreate],
+    ["rxjs-no-deep-operators", convertNoDeepOperators],
     ["rxjs-no-do", convertNoTap],
     ["rxjs-no-explicit-generics", convertNoExplicitGenerics],
     ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
@@ -566,11 +581,13 @@ export const ruleConverters = new Map([
     ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-ignored-subscribe", convertNoIgnoredSubscribe],
     ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
-    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakeWhileValue],
+    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakewhileValue],
     ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
     ["rxjs-no-index", convertNoIndex],
     ["rxjs-no-internal", convertNoInternal],
     ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
+    ["rxjs-no-operator", convertNoOperator],
+    ["rxjs-no-patched", convertNoPatched],
     ["rxjs-no-redundant-notify", convertNoRedundantNotify],
     ["rxjs-no-sharereplay", convertNoShareReplay],
     ["rxjs-no-subclass", convertNoSubclass],
@@ -581,9 +598,14 @@ export const ruleConverters = new Map([
     ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unsafe-catch", convertNoUnsafeCatch],
     ["rxjs-no-unsafe-first", convertNoUnsafeFirst],
+    ["rxjs-no-unsafe-scope", convertNoUnsafeScope],
     ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
     ["rxjs-no-unsafe-switchmap", convertNoUnsafeSwitchmap],
-    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeUntil],
+    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeuntil],
+    ["rxjs-no-unsafe-takewhile", convertNoUnsafeTakewhile],
+    ["rxjs-no-unused-add", convertNoUnusedAdd],
+    ["rxjs-no-wholesale", convertNoWholesale],
+    ["rxjs-prefer-add", convertPreferAdd],
     ["rxjs-prefer-angular-async-pipe", convertPreferAngularAsyncPipe],
     ["rxjs-prefer-angular-composition", convertPreferAngularComposition],
     ["rxjs-prefer-angular-takeuntil", convertPreferAngularTakeuntil],

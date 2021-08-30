@@ -1,8 +1,8 @@
-import { convertNoIgnoredTakewhileValue } from "../no-ignored-takewhile-value";
+import { convertNoUnsafeTakewhile } from "../no-unsafe-takewhile";
 
-describe(convertNoIgnoredTakewhileValue, () => {
+describe(convertNoUnsafeTakewhile, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredTakewhileValue({
+        const result = convertNoUnsafeTakewhile({
             ruleArguments: [],
         });
 
