@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../../ruleConverter";
 
 export const convertPreferInlineDecorator: RuleConverter = () => {
     return {};
