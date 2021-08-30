@@ -6,6 +6,6 @@ describe(convertUsePipeDecorator, () => {
             ruleArguments: [],
         });
 
-        expect(result).toEqual({ rules: [] });
+        expect(result).toEqual({});
     });
 });
