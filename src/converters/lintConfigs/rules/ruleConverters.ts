@@ -68,6 +68,7 @@ import { convertActionHygiene } from "./ruleConverters/eslint-plugin-ngrx/action
 import { convertAvoidDispatchingMultipleActionsSequentially } from "./ruleConverters/eslint-plugin-ngrx/avoid-dispatching-multiple-actions-sequentially";
 import { convertEffectCreatorAndDecorator } from "./ruleConverters/eslint-plugin-ngrx/effect-creator-and-decorator";
 import { convertNoDispatchInEffects } from "./ruleConverters/eslint-plugin-ngrx/no-dispatch-in-effects";
+import { convertNoDuplicateActionTypes } from "./ruleConverters/eslint-plugin-ngrx/no-duplicate-action-types";
 import { convertNoEffectDecorator } from "./ruleConverters/eslint-plugin-ngrx/no-effect-decorator";
 import { convertNoEffectsInProviders } from "./ruleConverters/eslint-plugin-ngrx/no-effects-in-providers";
 import { convertNoMultipleActionsInEffects } from "./ruleConverters/eslint-plugin-ngrx/no-multiple-actions-in-effects";
@@ -395,6 +396,7 @@ export const ruleConverters = new Map([
     ],
     ["ngrx-effect-creator-and-decorator", convertEffectCreatorAndDecorator],
     ["ngrx-no-dispatch-in-effects", convertNoDispatchInEffects],
+    ["ngrx-no-duplicate-action-types", convertNoDuplicateActionTypes],
     ["ngrx-no-effect-decorator", convertNoEffectDecorator],
     ["ngrx-no-effects-in-providers", convertNoEffectsInProviders],
     ["ngrx-no-multiple-actions-in-effects", convertNoMultipleActionsInEffects],
