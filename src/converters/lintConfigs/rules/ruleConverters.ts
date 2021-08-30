@@ -10,6 +10,7 @@ import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
 import { convertClassName } from "./ruleConverters/class-name";
+import { convertAngularWhitespace } from "./ruleConverters/codelyzer/angular-whitespace";
 import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/component-class-suffix";
 import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
@@ -331,6 +332,7 @@ import { convertVariableName } from "./ruleConverters/variable-name";
 export const ruleConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["align", convertAlign],
+    ["angular-whitespace", convertAngularWhitespace],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
