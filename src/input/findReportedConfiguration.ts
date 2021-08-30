@@ -1,4 +1,5 @@
 import { Exec } from "../adapters/exec";
+import { asError } from "../utils";
 
 export type DeepPartial<T> = {
     [P in keyof T]?: T[P] extends Record<string, unknown> ? DeepPartial<T[P]> : T[P];
@@ -37,6 +38,6 @@ const execAndCatch = async (exec: Exec, fullCommand: string): Promise<string | E
 
         return stdout;
     } catch (error) {
-        return error;
+        return asError(error);
     }
 };

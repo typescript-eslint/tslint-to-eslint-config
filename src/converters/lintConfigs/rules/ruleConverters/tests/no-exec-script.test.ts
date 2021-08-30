@@ -15,7 +15,7 @@ describe(convertNoExecScript, () => {
                             selector: 'CallExpression[callee.name="execScript"]',
                         },
                     ],
-                    ruleName: "restricted-syntax",
+                    ruleName: "no-restricted-syntax",
                 },
             ],
         });
