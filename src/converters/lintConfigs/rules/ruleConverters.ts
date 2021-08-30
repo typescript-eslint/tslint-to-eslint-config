@@ -174,6 +174,18 @@ import { convertMochaAvoidOnly } from "./ruleConverters/mocha-avoid-only";
 import { convertNewParens } from "./ruleConverters/new-parens";
 import { convertNewlineBeforeReturn } from "./ruleConverters/newline-before-return";
 import { convertNewlinePerChainedCall } from "./ruleConverters/newline-per-chained-call";
+import { convertActionHygiene } from "./ruleConverters/ngrx-tslint-rules/action-hygiene";
+import { convertAvoidDispatchingMultipleActionsSequentially } from "./ruleConverters/ngrx-tslint-rules/avoid-dispatching-multiple-actions-sequentially";
+import { convertEffectCreatorAndDecorator } from "./ruleConverters/ngrx-tslint-rules/effect-creator-and-decorator";
+import { convertNoDispatchInEffects } from "./ruleConverters/ngrx-tslint-rules/no-dispatch-in-effects";
+import { convertNoDuplicateActionTypes } from "./ruleConverters/ngrx-tslint-rules/no-duplicate-action-types";
+import { convertNoEffectDecorator } from "./ruleConverters/ngrx-tslint-rules/no-effect-decorator";
+import { convertNoEffectsInProviders } from "./ruleConverters/ngrx-tslint-rules/no-effects-in-providers";
+import { convertNoMultipleActionsInEffects } from "./ruleConverters/ngrx-tslint-rules/no-multiple-actions-in-effects";
+import { convertNoReducerInKeyNames } from "./ruleConverters/ngrx-tslint-rules/no-reducer-in-key-names";
+import { convertNoTypedStore } from "./ruleConverters/ngrx-tslint-rules/no-typed-store";
+import { convertOnReducerExplicitReturnType } from "./ruleConverters/ngrx-tslint-rules/on-reducer-explicit-return-type";
+import { convertSelectorForSelect } from "./ruleConverters/ngrx-tslint-rules/selector-for-select";
 import { convertNoAngleBracketTypeAssertion } from "./ruleConverters/no-angle-bracket-type-assertion";
 import { convertNoArg } from "./ruleConverters/no-arg";
 import { convertNoAsyncWithoutAwait } from "./ruleConverters/no-async-without-await";
@@ -377,6 +389,22 @@ export const ruleConverters = new Map([
     ["new-parens", convertNewParens],
     ["newline-before-return", convertNewlineBeforeReturn],
     ["newline-per-chained-call", convertNewlinePerChainedCall],
+    ["ngrx-action-hygiene", convertActionHygiene],
+    [
+        "ngrx-avoid-dispatching-multiple-actions-sequentially",
+        convertAvoidDispatchingMultipleActionsSequentially,
+    ],
+    ["ngrx-effect-creator-and-decorator", convertEffectCreatorAndDecorator],
+    ["ngrx-no-dispatch-in-effects", convertNoDispatchInEffects],
+    ["ngrx-no-duplicate-action-types", convertNoDuplicateActionTypes],
+    ["ngrx-no-effect-decorator", convertNoEffectDecorator],
+    ["ngrx-no-effects-in-providers", convertNoEffectsInProviders],
+    ["ngrx-no-multiple-actions-in-effects", convertNoMultipleActionsInEffects],
+    ["ngrx-no-reducer-in-key-names", convertNoReducerInKeyNames],
+    ["ngrx-no-reducer-in-key-names", convertNoReducerInKeyNames],
+    ["ngrx-no-typed-store", convertNoTypedStore],
+    ["ngrx-on-reducer-explicit-return-type", convertOnReducerExplicitReturnType],
+    ["ngrx-selector-for-select", convertSelectorForSelect],
     ["no-all-duplicated-branches", convertNoAllDuplicatedBranches],
     ["no-alphabetical-sort", convertNoAlphabeticalSort],
     ["no-angle-bracket-type-assertion", convertNoAngleBracketTypeAssertion],
