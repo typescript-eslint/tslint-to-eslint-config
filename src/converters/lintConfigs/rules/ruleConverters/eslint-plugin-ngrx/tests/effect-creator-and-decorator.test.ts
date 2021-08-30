@@ -9,7 +9,7 @@ describe(convertEffectCreatorAndDecorator, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "ngrx/effect-decorator-and-creator",
+                    ruleName: "ngrx/no-effect-decorator-and-creator",
                 },
             ],
             plugins: ["eslint-plugin-ngrx"],
