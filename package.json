@@ -42,7 +42,7 @@
         "husky": "7.0.2",
         "jest": "27.1.1",
         "lint-staged": "11.1.2",
-        "prettier": "2.3.2",
+        "prettier": "2.4.0",
         "strip-ansi": "6.0.0"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
