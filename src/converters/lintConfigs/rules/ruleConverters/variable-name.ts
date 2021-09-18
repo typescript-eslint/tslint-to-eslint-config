@@ -77,8 +77,8 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         };
     };
 
-    const getBlackListRuleOptions = () => {
-        const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
+    const getDenyListRuleOptions = () => {
+        const denyListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
             ? [
                   "any",
                   "Number",
@@ -93,10 +93,10 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
             : [];
 
         return {
-            ...(blackListOptionArguments.length !== 0 && {
-                ruleArguments: blackListOptionArguments,
+            ...(denyListOptionArguments.length !== 0 && {
+                ruleArguments: denyListOptionArguments,
             }),
-            ruleName: "id-blacklist",
+            ruleName: "id-denylist",
         };
     };
 
@@ -104,7 +104,7 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         rules: [
             getCamelCaseRuleOptions(),
             getUnderscoreDangleRuleOptions(),
-            getBlackListRuleOptions(),
+            getDenyListRuleOptions(),
             {
                 ruleName: "id-match",
             },
