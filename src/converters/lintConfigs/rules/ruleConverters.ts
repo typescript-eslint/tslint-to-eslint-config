@@ -10,6 +10,7 @@ import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
 import { convertClassName } from "./ruleConverters/class-name";
+import { convertAngularWhitespace } from "./ruleConverters/codelyzer/angular-whitespace";
 import { convertComponentClassSuffix } from "./ruleConverters/codelyzer/component-class-suffix";
 import { convertComponentMaxInlineDeclarations } from "./ruleConverters/codelyzer/component-max-inline-declarations";
 import { convertComponentSelector } from "./ruleConverters/codelyzer/component-selector";
@@ -17,6 +18,7 @@ import { convertContextualDecorator } from "./ruleConverters/codelyzer/contextua
 import { convertContextualLifecycle } from "./ruleConverters/codelyzer/contextual-lifecycle";
 import { convertDirectiveClassSuffix } from "./ruleConverters/codelyzer/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/codelyzer/directive-selector";
+import { convertImportDestructuringSpacing } from "./ruleConverters/codelyzer/import-destructuring-spacing";
 import { convertNoAttributeDecorator } from "./ruleConverters/codelyzer/no-attribute-decorator";
 import { convertNoConflictingLifecycle } from "./ruleConverters/codelyzer/no-conflicting-lifecycle";
 import { convertNoForwardRef } from "./ruleConverters/codelyzer/no-forward-ref";
@@ -32,6 +34,7 @@ import { convertNoOutputsMetadataProperty } from "./ruleConverters/codelyzer/no-
 import { convertNoPipeImpure } from "./ruleConverters/codelyzer/no-pipe-impure";
 import { convertNoQueriesMetadataProperty } from "./ruleConverters/codelyzer/no-queries-metadata-property";
 import { convertPipePrefix } from "./ruleConverters/codelyzer/pipe-prefix";
+import { convertPreferInlineDecorator } from "./ruleConverters/codelyzer/prefer-inline-decorator";
 import { convertPreferOnPushComponentChangeDetection } from "./ruleConverters/codelyzer/prefer-on-push-component-change-detection";
 import { convertPreferOutputReadonly } from "./ruleConverters/codelyzer/prefer-output-readonly";
 import { convertRelativeUrlPrefix } from "./ruleConverters/codelyzer/relative-url-prefix";
@@ -156,7 +159,6 @@ import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
 import { convertForin } from "./ruleConverters/forin";
 import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
 import { convertImportBlacklist } from "./ruleConverters/import-blacklist";
-import { convertImportDestructuringSpacing } from "./ruleConverters/import-destructuring-spacing";
 import { convertIncrementDecrement } from "./ruleConverters/increment-decrement";
 import { convertIndent } from "./ruleConverters/indent";
 import { convertInterfaceName } from "./ruleConverters/interface-name";
@@ -281,7 +283,6 @@ import { convertPreferConditionalExpression } from "./ruleConverters/prefer-cond
 import { convertPreferConst } from "./ruleConverters/prefer-const";
 import { convertPreferForOf } from "./ruleConverters/prefer-for-of";
 import { convertPreferFunctionOverMethod } from "./ruleConverters/prefer-function-over-method";
-import { convertPreferInlineDecorator } from "./ruleConverters/prefer-inline-decorator";
 import { convertPreferObjectSpread } from "./ruleConverters/prefer-object-spread";
 import { convertPreferReadonly } from "./ruleConverters/prefer-readonly";
 import { convertPreferSwitch } from "./ruleConverters/prefer-switch";
@@ -331,6 +332,7 @@ import { convertVariableName } from "./ruleConverters/variable-name";
 export const ruleConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["align", convertAlign],
+    ["angular-whitespace", convertAngularWhitespace],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],

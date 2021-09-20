@@ -6,8 +6,6 @@ describe(convertNoDuplicateActionTypes, () => {
             ruleArguments: [],
         });
 
-        expect(result).toEqual({
-            rules: [],
-        });
+        expect(result).toEqual({});
     });
 });

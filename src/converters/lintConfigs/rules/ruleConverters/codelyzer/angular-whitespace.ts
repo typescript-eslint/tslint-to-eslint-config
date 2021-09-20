@@ -1,5 +1,5 @@
 import { RuleConverter } from "../../ruleConverter";
 
-export const convertNoDuplicateActionTypes: RuleConverter = () => {
+export const convertAngularWhitespace: RuleConverter = () => {
     return {};
 };
