@@ -1,8 +1,8 @@
-import { convertNoUnsafeTakeUntil } from "../no-unsafe-takeuntil";
+import { convertNoUnsafeTakeuntil } from "../no-unsafe-takeuntil";
 
-describe(convertNoUnsafeTakeUntil, () => {
+describe(convertNoUnsafeTakeuntil, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeTakeUntil({
+        const result = convertNoUnsafeTakeuntil({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoUnsafeTakeUntil, () => {
     });
 
     test("conversion with alias argument", () => {
-        const result = convertNoUnsafeTakeUntil({
+        const result = convertNoUnsafeTakeuntil({
             ruleArguments: [{ alias: ["untilDestroyed"] }],
         });
 
@@ -33,7 +33,7 @@ describe(convertNoUnsafeTakeUntil, () => {
     });
 
     test("conversion with allow argument", () => {
-        const result = convertNoUnsafeTakeUntil({
+        const result = convertNoUnsafeTakeuntil({
             ruleArguments: [{ allow: ["shareReplay", "share"] }],
         });
 

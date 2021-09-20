@@ -1,6 +1,6 @@
 import { RuleConverter } from "../../ruleConverter";
 
-export const convertNoIgnoredTakewhileValue: RuleConverter = () => {
+export const convertNoUnsafeTakewhile: RuleConverter = () => {
     return {
         rules: [
             {
