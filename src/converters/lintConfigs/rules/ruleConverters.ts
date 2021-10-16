@@ -10,7 +10,8 @@ import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
 import { convertClassName } from "./ruleConverters/class-name";
-import { convertCognitiveComplexity } from "./ruleConverters/cognitive-complexity";
+import { convertAngularWhitespace } from "./ruleConverters/codelyzer/angular-whitespace";
+import { convertImportDestructuringSpacing } from "./ruleConverters/codelyzer/import-destructuring-spacing";
 import { convertCommentFormat } from "./ruleConverters/comment-format";
 import { convertComponentClassSuffix } from "./ruleConverters/component-class-suffix";
 import { convertComponentMaxInlineDeclarations } from "./ruleConverters/component-max-inline-declarations";
@@ -24,26 +25,78 @@ import { convertDeprecation } from "./ruleConverters/deprecation";
 import { convertDirectiveClassSuffix } from "./ruleConverters/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/directive-selector";
 import { convertEofline } from "./ruleConverters/eofline";
+import { convertJsxBanProps } from "./ruleConverters/eslint-plugin-react/jsx-ban-props";
+import { convertJsxBooleanValue } from "./ruleConverters/eslint-plugin-react/jsx-boolean-value";
+import { convertJsxCurlySpacing } from "./ruleConverters/eslint-plugin-react/jsx-curly-spacing";
+import { convertJsxEqualsSpacing } from "./ruleConverters/eslint-plugin-react/jsx-equals-spacing";
+import { convertJsxKey } from "./ruleConverters/eslint-plugin-react/jsx-key";
+import { convertJsxNoBind } from "./ruleConverters/eslint-plugin-react/jsx-no-bind";
+import { convertJsxNoLambda } from "./ruleConverters/eslint-plugin-react/jsx-no-lambda";
+import { convertJsxSelfClose } from "./ruleConverters/eslint-plugin-react/jsx-self-close";
+import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/eslint-plugin-react/jsx-space-before-trailing-slash";
+import { convertJsxWrapMultiline } from "./ruleConverters/eslint-plugin-react/jsx-wrap-multiline";
+import { convertAdd } from "./ruleConverters/eslint-plugin-rxjs/add";
+import { convertBanObservables } from "./ruleConverters/eslint-plugin-rxjs/ban-observables";
+import { convertBanOperators } from "./ruleConverters/eslint-plugin-rxjs/ban-operators";
+import { convertDeepOperators } from "./ruleConverters/eslint-plugin-rxjs/deep-operators";
+import { convertFinnish } from "./ruleConverters/eslint-plugin-rxjs/finnish";
+import { convertJust } from "./ruleConverters/eslint-plugin-rxjs/just";
+import { convertNoAdd } from "./ruleConverters/eslint-plugin-rxjs/no-add";
+import { convertNoAsyncSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-async-subscribe";
+import { convertNoCompat } from "./ruleConverters/eslint-plugin-rxjs/no-compat";
+import { convertNoConnectable } from "./ruleConverters/eslint-plugin-rxjs/no-connectable";
+import { convertNoCreate } from "./ruleConverters/eslint-plugin-rxjs/no-create";
+import { convertNoDeepOperators } from "./ruleConverters/eslint-plugin-rxjs/no-deep-operators";
+import { convertNoExplicitGenerics } from "./ruleConverters/eslint-plugin-rxjs/no-explicit-generics";
+import { convertNoExposedSubjects } from "./ruleConverters/eslint-plugin-rxjs/no-exposed-subjects";
+import { convertNoFinnish } from "./ruleConverters/eslint-plugin-rxjs/no-finnish";
+import { convertNoIgnoredError } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-error";
+import { convertNoIgnoredNotifier } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-notifier";
+import { convertNoIgnoredObservable } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-observable";
+import { convertNoIgnoredReplayBuffer } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-replay-buffer";
+import { convertNoIgnoredSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscribe";
+import { convertNoIgnoredSubscription } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-subscription";
+import { convertNoIgnoredTakewhileValue } from "./ruleConverters/eslint-plugin-rxjs/no-ignored-takewhile-value";
+import { convertNoImplicitAnyCatch } from "./ruleConverters/eslint-plugin-rxjs/no-implicit-any-catch";
+import { convertNoIndex } from "./ruleConverters/eslint-plugin-rxjs/no-index";
+import { convertNoInternal } from "./ruleConverters/eslint-plugin-rxjs/no-internal";
+import { convertNoNestedSubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-nested-subscribe";
+import { convertNoOperator } from "./ruleConverters/eslint-plugin-rxjs/no-operator";
+import { convertNoPatched } from "./ruleConverters/eslint-plugin-rxjs/no-patched";
+import { convertNoRedundantNotify } from "./ruleConverters/eslint-plugin-rxjs/no-redundant-notify";
+import { convertNoShareReplay } from "./ruleConverters/eslint-plugin-rxjs/no-sharereplay";
+import { convertNoSubclass } from "./ruleConverters/eslint-plugin-rxjs/no-subclass";
+import { convertNoSubjectUnubscribe } from "./ruleConverters/eslint-plugin-rxjs/no-subject-unsubscribe";
+import { convertNoSubjectValue } from "./ruleConverters/eslint-plugin-rxjs/no-subject-value";
+import { convertNoTap } from "./ruleConverters/eslint-plugin-rxjs/no-tap";
+import { convertNoToPromise } from "./ruleConverters/eslint-plugin-rxjs/no-topromise";
+import { convertNoUnboundMethods } from "./ruleConverters/eslint-plugin-rxjs/no-unbound-methods";
+import { convertNoUnsafeCatch } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-catch";
+import { convertNoUnsafeFirst } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-first";
+import { convertNoUnsafeScope } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-scope";
+import { convertNoUnsafeSubjectNext } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-subject-next";
+import { convertNoUnsafeSwitchmap } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-switchmap";
+import { convertNoUnsafeTakeuntil } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takeuntil";
+import { convertNoUnsafeTakewhile } from "./ruleConverters/eslint-plugin-rxjs/no-unsafe-takewhile";
+import { convertNoUnusedAdd } from "./ruleConverters/eslint-plugin-rxjs/no-unused-add";
+import { convertNoWholesale } from "./ruleConverters/eslint-plugin-rxjs/no-wholesale";
+import { convertPreferAdd } from "./ruleConverters/eslint-plugin-rxjs/prefer-add";
+import { convertPreferAngularAsyncPipe } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-async-pipe";
+import { convertPreferAngularComposition } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-composition";
+import { convertPreferAngularTakeuntil } from "./ruleConverters/eslint-plugin-rxjs/prefer-angular-takeuntil";
+import { convertPreferObserver } from "./ruleConverters/eslint-plugin-rxjs/prefer-observer";
+import { convertSuffixSubjects } from "./ruleConverters/eslint-plugin-rxjs/suffix-subjects";
+import { convertThrowError } from "./ruleConverters/eslint-plugin-rxjs/throw-error";
+import { convertCognitiveComplexity } from "./ruleConverters/eslint-plugin-sonarjs/cognitive-complexity";
 import { convertFileNameCasing } from "./ruleConverters/file-name-casing";
 import { convertForin } from "./ruleConverters/forin";
 import { convertFunctionConstructor } from "./ruleConverters/function-constructor";
 import { convertImportBlacklist } from "./ruleConverters/import-blacklist";
-import { convertImportDestructuringSpacing } from "./ruleConverters/import-destructuring-spacing";
 import { convertIncrementDecrement } from "./ruleConverters/increment-decrement";
 import { convertIndent } from "./ruleConverters/indent";
 import { convertInterfaceName } from "./ruleConverters/interface-name";
 import { convertInterfaceOverTypeLiteral } from "./ruleConverters/interface-over-type-literal";
 import { convertJSDocFormat } from "./ruleConverters/jsdoc-format";
-import { convertJsxBanProps } from "./ruleConverters/jsx-ban-props";
-import { convertJsxBooleanValue } from "./ruleConverters/jsx-boolean-value";
-import { convertJsxCurlySpacing } from "./ruleConverters/jsx-curly-spacing";
-import { convertJsxEqualsSpacing } from "./ruleConverters/jsx-equals-spacing";
-import { convertJsxKey } from "./ruleConverters/jsx-key";
-import { convertJsxNoBind } from "./ruleConverters/jsx-no-bind";
-import { convertJsxNoLambda } from "./ruleConverters/jsx-no-lambda";
-import { convertJsxSelfClose } from "./ruleConverters/jsx-self-close";
-import { convertJsxSpaceBeforeTrailingSlash } from "./ruleConverters/jsx-space-before-trailing-slash";
-import { convertJsxWrapMultiline } from "./ruleConverters/jsx-wrap-multiline";
 import { convertLabelPosition } from "./ruleConverters/label-position";
 import { convertLinebreakStyle } from "./ruleConverters/linebreak-style";
 import { convertMaxClassesPerFile } from "./ruleConverters/max-classes-per-file";
@@ -331,6 +384,7 @@ import { convertVariableName } from "./ruleConverters/variable-name";
 export const ruleConverters = new Map([
     ["adjacent-overload-signatures", convertAdjacentOverloadSignatures],
     ["align", convertAlign],
+    ["angular-whitespace", convertAngularWhitespace],
     ["array-type", convertArrayType],
     ["arrow-parens", convertArrowParens],
     ["arrow-return-shorthand", convertArrowReturnShorthand],
@@ -475,8 +529,6 @@ export const ruleConverters = new Map([
     ["no-multiline-string-literals", convertNoMultilineStringLiterals],
     ["no-multiline-string", convertNoMultilineString],
     ["no-namespace", convertNoNamespace],
-    ["no-unnecessary-field-initialization", convertNoUnnecessaryFieldInitialization],
-    ["non-literal-fs-path", convertNonLiteralFsPath],
     ["no-non-null-assertion", convertNoNonNullAssertion],
     ["no-null-keyword", convertNoNullKeyword],
     ["no-object-literal-type-assertion", convertNoObjectLiteralTypeAssertion],
@@ -513,6 +565,7 @@ export const ruleConverters = new Map([
     ["no-unbound-method", convertNoUnboundMethod],
     ["no-unconditional-jump", convertNoUnconditionalJump],
     ["no-unnecessary-class", convertNoUnnecessaryClass],
+    ["no-unnecessary-field-initialization", convertNoUnnecessaryFieldInitialization],
     ["no-unnecessary-initializer", convertNoUnnecessaryInitializer],
     ["no-unnecessary-qualifier", convertNoUnnecessaryQualifier],
     ["no-unnecessary-semicolons", convertNoUnnecessarySemicolons],
@@ -530,6 +583,7 @@ export const ruleConverters = new Map([
     ["no-variable-usage-before-declaration", convertNoVariableUsageBeforeDeclaration],
     ["no-void-expression", convertNoVoidExpression],
     ["no-with-statement", convertNoWithStatement],
+    ["non-literal-fs-path", convertNonLiteralFsPath],
     ["non-literal-require", convertNonLiteralRequire],
     ["object-literal-key-quotes", convertObjectLiteralKeyQuotes],
     ["object-literal-shorthand", convertObjectLiteralShorthand],
@@ -575,48 +629,101 @@ export const ruleConverters = new Map([
     ["react-unused-props-and-state", convertReactUnusedPropsAndState],
     ["relative-url-prefix", convertRelativeUrlPrefix],
     ["restrict-plus-operands", convertRestrictPlusOperands],
+    ["rxjs-add", convertAdd],
+    ["rxjs-ban-observables", convertBanObservables],
     ["rxjs-ban-observables", convertRxjsBanObservables],
+    ["rxjs-ban-operators", convertBanOperators],
     ["rxjs-ban-operators", convertRxjsBanOperators],
+    ["rxjs-deep-operators", convertDeepOperators],
+    ["rxjs-finnish", convertFinnish],
     ["rxjs-finnish", convertRxjsFinnish],
+    ["rxjs-just", convertJust],
     ["rxjs-just", convertRxjsJust],
+    ["rxjs-no-add", convertNoAdd],
+    ["rxjs-no-async-subscribe", convertNoAsyncSubscribe],
     ["rxjs-no-async-subscribe", convertRxjsNoAsyncSubscribe],
+    ["rxjs-no-compat", convertNoCompat],
     ["rxjs-no-compat", convertRxjsNoCompat],
+    ["rxjs-no-connectable", convertNoConnectable],
     ["rxjs-no-connectable", convertRxjsNoConnectable],
+    ["rxjs-no-create", convertNoCreate],
     ["rxjs-no-create", convertRxjsNoCreate],
+    ["rxjs-no-deep-operators", convertNoDeepOperators],
+    ["rxjs-no-do", convertNoTap],
     ["rxjs-no-do", convertRxjsNoTap],
+    ["rxjs-no-explicit-generics", convertNoExplicitGenerics],
     ["rxjs-no-explicit-generics", convertRxjsNoExplicitGenerics],
+    ["rxjs-no-exposed-subjects", convertNoExposedSubjects],
     ["rxjs-no-exposed-subjects", convertRxjsNoExposedSubjects],
+    ["rxjs-no-finnish", convertNoFinnish],
     ["rxjs-no-finnish", convertRxjsNoFinnish],
+    ["rxjs-no-ignored-error", convertNoIgnoredError],
     ["rxjs-no-ignored-error", convertRxjsNoIgnoredError],
+    ["rxjs-no-ignored-notifier", convertNoIgnoredNotifier],
     ["rxjs-no-ignored-notifier", convertRxjsNoIgnoredNotifier],
+    ["rxjs-no-ignored-observable", convertNoIgnoredObservable],
     ["rxjs-no-ignored-observable", convertRxjsNoIgnoredObservable],
+    ["rxjs-no-ignored-replay-buffer", convertNoIgnoredReplayBuffer],
     ["rxjs-no-ignored-replay-buffer", convertRxjsNoIgnoredReplayBuffer],
+    ["rxjs-no-ignored-subscribe", convertNoIgnoredSubscribe],
     ["rxjs-no-ignored-subscribe", convertRxjsNoIgnoredSubscribe],
+    ["rxjs-no-ignored-subscription", convertNoIgnoredSubscription],
     ["rxjs-no-ignored-subscription", convertRxjsNoIgnoredSubscription],
+    ["rxjs-no-ignored-takewhile-value", convertNoIgnoredTakewhileValue],
     ["rxjs-no-ignored-takewhile-value", convertRxjsNoIgnoredTakeWhileValue],
+    ["rxjs-no-implicit-any-catch", convertNoImplicitAnyCatch],
     ["rxjs-no-implicit-any-catch", convertRxjsNoImplicitAnyCatch],
+    ["rxjs-no-index", convertNoIndex],
     ["rxjs-no-index", convertRxjsNoIndex],
+    ["rxjs-no-internal", convertNoInternal],
     ["rxjs-no-internal", convertRxjsNoInternal],
+    ["rxjs-no-nested-subscribe", convertNoNestedSubscribe],
     ["rxjs-no-nested-subscribe", convertRxjsNoNestedSubscribe],
+    ["rxjs-no-operator", convertNoOperator],
+    ["rxjs-no-patched", convertNoPatched],
+    ["rxjs-no-redundant-notify", convertNoRedundantNotify],
     ["rxjs-no-redundant-notify", convertRxjsNoRedundantNotify],
+    ["rxjs-no-sharereplay", convertNoShareReplay],
     ["rxjs-no-sharereplay", convertRxjsNoShareReplay],
+    ["rxjs-no-subclass", convertNoSubclass],
     ["rxjs-no-subclass", convertRxjsNoSubclass],
+    ["rxjs-no-subject-unsubscribe", convertNoSubjectUnubscribe],
     ["rxjs-no-subject-unsubscribe", convertRxjsNoSubjectUnubscribe],
+    ["rxjs-no-subject-value", convertNoSubjectValue],
     ["rxjs-no-subject-value", convertRxjsNoSubjectValue],
+    ["rxjs-no-tap", convertNoTap],
     ["rxjs-no-tap", convertRxjsNoTap],
+    ["rxjs-no-topromise", convertNoToPromise],
     ["rxjs-no-topromise", convertRxjsNoToPromise],
+    ["rxjs-no-unbound-methods", convertNoUnboundMethods],
     ["rxjs-no-unbound-methods", convertRxjsNoUnboundMethods],
+    ["rxjs-no-unsafe-catch", convertNoUnsafeCatch],
     ["rxjs-no-unsafe-catch", convertRxjsNoUnsafeCatch],
+    ["rxjs-no-unsafe-first", convertNoUnsafeFirst],
     ["rxjs-no-unsafe-first", convertRxjsNoUnsafeFirst],
+    ["rxjs-no-unsafe-scope", convertNoUnsafeScope],
+    ["rxjs-no-unsafe-subject-next", convertNoUnsafeSubjectNext],
     ["rxjs-no-unsafe-subject-next", convertRxjsNoUnsafeSubjectNext],
+    ["rxjs-no-unsafe-switchmap", convertNoUnsafeSwitchmap],
     ["rxjs-no-unsafe-switchmap", convertRxjsNoUnsafeSwitchmap],
+    ["rxjs-no-unsafe-takeuntil", convertNoUnsafeTakeuntil],
     ["rxjs-no-unsafe-takeuntil", convertRxjsNoUnsafeTakeUntil],
+    ["rxjs-no-unsafe-takewhile", convertNoUnsafeTakewhile],
+    ["rxjs-no-unused-add", convertNoUnusedAdd],
+    ["rxjs-no-wholesale", convertNoWholesale],
+    ["rxjs-prefer-add", convertPreferAdd],
+    ["rxjs-prefer-angular-async-pipe", convertPreferAngularAsyncPipe],
     ["rxjs-prefer-angular-async-pipe", convertRxjsPreferAngularAsyncPipe],
+    ["rxjs-prefer-angular-composition", convertPreferAngularComposition],
     ["rxjs-prefer-angular-composition", convertRxjsPreferAngularComposition],
+    ["rxjs-prefer-angular-takeuntil", convertPreferAngularTakeuntil],
     ["rxjs-prefer-angular-takeuntil", convertRxjsPreferAngularTakeuntil],
+    ["rxjs-prefer-observer", convertPreferObserver],
     ["rxjs-prefer-observer", convertRxjsPreferObserver],
     ["rxjs-suffix-subjects", convertRxjsSuffixSubjects],
+    ["rxjs-suffix-subjects", convertSuffixSubjects],
     ["rxjs-throw-error", convertRxjsThrowError],
+    ["rxjs-throw-error", convertThrowError],
     ["semicolon", convertSemicolon],
     ["space-before-function-paren", convertSpaceBeforeFunctionParen],
     ["space-within-parens", convertSpaceWithinParens],

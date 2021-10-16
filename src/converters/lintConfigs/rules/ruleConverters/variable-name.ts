@@ -17,6 +17,22 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
     const constRequiredForAllCaps = tslintRule.ruleArguments.includes("require-const-for-all-caps");
     const allowPascalCase = tslintRule.ruleArguments.includes("allow-pascal-case");
     const allowSnakeCase = tslintRule.ruleArguments.includes("allow-snake-case");
+    /**
+     * disallows the use of certain TypeScript keywords as variable or parameter names.
+     * @see https://palantir.github.io/tslint/rules/variable-name/
+     * @see https://github.com/palantir/tslint/blob/285fc1db18d1fd24680d6a2282c6445abf1566ee/src/rules/variableNameRule.ts#L26-L36
+     */
+    const banKeywords = [
+        "any",
+        "Number",
+        "number",
+        "String",
+        "string",
+        "Boolean",
+        "boolean",
+        "Undefined",
+        "undefined",
+    ];
 
     const getCamelCaseRuleOptions = () => {
         const camelCaseRules: Record<string, unknown>[] = [];
@@ -77,26 +93,16 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         };
     };
 
-    const getBlackListRuleOptions = () => {
-        const blackListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
-            ? [
-                  "any",
-                  "Number",
-                  "number",
-                  "String",
-                  "string",
-                  "Boolean",
-                  "boolean",
-                  "Undefined",
-                  "undefined",
-              ]
+    const getDenyListRuleOptions = () => {
+        const denyListOptionArguments = tslintRule.ruleArguments.includes("ban-keywords")
+            ? banKeywords
             : [];
 
         return {
-            ...(blackListOptionArguments.length !== 0 && {
-                ruleArguments: blackListOptionArguments,
+            ...(denyListOptionArguments.length !== 0 && {
+                ruleArguments: denyListOptionArguments,
             }),
-            ruleName: "id-blacklist",
+            ruleName: "id-denylist",
         };
     };
 
@@ -104,7 +110,7 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         rules: [
             getCamelCaseRuleOptions(),
             getUnderscoreDangleRuleOptions(),
-            getBlackListRuleOptions(),
+            getDenyListRuleOptions(),
             {
                 ruleName: "id-match",
             },

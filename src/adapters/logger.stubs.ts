@@ -1,5 +1,6 @@
 import { EOL } from "os";
-import stripAnsi from "strip-ansi";
+
+import { stripAnsi } from "./stripAnsi.stubs";
 
 const debugFileName = "stub-output.log";
 

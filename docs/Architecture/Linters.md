@@ -9,7 +9,7 @@ Within `src/converters/lintConfigs/convertLintConfig.ts`, the following steps oc
 2. Those deduplicated rules and metadata are written to the output configuration file.
 3. A summary of conversion results is printed, along with any now-missing packages.
 
-> Stepss 1 and 2 are the logic exported by the [Node API](../API.md) as [`convertTSLintConfig`](../API.md#convertTSLintConfig).
+> Steps 1 and 2 are the logic exported by the [Node API](../API.md) as [`convertTSLintConfig`](../API.md#convertTSLintConfig).
 
 ## Rule Conversion
 

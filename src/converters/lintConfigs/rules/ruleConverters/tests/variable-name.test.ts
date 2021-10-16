@@ -29,7 +29,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -61,7 +61,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -93,7 +93,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -125,7 +125,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -157,7 +157,7 @@ describe(convertVariableName, () => {
                     notices: [ForbiddenLeadingTrailingIdentifierMsg],
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -189,7 +189,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -221,7 +221,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -254,7 +254,7 @@ describe(convertVariableName, () => {
                     ruleName: "no-underscore-dangle",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -287,7 +287,7 @@ describe(convertVariableName, () => {
                     ruleSeverity: "off",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -320,7 +320,7 @@ describe(convertVariableName, () => {
                     ruleSeverity: "off",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -357,7 +357,7 @@ describe(convertVariableName, () => {
                     ruleSeverity: "off",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                 },
                 {
                     ruleName: "id-match",
@@ -399,7 +399,7 @@ describe(convertVariableName, () => {
                     ruleSeverity: "off",
                 },
                 {
-                    ruleName: "id-blacklist",
+                    ruleName: "id-denylist",
                     ruleArguments: [
                         "any",
                         "Number",
