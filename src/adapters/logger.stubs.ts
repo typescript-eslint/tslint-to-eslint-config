@@ -1,5 +1,6 @@
 import { EOL } from "os";
-import ansiRegex from "ansi-regex";
+
+import { stripAnsi } from "./stripAnsi.stubs";
 
 const debugFileName = "stub-output.log";
 
@@ -30,10 +31,6 @@ export const createStubLogger = () => ({
     stderr: createStubWritableStream(),
     stdout: createStubWritableStream(),
 });
-
-const stripAnsi = (text: string) => {
-    return text.replace(ansiRegex(), "");
-};
 
 const removeOddCharactersAndTrim = (text: string) =>
     stripAnsi(text)
