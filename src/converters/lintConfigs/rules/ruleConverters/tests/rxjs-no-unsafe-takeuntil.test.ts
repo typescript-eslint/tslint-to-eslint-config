@@ -25,6 +25,7 @@ describe(convertRxjsNoUnsafeTakeUntil, () => {
             rules: [
                 {
                     ruleArguments: [{ alias: ["untilDestroyed"] }],
+                    ruleName: "rxjs/no-unsafe-takeuntil",
                 },
             ],
             plugins: ["eslint-plugin-rxjs"],
@@ -39,8 +40,8 @@ describe(convertRxjsNoUnsafeTakeUntil, () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "rxjs/no-unsafe-takeuntil",
                     ruleArguments: [{ allow: ["shareReplay", "share"] }],
+                    ruleName: "rxjs/no-unsafe-takeuntil",
                 },
             ],
             plugins: ["eslint-plugin-rxjs"],
