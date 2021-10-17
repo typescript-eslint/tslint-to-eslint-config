@@ -74,5 +74,5 @@
         "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2",
         "tsc": "tsc"
     },
-    "version": "2.10.0"
+    "version": "2.10.1"
 }
