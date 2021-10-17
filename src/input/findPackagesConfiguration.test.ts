@@ -2,9 +2,9 @@ import { createStubExec } from "../adapters/exec.stubs";
 import { findPackagesConfiguration } from "./findPackagesConfiguration";
 
 describe("findPackagesConfiguration", () => {
-    it("defaults the configuration file when one isn't provided", async () => {
+    it("defaults the configuration file with cat when one isn't provided on a non-Windows platform", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = { exec: createStubExec(), platform: "darwin" };
 
         // Act
         await findPackagesConfiguration(dependencies, undefined);
@@ -13,9 +13,20 @@ describe("findPackagesConfiguration", () => {
         expect(dependencies.exec).toHaveBeenLastCalledWith(`cat "./package.json"`);
     });
 
+    it("defaults the configuration file with type when one isn't provided on a Windows platform", async () => {
+        // Arrange
+        const dependencies = { exec: createStubExec(), platform: "win32" };
+
+        // Act
+        await findPackagesConfiguration(dependencies, undefined);
+
+        // Assert
+        expect(dependencies.exec).toHaveBeenLastCalledWith(`type "./package.json"`);
+    });
+
     it("includes a configuration file in the packages command when one is provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = { exec: createStubExec(), platform: "darwin" };
         const config = "./custom/package.json";
 
         // Act
@@ -27,7 +38,7 @@ describe("findPackagesConfiguration", () => {
 
     it("applies packages defaults when none are provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec({ stdout: "{}" }) };
+        const dependencies = { exec: createStubExec({ stdout: "{}" }), platform: "darwin" };
         const config = "./package.json";
 
         // Act

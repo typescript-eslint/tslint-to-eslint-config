@@ -108,6 +108,7 @@ export const boundImporter = bind(importer, nativeImporterDependencies);
 export const findConfigurationDependencies = {
     exec: childProcessExec,
     importer: boundImporter,
+    platform: process.platform,
 };
 
 export const findOriginalConfigurationsDependencies: FindOriginalConfigurationsDependencies = {

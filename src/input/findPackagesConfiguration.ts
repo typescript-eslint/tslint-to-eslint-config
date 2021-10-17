@@ -14,7 +14,7 @@ export const findPackagesConfiguration = async (
 ): Promise<PackagesConfiguration | Error> => {
     const rawConfiguration = await findReportedConfiguration<PackagesConfiguration>(
         dependencies.exec,
-        "cat",
+        dependencies.platform === "win32" ? "type" : "cat",
         config ?? "./package.json",
     );
 
