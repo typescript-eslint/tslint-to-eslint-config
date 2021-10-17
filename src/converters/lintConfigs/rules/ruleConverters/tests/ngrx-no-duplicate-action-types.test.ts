@@ -6,6 +6,8 @@ describe(convertNgrxNoDuplicateActionTypes, () => {
             ruleArguments: [],
         });
 
-        expect(result).toEqual({});
+        expect(result).toEqual({
+            rules: [],
+        });
     });
 });
