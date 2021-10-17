@@ -5,7 +5,10 @@ describe("findTypeScriptConfiguration", () => {
     it("returns an error when one occurs", async () => {
         // Arrange
         const message = "error";
-        const dependencies = { exec: createStubThrowingExec({ stderr: message }) };
+        const dependencies = {
+            exec: createStubThrowingExec({ stderr: message }),
+            platform: "darwin",
+        };
 
         // Act
         const result = await findTypeScriptConfiguration(dependencies, undefined);
@@ -20,7 +23,7 @@ describe("findTypeScriptConfiguration", () => {
 
     it("defaults the configuration file when one isn't provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = { exec: createStubExec(), platform: "darwin" };
 
         // Act
         await findTypeScriptConfiguration(dependencies, undefined);
@@ -31,7 +34,7 @@ describe("findTypeScriptConfiguration", () => {
 
     it("includes a configuration file in the TypeScript command when one is provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec() };
+        const dependencies = { exec: createStubExec(), platform: "darwin" };
         const config = "./custom/tsconfig.json";
 
         // Act
@@ -45,7 +48,7 @@ describe("findTypeScriptConfiguration", () => {
 
     it("applies TypeScript defaults when none are provided", async () => {
         // Arrange
-        const dependencies = { exec: createStubExec({ stdout: "{}" }) };
+        const dependencies = { exec: createStubExec({ stdout: "{}" }), platform: "darwin" };
         const config = "./tsconfig.json";
 
         // Act

@@ -7,6 +7,7 @@ export type DeepPartial<T> = {
 
 export type FindReportedConfigurationDependencies = {
     exec: Exec;
+    platform: string;
 };
 
 export const findReportedConfiguration = async <Configuration>(
