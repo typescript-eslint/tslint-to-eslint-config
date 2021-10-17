@@ -1,4 +1,3 @@
-import { convertRxjsAdd } from "./ruleConverters/add";
 import { convertAdjacentOverloadSignatures } from "./ruleConverters/adjacent-overload-signatures";
 import { convertAlign } from "./ruleConverters/align";
 import { convertAngularWhitespace } from "./ruleConverters/angular-whitespace";
@@ -243,6 +242,7 @@ import { convertReactTsxCurlySpacing } from "./ruleConverters/react-tsx-curly-sp
 import { convertReactUnusedPropsAndState } from "./ruleConverters/react-unused-props-and-state";
 import { convertRelativeUrlPrefix } from "./ruleConverters/relative-url-prefix";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
+import { convertRxjsAdd } from "./ruleConverters/rxjs-add";
 import { convertRxjsBanObservables } from "./ruleConverters/rxjs-ban-observables";
 import { convertRxjsBanOperators } from "./ruleConverters/rxjs-ban-operators";
 import { convertRxjsDeepOperators } from "./ruleConverters/rxjs-deep-operators";

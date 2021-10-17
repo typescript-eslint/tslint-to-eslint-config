@@ -1,4 +1,4 @@
-import { convertRxjsAdd } from "../add";
+import { convertRxjsAdd } from "../rxjs-add";
 
 describe(convertRxjsAdd, () => {
     test("conversion without arguments", () => {
