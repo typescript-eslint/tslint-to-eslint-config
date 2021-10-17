@@ -1,0 +1,18 @@
+import { convertRxjsNoNestedSubscribe } from "../rxjs-no-nested-subscribe";
+
+describe(convertRxjsNoNestedSubscribe, () => {
+    test("conversion without arguments", () => {
+        const result = convertRxjsNoNestedSubscribe({
+            ruleArguments: [],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "rxjs/no-nested-subscribe",
+                },
+            ],
+            plugins: ["eslint-plugin-rxjs"],
+        });
+    });
+});
