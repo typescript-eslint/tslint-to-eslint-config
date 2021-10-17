@@ -1,8 +1,8 @@
-import { convertJust } from "../just";
+import { convertRxjsJust } from "../rxjs-just";
 
-describe(convertJust, () => {
+describe(convertRxjsJust, () => {
     test("conversion without arguments", () => {
-        const result = convertJust({
+        const result = convertRxjsJust({
             ruleArguments: [],
         });
 

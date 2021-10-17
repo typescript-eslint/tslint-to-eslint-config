@@ -1,8 +1,8 @@
-import { convertNoExposedSubjects } from "../no-exposed-subjects";
+import { convertRxjsNoExposedSubjects } from "../rxjs-no-exposed-subjects";
 
-describe(convertNoExposedSubjects, () => {
+describe(convertRxjsNoExposedSubjects, () => {
     test("conversion without arguments", () => {
-        const result = convertNoExposedSubjects({
+        const result = convertRxjsNoExposedSubjects({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoExposedSubjects, () => {
     });
 
     test("conversion with allowProtected argument", () => {
-        const result = convertNoExposedSubjects({
+        const result = convertRxjsNoExposedSubjects({
             ruleArguments: [{ allowProtected: true }],
         });
 

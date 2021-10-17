@@ -1,8 +1,8 @@
-import { convertNoIgnoredSubscribe } from "../no-ignored-subscribe";
+import { convertRxjsNoIgnoredSubscribe } from "../rxjs-no-ignored-subscribe";
 
-describe(convertNoIgnoredSubscribe, () => {
+describe(convertRxjsNoIgnoredSubscribe, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredSubscribe({
+        const result = convertRxjsNoIgnoredSubscribe({
             ruleArguments: [],
         });
 

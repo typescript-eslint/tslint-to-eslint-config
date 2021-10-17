@@ -1,8 +1,8 @@
-import { convertPreferAngularTakeuntil } from "../prefer-angular-takeuntil";
+import { convertRxjsPreferAngularTakeuntil } from "../rxjs-prefer-angular-takeuntil";
 
-describe(convertPreferAngularTakeuntil, () => {
+describe(convertRxjsPreferAngularTakeuntil, () => {
     test("conversion without arguments", () => {
-        const result = convertPreferAngularTakeuntil({
+        const result = convertRxjsPreferAngularTakeuntil({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertPreferAngularTakeuntil, () => {
     });
 
     test("conversion with `alias` argument", () => {
-        const result = convertPreferAngularTakeuntil({
+        const result = convertRxjsPreferAngularTakeuntil({
             ruleArguments: [{ alias: ["untilDestroyed"] }],
         });
 
@@ -33,7 +33,7 @@ describe(convertPreferAngularTakeuntil, () => {
     });
 
     test("conversion with `checkComplete` argument", () => {
-        const result = convertPreferAngularTakeuntil({
+        const result = convertRxjsPreferAngularTakeuntil({
             ruleArguments: [{ checkComplete: true }],
         });
 
@@ -49,7 +49,7 @@ describe(convertPreferAngularTakeuntil, () => {
     });
 
     test("conversion with `checkDecorators` argument", () => {
-        const result = convertPreferAngularTakeuntil({
+        const result = convertRxjsPreferAngularTakeuntil({
             ruleArguments: [{ checkDecorators: ["Component"] }],
         });
 

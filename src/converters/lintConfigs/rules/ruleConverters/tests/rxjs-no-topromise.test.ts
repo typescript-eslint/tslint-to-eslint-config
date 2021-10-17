@@ -1,8 +1,8 @@
-import { convertNoToPromise } from "../no-topromise";
+import { convertRxjsNoToPromise } from "../rxjs-no-topromise";
 
-describe(convertNoToPromise, () => {
+describe(convertRxjsNoToPromise, () => {
     test("conversion without arguments", () => {
-        const result = convertNoToPromise({
+        const result = convertRxjsNoToPromise({
             ruleArguments: [],
         });
 

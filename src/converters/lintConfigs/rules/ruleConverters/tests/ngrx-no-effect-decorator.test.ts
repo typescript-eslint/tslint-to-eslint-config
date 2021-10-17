@@ -1,8 +1,8 @@
-import { convertNoEffectDecorator } from "../no-effect-decorator";
+import { convertNgrxNoEffectDecorator } from "../ngrx-no-effect-decorator";
 
-describe(convertNoEffectDecorator, () => {
+describe(convertNgrxNoEffectDecorator, () => {
     test("conversion without arguments", () => {
-        const result = convertNoEffectDecorator({
+        const result = convertNgrxNoEffectDecorator({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoReducerInKeyNames } from "../no-reducer-in-key-names";
+import { convertNgrxNoReducerInKeyNames } from "../ngrx-no-reducer-in-key-names";
 
-describe(convertNoReducerInKeyNames, () => {
+describe(convertNgrxNoReducerInKeyNames, () => {
     test("conversion without arguments", () => {
-        const result = convertNoReducerInKeyNames({
+        const result = convertNgrxNoReducerInKeyNames({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoShareReplay } from "../no-sharereplay";
+import { convertRxjsNoShareReplay } from "../rxjs-no-sharereplay";
 
-describe(convertNoShareReplay, () => {
+describe(convertRxjsNoShareReplay, () => {
     test("conversion without arguments", () => {
-        const result = convertNoShareReplay({
+        const result = convertRxjsNoShareReplay({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoShareReplay, () => {
     });
 
     test("conversion without arguments", () => {
-        const result = convertNoShareReplay({
+        const result = convertRxjsNoShareReplay({
             ruleArguments: [
                 {
                     allowConfig: true,

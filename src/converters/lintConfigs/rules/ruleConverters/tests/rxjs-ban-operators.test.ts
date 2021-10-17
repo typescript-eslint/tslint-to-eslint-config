@@ -1,8 +1,8 @@
-import { convertBanOperators } from "../ban-operators";
+import { convertRxjsBanOperators } from "../rxjs-ban-operators";
 
-describe(convertBanOperators, () => {
+describe(convertRxjsBanOperators, () => {
     test("conversion without arguments", () => {
-        const result = convertBanOperators({
+        const result = convertRxjsBanOperators({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertBanOperators, () => {
     });
 
     test("conversion with options", () => {
-        const result = convertBanOperators({
+        const result = convertRxjsBanOperators({
             ruleArguments: [{ concat: "Use the concat factory function" }],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoDispatchInEffects } from "../no-dispatch-in-effects";
+import { convertNgrxNoDispatchInEffects } from "../ngrx-no-dispatch-in-effects";
 
-describe(convertNoDispatchInEffects, () => {
+describe(convertNgrxNoDispatchInEffects, () => {
     test("conversion without arguments", () => {
-        const result = convertNoDispatchInEffects({
+        const result = convertNgrxNoDispatchInEffects({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoOperator } from "../no-operator";
+import { convertRxjsAdd } from "../add";
 
-describe(convertNoOperator, () => {
+describe(convertRxjsAdd, () => {
     test("conversion without arguments", () => {
-        const result = convertNoOperator({
+        const result = convertRxjsAdd({
             ruleArguments: [],
         });
 

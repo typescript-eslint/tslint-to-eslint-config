@@ -1,8 +1,8 @@
-import { convertNoUnsafeFirst } from "../no-unsafe-first";
+import { convertRxjsNoUnsafeFirst } from "../rxjs-no-unsafe-first";
 
-describe(convertNoUnsafeFirst, () => {
+describe(convertRxjsNoUnsafeFirst, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeFirst({
+        const result = convertRxjsNoUnsafeFirst({
             ruleArguments: [],
         });
 

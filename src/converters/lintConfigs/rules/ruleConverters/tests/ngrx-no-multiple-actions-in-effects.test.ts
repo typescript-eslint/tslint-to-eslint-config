@@ -1,8 +1,8 @@
-import { convertNoMultipleActionsInEffects } from "../no-multiple-actions-in-effects";
+import { convertNgrxNoMultipleActionsInEffects } from "../ngrx-no-multiple-actions-in-effects";
 
-describe(convertNoMultipleActionsInEffects, () => {
+describe(convertNgrxNoMultipleActionsInEffects, () => {
     test("conversion without arguments", () => {
-        const result = convertNoMultipleActionsInEffects({
+        const result = convertNgrxNoMultipleActionsInEffects({
             ruleArguments: [],
         });
 

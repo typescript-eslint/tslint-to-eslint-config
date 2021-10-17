@@ -1,8 +1,8 @@
-import { convertBanObservables } from "../ban-observables";
+import { convertRxjsBanObservables } from "../rxjs-ban-observables";
 
-describe(convertBanObservables, () => {
+describe(convertRxjsBanObservables, () => {
     test("conversion without arguments", () => {
-        const result = convertBanObservables({
+        const result = convertRxjsBanObservables({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertBanObservables, () => {
     });
 
     test("conversion with options", () => {
-        const result = convertBanObservables({
+        const result = convertRxjsBanObservables({
             ruleArguments: [{ merge: true }],
         });
 

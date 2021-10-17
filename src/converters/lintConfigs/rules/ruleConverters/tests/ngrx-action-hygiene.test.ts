@@ -1,8 +1,8 @@
-import { convertActionHygiene } from "../action-hygiene";
+import { convertNgrxActionHygiene } from "../ngrx-action-hygiene";
 
-describe(convertActionHygiene, () => {
+describe(convertNgrxActionHygiene, () => {
     test("conversion without arguments", () => {
-        const result = convertActionHygiene({
+        const result = convertNgrxActionHygiene({
             ruleArguments: [],
         });
 

@@ -1,6 +1,6 @@
-import { RuleConverter } from "../../ruleConverter";
+import { RuleConverter } from "../ruleConverter";
 
-export const convertNoUnsafeTakewhile: RuleConverter = () => {
+export const convertRxjsNoUnsafeTakewhile: RuleConverter = () => {
     return {
         rules: [
             {

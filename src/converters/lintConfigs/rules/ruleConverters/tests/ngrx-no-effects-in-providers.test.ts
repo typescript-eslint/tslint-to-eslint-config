@@ -1,8 +1,8 @@
-import { convertNoEffectsInProviders } from "../no-effects-in-providers";
+import { convertNgrxNoEffectsInProviders } from "../ngrx-no-effects-in-providers";
 
-describe(convertNoEffectsInProviders, () => {
+describe(convertNgrxNoEffectsInProviders, () => {
     test("conversion without arguments", () => {
-        const result = convertNoEffectsInProviders({
+        const result = convertNgrxNoEffectsInProviders({
             ruleArguments: [],
         });
 

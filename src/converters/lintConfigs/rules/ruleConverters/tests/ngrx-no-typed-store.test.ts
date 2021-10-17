@@ -1,8 +1,8 @@
-import { convertNoTypedStore } from "../no-typed-store";
+import { convertNgrxNoTypedStore } from "../ngrx-no-typed-store";
 
-describe(convertNoTypedStore, () => {
+describe(convertNgrxNoTypedStore, () => {
     test("conversion without arguments", () => {
-        const result = convertNoTypedStore({
+        const result = convertNgrxNoTypedStore({
             ruleArguments: [],
         });
 

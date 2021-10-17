@@ -1,8 +1,8 @@
-import { convertNoIgnoredTakewhileValue } from "../no-ignored-takewhile-value";
+import { convertRxjsNoIgnoredTakeWhileValue } from "../rxjs-no-ignored-takewhile-value";
 
-describe(convertNoIgnoredTakewhileValue, () => {
+describe(convertRxjsNoIgnoredTakeWhileValue, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredTakewhileValue({
+        const result = convertRxjsNoIgnoredTakeWhileValue({
             ruleArguments: [],
         });
 

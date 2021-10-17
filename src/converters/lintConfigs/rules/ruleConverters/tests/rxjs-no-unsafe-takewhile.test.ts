@@ -1,8 +1,8 @@
-import { convertNoUnsafeTakewhile } from "../no-unsafe-takewhile";
+import { convertRxjsNoUnsafeTakewhile } from "../rxjs-no-unsafe-takewhile";
 
-describe(convertNoUnsafeTakewhile, () => {
+describe(convertRxjsNoUnsafeTakewhile, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeTakewhile({
+        const result = convertRxjsNoUnsafeTakewhile({
             ruleArguments: [],
         });
 

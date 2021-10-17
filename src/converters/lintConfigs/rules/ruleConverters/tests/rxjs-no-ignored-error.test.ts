@@ -1,8 +1,8 @@
-import { convertNoIgnoredError } from "../no-ignored-error";
+import { convertRxjsNoIgnoredError } from "../rxjs-no-ignored-error";
 
-describe(convertNoIgnoredError, () => {
+describe(convertRxjsNoIgnoredError, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredError({
+        const result = convertRxjsNoIgnoredError({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertPreferAngularComposition } from "../prefer-angular-composition";
+import { convertRxjsPreferAngularComposition } from "../rxjs-prefer-angular-composition";
 
-describe(convertPreferAngularComposition, () => {
+describe(convertRxjsPreferAngularComposition, () => {
     test("conversion without arguments", () => {
-        const result = convertPreferAngularComposition({
+        const result = convertRxjsPreferAngularComposition({
             ruleArguments: [],
         });
 

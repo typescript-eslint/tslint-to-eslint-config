@@ -1,8 +1,8 @@
-import { convertNoCompat } from "../no-compat";
+import { convertRxjsNoCompat } from "../rxjs-no-compat";
 
-describe(convertNoCompat, () => {
+describe(convertRxjsNoCompat, () => {
     test("conversion without arguments", () => {
-        const result = convertNoCompat({
+        const result = convertRxjsNoCompat({
             ruleArguments: [],
         });
 

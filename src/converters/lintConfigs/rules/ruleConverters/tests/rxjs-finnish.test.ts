@@ -1,8 +1,8 @@
-import { convertFinnish } from "../finnish";
+import { convertRxjsFinnish } from "../rxjs-finnish";
 
-describe(convertFinnish, () => {
+describe(convertRxjsFinnish, () => {
     test("conversion without arguments", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertFinnish, () => {
     });
 
     test("conversion with `functions` argument", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [{ functions: true }],
         });
 
@@ -33,7 +33,7 @@ describe(convertFinnish, () => {
     });
 
     test("conversion with `methods` argument", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [{ methods: false }],
         });
 
@@ -49,7 +49,7 @@ describe(convertFinnish, () => {
     });
 
     test("conversion with `parameters` argument", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [{ parameters: true }],
         });
 
@@ -65,7 +65,7 @@ describe(convertFinnish, () => {
     });
 
     test("conversion with `properties` argument", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [{ properties: false }],
         });
 
@@ -81,7 +81,7 @@ describe(convertFinnish, () => {
     });
 
     test("conversion with `variables` argument", () => {
-        const result = convertFinnish({
+        const result = convertRxjsFinnish({
             ruleArguments: [{ variables: true }],
         });
 

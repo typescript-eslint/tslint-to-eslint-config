@@ -1,8 +1,8 @@
-import { convertNoSubjectValue } from "../no-subject-value";
+import { convertRxjsNoSubjectValue } from "../rxjs-no-subject-value";
 
-describe(convertNoSubjectValue, () => {
+describe(convertRxjsNoSubjectValue, () => {
     test("conversion without arguments", () => {
-        const result = convertNoSubjectValue({
+        const result = convertRxjsNoSubjectValue({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoIgnoredObservable } from "../no-ignored-observable";
+import { convertRxjsNoIgnoredObservable } from "../rxjs-no-ignored-observable";
 
-describe(convertNoIgnoredObservable, () => {
+describe(convertRxjsNoIgnoredObservable, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredObservable({
+        const result = convertRxjsNoIgnoredObservable({
             ruleArguments: [],
         });
 

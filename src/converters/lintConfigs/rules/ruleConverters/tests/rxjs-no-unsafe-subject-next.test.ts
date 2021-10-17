@@ -1,8 +1,8 @@
-import { convertNoUnsafeSubjectNext } from "../no-unsafe-subject-next";
+import { convertRxjsNoUnsafeSubjectNext } from "../rxjs-no-unsafe-subject-next";
 
-describe(convertNoUnsafeSubjectNext, () => {
+describe(convertRxjsNoUnsafeSubjectNext, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeSubjectNext({
+        const result = convertRxjsNoUnsafeSubjectNext({
             ruleArguments: [],
         });
 

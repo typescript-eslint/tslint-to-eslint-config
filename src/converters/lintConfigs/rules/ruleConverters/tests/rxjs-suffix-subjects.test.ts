@@ -1,8 +1,8 @@
-import { convertSuffixSubjects } from "../suffix-subjects";
+import { convertRxjsSuffixSubjects } from "../rxjs-suffix-subjects";
 
-describe(convertSuffixSubjects, () => {
+describe(convertRxjsSuffixSubjects, () => {
     test("conversion without arguments", () => {
-        const result = convertSuffixSubjects({
+        const result = convertRxjsSuffixSubjects({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertSuffixSubjects, () => {
     });
 
     test("conversion with `parameters` argument", () => {
-        const result = convertSuffixSubjects({
+        const result = convertRxjsSuffixSubjects({
             ruleArguments: [{ parameters: true }],
         });
 
@@ -33,7 +33,7 @@ describe(convertSuffixSubjects, () => {
     });
 
     test("conversion with `properties` argument", () => {
-        const result = convertSuffixSubjects({
+        const result = convertRxjsSuffixSubjects({
             ruleArguments: [{ properties: false }],
         });
 
@@ -49,7 +49,7 @@ describe(convertSuffixSubjects, () => {
     });
 
     test("conversion with `suffix` argument", () => {
-        const result = convertSuffixSubjects({
+        const result = convertRxjsSuffixSubjects({
             ruleArguments: [{ suffix: true }],
         });
 
@@ -65,7 +65,7 @@ describe(convertSuffixSubjects, () => {
     });
 
     test("conversion with `variables` argument", () => {
-        const result = convertSuffixSubjects({
+        const result = convertRxjsSuffixSubjects({
             ruleArguments: [{ variables: false }],
         });
 

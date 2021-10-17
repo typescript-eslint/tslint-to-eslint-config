@@ -1,8 +1,8 @@
-import { convertNoUnsafeSwitchmap } from "../no-unsafe-switchmap";
+import { convertRxjsNoUnsafeSwitchmap } from "../rxjs-no-unsafe-switchmap";
 
-describe(convertNoUnsafeSwitchmap, () => {
+describe(convertRxjsNoUnsafeSwitchmap, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeSwitchmap({
+        const result = convertRxjsNoUnsafeSwitchmap({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoUnsafeSwitchmap, () => {
     });
 
     test("conversion with `disallow` argument", () => {
-        const result = convertNoUnsafeSwitchmap({
+        const result = convertRxjsNoUnsafeSwitchmap({
             ruleArguments: [
                 { disallow: ["add", "create", "delete", "post", "put", "remove", "set", "update"] },
             ],
@@ -48,7 +48,7 @@ describe(convertNoUnsafeSwitchmap, () => {
     });
 
     test("conversion with `observable` argument", () => {
-        const result = convertNoUnsafeSwitchmap({
+        const result = convertRxjsNoUnsafeSwitchmap({
             ruleArguments: [{ observable: "action(s|\\$)?" }],
         });
 

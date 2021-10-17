@@ -1,8 +1,8 @@
-import { convertNoInternal } from "../no-internal";
+import { convertRxjsNoInternal } from "../rxjs-no-internal";
 
-describe(convertNoInternal, () => {
+describe(convertRxjsNoInternal, () => {
     test("conversion without arguments", () => {
-        const result = convertNoInternal({
+        const result = convertRxjsNoInternal({
             ruleArguments: [],
         });
 

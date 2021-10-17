@@ -1,8 +1,8 @@
-import { convertNoConnectable } from "../no-connectable";
+import { convertRxjsNoConnectable } from "../rxjs-no-connectable";
 
-describe(convertNoConnectable, () => {
+describe(convertRxjsNoConnectable, () => {
     test("conversion without arguments", () => {
-        const result = convertNoConnectable({
+        const result = convertRxjsNoConnectable({
             ruleArguments: [],
         });
 

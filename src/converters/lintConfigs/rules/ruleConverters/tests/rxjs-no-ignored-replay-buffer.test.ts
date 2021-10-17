@@ -1,8 +1,8 @@
-import { convertNoIgnoredReplayBuffer } from "../no-ignored-replay-buffer";
+import { convertRxjsNoIgnoredReplayBuffer } from "../rxjs-no-ignored-replay-buffer";
 
-describe(convertNoIgnoredReplayBuffer, () => {
+describe(convertRxjsNoIgnoredReplayBuffer, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredReplayBuffer({
+        const result = convertRxjsNoIgnoredReplayBuffer({
             ruleArguments: [],
         });
 

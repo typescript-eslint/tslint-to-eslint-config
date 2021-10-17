@@ -1,8 +1,8 @@
-import { convertNoFinnish } from "../no-finnish";
+import { convertRxjsNoFinnish } from "../rxjs-no-finnish";
 
-describe(convertNoFinnish, () => {
+describe(convertRxjsNoFinnish, () => {
     test("conversion without arguments", () => {
-        const result = convertNoFinnish({
+        const result = convertRxjsNoFinnish({
             ruleArguments: [],
         });
 

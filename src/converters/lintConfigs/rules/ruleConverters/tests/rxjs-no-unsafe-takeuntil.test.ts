@@ -1,8 +1,8 @@
-import { convertNoUnsafeTakeuntil } from "../no-unsafe-takeuntil";
+import { convertRxjsNoUnsafeTakeUntil } from "../rxjs-no-unsafe-takeuntil";
 
-describe(convertNoUnsafeTakeuntil, () => {
+describe(convertRxjsNoUnsafeTakeUntil, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeTakeuntil({
+        const result = convertRxjsNoUnsafeTakeUntil({
             ruleArguments: [],
         });
 
@@ -17,14 +17,13 @@ describe(convertNoUnsafeTakeuntil, () => {
     });
 
     test("conversion with alias argument", () => {
-        const result = convertNoUnsafeTakeuntil({
+        const result = convertRxjsNoUnsafeTakeUntil({
             ruleArguments: [{ alias: ["untilDestroyed"] }],
         });
 
         expect(result).toEqual({
             rules: [
                 {
-                    ruleName: "rxjs/no-unsafe-takeuntil",
                     ruleArguments: [{ alias: ["untilDestroyed"] }],
                 },
             ],
@@ -33,7 +32,7 @@ describe(convertNoUnsafeTakeuntil, () => {
     });
 
     test("conversion with allow argument", () => {
-        const result = convertNoUnsafeTakeuntil({
+        const result = convertRxjsNoUnsafeTakeUntil({
             ruleArguments: [{ allow: ["shareReplay", "share"] }],
         });
 

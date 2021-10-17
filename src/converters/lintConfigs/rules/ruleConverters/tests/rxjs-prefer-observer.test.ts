@@ -1,8 +1,8 @@
-import { convertPreferObserver } from "../prefer-observer";
+import { convertRxjsPreferObserver } from "../rxjs-prefer-observer";
 
-describe(convertPreferObserver, () => {
+describe(convertRxjsPreferObserver, () => {
     test("conversion without arguments", () => {
-        const result = convertPreferObserver({
+        const result = convertRxjsPreferObserver({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertPreferObserver, () => {
     });
 
     test("conversion with `allowNext` argument", () => {
-        const result = convertPreferObserver({
+        const result = convertRxjsPreferObserver({
             ruleArguments: [{ allowNext: false }],
         });
 

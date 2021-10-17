@@ -1,8 +1,8 @@
-import { convertNoDuplicateActionTypes } from "../no-duplicate-action-types";
+import { convertNgrxNoDuplicateActionTypes } from "../ngrx-no-duplicate-action-types";
 
-describe(convertNoDuplicateActionTypes, () => {
+describe(convertNgrxNoDuplicateActionTypes, () => {
     test("conversion without arguments", () => {
-        const result = convertNoDuplicateActionTypes({
+        const result = convertNgrxNoDuplicateActionTypes({
             ruleArguments: [],
         });
 

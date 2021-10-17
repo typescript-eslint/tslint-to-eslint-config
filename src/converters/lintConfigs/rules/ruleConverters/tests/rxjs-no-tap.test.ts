@@ -1,8 +1,8 @@
-import { convertNoTap } from "../no-tap";
+import { convertRxjsNoTap } from "../rxjs-no-tap";
 
-describe(convertNoTap, () => {
+describe(convertRxjsNoTap, () => {
     test("conversion without arguments", () => {
-        const result = convertNoTap({
+        const result = convertRxjsNoTap({
             ruleArguments: [],
         });
 

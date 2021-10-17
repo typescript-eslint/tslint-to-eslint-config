@@ -1,8 +1,8 @@
-import { convertNoNestedSubscribe } from "../no-nested-subscribe";
+import { convertRxjsNoNestedSubscribe } from "../rxjs-no-nested-subscribe";
 
-describe(convertNoNestedSubscribe, () => {
+describe(convertRxjsNoNestedSubscribe, () => {
     test("conversion without arguments", () => {
-        const result = convertNoNestedSubscribe({
+        const result = convertRxjsNoNestedSubscribe({
             ruleArguments: [],
         });
 

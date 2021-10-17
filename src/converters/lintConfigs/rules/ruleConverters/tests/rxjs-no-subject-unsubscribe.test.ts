@@ -1,8 +1,8 @@
-import { convertNoSubjectUnubscribe } from "../no-subject-unsubscribe";
+import { convertRxjsNoSubjectUnubscribe } from "../rxjs-no-subject-unsubscribe";
 
-describe(convertNoSubjectUnubscribe, () => {
+describe(convertRxjsNoSubjectUnubscribe, () => {
     test("conversion without arguments", () => {
-        const result = convertNoSubjectUnubscribe({
+        const result = convertRxjsNoSubjectUnubscribe({
             ruleArguments: [],
         });
 

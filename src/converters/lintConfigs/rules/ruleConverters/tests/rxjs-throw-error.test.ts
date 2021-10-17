@@ -1,8 +1,8 @@
-import { convertThrowError } from "../throw-error";
+import { convertRxjsThrowError } from "../rxjs-throw-error";
 
-describe(convertThrowError, () => {
+describe(convertRxjsThrowError, () => {
     test("conversion without arguments", () => {
-        const result = convertThrowError({
+        const result = convertRxjsThrowError({
             ruleArguments: [],
         });
 

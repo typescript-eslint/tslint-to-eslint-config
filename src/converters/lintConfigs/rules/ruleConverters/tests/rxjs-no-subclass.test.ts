@@ -1,8 +1,8 @@
-import { convertNoSubclass } from "../no-subclass";
+import { convertRxjsNoSubclass } from "../rxjs-no-subclass";
 
-describe(convertNoSubclass, () => {
+describe(convertRxjsNoSubclass, () => {
     test("conversion without arguments", () => {
-        const result = convertNoSubclass({
+        const result = convertRxjsNoSubclass({
             ruleArguments: [],
         });
 

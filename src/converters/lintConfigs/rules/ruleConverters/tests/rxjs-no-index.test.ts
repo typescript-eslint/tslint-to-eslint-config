@@ -1,8 +1,8 @@
-import { convertNoIndex } from "../no-index";
+import { convertRxjsNoIndex } from "../rxjs-no-index";
 
-describe(convertNoIndex, () => {
+describe(convertRxjsNoIndex, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIndex({
+        const result = convertRxjsNoIndex({
             ruleArguments: [],
         });
 

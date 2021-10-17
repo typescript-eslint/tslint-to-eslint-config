@@ -1,8 +1,8 @@
-import { convertNoImplicitAnyCatch } from "../no-implicit-any-catch";
+import { convertRxjsNoImplicitAnyCatch } from "../rxjs-no-implicit-any-catch";
 
-describe(convertNoImplicitAnyCatch, () => {
+describe(convertRxjsNoImplicitAnyCatch, () => {
     test("conversion without arguments", () => {
-        const result = convertNoImplicitAnyCatch({
+        const result = convertRxjsNoImplicitAnyCatch({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoImplicitAnyCatch, () => {
     });
 
     test("conversion with allowExplicitAny argument", () => {
-        const result = convertNoImplicitAnyCatch({
+        const result = convertRxjsNoImplicitAnyCatch({
             ruleArguments: [{ allowExplicitAny: true }],
         });
 

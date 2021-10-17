@@ -1,5 +1,5 @@
 import { RuleConverter } from "../ruleConverter";
 
-export const convertAngularWhitespace: RuleConverter = () => {
+export const convertRxjsNoUnsafeScope: RuleConverter = () => {
     return {};
 };

@@ -1,8 +1,8 @@
-import { convertOnReducerExplicitReturnType } from "../on-reducer-explicit-return-type";
+import { convertNgrxOnReducerExplicitReturnType } from "../ngrx-on-reducer-explicit-return-type";
 
-describe(convertOnReducerExplicitReturnType, () => {
+describe(convertNgrxOnReducerExplicitReturnType, () => {
     test("conversion without arguments", () => {
-        const result = convertOnReducerExplicitReturnType({
+        const result = convertNgrxOnReducerExplicitReturnType({
             ruleArguments: [],
         });
 

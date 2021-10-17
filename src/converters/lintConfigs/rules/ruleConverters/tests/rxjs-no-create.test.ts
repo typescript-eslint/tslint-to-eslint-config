@@ -1,8 +1,8 @@
-import { convertNoCreate } from "../no-create";
+import { convertRxjsNoCreate } from "../rxjs-no-create";
 
-describe(convertNoCreate, () => {
+describe(convertRxjsNoCreate, () => {
     test("conversion without arguments", () => {
-        const result = convertNoCreate({
+        const result = convertRxjsNoCreate({
             ruleArguments: [],
         });
 

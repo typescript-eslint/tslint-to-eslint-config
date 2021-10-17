@@ -1,8 +1,8 @@
-import { convertNoUnboundMethods } from "../no-unbound-methods";
+import { convertRxjsNoUnboundMethods } from "../rxjs-no-unbound-methods";
 
-describe(convertNoUnboundMethods, () => {
+describe(convertRxjsNoUnboundMethods, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnboundMethods({
+        const result = convertRxjsNoUnboundMethods({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoAsyncSubscribe } from "../no-async-subscribe";
+import { convertRxjsNoAsyncSubscribe } from "../rxjs-no-async-subscribe";
 
-describe(convertNoAsyncSubscribe, () => {
+describe(convertRxjsNoAsyncSubscribe, () => {
     test("conversion without arguments", () => {
-        const result = convertNoAsyncSubscribe({
+        const result = convertRxjsNoAsyncSubscribe({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertNoRedundantNotify } from "../no-redundant-notify";
+import { convertRxjsNoRedundantNotify } from "../rxjs-no-redundant-notify";
 
-describe(convertNoRedundantNotify, () => {
+describe(convertRxjsNoRedundantNotify, () => {
     test("conversion without arguments", () => {
-        const result = convertNoRedundantNotify({
+        const result = convertRxjsNoRedundantNotify({
             ruleArguments: [],
         });
 

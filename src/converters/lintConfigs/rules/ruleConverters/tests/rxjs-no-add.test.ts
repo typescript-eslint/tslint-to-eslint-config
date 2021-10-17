@@ -1,8 +1,8 @@
-import { convertAdd } from "../add";
+import { convertRxjsNoAdd } from "../rxjs-no-add";
 
-describe(convertAdd, () => {
+describe(convertRxjsNoAdd, () => {
     test("conversion without arguments", () => {
-        const result = convertAdd({
+        const result = convertRxjsNoAdd({
             ruleArguments: [],
         });
 

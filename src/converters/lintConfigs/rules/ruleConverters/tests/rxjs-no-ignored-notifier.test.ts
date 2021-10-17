@@ -1,8 +1,8 @@
-import { convertNoIgnoredNotifier } from "../no-ignored-notifier";
+import { convertRxjsNoIgnoredNotifier } from "../rxjs-no-ignored-notifier";
 
-describe(convertNoIgnoredNotifier, () => {
+describe(convertRxjsNoIgnoredNotifier, () => {
     test("conversion without arguments", () => {
-        const result = convertNoIgnoredNotifier({
+        const result = convertRxjsNoIgnoredNotifier({
             ruleArguments: [],
         });
 

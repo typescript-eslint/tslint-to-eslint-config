@@ -1,8 +1,8 @@
-import { convertNoExplicitGenerics } from "../no-explicit-generics";
+import { convertRxjsNoExplicitGenerics } from "../rxjs-no-explicit-generics";
 
-describe(convertNoExplicitGenerics, () => {
+describe(convertRxjsNoExplicitGenerics, () => {
     test("conversion without arguments", () => {
-        const result = convertNoExplicitGenerics({
+        const result = convertRxjsNoExplicitGenerics({
             ruleArguments: [],
         });
 

@@ -1,8 +1,8 @@
-import { convertPreferAngularAsyncPipe } from "../prefer-angular-async-pipe";
+import { convertRxjsPreferAngularAsyncPipe } from "../rxjs-prefer-angular-async-pipe";
 
-describe(convertPreferAngularAsyncPipe, () => {
+describe(convertRxjsPreferAngularAsyncPipe, () => {
     test("conversion without arguments", () => {
-        const result = convertPreferAngularAsyncPipe({
+        const result = convertRxjsPreferAngularAsyncPipe({
             ruleArguments: [],
         });
 

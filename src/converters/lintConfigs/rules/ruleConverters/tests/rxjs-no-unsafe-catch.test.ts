@@ -1,8 +1,8 @@
-import { convertNoUnsafeCatch } from "../no-unsafe-catch";
+import { convertRxjsNoUnsafeCatch } from "../rxjs-no-unsafe-catch";
 
-describe(convertNoUnsafeCatch, () => {
+describe(convertRxjsNoUnsafeCatch, () => {
     test("conversion without arguments", () => {
-        const result = convertNoUnsafeCatch({
+        const result = convertRxjsNoUnsafeCatch({
             ruleArguments: [],
         });
 
@@ -17,7 +17,7 @@ describe(convertNoUnsafeCatch, () => {
     });
 
     test("conversion with `observable` argument", () => {
-        const result = convertNoUnsafeCatch({
+        const result = convertRxjsNoUnsafeCatch({
             ruleArguments: [{ observable: "action(s|\\$)?" }],
         });
 
