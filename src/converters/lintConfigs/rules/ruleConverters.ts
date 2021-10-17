@@ -22,7 +22,6 @@ import { convertContextualDecorator } from "./ruleConverters/contextual-decorato
 import { convertContextualLifecycle } from "./ruleConverters/contextual-lifecycle";
 import { convertCurly } from "./ruleConverters/curly";
 import { convertCyclomaticComplexity } from "./ruleConverters/cyclomatic-complexity";
-import { convertRxjsDeepOperators } from "./ruleConverters/deep-operators";
 import { convertDeprecation } from "./ruleConverters/deprecation";
 import { convertDirectiveClassSuffix } from "./ruleConverters/directive-class-suffix";
 import { convertDirectiveSelector } from "./ruleConverters/directive-selector";
@@ -246,6 +245,7 @@ import { convertRelativeUrlPrefix } from "./ruleConverters/relative-url-prefix";
 import { convertRestrictPlusOperands } from "./ruleConverters/restrict-plus-operands";
 import { convertRxjsBanObservables } from "./ruleConverters/rxjs-ban-observables";
 import { convertRxjsBanOperators } from "./ruleConverters/rxjs-ban-operators";
+import { convertRxjsDeepOperators } from "./ruleConverters/rxjs-deep-operators";
 import { convertRxjsFinnish } from "./ruleConverters/rxjs-finnish";
 import { convertRxjsJust } from "./ruleConverters/rxjs-just";
 import { convertRxjsNoAdd } from "./ruleConverters/rxjs-no-add";
