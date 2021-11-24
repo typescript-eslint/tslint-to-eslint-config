@@ -19,9 +19,9 @@ Our recommended TSLint-to-ESLint configuration migration approach is:
 
 1. Run `tslint-to-eslint-config` on your project
 2. [Disable complaints on a line-, file-, or rule basis](https://eslint.org/docs/user-guide/configuring) for any rules you do not want to enable and/or are now giving complaints
-3. Switch your configuration to extend from [typescript-eslint's `recommended` and `recommend-requiring-type-checking` rulesets](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md)
+3. Switch your configuration to extend from [typescript-eslint's `recommended` and `recommend-requiring-type-checking` rulesets](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/README.md)
 4. Repeat step 2
-5. Add any [community plugins](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#plugins) relevant to your project, then repeat step 2
+5. Add any [community plugins](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/README.md#plugins) relevant to your project, then repeat step 2
 
 > 😉 Consider filing granular tickets to track investigating re-enabling disabled lint rules to make sure the work doesn't get forgotten.
 
@@ -37,5 +37,5 @@ The maintenance teams at both TSLint and typescript-eslint recommend using a for
 
 Please do it. Now. Please stop using code style rules. Please use prettier. Code style rules are hard to write and maintain. Rules like indent are thousands of he comes he comes do not fi​ght he com̡e̶s, ̕h̵i​s un̨ho͞ly radiańcé destro҉ying all enli̍̈́̂̈́ghtenment, spaces and brackets lea͠ki̧n͘g fr̶ǫm ̡yo​͟ur eye͢s̸ ̛l̕ik͏e liq​uid pain, the song of indentation calculation will exti​nguish the voices of mor​tal man from the sp​here I can see it can you see ̲͚̖͔̙î̩́t̲͎̩̱͔́̋̀ it is beautiful t​he final snuffing of the lie​s of Man ALL IS LOŚ͖̩͇̗̪̏̈́T ALL I​S LOST the pon̷y he comes he c̶̮omes he comes the ich​or permeates all MY FACE MY FACE ᵒh god no NO NOO̼O​O NΘ stop the an​*̶͑̾̾​̅ͫ͏̙̤g͇̫͛͆̾ͫ̑͆l͖͉̗̩̳̟̍ͫͥͨe̠̅s ͎a̧͈͖r̽̾̈́͒͑e n​ot rè̑ͧ̌aͨl̘̝̙̃ͤ͂̾̆ ZA̡͊͠͝LGΌ ISͮ̂҉̯͈͕̹̘̱ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚​N̐Y̡ H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ.
 
-> 🙏 [eslint-plugin-prettier](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md#usage-with-prettier) is an excellent ESLint plugin that disables formatting rules from your configuration.
+> 🙏 [eslint-plugin-prettier](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/README.md#prettier) is an excellent ESLint plugin that disables formatting rules from your configuration.
 > Please use it. 🙏
