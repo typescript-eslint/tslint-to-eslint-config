@@ -37,11 +37,11 @@
         "@typescript-eslint/eslint-plugin": "5.9.0",
         "@typescript-eslint/parser": "5.9.0",
         "ansi-regex": "6.0.1",
-        "babel-jest": "27.4.5",
+        "babel-jest": "27.4.6",
         "eslint": "8.6.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.4",
-        "jest": "27.4.5",
+        "jest": "27.4.6",
         "lint-staged": "12.1.5",
         "prettier": "2.5.1"
     },
