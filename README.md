@@ -49,7 +49,7 @@ Each of these flags is optional:
 -   **[`editor`](#editor)**: Path to an editor configuration file to convert linter settings within.
 -   **[`eslint`](#eslint)**: Path to an ESLint configuration file to read settings from.
 -   **[`package`](#package)**: Path to a package.json file to read dependencies from.
--   **[`prettier`](#prettier)**: Add `eslint-config-prettier` to the plugins list.
+-   **[`prettier`](#prettier)**: Add [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) to the plugins list.
 -   **[`tslint`](#tslint)**: Path to a TSLint configuration file to read settings from.
 -   **[`typescript`](#typescript)**: Path to a TypeScript configuration file to read TypeScript compiler options from.
 
