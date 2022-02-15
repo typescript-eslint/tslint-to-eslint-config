@@ -10,6 +10,7 @@ import { convertBanTsIgnore } from "./ruleConverters/ban-ts-ignore";
 import { convertBanTypes } from "./ruleConverters/ban-types";
 import { convertBinaryExpressionOperandOrder } from "./ruleConverters/binary-expression-operand-order";
 import { convertCallableTypes } from "./ruleConverters/callable-types";
+import { convertClassMethodNewlines } from "./ruleConverters/class-method-newlines";
 import { convertClassName } from "./ruleConverters/class-name";
 import { convertCognitiveComplexity } from "./ruleConverters/cognitive-complexity";
 import { convertCommentFormat } from "./ruleConverters/comment-format";
@@ -353,6 +354,7 @@ export const ruleConverters = new Map([
     ["ban-types", convertBanTypes],
     ["binary-expression-operand-order", convertBinaryExpressionOperandOrder],
     ["callable-types", convertCallableTypes],
+    ["class-method-newlines", convertClassMethodNewlines],
     ["class-name", convertClassName],
     ["cognitive-complexity", convertCognitiveComplexity],
     ["comment-format", convertCommentFormat],
