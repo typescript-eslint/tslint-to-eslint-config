@@ -1,8 +1,13 @@
 import chalk from "chalk";
 import { Command } from "commander";
+import { promises as fs } from "fs";
 import { EOL } from "os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { version } from "../../package.json";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
 import { Converter } from "../converters/types";
@@ -48,6 +53,9 @@ export const runCli = async (
 
     // 2. If the version should be printed, we do that and stop execution.
     if (command.opts().version) {
+        const { version } = JSON.parse(
+            (await fs.readFile(path.join(__dirname, "../../package.json"))).toString(),
+        );
         dependencies.logger.stdout.write(`${version}${EOL}`);
         return ResultStatus.Succeeded;
     }

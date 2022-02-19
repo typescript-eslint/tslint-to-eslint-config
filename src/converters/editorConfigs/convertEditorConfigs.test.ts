@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { ResultStatus } from "../../types";
 import { convertEditorConfigs, ConvertEditorConfigsDependencies } from "./convertEditorConfigs";
 

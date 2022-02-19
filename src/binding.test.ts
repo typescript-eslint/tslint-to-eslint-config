@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { bind } from "./binding";
 
 describe("bind", () => {

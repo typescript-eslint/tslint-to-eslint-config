@@ -1,6 +1,6 @@
 import { EOL } from "os";
+import { jest } from "@jest/globals";
 
-import { version } from "../../package.json";
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
 import { createStubOriginalConfigurationsData } from "../settings.stubs";
 import { ResultStatus, TSLintToESLintResult } from "../types";
@@ -23,6 +23,9 @@ describe("runCli", () => {
         // Arrange
         const rawArgv = createStubArgv(["--version"]);
         const dependencies = createStubRunCliDependencies();
+        const {
+            default: { version },
+        } = await import("../../package.json");
 
         // Act
         await runCli(dependencies, rawArgv);

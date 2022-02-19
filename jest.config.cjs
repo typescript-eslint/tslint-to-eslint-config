@@ -18,7 +18,16 @@ module.exports = {
             statements: 100,
         },
     },
-    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+    extensionsToTreatAsEsm: [".ts"],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "node", "mjs", "cjs"],
+    moduleNameMapper: {
+        chalk: "chalk/source/index.js",
+        "#ansi-styles": "chalk/source/vendor/ansi-styles/index.js",
+        "#supports-color": "chalk/source/vendor/supports-color/index.js",
+    },
     testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
+    transform: {
+        "^.+\\.(t|j)s$": "@swc/jest",
+    },
 };

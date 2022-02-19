@@ -1,4 +1,5 @@
 import { EOL } from "os";
+import { jest } from "@jest/globals";
 
 import { stripAnsi } from "./stripAnsi.stubs";
 

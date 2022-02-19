@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { createStubFileSystem } from "../../adapters/fileSystem.stub";
 import { ConversionError } from "../../errors/conversionError";
 import { createStubConverter } from "../lintConfigs/rules/ruleConverter.stubs";

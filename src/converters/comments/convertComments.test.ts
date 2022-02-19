@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { ResultStatus } from "../../types";
 import { convertComments, ConvertCommentsDependencies } from "./convertComments";

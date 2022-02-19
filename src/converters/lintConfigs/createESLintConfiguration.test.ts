@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
 import { createESLintConfiguration } from "./createESLintConfiguration";

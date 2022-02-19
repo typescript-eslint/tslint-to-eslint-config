@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { collectCommentFileNames } from "./collectCommentFileNames";
 
 describe("collectCommentFileNames", () => {

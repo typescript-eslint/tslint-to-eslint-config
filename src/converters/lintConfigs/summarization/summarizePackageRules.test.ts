@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 import { ConfigurationError } from "../../../errors/configurationError";
 import { createEmptyConfigConversionResults } from "../configConversionResults.stubs";
 import { ESLintRuleOptionsWithArguments } from "../rules/types";

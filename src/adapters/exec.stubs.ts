@@ -1,3 +1,5 @@
+import { jest } from "@jest/globals";
+
 export type CreateStubExecSettings = {
     stderr: string;
     stdout: string;
