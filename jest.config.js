@@ -1,7 +1,6 @@
 module.exports = {
     collectCoverageFrom: [
         "./src/**/*.ts",
-        "!./src/index.ts",
         "!./src/**/*.d.ts",
         "!./src/**/*.stubs.ts",
         "!./src/adapters/*.ts",
@@ -10,6 +9,7 @@ module.exports = {
         "!./src/converters/editorConfigs/editorSettingsConverters.ts",
         "!./src/converters/lintConfigs/rules/ruleConverters.ts",
         "!./src/converters/lintConfigs/rules/ruleMergers.ts",
+        "!./src/index.ts",
     ],
     coverageThreshold: {
         global: {
