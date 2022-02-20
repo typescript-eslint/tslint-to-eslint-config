@@ -71,7 +71,7 @@
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test": "jest",
-        "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2",
+        "test:ci": "jest --coverage --maxWorkers=2",
         "tsc": "tsc"
     },
     "version": "2.10.1"
