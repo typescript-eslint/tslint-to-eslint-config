@@ -21,4 +21,7 @@ module.exports = {
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
+    transform: {
+        "^.+\\.(t|j)s$": "@swc/jest",
+    },
 };

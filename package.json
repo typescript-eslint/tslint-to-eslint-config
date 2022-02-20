@@ -22,11 +22,8 @@
         "typescript": "4.5.5"
     },
     "devDependencies": {
-        "@babel/core": "7.17.5",
-        "@babel/plugin-proposal-nullish-coalescing-operator": "7.16.7",
-        "@babel/plugin-proposal-optional-chaining": "7.16.7",
-        "@babel/preset-env": "7.16.11",
-        "@babel/preset-typescript": "7.16.7",
+        "@swc/core": "^1.2.143",
+        "@swc/jest": "^0.2.17",
         "@types/eslint-config-prettier": "6.11.0",
         "@types/glob": "7.2.0",
         "@types/jest": "27.4.0",
@@ -37,13 +34,13 @@
         "@typescript-eslint/eslint-plugin": "5.12.0",
         "@typescript-eslint/parser": "5.12.0",
         "ansi-regex": "6.0.1",
-        "babel-jest": "27.5.1",
         "eslint": "8.9.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.4",
         "jest": "27.5.1",
         "lint-staged": "12.3.4",
-        "prettier": "2.5.1"
+        "prettier": "2.5.1",
+        "regenerator-runtime": "^0.13.9"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
     "keywords": [
