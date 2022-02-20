@@ -1,6 +1,7 @@
 module.exports = {
     collectCoverageFrom: [
         "./src/**/*.ts",
+        "!./src/index.ts",
         "!./src/**/*.d.ts",
         "!./src/**/*.stubs.ts",
         "!./src/adapters/*.ts",
@@ -22,6 +23,13 @@ module.exports = {
     testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
     transform: {
-        "^.+\\.(t|j)s$": "@swc/jest",
+        "^.+\\.(t|j)s$": [
+            "@swc/jest",
+            {
+                jsc: {
+                    target: "es2021",
+                },
+            },
+        ],
     },
 };
