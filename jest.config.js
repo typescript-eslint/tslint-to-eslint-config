@@ -9,6 +9,7 @@ module.exports = {
         "!./src/converters/editorConfigs/editorSettingsConverters.ts",
         "!./src/converters/lintConfigs/rules/ruleConverters.ts",
         "!./src/converters/lintConfigs/rules/ruleMergers.ts",
+        "!./src/index.ts",
     ],
     coverageThreshold: {
         global: {
@@ -21,4 +22,14 @@ module.exports = {
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
+    transform: {
+        "^.+\\.(t|j)s$": [
+            "@swc/jest",
+            {
+                jsc: {
+                    target: "es2021",
+                },
+            },
+        ],
+    },
 };
