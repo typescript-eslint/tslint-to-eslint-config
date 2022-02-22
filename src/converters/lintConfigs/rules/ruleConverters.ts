@@ -321,6 +321,7 @@ import { convertTemplateUseTrackByFunction } from "./ruleConverters/template-use
 import { convertTrailingComma } from "./ruleConverters/trailing-comma";
 import { convertTripleEquals } from "./ruleConverters/triple-equals";
 import { convertTypeLiteralDelimiter } from "./ruleConverters/type-literal-delimiter";
+import { convertTypedef } from "./ruleConverters/typedef";
 import { convertTypedefWhitespace } from "./ruleConverters/typedef-whitespace";
 import { convertTypeofCompare } from "./ruleConverters/typeof-compare";
 import { convertUnderscoreConsistentInvocation } from "./ruleConverters/underscore-consistent-invocation";
@@ -669,6 +670,7 @@ export const ruleConverters = new Map([
     ["trailing-comma", convertTrailingComma],
     ["triple-equals", convertTripleEquals],
     ["type-literal-delimiter", convertTypeLiteralDelimiter],
+    ["typedef", convertTypedef],
     ["typedef-whitespace", convertTypedefWhitespace],
     ["typeof-compare", convertTypeofCompare],
     ["underscore-consistent-invocation", convertUnderscoreConsistentInvocation],
