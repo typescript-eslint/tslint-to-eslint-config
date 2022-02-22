@@ -6,7 +6,7 @@ tslint-to-eslint-config is a heavily tested CLI app with application flow starti
     * This file sets up all function dependencies and bound functions that call to each other.
 2. `src/cli/runCli.ts`'s `runCli` is called with those bound dependencies and raw arguments.
 
-> See [Dependencies.md](./Dependencies.md) for more info on functions and their dependencies are bound together.
+> See [Dependencies.md](../Dependencies.md) for more info on functions and their dependencies are bound together.
 
 ## CLI Runner
 
