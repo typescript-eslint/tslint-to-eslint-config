@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertIncrementDecrement } from "../increment-decrement";
 
-describe(convertIncrementDecrement, () => {
+describe("convertIncrementDecrement", () => {
     test("conversion without arguments", () => {
         const result = convertIncrementDecrement({
             ruleArguments: [],

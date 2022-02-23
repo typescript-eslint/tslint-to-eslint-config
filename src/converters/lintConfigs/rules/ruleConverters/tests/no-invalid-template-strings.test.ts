@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInvalidTemplateStrings } from "../no-invalid-template-strings";
 
-describe(convertNoInvalidTemplateStrings, () => {
+describe("convertNoInvalidTemplateStrings", () => {
     test("conversion without arguments", () => {
         const result = convertNoInvalidTemplateStrings({
             ruleArguments: [],

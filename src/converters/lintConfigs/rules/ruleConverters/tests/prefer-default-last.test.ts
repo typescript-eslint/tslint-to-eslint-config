@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferDefaultLast } from "../prefer-default-last";
 
-describe(convertPreferDefaultLast, () => {
+describe("convertPreferDefaultLast", () => {
     test("conversion without arguments", () => {
         const result = convertPreferDefaultLast({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeNoUnnecessaryTypeAssertion } from "../no-unnecessary-type-assertion";
 
-describe(mergeNoUnnecessaryTypeAssertion, () => {
+describe("mergeNoUnnecessaryTypeAssertion", () => {
     test("neither options existing", () => {
         const result = mergeNoUnnecessaryTypeAssertion(undefined, undefined);
 

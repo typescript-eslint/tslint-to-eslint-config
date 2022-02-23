@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertIndent } from "../indent";
 
-describe(convertIndent, () => {
+describe("convertIndent", () => {
     test("conversion without arguments", () => {
         const result = convertIndent({
             ruleArguments: [],

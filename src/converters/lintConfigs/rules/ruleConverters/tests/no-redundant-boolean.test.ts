@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoRedundantBoolean } from "../no-redundant-boolean";
 
-describe(convertNoRedundantBoolean, () => {
+describe("convertNoRedundantBoolean", () => {
     test("conversion without arguments", () => {
         const result = convertNoRedundantBoolean({
             ruleArguments: [],

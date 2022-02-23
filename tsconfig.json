@@ -6,6 +6,7 @@
         "incremental": true,
         "lib": [],
         "module": "commonjs",
+        "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,

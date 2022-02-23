@@ -1,10 +1,12 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ResultStatus } from "../../types";
 import { extractGlobPaths, ExtractGlobPathsDependencies } from "./extractGlobPaths";
 
 const createStubDependencies = (
     overrides: Partial<ExtractGlobPathsDependencies> = {},
 ): ExtractGlobPathsDependencies => ({
-    globAsync: jest.fn().mockResolvedValue(["a.ts", "b.ts"]),
+    globAsync: async () => ["a.ts", "b.ts"],
     ...overrides,
 });
 
@@ -13,7 +15,7 @@ describe("extractGlobPaths", () => {
         // Arrange
         const globAsyncError = new Error();
         const dependencies = createStubDependencies({
-            globAsync: jest.fn().mockResolvedValueOnce(globAsyncError),
+            globAsync: async () => globAsyncError,
         });
 
         // Act
@@ -31,7 +33,7 @@ describe("extractGlobPaths", () => {
     it("returns an error when there are no resultant file paths", async () => {
         // Arrange
         const dependencies = createStubDependencies({
-            globAsync: jest.fn().mockResolvedValueOnce([]),
+            globAsync: async () => [],
         });
 
         // Act
@@ -49,7 +51,7 @@ describe("extractGlobPaths", () => {
     it("returns an error when all globbed file paths are excluded", async () => {
         // Arrange
         const dependencies = createStubDependencies({
-            globAsync: jest.fn().mockResolvedValueOnce(["a.ts"]),
+            globAsync: async () => ["a.ts"],
         });
 
         // Act
@@ -68,7 +70,7 @@ describe("extractGlobPaths", () => {
     it("returns the paths when unique file paths are not excluded", async () => {
         // Arrange
         const dependencies = createStubDependencies({
-            globAsync: jest.fn().mockResolvedValueOnce(["a.ts"]),
+            globAsync: async () => ["a.ts"],
         });
 
         // Act

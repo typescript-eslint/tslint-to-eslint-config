@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsPreferAdd } from "../rxjs-prefer-add";
 
-describe(convertRxjsPreferAdd, () => {
+describe("convertRxjsPreferAdd", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsPreferAdd({
             ruleArguments: [],

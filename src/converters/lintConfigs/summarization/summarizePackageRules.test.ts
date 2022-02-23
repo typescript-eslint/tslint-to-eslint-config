@@ -1,10 +1,14 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ConfigurationError } from "../../../errors/configurationError";
+import { fn } from "../../../fn";
 import { createEmptyConfigConversionResults } from "../configConversionResults.stubs";
 import { ESLintRuleOptionsWithArguments } from "../rules/types";
+import { checkPrettierExtension } from "./prettier/checkPrettierExtension";
 import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summarizePackageRules";
 
 const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
-    checkPrettierExtension: jest.fn(),
+    checkPrettierExtension: fn<typeof checkPrettierExtension>(),
     removeExtendsDuplicatedRules: () => ({
         differentRules: new Map(),
         extensionRules: new Map(),

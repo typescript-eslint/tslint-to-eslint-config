@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoRegexSpaces } from "../no-regex-spaces";
 
-describe(convertNoRegexSpaces, () => {
+describe("convertNoRegexSpaces", () => {
     test("conversion without arguments", () => {
         const result = convertNoRegexSpaces({
             ruleArguments: [],

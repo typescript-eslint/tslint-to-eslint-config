@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { formatRawTslintRule } from "./formats/formatRawTslintRule";
 
 describe("formatRawTslintRule", () => {

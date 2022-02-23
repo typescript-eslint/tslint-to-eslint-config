@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxNoBind } from "../jsx-no-bind";
 
-describe(convertJsxNoBind, () => {
+describe("convertJsxNoBind", () => {
     test("conversion without arguments", () => {
         const result = convertJsxNoBind({
             ruleArguments: [],

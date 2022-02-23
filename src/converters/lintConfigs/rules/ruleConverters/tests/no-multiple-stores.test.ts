@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoMultipleStores } from "../no-multiple-stores";
 
-describe(convertNoMultipleStores, () => {
+describe("convertNoMultipleStores", () => {
     test("conversion without arguments", () => {
         const result = convertNoMultipleStores({
             ruleArguments: [],

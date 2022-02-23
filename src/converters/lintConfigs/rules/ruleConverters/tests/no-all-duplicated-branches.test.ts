@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoAllDuplicatedBranches } from "../no-all-duplicated-branches";
 
-describe(convertNoAllDuplicatedBranches, () => {
+describe("convertNoAllDuplicatedBranches", () => {
     test("conversion without arguments", () => {
         const result = convertNoAllDuplicatedBranches({
             ruleArguments: [],

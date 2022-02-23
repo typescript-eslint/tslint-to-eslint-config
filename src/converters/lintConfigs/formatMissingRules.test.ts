@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { formatMissingRules } from "./formatMissingRules";
 import { TSLintRuleOptions } from "./rules/types";
 

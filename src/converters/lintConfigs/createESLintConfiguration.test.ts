@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
 import { createESLintConfiguration } from "./createESLintConfiguration";
@@ -7,8 +9,8 @@ describe("createESLintConfiguration", () => {
         // Arrange
         const summarizedResults = createEmptyConfigConversionResults();
         const dependencies = {
-            convertRules: jest.fn().mockReturnValue(summarizedResults),
-            summarizePackageRules: jest.fn().mockReturnValue(summarizedResults),
+            convertRules: () => summarizedResults,
+            summarizePackageRules: async () => summarizedResults,
         };
         const originalConfigurations = createStubOriginalConfigurationsData();
 

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateNoAny } from "../template-no-any";
 
-describe(convertTemplateNoAny, () => {
+describe("convertTemplateNoAny", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateNoAny({
             ruleArguments: [],

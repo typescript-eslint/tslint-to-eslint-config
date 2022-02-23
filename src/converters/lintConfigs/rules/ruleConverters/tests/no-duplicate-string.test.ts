@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDuplicateString } from "../no-duplicate-string";
 
-describe(convertNoDuplicateString, () => {
+describe("convertNoDuplicateString", () => {
     test("conversion without arguments", () => {
         const result = convertNoDuplicateString({
             ruleArguments: [],

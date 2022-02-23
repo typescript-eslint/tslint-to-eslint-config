@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertBanTypes } from "../ban-types";
 
-describe(convertBanTypes, () => {
+describe("convertBanTypes", () => {
     test("conversion without arguments", () => {
         const result = convertBanTypes({
             ruleArguments: [],

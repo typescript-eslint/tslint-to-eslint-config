@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertBinaryExpressionOperandOrder } from "../binary-expression-operand-order";
 
-describe(convertBinaryExpressionOperandOrder, () => {
+describe("convertBinaryExpressionOperandOrder", () => {
     test("conversion without arguments", () => {
         const result = convertBinaryExpressionOperandOrder({
             ruleArguments: [],

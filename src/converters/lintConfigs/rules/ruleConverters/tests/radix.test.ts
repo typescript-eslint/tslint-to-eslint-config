@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRadix } from "../radix";
 
-describe(convertRadix, () => {
+describe("convertRadix", () => {
     test("conversion without arguments", () => {
         const result = convertRadix({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPromiseFunctionAsync } from "../promise-function-async";
 
-describe(convertPromiseFunctionAsync, () => {
+describe("convertPromiseFunctionAsync", () => {
     test("conversion without arguments", () => {
         const result = convertPromiseFunctionAsync({
             ruleArguments: [],

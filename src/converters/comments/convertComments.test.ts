@@ -1,6 +1,10 @@
+import { describe, expect, it, jest } from "@jest/globals";
+
+import { fn } from "../../fn";
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { ResultStatus } from "../../types";
 import { convertComments, ConvertCommentsDependencies } from "./convertComments";
+import { convertFileComments } from "./convertFileComments";
 
 const createStubDependencies = (
     overrides: Partial<ConvertCommentsDependencies> = {},
@@ -9,7 +13,7 @@ const createStubDependencies = (
         include: ["a.ts"],
     }),
     convertFileComments: jest.fn(),
-    extractGlobPaths: jest.fn().mockResolvedValue({
+    extractGlobPaths: async () => ({
         data: ["a.ts", "b.ts"],
         status: ResultStatus.Succeeded,
     }),
@@ -63,7 +67,7 @@ describe("convertComments", () => {
         // Arrange
         const globAsyncError = new Error();
         const dependencies = createStubDependencies({
-            extractGlobPaths: jest.fn().mockResolvedValueOnce({
+            extractGlobPaths: async () => ({
                 errors: [globAsyncError],
                 status: ResultStatus.Failed,
             }),
@@ -88,7 +92,8 @@ describe("convertComments", () => {
         // Arrange
         const fileConversionError = new Error("Failure!");
         const dependencies = createStubDependencies({
-            convertFileComments: jest.fn().mockResolvedValueOnce(fileConversionError),
+            convertFileComments:
+                fn<typeof convertFileComments>().mockResolvedValueOnce(fileConversionError),
         });
 
         // Act

@@ -1,28 +1,31 @@
+import { expect } from "@jest/globals";
+import { Mock } from "jest-mock";
 import { EOL } from "os";
 
+import { fn } from "../fn";
 import { stripAnsi } from "./stripAnsi.stubs";
 
 const debugFileName = "stub-output.log";
 
 const createStubWritableStream = () => ({
     writable: true,
-    addListener: jest.fn(),
-    emit: jest.fn(),
-    end: jest.fn(),
-    eventNames: jest.fn(),
-    getMaxListeners: jest.fn(),
-    listenerCount: jest.fn(),
-    listeners: jest.fn(),
-    off: jest.fn(),
-    on: jest.fn(),
-    once: jest.fn(),
-    prependListener: jest.fn(),
-    prependOnceListener: jest.fn(),
-    rawListeners: jest.fn(),
-    removeAllListeners: jest.fn(),
-    removeListener: jest.fn(),
-    setMaxListeners: jest.fn(),
-    write: jest.fn(),
+    addListener: fn<NodeJS.WritableStream["addListener"]>(),
+    emit: fn<NodeJS.WritableStream["emit"]>(),
+    end: fn<NodeJS.WritableStream["end"]>(),
+    eventNames: fn<NodeJS.WritableStream["eventNames"]>(),
+    getMaxListeners: fn<NodeJS.WritableStream["getMaxListeners"]>(),
+    listenerCount: fn<NodeJS.WritableStream["listenerCount"]>(),
+    listeners: fn<NodeJS.WritableStream["listeners"]>(),
+    off: fn<NodeJS.WritableStream["off"]>(),
+    on: fn<NodeJS.WritableStream["on"]>(),
+    once: fn<NodeJS.WritableStream["once"]>(),
+    prependListener: fn<NodeJS.WritableStream["prependListener"]>(),
+    prependOnceListener: fn<NodeJS.WritableStream["prependOnceListener"]>(),
+    rawListeners: fn<NodeJS.WritableStream["rawListeners"]>(),
+    removeAllListeners: fn<NodeJS.WritableStream["removeAllListeners"]>(),
+    removeListener: fn<NodeJS.WritableStream["removeListener"]>(),
+    setMaxListeners: fn<NodeJS.WritableStream["setMaxListeners"]>(),
+    write: fn<NodeJS.WritableStream["write"]>(),
 });
 
 export const createStubLogger = () => ({
@@ -40,9 +43,9 @@ const removeOddCharactersAndTrim = (text: string) =>
         )
         .trim();
 
-export const expectEqualWrites = (fn: jest.Mock, ...actual: string[]) => {
+export const expectEqualWrites = (writer: Mock<any, any>, ...actual: string[]) => {
     const realCalls = removeOddCharactersAndTrim(
-        fn.mock.calls.map((args) => args.join("")).join(""),
+        writer.mock.calls.map((args) => args.join("")).join(""),
     );
     const actualCalls = removeOddCharactersAndTrim(actual.join(EOL) + EOL);
 

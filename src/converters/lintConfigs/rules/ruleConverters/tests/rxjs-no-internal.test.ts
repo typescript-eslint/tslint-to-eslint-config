@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoInternal } from "../rxjs-no-internal";
 
-describe(convertRxjsNoInternal, () => {
+describe("convertRxjsNoInternal", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoInternal({
             ruleArguments: [],

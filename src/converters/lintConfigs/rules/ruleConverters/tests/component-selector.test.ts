@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertComponentSelector } from "../component-selector";
 
-describe(convertComponentSelector, () => {
+describe("convertComponentSelector", () => {
     test("conversion with arguments of same type", () => {
         const result = convertComponentSelector({
             ruleArguments: ["attribute", "myPrefix", "camelCase"],

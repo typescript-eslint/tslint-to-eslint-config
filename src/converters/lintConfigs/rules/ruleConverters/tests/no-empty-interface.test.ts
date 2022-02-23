@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoEmptyInterface } from "../no-empty-interface";
 
-describe(convertNoEmptyInterface, () => {
+describe("convertNoEmptyInterface", () => {
     test("conversion without arguments", () => {
         const result = convertNoEmptyInterface({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsPreferAngularAsyncPipe } from "../rxjs-prefer-angular-async-pipe";
 
-describe(convertRxjsPreferAngularAsyncPipe, () => {
+describe("convertRxjsPreferAngularAsyncPipe", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsPreferAngularAsyncPipe({
             ruleArguments: [],

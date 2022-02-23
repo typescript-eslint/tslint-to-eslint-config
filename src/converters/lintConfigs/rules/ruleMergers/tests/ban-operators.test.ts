@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeBanOperators } from "../ban-operators";
 
-describe(mergeBanOperators, () => {
+describe("mergeBanOperators", () => {
     test("neither operators existing", () => {
         const result = mergeBanOperators(undefined, undefined);
 

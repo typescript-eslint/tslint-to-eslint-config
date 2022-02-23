@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUseDefaultTypeParameter } from "../use-default-type-parameter";
 
-describe(convertUseDefaultTypeParameter, () => {
+describe("convertUseDefaultTypeParameter", () => {
     test("conversion without arguments", () => {
         const result = convertUseDefaultTypeParameter({
             ruleArguments: [],

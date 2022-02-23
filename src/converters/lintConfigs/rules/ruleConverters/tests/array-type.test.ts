@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertArrayType } from "../array-type";
 
-describe(convertArrayType, () => {
+describe("convertArrayType", () => {
     test("conversion without arguments", () => {
         const result = convertArrayType({
             ruleArguments: [],

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
 import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
 import { joinConfigConversionResults } from "./joinConfigConversionResults";

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoShadowedVariable } from "../no-shadowed-variable";
 
-describe(convertNoShadowedVariable, () => {
+describe("convertNoShadowedVariable", () => {
     test("conversion without parameter", () => {
         const result = convertNoShadowedVariable({
             ruleArguments: [],

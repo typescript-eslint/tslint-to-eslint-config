@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferReadonly } from "../prefer-readonly";
 
-describe(convertPreferReadonly, () => {
+describe("convertPreferReadonly", () => {
     test("conversion without arguments", () => {
         const result = convertPreferReadonly({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoCollectionSizeMischeck } from "../no-collection-size-mischeck";
 
-describe(convertNoCollectionSizeMischeck, () => {
+describe("convertNoCollectionSizeMischeck", () => {
     test("conversion without arguments", () => {
         const result = convertNoCollectionSizeMischeck({
             ruleArguments: [],

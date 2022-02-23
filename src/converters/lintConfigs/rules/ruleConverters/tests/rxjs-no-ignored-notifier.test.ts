@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoIgnoredNotifier } from "../rxjs-no-ignored-notifier";
 
-describe(convertRxjsNoIgnoredNotifier, () => {
+describe("convertRxjsNoIgnoredNotifier", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoIgnoredNotifier({
             ruleArguments: [],

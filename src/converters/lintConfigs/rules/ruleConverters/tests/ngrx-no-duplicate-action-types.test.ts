@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxNoDuplicateActionTypes } from "../ngrx-no-duplicate-action-types";
 
-describe(convertNgrxNoDuplicateActionTypes, () => {
+describe("convertNgrxNoDuplicateActionTypes", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxNoDuplicateActionTypes({
             ruleArguments: [],

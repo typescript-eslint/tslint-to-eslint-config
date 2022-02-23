@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { TypeScriptConfiguration } from "../../../input/findTypeScriptConfiguration";
 import { createEnv } from "./createEnv";
 

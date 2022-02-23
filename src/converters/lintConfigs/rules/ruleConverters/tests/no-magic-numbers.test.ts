@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoMagicNumbers } from "../no-magic-numbers";
 
-describe(convertNoMagicNumbers, () => {
+describe("convertNoMagicNumbers", () => {
     test("conversion without arguments", () => {
         const result = convertNoMagicNumbers({
             ruleArguments: [],

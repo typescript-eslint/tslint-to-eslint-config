@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertInterfaceOverTypeLiteral } from "../interface-over-type-literal";
 
-describe(convertInterfaceOverTypeLiteral, () => {
+describe("convertInterfaceOverTypeLiteral", () => {
     test("conversion without arguments", () => {
         const result = convertInterfaceOverTypeLiteral({
             ruleArguments: [],

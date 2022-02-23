@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInvalidRegexp } from "../no-invalid-regexp";
 
-describe(convertNoInvalidRegexp, () => {
+describe("convertNoInvalidRegexp", () => {
     test("conversion without arguments", () => {
         const result = convertNoInvalidRegexp({
             ruleArguments: [],

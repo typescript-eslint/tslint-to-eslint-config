@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDocumentWrite } from "../no-document-write";
 
-describe(convertNoDocumentWrite, () => {
+describe("convertNoDocumentWrite", () => {
     test("conversion without arguments", () => {
         const result = convertNoDocumentWrite({
             ruleArguments: [],

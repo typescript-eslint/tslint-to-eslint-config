@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNonLiteralFsPath } from "../non-literal-fs-path";
 
-describe(convertNonLiteralFsPath, () => {
+describe("convertNonLiteralFsPath", () => {
     test("conversion without arguments", () => {
         const result = convertNonLiteralFsPath({
             ruleArguments: [],

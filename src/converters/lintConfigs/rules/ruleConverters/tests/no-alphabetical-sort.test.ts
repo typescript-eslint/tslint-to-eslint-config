@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoAlphabeticalSort } from "../no-alphabetical-sort";
 
-describe(convertNoAlphabeticalSort, () => {
+describe("convertNoAlphabeticalSort", () => {
     test("conversion without arguments", () => {
         const result = convertNoAlphabeticalSort({
             ruleArguments: [],

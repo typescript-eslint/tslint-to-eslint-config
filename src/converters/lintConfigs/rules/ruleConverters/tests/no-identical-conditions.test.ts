@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoIdenticalConditions } from "../no-identical-conditions";
 
-describe(convertNoIdenticalConditions, () => {
+describe("convertNoIdenticalConditions", () => {
     test("conversion without arguments", () => {
         const result = convertNoIdenticalConditions({
             ruleArguments: [],

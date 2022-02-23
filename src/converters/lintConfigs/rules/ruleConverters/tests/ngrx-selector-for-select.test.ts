@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxSelectorForSelect } from "../ngrx-selector-for-select";
 
-describe(convertNgrxSelectorForSelect, () => {
+describe("convertNgrxSelectorForSelect", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxSelectorForSelect({
             ruleArguments: [],

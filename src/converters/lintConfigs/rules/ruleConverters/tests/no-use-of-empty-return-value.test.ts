@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoUseOfEmptyReturnValue } from "../no-use-of-empty-return-value";
 
-describe(convertNoUseOfEmptyReturnValue, () => {
+describe("convertNoUseOfEmptyReturnValue", () => {
     test("conversion without arguments", () => {
         const result = convertNoUseOfEmptyReturnValue({
             ruleArguments: [],

@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ResultStatus, TSLintToESLintSettings } from "../types";
 import { ESLintConfiguration } from "./findESLintConfiguration";
 import {

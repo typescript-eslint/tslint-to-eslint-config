@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoPipeImpure } from "../no-pipe-impure";
 
-describe(convertNoPipeImpure, () => {
+describe("convertNoPipeImpure", () => {
     test("conversion without arguments", () => {
         const result = convertNoPipeImpure({
             ruleArguments: [],

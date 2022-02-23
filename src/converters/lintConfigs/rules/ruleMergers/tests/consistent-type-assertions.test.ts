@@ -1,10 +1,12 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeConsistentTypeAssertions } from "../consistent-type-assertions";
 
 const option = {
     assertionStyle: "never",
 };
 
-describe(mergeConsistentTypeAssertions, () => {
+describe("mergeConsistentTypeAssertions", () => {
     test("neither options existing", () => {
         const result = mergeConsistentTypeAssertions(undefined, undefined);
 

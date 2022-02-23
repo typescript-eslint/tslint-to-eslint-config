@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertDirectiveClassSuffix } from "../directive-class-suffix";
 
-describe(convertDirectiveClassSuffix, () => {
+describe("convertDirectiveClassSuffix", () => {
     test("conversion without arguments", () => {
         const result = convertDirectiveClassSuffix({
             ruleArguments: [],

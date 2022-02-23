@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertClassMethodNewlines } from "../class-method-newlines";
 
-describe(convertClassMethodNewlines, () => {
+describe("convertClassMethodNewlines", () => {
     test("conversion without arguments", () => {
         const result = convertClassMethodNewlines({
             ruleArguments: [],

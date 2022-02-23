@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxNoMultipleActionsInEffects } from "../ngrx-no-multiple-actions-in-effects";
 
-describe(convertNgrxNoMultipleActionsInEffects, () => {
+describe("convertNgrxNoMultipleActionsInEffects", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxNoMultipleActionsInEffects({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPossibleTimingAttack } from "../possible-timing-attack";
 
-describe(convertPossibleTimingAttack, () => {
+describe("convertPossibleTimingAttack", () => {
     test("conversion without arguments", () => {
         const result = convertPossibleTimingAttack({
             ruleArguments: [],

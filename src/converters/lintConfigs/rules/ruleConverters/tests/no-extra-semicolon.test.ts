@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoExtraSemicolon } from "../no-extra-semicolon";
 
-describe(convertNoExtraSemicolon, () => {
+describe("convertNoExtraSemicolon", () => {
     test("conversion without arguments", () => {
         const result = convertNoExtraSemicolon({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoAttributeDecorator } from "../no-attribute-decorator";
 
-describe(convertNoAttributeDecorator, () => {
+describe("convertNoAttributeDecorator", () => {
     test("conversion without arguments", () => {
         const result = convertNoAttributeDecorator({
             ruleArguments: [],

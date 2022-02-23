@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNewParens } from "../new-parens";
 
-describe(convertNewParens, () => {
+describe("convertNewParens", () => {
     test("conversion without arguments", () => {
         const result = convertNewParens({
             ruleArguments: [],

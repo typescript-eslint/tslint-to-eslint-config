@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertCallableTypes } from "../callable-types";
 
-describe(convertCallableTypes, () => {
+describe("convertCallableTypes", () => {
     test("conversion without arguments", () => {
         const result = convertCallableTypes({
             ruleArguments: [],

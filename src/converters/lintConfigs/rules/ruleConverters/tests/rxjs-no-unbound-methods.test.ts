@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoUnboundMethods } from "../rxjs-no-unbound-methods";
 
-describe(convertRxjsNoUnboundMethods, () => {
+describe("convertRxjsNoUnboundMethods", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoUnboundMethods({
             ruleArguments: [],

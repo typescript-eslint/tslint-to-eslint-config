@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPipePrefix } from "../pipe-prefix";
 
-describe(convertPipePrefix, () => {
+describe("convertPipePrefix", () => {
     test("conversion without arguments", () => {
         const result = convertPipePrefix({
             ruleArguments: [],

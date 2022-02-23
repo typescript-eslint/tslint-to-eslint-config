@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxBooleanValue } from "../jsx-boolean-value";
 
-describe(convertJsxBooleanValue, () => {
+describe("convertJsxBooleanValue", () => {
     test("conversion without arguments", () => {
         const result = convertJsxBooleanValue({
             ruleArguments: [],

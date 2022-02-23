@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertInterfaceName } from "../interface-name";
 
-describe(convertInterfaceName, () => {
+describe("convertInterfaceName", () => {
     test("conversion without arguments", () => {
         const result = convertInterfaceName({
             ruleArguments: [],
