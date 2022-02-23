@@ -9,7 +9,7 @@ Please do file issues if you find bugs or lacking features!
 
 ## Local Setup
 
-After installing [Node >= 12 (latest LTS)](https://nodejs.org/en/download), clone and install packages locally with:
+After installing [Node >= 14 (latest LTS)](https://nodejs.org/en/download), clone and install packages locally with:
 
 ```shell
 git clone https://github.com/typescript-eslint/tslint-to-eslint-config

@@ -7,7 +7,7 @@
     },
     "description": "Converts your TSLint configuration to the closest reasonable ESLint equivalent.",
     "engines": {
-        "node": ">=12.0.0"
+        "node": ">=14.0.0"
     },
     "dependencies": {
         "chalk": "5.0.0",
@@ -22,21 +22,21 @@
         "typescript": "4.5.5"
     },
     "devDependencies": {
-        "@swc/core": "^1.2.143",
-        "@swc/jest": "^0.2.17",
+        "@swc/core": "1.2.144",
+        "@swc/jest": "0.2.17",
         "@types/eslint-config-prettier": "6.11.0",
         "@types/glob": "7.2.0",
-        "@types/jest": "27.4.0",
+        "@types/jest": "27.4.1",
         "@types/json5": "0.0.30",
         "@types/lodash": "4.14.178",
         "@types/minimatch": "3.0.5",
         "@types/node": "17.0.18",
-        "@typescript-eslint/eslint-plugin": "5.12.0",
-        "@typescript-eslint/parser": "5.12.0",
+        "@typescript-eslint/eslint-plugin": "5.12.1",
+        "@typescript-eslint/parser": "5.12.1",
         "ansi-regex": "6.0.1",
         "cross-env": "^7.0.3",
-        "eslint": "8.9.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
+        "eslint": "8.9.0",
         "husky": "7.0.4",
         "jest": "^27.5.1",
         "lint-staged": "12.3.4",
@@ -73,5 +73,5 @@
         "tsc": "tsc"
     },
     "type": "module",
-    "version": "2.10.1"
+    "version": "2.11.0"
 }
