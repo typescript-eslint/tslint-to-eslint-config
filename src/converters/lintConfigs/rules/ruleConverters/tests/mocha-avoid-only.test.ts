@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertMochaAvoidOnly } from "../mocha-avoid-only";
 
-describe(convertMochaAvoidOnly, () => {
+describe("convertMochaAvoidOnly", () => {
     test("conversion without arguments", () => {
         const result = convertMochaAvoidOnly({
             ruleArguments: [],

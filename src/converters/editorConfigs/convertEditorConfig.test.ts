@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { jest } from "@jest/globals";
 
 import { convertEditorConfig } from "./convertEditorConfig";
@@ -14,8 +16,8 @@ describe("convertEditorConfig", () => {
         const error = new Error("Oh no");
         const dependencies = {
             fileSystem: {
-                readFile: jest.fn().mockResolvedValue(error),
-                writeFile: jest.fn(),
+                readFile: async () => error,
+                writeFile: async () => undefined,
             },
         };
 
@@ -36,8 +38,8 @@ describe("convertEditorConfig", () => {
         });
         const dependencies = {
             fileSystem: {
-                readFile: jest.fn().mockResolvedValue(originalFileContents),
-                writeFile: jest.fn().mockResolvedValue(error),
+                readFile: async () => originalFileContents,
+                writeFile: async () => error,
             },
         };
 
@@ -57,8 +59,8 @@ describe("convertEditorConfig", () => {
         });
         const dependencies = {
             fileSystem: {
-                readFile: jest.fn().mockResolvedValue(originalFileContents),
-                writeFile: jest.fn().mockResolvedValue(undefined),
+                readFile: async () => originalFileContents,
+                writeFile: async () => undefined,
             },
         };
 

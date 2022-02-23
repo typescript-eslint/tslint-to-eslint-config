@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertObjectLiteralKeyQuotes } from "../object-literal-key-quotes";
 
-describe(convertObjectLiteralKeyQuotes, () => {
+describe("convertObjectLiteralKeyQuotes", () => {
     test("conversion without arguments", () => {
         const result = convertObjectLiteralKeyQuotes({
             ruleArguments: [],

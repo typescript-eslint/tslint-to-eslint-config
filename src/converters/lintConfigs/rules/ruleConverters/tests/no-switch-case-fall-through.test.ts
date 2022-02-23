@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoSwitchCaseFallThrough } from "../no-switch-case-fall-through";
 
-describe(convertNoSwitchCaseFallThrough, () => {
+describe("convertNoSwitchCaseFallThrough", () => {
     test("conversion without arguments", () => {
         const result = convertNoSwitchCaseFallThrough({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoNonNullAssertion } from "../no-non-null-assertion";
 
-describe(convertNoNonNullAssertion, () => {
+describe("convertNoNonNullAssertion", () => {
     test("conversion without arguments", () => {
         const result = convertNoNonNullAssertion({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoUnsafeTakewhile } from "../rxjs-no-unsafe-takewhile";
 
-describe(convertRxjsNoUnsafeTakewhile, () => {
+describe("convertRxjsNoUnsafeTakewhile", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoUnsafeTakewhile({
             ruleArguments: [],

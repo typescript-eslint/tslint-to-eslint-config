@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxNoReducerInKeyNames } from "../ngrx-no-reducer-in-key-names";
 
-describe(convertNgrxNoReducerInKeyNames, () => {
+describe("convertNgrxNoReducerInKeyNames", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxNoReducerInKeyNames({
             ruleArguments: [],

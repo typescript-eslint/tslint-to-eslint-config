@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoWithStatement } from "../no-with-statement";
 
-describe(convertNoWithStatement, () => {
+describe("convertNoWithStatement", () => {
     test("conversion without arguments", () => {
         const result = convertNoWithStatement({
             ruleArguments: [],

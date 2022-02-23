@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoStringThrow } from "../no-string-throw";
 
-describe(convertNoStringThrow, () => {
+describe("convertNoStringThrow", () => {
     test("conversion without arguments", () => {
         const result = convertNoStringThrow({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoConstantCondition } from "../no-constant-condition";
 
-describe(convertNoConstantCondition, () => {
+describe("convertNoConstantCondition", () => {
     test("conversion without arguments", () => {
         const result = convertNoConstantCondition({
             ruleArguments: [],

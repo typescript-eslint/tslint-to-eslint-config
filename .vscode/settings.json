@@ -8,5 +8,6 @@
     },
     "prettier.ignorePath": ".prettierignore",
     "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }]
 }

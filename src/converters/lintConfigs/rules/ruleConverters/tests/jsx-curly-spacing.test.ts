@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxCurlySpacing } from "../jsx-curly-spacing";
 
-describe(convertJsxCurlySpacing, () => {
+describe("convertJsxCurlySpacing", () => {
     test("conversion without arguments", () => {
         const result = convertJsxCurlySpacing({
             ruleArguments: [],

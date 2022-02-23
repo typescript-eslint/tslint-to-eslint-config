@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoAsyncWithoutAwait } from "../no-async-without-await";
 
-describe(convertNoAsyncWithoutAwait, () => {
+describe("convertNoAsyncWithoutAwait", () => {
     test("conversion without arguments", () => {
         const result = convertNoAsyncWithoutAwait({
             ruleArguments: [],

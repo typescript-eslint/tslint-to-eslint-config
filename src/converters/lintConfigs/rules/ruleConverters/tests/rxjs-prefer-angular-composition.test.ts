@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsPreferAngularComposition } from "../rxjs-prefer-angular-composition";
 
-describe(convertRxjsPreferAngularComposition, () => {
+describe("convertRxjsPreferAngularComposition", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsPreferAngularComposition({
             ruleArguments: [],

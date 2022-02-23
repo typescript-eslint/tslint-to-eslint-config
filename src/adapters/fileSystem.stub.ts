@@ -1,7 +1,8 @@
-import { jest } from "@jest/globals";
+import { FileSystem } from "../adapters/fileSystem";
+import { fn } from "../fn";
 
 export const createStubFileSystem = ({ data = {}, exists = true } = {}) => ({
-    fileExists: jest.fn().mockReturnValue(exists),
-    readFile: jest.fn().mockReturnValue(Promise.resolve(data)),
-    writeFile: jest.fn(),
+    fileExists: async () => exists,
+    readFile: async () => data,
+    writeFile: fn<FileSystem["writeFile"]>(),
 });

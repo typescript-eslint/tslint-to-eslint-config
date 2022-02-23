@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoCollapsibleIf } from "../no-collapsible-if";
 
-describe(convertNoCollapsibleIf, () => {
+describe("convertNoCollapsibleIf", () => {
     test("conversion without arguments", () => {
         const result = convertNoCollapsibleIf({
             ruleArguments: [],

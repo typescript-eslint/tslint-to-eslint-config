@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertComponentClassSuffix } from "../component-class-suffix";
 
-describe(convertComponentClassSuffix, () => {
+describe("convertComponentClassSuffix", () => {
     test("conversion without arguments", () => {
         const result = convertComponentClassSuffix({
             ruleArguments: [],

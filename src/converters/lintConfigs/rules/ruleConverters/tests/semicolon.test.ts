@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertSemicolon } from "../semicolon";
 
-describe(convertSemicolon, () => {
+describe("convertSemicolon", () => {
     test("conversion with always", () => {
         const result = convertSemicolon({
             ruleArguments: ["always"],

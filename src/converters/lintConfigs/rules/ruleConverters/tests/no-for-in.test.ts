@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoForIn } from "../no-for-in";
 
-describe(convertNoForIn, () => {
+describe("convertNoForIn", () => {
     test("conversion without arguments", () => {
         const result = convertNoForIn({
             ruleArguments: [],

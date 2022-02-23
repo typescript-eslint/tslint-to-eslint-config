@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoObjectLiteralTypeAssertion } from "../no-object-literal-type-assertion";
 
-describe(convertNoObjectLiteralTypeAssertion, () => {
+describe("convertNoObjectLiteralTypeAssertion", () => {
     test("conversion without arguments", () => {
         const result = convertNoObjectLiteralTypeAssertion({
             ruleArguments: [],

@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeTripleSlashReference } from "../triple-slash-reference";
 
 const option = {
@@ -6,7 +8,7 @@ const option = {
     lib: "always",
 };
 
-describe(mergeTripleSlashReference, () => {
+describe("mergeTripleSlashReference", () => {
     test("neither options existing", () => {
         const result = mergeTripleSlashReference(undefined, undefined);
 

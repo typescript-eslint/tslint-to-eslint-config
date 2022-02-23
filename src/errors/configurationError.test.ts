@@ -1,8 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { EOL } from "os";
 
 import { ConfigurationError } from "./configurationError";
 
-describe(ConfigurationError, () => {
+describe("ConfigurationError", () => {
     describe("getSummary", () => {
         it("creates a summary for the error", () => {
             // Arrange

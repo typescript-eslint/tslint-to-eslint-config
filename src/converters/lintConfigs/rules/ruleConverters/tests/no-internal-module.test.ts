@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInternalModule } from "../no-internal-module";
 
-describe(convertNoInternalModule, () => {
+describe("convertNoInternalModule", () => {
     test("conversion without arguments", () => {
         const result = convertNoInternalModule({
             ruleArguments: [],

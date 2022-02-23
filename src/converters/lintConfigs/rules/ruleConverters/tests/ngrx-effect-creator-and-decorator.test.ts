@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxEffectCreatorAndDecorator } from "../ngrx-effect-creator-and-decorator";
 
-describe(convertNgrxEffectCreatorAndDecorator, () => {
+describe("convertNgrxEffectCreatorAndDecorator", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxEffectCreatorAndDecorator({
             ruleArguments: [],

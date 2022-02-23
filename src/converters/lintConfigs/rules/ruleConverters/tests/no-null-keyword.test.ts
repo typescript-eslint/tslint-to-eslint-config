@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoNullKeyword } from "../no-null-keyword";
 
-describe(convertNoNullKeyword, () => {
+describe("convertNoNullKeyword", () => {
     test("conversion without arguments", () => {
         const result = convertNoNullKeyword({
             ruleArguments: [],

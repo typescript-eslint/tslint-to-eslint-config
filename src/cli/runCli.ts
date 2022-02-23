@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import { promises as fs } from "fs";
-import { EOL } from "os";
+import { EOL } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 

@@ -1,4 +1,5 @@
-import { jest } from "@jest/globals";
+import { fn } from "../fn";
+import { Exec } from "./exec";
 
 export type CreateStubExecSettings = {
     stderr: string;
@@ -6,7 +7,10 @@ export type CreateStubExecSettings = {
 };
 
 export const createStubExec = ({ stderr = "", stdout = "" } = {}) =>
-    jest.fn().mockReturnValue(Promise.resolve({ stderr, stdout }));
+    fn<Exec>().mockResolvedValue({ stderr, stdout });
 
-export const createStubThrowingExec = ({ stderr = "" } = {}) =>
-    jest.fn().mockRejectedValue(new Error(stderr));
+export const createStubThrowingExec =
+    ({ stderr = "" } = {}) =>
+    async () => {
+        throw new Error(stderr);
+    };

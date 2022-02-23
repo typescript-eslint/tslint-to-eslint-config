@@ -1,16 +1,20 @@
-import { jest } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 
+import { fn } from "../../fn";
 import { ResultStatus } from "../../types";
+import { convertEditorConfig } from "./convertEditorConfig";
 import { convertEditorConfigs, ConvertEditorConfigsDependencies } from "./convertEditorConfigs";
+import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults";
+import { EditorConfigConverter } from "./types";
 
 const stubConfigPath = "stub.json";
 
-const stubEditorConfigDescriptors = [[stubConfigPath, jest.fn()]] as const;
+const stubEditorConfigDescriptors = [[stubConfigPath, fn<EditorConfigConverter>()]] as const;
 
 const createStubDependencies = (overrides: Partial<ConvertEditorConfigsDependencies> = {}) => ({
-    convertEditorConfig: jest.fn(),
+    convertEditorConfig: fn<typeof convertEditorConfig>(),
     editorConfigDescriptors: stubEditorConfigDescriptors,
-    reportEditorConfigConversionResults: jest.fn(),
+    reportEditorConfigConversionResults: fn<typeof reportEditorConfigConversionResults>(),
     ...overrides,
 });
 
@@ -47,7 +51,7 @@ describe("convertEditorConfigs", () => {
         // Arrange
         const error = new Error("Oh no!");
         const dependencies = createStubDependencies({
-            convertEditorConfig: jest.fn().mockResolvedValue(error),
+            convertEditorConfig: async () => error,
         });
         const settings = createSettings(stubConfigPath);
 
@@ -72,7 +76,7 @@ describe("convertEditorConfigs", () => {
             missing: [],
         };
         const dependencies = createStubDependencies({
-            convertEditorConfig: jest.fn().mockResolvedValue(success),
+            convertEditorConfig: async () => success,
         });
         const settings = createSettings(stubConfigPath);
 

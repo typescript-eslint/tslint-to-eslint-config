@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNewlineBeforeReturn } from "../newline-before-return";
 
-describe(convertNewlineBeforeReturn, () => {
+describe("convertNewlineBeforeReturn", () => {
     test("conversion without arguments", () => {
         const result = convertNewlineBeforeReturn({
             ruleArguments: [],

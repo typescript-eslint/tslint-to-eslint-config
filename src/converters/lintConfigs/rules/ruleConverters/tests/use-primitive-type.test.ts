@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUsePrimitiveType } from "../use-primitive-type";
 
-describe(convertUsePrimitiveType, () => {
+describe("convertUsePrimitiveType", () => {
     test("conversion without arguments", () => {
         const result = convertUsePrimitiveType({
             ruleArguments: [],

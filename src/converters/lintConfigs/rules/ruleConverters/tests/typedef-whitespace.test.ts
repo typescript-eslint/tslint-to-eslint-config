@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTypedefWhitespace } from "../typedef-whitespace";
 
-describe(convertTypedefWhitespace, () => {
+describe("convertTypedefWhitespace", () => {
     test("conversion without arguments", () => {
         const result = convertTypedefWhitespace({
             ruleArguments: [],

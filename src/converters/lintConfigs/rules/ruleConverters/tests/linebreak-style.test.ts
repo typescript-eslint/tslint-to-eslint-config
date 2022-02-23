@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertLinebreakStyle } from "../linebreak-style";
 
-describe(convertLinebreakStyle, () => {
+describe("convertLinebreakStyle", () => {
     test("conversion without arguments", () => {
         const result = convertLinebreakStyle({
             ruleArguments: [],

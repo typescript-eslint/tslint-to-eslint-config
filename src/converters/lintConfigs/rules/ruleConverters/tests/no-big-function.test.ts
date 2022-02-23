@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoBigFunction } from "../no-big-function";
 
-describe(convertNoBigFunction, () => {
+describe("convertNoBigFunction", () => {
     test("conversion without arguments", () => {
         const result = convertNoBigFunction({
             ruleArguments: [],

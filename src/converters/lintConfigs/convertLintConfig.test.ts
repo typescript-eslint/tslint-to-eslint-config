@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { jest } from "@jest/globals";
 
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
@@ -15,10 +17,10 @@ const createStubDependencies = (
     const ruleConversionResults = createEmptyConfigConversionResults();
 
     return {
-        createESLintConfiguration: jest.fn().mockResolvedValue(ruleConversionResults),
+        createESLintConfiguration: async () => ruleConversionResults,
         fileSystem: { writeFile: jest.fn() },
-        logMissingPackages: jest.fn().mockResolvedValue(undefined),
-        reportConfigConversionResults: jest.fn().mockResolvedValue(undefined),
+        logMissingPackages: async () => undefined,
+        reportConfigConversionResults: async () => undefined,
         ...overrides,
     };
 };
@@ -29,7 +31,7 @@ describe("convertLintConfig", () => {
         const fileWriteError = new Error();
         const dependencies = createStubDependencies({
             fileSystem: {
-                writeFile: jest.fn().mockResolvedValue(fileWriteError),
+                writeFile: async () => fileWriteError,
             },
         });
 
@@ -55,7 +57,7 @@ describe("convertLintConfig", () => {
         };
         const dependencies = createStubDependencies({
             fileSystem: {
-                writeFile: jest.fn().mockResolvedValue(undefined),
+                writeFile: async () => undefined,
             },
         });
 

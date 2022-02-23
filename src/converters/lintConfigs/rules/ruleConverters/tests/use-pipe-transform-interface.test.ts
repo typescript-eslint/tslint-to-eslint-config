@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUsePipeTransformInterface } from "../use-pipe-transform-interface";
 
-describe(convertUsePipeTransformInterface, () => {
+describe("convertUsePipeTransformInterface", () => {
     test("conversion without arguments", () => {
         const result = convertUsePipeTransformInterface({
             ruleArguments: [],

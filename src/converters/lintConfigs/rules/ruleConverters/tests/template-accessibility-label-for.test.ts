@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateAccessibilityLabelFor } from "../template-accessibility-label-for";
 
-describe(convertTemplateAccessibilityLabelFor, () => {
+describe("convertTemplateAccessibilityLabelFor", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateAccessibilityLabelFor({
             ruleArguments: [],

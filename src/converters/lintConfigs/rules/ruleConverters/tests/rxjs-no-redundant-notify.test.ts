@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoRedundantNotify } from "../rxjs-no-redundant-notify";
 
-describe(convertRxjsNoRedundantNotify, () => {
+describe("convertRxjsNoRedundantNotify", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoRedundantNotify({
             ruleArguments: [],

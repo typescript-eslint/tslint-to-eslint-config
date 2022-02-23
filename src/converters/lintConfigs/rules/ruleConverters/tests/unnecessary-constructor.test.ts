@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUnnecessaryConstructor } from "../unnecessary-constructor";
 
-describe(convertUnnecessaryConstructor, () => {
+describe("convertUnnecessaryConstructor", () => {
     test("conversion without arguments", () => {
         const result = convertUnnecessaryConstructor({
             ruleArguments: [],

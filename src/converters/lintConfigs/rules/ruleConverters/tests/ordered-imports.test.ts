@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertOrderedImports } from "../ordered-imports";
 
-describe(convertOrderedImports, () => {
+describe("convertOrderedImports", () => {
     test("conversion without arguments", () => {
         const result = convertOrderedImports({
             ruleArguments: [],

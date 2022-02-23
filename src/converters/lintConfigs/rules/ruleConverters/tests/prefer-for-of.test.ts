@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferForOf } from "../prefer-for-of";
 
-describe(convertPreferForOf, () => {
+describe("convertPreferForOf", () => {
     test("conversion without arguments", () => {
         const result = convertPreferForOf({
             ruleArguments: [],

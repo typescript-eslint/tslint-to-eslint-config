@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertSwitchDefault } from "../switch-default";
 
-describe(convertSwitchDefault, () => {
+describe("convertSwitchDefault", () => {
     test("conversion without arguments", () => {
         const result = convertSwitchDefault({
             ruleArguments: [],

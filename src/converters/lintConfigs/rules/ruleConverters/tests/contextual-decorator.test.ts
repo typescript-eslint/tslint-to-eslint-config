@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertContextualDecorator } from "../contextual-decorator";
 
-describe(convertContextualDecorator, () => {
+describe("convertContextualDecorator", () => {
     test("conversion without arguments", () => {
         const result = convertContextualDecorator({
             ruleArguments: [],

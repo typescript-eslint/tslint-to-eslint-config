@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsBanOperators } from "../rxjs-ban-operators";
 
-describe(convertRxjsBanOperators, () => {
+describe("convertRxjsBanOperators", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsBanOperators({
             ruleArguments: [],

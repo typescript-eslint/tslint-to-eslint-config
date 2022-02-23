@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoExplicitGenerics } from "../rxjs-no-explicit-generics";
 
-describe(convertRxjsNoExplicitGenerics, () => {
+describe("convertRxjsNoExplicitGenerics", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoExplicitGenerics({
             ruleArguments: [],

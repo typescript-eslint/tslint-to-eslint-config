@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoCompat } from "../rxjs-no-compat";
 
-describe(convertRxjsNoCompat, () => {
+describe("convertRxjsNoCompat", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoCompat({
             ruleArguments: [],

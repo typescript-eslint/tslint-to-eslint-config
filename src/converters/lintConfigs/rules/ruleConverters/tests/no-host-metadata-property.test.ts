@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoHostMetadataProperty } from "../no-host-metadata-property";
 
-describe(convertNoHostMetadataProperty, () => {
+describe("convertNoHostMetadataProperty", () => {
     test("conversion without arguments", () => {
         const result = convertNoHostMetadataProperty({
             ruleArguments: [],

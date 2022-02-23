@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoConsole } from "../no-console";
 
 const consoleKeysExcluding = (...keys: string[]) => {
@@ -10,7 +12,7 @@ const consoleKeysExcluding = (...keys: string[]) => {
     return Array.from(knownConsoleKeys);
 };
 
-describe(convertNoConsole, () => {
+describe("convertNoConsole", () => {
     test("conversion without arguments", () => {
         const result = convertNoConsole({
             ruleArguments: [],

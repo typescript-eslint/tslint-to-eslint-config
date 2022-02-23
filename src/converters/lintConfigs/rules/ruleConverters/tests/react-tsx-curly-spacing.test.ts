@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertReactTsxCurlySpacing } from "../react-tsx-curly-spacing";
 
-describe(convertReactTsxCurlySpacing, () => {
+describe("convertReactTsxCurlySpacing", () => {
     test("conversion with 'always'", () => {
         const result = convertReactTsxCurlySpacing({
             ruleArguments: ["always"],

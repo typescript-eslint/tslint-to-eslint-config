@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertReactA11yRoleHasRequiredAriaProps } from "../react-a11y-role-has-required-aria-props";
 
-describe(convertReactA11yRoleHasRequiredAriaProps, () => {
+describe("convertReactA11yRoleHasRequiredAriaProps", () => {
     test("conversion without arguments", () => {
         const result = convertReactA11yRoleHasRequiredAriaProps({
             ruleArguments: [],

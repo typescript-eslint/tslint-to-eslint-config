@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertMaxFileLineCount } from "../max-file-line-count";
 
-describe(convertMaxFileLineCount, () => {
+describe("convertMaxFileLineCount", () => {
     test("conversion without arguments", () => {
         const result = convertMaxFileLineCount({
             ruleArguments: [],

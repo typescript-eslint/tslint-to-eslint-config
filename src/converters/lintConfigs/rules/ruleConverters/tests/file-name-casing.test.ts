@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertFileNameCasing } from "../file-name-casing";
 
-describe(convertFileNameCasing, () => {
+describe("convertFileNameCasing", () => {
     test("conversion without parameter", () => {
         const result = convertFileNameCasing({
             ruleArguments: [],

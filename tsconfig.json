@@ -6,6 +6,7 @@
         "incremental": true,
         "lib": [],
         "module": "esnext",
+        "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
         "noImplicitReturns": true,

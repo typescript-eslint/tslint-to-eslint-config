@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertReactA11yAnchors } from "../react-a11y-anchors";
 
-describe(convertReactA11yAnchors, () => {
+describe("convertReactA11yAnchors", () => {
     test("conversion without arguments", () => {
         const result = convertReactA11yAnchors({
             ruleArguments: [],

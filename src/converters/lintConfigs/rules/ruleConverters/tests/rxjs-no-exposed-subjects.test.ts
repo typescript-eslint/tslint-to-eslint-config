@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoExposedSubjects } from "../rxjs-no-exposed-subjects";
 
-describe(convertRxjsNoExposedSubjects, () => {
+describe("convertRxjsNoExposedSubjects", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoExposedSubjects({
             ruleArguments: [],

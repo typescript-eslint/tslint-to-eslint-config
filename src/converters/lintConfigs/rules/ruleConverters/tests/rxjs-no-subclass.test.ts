@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoSubclass } from "../rxjs-no-subclass";
 
-describe(convertRxjsNoSubclass, () => {
+describe("convertRxjsNoSubclass", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoSubclass({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoLifecycleCall } from "../no-lifecycle-call";
 
-describe(convertNoLifecycleCall, () => {
+describe("convertNoLifecycleCall", () => {
     test("conversion without arguments", () => {
         const result = convertNoLifecycleCall({
             ruleArguments: [],

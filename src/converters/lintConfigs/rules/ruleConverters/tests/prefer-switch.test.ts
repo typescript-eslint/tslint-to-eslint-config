@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferSwitch } from "../prefer-switch";
 
-describe(convertPreferSwitch, () => {
+describe("convertPreferSwitch", () => {
     test("conversion without arguments", () => {
         const result = convertPreferSwitch({
             ruleArguments: [],

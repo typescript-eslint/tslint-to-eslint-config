@@ -1,9 +1,11 @@
+import { describe, expect, test } from "@jest/globals";
+
 import {
     convertStrictBooleanExpressions,
     ForbiddenOtherNonBooleanTypes,
 } from "../strict-boolean-expressions";
 
-describe(convertStrictBooleanExpressions, () => {
+describe("convertStrictBooleanExpressions", () => {
     test("conversion without arguments", () => {
         const result = convertStrictBooleanExpressions({
             ruleArguments: [],

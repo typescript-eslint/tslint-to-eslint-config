@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import * as CsonParser from "cson-parser";
 
 import { convertAtomConfig } from "./convertAtomConfig";

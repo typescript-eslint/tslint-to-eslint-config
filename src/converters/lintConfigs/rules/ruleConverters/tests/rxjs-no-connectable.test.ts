@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoConnectable } from "../rxjs-no-connectable";
 
-describe(convertRxjsNoConnectable, () => {
+describe("convertRxjsNoConnectable", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoConnectable({
             ruleArguments: [],

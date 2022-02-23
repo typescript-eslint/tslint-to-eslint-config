@@ -1,19 +1,20 @@
+import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
-import { jest } from "@jest/globals";
 
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
 import { createStubOriginalConfigurationsData } from "../settings.stubs";
-import { ResultStatus, TSLintToESLintResult } from "../types";
+import { ConfigurationErrorResult, ResultStatus, TSLintToESLintResult } from "../types";
 import { runCli, RunCliDependencies } from "./runCli";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
 
 const createStubRunCliDependencies = (overrides: Partial<RunCliDependencies> = {}) => ({
     converters: [async (): Promise<TSLintToESLintResult> => ({ status: ResultStatus.Succeeded })],
-    findOriginalConfigurations: jest.fn().mockResolvedValue({
-        data: createStubOriginalConfigurationsData(),
-        status: ResultStatus.Succeeded,
-    }),
+    findOriginalConfigurations: async () =>
+        ({
+            data: createStubOriginalConfigurationsData(),
+            status: ResultStatus.Succeeded,
+        } as const),
     ...overrides,
     logger: createStubLogger(),
 });
@@ -38,9 +39,9 @@ describe("runCli", () => {
         // Arrange
         const message = "Oh no";
         const dependencies = createStubRunCliDependencies({
-            findOriginalConfigurations: jest.fn().mockResolvedValue({
-                errors: [new Error(message)],
-                status: ResultStatus.Failed,
+            findOriginalConfigurations: async (): Promise<ConfigurationErrorResult> => ({
+                complaints: [message],
+                status: ResultStatus.ConfigurationError,
             }),
         });
 
@@ -51,7 +52,7 @@ describe("runCli", () => {
         expect(dependencies.logger.stderr.write).toHaveBeenLastCalledWith(
             expect.stringMatching(message),
         );
-        expect(status).toBe(ResultStatus.Failed);
+        expect(status).toBe(ResultStatus.ConfigurationError);
     });
 
     it("logs an error when a converter fails", async () => {

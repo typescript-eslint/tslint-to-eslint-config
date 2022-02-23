@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoUnsafeSubjectNext } from "../rxjs-no-unsafe-subject-next";
 
-describe(convertRxjsNoUnsafeSubjectNext, () => {
+describe("convertRxjsNoUnsafeSubjectNext", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoUnsafeSubjectNext({
             ruleArguments: [],

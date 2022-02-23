@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoOctalLiteral } from "../no-octal-literal";
 
-describe(convertNoOctalLiteral, () => {
+describe("convertNoOctalLiteral", () => {
     test("conversion without arguments", () => {
         const result = convertNoOctalLiteral({
             ruleArguments: [],

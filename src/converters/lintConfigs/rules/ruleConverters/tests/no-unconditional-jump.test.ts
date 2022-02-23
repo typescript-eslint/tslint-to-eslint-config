@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoUnconditionalJump } from "../no-unconditional-jump";
 
-describe(convertNoUnconditionalJump, () => {
+describe("convertNoUnconditionalJump", () => {
     test("conversion without arguments", () => {
         const result = convertNoUnconditionalJump({
             ruleArguments: [],

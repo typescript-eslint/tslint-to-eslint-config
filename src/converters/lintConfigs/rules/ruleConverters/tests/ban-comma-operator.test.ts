@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertBanCommaOperator } from "../ban-comma-operator";
 
-describe(convertBanCommaOperator, () => {
+describe("convertBanCommaOperator", () => {
     test("conversion without arguments", () => {
         const result = convertBanCommaOperator({
             ruleArguments: [],

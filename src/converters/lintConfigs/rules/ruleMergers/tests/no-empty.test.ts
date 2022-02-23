@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeNoEmpty } from "../no-empty";
 
-describe(mergeNoEmpty, () => {
+describe("mergeNoEmpty", () => {
     test("neither options existing", () => {
         const result = mergeNoEmpty(undefined, undefined);
 

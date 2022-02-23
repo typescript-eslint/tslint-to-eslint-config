@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateBananaInBox } from "../template-banana-in-box";
 
-describe(convertTemplateBananaInBox, () => {
+describe("convertTemplateBananaInBox", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateBananaInBox({
             ruleArguments: [],

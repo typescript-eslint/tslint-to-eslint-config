@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertMaxSwitchCases } from "../max-switch-cases";
 
-describe(convertMaxSwitchCases, () => {
+describe("convertMaxSwitchCases", () => {
     test("conversion without arguments", () => {
         const result = convertMaxSwitchCases({
             ruleArguments: [],

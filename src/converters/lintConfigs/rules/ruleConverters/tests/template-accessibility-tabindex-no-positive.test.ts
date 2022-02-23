@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateAccessibilityTabindexNoPositive } from "../template-accessibility-tabindex-no-positive";
 
-describe(convertTemplateAccessibilityTabindexNoPositive, () => {
+describe("convertTemplateAccessibilityTabindexNoPositive", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateAccessibilityTabindexNoPositive({
             ruleArguments: [],

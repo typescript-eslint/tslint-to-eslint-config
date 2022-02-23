@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoAsyncSubscribe } from "../rxjs-no-async-subscribe";
 
-describe(convertRxjsNoAsyncSubscribe, () => {
+describe("convertRxjsNoAsyncSubscribe", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoAsyncSubscribe({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxNoLambda } from "../jsx-no-lambda";
 
-describe(convertJsxNoLambda, () => {
+describe("convertJsxNoLambda", () => {
     test("conversion without arguments", () => {
         const result = convertJsxNoLambda({
             ruleArguments: [],

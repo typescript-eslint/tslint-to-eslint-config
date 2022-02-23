@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDocumentDomain } from "../no-document-domain";
 
-describe(convertNoDocumentDomain, () => {
+describe("convertNoDocumentDomain", () => {
     test("conversion without arguments", () => {
         const result = convertNoDocumentDomain({
             ruleArguments: [],

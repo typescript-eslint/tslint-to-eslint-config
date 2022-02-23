@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoIgnoredObservable } from "../rxjs-no-ignored-observable";
 
-describe(convertRxjsNoIgnoredObservable, () => {
+describe("convertRxjsNoIgnoredObservable", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoIgnoredObservable({
             ruleArguments: [],

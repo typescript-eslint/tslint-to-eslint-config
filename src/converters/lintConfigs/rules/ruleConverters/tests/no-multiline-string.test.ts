@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoMultilineString } from "../no-multiline-string";
 
-describe(convertNoMultilineString, () => {
+describe("convertNoMultilineString", () => {
     test("conversion without arguments", () => {
         const result = convertNoMultilineString({
             ruleArguments: [],

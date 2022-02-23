@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertSpaceBeforeFunctionParen } from "../space-before-function-paren";
 
-describe(convertSpaceBeforeFunctionParen, () => {
+describe("convertSpaceBeforeFunctionParen", () => {
     test("conversion without arguments", () => {
         const result = convertSpaceBeforeFunctionParen({
             ruleArguments: [],

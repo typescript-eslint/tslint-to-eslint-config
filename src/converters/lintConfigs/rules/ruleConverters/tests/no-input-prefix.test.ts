@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInputPrefix } from "../no-input-prefix";
 
-describe(convertNoInputPrefix, () => {
+describe("convertNoInputPrefix", () => {
     test("conversion without arguments", () => {
         const result = convertNoInputPrefix({
             ruleArguments: [],

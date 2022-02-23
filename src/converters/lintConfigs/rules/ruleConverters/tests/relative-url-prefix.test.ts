@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRelativeUrlPrefix } from "../relative-url-prefix";
 
-describe(convertRelativeUrlPrefix, () => {
+describe("convertRelativeUrlPrefix", () => {
     test("conversion without arguments", () => {
         const result = convertRelativeUrlPrefix({
             ruleArguments: [],

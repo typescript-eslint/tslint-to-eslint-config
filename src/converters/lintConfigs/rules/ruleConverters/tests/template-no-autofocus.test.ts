@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateNoAutofocus } from "../template-no-autofocus";
 
-describe(convertTemplateNoAutofocus, () => {
+describe("convertTemplateNoAutofocus", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateNoAutofocus({
             ruleArguments: [],

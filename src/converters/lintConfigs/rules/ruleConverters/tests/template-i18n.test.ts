@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateI18N } from "../template-i18n";
 
-describe(convertTemplateI18N, () => {
+describe("convertTemplateI18N", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateI18N({
             ruleArguments: [],

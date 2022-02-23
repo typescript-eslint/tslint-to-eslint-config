@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxKey } from "../jsx-key";
 
-describe(convertJsxKey, () => {
+describe("convertJsxKey", () => {
     test("conversion without arguments", () => {
         const result = convertJsxKey({
             ruleArguments: [],

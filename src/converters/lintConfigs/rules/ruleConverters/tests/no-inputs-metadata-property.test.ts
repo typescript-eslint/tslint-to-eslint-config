@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInputsMetadataProperty } from "../no-inputs-metadata-property";
 
-describe(convertNoInputsMetadataProperty, () => {
+describe("convertNoInputsMetadataProperty", () => {
     test("conversion without arguments", () => {
         const result = convertNoInputsMetadataProperty({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateMouseEventsHaveKeyEvents } from "../template-mouse-events-have-key-events";
 
-describe(convertTemplateMouseEventsHaveKeyEvents, () => {
+describe("convertTemplateMouseEventsHaveKeyEvents", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateMouseEventsHaveKeyEvents({
             ruleArguments: [],

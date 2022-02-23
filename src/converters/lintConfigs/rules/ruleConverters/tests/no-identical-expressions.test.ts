@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoIdenticalExpressions } from "../no-identical-expressions";
 
-describe(convertNoIdenticalExpressions, () => {
+describe("convertNoIdenticalExpressions", () => {
     test("conversion without arguments", () => {
         const result = convertNoIdenticalExpressions({
             ruleArguments: [],

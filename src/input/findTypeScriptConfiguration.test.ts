@@ -1,4 +1,4 @@
-import { jest } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 
 import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
 import { findTypeScriptConfiguration } from "./findTypeScriptConfiguration";
