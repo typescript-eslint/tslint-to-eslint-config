@@ -1,4 +1,6 @@
 {
+    "editor.tabSize": 4,
+    "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
     "files.exclude": {
         "**/*.d.ts": true,
         "**/*.js.map": true,
@@ -7,6 +9,5 @@
         }
     },
     "prettier.ignorePath": ".prettierignore",
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.tabSize": 4
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
