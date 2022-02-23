@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoUnnecessaryFieldInitialization } from "../no-unnecessary-field-initialization";
 
-describe(convertNoUnnecessaryFieldInitialization, () => {
+describe("convertNoUnnecessaryFieldInitialization", () => {
     test("conversion without arguments", () => {
         const result = convertNoUnnecessaryFieldInitialization({
             ruleArguments: [],

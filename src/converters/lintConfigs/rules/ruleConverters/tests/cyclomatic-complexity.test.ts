@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertCyclomaticComplexity } from "../cyclomatic-complexity";
 
-describe(convertCyclomaticComplexity, () => {
+describe("convertCyclomaticComplexity", () => {
     test("conversion without arguments", () => {
         const result = convertCyclomaticComplexity({
             ruleArguments: [],

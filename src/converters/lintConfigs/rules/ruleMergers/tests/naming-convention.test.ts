@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeNamingConvention } from "../naming-convention";
 
-describe(mergeNamingConvention, () => {
+describe("mergeNamingConvention", () => {
     test("neither options existing", () => {
         const result = mergeNamingConvention(undefined, undefined);
 

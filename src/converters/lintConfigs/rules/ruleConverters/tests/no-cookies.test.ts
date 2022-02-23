@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoCookies } from "../no-cookies";
 
-describe(convertNoCookies, () => {
+describe("convertNoCookies", () => {
     test("conversion without arguments", () => {
         const result = convertNoCookies({
             ruleArguments: [],

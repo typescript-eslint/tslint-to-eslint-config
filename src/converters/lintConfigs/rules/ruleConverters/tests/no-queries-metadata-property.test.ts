@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoQueriesMetadataProperty } from "../no-queries-metadata-property";
 
-describe(convertNoQueriesMetadataProperty, () => {
+describe("convertNoQueriesMetadataProperty", () => {
     test("conversion without arguments", () => {
         const result = convertNoQueriesMetadataProperty({
             ruleArguments: [],

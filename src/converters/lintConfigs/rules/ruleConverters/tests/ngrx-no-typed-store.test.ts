@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxNoTypedStore } from "../ngrx-no-typed-store";
 
-describe(convertNgrxNoTypedStore, () => {
+describe("convertNgrxNoTypedStore", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxNoTypedStore({
             ruleArguments: [],

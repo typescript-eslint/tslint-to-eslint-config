@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoRedundantJsdoc } from "../no-redundant-jsdoc";
 
-describe(convertNoRedundantJsdoc, () => {
+describe("convertNoRedundantJsdoc", () => {
     test("conversion without arguments", () => {
         const result = convertNoRedundantJsdoc({
             ruleArguments: [],

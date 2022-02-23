@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoEmptyNestedBlocks } from "../no-empty-nested-blocks";
 
-describe(convertNoEmptyNestedBlocks, () => {
+describe("convertNoEmptyNestedBlocks", () => {
     test("conversion without arguments", () => {
         const result = convertNoEmptyNestedBlocks({
             ruleArguments: [],

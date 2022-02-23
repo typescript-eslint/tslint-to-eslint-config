@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDuplicateImports } from "../no-duplicate-imports";
 
-describe(convertNoDuplicateImports, () => {
+describe("convertNoDuplicateImports", () => {
     test("conversion without arguments", () => {
         const result = convertNoDuplicateImports({
             ruleArguments: [],

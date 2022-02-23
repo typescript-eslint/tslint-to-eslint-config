@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../rules/types";
 import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
 

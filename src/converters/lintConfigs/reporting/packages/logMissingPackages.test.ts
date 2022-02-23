@@ -1,3 +1,5 @@
+import { describe, it } from "@jest/globals";
+
 import { createStubLogger, expectEqualWrites } from "../../../../adapters/logger.stubs";
 import { createEmptyConfigConversionResults } from "../../configConversionResults.stubs";
 import { logMissingPackages } from "./logMissingPackages";

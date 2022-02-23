@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNgrxActionHygiene } from "../ngrx-action-hygiene";
 
-describe(convertNgrxActionHygiene, () => {
+describe("convertNgrxActionHygiene", () => {
     test("conversion without arguments", () => {
         const result = convertNgrxActionHygiene({
             ruleArguments: [],

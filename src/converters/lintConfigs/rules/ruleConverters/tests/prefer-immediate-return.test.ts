@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferImmediateReturn } from "../prefer-immediate-return";
 
-describe(convertPreferImmediateReturn, () => {
+describe("convertPreferImmediateReturn", () => {
     test("conversion without arguments", () => {
         const result = convertPreferImmediateReturn({
             ruleArguments: [],

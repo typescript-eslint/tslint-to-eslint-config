@@ -1,9 +1,11 @@
+import { describe, expect, test } from "@jest/globals";
+
 import {
     convertPreferConditionalExpression,
     PREFER_CONDITIONAL_EXPRESSION_NOTICE,
 } from "../prefer-conditional-expression";
 
-describe(convertPreferConditionalExpression, () => {
+describe("convertPreferConditionalExpression", () => {
     test("conversion without arguments", () => {
         const result = convertPreferConditionalExpression({
             ruleArguments: [],

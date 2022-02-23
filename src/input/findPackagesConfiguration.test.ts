@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { createStubExec } from "../adapters/exec.stubs";
 import { findPackagesConfiguration } from "./findPackagesConfiguration";
 

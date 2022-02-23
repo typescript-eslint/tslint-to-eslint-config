@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertOneVariablePerDeclaration } from "../one-variable-per-declaration";
 
-describe(convertOneVariablePerDeclaration, () => {
+describe("convertOneVariablePerDeclaration", () => {
     test("conversion without arguments", () => {
         const result = convertOneVariablePerDeclaration({
             ruleArguments: [],

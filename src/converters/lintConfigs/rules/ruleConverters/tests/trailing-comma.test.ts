@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTrailingComma } from "../trailing-comma";
 
-describe(convertTrailingComma, () => {
+describe("convertTrailingComma", () => {
     test("conversion without arguments", () => {
         const result = convertTrailingComma({
             ruleArguments: [],

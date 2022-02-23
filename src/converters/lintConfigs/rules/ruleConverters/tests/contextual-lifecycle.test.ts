@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertContextualLifecycle } from "../contextual-lifecycle";
 
-describe(convertContextualLifecycle, () => {
+describe("convertContextualLifecycle", () => {
     test("conversion without arguments", () => {
         const result = convertContextualLifecycle({
             ruleArguments: [],

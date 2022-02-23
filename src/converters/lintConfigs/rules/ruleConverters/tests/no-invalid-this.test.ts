@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInvalidThis } from "../no-invalid-this";
 
-describe(convertNoInvalidThis, () => {
+describe("convertNoInvalidThis", () => {
     test("conversion without arguments", () => {
         const result = convertNoInvalidThis({
             ruleArguments: [],

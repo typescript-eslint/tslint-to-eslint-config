@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoParameterProperties } from "../no-parameter-properties";
 
-describe(convertNoParameterProperties, () => {
+describe("convertNoParameterProperties", () => {
     test("conversion without arguments", () => {
         const result = convertNoParameterProperties({
             ruleArguments: [],

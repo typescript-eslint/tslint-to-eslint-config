@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoIgnoredTakeWhileValue } from "../rxjs-no-ignored-takewhile-value";
 
-describe(convertRxjsNoIgnoredTakeWhileValue, () => {
+describe("convertRxjsNoIgnoredTakeWhileValue", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoIgnoredTakeWhileValue({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoEmptyLineAfterOpeningBrace } from "../no-empty-line-after-opening-brace";
 
-describe(convertNoEmptyLineAfterOpeningBrace, () => {
+describe("convertNoEmptyLineAfterOpeningBrace", () => {
     test("conversion ", () => {
         const result = convertNoEmptyLineAfterOpeningBrace({
             ruleArguments: [],

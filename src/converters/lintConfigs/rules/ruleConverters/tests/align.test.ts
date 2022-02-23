@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertAlign } from "../align";
 
-describe(convertAlign, () => {
+describe("convertAlign", () => {
     test("conversion without arguments", () => {
         const result = convertAlign({
             ruleArguments: [],

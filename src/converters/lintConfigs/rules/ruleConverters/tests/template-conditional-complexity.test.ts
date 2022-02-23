@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateConditionalComplexity } from "../template-conditional-complexity";
 
-describe(convertTemplateConditionalComplexity, () => {
+describe("convertTemplateConditionalComplexity", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateConditionalComplexity({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferFunctionOverMethod } from "../prefer-function-over-method";
 
-describe(convertPreferFunctionOverMethod, () => {
+describe("convertPreferFunctionOverMethod", () => {
     test("conversion without arguments", () => {
         const result = convertPreferFunctionOverMethod({
             ruleArguments: [],

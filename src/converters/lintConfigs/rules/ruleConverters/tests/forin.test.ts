@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertForin } from "../forin";
 
-describe(convertForin, () => {
+describe("convertForin", () => {
     test("conversion without arguments", () => {
         const result = convertForin({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertAdjacentOverloadSignatures } from "../adjacent-overload-signatures";
 
-describe(convertAdjacentOverloadSignatures, () => {
+describe("convertAdjacentOverloadSignatures", () => {
     test("conversion without arguments", () => {
         const result = convertAdjacentOverloadSignatures({
             ruleArguments: [],

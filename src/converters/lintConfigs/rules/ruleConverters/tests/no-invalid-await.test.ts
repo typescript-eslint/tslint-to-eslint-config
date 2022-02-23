@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoInvalidAwait } from "../no-invalid-await";
 
-describe(convertNoInvalidAwait, () => {
+describe("convertNoInvalidAwait", () => {
     test("conversion without arguments", () => {
         const result = convertNoInvalidAwait({
             ruleArguments: [],

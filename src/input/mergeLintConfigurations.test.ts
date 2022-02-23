@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ESLintConfiguration } from "./findESLintConfiguration";
 import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { TSLintConfiguration } from "./findTSLintConfiguration";

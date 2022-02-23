@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoArg } from "../no-arg";
 
-describe(convertNoArg, () => {
+describe("convertNoArg", () => {
     test("conversion without arguments", () => {
         const result = convertNoArg({
             ruleArguments: [],

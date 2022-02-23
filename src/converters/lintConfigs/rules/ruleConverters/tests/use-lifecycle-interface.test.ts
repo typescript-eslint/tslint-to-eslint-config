@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUseLifecycleInterface } from "../use-lifecycle-interface";
 
-describe(convertUseLifecycleInterface, () => {
+describe("convertUseLifecycleInterface", () => {
     test("conversion without arguments", () => {
         const result = convertUseLifecycleInterface({
             ruleArguments: [],

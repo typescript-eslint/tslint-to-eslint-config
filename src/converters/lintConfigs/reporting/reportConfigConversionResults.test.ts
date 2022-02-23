@@ -1,3 +1,4 @@
+import { describe, it } from "@jest/globals";
 import { EOL } from "os";
 
 import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs";

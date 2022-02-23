@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDuplicateVariable } from "../no-duplicate-variable";
 
-describe(convertNoDuplicateVariable, () => {
+describe("convertNoDuplicateVariable", () => {
     test("conversion without arguments", () => {
         const result = convertNoDuplicateVariable({
             ruleArguments: [],

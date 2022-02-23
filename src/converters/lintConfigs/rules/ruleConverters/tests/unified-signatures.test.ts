@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUnifiedSignatures } from "../unified-signatures";
 
-describe(convertUnifiedSignatures, () => {
+describe("convertUnifiedSignatures", () => {
     test("conversion without arguments", () => {
         const result = convertUnifiedSignatures({
             ruleArguments: [],

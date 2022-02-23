@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsThrowError } from "../rxjs-throw-error";
 
-describe(convertRxjsThrowError, () => {
+describe("convertRxjsThrowError", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsThrowError({
             ruleArguments: [],

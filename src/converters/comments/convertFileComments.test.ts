@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { createStubFileSystem } from "../../adapters/fileSystem.stub";
 import { ConversionError } from "../../errors/conversionError";
 import { createStubConverter } from "../lintConfigs/rules/ruleConverter.stubs";
@@ -13,7 +15,7 @@ const createStubDependencies = (
     ]),
     fileSystem: {
         ...createStubFileSystem(),
-        readFile: jest.fn().mockResolvedValueOnce(readFileResult),
+        readFile: async () => readFileResult,
     },
 });
 

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoCreate } from "../rxjs-no-create";
 
-describe(convertRxjsNoCreate, () => {
+describe("convertRxjsNoCreate", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoCreate({
             ruleArguments: [],

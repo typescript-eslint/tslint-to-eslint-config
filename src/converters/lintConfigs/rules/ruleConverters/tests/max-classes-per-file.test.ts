@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertMaxClassesPerFile } from "../max-classes-per-file";
 
-describe(convertMaxClassesPerFile, () => {
+describe("convertMaxClassesPerFile", () => {
     test("conversion without arguments", () => {
         const result = convertMaxClassesPerFile({
             ruleArguments: [],

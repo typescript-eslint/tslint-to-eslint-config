@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsPreferAngularTakeuntil } from "../rxjs-prefer-angular-takeuntil";
 
-describe(convertRxjsPreferAngularTakeuntil, () => {
+describe("convertRxjsPreferAngularTakeuntil", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsPreferAngularTakeuntil({
             ruleArguments: [],

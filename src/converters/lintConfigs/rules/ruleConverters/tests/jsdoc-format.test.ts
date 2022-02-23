@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJSDocFormat, JSDocNoticeMsg } from "../jsdoc-format";
 
-describe(convertJSDocFormat, () => {
+describe("convertJSDocFormat", () => {
     test("conversion without arguments", () => {
         const result = convertJSDocFormat({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoUnnecessaryInitializer } from "../no-unnecessary-initializer";
 
-describe(convertNoUnnecessaryInitializer, () => {
+describe("convertNoUnnecessaryInitializer", () => {
     test("conversion without arguments", () => {
         const result = convertNoUnnecessaryInitializer({
             ruleArguments: [],

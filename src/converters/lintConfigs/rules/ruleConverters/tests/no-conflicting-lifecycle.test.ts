@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoConflictingLifecycle } from "../no-conflicting-lifecycle";
 
-describe(convertNoConflictingLifecycle, () => {
+describe("convertNoConflictingLifecycle", () => {
     test("conversion without arguments", () => {
         const result = convertNoConflictingLifecycle({
             ruleArguments: [],

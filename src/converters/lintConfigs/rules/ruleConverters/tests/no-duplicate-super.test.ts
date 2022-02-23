@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoDuplicateSuper } from "../no-duplicate-super";
 
-describe(convertNoDuplicateSuper, () => {
+describe("convertNoDuplicateSuper", () => {
     test("conversion without arguments", () => {
         const result = convertNoDuplicateSuper({
             ruleArguments: [],

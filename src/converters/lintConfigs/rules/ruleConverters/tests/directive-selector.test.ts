@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertDirectiveSelector } from "../directive-selector";
 
-describe(convertDirectiveSelector, () => {
+describe("convertDirectiveSelector", () => {
     test("conversion with arguments of same type", () => {
         const result = convertDirectiveSelector({
             ruleArguments: ["attribute", "myPrefix", "camelCase"],

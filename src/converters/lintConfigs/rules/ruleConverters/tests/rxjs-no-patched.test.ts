@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsNoPatched } from "../rxjs-no-patched";
 
-describe(convertRxjsNoPatched, () => {
+describe("convertRxjsNoPatched", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsNoPatched({
             ruleArguments: [],

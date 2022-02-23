@@ -1,3 +1,5 @@
+import { describe, expect, test } from "@jest/globals";
+
 import {
     ConstRequiredForAllCapsMsg,
     convertVariableName,
@@ -5,7 +7,7 @@ import {
     IgnoreLeadingTrailingIdentifierMsg,
 } from "../variable-name";
 
-describe(convertVariableName, () => {
+describe("convertVariableName", () => {
     test("conversion without arguments", () => {
         const result = convertVariableName({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNewlinePerChainedCall } from "../newline-per-chained-call";
 
-describe(convertNewlinePerChainedCall, () => {
+describe("convertNewlinePerChainedCall", () => {
     test("conversion without arguments", () => {
         const result = convertNewlinePerChainedCall({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertMemberOrdering } from "../member-ordering";
 
-describe(convertMemberOrdering, () => {
+describe("convertMemberOrdering", () => {
     test("conversion without arguments", () => {
         const result = convertMemberOrdering({
             ruleArguments: [],

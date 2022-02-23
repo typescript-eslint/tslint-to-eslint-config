@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ESLintConfigurationRules } from "../../../input/findESLintConfiguration";
 import { normalizeESLintRules } from "./normalizeESLintRules";
 

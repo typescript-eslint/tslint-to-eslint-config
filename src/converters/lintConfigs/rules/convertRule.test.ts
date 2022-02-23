@@ -1,3 +1,5 @@
+import { describe, expect, it } from "@jest/globals";
+
 import { ConversionError } from "../../../errors/conversionError";
 import { convertRule } from "./convertRule";
 import { RuleConverter } from "./ruleConverter";

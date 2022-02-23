@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertJsxBanProps } from "../jsx-ban-props";
 
-describe(convertJsxBanProps, () => {
+describe("convertJsxBanProps", () => {
     test("conversion without arguments", () => {
         const result = convertJsxBanProps({
             ruleArguments: [],

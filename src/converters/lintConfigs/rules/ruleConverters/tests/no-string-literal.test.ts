@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoStringLiteral } from "../no-string-literal";
 
-describe(convertNoStringLiteral, () => {
+describe("convertNoStringLiteral", () => {
     test("conversion without arguments", () => {
         const result = convertNoStringLiteral({
             ruleArguments: [],

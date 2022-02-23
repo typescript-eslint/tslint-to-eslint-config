@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateNoNegatedAsync } from "../template-no-negated-async";
 
-describe(convertTemplateNoNegatedAsync, () => {
+describe("convertTemplateNoNegatedAsync", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateNoNegatedAsync({
             ruleArguments: [],

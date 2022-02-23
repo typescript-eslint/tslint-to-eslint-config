@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoRedundantJump } from "../no-redundant-jump";
 
-describe(convertNoRedundantJump, () => {
+describe("convertNoRedundantJump", () => {
     test("conversion without arguments", () => {
         const result = convertNoRedundantJump({
             ruleArguments: [],

@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoUnusedExpression } from "../no-unused-expression";
 
-describe(convertNoUnusedExpression, () => {
+describe("convertNoUnusedExpression", () => {
     test("conversion without arguments", () => {
         const result = convertNoUnusedExpression({
             ruleArguments: [],

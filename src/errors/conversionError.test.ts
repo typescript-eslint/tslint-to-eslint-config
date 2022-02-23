@@ -1,9 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
 
 import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
 import { ConversionError } from "./conversionError";
 
-describe(ConversionError, () => {
+describe("ConversionError", () => {
     describe("getSummary", () => {
         it("prints the error stack when created for an error", () => {
             // Arrange

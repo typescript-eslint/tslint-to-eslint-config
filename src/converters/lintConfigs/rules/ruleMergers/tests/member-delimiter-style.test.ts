@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { mergeNoMemberDelimiterStyle } from "../member-delimiter-style";
 
-describe(mergeNoMemberDelimiterStyle, () => {
+describe("mergeNoMemberDelimiterStyle", () => {
     test("neither options existing", () => {
         const result = mergeNoMemberDelimiterStyle(undefined, undefined);
 

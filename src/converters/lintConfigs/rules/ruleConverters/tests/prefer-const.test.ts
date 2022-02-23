@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertPreferConst } from "../prefer-const";
 
-describe(convertPreferConst, () => {
+describe("convertPreferConst", () => {
     test("conversion without arguments", () => {
         const result = convertPreferConst({
             ruleArguments: [],

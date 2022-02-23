@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTemplateNoCallExpression } from "../template-no-call-expression";
 
-describe(convertTemplateNoCallExpression, () => {
+describe("convertTemplateNoCallExpression", () => {
     test("conversion without arguments", () => {
         const result = convertTemplateNoCallExpression({
             ruleArguments: [],

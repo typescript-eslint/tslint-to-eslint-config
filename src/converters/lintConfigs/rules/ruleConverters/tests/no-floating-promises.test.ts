@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertNoFloatingPromises } from "../no-floating-promises";
 
-describe(convertNoFloatingPromises, () => {
+describe("convertNoFloatingPromises", () => {
     test("conversion without arguments", () => {
         const result = convertNoFloatingPromises({
             ruleArguments: [],

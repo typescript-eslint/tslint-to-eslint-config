@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertLabelPosition } from "../label-position";
 
-describe(convertLabelPosition, () => {
+describe("convertLabelPosition", () => {
     test("conversion without arguments", () => {
         const result = convertLabelPosition({
             ruleArguments: [],

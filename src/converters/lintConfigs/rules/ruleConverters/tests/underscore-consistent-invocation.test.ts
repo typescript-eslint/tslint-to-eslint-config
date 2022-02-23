@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertUnderscoreConsistentInvocation } from "../underscore-consistent-invocation";
 
-describe(convertUnderscoreConsistentInvocation, () => {
+describe("convertUnderscoreConsistentInvocation", () => {
     test("conversion without arguments", () => {
         const result = convertUnderscoreConsistentInvocation({
             ruleArguments: [],

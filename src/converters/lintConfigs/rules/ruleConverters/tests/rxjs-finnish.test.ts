@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertRxjsFinnish } from "../rxjs-finnish";
 
-describe(convertRxjsFinnish, () => {
+describe("convertRxjsFinnish", () => {
     test("conversion without arguments", () => {
         const result = convertRxjsFinnish({
             ruleArguments: [],
