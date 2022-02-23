@@ -6,7 +6,7 @@ describe("bind", () => {
     it("calls the original method with bound dependencies when called", () => {
         // Arrange
         const dependencies = { original: true };
-        const method = jest.fn<void, [unknown, string, string]>();
+        const method = jest.fn<undefined, [unknown, string, string]>();
         const bound = bind(method, dependencies);
 
         // Act

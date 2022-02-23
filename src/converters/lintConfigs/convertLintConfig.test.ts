@@ -1,6 +1,4 @@
-import { describe, expect, it } from "@jest/globals";
-
-import { jest } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
 
 import { createStubOriginalConfigurationsData } from "../../settings.stubs";
 import { ResultStatus } from "../../types";
