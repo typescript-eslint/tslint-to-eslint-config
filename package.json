@@ -23,7 +23,7 @@
     },
     "devDependencies": {
         "@swc/core": "1.2.145",
-        "@swc/jest": "0.2.18",
+        "@swc/jest": "0.2.20",
         "@types/eslint-config-prettier": "6.11.0",
         "@types/glob": "7.2.0",
         "@types/json5": "0.0.30",
@@ -33,7 +33,7 @@
         "@typescript-eslint/eslint-plugin": "5.12.1",
         "@typescript-eslint/parser": "5.12.1",
         "ansi-regex": "6.0.1",
-        "cross-env": "^7.0.3",
+        "cross-env": "7.0.3",
         "eslint": "8.9.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.4",
