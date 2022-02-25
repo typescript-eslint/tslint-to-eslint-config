@@ -71,5 +71,5 @@
         "tsc": "tsc"
     },
     "type": "module",
-    "version": "2.11.0"
+    "version": "3.0.0-alpha.0"
 }
