@@ -1,5 +1,5 @@
 import * as path from "path";
-import * as ts from "typescript";
+import ts from "typescript";
 
 import { parseJson } from "../../../utils";
 import { EditorConfigConverter } from "../types";

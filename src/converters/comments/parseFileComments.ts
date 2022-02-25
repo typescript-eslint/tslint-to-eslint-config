@@ -1,5 +1,5 @@
 import * as utils from "tsutils";
-import * as ts from "typescript";
+import ts from "typescript";
 
 export type FileComment = {
     commentKind: ts.CommentKind;

@@ -1,4 +1,4 @@
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 import { ConversionError } from "../../../errors/conversionError";
 import { ErrorSummary } from "../../../errors/errorSummary";

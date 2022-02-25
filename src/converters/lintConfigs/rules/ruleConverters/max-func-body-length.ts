@@ -1,4 +1,4 @@
-import { isNumber } from "lodash";
+import isNumber from "lodash/isNumber";
 
 import { RuleConverter } from "../ruleConverter";
 
