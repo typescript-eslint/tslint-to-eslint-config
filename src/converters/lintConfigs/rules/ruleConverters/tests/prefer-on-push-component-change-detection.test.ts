@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPreferOnPushComponentChangeDetection } from "../prefer-on-push-component-change-detection";
+import { convertPreferOnPushComponentChangeDetection } from "../prefer-on-push-component-change-detection.js";
 
 describe("convertPreferOnPushComponentChangeDetection", () => {
     test("conversion without arguments", () => {

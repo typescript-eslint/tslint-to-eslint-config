@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateBananaInBox } from "../template-banana-in-box";
+import { convertTemplateBananaInBox } from "../template-banana-in-box.js";
 
 describe("convertTemplateBananaInBox", () => {
     test("conversion without arguments", () => {

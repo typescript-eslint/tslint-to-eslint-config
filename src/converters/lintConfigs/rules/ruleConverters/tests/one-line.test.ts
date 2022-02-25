@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { CheckAllTokensMsg, convertOneLine } from "../one-line";
+import { CheckAllTokensMsg, convertOneLine } from "../one-line.js";
 
 describe("convertOneLine", () => {
     test("conversion without arguments", () => {

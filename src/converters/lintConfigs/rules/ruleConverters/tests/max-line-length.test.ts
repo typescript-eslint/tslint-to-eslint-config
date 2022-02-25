@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertMaxLineLength } from "../max-line-length";
+import { convertMaxLineLength } from "../max-line-length.js";
 
 describe("convertMaxLineLength", () => {
     test("conversion without arguments", () => {

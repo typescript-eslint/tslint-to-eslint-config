@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoEmptyDestructuring } from "../no-empty-destructuring";
+import { convertNoEmptyDestructuring } from "../no-empty-destructuring.js";
 
 describe("convertNoEmptyDestructuring", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseDefaultTypeParameter } from "../use-default-type-parameter";
+import { convertUseDefaultTypeParameter } from "../use-default-type-parameter.js";
 
 describe("convertUseDefaultTypeParameter", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertInterfaceOverTypeLiteral } from "../interface-over-type-literal";
+import { convertInterfaceOverTypeLiteral } from "../interface-over-type-literal.js";
 
 describe("convertInterfaceOverTypeLiteral", () => {
     test("conversion without arguments", () => {

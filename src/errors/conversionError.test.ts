@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
-import { ConversionError } from "./conversionError";
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types.js";
+import { ConversionError } from "./conversionError.js";
 
 describe("ConversionError", () => {
     describe("getSummary", () => {

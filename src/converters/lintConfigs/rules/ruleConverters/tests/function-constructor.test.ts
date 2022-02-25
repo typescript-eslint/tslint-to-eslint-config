@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertFunctionConstructor } from "../function-constructor";
+import { convertFunctionConstructor } from "../function-constructor.js";
 
 describe("convertFunctionConstructor", () => {
     test("conversion without arguments", () => {

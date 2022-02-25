@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { normalizeRawESLintRuleSeverity } from "./normalizeRawESLintRuleSeverity";
+import { normalizeRawESLintRuleSeverity } from "./normalizeRawESLintRuleSeverity.js";
 
 describe("normalizeRawESLintRuleSeverity", () => {
     it("converts the severity to off when equal to 0", () => {

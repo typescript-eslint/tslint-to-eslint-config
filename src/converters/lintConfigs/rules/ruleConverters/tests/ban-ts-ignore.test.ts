@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { BAN_TS_IGNORE_NOTICE, convertBanTsIgnore } from "../ban-ts-ignore";
+import { BAN_TS_IGNORE_NOTICE, convertBanTsIgnore } from "../ban-ts-ignore.js";
 
 describe("convertBanTsIgnore", () => {
     test("conversion without arguments", () => {

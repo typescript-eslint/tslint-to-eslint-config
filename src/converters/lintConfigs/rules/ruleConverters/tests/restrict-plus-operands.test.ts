@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRestrictPlusOperands } from "../restrict-plus-operands";
+import { convertRestrictPlusOperands } from "../restrict-plus-operands.js";
 
 describe("convertRestrictPlusOperands", () => {
     test("conversion without arguments", () => {

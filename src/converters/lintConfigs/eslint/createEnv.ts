@@ -1,4 +1,4 @@
-import { AllOriginalConfigurations } from "../../../input/findOriginalConfigurations";
+import { AllOriginalConfigurations } from "../../../input/findOriginalConfigurations.js";
 
 export const createEnv = ({
     packages,

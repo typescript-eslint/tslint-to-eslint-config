@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoAngleBracketTypeAssertion } from "../no-angle-bracket-type-assertion";
+import { convertNoAngleBracketTypeAssertion } from "../no-angle-bracket-type-assertion.js";
 
 describe("convertNoAngleBracketTypeAssertion", () => {
     test("conversion without arguments", () => {

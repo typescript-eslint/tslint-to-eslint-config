@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertFileNameCasing } from "../file-name-casing";
+import { convertFileNameCasing } from "../file-name-casing.js";
 
 describe("convertFileNameCasing", () => {
     test("conversion without parameter", () => {

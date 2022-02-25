@@ -1,6 +1,6 @@
 import { isDeepStrictEqual } from "util";
 
-import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../rules/types";
+import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../rules/types.js";
 
 /**
  * Finds only the ESLint rules configured differently than their (extended) configurations.

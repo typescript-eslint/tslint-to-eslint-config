@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsFinnish } from "../rxjs-finnish";
+import { convertRxjsFinnish } from "../rxjs-finnish.js";
 
 describe("convertRxjsFinnish", () => {
     test("conversion without arguments", () => {

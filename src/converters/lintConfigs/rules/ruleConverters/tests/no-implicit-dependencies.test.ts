@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoImplicitDependencies } from "../no-implicit-dependencies";
+import { convertNoImplicitDependencies } from "../no-implicit-dependencies.js";
 
 describe("convertNoImplicitDependencies", () => {
     test("conversion without arguments", () => {

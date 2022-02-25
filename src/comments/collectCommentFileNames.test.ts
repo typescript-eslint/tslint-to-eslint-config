@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { collectCommentFileNames } from "./collectCommentFileNames";
+import { collectCommentFileNames } from "./collectCommentFileNames.js";
 
 const stubFoundConfiguration = {
     include: ["a.ts"],

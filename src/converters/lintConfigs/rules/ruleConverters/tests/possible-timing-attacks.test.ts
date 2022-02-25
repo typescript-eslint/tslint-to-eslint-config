@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPossibleTimingAttack } from "../possible-timing-attack";
+import { convertPossibleTimingAttack } from "../possible-timing-attack.js";
 
 describe("convertPossibleTimingAttack", () => {
     test("conversion without arguments", () => {

@@ -1,4 +1,4 @@
-import { ESLintRuleSeverity, RawESLintRuleSeverity } from "../rules/types";
+import { ESLintRuleSeverity, RawESLintRuleSeverity } from "../rules/types.js";
 
 export const normalizeRawESLintRuleSeverity = (
     rawSeverity: RawESLintRuleSeverity,

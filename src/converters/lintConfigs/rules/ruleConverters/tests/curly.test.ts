@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertCurly } from "../curly";
+import { convertCurly } from "../curly.js";
 
 describe("convertCurly", () => {
     test("conversion without arguments", () => {

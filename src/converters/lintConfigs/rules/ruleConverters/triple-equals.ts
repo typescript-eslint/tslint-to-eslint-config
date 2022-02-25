@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 const smartOptionNotice =
     'Option "smart" allows for comparing two literal values, evaluating the value of typeof and null comparisons.';

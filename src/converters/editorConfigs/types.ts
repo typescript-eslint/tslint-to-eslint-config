@@ -1,4 +1,4 @@
-import { TSLintToESLintSettings } from "../../types";
+import { TSLintToESLintSettings } from "../../types.js";
 
 export type EditorConfigConverter = (
     rawEditorSettings: string,

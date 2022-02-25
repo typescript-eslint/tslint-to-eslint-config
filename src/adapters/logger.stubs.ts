@@ -2,8 +2,8 @@ import { expect } from "@jest/globals";
 import { Mock } from "jest-mock";
 import { EOL } from "os";
 
-import { fn } from "../fn";
-import { stripAnsi } from "./stripAnsi.stubs";
+import { fn } from "../fn.js";
+import { stripAnsi } from "./stripAnsi.stubs.js";
 
 const debugFileName = "stub-output.log";
 

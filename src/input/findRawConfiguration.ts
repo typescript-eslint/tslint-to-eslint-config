@@ -1,6 +1,6 @@
-import { SansDependencies } from "../binding";
-import { asError } from "../utils";
-import { importer } from "./importer";
+import { SansDependencies } from "../binding.js";
+import { asError } from "../utils.js";
+import { importer } from "./importer.js";
 
 export const findRawConfiguration = async <Configuration>(
     fileImporter: SansDependencies<typeof importer>,

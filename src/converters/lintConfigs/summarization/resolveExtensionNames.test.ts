@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { resolveExtensionNames } from "./resolveExtensionNames";
+import { resolveExtensionNames } from "./resolveExtensionNames.js";
 
 describe("resolveExtensionNames", () => {
     it("returns a single plugin name as an array when given a single string", () => {

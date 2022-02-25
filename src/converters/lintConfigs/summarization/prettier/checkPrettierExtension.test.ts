@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createEmptyConfigConversionResults } from "../../configConversionResults.stubs";
-import { checkPrettierExtension } from "./checkPrettierExtension";
+import { createEmptyConfigConversionResults } from "../../configConversionResults.stubs.js";
+import { checkPrettierExtension } from "./checkPrettierExtension.js";
 
 const createStubRuleConversions = (ruleName: string, ruleSeverity: "error" | "off") =>
     new Map([[ruleName, { ruleName, ruleSeverity }]]);

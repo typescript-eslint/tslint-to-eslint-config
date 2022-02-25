@@ -1,9 +1,9 @@
 import { describe, expect, it, jest } from "@jest/globals";
 
-import { createStubOriginalConfigurationsData } from "../../settings.stubs";
-import { ResultStatus } from "../../types";
-import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
-import { convertLintConfig, ConvertLintConfigDependencies } from "./convertLintConfig";
+import { createStubOriginalConfigurationsData } from "../../settings.stubs.js";
+import { ResultStatus } from "../../types.js";
+import { createEmptyConfigConversionResults } from "./configConversionResults.stubs.js";
+import { convertLintConfig, ConvertLintConfigDependencies } from "./convertLintConfig.js";
 
 const stubSettings = {
     config: "./eslintrc.js",

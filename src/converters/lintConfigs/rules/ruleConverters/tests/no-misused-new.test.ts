@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoMisusedNew } from "../no-misused-new";
+import { convertNoMisusedNew } from "../no-misused-new.js";
 
 describe("convertNoMisusedNew", () => {
     test("conversion without arguments", () => {

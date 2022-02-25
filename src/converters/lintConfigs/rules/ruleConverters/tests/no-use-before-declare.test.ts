@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUseBeforeDeclare } from "../no-use-before-declare";
+import { convertNoUseBeforeDeclare } from "../no-use-before-declare.js";
 
 describe("convertNoUseBeforeDeclare", () => {
     test("conversion without arguments", () => {

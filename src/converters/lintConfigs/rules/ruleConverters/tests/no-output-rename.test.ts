@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoOutputRename } from "../no-output-rename";
+import { convertNoOutputRename } from "../no-output-rename.js";
 
 describe("convertNoOutputRename", () => {
     test("conversion without arguments", () => {

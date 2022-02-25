@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseComponentSelector } from "../use-component-selector";
+import { convertUseComponentSelector } from "../use-component-selector.js";
 
 describe("convertUseComponentSelector", () => {
     test("conversion without arguments", () => {

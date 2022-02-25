@@ -1,4 +1,4 @@
-import { RuleMerger } from "../ruleMerger";
+import { RuleMerger } from "../ruleMerger.js";
 
 export const mergeNamingConvention: RuleMerger = (existingOptions, newOptions) => {
     if (existingOptions === undefined && newOptions === undefined) {

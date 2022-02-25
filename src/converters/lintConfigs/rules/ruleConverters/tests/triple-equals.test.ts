@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTripleEquals } from "../triple-equals";
+import { convertTripleEquals } from "../triple-equals.js";
 
 describe("convertTripleEquals", () => {
     test("conversion without arguments", () => {

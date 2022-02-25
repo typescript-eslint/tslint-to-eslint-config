@@ -1,10 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
-import { createStubOriginalConfigurationsData } from "../settings.stubs";
-import { ConfigurationErrorResult, ResultStatus, TSLintToESLintResult } from "../types";
-import { runCli, RunCliDependencies } from "./runCli";
+import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs.js";
+import { createStubOriginalConfigurationsData } from "../settings.stubs.js";
+import { ConfigurationErrorResult, ResultStatus, TSLintToESLintResult } from "../types.js";
+import { runCli, RunCliDependencies } from "./runCli.js";
 
 const createStubArgv = (argv: string[] = []) => ["node", "some/path/bin/file", ...argv];
 

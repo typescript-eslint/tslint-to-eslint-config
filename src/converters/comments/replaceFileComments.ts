@@ -1,9 +1,9 @@
 import ts from "typescript";
 
-import { ConversionError } from "../../errors/conversionError";
-import { uniqueFromSources } from "../../utils";
-import { RuleConverter } from "../lintConfigs/rules/ruleConverter";
-import { FileComment } from "./parseFileComments";
+import { ConversionError } from "../../errors/conversionError.js";
+import { uniqueFromSources } from "../../utils.js";
+import { RuleConverter } from "../lintConfigs/rules/ruleConverter.js";
+import { FileComment } from "./parseFileComments.js";
 
 export const replaceFileComments = (
     content: string,

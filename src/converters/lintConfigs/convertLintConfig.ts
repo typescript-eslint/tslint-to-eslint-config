@@ -1,12 +1,12 @@
-import { FileSystem } from "../../adapters/fileSystem";
-import { SansDependencies } from "../../binding";
-import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types";
-import { createESLintConfiguration } from "./createESLintConfiguration";
-import { formatOutput } from "./formatting/formatOutput";
-import { joinConfigConversionResults } from "./joinConfigConversionResults";
-import { logMissingPackages } from "./reporting/packages/logMissingPackages";
-import { reportConfigConversionResults } from "./reporting/reportConfigConversionResults";
+import { FileSystem } from "../../adapters/fileSystem.js";
+import { SansDependencies } from "../../binding.js";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations.js";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types.js";
+import { createESLintConfiguration } from "./createESLintConfiguration.js";
+import { formatOutput } from "./formatting/formatOutput.js";
+import { joinConfigConversionResults } from "./joinConfigConversionResults.js";
+import { logMissingPackages } from "./reporting/packages/logMissingPackages.js";
+import { reportConfigConversionResults } from "./reporting/reportConfigConversionResults.js";
 
 export type ConvertLintConfigDependencies = {
     createESLintConfiguration: SansDependencies<typeof createESLintConfiguration>;

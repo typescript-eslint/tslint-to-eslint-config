@@ -3,7 +3,7 @@ import { describe, expect, test } from "@jest/globals";
 import {
     convertPreferConditionalExpression,
     PREFER_CONDITIONAL_EXPRESSION_NOTICE,
-} from "../prefer-conditional-expression";
+} from "../prefer-conditional-expression.js";
 
 describe("convertPreferConditionalExpression", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertIncrementDecrement } from "../increment-decrement";
+import { convertIncrementDecrement } from "../increment-decrement.js";
 
 describe("convertIncrementDecrement", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertSwitchDefault } from "../switch-default";
+import { convertSwitchDefault } from "../switch-default.js";
 
 describe("convertSwitchDefault", () => {
     test("conversion without arguments", () => {

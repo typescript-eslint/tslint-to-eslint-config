@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoDynamicDelete } from "../no-dynamic-delete";
+import { convertNoDynamicDelete } from "../no-dynamic-delete.js";
 
 describe("convertNoDynamicDelete", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertClassMethodNewlines } from "../class-method-newlines";
+import { convertClassMethodNewlines } from "../class-method-newlines.js";
 
 describe("convertClassMethodNewlines", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateAccessibilityElementsContent } from "../template-accessibility-elements-content";
+import { convertTemplateAccessibilityElementsContent } from "../template-accessibility-elements-content.js";
 
 describe("convertTemplateAccessibilityElementsContent", () => {
     test("conversion without arguments", () => {

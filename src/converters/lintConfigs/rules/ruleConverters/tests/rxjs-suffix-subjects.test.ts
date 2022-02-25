@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsSuffixSubjects } from "../rxjs-suffix-subjects";
+import { convertRxjsSuffixSubjects } from "../rxjs-suffix-subjects.js";
 
 describe("convertRxjsSuffixSubjects", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSparseArrays } from "../no-sparse-arrays";
+import { convertNoSparseArrays } from "../no-sparse-arrays.js";
 
 describe("convertNoSparseArrays", () => {
     test("conversion without arguments", () => {

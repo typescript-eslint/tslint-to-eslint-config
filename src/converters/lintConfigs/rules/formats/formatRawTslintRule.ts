@@ -1,4 +1,4 @@
-import { TSLintRuleOptions } from "../types";
+import { TSLintRuleOptions } from "../types.js";
 
 export const formatRawTslintRule = (
     ruleName: string,

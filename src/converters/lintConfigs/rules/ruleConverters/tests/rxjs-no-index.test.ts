@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoIndex } from "../rxjs-no-index";
+import { convertRxjsNoIndex } from "../rxjs-no-index.js";
 
 describe("convertRxjsNoIndex", () => {
     test("conversion without arguments", () => {

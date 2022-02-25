@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsPreferObserver } from "../rxjs-prefer-observer";
+import { convertRxjsPreferObserver } from "../rxjs-prefer-observer.js";
 
 describe("convertRxjsPreferObserver", () => {
     test("conversion without arguments", () => {

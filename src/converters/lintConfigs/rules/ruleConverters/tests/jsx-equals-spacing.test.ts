@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxEqualsSpacing } from "../jsx-equals-spacing";
+import { convertJsxEqualsSpacing } from "../jsx-equals-spacing.js";
 
 describe("convertJsxEqualsSpacing", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertClassName } from "../class-name";
+import { convertClassName } from "../class-name.js";
 
 describe("convertClassName", () => {
     test("conversion without arguments", () => {

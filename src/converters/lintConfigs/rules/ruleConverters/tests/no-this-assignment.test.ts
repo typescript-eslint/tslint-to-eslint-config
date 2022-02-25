@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoThisAssignment } from "../no-this-assignment";
+import { convertNoThisAssignment } from "../no-this-assignment.js";
 
 describe("convertNoThisAssignment", () => {
     test("conversion without arguments", () => {

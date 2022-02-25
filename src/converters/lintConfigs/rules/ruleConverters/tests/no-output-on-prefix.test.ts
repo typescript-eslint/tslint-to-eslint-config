@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoOutputOnPrefix } from "../no-output-on-prefix";
+import { convertNoOutputOnPrefix } from "../no-output-on-prefix.js";
 
 describe("convertNoOutputOnPrefix", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
-import { OriginalConfigurations } from "../../../input/findOriginalConfigurations";
-import { TSLintConfiguration } from "../../../input/findTSLintConfiguration";
-import { uniqueFromSources } from "../../../utils";
+import { OriginalConfigurations } from "../../../input/findOriginalConfigurations.js";
+import { TSLintConfiguration } from "../../../input/findTSLintConfiguration.js";
+import { uniqueFromSources } from "../../../utils.js";
 
 const nativeExtensions = new Map([
     ["tslint:all", ["plugin:@typescript-eslint/all"]],

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { formatRawTslintRule } from "./formats/formatRawTslintRule";
+import { formatRawTslintRule } from "./formats/formatRawTslintRule.js";
 
 describe("formatRawTslintRule", () => {
     it("supplies default values when none are provided", () => {

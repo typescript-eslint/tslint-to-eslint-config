@@ -1,9 +1,9 @@
 import {
     ESLintConfiguration,
     ESLintConfigurationRuleValue,
-} from "../../../input/findESLintConfiguration";
-import { ESLintRuleOptionsWithArguments } from "../rules/types";
-import { normalizeRawESLintRuleSeverity } from "./normalizeRawESLintRuleSeverity";
+} from "../../../input/findESLintConfiguration.js";
+import { ESLintRuleOptionsWithArguments } from "../rules/types.js";
+import { normalizeRawESLintRuleSeverity } from "./normalizeRawESLintRuleSeverity.js";
 
 export const normalizeExtensions = (extensions: Partial<ESLintConfiguration>[]) => {
     const mergedRules = new Map<string, ESLintRuleOptionsWithArguments>();

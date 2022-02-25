@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoEmptyNestedBlocks } from "../no-empty-nested-blocks";
+import { convertNoEmptyNestedBlocks } from "../no-empty-nested-blocks.js";
 
 describe("convertNoEmptyNestedBlocks", () => {
     test("conversion without arguments", () => {

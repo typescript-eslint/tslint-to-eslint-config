@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoImplicitAnyCatch } from "../rxjs-no-implicit-any-catch";
+import { convertRxjsNoImplicitAnyCatch } from "../rxjs-no-implicit-any-catch.js";
 
 describe("convertRxjsNoImplicitAnyCatch", () => {
     test("conversion without arguments", () => {

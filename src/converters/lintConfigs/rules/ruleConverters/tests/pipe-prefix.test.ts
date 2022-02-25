@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPipePrefix } from "../pipe-prefix";
+import { convertPipePrefix } from "../pipe-prefix.js";
 
 describe("convertPipePrefix", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTypedefWhitespace } from "../typedef-whitespace";
+import { convertTypedefWhitespace } from "../typedef-whitespace.js";
 
 describe("convertTypedefWhitespace", () => {
     test("conversion without arguments", () => {

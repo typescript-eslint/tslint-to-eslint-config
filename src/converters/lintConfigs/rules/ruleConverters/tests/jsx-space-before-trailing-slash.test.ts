@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxSpaceBeforeTrailingSlash } from "../jsx-space-before-trailing-slash";
+import { convertJsxSpaceBeforeTrailingSlash } from "../jsx-space-before-trailing-slash.js";
 
 describe("convertJsxSpaceBeforeTrailingSlash", () => {
     test("conversion without arguments", () => {

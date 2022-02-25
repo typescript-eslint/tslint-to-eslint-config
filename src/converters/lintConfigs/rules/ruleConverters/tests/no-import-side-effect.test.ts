@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoImportSideEffect } from "../no-import-side-effect";
+import { convertNoImportSideEffect } from "../no-import-side-effect.js";
 
 describe("convertNoImportSideEffect", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yAriaUnsupportedElements } from "../react-a11y-aria-unsupported-elements";
+import { convertReactA11yAriaUnsupportedElements } from "../react-a11y-aria-unsupported-elements.js";
 
 describe("convertReactA11yAriaUnsupportedElements", () => {
     test("conversion without arguments", () => {

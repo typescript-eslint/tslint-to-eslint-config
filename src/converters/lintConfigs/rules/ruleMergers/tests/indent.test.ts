@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeIndent } from "../indent";
+import { mergeIndent } from "../indent.js";
 
 describe("mergeIndent", () => {
     test("neither options existing", () => {

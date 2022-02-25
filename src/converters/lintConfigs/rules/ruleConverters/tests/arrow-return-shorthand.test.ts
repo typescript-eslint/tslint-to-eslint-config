@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { ARROW_RETURN_NOTICE, convertArrowReturnShorthand } from "../arrow-return-shorthand";
+import { ARROW_RETURN_NOTICE, convertArrowReturnShorthand } from "../arrow-return-shorthand.js";
 
 describe("convertArrowReturnShorthand", () => {
     test("conversion without arguments", () => {

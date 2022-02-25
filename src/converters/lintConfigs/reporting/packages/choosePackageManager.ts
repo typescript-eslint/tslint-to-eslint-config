@@ -1,5 +1,5 @@
-import { FileSystem } from "../../../../adapters/fileSystem";
-import { PackageManager, preferredLockfiles } from "./packageManagers";
+import { FileSystem } from "../../../../adapters/fileSystem.js";
+import { PackageManager, preferredLockfiles } from "./packageManagers.js";
 
 export type ChoosePackageManagerDependencies = {
     fileSystem: Pick<FileSystem, "fileExists">;

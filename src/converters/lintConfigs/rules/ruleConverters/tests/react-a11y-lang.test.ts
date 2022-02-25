@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yLang } from "../react-a11y-lang";
+import { convertReactA11yLang } from "../react-a11y-lang.js";
 
 describe("convertReactA11yLang", () => {
     test("conversion without arguments", () => {

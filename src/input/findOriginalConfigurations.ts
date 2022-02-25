@@ -1,20 +1,20 @@
-import { SansDependencies } from "../binding";
+import { SansDependencies } from "../binding.js";
 import {
     ConfigurationErrorResult,
     ConfigurationLocations,
     ResultStatus,
     SucceededDataResult,
-} from "../types";
-import { isDefined } from "../utils";
-import { ESLintConfiguration, findESLintConfiguration } from "./findESLintConfiguration";
-import { findPackagesConfiguration, PackagesConfiguration } from "./findPackagesConfiguration";
-import { DeepPartial } from "./findReportedConfiguration";
-import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration";
+} from "../types.js";
+import { isDefined } from "../utils.js";
+import { ESLintConfiguration, findESLintConfiguration } from "./findESLintConfiguration.js";
+import { findPackagesConfiguration, PackagesConfiguration } from "./findPackagesConfiguration.js";
+import { DeepPartial } from "./findReportedConfiguration.js";
+import { findTSLintConfiguration, TSLintConfiguration } from "./findTSLintConfiguration.js";
 import {
     findTypeScriptConfiguration,
     TypeScriptConfiguration,
-} from "./findTypeScriptConfiguration";
-import { mergeLintConfigurations } from "./mergeLintConfigurations";
+} from "./findTypeScriptConfiguration.js";
+import { mergeLintConfigurations } from "./mergeLintConfigurations.js";
 
 export type FindOriginalConfigurationsDependencies = {
     findESLintConfiguration: SansDependencies<typeof findESLintConfiguration>;

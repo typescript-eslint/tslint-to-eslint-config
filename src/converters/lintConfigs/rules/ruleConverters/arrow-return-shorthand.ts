@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const ARROW_RETURN_NOTICE =
     "ESLint will throw an error if the function body is multiline yet has a one-line return on it.";

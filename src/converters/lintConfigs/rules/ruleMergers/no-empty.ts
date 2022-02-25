@@ -1,4 +1,4 @@
-import { RuleMerger } from "../ruleMerger";
+import { RuleMerger } from "../ruleMerger.js";
 
 /**
  * https://eslint.org/docs/rules/no-empty arguments merger.

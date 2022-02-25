@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnsafeFinally } from "../no-unsafe-finally";
+import { convertNoUnsafeFinally } from "../no-unsafe-finally.js";
 
 describe("convertNoUnsafeFinally", () => {
     test("conversion without arguments", () => {

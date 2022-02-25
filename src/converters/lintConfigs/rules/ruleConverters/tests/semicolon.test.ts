@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertSemicolon } from "../semicolon";
+import { convertSemicolon } from "../semicolon.js";
 
 describe("convertSemicolon", () => {
     test("conversion with always", () => {

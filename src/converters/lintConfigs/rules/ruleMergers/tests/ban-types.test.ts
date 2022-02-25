@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeBanTypes } from "../ban-types";
+import { mergeBanTypes } from "../ban-types.js";
 
 describe("mergeBanTypes", () => {
     test("neither types existing", () => {

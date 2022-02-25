@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoStringLiteral } from "../no-string-literal";
+import { convertNoStringLiteral } from "../no-string-literal.js";
 
 describe("convertNoStringLiteral", () => {
     test("conversion without arguments", () => {

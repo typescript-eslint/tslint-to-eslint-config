@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxNoTypedStore } from "../ngrx-no-typed-store";
+import { convertNgrxNoTypedStore } from "../ngrx-no-typed-store.js";
 
 describe("convertNgrxNoTypedStore", () => {
     test("conversion without arguments", () => {

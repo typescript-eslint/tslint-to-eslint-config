@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertArrayType } from "../array-type";
+import { convertArrayType } from "../array-type.js";
 
 describe("convertArrayType", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxSelfClose } from "../jsx-self-close";
+import { convertJsxSelfClose } from "../jsx-self-close.js";
 
 describe("convertJsxSelfClose", () => {
     test("conversion without arguments", () => {

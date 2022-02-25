@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoTap } from "../rxjs-no-tap";
+import { convertRxjsNoTap } from "../rxjs-no-tap.js";
 
 describe("convertRxjsNoTap", () => {
     test("conversion without arguments", () => {

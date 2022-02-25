@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertDirectiveSelector } from "../directive-selector";
+import { convertDirectiveSelector } from "../directive-selector.js";
 
 describe("convertDirectiveSelector", () => {
     test("conversion with arguments of same type", () => {

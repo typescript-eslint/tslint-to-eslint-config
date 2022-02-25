@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoExplicitAny } from "../no-explicit-any";
+import { convertNoExplicitAny } from "../no-explicit-any.js";
 
 describe("convertNoExplicitAny", () => {
     test("conversion without arguments", () => {

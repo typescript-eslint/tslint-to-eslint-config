@@ -1,11 +1,14 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ConfigurationError } from "../../../errors/configurationError";
-import { fn } from "../../../fn";
-import { createEmptyConfigConversionResults } from "../configConversionResults.stubs";
-import { ESLintRuleOptionsWithArguments } from "../rules/types";
-import { checkPrettierExtension } from "./prettier/checkPrettierExtension";
-import { summarizePackageRules, SummarizePackageRulesDependencies } from "./summarizePackageRules";
+import { ConfigurationError } from "../../../errors/configurationError.js";
+import { fn } from "../../../fn.js";
+import { createEmptyConfigConversionResults } from "../configConversionResults.stubs.js";
+import { ESLintRuleOptionsWithArguments } from "../rules/types.js";
+import { checkPrettierExtension } from "./prettier/checkPrettierExtension.js";
+import {
+    summarizePackageRules,
+    SummarizePackageRulesDependencies,
+} from "./summarizePackageRules.js";
 
 const createStubDependencies = (overrides: Partial<SummarizePackageRulesDependencies> = {}) => ({
     checkPrettierExtension: fn<typeof checkPrettierExtension>(),

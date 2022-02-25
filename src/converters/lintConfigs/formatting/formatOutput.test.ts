@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { formatOutput } from "./formatOutput";
-import { faqs } from "./formatters/faqs";
+import { formatOutput } from "./formatOutput.js";
+import { faqs } from "./formatters/faqs.js";
 
 describe("formatOutput", () => {
     it("formats output as JavaScript for a .js file path", () => {

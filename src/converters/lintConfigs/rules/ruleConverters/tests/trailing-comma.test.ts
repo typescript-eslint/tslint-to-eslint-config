@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTrailingComma } from "../trailing-comma";
+import { convertTrailingComma } from "../trailing-comma.js";
 
 describe("convertTrailingComma", () => {
     test("conversion without arguments", () => {

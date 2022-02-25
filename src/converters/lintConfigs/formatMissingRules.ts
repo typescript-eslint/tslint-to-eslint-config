@@ -1,4 +1,4 @@
-import { TSLintRuleOptions } from "./rules/types";
+import { TSLintRuleOptions } from "./rules/types.js";
 
 export const formatMissingRules = (missing: TSLintRuleOptions[], rulesDirectory: string[] = []) => {
     const rules: Record<string, unknown> = {};

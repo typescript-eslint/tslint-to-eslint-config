@@ -1,9 +1,9 @@
 import minimatch from "minimatch";
 
-import { GlobAsync } from "../../adapters/globAsync";
-import { CommentFileNames } from "../../comments/collectCommentFileNames";
-import { ResultStatus, ResultWithDataStatus } from "../../types";
-import { separateErrors, uniqueFromSources } from "../../utils";
+import { GlobAsync } from "../../adapters/globAsync.js";
+import { CommentFileNames } from "../../comments/collectCommentFileNames.js";
+import { ResultStatus, ResultWithDataStatus } from "../../types.js";
+import { separateErrors, uniqueFromSources } from "../../utils.js";
 
 export type ExtractGlobPathsDependencies = {
     globAsync: GlobAsync;

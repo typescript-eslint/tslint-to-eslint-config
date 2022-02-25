@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoExecScript } from "../no-exec-script";
+import { convertNoExecScript } from "../no-exec-script.js";
 
 describe("convertNoExecScript", () => {
     test("conversion without arguments", () => {

@@ -1,11 +1,11 @@
-import { SansDependencies } from "../../binding";
-import { collectCommentFileNames } from "../../comments/collectCommentFileNames";
-import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { ResultStatus, ResultWithDataStatus, TSLintToESLintSettings } from "../../types";
-import { isError } from "../../utils";
-import { convertFileComments } from "./convertFileComments";
-import { extractGlobPaths } from "./extractGlobPaths";
-import { reportCommentResults } from "./reporting/reportCommentResults";
+import { SansDependencies } from "../../binding.js";
+import { collectCommentFileNames } from "../../comments/collectCommentFileNames.js";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations.js";
+import { ResultStatus, ResultWithDataStatus, TSLintToESLintSettings } from "../../types.js";
+import { isError } from "../../utils.js";
+import { convertFileComments } from "./convertFileComments.js";
+import { extractGlobPaths } from "./extractGlobPaths.js";
+import { reportCommentResults } from "./reporting/reportCommentResults.js";
 
 export type ConvertCommentsDependencies = {
     collectCommentFileNames: SansDependencies<typeof collectCommentFileNames>;

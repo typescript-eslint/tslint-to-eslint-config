@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeJsxA11yAltText } from "../jsx-a11y-alt-text";
+import { mergeJsxA11yAltText } from "../jsx-a11y-alt-text.js";
 
 describe("mergeJsxA11yAltText", () => {
     test("neither options existing", () => {

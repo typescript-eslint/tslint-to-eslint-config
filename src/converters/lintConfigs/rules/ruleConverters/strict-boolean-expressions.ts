@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const ForbiddenOtherNonBooleanTypes =
     "String, number, enum, and mixed union types are now forbidden.";

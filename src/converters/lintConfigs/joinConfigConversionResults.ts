@@ -1,8 +1,8 @@
-import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { removeEmptyMembers } from "../../utils";
-import { createEnv } from "./eslint/createEnv";
-import { formatConvertedRules } from "./formatConvertedRules";
-import { SummarizedConfigResultsConfiguration } from "./summarization/types";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations.js";
+import { removeEmptyMembers } from "../../utils.js";
+import { createEnv } from "./eslint/createEnv.js";
+import { formatConvertedRules } from "./formatConvertedRules.js";
+import { SummarizedConfigResultsConfiguration } from "./summarization/types.js";
 
 /**
  * Turns a raw ESLint configuration summary into ESLint's configuration shape.

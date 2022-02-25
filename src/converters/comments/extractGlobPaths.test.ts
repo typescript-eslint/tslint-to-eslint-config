@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ResultStatus } from "../../types";
-import { extractGlobPaths, ExtractGlobPathsDependencies } from "./extractGlobPaths";
+import { ResultStatus } from "../../types.js";
+import { extractGlobPaths, ExtractGlobPathsDependencies } from "./extractGlobPaths.js";
 
 const createStubDependencies = (
     overrides: Partial<ExtractGlobPathsDependencies> = {},

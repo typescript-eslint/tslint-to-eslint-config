@@ -1,8 +1,8 @@
 import * as path from "path";
 import ts from "typescript";
 
-import { parseJson } from "../../../utils";
-import { EditorConfigConverter } from "../types";
+import { parseJson } from "../../../utils.js";
+import { EditorConfigConverter } from "../types.js";
 
 const knownMissingSettings = [
     "tslint.alwaysShowRuleFailuresAsWarnings",

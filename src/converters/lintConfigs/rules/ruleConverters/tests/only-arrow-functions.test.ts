@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertOnlyArrowFunctions } from "../only-arrow-functions";
+import { convertOnlyArrowFunctions } from "../only-arrow-functions.js";
 
 describe("convertOnlyArrowFunctions", () => {
     test("conversion without arguments", () => {

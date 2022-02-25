@@ -1,4 +1,4 @@
-import { ConvertedRuleChanges, RuleConverter, RuleConverterOptions } from "../ruleConverter";
+import { ConvertedRuleChanges, RuleConverter, RuleConverterOptions } from "../ruleConverter.js";
 
 export const convertNoEmpty: RuleConverter = (tslintRule) => {
     return {

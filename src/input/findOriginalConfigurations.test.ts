@@ -1,13 +1,13 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ResultStatus, TSLintToESLintSettings } from "../types";
-import { ESLintConfiguration } from "./findESLintConfiguration";
+import { ResultStatus, TSLintToESLintSettings } from "../types.js";
+import { ESLintConfiguration } from "./findESLintConfiguration.js";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
     OriginalConfigurations,
-} from "./findOriginalConfigurations";
-import { TSLintConfiguration } from "./findTSLintConfiguration";
+} from "./findOriginalConfigurations.js";
+import { TSLintConfiguration } from "./findTSLintConfiguration.js";
 
 const createRawSettings = (overrides: Partial<TSLintToESLintSettings> = {}) => ({
     config: "./eslintrc.js",

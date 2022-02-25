@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const convertReactA11yEventHasRole: RuleConverter = () => {
     return {

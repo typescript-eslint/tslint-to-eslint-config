@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoInferrableTypes } from "../no-inferrable-types";
+import { convertNoInferrableTypes } from "../no-inferrable-types.js";
 
 describe("convertNoInferrableTypes", () => {
     test("conversion without arguments", () => {

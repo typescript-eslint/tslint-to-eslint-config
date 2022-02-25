@@ -1,10 +1,10 @@
 import { describe, expect, it, test } from "@jest/globals";
 
-import { ConversionError } from "../../../errors/conversionError";
-import { convertRules } from "./convertRules";
-import { ConversionResult, RuleConverter } from "./ruleConverter";
-import { RuleMerger } from "./ruleMerger";
-import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
+import { ConversionError } from "../../../errors/conversionError.js";
+import { convertRules } from "./convertRules.js";
+import { ConversionResult, RuleConverter } from "./ruleConverter.js";
+import { RuleMerger } from "./ruleMerger.js";
+import { TSLintRuleOptions, TSLintRuleSeverity } from "./types.js";
 
 describe("convertRules", () => {
     it("doesn't crash when passed an undefined configuration", () => {

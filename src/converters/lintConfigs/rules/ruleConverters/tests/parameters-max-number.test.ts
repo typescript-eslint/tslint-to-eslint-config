@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertParametersMaxNumber } from "../parameters-max-number";
+import { convertParametersMaxNumber } from "../parameters-max-number.js";
 
 describe("convertParametersMaxNumber", () => {
     test("conversion without arguments", () => {

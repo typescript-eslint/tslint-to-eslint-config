@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPreferReadonly } from "../prefer-readonly";
+import { convertPreferReadonly } from "../prefer-readonly.js";
 
 describe("convertPreferReadonly", () => {
     test("conversion without arguments", () => {

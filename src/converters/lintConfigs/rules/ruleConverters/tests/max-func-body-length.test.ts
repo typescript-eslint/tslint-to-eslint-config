@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertMaxFuncBodyLength } from "../max-func-body-length";
+import { convertMaxFuncBodyLength } from "../max-func-body-length.js";
 
 describe("convertMaxFuncBodyLength", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoElementOverwrite } from "../no-element-overwrite";
+import { convertNoElementOverwrite } from "../no-element-overwrite.js";
 
 describe("convertNoElementOverwrite", () => {
     test("conversion without arguments", () => {

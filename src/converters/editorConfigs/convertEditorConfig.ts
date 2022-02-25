@@ -1,6 +1,6 @@
-import { FileSystem } from "../../adapters/fileSystem";
-import { TSLintToESLintSettings } from "../../types";
-import { EditorConfigConverter } from "./types";
+import { FileSystem } from "../../adapters/fileSystem.js";
+import { TSLintToESLintSettings } from "../../types.js";
+import { EditorConfigConverter } from "./types.js";
 
 export type ConvertEditorConfigDependencies = {
     fileSystem: Pick<FileSystem, "readFile" | "writeFile">;

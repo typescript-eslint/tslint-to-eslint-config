@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactNoDangerousHtml } from "../react-no-dangerous-html";
+import { convertReactNoDangerousHtml } from "../react-no-dangerous-html.js";
 
 describe("convertReactNoDangerousHtml", () => {
     test("conversion without arguments", () => {

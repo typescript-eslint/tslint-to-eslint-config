@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoInvalidThis } from "../no-invalid-this";
+import { convertNoInvalidThis } from "../no-invalid-this.js";
 
 describe("convertNoInvalidThis", () => {
     test("conversion without arguments", () => {

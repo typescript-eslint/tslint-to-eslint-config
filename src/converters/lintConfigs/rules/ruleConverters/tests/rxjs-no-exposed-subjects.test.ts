@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoExposedSubjects } from "../rxjs-no-exposed-subjects";
+import { convertRxjsNoExposedSubjects } from "../rxjs-no-exposed-subjects.js";
 
 describe("convertRxjsNoExposedSubjects", () => {
     test("conversion without arguments", () => {

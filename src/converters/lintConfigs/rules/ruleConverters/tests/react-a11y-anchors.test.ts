@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yAnchors } from "../react-a11y-anchors";
+import { convertReactA11yAnchors } from "../react-a11y-anchors.js";
 
 describe("convertReactA11yAnchors", () => {
     test("conversion without arguments", () => {

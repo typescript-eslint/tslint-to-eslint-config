@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateUseTrackByFunction } from "../template-use-track-by-function";
+import { convertTemplateUseTrackByFunction } from "../template-use-track-by-function.js";
 
 describe("convertTemplateUseTrackByFunction", () => {
     test("conversion without arguments", () => {

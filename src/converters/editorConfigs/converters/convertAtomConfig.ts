@@ -1,5 +1,5 @@
 import * as CsonParser from "cson-parser";
-import merge from "lodash/merge";
+import merge from "lodash/merge.js";
 
 const knownMissingSettings = ["enableSemanticRules", "rulesDirectory"];
 

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoInternal } from "../rxjs-no-internal";
+import { convertRxjsNoInternal } from "../rxjs-no-internal.js";
 
 describe("convertRxjsNoInternal", () => {
     test("conversion without arguments", () => {

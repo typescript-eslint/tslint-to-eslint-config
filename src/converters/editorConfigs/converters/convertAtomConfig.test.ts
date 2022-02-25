@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import * as CsonParser from "cson-parser";
 
-import { convertAtomConfig } from "./convertAtomConfig";
+import { convertAtomConfig } from "./convertAtomConfig.js";
 
 describe("convertAtomConfig", () => {
     it("preserves the original config when no linter-tslint settings exist", () => {

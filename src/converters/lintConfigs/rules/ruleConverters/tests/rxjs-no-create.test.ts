@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoCreate } from "../rxjs-no-create";
+import { convertRxjsNoCreate } from "../rxjs-no-create.js";
 
 describe("convertRxjsNoCreate", () => {
     test("conversion without arguments", () => {

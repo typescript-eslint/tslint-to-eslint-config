@@ -1,15 +1,15 @@
-import isEqual from "lodash/isEqual";
+import isEqual from "lodash/isEqual.js";
 
-import { ConversionError } from "../../../errors/conversionError";
-import { ErrorSummary } from "../../../errors/errorSummary";
-import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration";
-import { Entries, uniqueFromSources } from "../../../utils";
-import { convertRule } from "./convertRule";
-import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity";
-import { formatRawTslintRule } from "./formats/formatRawTslintRule";
-import { RuleConverter } from "./ruleConverter";
-import { RuleMerger } from "./ruleMerger";
-import { ESLintRuleOptions, TSLintRuleOptions } from "./types";
+import { ConversionError } from "../../../errors/conversionError.js";
+import { ErrorSummary } from "../../../errors/errorSummary.js";
+import { TSLintConfigurationRules } from "../../../input/findTSLintConfiguration.js";
+import { Entries, uniqueFromSources } from "../../../utils.js";
+import { convertRule } from "./convertRule.js";
+import { convertTSLintRuleSeverity } from "./formats/convertTSLintRuleSeverity.js";
+import { formatRawTslintRule } from "./formats/formatRawTslintRule.js";
+import { RuleConverter } from "./ruleConverter.js";
+import { RuleMerger } from "./ruleMerger.js";
+import { ESLintRuleOptions, TSLintRuleOptions } from "./types.js";
 
 export type ConvertRulesDependencies = {
     ruleConverters: Map<string, RuleConverter>;

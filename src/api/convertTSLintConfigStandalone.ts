@@ -1,16 +1,16 @@
-import { formatOutput } from "../converters/lintConfigs/formatting/formatOutput";
+import { formatOutput } from "../converters/lintConfigs/formatting/formatOutput.js";
 import {
     joinConfigConversionResults,
     JoinedConversionResult,
-} from "../converters/lintConfigs/joinConfigConversionResults";
+} from "../converters/lintConfigs/joinConfigConversionResults.js";
 import {
     ConfigurationErrorResult,
     LintConfigConversionSettings,
     ResultStatus,
     SucceededDataResult,
-} from "../types";
-import { createESLintConfigurationStandalone } from "./createESLintConfigurationStandalone";
-import { findOriginalConfigurationsStandalone } from "./findOriginalConfigurationsStandalone";
+} from "../types.js";
+import { createESLintConfigurationStandalone } from "./createESLintConfigurationStandalone.js";
+import { findOriginalConfigurationsStandalone } from "./findOriginalConfigurationsStandalone.js";
 
 /**
  * Resultant configuration data from converting a TSLint configuration.

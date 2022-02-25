@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoOutputNative } from "../no-output-native";
+import { convertNoOutputNative } from "../no-output-native.js";
 
 describe("convertNoOutputNative", () => {
     test("conversion without arguments", () => {

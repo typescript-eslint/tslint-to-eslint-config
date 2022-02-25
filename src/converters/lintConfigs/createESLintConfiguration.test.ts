@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubOriginalConfigurationsData } from "../../settings.stubs";
-import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
-import { createESLintConfiguration } from "./createESLintConfiguration";
+import { createStubOriginalConfigurationsData } from "../../settings.stubs.js";
+import { createEmptyConfigConversionResults } from "./configConversionResults.stubs.js";
+import { createESLintConfiguration } from "./createESLintConfiguration.js";
 
 describe("createESLintConfiguration", () => {
     it("returns the result of summarizing package rules", async () => {

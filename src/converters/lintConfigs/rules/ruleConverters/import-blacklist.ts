@@ -1,5 +1,5 @@
-import { RequireAtLeastOne } from "../../../../utils";
-import { RuleConverter } from "../ruleConverter";
+import { RequireAtLeastOne } from "../../../../utils.js";
+import { RuleConverter } from "../ruleConverter.js";
 
 type ESLintOptionPath = {
     name: string;

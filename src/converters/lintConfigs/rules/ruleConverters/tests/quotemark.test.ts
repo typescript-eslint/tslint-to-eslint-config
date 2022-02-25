@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertQuotemark } from "../quotemark";
+import { convertQuotemark } from "../quotemark.js";
 
 describe("convertQuotemark", () => {
     test("conversion without arguments", () => {

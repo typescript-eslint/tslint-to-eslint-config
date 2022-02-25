@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseLifecycleInterface } from "../use-lifecycle-interface";
+import { convertUseLifecycleInterface } from "../use-lifecycle-interface.js";
 
 describe("convertUseLifecycleInterface", () => {
     test("conversion without arguments", () => {

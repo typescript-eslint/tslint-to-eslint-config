@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import { promisify } from "util";
 
-import { Exec } from "./exec";
+import { Exec } from "./exec.js";
 
 export const childProcessExec: Exec = promisify(exec);

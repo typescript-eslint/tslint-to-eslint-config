@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const BAN_TS_IGNORE_NOTICE =
     "The typescript-eslint now bans @ts-<directive> comments from being used";

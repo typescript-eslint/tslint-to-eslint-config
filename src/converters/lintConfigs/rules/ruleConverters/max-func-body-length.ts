@@ -1,6 +1,6 @@
-import isNumber from "lodash/isNumber";
+import isNumber from "lodash/isNumber.js";
 
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 const parseExtras = (ruleArguments: any[]) => {
     if (ruleArguments.length === 0) {

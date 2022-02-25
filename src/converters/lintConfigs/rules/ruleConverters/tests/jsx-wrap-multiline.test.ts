@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxWrapMultiline } from "../jsx-wrap-multiline";
+import { convertJsxWrapMultiline } from "../jsx-wrap-multiline.js";
 
 describe("convertJsxWrapMultiline", () => {
     test("conversion without arguments", () => {

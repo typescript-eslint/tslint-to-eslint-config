@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoSubclass } from "../rxjs-no-subclass";
+import { convertRxjsNoSubclass } from "../rxjs-no-subclass.js";
 
 describe("convertRxjsNoSubclass", () => {
     test("conversion without arguments", () => {

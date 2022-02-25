@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const convertSemicolon: RuleConverter = (tslintRule) => {
     const getMultilineDelimiter = (strategy: "always" | "never") => {

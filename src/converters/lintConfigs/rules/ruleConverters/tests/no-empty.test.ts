@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoEmpty } from "../no-empty";
+import { convertNoEmpty } from "../no-empty.js";
 
 describe("convertNoEmpty", () => {
     test("conversion without arguments", () => {

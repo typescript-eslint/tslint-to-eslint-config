@@ -1,7 +1,7 @@
-import assignWith from "lodash/assignWith";
-import isObject from "lodash/isObject";
+import assignWith from "lodash/assignWith.js";
+import isObject from "lodash/isObject.js";
 
-import { RuleMerger } from "../ruleMerger";
+import { RuleMerger } from "../ruleMerger.js";
 
 const NO_USE_BEFORE_DEFINE_DEFAULT_OPTS = {
     classes: true,

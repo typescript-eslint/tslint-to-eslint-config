@@ -1,9 +1,9 @@
 import { describe, it } from "@jest/globals";
 
-import { createStubLogger, expectEqualWrites } from "../../../../adapters/logger.stubs";
-import { createEmptyConfigConversionResults } from "../../configConversionResults.stubs";
-import { logMissingPackages } from "./logMissingPackages";
-import { PackageManager } from "./packageManagers";
+import { createStubLogger, expectEqualWrites } from "../../../../adapters/logger.stubs.js";
+import { createEmptyConfigConversionResults } from "../../configConversionResults.stubs.js";
+import { logMissingPackages } from "./logMissingPackages.js";
+import { PackageManager } from "./packageManagers.js";
 
 const createStubDependencies = (packageManager = PackageManager.npm) => ({
     choosePackageManager: async () => packageManager,

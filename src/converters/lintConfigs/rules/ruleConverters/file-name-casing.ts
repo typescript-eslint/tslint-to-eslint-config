@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 const IGNORE_CASE_NOTICE = "ESLint (Unicorn plugin) does not support the 'ignore' case.";
 const CASING_BY_FILETYPE_CHANGE =

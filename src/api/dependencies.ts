@@ -1,88 +1,88 @@
-import { childProcessExec } from "../adapters/childProcessExec";
-import { fsFileSystem } from "../adapters/fsFileSystem";
-import { globAsync } from "../adapters/globAsync";
-import { nativeImporter } from "../adapters/nativeImporter";
-import { processLogger } from "../adapters/processLogger";
-import { bind } from "../binding";
-import { RunCliDependencies } from "../cli/runCli";
+import { childProcessExec } from "../adapters/childProcessExec.js";
+import { fsFileSystem } from "../adapters/fsFileSystem.js";
+import { globAsync } from "../adapters/globAsync.js";
+import { nativeImporter } from "../adapters/nativeImporter.js";
+import { processLogger } from "../adapters/processLogger.js";
+import { bind } from "../binding.js";
+import { RunCliDependencies } from "../cli/runCli.js";
 import {
     collectCommentFileNames,
     CollectCommentFileNamesDependencies,
-} from "../comments/collectCommentFileNames";
+} from "../comments/collectCommentFileNames.js";
 import {
     convertComments,
     ConvertCommentsDependencies,
-} from "../converters/comments/convertComments";
+} from "../converters/comments/convertComments.js";
 import {
     convertFileComments,
     ConvertFileCommentsDependencies,
-} from "../converters/comments/convertFileComments";
+} from "../converters/comments/convertFileComments.js";
 import {
     extractGlobPaths,
     ExtractGlobPathsDependencies,
-} from "../converters/comments/extractGlobPaths";
+} from "../converters/comments/extractGlobPaths.js";
 import {
     reportCommentResults,
     ReportCommentResultsDependencies,
-} from "../converters/comments/reporting/reportCommentResults";
+} from "../converters/comments/reporting/reportCommentResults.js";
 import {
     convertEditorConfig,
     ConvertEditorConfigDependencies,
-} from "../converters/editorConfigs/convertEditorConfig";
+} from "../converters/editorConfigs/convertEditorConfig.js";
 import {
     convertEditorConfigs,
     ConvertEditorConfigsDependencies,
-} from "../converters/editorConfigs/convertEditorConfigs";
-import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig";
-import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig";
-import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults";
-import { EditorConfigDescriptor } from "../converters/editorConfigs/types";
+} from "../converters/editorConfigs/convertEditorConfigs.js";
+import { convertAtomConfig } from "../converters/editorConfigs/converters/convertAtomConfig.js";
+import { convertVSCodeConfig } from "../converters/editorConfigs/converters/convertVSCodeConfig.js";
+import { reportEditorConfigConversionResults } from "../converters/editorConfigs/reporting/reportEditorConfigConversionResults.js";
+import { EditorConfigDescriptor } from "../converters/editorConfigs/types.js";
 import {
     convertLintConfig,
     ConvertLintConfigDependencies,
-} from "../converters/lintConfigs/convertLintConfig";
+} from "../converters/lintConfigs/convertLintConfig.js";
 import {
     createESLintConfiguration,
     CreateESLintConfigurationDependencies,
-} from "../converters/lintConfigs/createESLintConfiguration";
-import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules";
+} from "../converters/lintConfigs/createESLintConfiguration.js";
+import { removeExtendsDuplicatedRules } from "../converters/lintConfigs/pruning/removeExtendsDuplicatedRules.js";
 import {
     choosePackageManager,
     ChoosePackageManagerDependencies,
-} from "../converters/lintConfigs/reporting/packages/choosePackageManager";
+} from "../converters/lintConfigs/reporting/packages/choosePackageManager.js";
 import {
     logMissingPackages,
     LogMissingPackagesDependencies,
-} from "../converters/lintConfigs/reporting/packages/logMissingPackages";
+} from "../converters/lintConfigs/reporting/packages/logMissingPackages.js";
 import {
     reportConfigConversionResults,
     ReportConversionResultsDependencies,
-} from "../converters/lintConfigs/reporting/reportConfigConversionResults";
+} from "../converters/lintConfigs/reporting/reportConfigConversionResults.js";
 import {
     convertRules,
     ConvertRulesDependencies,
-} from "../converters/lintConfigs/rules/convertRules";
-import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters";
-import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers";
-import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension";
+} from "../converters/lintConfigs/rules/convertRules.js";
+import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters.js";
+import { ruleMergers } from "../converters/lintConfigs/rules/ruleMergers.js";
+import { checkPrettierExtension } from "../converters/lintConfigs/summarization/prettier/checkPrettierExtension.js";
 import {
     retrieveExtendsValues,
     RetrieveExtendsValuesDependencies,
-} from "../converters/lintConfigs/summarization/retrieveExtendsValues";
+} from "../converters/lintConfigs/summarization/retrieveExtendsValues.js";
 import {
     summarizePackageRules,
     SummarizePackageRulesDependencies,
-} from "../converters/lintConfigs/summarization/summarizePackageRules";
-import { findESLintConfiguration } from "../input/findESLintConfiguration";
+} from "../converters/lintConfigs/summarization/summarizePackageRules.js";
+import { findESLintConfiguration } from "../input/findESLintConfiguration.js";
 import {
     findOriginalConfigurations,
     FindOriginalConfigurationsDependencies,
-} from "../input/findOriginalConfigurations";
-import { findPackagesConfiguration } from "../input/findPackagesConfiguration";
-import { findTSLintConfiguration } from "../input/findTSLintConfiguration";
-import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
-import { importer, ImporterDependencies } from "../input/importer";
-import { mergeLintConfigurations } from "../input/mergeLintConfigurations";
+} from "../input/findOriginalConfigurations.js";
+import { findPackagesConfiguration } from "../input/findPackagesConfiguration.js";
+import { findTSLintConfiguration } from "../input/findTSLintConfiguration.js";
+import { findTypeScriptConfiguration } from "../input/findTypeScriptConfiguration.js";
+import { importer, ImporterDependencies } from "../input/importer.js";
+import { mergeLintConfigurations } from "../input/mergeLintConfigurations.js";
 export const convertFileCommentsDependencies: ConvertFileCommentsDependencies = {
     converters: ruleConverters,
     fileSystem: fsFileSystem,

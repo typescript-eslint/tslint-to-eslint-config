@@ -1,5 +1,5 @@
-import { FileSystem } from "../adapters/fileSystem";
-import { fn } from "../fn";
+import { FileSystem } from "../adapters/fileSystem.js";
+import { fn } from "../fn.js";
 
 export const createStubFileSystem = ({ data = {}, exists = true } = {}) => ({
     fileExists: async () => exists,

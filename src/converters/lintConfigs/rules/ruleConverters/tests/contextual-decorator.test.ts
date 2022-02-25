@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertContextualDecorator } from "../contextual-decorator";
+import { convertContextualDecorator } from "../contextual-decorator.js";
 
 describe("convertContextualDecorator", () => {
     test("conversion without arguments", () => {

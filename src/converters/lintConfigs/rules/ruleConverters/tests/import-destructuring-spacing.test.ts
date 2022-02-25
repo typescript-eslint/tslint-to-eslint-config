@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertImportDestructuringSpacing } from "../import-destructuring-spacing";
+import { convertImportDestructuringSpacing } from "../import-destructuring-spacing.js";
 
 describe("convertImportDestructuringSpacing", () => {
     test("conversion without arguments", () => {

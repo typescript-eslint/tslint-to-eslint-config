@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertDeprecation } from "../deprecation";
+import { convertDeprecation } from "../deprecation.js";
 
 describe("convertDeprecation", () => {
     test("conversion without arguments", () => {

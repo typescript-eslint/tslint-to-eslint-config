@@ -1,5 +1,5 @@
-import { uniqueFromSources } from "../../../../utils";
-import { RuleMerger } from "../ruleMerger";
+import { uniqueFromSources } from "../../../../utils.js";
+import { RuleMerger } from "../ruleMerger.js";
 
 export const mergeJsxA11yAltText: RuleMerger = (existingOptions, newOptions) => {
     const existingElements = existingOptions?.[0]?.elements;

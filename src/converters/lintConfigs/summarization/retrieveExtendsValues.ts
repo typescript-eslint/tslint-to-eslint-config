@@ -1,8 +1,8 @@
-import { SansDependencies } from "../../../binding";
-import { ConfigurationError } from "../../../errors/configurationError";
-import { ESLintConfiguration } from "../../../input/findESLintConfiguration";
-import { importer } from "../../../input/importer";
-import { resolveExtensionNames } from "./resolveExtensionNames";
+import { SansDependencies } from "../../../binding.js";
+import { ConfigurationError } from "../../../errors/configurationError.js";
+import { ESLintConfiguration } from "../../../input/findESLintConfiguration.js";
+import { importer } from "../../../input/importer.js";
+import { resolveExtensionNames } from "./resolveExtensionNames.js";
 
 export type RetrieveExtendsValuesDependencies = {
     importer: SansDependencies<typeof importer>;

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoNonNullAssertion } from "../no-non-null-assertion";
+import { convertNoNonNullAssertion } from "../no-non-null-assertion.js";
 
 describe("convertNoNonNullAssertion", () => {
     test("conversion without arguments", () => {

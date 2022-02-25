@@ -1,6 +1,6 @@
-import { parseFileComments } from "../converters/comments/parseFileComments";
-import { replaceFileComments } from "../converters/comments/replaceFileComments";
-import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters";
+import { parseFileComments } from "../converters/comments/parseFileComments.js";
+import { replaceFileComments } from "../converters/comments/replaceFileComments.js";
+import { ruleConverters } from "../converters/lintConfigs/rules/ruleConverters.js";
 
 export type ConvertFileCommentsStandaloneDependencies = {
     /**

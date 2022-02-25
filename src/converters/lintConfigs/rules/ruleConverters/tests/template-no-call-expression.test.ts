@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateNoCallExpression } from "../template-no-call-expression";
+import { convertTemplateNoCallExpression } from "../template-no-call-expression.js";
 
 describe("convertTemplateNoCallExpression", () => {
     test("conversion without arguments", () => {

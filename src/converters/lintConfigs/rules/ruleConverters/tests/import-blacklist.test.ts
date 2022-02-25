@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertImportBlacklist } from "../import-blacklist";
+import { convertImportBlacklist } from "../import-blacklist.js";
 
 describe("convertImportBlacklist", () => {
     test.each([

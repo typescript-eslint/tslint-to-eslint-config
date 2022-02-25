@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoRedundantParentheses } from "../no-redundant-parentheses";
+import { convertNoRedundantParentheses } from "../no-redundant-parentheses.js";
 
 describe("convertNoRedundantParentheses", () => {
     test("conversion without arguments", () => {

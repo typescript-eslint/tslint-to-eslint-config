@@ -1,14 +1,14 @@
-import { mergeBanTypes } from "./ruleMergers/ban-types";
-import { mergeConsistentTypeAssertions } from "./ruleMergers/consistent-type-assertions";
-import { mergeIndent } from "./ruleMergers/indent";
-import { mergeJsxA11yAltText } from "./ruleMergers/jsx-a11y-alt-text";
-import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style";
-import { mergeNamingConvention } from "./ruleMergers/naming-convention";
-import { mergeNoEmpty } from "./ruleMergers/no-empty";
-import { mergeNoEval } from "./ruleMergers/no-eval";
-import { mergeNoUnnecessaryTypeAssertion } from "./ruleMergers/no-unnecessary-type-assertion";
-import { mergeNoUseBeforeDefine } from "./ruleMergers/no-use-before-define";
-import { mergeTripleSlashReference } from "./ruleMergers/triple-slash-reference";
+import { mergeBanTypes } from "./ruleMergers/ban-types.js";
+import { mergeConsistentTypeAssertions } from "./ruleMergers/consistent-type-assertions.js";
+import { mergeIndent } from "./ruleMergers/indent.js";
+import { mergeJsxA11yAltText } from "./ruleMergers/jsx-a11y-alt-text.js";
+import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style.js";
+import { mergeNamingConvention } from "./ruleMergers/naming-convention.js";
+import { mergeNoEmpty } from "./ruleMergers/no-empty.js";
+import { mergeNoEval } from "./ruleMergers/no-eval.js";
+import { mergeNoUnnecessaryTypeAssertion } from "./ruleMergers/no-unnecessary-type-assertion.js";
+import { mergeNoUseBeforeDefine } from "./ruleMergers/no-use-before-define.js";
+import { mergeTripleSlashReference } from "./ruleMergers/triple-slash-reference.js";
 
 export const ruleMergers = new Map([
     ["@typescript-eslint/ban-types", mergeBanTypes],

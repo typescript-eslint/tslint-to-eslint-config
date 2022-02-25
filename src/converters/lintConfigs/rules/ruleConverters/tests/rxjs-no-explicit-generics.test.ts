@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoExplicitGenerics } from "../rxjs-no-explicit-generics";
+import { convertRxjsNoExplicitGenerics } from "../rxjs-no-explicit-generics.js";
 
 describe("convertRxjsNoExplicitGenerics", () => {
     test("conversion without arguments", () => {

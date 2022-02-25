@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoIdenticalFunctions } from "../no-identical-functions";
+import { convertNoIdenticalFunctions } from "../no-identical-functions.js";
 
 describe("convertNoIdenticalFunctions", () => {
     test("conversion without arguments", () => {

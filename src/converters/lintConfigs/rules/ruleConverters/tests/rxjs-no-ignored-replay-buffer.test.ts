@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoIgnoredReplayBuffer } from "../rxjs-no-ignored-replay-buffer";
+import { convertRxjsNoIgnoredReplayBuffer } from "../rxjs-no-ignored-replay-buffer.js";
 
 describe("convertRxjsNoIgnoredReplayBuffer", () => {
     test("conversion without arguments", () => {

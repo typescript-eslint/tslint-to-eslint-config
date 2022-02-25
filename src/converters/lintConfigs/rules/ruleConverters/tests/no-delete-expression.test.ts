@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoDeleteExpression } from "../no-delete-expression";
+import { convertNoDeleteExpression } from "../no-delete-expression.js";
 
 describe("convertNoDeleteExpression", () => {
     test("conversion", () => {

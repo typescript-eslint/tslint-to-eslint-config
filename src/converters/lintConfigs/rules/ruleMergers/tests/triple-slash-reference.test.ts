@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeTripleSlashReference } from "../triple-slash-reference";
+import { mergeTripleSlashReference } from "../triple-slash-reference.js";
 
 const option = {
     path: "always",

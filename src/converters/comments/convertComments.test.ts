@@ -1,10 +1,10 @@
 import { describe, expect, it, jest } from "@jest/globals";
 
-import { fn } from "../../fn";
-import { createStubOriginalConfigurationsData } from "../../settings.stubs";
-import { ResultStatus } from "../../types";
-import { convertComments, ConvertCommentsDependencies } from "./convertComments";
-import { convertFileComments } from "./convertFileComments";
+import { fn } from "../../fn.js";
+import { createStubOriginalConfigurationsData } from "../../settings.stubs.js";
+import { ResultStatus } from "../../types.js";
+import { convertComments, ConvertCommentsDependencies } from "./convertComments.js";
+import { convertFileComments } from "./convertFileComments.js";
 
 const createStubDependencies = (
     overrides: Partial<ConvertCommentsDependencies> = {},

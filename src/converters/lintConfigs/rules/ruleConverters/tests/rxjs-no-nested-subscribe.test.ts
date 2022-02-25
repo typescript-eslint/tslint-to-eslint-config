@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoNestedSubscribe } from "../rxjs-no-nested-subscribe";
+import { convertRxjsNoNestedSubscribe } from "../rxjs-no-nested-subscribe.js";
 
 describe("convertRxjsNoNestedSubscribe", () => {
     test("conversion without arguments", () => {

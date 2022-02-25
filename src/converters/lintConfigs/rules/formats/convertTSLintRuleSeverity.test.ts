@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { convertTSLintRuleSeverity } from "./convertTSLintRuleSeverity";
+import { convertTSLintRuleSeverity } from "./convertTSLintRuleSeverity.js";
 
 describe("convertRuleSeverity", () => {
     it("returns error when the severity is error", () => {

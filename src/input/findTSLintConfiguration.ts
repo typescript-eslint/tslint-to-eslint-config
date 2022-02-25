@@ -1,10 +1,10 @@
-import { Exec } from "../adapters/exec";
-import { SansDependencies } from "../binding";
-import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
-import { uniqueFromSources } from "../utils";
-import { findRawConfiguration } from "./findRawConfiguration";
-import { findReportedConfiguration } from "./findReportedConfiguration";
-import { importer } from "./importer";
+import { Exec } from "../adapters/exec.js";
+import { SansDependencies } from "../binding.js";
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types.js";
+import { uniqueFromSources } from "../utils.js";
+import { findRawConfiguration } from "./findRawConfiguration.js";
+import { findReportedConfiguration } from "./findReportedConfiguration.js";
+import { importer } from "./importer.js";
 
 export type TSLintConfiguration = {
     extends?: string[];

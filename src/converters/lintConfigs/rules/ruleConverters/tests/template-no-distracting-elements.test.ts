@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateNoDistractingElements } from "../template-no-distracting-elements";
+import { convertTemplateNoDistractingElements } from "../template-no-distracting-elements.js";
 
 describe("convertTemplateNoDistractingElements", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoPipeImpure } from "../no-pipe-impure";
+import { convertNoPipeImpure } from "../no-pipe-impure.js";
 
 describe("convertNoPipeImpure", () => {
     test("conversion without arguments", () => {

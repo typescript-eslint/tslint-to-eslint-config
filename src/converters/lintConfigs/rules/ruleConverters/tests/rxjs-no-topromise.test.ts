@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoToPromise } from "../rxjs-no-topromise";
+import { convertRxjsNoToPromise } from "../rxjs-no-topromise.js";
 
 describe("convertRxjsNoToPromise", () => {
     test("conversion without arguments", () => {

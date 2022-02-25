@@ -1,9 +1,9 @@
 import {
     ESLintConfigurationRules,
     ESLintConfigurationRuleValue,
-} from "../../../input/findESLintConfiguration";
-import { normalizeRawESLintRuleSeverity } from "../pruning/normalizeRawESLintRuleSeverity";
-import { ESLintRuleOptions, RawESLintRuleSeverity } from "../rules/types";
+} from "../../../input/findESLintConfiguration.js";
+import { normalizeRawESLintRuleSeverity } from "../pruning/normalizeRawESLintRuleSeverity.js";
+import { ESLintRuleOptions, RawESLintRuleSeverity } from "../rules/types.js";
 
 /**
  * Normalizes raw ESLint rule configurations into our standardized output format.

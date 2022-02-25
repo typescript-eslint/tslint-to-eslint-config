@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseIsnan } from "../use-isnan";
+import { convertUseIsnan } from "../use-isnan.js";
 
 describe("convertUseIsnan", () => {
     test("conversion without arguments", () => {

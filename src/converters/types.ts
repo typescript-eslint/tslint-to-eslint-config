@@ -1,5 +1,5 @@
-import { AllOriginalConfigurations } from "../input/findOriginalConfigurations";
-import { ResultWithStatus, TSLintToESLintSettings } from "../types";
+import { AllOriginalConfigurations } from "../input/findOriginalConfigurations.js";
+import { ResultWithStatus, TSLintToESLintSettings } from "../types.js";
 
 /**
  * Standalone (sans dependencies) type for a converter to run in the CLI.

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertOrderedImports } from "../ordered-imports";
+import { convertOrderedImports } from "../ordered-imports.js";
 
 describe("convertOrderedImports", () => {
     test("conversion without arguments", () => {

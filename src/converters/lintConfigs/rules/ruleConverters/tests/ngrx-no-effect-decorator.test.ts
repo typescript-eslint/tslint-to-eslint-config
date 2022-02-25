@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxNoEffectDecorator } from "../ngrx-no-effect-decorator";
+import { convertNgrxNoEffectDecorator } from "../ngrx-no-effect-decorator.js";
 
 describe("convertNgrxNoEffectDecorator", () => {
     test("conversion without arguments", () => {

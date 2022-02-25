@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoUnsafeTakewhile } from "../rxjs-no-unsafe-takewhile";
+import { convertRxjsNoUnsafeTakewhile } from "../rxjs-no-unsafe-takewhile.js";
 
 describe("convertRxjsNoUnsafeTakewhile", () => {
     test("conversion without arguments", () => {

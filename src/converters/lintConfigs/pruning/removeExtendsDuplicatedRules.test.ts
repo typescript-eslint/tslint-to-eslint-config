@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../rules/types";
-import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules";
+import { ESLintRuleOptions, ESLintRuleOptionsWithArguments } from "../rules/types.js";
+import { removeExtendsDuplicatedRules } from "./removeExtendsDuplicatedRules.js";
 
 const prepareTestRule = (
     ruleOptions: Partial<ESLintRuleOptions>,

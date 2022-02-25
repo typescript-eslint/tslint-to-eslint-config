@@ -1,7 +1,7 @@
-import { TSLintConfiguration } from "../../input/findTSLintConfiguration";
-import { formatMissingRules } from "./formatMissingRules";
-import { RuleConversionResults } from "./rules/convertRules";
-import { ESLintRuleOptions } from "./rules/types";
+import { TSLintConfiguration } from "../../input/findTSLintConfiguration.js";
+import { formatMissingRules } from "./formatMissingRules.js";
+import { RuleConversionResults } from "./rules/convertRules.js";
+import { ESLintRuleOptions } from "./rules/types.js";
 
 export const formatConvertedRules = (
     conversionResults: RuleConversionResults,

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPreferArrayLiteral } from "../prefer-array-literal";
+import { convertPreferArrayLiteral } from "../prefer-array-literal.js";
 
 describe("convertPreferArrayLiteral", () => {
     test("conversion without arguments", () => {

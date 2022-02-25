@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxNoLambda } from "../jsx-no-lambda";
+import { convertJsxNoLambda } from "../jsx-no-lambda.js";
 
 describe("convertJsxNoLambda", () => {
     test("conversion without arguments", () => {

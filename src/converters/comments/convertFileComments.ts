@@ -1,7 +1,7 @@
-import { FileSystem } from "../../adapters/fileSystem";
-import { RuleConverter } from "../lintConfigs/rules/ruleConverter";
-import { parseFileComments } from "./parseFileComments";
-import { replaceFileComments } from "./replaceFileComments";
+import { FileSystem } from "../../adapters/fileSystem.js";
+import { RuleConverter } from "../lintConfigs/rules/ruleConverter.js";
+import { parseFileComments } from "./parseFileComments.js";
+import { replaceFileComments } from "./replaceFileComments.js";
 
 export type ConvertFileCommentsDependencies = {
     converters: Map<string, RuleConverter>;

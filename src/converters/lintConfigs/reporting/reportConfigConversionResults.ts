@@ -1,15 +1,15 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
-import { Logger } from "../../../adapters/logger";
+import { Logger } from "../../../adapters/logger.js";
 import {
     logFailedConversions,
     logMissingConversionTarget,
     logObsoleteRules,
     logSuccessfulConversions,
-} from "../../../reporting";
-import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types";
-import { SummarizedConfigResultsConfiguration } from "../summarization/types";
+} from "../../../reporting.js";
+import { ESLintRuleOptions, TSLintRuleOptions } from "../rules/types.js";
+import { SummarizedConfigResultsConfiguration } from "../summarization/types.js";
 
 export type ReportConversionResultsDependencies = {
     logger: Logger;

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPreferTemplate } from "../prefer-template";
+import { convertPreferTemplate } from "../prefer-template.js";
 
 describe("convertPreferTemplate", () => {
     test("conversion without arguments", () => {

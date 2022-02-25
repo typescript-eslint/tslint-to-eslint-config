@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertCallableTypes } from "../callable-types";
+import { convertCallableTypes } from "../callable-types.js";
 
 describe("convertCallableTypes", () => {
     test("conversion without arguments", () => {

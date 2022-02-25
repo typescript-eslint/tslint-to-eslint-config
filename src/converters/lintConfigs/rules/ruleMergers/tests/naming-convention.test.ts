@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeNamingConvention } from "../naming-convention";
+import { mergeNamingConvention } from "../naming-convention.js";
 
 describe("mergeNamingConvention", () => {
     test("neither options existing", () => {

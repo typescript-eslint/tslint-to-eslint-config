@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoConstantCondition } from "../no-constant-condition";
+import { convertNoConstantCondition } from "../no-constant-condition.js";
 
 describe("convertNoConstantCondition", () => {
     test("conversion without arguments", () => {

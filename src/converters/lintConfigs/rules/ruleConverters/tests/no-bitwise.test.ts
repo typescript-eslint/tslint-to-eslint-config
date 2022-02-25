@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoBitwise } from "../no-bitwise";
+import { convertNoBitwise } from "../no-bitwise.js";
 
 describe("convertNoBitwise", () => {
     test("conversion without arguments", () => {

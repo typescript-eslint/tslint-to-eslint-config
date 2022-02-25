@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateCyclomaticComplexity } from "../template-cyclomatic-complexity";
+import { convertTemplateCyclomaticComplexity } from "../template-cyclomatic-complexity.js";
 
 describe("convertTemplateCyclomaticComplexity", () => {
     test("conversion without arguments", () => {

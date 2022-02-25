@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoReferenceImport } from "../no-reference-import";
+import { convertNoReferenceImport } from "../no-reference-import.js";
 
 describe("convertNoReferenceImport", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoShareReplay } from "../rxjs-no-sharereplay";
+import { convertRxjsNoShareReplay } from "../rxjs-no-sharereplay.js";
 
 describe("convertRxjsNoShareReplay", () => {
     test("conversion without arguments", () => {

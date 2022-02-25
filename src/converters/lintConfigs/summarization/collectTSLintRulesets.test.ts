@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { collectTSLintRulesets } from "./collectTSLintRulesets";
+import { collectTSLintRulesets } from "./collectTSLintRulesets.js";
 
 describe("collectTSLintRulesets", () => {
     it("includes mapped ESLint extensions for a full TSLint extension when it exists", () => {

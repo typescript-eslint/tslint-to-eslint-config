@@ -1,12 +1,12 @@
-import { Exec } from "../adapters/exec";
-import { SansDependencies } from "../binding";
-import { RawESLintRuleSeverity } from "../converters/lintConfigs/rules/types";
-import { ConfigurationLocations } from "../types";
-import { uniqueFromSources } from "../utils";
-import { OriginalConfigurations } from "./findOriginalConfigurations";
-import { findRawConfiguration } from "./findRawConfiguration";
-import { findReportedConfiguration } from "./findReportedConfiguration";
-import { importer } from "./importer";
+import { Exec } from "../adapters/exec.js";
+import { SansDependencies } from "../binding.js";
+import { RawESLintRuleSeverity } from "../converters/lintConfigs/rules/types.js";
+import { ConfigurationLocations } from "../types.js";
+import { uniqueFromSources } from "../utils.js";
+import { OriginalConfigurations } from "./findOriginalConfigurations.js";
+import { findRawConfiguration } from "./findRawConfiguration.js";
+import { findReportedConfiguration } from "./findReportedConfiguration.js";
+import { importer } from "./importer.js";
 
 export type ESLintConfiguration = {
     env?: Record<string, boolean | undefined>;

@@ -1,5 +1,5 @@
-import { Exec } from "../adapters/exec";
-import { asError } from "../utils";
+import { Exec } from "../adapters/exec.js";
+import { asError } from "../utils.js";
 
 export type DeepPartial<T> = {
     [P in keyof T]?: T[P] extends Record<string, unknown> ? DeepPartial<T[P]> : T[P];

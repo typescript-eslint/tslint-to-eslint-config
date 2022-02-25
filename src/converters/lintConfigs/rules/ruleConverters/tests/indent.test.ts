@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertIndent } from "../indent";
+import { convertIndent } from "../indent.js";
 
 describe("convertIndent", () => {
     test("conversion without arguments", () => {

@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 const SELECTIVE_DISABLE_NOTICE =
     "ESLint does not support selectively disabling shadowed declaration checks " +

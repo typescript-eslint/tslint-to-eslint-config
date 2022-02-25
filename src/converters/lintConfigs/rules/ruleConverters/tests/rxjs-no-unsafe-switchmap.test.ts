@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoUnsafeSwitchmap } from "../rxjs-no-unsafe-switchmap";
+import { convertRxjsNoUnsafeSwitchmap } from "../rxjs-no-unsafe-switchmap.js";
 
 describe("convertRxjsNoUnsafeSwitchmap", () => {
     test("conversion without arguments", () => {

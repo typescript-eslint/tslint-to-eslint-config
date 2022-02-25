@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoHostMetadataProperty } from "../no-host-metadata-property";
+import { convertNoHostMetadataProperty } from "../no-host-metadata-property.js";
 
 describe("convertNoHostMetadataProperty", () => {
     test("conversion without arguments", () => {

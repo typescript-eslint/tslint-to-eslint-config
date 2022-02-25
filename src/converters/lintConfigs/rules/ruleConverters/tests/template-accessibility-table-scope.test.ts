@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateAccessibilityTableScope } from "../template-accessibility-table-scope";
+import { convertTemplateAccessibilityTableScope } from "../template-accessibility-table-scope.js";
 
 describe("convertTemplateAccessibilityTableScope", () => {
     test("conversion without arguments", () => {

@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const NO_UNUSED_VARIABLE_NOTICE =
     "Please read the following article as the rule behaviour may change on the short term: " +

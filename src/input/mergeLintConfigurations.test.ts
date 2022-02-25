@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ESLintConfiguration } from "./findESLintConfiguration";
-import { OriginalConfigurations } from "./findOriginalConfigurations";
-import { TSLintConfiguration } from "./findTSLintConfiguration";
-import { mergeLintConfigurations } from "./mergeLintConfigurations";
+import { ESLintConfiguration } from "./findESLintConfiguration.js";
+import { OriginalConfigurations } from "./findOriginalConfigurations.js";
+import { TSLintConfiguration } from "./findTSLintConfiguration.js";
+import { mergeLintConfigurations } from "./mergeLintConfigurations.js";
 
 const stubTSLintConfiguration: OriginalConfigurations<TSLintConfiguration> = {
     full: {

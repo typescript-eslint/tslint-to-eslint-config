@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnusedVariable, NO_UNUSED_VARIABLE_NOTICE } from "../no-unused-variable";
+import { convertNoUnusedVariable, NO_UNUSED_VARIABLE_NOTICE } from "../no-unused-variable.js";
 
 describe("convertNoUnusedVariable", () => {
     test("conversion without arguments", () => {

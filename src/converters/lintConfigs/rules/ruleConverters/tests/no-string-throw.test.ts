@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoStringThrow } from "../no-string-throw";
+import { convertNoStringThrow } from "../no-string-throw.js";
 
 describe("convertNoStringThrow", () => {
     test("conversion without arguments", () => {

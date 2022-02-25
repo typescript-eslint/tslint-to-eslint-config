@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxNoDispatchInEffects } from "../ngrx-no-dispatch-in-effects";
+import { convertNgrxNoDispatchInEffects } from "../ngrx-no-dispatch-in-effects.js";
 
 describe("convertNgrxNoDispatchInEffects", () => {
     test("conversion without arguments", () => {

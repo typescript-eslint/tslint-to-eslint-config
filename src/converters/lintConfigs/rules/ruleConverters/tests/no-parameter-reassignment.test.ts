@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoParameterReassignment } from "../no-parameter-reassignment";
+import { convertNoParameterReassignment } from "../no-parameter-reassignment.js";
 
 describe("convertNoParameterReassignment", () => {
     test("conversion without arguments", () => {

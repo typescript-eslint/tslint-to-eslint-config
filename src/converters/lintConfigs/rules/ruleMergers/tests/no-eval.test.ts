@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeNoEval } from "../no-eval";
+import { mergeNoEval } from "../no-eval.js";
 
 describe("mergeNoEval", () => {
     test("neither options existing", () => {

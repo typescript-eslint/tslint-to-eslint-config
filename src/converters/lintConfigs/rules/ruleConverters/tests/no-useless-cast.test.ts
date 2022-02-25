@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUselessCast } from "../no-useless-cast";
+import { convertNoUselessCast } from "../no-useless-cast.js";
 
 describe("convertNoUselessCast", () => {
     test("conversion without arguments", () => {

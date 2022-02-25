@@ -1,5 +1,5 @@
-import { formatJsonOutput } from "./formatters/formatJsonOutput";
-import { formatJsOutput } from "./formatters/formatJsOutput";
+import { formatJsonOutput } from "./formatters/formatJsonOutput.js";
+import { formatJsOutput } from "./formatters/formatJsOutput.js";
 
 const formatters = new Map([["js", formatJsOutput]]);
 

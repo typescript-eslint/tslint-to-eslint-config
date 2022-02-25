@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yProptypes } from "../react-a11y-proptypes";
+import { convertReactA11yProptypes } from "../react-a11y-proptypes.js";
 
 describe("convertReactA11yProptypes", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoVarKeyword } from "../no-var-keyword";
+import { convertNoVarKeyword } from "../no-var-keyword.js";
 
 describe("convertNoVarKeyword", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTypeofCompare } from "../typeof-compare";
+import { convertTypeofCompare } from "../typeof-compare.js";
 
 describe("convertTypeofCompare", () => {
     test("conversion without arguments", () => {

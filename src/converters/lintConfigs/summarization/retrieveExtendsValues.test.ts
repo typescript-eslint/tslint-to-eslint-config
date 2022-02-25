@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { retrieveExtendsValues } from "./retrieveExtendsValues";
+import { retrieveExtendsValues } from "./retrieveExtendsValues.js";
 
 describe("retrieveExtendsValues", () => {
     it("retrieves an equivalent ESLint configuration when a retrieved extensions is an ESLint builtin", async () => {

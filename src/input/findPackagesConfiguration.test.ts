@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubExec } from "../adapters/exec.stubs";
-import { findPackagesConfiguration } from "./findPackagesConfiguration";
+import { createStubExec } from "../adapters/exec.stubs.js";
+import { findPackagesConfiguration } from "./findPackagesConfiguration.js";
 
 describe("findPackagesConfiguration", () => {
     it("defaults the configuration file with cat when one isn't provided on a non-Windows platform", async () => {

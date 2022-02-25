@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoConsecutiveBlankLines } from "../no-consecutive-blank-lines";
+import { convertNoConsecutiveBlankLines } from "../no-consecutive-blank-lines.js";
 
 describe("convertNoConsecutiveBlankLines", () => {
     test("conversion without arguments", () => {

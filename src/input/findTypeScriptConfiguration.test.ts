@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { findTypeScriptConfiguration } from "./findTypeScriptConfiguration";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs.js";
+import { findTypeScriptConfiguration } from "./findTypeScriptConfiguration.js";
 
 describe("findTypeScriptConfiguration", () => {
     it("returns an error when one occurs", async () => {

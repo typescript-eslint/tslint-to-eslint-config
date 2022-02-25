@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
-import { Logger } from "../../../adapters/logger";
+import { Logger } from "../../../adapters/logger.js";
 
 export type ReportCommentResultsDependencies = {
     logger: Logger;

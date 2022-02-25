@@ -1,10 +1,10 @@
-import { Logger } from "../../../adapters/logger";
+import { Logger } from "../../../adapters/logger.js";
 import {
     logFailedConversions,
     logMissingConversionTarget,
     logSuccessfulConversions,
-} from "../../../reporting";
-import { EditorConfigsConversionResults } from "../types";
+} from "../../../reporting.js";
+import { EditorConfigsConversionResults } from "../types.js";
 
 export type ReportEditorConfigConversionResultsDependencies = {
     logger: Logger;

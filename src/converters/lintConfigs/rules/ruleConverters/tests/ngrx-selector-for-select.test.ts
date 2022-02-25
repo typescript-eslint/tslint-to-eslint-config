@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxSelectorForSelect } from "../ngrx-selector-for-select";
+import { convertNgrxSelectorForSelect } from "../ngrx-selector-for-select.js";
 
 describe("convertNgrxSelectorForSelect", () => {
     test("conversion without arguments", () => {

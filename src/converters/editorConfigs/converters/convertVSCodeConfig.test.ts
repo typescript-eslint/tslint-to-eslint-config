@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { convertVSCodeConfig } from "./convertVSCodeConfig";
+import { convertVSCodeConfig } from "./convertVSCodeConfig.js";
 
 const stubSettings = {
     config: ".eslintrc.js",

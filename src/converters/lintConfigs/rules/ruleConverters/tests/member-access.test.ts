@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { AccessibilityLevel, convertMemberAccess } from "../member-access";
+import { AccessibilityLevel, convertMemberAccess } from "../member-access.js";
 
 describe("convertMemberAccess", () => {
     test("conversion without arguments", () => {

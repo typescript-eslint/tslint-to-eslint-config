@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoOperator } from "../rxjs-no-operator";
+import { convertRxjsNoOperator } from "../rxjs-no-operator.js";
 
 describe("convertRxjsNoOperator", () => {
     test("conversion without arguments", () => {

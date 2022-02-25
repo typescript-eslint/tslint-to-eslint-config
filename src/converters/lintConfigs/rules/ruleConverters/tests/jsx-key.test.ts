@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxKey } from "../jsx-key";
+import { convertJsxKey } from "../jsx-key.js";
 
 describe("convertJsxKey", () => {
     test("conversion without arguments", () => {

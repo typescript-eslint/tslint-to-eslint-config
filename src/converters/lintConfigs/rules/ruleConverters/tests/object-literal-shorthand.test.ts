@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertObjectLiteralShorthand } from "../object-literal-shorthand";
+import { convertObjectLiteralShorthand } from "../object-literal-shorthand.js";
 
 describe("convertObjectLiteralShorthand", () => {
     test("conversion without arguments", () => {

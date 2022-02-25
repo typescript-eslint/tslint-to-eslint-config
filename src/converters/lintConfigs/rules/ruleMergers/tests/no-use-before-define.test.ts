@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeNoUseBeforeDefine } from "../no-use-before-define";
+import { mergeNoUseBeforeDefine } from "../no-use-before-define.js";
 
 describe("mergeNoUseBeforeDefine", () => {
     test("neither options existing", () => {

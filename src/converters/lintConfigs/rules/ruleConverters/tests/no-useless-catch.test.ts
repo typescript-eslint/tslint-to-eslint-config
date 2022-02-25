@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUselessCatch } from "../no-useless-catch";
+import { convertNoUselessCatch } from "../no-useless-catch.js";
 
 describe("convertNoUselessCatch", () => {
     test("conversion without arguments", () => {

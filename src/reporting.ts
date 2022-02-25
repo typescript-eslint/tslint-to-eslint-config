@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
-import { Logger } from "./adapters/logger";
-import { ResultStatus, ResultWithStatus } from "./types";
+import { Logger } from "./adapters/logger.js";
+import { ResultStatus, ResultWithStatus } from "./types.js";
 
 export const logErrorResult = (result: ResultWithStatus, logger: Logger) => {
     switch (result.status) {

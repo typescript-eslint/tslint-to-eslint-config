@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ESLintConfigurationRuleValue } from "../../../input/findESLintConfiguration";
-import { normalizeExtensions } from "./normalizeExtensions";
+import { ESLintConfigurationRuleValue } from "../../../input/findESLintConfiguration.js";
+import { normalizeExtensions } from "./normalizeExtensions.js";
 
 const createStubExtension = (ruleName: string, ruleValue: ESLintConfigurationRuleValue) => {
     return {

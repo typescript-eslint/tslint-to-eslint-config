@@ -1,7 +1,5 @@
 {
-    "bin": {
-        "tslint-to-eslint-config": "bin/tslint-to-eslint-config"
-    },
+    "bin": "./bin/tslint-to-eslint-config",
     "bugs": {
         "url": "https://github.com/typescript-eslint/tslint-to-eslint-config/issues"
     },

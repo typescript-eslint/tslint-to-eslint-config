@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnusedArray } from "../no-unused-array";
+import { convertNoUnusedArray } from "../no-unused-array.js";
 
 describe("convertNoUnusedArray", () => {
     test("conversion without arguments", () => {

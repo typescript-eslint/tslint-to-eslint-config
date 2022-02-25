@@ -1,4 +1,4 @@
-import { ESLintRuleSeverity, TSLintRuleSeverity } from "../types";
+import { ESLintRuleSeverity, TSLintRuleSeverity } from "../types.js";
 
 /**
  * Converts a TSLint rule severity string to the ESLint equivalent.

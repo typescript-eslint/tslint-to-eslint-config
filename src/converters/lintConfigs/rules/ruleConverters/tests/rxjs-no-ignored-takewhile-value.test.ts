@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoIgnoredTakeWhileValue } from "../rxjs-no-ignored-takewhile-value";
+import { convertRxjsNoIgnoredTakeWhileValue } from "../rxjs-no-ignored-takewhile-value.js";
 
 describe("convertRxjsNoIgnoredTakeWhileValue", () => {
     test("conversion without arguments", () => {

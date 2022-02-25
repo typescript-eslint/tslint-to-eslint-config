@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoVoidExpression } from "../no-void-expression";
+import { convertNoVoidExpression } from "../no-void-expression.js";
 
 describe("convertNoVoidExpression", () => {
     test("conversion without arguments", () => {

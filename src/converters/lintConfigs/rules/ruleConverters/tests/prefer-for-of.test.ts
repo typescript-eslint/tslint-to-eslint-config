@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertPreferForOf } from "../prefer-for-of";
+import { convertPreferForOf } from "../prefer-for-of.js";
 
 describe("convertPreferForOf", () => {
     test("conversion without arguments", () => {

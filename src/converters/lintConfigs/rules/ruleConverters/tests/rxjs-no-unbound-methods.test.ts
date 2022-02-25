@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoUnboundMethods } from "../rxjs-no-unbound-methods";
+import { convertRxjsNoUnboundMethods } from "../rxjs-no-unbound-methods.js";
 
 describe("convertRxjsNoUnboundMethods", () => {
     test("conversion without arguments", () => {

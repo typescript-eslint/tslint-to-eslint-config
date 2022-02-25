@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoDuplicateVariable } from "../no-duplicate-variable";
+import { convertNoDuplicateVariable } from "../no-duplicate-variable.js";
 
 describe("convertNoDuplicateVariable", () => {
     test("conversion without arguments", () => {

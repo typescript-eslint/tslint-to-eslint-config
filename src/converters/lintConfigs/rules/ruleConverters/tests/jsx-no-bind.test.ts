@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxNoBind } from "../jsx-no-bind";
+import { convertJsxNoBind } from "../jsx-no-bind.js";
 
 describe("convertJsxNoBind", () => {
     test("conversion without arguments", () => {

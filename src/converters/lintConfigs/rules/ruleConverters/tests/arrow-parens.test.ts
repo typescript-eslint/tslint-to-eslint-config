@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertArrowParens } from "../arrow-parens";
+import { convertArrowParens } from "../arrow-parens.js";
 
 describe("convertArrowParens", () => {
     test("conversion without arguments", () => {

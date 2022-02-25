@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoMultipleStores } from "../no-multiple-stores";
+import { convertNoMultipleStores } from "../no-multiple-stores.js";
 
 describe("convertNoMultipleStores", () => {
     test("conversion without arguments", () => {

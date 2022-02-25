@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsPreferAngularTakeuntil } from "../rxjs-prefer-angular-takeuntil";
+import { convertRxjsPreferAngularTakeuntil } from "../rxjs-prefer-angular-takeuntil.js";
 
 describe("convertRxjsPreferAngularTakeuntil", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnnecessaryClass } from "../no-unnecessary-class";
+import { convertNoUnnecessaryClass } from "../no-unnecessary-class.js";
 
 describe("convertNoUnnecessaryClass", () => {
     test("conversion without arguments", () => {

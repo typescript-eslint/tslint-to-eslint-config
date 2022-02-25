@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertContextualLifecycle } from "../contextual-lifecycle";
+import { convertContextualLifecycle } from "../contextual-lifecycle.js";
 
 describe("convertContextualLifecycle", () => {
     test("conversion without arguments", () => {

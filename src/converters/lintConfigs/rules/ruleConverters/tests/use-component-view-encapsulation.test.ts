@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseComponentViewEncapsulation } from "../use-component-view-encapsulation";
+import { convertUseComponentViewEncapsulation } from "../use-component-view-encapsulation.js";
 
 describe("convertUseComponentViewEncapsulation", () => {
     test("conversion without arguments", () => {

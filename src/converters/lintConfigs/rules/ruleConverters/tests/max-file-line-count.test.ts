@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertMaxFileLineCount } from "../max-file-line-count";
+import { convertMaxFileLineCount } from "../max-file-line-count.js";
 
 describe("convertMaxFileLineCount", () => {
     test("conversion without arguments", () => {

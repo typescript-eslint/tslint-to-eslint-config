@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertAwaitPromise } from "../await-promise";
+import { convertAwaitPromise } from "../await-promise.js";
 
 describe("convertAwaitPromise", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUsePrimitiveType } from "../use-primitive-type";
+import { convertUsePrimitiveType } from "../use-primitive-type.js";
 
 describe("convertUsePrimitiveType", () => {
     test("conversion without arguments", () => {

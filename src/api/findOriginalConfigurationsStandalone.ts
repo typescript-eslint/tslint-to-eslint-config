@@ -1,6 +1,6 @@
-import { findOriginalConfigurations } from "../input/findOriginalConfigurations";
-import { ConfigurationLocations } from "../types";
-import { findOriginalConfigurationsDependencies } from "./dependencies";
+import { findOriginalConfigurations } from "../input/findOriginalConfigurations.js";
+import { ConfigurationLocations } from "../types.js";
+import { findOriginalConfigurationsDependencies } from "./dependencies.js";
 
 /**
  * Retrieves the raw and computed contents of original configuration files.

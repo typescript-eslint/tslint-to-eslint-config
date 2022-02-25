@@ -1,5 +1,5 @@
-import { childProcessExec } from "../adapters/childProcessExec";
-import { findReportedConfiguration } from "../input/findReportedConfiguration";
+import { childProcessExec } from "../adapters/childProcessExec.js";
+import { findReportedConfiguration } from "../input/findReportedConfiguration.js";
 
 /**
  * Runs a config print command and parses its output as JSON.

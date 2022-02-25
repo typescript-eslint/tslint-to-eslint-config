@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoRedundantJsdoc } from "../no-redundant-jsdoc";
+import { convertNoRedundantJsdoc } from "../no-redundant-jsdoc.js";
 
 describe("convertNoRedundantJsdoc", () => {
     test("conversion without arguments", () => {

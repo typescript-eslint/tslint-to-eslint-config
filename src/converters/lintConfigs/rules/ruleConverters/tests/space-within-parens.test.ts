@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertSpaceWithinParens } from "../space-within-parens";
+import { convertSpaceWithinParens } from "../space-within-parens.js";
 
 describe("convertSpaceWithinParens", () => {
     test("conversion without arguments", () => {

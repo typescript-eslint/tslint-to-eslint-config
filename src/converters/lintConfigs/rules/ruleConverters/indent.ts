@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 export const convertIndent: RuleConverter = (tslintRule) => {
     let indentSize: number | string = 4; // @typescript-eslint/indent default

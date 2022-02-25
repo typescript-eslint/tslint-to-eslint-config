@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoIgnoredSubscription } from "../rxjs-no-ignored-subscription";
+import { convertRxjsNoIgnoredSubscription } from "../rxjs-no-ignored-subscription.js";
 
 describe("convertRxjsNoIgnoredSubscription", () => {
     test("conversion without arguments", () => {

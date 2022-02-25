@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { choosePackageManager } from "./choosePackageManager";
-import { PackageManager } from "./packageManagers";
+import { choosePackageManager } from "./choosePackageManager.js";
+import { PackageManager } from "./packageManagers.js";
 
 describe("choosePackageManager", () => {
     it("uses a non-npm package manager when that package manager's lock file exists", async () => {

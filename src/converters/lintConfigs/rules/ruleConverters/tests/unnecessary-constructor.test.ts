@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUnnecessaryConstructor } from "../unnecessary-constructor";
+import { convertUnnecessaryConstructor } from "../unnecessary-constructor.js";
 
 describe("convertUnnecessaryConstructor", () => {
     test("conversion without arguments", () => {

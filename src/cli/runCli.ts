@@ -8,15 +8,15 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { Logger } from "../adapters/logger";
-import { SansDependencies } from "../binding";
-import { Converter } from "../converters/types";
+import { Logger } from "../adapters/logger.js";
+import { SansDependencies } from "../binding.js";
+import { Converter } from "../converters/types.js";
 import {
     AllOriginalConfigurations,
     findOriginalConfigurations,
-} from "../input/findOriginalConfigurations";
-import { logErrorResult } from "../reporting";
-import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types";
+} from "../input/findOriginalConfigurations.js";
+import { logErrorResult } from "../reporting.js";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../types.js";
 
 export type RunCliDependencies = {
     converters: Converter[];

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoBannedTerms } from "../no-banned-terms";
+import { convertNoBannedTerms } from "../no-banned-terms.js";
 
 describe("convertNoBannedTerms", () => {
     test("conversion without arguments", () => {

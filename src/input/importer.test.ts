@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import * as path from "path";
 
-import { importer } from "./importer";
+import { importer } from "./importer.js";
 
 const stubCwd = "/path/to/cwd";
 

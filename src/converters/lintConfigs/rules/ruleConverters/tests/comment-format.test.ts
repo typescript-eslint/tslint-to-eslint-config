@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { CapitalizedIgnoreMessage, convertCommentFormat } from "../comment-format";
+import { CapitalizedIgnoreMessage, convertCommentFormat } from "../comment-format.js";
 
 describe("convertCommentFormat", () => {
     test("conversion without arguments", () => {

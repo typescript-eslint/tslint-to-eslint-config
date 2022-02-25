@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNonLiteralRequire } from "../non-literal-require";
+import { convertNonLiteralRequire } from "../non-literal-require.js";
 
 describe("convertNonLiteralRequire", () => {
     test("conversion without arguments", () => {

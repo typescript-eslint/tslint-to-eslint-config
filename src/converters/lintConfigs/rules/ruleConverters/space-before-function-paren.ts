@@ -1,4 +1,4 @@
-import { RuleConverter } from "../ruleConverter";
+import { RuleConverter } from "../ruleConverter.js";
 
 const SUPPORTED_OPTIONS: string[] = ["anonymous", "asyncArrow", "named"];
 

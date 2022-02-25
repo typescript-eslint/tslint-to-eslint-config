@@ -7,7 +7,7 @@ import {
     removeEmptyMembers,
     separateErrors,
     uniqueFromSources,
-} from "./utils";
+} from "./utils.js";
 
 describe("asError", () => {
     it("returns the input when the input is an error", () => {

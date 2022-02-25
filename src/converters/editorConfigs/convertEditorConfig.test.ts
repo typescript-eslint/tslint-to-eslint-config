@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 
-import { convertEditorConfig } from "./convertEditorConfig";
+import { convertEditorConfig } from "./convertEditorConfig.js";
 
 const stubPath = "./vscode/settings.json";
 

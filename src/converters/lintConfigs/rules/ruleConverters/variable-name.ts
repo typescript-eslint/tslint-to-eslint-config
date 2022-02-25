@@ -1,5 +1,5 @@
-import { RuleConverter } from "../ruleConverter";
-import { ESLintRuleSeverity } from "../types";
+import { RuleConverter } from "../ruleConverter.js";
+import { ESLintRuleSeverity } from "../types.js";
 
 export const ConstRequiredForAllCapsMsg =
     "typescript-eslint does not enforce uppercase for const only.";

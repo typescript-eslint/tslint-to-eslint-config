@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoConsole } from "../no-console";
+import { convertNoConsole } from "../no-console.js";
 
 const consoleKeysExcluding = (...keys: string[]) => {
     const knownConsoleKeys = new Set(Object.keys(console));

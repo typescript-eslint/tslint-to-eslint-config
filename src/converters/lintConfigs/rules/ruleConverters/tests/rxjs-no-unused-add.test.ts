@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoUnusedAdd } from "../rxjs-no-unused-add";
+import { convertRxjsNoUnusedAdd } from "../rxjs-no-unused-add.js";
 
 describe("convertRxjsNoUnusedAdd", () => {
     test("conversion without arguments", () => {

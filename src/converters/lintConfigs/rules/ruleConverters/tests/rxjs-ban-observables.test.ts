@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsBanObservables } from "../rxjs-ban-observables";
+import { convertRxjsBanObservables } from "../rxjs-ban-observables.js";
 
 describe("convertRxjsBanObservables", () => {
     test("conversion without arguments", () => {

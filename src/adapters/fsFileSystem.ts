@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
-import { asError } from "../utils";
-import { FileSystem } from "./fileSystem";
+import { asError } from "../utils.js";
+import { FileSystem } from "./fileSystem.js";
 
 export const fsFileSystem: FileSystem = {
     fileExists: async (filePath: string) => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoEmptyLineAfterOpeningBrace } from "../no-empty-line-after-opening-brace";
+import { convertNoEmptyLineAfterOpeningBrace } from "../no-empty-line-after-opening-brace.js";
 
 describe("convertNoEmptyLineAfterOpeningBrace", () => {
     test("conversion ", () => {

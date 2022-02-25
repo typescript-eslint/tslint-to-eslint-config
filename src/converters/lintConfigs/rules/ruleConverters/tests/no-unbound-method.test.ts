@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnboundMethod } from "../no-unbound-method";
+import { convertNoUnboundMethod } from "../no-unbound-method.js";
 
 describe("convertNoUnboundMethod", () => {
     test("conversion without arguments", () => {

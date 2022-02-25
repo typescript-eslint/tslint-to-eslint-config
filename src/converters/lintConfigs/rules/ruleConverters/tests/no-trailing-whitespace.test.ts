@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoTrailingWhitespace } from "../no-trailing-whitespace";
+import { convertNoTrailingWhitespace } from "../no-trailing-whitespace.js";
 
 describe("convertNoTrailingWhitespace", () => {
     test("conversion without arguments", () => {

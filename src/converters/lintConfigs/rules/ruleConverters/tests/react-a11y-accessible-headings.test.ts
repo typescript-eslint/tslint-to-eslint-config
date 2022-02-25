@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yAccessibleHeadings } from "../react-a11y-accessible-headings";
+import { convertReactA11yAccessibleHeadings } from "../react-a11y-accessible-headings.js";
 
 describe("convertReactA11yAccessibleHeadings", () => {
     test("conversion without arguments", () => {

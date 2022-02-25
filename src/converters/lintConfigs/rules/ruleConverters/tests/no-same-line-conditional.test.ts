@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSameLineConditional } from "../no-same-line-conditional";
+import { convertNoSameLineConditional } from "../no-same-line-conditional.js";
 
 describe("convertNoSameLineConditional", () => {
     test("conversion without arguments", () => {

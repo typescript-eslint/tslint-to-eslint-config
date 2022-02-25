@@ -1,16 +1,16 @@
-import { SansDependencies } from "../../../binding";
-import { ESLintConfiguration } from "../../../input/findESLintConfiguration";
-import { OriginalConfigurations } from "../../../input/findOriginalConfigurations";
-import { TSLintConfiguration } from "../../../input/findTSLintConfiguration";
-import { uniqueFromSources } from "../../../utils";
-import { normalizeExtensions } from "../pruning/normalizeExtensions";
-import { removeExtendsDuplicatedRules } from "../pruning/removeExtendsDuplicatedRules";
-import { RuleConversionResults } from "../rules/convertRules";
-import { collectTSLintRulesets } from "./collectTSLintRulesets";
-import { normalizeESLintRules } from "./normalizeESLintRules";
-import { checkPrettierExtension } from "./prettier/checkPrettierExtension";
-import { retrieveExtendsValues } from "./retrieveExtendsValues";
-import { SummarizedConfigResultsConfiguration } from "./types";
+import { SansDependencies } from "../../../binding.js";
+import { ESLintConfiguration } from "../../../input/findESLintConfiguration.js";
+import { OriginalConfigurations } from "../../../input/findOriginalConfigurations.js";
+import { TSLintConfiguration } from "../../../input/findTSLintConfiguration.js";
+import { uniqueFromSources } from "../../../utils.js";
+import { normalizeExtensions } from "../pruning/normalizeExtensions.js";
+import { removeExtendsDuplicatedRules } from "../pruning/removeExtendsDuplicatedRules.js";
+import { RuleConversionResults } from "../rules/convertRules.js";
+import { collectTSLintRulesets } from "./collectTSLintRulesets.js";
+import { normalizeESLintRules } from "./normalizeESLintRules.js";
+import { checkPrettierExtension } from "./prettier/checkPrettierExtension.js";
+import { retrieveExtendsValues } from "./retrieveExtendsValues.js";
+import { SummarizedConfigResultsConfiguration } from "./types.js";
 
 export type SummarizePackageRulesDependencies = {
     checkPrettierExtension: typeof checkPrettierExtension;

@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
 
-import { bind } from "./binding";
+import { bind } from "./binding.js";
 
 describe("bind", () => {
     it("calls the original method with bound dependencies when called", () => {

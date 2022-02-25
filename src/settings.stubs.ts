@@ -1,4 +1,4 @@
-import { AllOriginalConfigurations } from "./input/findOriginalConfigurations";
+import { AllOriginalConfigurations } from "./input/findOriginalConfigurations.js";
 
 export const createStubTSLintToESLintSettings = () => ({
     config: "./eslintrc.js",

@@ -1,9 +1,9 @@
-import { SansDependencies } from "../../binding";
-import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types";
-import { uniqueFromSources } from "../../utils";
-import { convertEditorConfig } from "./convertEditorConfig";
-import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults";
-import { EditorConfigDescriptor, EditorConfigsConversionResults } from "./types";
+import { SansDependencies } from "../../binding.js";
+import { ResultStatus, ResultWithStatus, TSLintToESLintSettings } from "../../types.js";
+import { uniqueFromSources } from "../../utils.js";
+import { convertEditorConfig } from "./convertEditorConfig.js";
+import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults.js";
+import { EditorConfigDescriptor, EditorConfigsConversionResults } from "./types.js";
 
 export type ConvertEditorConfigsDependencies = {
     convertEditorConfig: SansDependencies<typeof convertEditorConfig>;

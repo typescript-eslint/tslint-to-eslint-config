@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
-import { joinConfigConversionResults } from "./joinConfigConversionResults";
-import { SummarizedConfigResultsConfiguration } from "./summarization/types";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations.js";
+import { createEmptyConfigConversionResults } from "./configConversionResults.stubs.js";
+import { joinConfigConversionResults } from "./joinConfigConversionResults.js";
+import { SummarizedConfigResultsConfiguration } from "./summarization/types.js";
 
 const createStubOriginalConfigurations = (
     overrides: Partial<AllOriginalConfigurations & SummarizedConfigResultsConfiguration> = {},

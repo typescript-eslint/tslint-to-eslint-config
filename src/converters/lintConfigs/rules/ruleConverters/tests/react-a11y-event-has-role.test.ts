@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yEventHasRole } from "../react-a11y-event-has-role";
+import { convertReactA11yEventHasRole } from "../react-a11y-event-has-role.js";
 
 describe("convertReactA11yEventHasRole", () => {
     test("conversion without arguments", () => {

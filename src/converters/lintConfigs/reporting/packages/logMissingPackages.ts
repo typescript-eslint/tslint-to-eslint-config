@@ -1,13 +1,13 @@
 import chalk from "chalk";
 import { EOL } from "os";
 
-import { Logger } from "../../../../adapters/logger";
-import { SansDependencies } from "../../../../binding";
-import { PackagesConfiguration } from "../../../../input/findPackagesConfiguration";
-import { isTruthy } from "../../../../utils";
-import { SummarizedConfigResultsConfiguration } from "../../summarization/types";
-import { choosePackageManager } from "./choosePackageManager";
-import { installationMessages } from "./packageManagers";
+import { Logger } from "../../../../adapters/logger.js";
+import { SansDependencies } from "../../../../binding.js";
+import { PackagesConfiguration } from "../../../../input/findPackagesConfiguration.js";
+import { isTruthy } from "../../../../utils.js";
+import { SummarizedConfigResultsConfiguration } from "../../summarization/types.js";
+import { choosePackageManager } from "./choosePackageManager.js";
+import { installationMessages } from "./packageManagers.js";
 
 export type LogMissingPackagesDependencies = {
     choosePackageManager: SansDependencies<typeof choosePackageManager>;

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { findReportedConfiguration } from "./findReportedConfiguration";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs.js";
+import { findReportedConfiguration } from "./findReportedConfiguration.js";
 
 describe("findReportedConfiguration", () => {
     it("returns stderr as an error when the command fails with a zero exit code", async () => {

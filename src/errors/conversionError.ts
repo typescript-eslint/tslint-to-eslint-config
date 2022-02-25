@@ -1,7 +1,7 @@
 import { EOL } from "os";
 
-import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types";
-import { ErrorSummary } from "./errorSummary";
+import { TSLintRuleOptions } from "../converters/lintConfigs/rules/types.js";
+import { ErrorSummary } from "./errorSummary.js";
 
 export class ConversionError extends Error implements ErrorSummary {
     private constructor(private readonly summary: string) {

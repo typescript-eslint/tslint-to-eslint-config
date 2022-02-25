@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ESLintConfigurationRules } from "../../../input/findESLintConfiguration";
-import { normalizeESLintRules } from "./normalizeESLintRules";
+import { ESLintConfigurationRules } from "../../../input/findESLintConfiguration.js";
+import { normalizeESLintRules } from "./normalizeESLintRules.js";
 
 const ruleName = "rule-a";
 

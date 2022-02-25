@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSuspiciousComment } from "../no-suspicious-comment";
+import { convertNoSuspiciousComment } from "../no-suspicious-comment.js";
 
 describe("convertNoSuspiciousComment", () => {
     test("conversion without arguments", () => {

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubFileSystem } from "../../adapters/fileSystem.stub";
-import { ConversionError } from "../../errors/conversionError";
-import { createStubConverter } from "../lintConfigs/rules/ruleConverter.stubs";
-import { convertFileComments, ConvertFileCommentsDependencies } from "./convertFileComments";
+import { createStubFileSystem } from "../../adapters/fileSystem.stub.js";
+import { ConversionError } from "../../errors/conversionError.js";
+import { createStubConverter } from "../lintConfigs/rules/ruleConverter.stubs.js";
+import { convertFileComments, ConvertFileCommentsDependencies } from "./convertFileComments.js";
 
 const createStubDependencies = (
     readFileResult: string | Error,

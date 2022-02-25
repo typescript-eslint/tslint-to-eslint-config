@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertDirectiveClassSuffix } from "../directive-class-suffix";
+import { convertDirectiveClassSuffix } from "../directive-class-suffix.js";
 
 describe("convertDirectiveClassSuffix", () => {
     test("conversion without arguments", () => {

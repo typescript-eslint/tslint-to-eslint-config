@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createEmptyConfigConversionResults } from "./configConversionResults.stubs";
-import { formatConvertedRules } from "./formatConvertedRules";
+import { createEmptyConfigConversionResults } from "./configConversionResults.stubs.js";
+import { formatConvertedRules } from "./formatConvertedRules.js";
 
 const originalConfiguration = {
     rulesDirectory: [],

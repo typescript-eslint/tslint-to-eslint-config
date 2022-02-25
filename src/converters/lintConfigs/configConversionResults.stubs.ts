@@ -1,4 +1,4 @@
-import { SummarizedConfigResultsConfiguration } from "./summarization/types";
+import { SummarizedConfigResultsConfiguration } from "./summarization/types.js";
 
 export const createEmptyConfigConversionResults = (
     overrides: Partial<SummarizedConfigResultsConfiguration> = {},

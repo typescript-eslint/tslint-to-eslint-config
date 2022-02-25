@@ -1,4 +1,4 @@
-import { ConversionError } from "../../../errors/conversionError";
+import { ConversionError } from "../../../errors/conversionError.js";
 
 export const createStubConverter = (result?: ConversionError | string[]) => {
     return () => {

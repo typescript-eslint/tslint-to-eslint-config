@@ -1,11 +1,11 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs";
-import { TSLintToESLintSettings } from "../types";
+import { createStubExec, createStubThrowingExec } from "../adapters/exec.stubs.js";
+import { TSLintToESLintSettings } from "../types.js";
 import {
     findESLintConfiguration,
     FindESLintConfigurationDependencies,
-} from "./findESLintConfiguration";
+} from "./findESLintConfiguration.js";
 
 const createStubDependencies = (overrides: Partial<FindESLintConfigurationDependencies> = {}) => ({
     exec: createStubExec({ stdout: "{}" }),

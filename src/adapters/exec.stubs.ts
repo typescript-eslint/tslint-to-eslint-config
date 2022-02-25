@@ -1,5 +1,5 @@
-import { fn } from "../fn";
-import { Exec } from "./exec";
+import { fn } from "../fn.js";
+import { Exec } from "./exec.js";
 
 export type CreateStubExecSettings = {
     stderr: string;

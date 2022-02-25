@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoMagicNumbers } from "../no-magic-numbers";
+import { convertNoMagicNumbers } from "../no-magic-numbers.js";
 
 describe("convertNoMagicNumbers", () => {
     test("conversion without arguments", () => {

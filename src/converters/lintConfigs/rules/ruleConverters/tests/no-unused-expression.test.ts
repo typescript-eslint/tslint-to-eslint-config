@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnusedExpression } from "../no-unused-expression";
+import { convertNoUnusedExpression } from "../no-unused-expression.js";
 
 describe("convertNoUnusedExpression", () => {
     test("conversion without arguments", () => {

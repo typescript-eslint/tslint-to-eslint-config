@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertMemberOrdering } from "../member-ordering";
+import { convertMemberOrdering } from "../member-ordering.js";
 
 describe("convertMemberOrdering", () => {
     test("conversion without arguments", () => {

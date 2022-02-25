@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertCognitiveComplexity } from "../cognitive-complexity";
+import { convertCognitiveComplexity } from "../cognitive-complexity.js";
 
 describe("convertCognitiveComplexity", () => {
     test("conversion without arguments", () => {

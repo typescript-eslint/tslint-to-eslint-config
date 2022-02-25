@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateAccessibilityValidAria } from "../template-accessibility-valid-aria";
+import { convertTemplateAccessibilityValidAria } from "../template-accessibility-valid-aria.js";
 
 describe("convertTemplateAccessibilityValidAria", () => {
     test("conversion without arguments", () => {

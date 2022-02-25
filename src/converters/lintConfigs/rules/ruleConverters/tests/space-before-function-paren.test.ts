@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertSpaceBeforeFunctionParen } from "../space-before-function-paren";
+import { convertSpaceBeforeFunctionParen } from "../space-before-function-paren.js";
 
 describe("convertSpaceBeforeFunctionParen", () => {
     test("conversion without arguments", () => {

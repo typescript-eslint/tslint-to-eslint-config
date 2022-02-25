@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { mergeConsistentTypeAssertions } from "../consistent-type-assertions";
+import { mergeConsistentTypeAssertions } from "../consistent-type-assertions.js";
 
 const option = {
     assertionStyle: "never",

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnnecessaryQualifier } from "../no-unnecessary-qualifier";
+import { convertNoUnnecessaryQualifier } from "../no-unnecessary-qualifier.js";
 
 describe("convertNoUnnecessaryQualifier", () => {
     test("conversion without arguments", () => {

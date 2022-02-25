@@ -1,7 +1,7 @@
 import { describe, it } from "@jest/globals";
 
-import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs";
-import { reportCommentResults } from "./reportCommentResults";
+import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs.js";
+import { reportCommentResults } from "./reportCommentResults.js";
 
 describe("reportCommentResults", () => {
     it("logs a suggestion when no comment globs were requested", () => {

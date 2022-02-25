@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateClickEventsHaveKeyEvents } from "../template-click-events-have-key-events";
+import { convertTemplateClickEventsHaveKeyEvents } from "../template-click-events-have-key-events.js";
 
 describe("convertTemplateClickEventsHaveKeyEvents", () => {
     test("conversion without arguments", () => {

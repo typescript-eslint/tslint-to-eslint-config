@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { TypeScriptConfiguration } from "../../../input/findTypeScriptConfiguration";
-import { createEnv } from "./createEnv";
+import { TypeScriptConfiguration } from "../../../input/findTypeScriptConfiguration.js";
+import { createEnv } from "./createEnv.js";
 
 const createTypeScriptCompilerOptions = (
     overrides: Partial<TypeScriptConfiguration["compilerOptions"]> = {},

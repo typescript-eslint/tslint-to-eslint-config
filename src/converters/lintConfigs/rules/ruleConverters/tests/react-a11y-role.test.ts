@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yRole } from "../react-a11y-role";
+import { convertReactA11yRole } from "../react-a11y-role.js";
 
 describe("convertReactA11yRole", () => {
     test("conversion without arguments", () => {

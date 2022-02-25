@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSwitchCaseFallThrough } from "../no-switch-case-fall-through";
+import { convertNoSwitchCaseFallThrough } from "../no-switch-case-fall-through.js";
 
 describe("convertNoSwitchCaseFallThrough", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTypeLiteralDelimiter } from "../type-literal-delimiter";
+import { convertTypeLiteralDelimiter } from "../type-literal-delimiter.js";
 
 describe("convertTypeLiteralDelimiter", () => {
     test("conversion without arguments", () => {

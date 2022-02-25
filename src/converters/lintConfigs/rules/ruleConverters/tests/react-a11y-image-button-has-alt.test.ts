@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yImageButtonHasAlt } from "../react-a11y-image-button-has-alt";
+import { convertReactA11yImageButtonHasAlt } from "../react-a11y-image-button-has-alt.js";
 
 describe("convertReactA11yImageButtonHasAlt", () => {
     test("conversion without arguments", () => {

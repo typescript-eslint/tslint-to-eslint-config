@@ -1,6 +1,6 @@
-import { ESLintConfiguration } from "./findESLintConfiguration";
-import { OriginalConfigurations } from "./findOriginalConfigurations";
-import { TSLintConfiguration } from "./findTSLintConfiguration";
+import { ESLintConfiguration } from "./findESLintConfiguration.js";
+import { OriginalConfigurations } from "./findOriginalConfigurations.js";
+import { TSLintConfiguration } from "./findTSLintConfiguration.js";
 
 export const mergeLintConfigurations = (
     eslint: OriginalConfigurations<ESLintConfiguration> | Error,

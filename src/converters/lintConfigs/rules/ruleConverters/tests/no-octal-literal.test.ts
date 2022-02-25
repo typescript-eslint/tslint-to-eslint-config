@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoOctalLiteral } from "../no-octal-literal";
+import { convertNoOctalLiteral } from "../no-octal-literal.js";
 
 describe("convertNoOctalLiteral", () => {
     test("conversion without arguments", () => {

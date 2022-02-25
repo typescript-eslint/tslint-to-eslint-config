@@ -3,7 +3,7 @@ import { describe, expect, test } from "@jest/globals";
 import {
     convertStrictBooleanExpressions,
     ForbiddenOtherNonBooleanTypes,
-} from "../strict-boolean-expressions";
+} from "../strict-boolean-expressions.js";
 
 describe("convertStrictBooleanExpressions", () => {
     test("conversion without arguments", () => {

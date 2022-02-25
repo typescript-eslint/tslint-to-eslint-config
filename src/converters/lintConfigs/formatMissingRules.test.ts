@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { formatMissingRules } from "./formatMissingRules";
-import { TSLintRuleOptions } from "./rules/types";
+import { formatMissingRules } from "./formatMissingRules.js";
+import { TSLintRuleOptions } from "./rules/types.js";
 
 describe("formatMissingRules", () => {
     it("prints a rule's arguments as true when it has none", () => {

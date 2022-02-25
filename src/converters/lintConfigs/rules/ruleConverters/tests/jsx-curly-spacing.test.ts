@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertJsxCurlySpacing } from "../jsx-curly-spacing";
+import { convertJsxCurlySpacing } from "../jsx-curly-spacing.js";
 
 describe("convertJsxCurlySpacing", () => {
     test("conversion without arguments", () => {

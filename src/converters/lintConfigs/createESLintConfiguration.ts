@@ -1,7 +1,7 @@
-import { SansDependencies } from "../../binding";
-import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations";
-import { convertRules } from "./rules/convertRules";
-import { summarizePackageRules } from "./summarization/summarizePackageRules";
+import { SansDependencies } from "../../binding.js";
+import { AllOriginalConfigurations } from "../../input/findOriginalConfigurations.js";
+import { convertRules } from "./rules/convertRules.js";
+import { summarizePackageRules } from "./summarization/summarizePackageRules.js";
 
 export type CreateESLintConfigurationDependencies = {
     convertRules: SansDependencies<typeof convertRules>;

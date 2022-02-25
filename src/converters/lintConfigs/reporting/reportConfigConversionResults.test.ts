@@ -1,10 +1,10 @@
 import { describe, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs";
-import { createEmptyConfigConversionResults } from "../configConversionResults.stubs";
-import { ESLintRuleOptions } from "../rules/types";
-import { reportConfigConversionResults } from "./reportConfigConversionResults";
+import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs.js";
+import { createEmptyConfigConversionResults } from "../configConversionResults.stubs.js";
+import { ESLintRuleOptions } from "../rules/types.js";
+import { reportConfigConversionResults } from "./reportConfigConversionResults.js";
 
 const basicExtends = ["prettier", "prettier/@typescript-eslint"];
 

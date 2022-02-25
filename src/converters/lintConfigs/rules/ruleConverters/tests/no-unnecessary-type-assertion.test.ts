@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnnecessaryTypeAssertion } from "../no-unnecessary-type-assertion";
+import { convertNoUnnecessaryTypeAssertion } from "../no-unnecessary-type-assertion.js";
 
 describe("convertNoUnnecessaryTypeAssertion", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxActionHygiene } from "../ngrx-action-hygiene";
+import { convertNgrxActionHygiene } from "../ngrx-action-hygiene.js";
 
 describe("convertNgrxActionHygiene", () => {
     test("conversion without arguments", () => {

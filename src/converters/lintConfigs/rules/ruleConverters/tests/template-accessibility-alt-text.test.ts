@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertTemplateAccessibilityAltText } from "../template-accessibility-alt-text";
+import { convertTemplateAccessibilityAltText } from "../template-accessibility-alt-text.js";
 
 describe("convertTemplateAccessibilityAltText", () => {
     test("conversion without arguments", () => {

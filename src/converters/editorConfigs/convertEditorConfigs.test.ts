@@ -1,11 +1,11 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { fn } from "../../fn";
-import { ResultStatus } from "../../types";
-import { convertEditorConfig } from "./convertEditorConfig";
-import { convertEditorConfigs, ConvertEditorConfigsDependencies } from "./convertEditorConfigs";
-import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults";
-import { EditorConfigConverter } from "./types";
+import { fn } from "../../fn.js";
+import { ResultStatus } from "../../types.js";
+import { convertEditorConfig } from "./convertEditorConfig.js";
+import { convertEditorConfigs, ConvertEditorConfigsDependencies } from "./convertEditorConfigs.js";
+import { reportEditorConfigConversionResults } from "./reporting/reportEditorConfigConversionResults.js";
+import { EditorConfigConverter } from "./types.js";
 
 const stubConfigPath = "stub.json";
 

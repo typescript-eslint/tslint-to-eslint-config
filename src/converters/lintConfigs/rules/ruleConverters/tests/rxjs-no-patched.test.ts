@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertRxjsNoPatched } from "../rxjs-no-patched";
+import { convertRxjsNoPatched } from "../rxjs-no-patched.js";
 
 describe("convertRxjsNoPatched", () => {
     test("conversion without arguments", () => {

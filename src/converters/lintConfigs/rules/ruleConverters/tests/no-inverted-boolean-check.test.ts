@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoInvertedBooleanCheck } from "../no-inverted-boolean-check";
+import { convertNoInvertedBooleanCheck } from "../no-inverted-boolean-check.js";
 
 describe("convertNoInvertedBooleanCheck", () => {
     test("conversion without arguments", () => {

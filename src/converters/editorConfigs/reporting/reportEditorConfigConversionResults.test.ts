@@ -1,9 +1,9 @@
 import { describe, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs";
-import { EditorConfigsConversionResults } from "../types";
-import { reportEditorConfigConversionResults } from "./reportEditorConfigConversionResults";
+import { createStubLogger, expectEqualWrites } from "../../../adapters/logger.stubs.js";
+import { EditorConfigsConversionResults } from "../types.js";
+import { reportEditorConfigConversionResults } from "./reportEditorConfigConversionResults.js";
 
 const createStubConversionResults = (overrides: Partial<EditorConfigsConversionResults> = {}) => ({
     failed: new Map(),

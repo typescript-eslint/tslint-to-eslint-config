@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertConsecutiveOverloads } from "../consecutive-overloads";
+import { convertConsecutiveOverloads } from "../consecutive-overloads.js";
 
 describe("convertConsecutiveOverloads", () => {
     test("conversion without arguments", () => {

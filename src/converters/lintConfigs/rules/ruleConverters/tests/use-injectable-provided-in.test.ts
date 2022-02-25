@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUseInjectableProvidedIn } from "../use-injectable-provided-in";
+import { convertUseInjectableProvidedIn } from "../use-injectable-provided-in.js";
 
 describe("convertUseInjectableProvidedIn", () => {
     test("conversion without arguments", () => {

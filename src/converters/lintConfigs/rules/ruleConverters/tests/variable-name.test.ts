@@ -5,7 +5,7 @@ import {
     convertVariableName,
     ForbiddenLeadingTrailingIdentifierMsg,
     IgnoreLeadingTrailingIdentifierMsg,
-} from "../variable-name";
+} from "../variable-name.js";
 
 describe("convertVariableName", () => {
     test("conversion without arguments", () => {

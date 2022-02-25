@@ -1,7 +1,7 @@
 import {
     findReportedConfiguration,
     FindReportedConfigurationDependencies,
-} from "./findReportedConfiguration";
+} from "./findReportedConfiguration.js";
 
 export type PackagesConfiguration = {
     dependencies: Record<string, string | undefined>;

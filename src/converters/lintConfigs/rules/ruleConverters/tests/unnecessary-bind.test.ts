@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertUnnecessaryBind } from "../unnecessary-bind";
+import { convertUnnecessaryBind } from "../unnecessary-bind.js";
 
 describe("convertUnnecessaryBind", () => {
     test("conversion without arguments", () => {

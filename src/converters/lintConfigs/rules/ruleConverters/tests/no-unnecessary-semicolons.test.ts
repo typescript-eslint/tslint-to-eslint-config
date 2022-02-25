@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoUnnecessarySemicolons } from "../no-unnecessary-semicolons";
+import { convertNoUnnecessarySemicolons } from "../no-unnecessary-semicolons.js";
 
 describe("convertNoUnnecessarySemicolons", () => {
     test("conversion without arguments", () => {

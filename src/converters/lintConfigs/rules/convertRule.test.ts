@@ -1,9 +1,9 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { ConversionError } from "../../../errors/conversionError";
-import { convertRule } from "./convertRule";
-import { RuleConverter } from "./ruleConverter";
-import { TSLintRuleOptions } from "./types";
+import { ConversionError } from "../../../errors/conversionError.js";
+import { convertRule } from "./convertRule.js";
+import { RuleConverter } from "./ruleConverter.js";
+import { TSLintRuleOptions } from "./types.js";
 
 describe("convertRule", () => {
     it("returns undefined when no converter exists for a rule", () => {

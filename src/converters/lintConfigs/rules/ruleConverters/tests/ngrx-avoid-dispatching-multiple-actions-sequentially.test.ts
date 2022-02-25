@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNgrxAvoidDispatchingMultipleActionsSequentially } from "../ngrx-avoid-dispatching-multiple-actions-sequentially";
+import { convertNgrxAvoidDispatchingMultipleActionsSequentially } from "../ngrx-avoid-dispatching-multiple-actions-sequentially.js";
 
 describe("convertNgrxAvoidDispatchingMultipleActionsSequentially", () => {
     test("conversion without arguments", () => {

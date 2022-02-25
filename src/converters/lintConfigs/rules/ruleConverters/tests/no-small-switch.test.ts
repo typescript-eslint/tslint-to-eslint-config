@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSmallSwitch } from "../no-small-switch";
+import { convertNoSmallSwitch } from "../no-small-switch.js";
 
 describe("convertNoSmallSwitch", () => {
     test("conversion without arguments", () => {

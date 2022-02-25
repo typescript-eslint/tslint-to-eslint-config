@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNewlineBeforeReturn } from "../newline-before-return";
+import { convertNewlineBeforeReturn } from "../newline-before-return.js";
 
 describe("convertNewlineBeforeReturn", () => {
     test("conversion without arguments", () => {

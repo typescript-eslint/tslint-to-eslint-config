@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoSubmoduleImports } from "../no-submodule-imports";
+import { convertNoSubmoduleImports } from "../no-submodule-imports.js";
 
 describe("convertNoSubmoduleImports", () => {
     test("conversion without arguments", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertComponentMaxInlineDeclarations } from "../component-max-inline-declarations";
+import { convertComponentMaxInlineDeclarations } from "../component-max-inline-declarations.js";
 
 describe("convertComponentMaxInlineDeclarations", () => {
     test("conversion without arguments", () => {

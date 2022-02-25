@@ -1,13 +1,13 @@
-import { createESLintConfiguration } from "../converters/lintConfigs/createESLintConfiguration";
-import { ESLintConfiguration } from "../input/findESLintConfiguration";
+import { createESLintConfiguration } from "../converters/lintConfigs/createESLintConfiguration.js";
+import { ESLintConfiguration } from "../input/findESLintConfiguration.js";
 import {
     AllOriginalConfigurations,
     OriginalConfigurations,
-} from "../input/findOriginalConfigurations";
-import { PackagesConfiguration } from "../input/findPackagesConfiguration";
-import { TSLintConfiguration } from "../input/findTSLintConfiguration";
-import { TypeScriptConfiguration } from "../input/findTypeScriptConfiguration";
-import { createESLintConfigurationDependencies } from "./dependencies";
+} from "../input/findOriginalConfigurations.js";
+import { PackagesConfiguration } from "../input/findPackagesConfiguration.js";
+import { TSLintConfiguration } from "../input/findTSLintConfiguration.js";
+import { TypeScriptConfiguration } from "../input/findTypeScriptConfiguration.js";
+import { createESLintConfigurationDependencies } from "./dependencies.js";
 
 export type AllOriginalConfigurationsOptionally = {
     eslint?: Partial<OriginalConfigurations<ESLintConfiguration>>;

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoInvalidAwait } from "../no-invalid-await";
+import { convertNoInvalidAwait } from "../no-invalid-await.js";
 
 describe("convertNoInvalidAwait", () => {
     test("conversion without arguments", () => {

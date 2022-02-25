@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { EOL } from "os";
 
-import { ConfigurationError } from "./configurationError";
+import { ConfigurationError } from "./configurationError.js";
 
 describe("ConfigurationError", () => {
     describe("getSummary", () => {

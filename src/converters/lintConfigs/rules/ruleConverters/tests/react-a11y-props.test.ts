@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertReactA11yProps } from "../react-a11y-props";
+import { convertReactA11yProps } from "../react-a11y-props.js";
 
 describe("convertReactA11yProps", () => {
     test("conversion without arguments", () => {

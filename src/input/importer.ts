@@ -1,8 +1,8 @@
 import * as path from "path";
 
-import { FileSystem } from "../adapters/fileSystem";
-import { NativeImporter } from "../adapters/nativeImporter";
-import { parseJson } from "../utils";
+import { FileSystem } from "../adapters/fileSystem.js";
+import { NativeImporter } from "../adapters/nativeImporter.js";
+import { parseJson } from "../utils.js";
 
 export type ImporterDependencies = {
     fileSystem: Pick<FileSystem, "fileExists" | "readFile">;

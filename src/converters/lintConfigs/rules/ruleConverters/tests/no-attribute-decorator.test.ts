@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertNoAttributeDecorator } from "../no-attribute-decorator";
+import { convertNoAttributeDecorator } from "../no-attribute-decorator.js";
 
 describe("convertNoAttributeDecorator", () => {
     test("conversion without arguments", () => {

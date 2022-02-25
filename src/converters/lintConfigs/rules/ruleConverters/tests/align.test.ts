@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 
-import { convertAlign } from "../align";
+import { convertAlign } from "../align.js";
 
 describe("convertAlign", () => {
     test("conversion without arguments", () => {
