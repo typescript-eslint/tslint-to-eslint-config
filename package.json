@@ -10,7 +10,7 @@
         "node": ">=14.0.0"
     },
     "dependencies": {
-        "chalk": "4.1.2",
+        "chalk": "5.0.0",
         "commander": "9.0.0",
         "cson-parser": "4.0.9",
         "eslint-config-prettier": "8.4.0",
@@ -29,10 +29,11 @@
         "@types/json5": "0.0.30",
         "@types/lodash": "4.14.178",
         "@types/minimatch": "3.0.5",
-        "@types/node": "16.11.26",
+        "@types/node": "17.0.18",
         "@typescript-eslint/eslint-plugin": "5.12.1",
         "@typescript-eslint/parser": "5.12.1",
         "ansi-regex": "6.0.1",
+        "cross-env": "^7.0.3",
         "eslint": "8.9.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.4",
@@ -65,9 +66,10 @@
         "prepare": "husky install",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
-        "test": "jest",
-        "test:ci": "jest --coverage --maxWorkers=2",
+        "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+        "test:ci": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2",
         "tsc": "tsc"
     },
-    "version": "2.11.0"
+    "type": "module",
+    "version": "3.0.0-alpha.0"
 }

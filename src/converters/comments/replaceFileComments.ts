@@ -1,4 +1,4 @@
-import * as ts from "typescript";
+import ts from "typescript";
 
 import { ConversionError } from "../../errors/conversionError";
 import { uniqueFromSources } from "../../utils";

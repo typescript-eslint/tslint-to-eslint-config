@@ -1,4 +1,5 @@
-import { assignWith, isObject } from "lodash";
+import assignWith from "lodash/assignWith";
+import isObject from "lodash/isObject";
 
 import { RuleMerger } from "../ruleMerger";
 
