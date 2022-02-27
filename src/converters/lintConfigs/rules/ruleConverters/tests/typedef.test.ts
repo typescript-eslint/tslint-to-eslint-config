@@ -17,7 +17,7 @@ describe("convertTypedef", () => {
         });
     });
 
-    test("conversion with an argument", () => {
+    test("conversion with a few arguments", () => {
         const result = convertTypedef({
             ruleArguments: [
                 "parameter",
@@ -33,6 +33,41 @@ describe("convertTypedef", () => {
                         {
                             parameter: true,
                             variableDeclarationIgnoreFunction: true,
+                            arrayDestructuring: true,
+                        },
+                    ],
+                    ruleName: "@typescript-eslint/typedef",
+                },
+            ],
+        });
+    });
+
+    test("conversion with all arguments", () => {
+        const result = convertTypedef({
+            ruleArguments: [
+                "parameter",
+                "arrow-parameter",
+                "property-declaration",
+                "variable-declaration",
+                "variable-declaration-ignore-function",
+                "member-variable-declaration",
+                "object-destructuring",
+                "array-destructuring",
+            ],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleArguments: [
+                        {
+                            parameter: true,
+                            arrowParameter: true,
+                            propertyDeclaration: true,
+                            variableDeclaration: true,
+                            variableDeclarationIgnoreFunction: true,
+                            memberVariableDeclaration: true,
+                            objectDestructuring: true,
                             arrayDestructuring: true,
                         },
                     ],
