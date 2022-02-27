@@ -13,6 +13,12 @@ describe("convertTypedef", () => {
                 {
                     ruleName: "@typescript-eslint/typedef",
                 },
+                {
+                    ruleName: "@typescript-eslint/explicit-function-return-type",
+                },
+                {
+                    ruleName: "@typescript-eslint/explicit-module-boundary-types",
+                },
             ],
         });
     });
@@ -37,6 +43,12 @@ describe("convertTypedef", () => {
                         },
                     ],
                     ruleName: "@typescript-eslint/typedef",
+                },
+                {
+                    ruleName: "@typescript-eslint/explicit-function-return-type",
+                },
+                {
+                    ruleName: "@typescript-eslint/explicit-module-boundary-types",
                 },
             ],
         });
@@ -72,6 +84,92 @@ describe("convertTypedef", () => {
                         },
                     ],
                     ruleName: "@typescript-eslint/typedef",
+                },
+                {
+                    ruleName: "@typescript-eslint/explicit-function-return-type",
+                },
+                {
+                    ruleName: "@typescript-eslint/explicit-module-boundary-types",
+                },
+            ],
+        });
+    });
+
+    test("conversion with call-signature", () => {
+        const result = convertTypedef({
+            ruleArguments: ["call-signature"],
+        });
+
+        expect(result).toEqual({
+            notices: [
+                "ESLint does not differentiate between the call signatures of arrow and non-arrow functions. Both will be checked",
+            ],
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/typedef",
+                },
+                {
+                    ruleArguments: [
+                        {
+                            allowExpressions: false,
+                            allowTypedFunctionExpressions: false,
+                            allowHigherOrderFunctions: false,
+                            allowDirectConstAssertionInArrowFunctions: true,
+                            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+                        },
+                    ],
+                    ruleName: "@typescript-eslint/explicit-function-return-type",
+                },
+                {
+                    ruleArguments: [
+                        {
+                            allowArgumentsExplicitlyTypedAsAny: true,
+                            allowDirectConstAssertionInArrowFunctions: true,
+                            allowHigherOrderFunctions: false,
+                            allowTypedFunctionExpressions: false,
+                        },
+                    ],
+                    ruleName: "@typescript-eslint/explicit-module-boundary-types",
+                },
+            ],
+        });
+    });
+
+    test("conversion with arrow-call-signature", () => {
+        const result = convertTypedef({
+            ruleArguments: ["arrow-call-signature"],
+        });
+
+        expect(result).toEqual({
+            notices: [
+                "ESLint does not differentiate between the call signatures of arrow and non-arrow functions. Both will be checked",
+            ],
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/typedef",
+                },
+                {
+                    ruleArguments: [
+                        {
+                            allowExpressions: false,
+                            allowTypedFunctionExpressions: false,
+                            allowHigherOrderFunctions: false,
+                            allowDirectConstAssertionInArrowFunctions: true,
+                            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+                        },
+                    ],
+                    ruleName: "@typescript-eslint/explicit-function-return-type",
+                },
+                {
+                    ruleArguments: [
+                        {
+                            allowArgumentsExplicitlyTypedAsAny: true,
+                            allowDirectConstAssertionInArrowFunctions: true,
+                            allowHigherOrderFunctions: false,
+                            allowTypedFunctionExpressions: false,
+                        },
+                    ],
+                    ruleName: "@typescript-eslint/explicit-module-boundary-types",
                 },
             ],
         });
