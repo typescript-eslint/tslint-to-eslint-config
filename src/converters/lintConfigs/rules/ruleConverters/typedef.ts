@@ -2,37 +2,21 @@ import { RuleConverter } from "../ruleConverter";
 
 export const convertTypedef: RuleConverter = (tslintRule) => {
     const typedefRule: Record<string, boolean> = {};
+    const originalArguments = new Set(tslintRule.ruleArguments);
 
-    if (tslintRule.ruleArguments.includes("parameter")) {
-        typedefRule.parameter = true;
-    }
+    const argumentEquivalents = {
+        parameter: "parameter",
+        "arrow-parameter": "arrowParameter",
+        "property-declaration": "propertyDeclaration",
+        "variable-declaration": "variableDeclaration",
+        "variable-declaration-ignore-function": "variableDeclarationIgnoreFunction",
+        "member-variable-declaration": "memberVariableDeclaration",
+        "object-destructuring": "objectDestructuring",
+        "array-destructuring": "arrayDestructuring",
+    };
 
-    if (tslintRule.ruleArguments.includes("arrow-parameter")) {
-        typedefRule.arrowParameter = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("property-declaration")) {
-        typedefRule.propertyDeclaration = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("variable-declaration")) {
-        typedefRule.variableDeclaration = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("variable-declaration-ignore-function")) {
-        typedefRule.variableDeclarationIgnoreFunction = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("member-variable-declaration")) {
-        typedefRule.memberVariableDeclaration = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("object-destructuring")) {
-        typedefRule.objectDestructuring = true;
-    }
-
-    if (tslintRule.ruleArguments.includes("array-destructuring")) {
-        typedefRule.arrayDestructuring = true;
+    for (const [tslintArgument, eslintArgument] of Object.entries(argumentEquivalents)) {
+        if (originalArguments.has(tslintArgument)) typedefRule[eslintArgument] = true;
     }
 
     return {
