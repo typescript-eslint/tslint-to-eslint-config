@@ -1,6 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
+
 import { convertTypedef } from "../typedef";
 
-describe(convertTypedef, () => {
+describe("convertTypedef", () => {
     test("conversion without arguments", () => {
         const result = convertTypedef({
             ruleArguments: [],
