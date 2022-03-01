@@ -5,7 +5,7 @@
         "esModuleInterop": true,
         "incremental": true,
         "lib": [],
-        "module": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
