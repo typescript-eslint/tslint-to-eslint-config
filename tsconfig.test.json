@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
+        "composite": true,
         "module": "esnext",
         "noEmit": true
     },
     "extends": "./tsconfig.base.json",
-    "include": ["**/*.test.*"]
+    "include": ["**/*.test.*"],
+    "references": [{ "path": "./tsconfig.source.json" }]
 }
