@@ -29,13 +29,6 @@ module.exports = {
     testRegex: "src(.*)\\.test\\.tsx?$",
     testEnvironment: "node",
     transform: {
-        "^.+\\.(t|j)s$": [
-            "@swc/jest",
-            {
-                jsc: {
-                    target: "es2021",
-                },
-            },
-        ],
+        "^.+\\.(t|j)s$": ["@swc/jest"],
     },
 };
