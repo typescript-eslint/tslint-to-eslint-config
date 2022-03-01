@@ -6,7 +6,7 @@ import { createEmptyConfigConversionResults } from "../configConversionResults.s
 import { ESLintRuleOptions } from "../rules/types";
 import { reportConfigConversionResults } from "./reportConfigConversionResults";
 
-const basicExtends = ["prettier", "prettier/@typescript-eslint"];
+const basicExtends = ["prettier"];
 
 describe("reportConfigConversionResults", () => {
     it("logs a successful conversion without notices when there is one converted rule without notices", async () => {

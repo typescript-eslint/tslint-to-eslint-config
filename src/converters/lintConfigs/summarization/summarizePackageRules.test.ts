@@ -75,7 +75,7 @@ describe("summarizePackageRules", () => {
         expect(summarizedResults).toEqual({
             ...ruleConversionResults,
             converted: new Map(),
-            extends: ["prettier", "prettier/@typescript-eslint"],
+            extends: ["prettier"],
         });
     });
 

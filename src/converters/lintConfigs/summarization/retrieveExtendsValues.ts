@@ -21,10 +21,6 @@ const builtInExtensions = new Map([
 const pluginExtensions = new Map([
     ["eslint-plugin-prettier", "node_modules/eslint-config-prettier/index.js"],
     [
-        "eslint-plugin-prettier/@typescript-eslint",
-        "node_modules/eslint-config-prettier/@typescript-eslint.js",
-    ],
-    [
         "plugin:@typescript-eslint/all",
         "node_modules/@typescript-eslint/eslint-plugin/dist/configs/all.json",
     ],
