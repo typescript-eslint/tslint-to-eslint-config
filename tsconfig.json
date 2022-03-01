@@ -1,27 +1,7 @@
 {
     "compilerOptions": {
-        "alwaysStrict": true,
-        "declaration": true,
-        "esModuleInterop": true,
-        "incremental": true,
-        "lib": [],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "resolveJsonModule": true,
-        "sourceMap": true,
-        "strict": true,
-        "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "target": "es2018"
+        "composite": true
     },
-    "exclude": ["test/tests/**/*"],
-    "include": ["src/**/*"]
+    "files": [],
+    "references": [{ "path": "./tsconfig.source.json" }, { "path": "./tsconfig.test.json" }]
 }

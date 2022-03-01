@@ -61,14 +61,14 @@
         "url": "github:typescript-eslint/tslint-to-eslint-config"
     },
     "scripts": {
+        "compile": "tsc -b",
         "eslint": "eslint \"./src/*.ts\" \"./src/**/*.ts\" --report-unused-disable-directives",
         "precommit": "lint-staged",
         "prepare": "husky install",
         "prettier": "prettier \"./src/*.{js,json,ts,xml,yaml}\" \"./src/**/*.{js,json,ts,xml,yaml}\" --ignore-path .prettierignore",
         "prettier:write": "npm run prettier -- --write",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-        "test:ci": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2",
-        "tsc": "tsc"
+        "test:ci": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2"
     },
     "type": "module",
     "version": "3.0.0-alpha.0"

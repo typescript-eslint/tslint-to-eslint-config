@@ -1,5 +1,7 @@
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, jest } from "@jest/globals";
+import path from "node:path";
 import { EOL } from "os";
+import { fileURLToPath } from "url";
 
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
 import { createStubOriginalConfigurationsData } from "../settings.stubs";
@@ -19,14 +21,23 @@ const createStubRunCliDependencies = (overrides: Partial<RunCliDependencies> = {
     logger: createStubLogger(),
 });
 
+Object.defineProperty(global, "__dirname", {
+    value: path.join(fileURLToPath(import.meta.url), ".."),
+    writable: true,
+});
+
+jest.mock("fs", () => ({
+    promises: {
+        readFile: async () => JSON.stringify(jest.requireActual("../../package.json")),
+    },
+}));
+
 describe("runCli", () => {
     it("prints the package version when --version is provided", async () => {
         // Arrange
         const rawArgv = createStubArgv(["--version"]);
         const dependencies = createStubRunCliDependencies();
-        const {
-            default: { version },
-        } = await import("../../package.json");
+        const { version } = jest.requireActual("../../package.json") as { version: string };
 
         // Act
         await runCli(dependencies, rawArgv);

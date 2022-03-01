@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "module": "commonjs"
+    },
+    "exclude": ["**/*.test.*"],
+    "extends": "./tsconfig.base.json",
+    "include": ["src"]
+}
