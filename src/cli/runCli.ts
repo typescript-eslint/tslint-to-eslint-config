@@ -3,10 +3,6 @@ import { Command } from "commander";
 import { promises as fs } from "fs";
 import { EOL } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";
