@@ -35,7 +35,7 @@ export const summarizePackageRules = async (
 
     // 3a. If no output rules conflict with `eslint-config-prettier`, it's added in
     if (dependencies.checkPrettierExtension(ruleConversionResults, prettierRequested)) {
-        allExtensions.push("prettier", "prettier/@typescript-eslint");
+        allExtensions.push("prettier");
     }
 
     if (allExtensions.length === 0) {
