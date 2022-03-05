@@ -1,8 +1,8 @@
 import chalk from "chalk";
 import { Command } from "commander";
 import { promises as fs } from "fs";
-import { EOL } from "node:os";
-import path from "node:path";
+import { EOL } from "os";
+import path from "path";
 
 import { Logger } from "../adapters/logger";
 import { SansDependencies } from "../binding";

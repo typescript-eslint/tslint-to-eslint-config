@@ -1,6 +1,6 @@
 import { describe, expect, it, jest } from "@jest/globals";
-import path from "node:path";
 import { EOL } from "os";
+import path from "path";
 import { fileURLToPath } from "url";
 
 import { createStubLogger, expectEqualWrites } from "../adapters/logger.stubs";
