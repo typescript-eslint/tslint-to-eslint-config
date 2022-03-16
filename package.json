@@ -39,7 +39,7 @@
         "husky": "7.0.4",
         "jest": "27.5.1",
         "lint-staged": "12.3.5",
-        "prettier": "2.5.1"
+        "prettier": "2.6.0"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
     "keywords": [
