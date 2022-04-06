@@ -6,7 +6,7 @@
 [![NPM version](https://badge.fury.io/js/tslint-to-eslint-config.svg)](http://badge.fury.io/js/tslint-to-eslint-config)
 [![Circle CI](https://img.shields.io/circleci/build/github/typescript-eslint/tslint-to-eslint-config.svg)](https://circleci.com/gh/typescript-eslint/tslint-to-eslint-config)
 [![Join the chat at https://gitter.im/tslint-to-eslint-config/community](https://img.shields.io/badge/chat-gitter-informational.svg)](https://gitter.im/tslint-to-eslint-config/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Code Style: Prettier](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](https://prettier.io)
+[![Speed: Blazingly Fast](https://img.shields.io/badge/speed-blazingly_fast-blueviolet.svg)](#)
 
 Converts your TSLint configuration to the closest reasonable ESLint equivalent.
 
