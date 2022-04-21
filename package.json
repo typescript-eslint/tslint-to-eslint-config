@@ -38,7 +38,7 @@
         "eslint-plugin-simple-import-sort": "7.0.0",
         "husky": "7.0.4",
         "jest": "27.5.1",
-        "lint-staged": "12.3.8",
+        "lint-staged": "12.4.0",
         "prettier": "2.6.2"
     },
     "homepage": "https://github.com/typescript-eslint/tslint-to-eslint-config#readme",
