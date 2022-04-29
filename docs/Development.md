@@ -17,7 +17,7 @@ cd tslint-to-eslint-config
 npm i
 ```
 
-Compile with `npm run tsc` and run tests with `npm run test`.
+Compile with `npm run compile` and run tests with `npm run test`.
 
 ## Further Reading
 
