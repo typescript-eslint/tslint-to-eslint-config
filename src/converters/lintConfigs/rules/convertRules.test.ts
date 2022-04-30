@@ -4,7 +4,7 @@ import { ConversionError } from "../../../errors/conversionError";
 import { convertRules } from "./convertRules";
 import { ConversionResult, RuleConverter } from "./ruleConverter";
 import { RuleMerger } from "./ruleMerger";
-import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
+import { ESLintRuleSeverity, TSLintRuleOptions, TSLintRuleSeverity } from "./types";
 
 describe("convertRules", () => {
     it("doesn't crash when passed an undefined configuration", () => {
@@ -347,6 +347,45 @@ describe("convertRules", () => {
                         ruleName: "eslint-rule-a",
                         ruleSeverity: "error",
                         notices: [],
+                    },
+                ],
+            ]),
+        ]).toContainEqual(converted);
+    });
+
+    it("merges when a rule's ruleSeverity explicitly differs from its TSLint equivalent", () => {
+        // Arrange
+        const conversionResult: {
+            rules: { ruleName: string; ruleSeverity: ESLintRuleSeverity }[];
+        } = {
+            rules: [
+                {
+                    ruleName: "eslint-rule-a",
+                    ruleSeverity: "off",
+                },
+            ],
+        };
+        const { tslintRule, converters, mergers } = setupConversionEnvironment({
+            ruleSeverity: "error",
+            conversionResult,
+            ruleToMerge: conversionResult.rules[0].ruleName,
+        });
+
+        // Act
+        const { converted } = convertRules(
+            { ruleConverters: converters, ruleMergers: mergers },
+            { [tslintRule.ruleName]: tslintRule },
+            new Map<string, string[]>(),
+        );
+
+        // Assert
+        expect([
+            new Map([
+                [
+                    "eslint-rule-a",
+                    {
+                        ruleName: "eslint-rule-a",
+                        ruleSeverity: "off",
                     },
                 ],
             ]),
