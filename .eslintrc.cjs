@@ -52,6 +52,7 @@ module.exports = {
         "@typescript-eslint/no-unused-vars-experimental": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/parameter-properties": "off",
         "@typescript-eslint/prefer-readonly-parameter-types": "off",
         "@typescript-eslint/prefer-reduce-type-parameter": "off",
         "@typescript-eslint/require-array-sort-compare": "off",
