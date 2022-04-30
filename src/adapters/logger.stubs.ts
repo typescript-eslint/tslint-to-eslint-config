@@ -43,7 +43,10 @@ const removeOddCharactersAndTrim = (text: string) =>
         )
         .trim();
 
-export const expectEqualWrites = (writer: Mock<any, any>, ...actual: string[]) => {
+export const expectEqualWrites = (
+    writer: Mock<(args: unknown[]) => unknown>,
+    ...actual: string[]
+) => {
     const realCalls = removeOddCharactersAndTrim(
         writer.mock.calls.map((args) => args.join("")).join(""),
     );
