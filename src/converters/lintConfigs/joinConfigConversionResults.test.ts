@@ -42,6 +42,7 @@ describe("writeConversionResults", () => {
                 sourceType: "module",
             },
             plugins: ["@typescript-eslint"],
+            root: true,
         });
     });
 
@@ -77,6 +78,7 @@ describe("writeConversionResults", () => {
                 sourceType: "module",
             },
             plugins: ["eslint-plugin-example", "@typescript-eslint", "@typescript-eslint/tslint"],
+            root: true,
             rules: {
                 "@typescript-eslint/tslint/config": [
                     "error",
@@ -124,6 +126,7 @@ describe("writeConversionResults", () => {
                 sourceType: "module",
             },
             plugins: ["@typescript-eslint"],
+            root: true,
         });
     });
 
@@ -155,6 +158,7 @@ describe("writeConversionResults", () => {
                 sourceType: "module",
             },
             plugins: ["@typescript-eslint"],
+            root: true,
         });
     });
 
@@ -196,6 +200,7 @@ describe("writeConversionResults", () => {
                 sourceType: "module",
             },
             plugins: ["@typescript-eslint"],
+            root: true,
         });
     });
 });

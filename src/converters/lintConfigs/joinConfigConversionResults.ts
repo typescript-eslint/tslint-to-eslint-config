@@ -29,6 +29,7 @@ export const joinConfigConversionResults = (
             sourceType: "module",
         },
         plugins: Array.from(plugins),
+        root: true,
         rules: formatConvertedRules(summarizedResults, tslint.full),
     });
 };
