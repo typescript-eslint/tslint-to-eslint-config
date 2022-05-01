@@ -81,7 +81,7 @@ export const convertRules = (
                 const newConversion = {
                     ...changes,
                     ruleSeverity:
-                        changes.ruleSeverity || convertTSLintRuleSeverity(tslintRule.ruleSeverity),
+                        changes.ruleSeverity ?? convertTSLintRuleSeverity(tslintRule.ruleSeverity),
                 };
 
                 // 4c. If this is the first time the output ESLint rule is seen, it's directly marked as converted.
