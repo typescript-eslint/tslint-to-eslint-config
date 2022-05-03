@@ -2,9 +2,9 @@ import { describe, expect, it, test } from "@jest/globals";
 
 import { ConversionError } from "../../../errors/conversionError";
 import { convertRules } from "./convertRules";
-import { ConversionResult, RuleConverter } from "./ruleConverter";
+import { ConversionResult, ConvertedRuleChanges, RuleConverter } from "./ruleConverter";
 import { RuleMerger } from "./ruleMerger";
-import { ESLintRuleSeverity, TSLintRuleOptions, TSLintRuleSeverity } from "./types";
+import { TSLintRuleOptions, TSLintRuleSeverity } from "./types";
 
 describe("convertRules", () => {
     it("doesn't crash when passed an undefined configuration", () => {
@@ -355,27 +355,23 @@ describe("convertRules", () => {
 
     it("merges when a rule's ruleSeverity explicitly differs from its TSLint equivalent", () => {
         // Arrange
-        const conversionResult: {
-            rules: { ruleName: string; ruleSeverity: ESLintRuleSeverity }[];
-        } = {
-            rules: [
-                {
-                    ruleName: "eslint-rule-a",
-                    ruleSeverity: "off",
-                },
-            ],
-        };
+        const rules: ConvertedRuleChanges[] = [
+            {
+                ruleName: "eslint-rule-a",
+                ruleSeverity: "off",
+            },
+        ];
         const { tslintRule, converters, mergers } = setupConversionEnvironment({
             ruleSeverity: "error",
-            conversionResult,
-            ruleToMerge: conversionResult.rules[0].ruleName,
+            conversionResult: { rules },
+            ruleToMerge: rules[0].ruleName,
         });
 
         // Act
         const { converted } = convertRules(
             { ruleConverters: converters, ruleMergers: mergers },
             { [tslintRule.ruleName]: tslintRule },
-            new Map<string, string[]>(),
+            new Map(),
         );
 
         // Assert
