@@ -23,7 +23,7 @@
     },
     "devDependencies": {
         "@swc/core": "1.2.179",
-        "@swc/jest": "0.2.20",
+        "@swc/jest": "0.2.21",
         "@types/eslint-config-prettier": "6.11.0",
         "@types/glob": "7.2.0",
         "@types/json5": "0.0.30",
