@@ -36,7 +36,7 @@
         "cross-env": "7.0.3",
         "eslint": "8.15.0",
         "eslint-plugin-simple-import-sort": "7.0.0",
-        "husky": "7.0.4",
+        "husky": "8.0.1",
         "jest": "27.5.1",
         "lint-staged": "12.4.1",
         "prettier": "2.6.2"
