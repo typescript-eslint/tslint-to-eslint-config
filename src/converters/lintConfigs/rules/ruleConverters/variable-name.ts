@@ -49,14 +49,14 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         if (!hasCheckFormat) {
             camelCaseRules.push({
                 selector: "variable",
-                format: ["camelCase", "UPPER_CASE"],
+                format: formats,
                 leadingUnderscore: "forbid",
                 trailingUnderscore: "forbid",
             });
         } else {
             camelCaseRules.push({
                 selector: "variable",
-                format: ["camelCase", "UPPER_CASE"],
+                format: formats,
                 leadingUnderscore: allowedLeadingUnderscore ? "allow" : "forbid",
                 trailingUnderscore: allowedTrailingUnderscore ? "allow" : "forbid",
             });

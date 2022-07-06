@@ -104,6 +104,38 @@ describe("convertVariableName", () => {
         });
     });
 
+    test("conversion with allow-pascal-case argument with check-format", () => {
+        const result = convertVariableName({
+            ruleArguments: ["allow-pascal-case", "check-format"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE", "PascalCase"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
+                },
+                {
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                },
+                {
+                    ruleName: "id-denylist",
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
     test("conversion with allow-snake-case argument without check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["allow-snake-case"],
@@ -117,6 +149,38 @@ describe("convertVariableName", () => {
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
+                },
+                {
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                    ruleName: "no-underscore-dangle",
+                },
+                {
+                    ruleName: "id-denylist",
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
+    test("conversion with allow-snake-case argument with check-format", () => {
+        const result = convertVariableName({
+            ruleArguments: ["allow-snake-case", "check-format"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/naming-convention",
+                    rules: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE", "snake_case"],
                             leadingUnderscore: "forbid",
                             trailingUnderscore: "forbid",
                         },
@@ -388,7 +452,7 @@ describe("convertVariableName", () => {
                     rules: [
                         {
                             selector: "variable",
-                            format: ["camelCase", "UPPER_CASE"],
+                            format: ["camelCase", "UPPER_CASE", "PascalCase", "snake_case"],
                             leadingUnderscore: "allow",
                             trailingUnderscore: "allow",
                         },
