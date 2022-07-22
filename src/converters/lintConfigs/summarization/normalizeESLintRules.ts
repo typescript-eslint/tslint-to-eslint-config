@@ -9,7 +9,7 @@ import { ESLintRuleOptions, RawESLintRuleSeverity } from "../rules/types";
  * Normalizes raw ESLint rule configurations into our standardized output format.
  */
 export const normalizeESLintRules = (userRules: ESLintConfigurationRules | undefined) => {
-    const output: Map<string, ESLintRuleOptions> = new Map();
+    const output = new Map<string, ESLintRuleOptions>();
 
     for (const [ruleName, rawRuleValue] of Object.entries(userRules ?? {})) {
         const [rawRuleSeverity, ruleArguments] = parseRawRuleValue(rawRuleValue);
