@@ -25,7 +25,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -99,7 +99,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -173,7 +173,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -243,7 +243,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -339,7 +339,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -408,7 +408,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -482,7 +482,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -557,7 +557,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -632,7 +632,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -733,7 +733,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -807,7 +807,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -880,7 +880,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: true,
+                            distinctGroup: true,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -956,7 +956,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -1032,7 +1032,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -1108,7 +1108,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            pathGroupsNaturalNewlines: false,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",

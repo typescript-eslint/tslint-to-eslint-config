@@ -20,7 +20,7 @@ export const convertOrderedImports: RuleConverter = (tslintRule) => {
             "parent",
             ["sibling", "index"],
         ],
-        pathGroupsNaturalNewlines: false,
+        distinctGroup: false,
         pathGroupsExcludedImportTypes: [],
         pathGroups: [
             {
@@ -93,7 +93,6 @@ export const convertOrderedImports: RuleConverter = (tslintRule) => {
 
     if (argument["grouped-imports"] === true) {
         importOrderRule["newlines-between"] = "always";
-        importOrderRule.pathGroupsNaturalNewlines = true;
     }
 
     if ("groups" in argument) {
