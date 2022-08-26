@@ -38,7 +38,6 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
         const camelCaseRules: Record<string, unknown>[] = [];
         const camelCaseOptionNotices: string[] = [];
         const formats = ["camelCase", "UPPER_CASE"];
-
         if (hasCheckFormat && allowPascalCase) {
             formats.push("PascalCase");
         }
@@ -68,7 +67,7 @@ export const convertVariableName: RuleConverter = (tslintRule) => {
 
         return {
             ...(camelCaseOptionNotices.length !== 0 && { notices: camelCaseOptionNotices }),
-            ...(camelCaseRules.length !== 0 && { rules: camelCaseRules }),
+            ...(camelCaseRules.length !== 0 && { ruleArguments: camelCaseRules }),
             ruleName: "@typescript-eslint/naming-convention",
         };
     };
