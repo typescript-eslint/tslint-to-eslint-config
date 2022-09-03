@@ -35,7 +35,7 @@
         "ansi-regex": "6.0.1",
         "cross-env": "7.0.3",
         "eslint": "8.23.0",
-        "eslint-plugin-simple-import-sort": "7.0.0",
+        "eslint-plugin-simple-import-sort": "8.0.0",
         "husky": "8.0.1",
         "jest": "27.5.1",
         "lint-staged": "13.0.3",
