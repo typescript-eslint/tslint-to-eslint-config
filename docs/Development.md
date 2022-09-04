@@ -1,7 +1,6 @@
 # Development
 
 Thanks for looking at tslint-to-eslint-config!
-It's very new and I very much would appreciate your help.
 
 Any issue marked as [accepting prs](https://github.com/typescript-eslint/tslint-to-eslint-config/issues?q=is%3Aissue+is%3Aopen+label%3A%22accepting+prs%22) on the issue tracker is fair game to take on.
 
