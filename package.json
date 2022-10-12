@@ -10,7 +10,7 @@
         "node": ">=14.0.0"
     },
     "dependencies": {
-        "chalk": "5.1.1",
+        "chalk": "5.1.2",
         "commander": "9.4.1",
         "cson-parser": "4.0.9",
         "eslint-config-prettier": "8.5.0",
