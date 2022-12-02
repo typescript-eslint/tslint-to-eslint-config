@@ -37,10 +37,9 @@ describe("findReportedConfiguration", () => {
         const result = await findReportedConfiguration(exec, "command", "sample.json");
 
         // Assert
-        expect(result).toEqual(
-            new Error(
-                "Error parsing configuration: SyntaxError: Unexpected token i in JSON at position 0",
-            ),
+        expect(result).toBeInstanceOf(Error);
+        expect((result as Error).message).toMatch(
+            /Error parsing configuration: SyntaxError: Unexpected token '?i/,
         );
     });
 
