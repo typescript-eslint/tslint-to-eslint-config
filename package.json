@@ -70,5 +70,5 @@
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
         "test:ci": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --maxWorkers=2"
     },
-    "version": "2.13.3"
+    "version": "2.13.4"
 }
