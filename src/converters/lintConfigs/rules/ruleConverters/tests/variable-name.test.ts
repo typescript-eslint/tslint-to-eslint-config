@@ -17,7 +17,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -49,7 +49,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -81,7 +81,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -113,7 +113,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE", "PascalCase"],
@@ -145,7 +145,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -177,7 +177,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE", "snake_case"],
@@ -209,7 +209,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -241,7 +241,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -273,7 +273,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -296,6 +296,49 @@ describe("convertVariableName", () => {
         });
     });
 
+    test("conversion with ban-keywords argument without check-format argument", () => {
+        const result = convertVariableName({
+            ruleArguments: ["ban-keywords"],
+        });
+
+        expect(result).toEqual({
+            rules: [
+                {
+                    ruleName: "@typescript-eslint/naming-convention",
+                    ruleArguments: [
+                        {
+                            selector: "variable",
+                            format: ["camelCase", "UPPER_CASE"],
+                            leadingUnderscore: "forbid",
+                            trailingUnderscore: "forbid",
+                        },
+                    ],
+                },
+                {
+                    ruleName: "no-underscore-dangle",
+                    notices: [ForbiddenLeadingTrailingIdentifierMsg],
+                },
+                {
+                    ruleName: "id-denylist",
+                    ruleArguments: [
+                        "any",
+                        "Number",
+                        "number",
+                        "String",
+                        "string",
+                        "Boolean",
+                        "boolean",
+                        "Undefined",
+                        "undefined",
+                    ],
+                },
+                {
+                    ruleName: "id-match",
+                },
+            ],
+        });
+    });
+
     test("conversion with require-const-for-all-caps argument and check-format argument", () => {
         const result = convertVariableName({
             ruleArguments: ["check-format", "require-const-for-all-caps"],
@@ -306,7 +349,7 @@ describe("convertVariableName", () => {
                 {
                     notices: [ConstRequiredForAllCapsMsg],
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -338,7 +381,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -371,7 +414,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -408,7 +451,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE"],
@@ -449,7 +492,7 @@ describe("convertVariableName", () => {
             rules: [
                 {
                     ruleName: "@typescript-eslint/naming-convention",
-                    rules: [
+                    ruleArguments: [
                         {
                             selector: "variable",
                             format: ["camelCase", "UPPER_CASE", "PascalCase", "snake_case"],
