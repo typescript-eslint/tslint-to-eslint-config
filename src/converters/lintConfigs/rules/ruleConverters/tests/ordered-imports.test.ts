@@ -482,7 +482,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -557,7 +557,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -632,7 +632,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -733,7 +733,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -807,7 +807,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
@@ -880,7 +880,7 @@ describe("convertOrderedImports", () => {
                                 ["sibling", "index"],
                             ],
                             pathGroupsExcludedImportTypes: [],
-                            distinctGroup: true,
+                            distinctGroup: false,
                             pathGroups: [
                                 {
                                     pattern: "./",
