@@ -6,7 +6,7 @@ import { createStubConverter } from "../lintConfigs/rules/ruleConverter.stubs";
 import { convertFileComments, ConvertFileCommentsDependencies } from "./convertFileComments";
 
 const createStubDependencies = (
-    readFileResult: string | Error,
+    readFileResult: Error | string,
 ): ConvertFileCommentsDependencies => ({
     converters: new Map([
         ["ts-a", createStubConverter(["es-a"])],

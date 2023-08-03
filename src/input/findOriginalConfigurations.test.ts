@@ -42,7 +42,7 @@ const createStubDependencies = (
         },
     }),
     mergeLintConfigurations: (
-        _: OriginalConfigurations<ESLintConfiguration> | Error,
+        _: Error | OriginalConfigurations<ESLintConfiguration>,
         tslint: OriginalConfigurations<TSLintConfiguration>,
     ) => tslint,
     ...overrides,

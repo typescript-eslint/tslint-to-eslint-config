@@ -8,10 +8,10 @@ type ESLintOptionPath = {
 };
 type ESLintSimpleOption = string[];
 type ESLintComplexOption = RequireAtLeastOne<{
-    paths: (string | ESLintOptionPath)[];
+    paths: (ESLintOptionPath | string)[];
     patterns: string[];
 }>;
-type ESLintOptions = ESLintSimpleOption | ESLintComplexOption;
+type ESLintOptions = ESLintComplexOption | ESLintSimpleOption;
 
 const NOTICE_MATCH_PATTERNS =
     "ESLint and TSLint use different strategies to match patterns. TSLint uses standard regular expressions, but ESLint .gitignore spec.";

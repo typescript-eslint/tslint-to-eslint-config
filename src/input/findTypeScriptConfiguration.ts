@@ -22,7 +22,7 @@ const defaultTypeScriptConfiguration = {
 export const findTypeScriptConfiguration = async (
     dependencies: FindReportedConfigurationDependencies,
     config: string | undefined,
-): Promise<TypeScriptConfiguration | Error> => {
+): Promise<Error | TypeScriptConfiguration> => {
     const rawConfiguration = await findReportedConfiguration<TypeScriptConfiguration>(
         dependencies.exec,
         "tsc --showConfig -p",

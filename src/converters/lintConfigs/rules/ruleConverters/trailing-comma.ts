@@ -151,7 +151,7 @@ type TSLintArg = {
     esSpecCompliant?: boolean;
 };
 
-type TSLintArgValue = TSLintStringValue | TSLintObject;
+type TSLintArgValue = TSLintObject | TSLintStringValue;
 type TSLintObjectKey = keyof TSLintObject;
 
 type TSLintObject = {
@@ -166,8 +166,8 @@ type TSLintStringValue = "always" | "never";
 type TSLintStringValueForObject = TSLintStringValue | "ignore";
 
 // ESLint
-type ESLintArgValue = ESLintStringValue | ESLintObject;
-type ESLintStringValue = "never" | "always" | "always-multiline" | "only-multiline" | "ignore";
+type ESLintArgValue = ESLintObject | ESLintStringValue;
+type ESLintStringValue = "always-multiline" | "always" | "ignore" | "never" | "only-multiline";
 type ESLintObject = {
     arrays?: ESLintStringValue;
     objects?: ESLintStringValue;

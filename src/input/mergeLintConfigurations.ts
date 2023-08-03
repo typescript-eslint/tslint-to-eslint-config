@@ -3,7 +3,7 @@ import { OriginalConfigurations } from "./findOriginalConfigurations";
 import { TSLintConfiguration } from "./findTSLintConfiguration";
 
 export const mergeLintConfigurations = (
-    eslint: OriginalConfigurations<ESLintConfiguration> | Error,
+    eslint: Error | OriginalConfigurations<ESLintConfiguration>,
     tslint: OriginalConfigurations<TSLintConfiguration>,
 ): OriginalConfigurations<TSLintConfiguration> => {
     if (eslint instanceof Error) {
