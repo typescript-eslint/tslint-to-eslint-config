@@ -64,7 +64,7 @@ _Default: none_
 Indicates to convert from [TSLint rule flags](https://palantir.github.io/tslint/usage/rule-flags) to [ESLint inline comments](https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments).
 Comments such as `// tslint:disable: tslint-rule-name` will be converted to equivalents like `// eslint-disable eslint-rule-name`.
 
-If passed without arguments, respects the `excludes`, `files`, and `includes` in your TypeScript configuration.
+If passed without arguments, respects the `exclude`, `files`, and `include` in your TypeScript configuration.
 
 If passed a single file path ending with `.json`, that is treated as a TypeScript configuration file describing with files to convert.
 
