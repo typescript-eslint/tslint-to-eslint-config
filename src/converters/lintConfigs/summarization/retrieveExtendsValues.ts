@@ -40,7 +40,7 @@ const pluginExtensions = new Map([
  */
 export const retrieveExtendsValues = async (
     dependencies: RetrieveExtendsValuesDependencies,
-    rawExtensionNames: string | string[],
+    rawExtensionNames: string[] | string,
 ): Promise<RetrievedExtensionValues> => {
     const importedExtensions: Partial<ESLintConfiguration>[] = [];
     const configurationErrors: ConfigurationError[] = [];

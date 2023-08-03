@@ -8,9 +8,9 @@ export const asError = (error: unknown) => (error instanceof Error ? error : new
 
 export const isDefined = <Item>(item: Item | undefined): item is Item => item !== undefined;
 
-export const isError = <Item>(item: Item | Error): item is Error => item instanceof Error;
+export const isError = <Item>(item: Error | Item): item is Error => item instanceof Error;
 
-export const isTruthy = <Item>(item: Item | false | undefined | null | 0): item is Item => !!item;
+export const isTruthy = <Item>(item: Item | 0 | false | null | undefined): item is Item => !!item;
 
 export const removeEmptyMembers = <T extends Record<string, unknown>>(items: T): T => {
     const result = {} as T;
@@ -42,10 +42,10 @@ export const separateErrors = <Item>(mixed: (Error | Item)[]): [Error[], Item[]]
     return [errors, items];
 };
 
-export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<keyof T, Keys>> &
-    {
-        [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
-    }[Keys];
+export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = {
+    [K in Keys]-?: Partial<Pick<T, Exclude<Keys, K>>> & Required<Pick<T, K>>;
+}[Keys] &
+    Pick<T, Exclude<keyof T, Keys>>;
 
 export const uniqueFromSources = <T>(...sources: (T | T[] | undefined)[]) => {
     const items: T[] = [];

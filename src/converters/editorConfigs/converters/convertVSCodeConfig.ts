@@ -13,7 +13,7 @@ const knownMissingSettings = [
 ];
 
 export const convertVSCodeConfig: EditorConfigConverter = (rawEditorSettings, settings) => {
-    const editorSettings: Record<string, string | number | symbol> = parseJson(rawEditorSettings);
+    const editorSettings: Record<string, number | string | symbol> = parseJson(rawEditorSettings);
     const missing = knownMissingSettings.filter((setting) => editorSettings[setting]);
 
     const autoFixOnSave =

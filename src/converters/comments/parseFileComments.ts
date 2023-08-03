@@ -9,7 +9,7 @@ export type FileComment = {
     ruleNames: string[];
 };
 
-export type TSLintDirective = "tslint:disable" | "tslint:disable-next-line" | "tslint:enable";
+export type TSLintDirective = "tslint:disable-next-line" | "tslint:disable" | "tslint:enable";
 
 /**
  * @see https://github.com/Microsoft/TypeScript/issues/21049

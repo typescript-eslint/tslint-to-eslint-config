@@ -6,7 +6,7 @@ import { importer } from "./importer";
 const stubCwd = "/path/to/cwd";
 
 type StubImporterSettings = {
-    files?: Record<string, string | Error>;
+    files?: Record<string, Error | string>;
     modules?: Record<string, unknown>;
 };
 

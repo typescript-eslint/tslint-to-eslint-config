@@ -10,7 +10,7 @@ import { importer } from "./importer";
 
 export type ESLintConfiguration = {
     env?: Record<string, boolean | undefined>;
-    extends?: string | string[];
+    extends?: string[] | string;
     globals?: Record<string, boolean | undefined>;
     rules?: ESLintConfigurationRules;
 };
@@ -35,7 +35,7 @@ export type FindESLintConfigurationDependencies = {
 export const findESLintConfiguration = async (
     dependencies: FindESLintConfigurationDependencies,
     config: Pick<ConfigurationLocations, "config" | "eslint">,
-): Promise<OriginalConfigurations<ESLintConfiguration> | Error> => {
+): Promise<Error | OriginalConfigurations<ESLintConfiguration>> => {
     const filePath = config.eslint ?? config.config;
     const [rawConfiguration, reportedConfiguration] = await Promise.all([
         findRawConfiguration<ESLintConfiguration>(dependencies.importer, filePath, {

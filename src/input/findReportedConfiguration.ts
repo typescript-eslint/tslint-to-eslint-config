@@ -29,7 +29,7 @@ export const findReportedConfiguration = async <Configuration>(
     }
 };
 
-const execAndCatch = async (exec: Exec, fullCommand: string): Promise<string | Error> => {
+const execAndCatch = async (exec: Exec, fullCommand: string): Promise<Error | string> => {
     try {
         const { stderr, stdout } = await exec(fullCommand);
 

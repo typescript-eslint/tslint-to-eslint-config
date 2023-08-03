@@ -16,7 +16,7 @@ export type CommentFileNames = {
 
 export const collectCommentFileNames = async (
     dependencies: CollectCommentFileNamesDependencies,
-    filePathGlobs: true | string | string[],
+    filePathGlobs: string[] | string | true,
     typescriptConfiguration?: TypeScriptConfiguration,
 ): Promise<CommentFileNames | Error> => {
     if (filePathGlobs === true) {

@@ -10,7 +10,7 @@ export type ConfigurationLocations = {
     /*
      * Original Editor configuration file path(s), such as `.vscode/settings.json`.
      */
-    editor?: string | string[];
+    editor?: string[] | string;
 
     /**
      * Original ESLint configuration file path, such as `.eslintrc.js`.
@@ -50,7 +50,7 @@ export type TSLintToESLintSettings = LintConfigConversionSettings & {
     /**
      * File globs to convert `tslint:disable` comments within to `eslint-disable`.
      */
-    comments?: true | string | string[];
+    comments?: string[] | string | true;
 
     /**
      * Original Editor configuration file path, such as `.vscode/settings.json`.
