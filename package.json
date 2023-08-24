@@ -29,7 +29,7 @@
         "@types/json5": "0.0.30",
         "@types/lodash": "4.14.197",
         "@types/minimatch": "5.1.2",
-        "@types/node": "18.17.9",
+        "@types/node": "18.17.11",
         "@typescript-eslint/eslint-plugin": "5.53.0",
         "@typescript-eslint/parser": "5.53.0",
         "ansi-regex": "6.0.1",
