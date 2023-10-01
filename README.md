@@ -21,7 +21,7 @@ Consider taking a peek at the relevant documentation: 🤔
 
 ## Usage
 
-> ⚠ Coming from Angular? Use **[angular-eslint](https://github.com/angular-eslint/angular-eslint#migrating-an-angular-cli-project-from-codelyzer-and-tslint)** instead to coordinate around this tool and others.
+> ⚠ Coming from Angular? Use **[angular-eslint](https://github.com/angular-eslint/angular-eslint/blob/main/docs/MIGRATING_FROM_TSLINT.md)** instead to coordinate around this tool and others.
 
 ```shell
 npx tslint-to-eslint-config
