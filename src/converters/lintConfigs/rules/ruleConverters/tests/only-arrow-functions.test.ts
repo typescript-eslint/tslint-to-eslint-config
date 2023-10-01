@@ -12,6 +12,7 @@ describe("convertOnlyArrowFunctions", () => {
             plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
+                    ruleArguments: [{}],
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
@@ -27,7 +28,11 @@ describe("convertOnlyArrowFunctions", () => {
             plugins: ["eslint-plugin-prefer-arrow"],
             rules: [
                 {
-                    notices: ["ESLint does not support allowing standalone function declarations."],
+                    ruleArguments: [
+                        {
+                            allowStandaloneDeclarations: true,
+                        },
+                    ],
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
@@ -44,8 +49,9 @@ describe("convertOnlyArrowFunctions", () => {
             rules: [
                 {
                     notices: [
-                        "ESLint does not support allowing named functions defined with the function keyword.",
+                        "ESLint (eslint-plugin-prefer-arrow plugin) does not support allowing named functions defined with the function keyword.",
                     ],
+                    ruleArguments: [{}],
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
             ],
@@ -62,8 +68,12 @@ describe("convertOnlyArrowFunctions", () => {
             rules: [
                 {
                     notices: [
-                        "ESLint does not support allowing standalone function declarations.",
-                        "ESLint does not support allowing named functions defined with the function keyword.",
+                        "ESLint (eslint-plugin-prefer-arrow plugin) does not support allowing named functions defined with the function keyword.",
+                    ],
+                    ruleArguments: [
+                        {
+                            allowStandaloneDeclarations: true,
+                        },
                     ],
                     ruleName: "prefer-arrow/prefer-arrow-functions",
                 },
