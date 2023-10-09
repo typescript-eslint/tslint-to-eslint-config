@@ -11,6 +11,14 @@ export const fsFileSystem: FileSystem = {
             return false;
         }
     },
+    directoryExists: async (filePath: string) => {
+        try {
+            const stat = await fs.promises.stat(filePath);
+            return stat.isDirectory();
+        } catch (error) {
+            return false;
+        }
+    },
     readFile: async (filePath: string) => {
         try {
             return (await fs.promises.readFile(filePath)).toString();

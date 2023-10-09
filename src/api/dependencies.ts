@@ -121,6 +121,7 @@ export const findOriginalConfigurationsDependencies: FindOriginalConfigurationsD
 
 export const collectCommentFileNamesDependencies: CollectCommentFileNamesDependencies = {
     findTypeScriptConfiguration: bind(findTypeScriptConfiguration, findConfigurationDependencies),
+    fileSystem: fsFileSystem,
 };
 
 export const extractGlobPathsDependencies: ExtractGlobPathsDependencies = {

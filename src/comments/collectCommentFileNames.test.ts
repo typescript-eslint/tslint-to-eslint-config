@@ -1,5 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
+import { createStubFileSystem } from "../adapters/fileSystem.stub";
+import { fsFileSystem as fileSystem } from "../adapters/fsFileSystem";
 import { collectCommentFileNames } from "./collectCommentFileNames";
 
 const stubFoundConfiguration = {
@@ -10,7 +12,10 @@ describe("collectCommentFileNames", () => {
     it("returns an error result when filePathGlobs is true and typescriptConfiguration is undefined", async () => {
         const findTypeScriptConfiguration = async () => stubFoundConfiguration;
 
-        const result = await collectCommentFileNames({ findTypeScriptConfiguration }, true);
+        const result = await collectCommentFileNames(
+            { findTypeScriptConfiguration, fileSystem },
+            true,
+        );
 
         expect(result).toEqual(expect.any(Error));
     });
@@ -22,7 +27,7 @@ describe("collectCommentFileNames", () => {
         };
 
         const result = await collectCommentFileNames(
-            { findTypeScriptConfiguration },
+            { findTypeScriptConfiguration, fileSystem },
             true,
             typescriptConfiguration,
         );
@@ -35,7 +40,7 @@ describe("collectCommentFileNames", () => {
         const filePathGlobs = ["a.ts"];
 
         const result = await collectCommentFileNames(
-            { findTypeScriptConfiguration },
+            { findTypeScriptConfiguration, fileSystem },
             filePathGlobs,
         );
 
@@ -51,7 +56,7 @@ describe("collectCommentFileNames", () => {
         const filePathGlobs = "a.ts";
 
         const result = await collectCommentFileNames(
-            { findTypeScriptConfiguration },
+            { findTypeScriptConfiguration, fileSystem },
             filePathGlobs,
         );
 
@@ -65,7 +70,7 @@ describe("collectCommentFileNames", () => {
         const findTypeScriptConfiguration = async () => error;
 
         const result = await collectCommentFileNames(
-            { findTypeScriptConfiguration },
+            { findTypeScriptConfiguration, fileSystem },
             "tsconfig.json",
         );
 
@@ -76,12 +81,30 @@ describe("collectCommentFileNames", () => {
         const findTypeScriptConfiguration = async () => stubFoundConfiguration;
 
         const result = await collectCommentFileNames(
-            { findTypeScriptConfiguration },
+            { findTypeScriptConfiguration, fileSystem },
             "tsconfig.json",
         );
 
         expect(result).toEqual({
             include: ["a.ts"],
+        });
+    });
+
+    it("returns only files when filePathGlobs includes directories", async () => {
+        const findTypeScriptConfiguration = async () => ({
+            include: ["directory"],
+        });
+
+        const result = await collectCommentFileNames(
+            {
+                findTypeScriptConfiguration,
+                fileSystem: createStubFileSystem({ isDir: true }),
+            },
+            "tsconfig.json",
+        );
+
+        expect(result).toEqual({
+            include: [],
         });
     });
 });

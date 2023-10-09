@@ -1,3 +1,4 @@
+import { FileSystem } from "../adapters/fileSystem";
 import { SansDependencies } from "../binding";
 import {
     findTypeScriptConfiguration,
@@ -7,6 +8,7 @@ import { uniqueFromSources } from "../utils";
 
 export type CollectCommentFileNamesDependencies = {
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
+    fileSystem: Pick<FileSystem, "directoryExists">;
 };
 
 export type CommentFileNames = {
@@ -26,12 +28,27 @@ export const collectCommentFileNames = async (
             );
         }
 
+        const includeList = uniqueFromSources(
+            typescriptConfiguration.files,
+            typescriptConfiguration.include,
+        );
+
+        // Remove directories specified in the include list. Ignore
+        // Errors as they'll be handled when reading the file.
+        const includeListFiles = (
+            await Promise.all(includeList.map(dependencies.fileSystem.directoryExists))
+        )
+            .map((isDirectory, i) => {
+                if (isDirectory) {
+                    return null;
+                }
+                return includeList[i];
+            })
+            .filter((item): item is string => typeof item === "string");
+
         return {
             exclude: typescriptConfiguration.exclude,
-            include: uniqueFromSources(
-                typescriptConfiguration.files,
-                typescriptConfiguration.include,
-            ),
+            include: includeListFiles,
         };
     }
 
