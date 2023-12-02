@@ -13,7 +13,7 @@
         "chalk": "4.1.2",
         "commander": "11.1.0",
         "cson-parser": "4.0.9",
-        "eslint-config-prettier": "9.0.0",
+        "eslint-config-prettier": "9.1.0",
         "glob": "10.3.9",
         "json5": "2.2.3",
         "lodash": "4.17.21",
