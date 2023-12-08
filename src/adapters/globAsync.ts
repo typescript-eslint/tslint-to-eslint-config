@@ -1,4 +1,4 @@
-import glob from "glob";
+import { glob } from "glob";
 
 export const globAsync = async (pattern: string) => {
     return new Promise<Error | string[]>((resolve) => {
