@@ -15,7 +15,7 @@ export const fsFileSystem: FileSystem = {
         try {
             const stat = await fs.promises.stat(filePath);
             return stat.isDirectory();
-        } catch (error) {
+        } catch {
             return false;
         }
     },

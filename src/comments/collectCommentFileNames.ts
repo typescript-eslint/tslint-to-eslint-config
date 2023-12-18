@@ -4,7 +4,7 @@ import {
     findTypeScriptConfiguration,
     TypeScriptConfiguration,
 } from "../input/findTypeScriptConfiguration";
-import { uniqueFromSources } from "../utils";
+import { isTruthy, uniqueFromSources } from "../utils";
 
 export type CollectCommentFileNamesDependencies = {
     findTypeScriptConfiguration: SansDependencies<typeof findTypeScriptConfiguration>;
@@ -38,13 +38,8 @@ export const collectCommentFileNames = async (
         const includeListFiles = (
             await Promise.all(includeList.map(dependencies.fileSystem.directoryExists))
         )
-            .map((isDirectory, i) => {
-                if (isDirectory) {
-                    return null;
-                }
-                return includeList[i];
-            })
-            .filter((item): item is string => typeof item === "string");
+            .map((isDirectory, i) => !isDirectory && includeList[i])
+            .filter(isTruthy);
 
         return {
             exclude: typescriptConfiguration.exclude,
