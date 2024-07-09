@@ -26,7 +26,7 @@
         "@swc/jest": "0.2.29",
         "@types/eslint-config-prettier": "6.11.3",
         "@types/glob": "8.1.0",
-        "@types/json5": "0.0.30",
+        "@types/json5": "2.2.0",
         "@types/lodash": "4.17.6",
         "@types/minimatch": "5.1.2",
         "@types/node": "20.14.10",
