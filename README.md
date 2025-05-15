@@ -14,7 +14,7 @@ Converts your TSLint configuration to the closest reasonable ESLint equivalent.
 Hooray!
 Use `tslint-to-eslint-config` to expedite migrating your project onto ESLint.
 
-Consider taking a peek at the relevant documentation: 🤔
+Consider taking a peek at the relevant documentation:
 
 -   [ESLint](https://eslint.org/docs) itself
 -   [typescript-eslint](https://typescript-eslint.io), which allows TypeScript files to be linted by ESLint
