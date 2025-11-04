@@ -27,7 +27,7 @@ describe("convertOneLine", () => {
             rules: [
                 {
                     notices: [CheckAllTokensMsg],
-                    ruleArguments: ["1tbs"],
+                    ruleArguments: ["1tbs", { allowSingleLine: true }],
                     ruleName: "brace-style",
                 },
             ],
@@ -48,7 +48,7 @@ describe("convertOneLine", () => {
         expect(result).toEqual({
             rules: [
                 {
-                    ruleArguments: ["1tbs"],
+                    ruleArguments: ["1tbs", { allowSingleLine: true }],
                     ruleName: "brace-style",
                 },
             ],

@@ -8,7 +8,7 @@ export const convertOneLine: RuleConverter = (tslintRule) => {
         rules: [
             {
                 notices: ruleLen > 0 && ruleLen < 5 ? [CheckAllTokensMsg] : undefined,
-                ruleArguments: [ruleLen > 0 ? "1tbs" : "off"],
+                ruleArguments: ruleLen > 0 ? ["1tbs", { allowSingleLine: true }] : ["off"],
                 ruleName: "brace-style",
             },
         ],
