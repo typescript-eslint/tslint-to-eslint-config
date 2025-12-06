@@ -6,6 +6,7 @@ import { extractGlobPaths, ExtractGlobPathsDependencies } from "./extractGlobPat
 const createStubDependencies = (
     overrides: Partial<ExtractGlobPathsDependencies> = {},
 ): ExtractGlobPathsDependencies => ({
+    // @ts-expect-error Typings
     globAsync: async () => ["a.ts", "b.ts"],
     ...overrides,
 });
@@ -15,6 +16,7 @@ describe("extractGlobPaths", () => {
         // Arrange
         const globAsyncError = new Error();
         const dependencies = createStubDependencies({
+            // @ts-expect-error Typings
             globAsync: async () => globAsyncError,
         });
 
@@ -33,6 +35,7 @@ describe("extractGlobPaths", () => {
     it("returns an error when there are no resultant file paths", async () => {
         // Arrange
         const dependencies = createStubDependencies({
+            // @ts-expect-error Typings
             globAsync: async () => [],
         });
 
@@ -51,6 +54,7 @@ describe("extractGlobPaths", () => {
     it("returns an error when all globbed file paths are excluded", async () => {
         // Arrange
         const dependencies = createStubDependencies({
+            // @ts-expect-error Typings
             globAsync: async () => ["a.ts"],
         });
 
@@ -70,6 +74,7 @@ describe("extractGlobPaths", () => {
     it("returns the paths when unique file paths are not excluded", async () => {
         // Arrange
         const dependencies = createStubDependencies({
+            // @ts-expect-error Typings
             globAsync: async () => ["a.ts"],
         });
 
