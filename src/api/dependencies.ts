@@ -1,6 +1,7 @@
+import { glob } from "glob";
+
 import { childProcessExec } from "../adapters/childProcessExec";
 import { fsFileSystem } from "../adapters/fsFileSystem";
-import { globAsync } from "../adapters/globAsync";
 import { nativeImporter } from "../adapters/nativeImporter";
 import { processLogger } from "../adapters/processLogger";
 import { bind } from "../binding";
@@ -125,7 +126,7 @@ export const collectCommentFileNamesDependencies: CollectCommentFileNamesDepende
 };
 
 export const extractGlobPathsDependencies: ExtractGlobPathsDependencies = {
-    globAsync,
+    globAsync: glob,
 };
 
 export const convertCommentsDependencies: ConvertCommentsDependencies = {

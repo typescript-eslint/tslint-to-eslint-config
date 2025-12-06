@@ -1,12 +1,12 @@
+import { glob } from "glob";
 import minimatch from "minimatch";
 
-import { GlobAsync } from "../../adapters/globAsync";
 import { CommentFileNames } from "../../comments/collectCommentFileNames";
 import { ResultStatus, ResultWithDataStatus } from "../../types";
 import { separateErrors, uniqueFromSources } from "../../utils";
 
 export type ExtractGlobPathsDependencies = {
-    globAsync: GlobAsync;
+    globAsync: typeof glob;
 };
 
 export const extractGlobPaths = async (
@@ -14,7 +14,7 @@ export const extractGlobPaths = async (
     { exclude, include }: CommentFileNames,
 ): Promise<ResultWithDataStatus<string[]>> => {
     const [fileGlobErrors, globbedFilePaths] = separateErrors(
-        await Promise.all(include.map(dependencies.globAsync)),
+        await Promise.all(include.map(async (pattern) => dependencies.globAsync(pattern))),
     );
 
     if (fileGlobErrors.length !== 0) {
