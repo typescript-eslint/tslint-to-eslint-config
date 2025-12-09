@@ -41,6 +41,94 @@ Object {
 `);
     });
 
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is false", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": false,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": false,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is null", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": null,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": null,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is a number", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": 1,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": 1,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is an empty object", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": {},
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": {},
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
     it("does not include eslint.autoFixOnSave when source.fixAll.tslint is false", () => {
         // Arrange
         const editorSettings = {
@@ -112,6 +200,23 @@ Object {
         });
     });
 
+    it("does not include configFile when tslint.configFile is a number", () => {
+        // Arrange
+        const editorSettings = {
+            "tslint.configFile": 1,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            contents: JSON.stringify(editorSettings, null, 4),
+            missing: [],
+        });
+    });
+
     it("includes configFile when tslint.configFile matches", () => {
         // Arrange
         const editorSettings = {
@@ -133,6 +238,28 @@ Object {
     }
 }
 ",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include configFile when tslint.configFile does not match", () => {
+        // Arrange
+        const editorSettings = {
+            "tslint.configFile": "../other.json",
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"tslint.configFile\\": \\"../other.json\\",
+    \\"unrelated\\": true
+}",
   "missing": Array [],
 }
 `);

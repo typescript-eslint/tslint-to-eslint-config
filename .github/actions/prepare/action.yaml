@@ -1,0 +1,13 @@
+description: Prepares the repo for a typical CI job
+
+name: Prepare
+
+runs:
+    steps:
+        - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+          with:
+              cache: npm
+              node-version: 24.11.1
+        - run: npm ci
+          shell: bash
+    using: composite
