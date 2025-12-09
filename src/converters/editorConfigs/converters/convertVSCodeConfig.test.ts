@@ -41,6 +41,94 @@ Object {
 `);
     });
 
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is false", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": false,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": false,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is null", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": null,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": null,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is a number", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": 1,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": 1,
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include eslint.autoFixOnSave when editor.codeActionsOnSave is an empty object", () => {
+        // Arrange
+        const editorSettings = {
+            "editor.codeActionsOnSave": {},
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"editor.codeActionsOnSave\\": {},
+    \\"unrelated\\": true
+}",
+  "missing": Array [],
+}
+`);
+    });
+
     it("does not include eslint.autoFixOnSave when source.fixAll.tslint is false", () => {
         // Arrange
         const editorSettings = {
