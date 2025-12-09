@@ -1,4 +1,3 @@
-import { glob } from "glob";
 import minimatch from "minimatch";
 
 import { CommentFileNames } from "../../comments/collectCommentFileNames";
@@ -6,7 +5,7 @@ import { ResultStatus, ResultWithDataStatus } from "../../types";
 import { separateErrors, uniqueFromSources } from "../../utils";
 
 export type ExtractGlobPathsDependencies = {
-    globAsync: typeof glob;
+    globAsync: (pattern: string) => Promise<Error | string[]>;
 };
 
 export const extractGlobPaths = async (
