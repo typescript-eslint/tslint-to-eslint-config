@@ -16,7 +16,7 @@ const createStubRunCliDependencies = (overrides: Partial<RunCliDependencies> = {
         ({
             data: createStubOriginalConfigurationsData(),
             status: ResultStatus.Succeeded,
-        } as const),
+        }) as const,
     ...overrides,
     logger: createStubLogger(),
 });
