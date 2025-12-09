@@ -200,6 +200,23 @@ Object {
         });
     });
 
+    it("does not include configFile when tslint.configFile is a number", () => {
+        // Arrange
+        const editorSettings = {
+            "tslint.configFile": 1,
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toEqual({
+            contents: JSON.stringify(editorSettings, null, 4),
+            missing: [],
+        });
+    });
+
     it("includes configFile when tslint.configFile matches", () => {
         // Arrange
         const editorSettings = {
@@ -221,6 +238,28 @@ Object {
     }
 }
 ",
+  "missing": Array [],
+}
+`);
+    });
+
+    it("does not include configFile when tslint.configFile does not match", () => {
+        // Arrange
+        const editorSettings = {
+            "tslint.configFile": "../other.json",
+            unrelated: true,
+        };
+
+        // Act
+        const result = convertVSCodeConfig(JSON.stringify(editorSettings, null, 4), stubSettings);
+
+        // Assert
+        expect(result).toMatchInlineSnapshot(`
+Object {
+  "contents": "{
+    \\"tslint.configFile\\": \\"../other.json\\",
+    \\"unrelated\\": true
+}",
   "missing": Array [],
 }
 `);
