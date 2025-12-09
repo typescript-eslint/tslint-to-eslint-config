@@ -25,13 +25,32 @@ describe("mergeLintConfigurations", () => {
         expect(result).toBe(stubTSLintConfiguration);
     });
 
+    it("returns the tslint configuration when the eslint configuration doesn't have any rules", () => {
+        // Arrange
+        const eslint: OriginalConfigurations<ESLintConfiguration> = {
+            full: {
+                env: {},
+                extends: [],
+            },
+            raw: {},
+        };
+
+        // Act
+        const result = mergeLintConfigurations(eslint, stubTSLintConfiguration);
+
+        // Assert
+        expect(result).toBe(stubTSLintConfiguration);
+    });
+
     it("returns the tslint configuration when the eslint configuration doesn't have tslint rules", () => {
         // Arrange
         const eslint: OriginalConfigurations<ESLintConfiguration> = {
             full: {
                 env: {},
                 extends: [],
-                rules: {},
+                rules: {
+                    unrelated: "error",
+                },
             },
             raw: {},
         };
