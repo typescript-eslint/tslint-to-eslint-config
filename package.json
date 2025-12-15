@@ -22,7 +22,7 @@
         "typescript": "4.9.5"
     },
     "devDependencies": {
-        "@swc/core": "1.15.4",
+        "@swc/core": "1.15.5",
         "@swc/jest": "0.2.39",
         "@types/eslint-config-prettier": "6.11.3",
         "@types/json5": "2.2.0",
