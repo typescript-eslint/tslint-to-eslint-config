@@ -26,7 +26,7 @@
         "@swc/jest": "0.2.39",
         "@types/eslint-config-prettier": "6.11.3",
         "@types/json5": "2.2.0",
-        "@types/lodash": "4.17.21",
+        "@types/lodash": "4.17.22",
         "@types/minimatch": "5.1.2",
         "@types/node": "22.19.5",
         "@typescript-eslint/eslint-plugin": "5.53.0",
