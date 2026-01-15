@@ -28,7 +28,7 @@
         "@types/json5": "2.2.0",
         "@types/lodash": "4.17.23",
         "@types/minimatch": "5.1.2",
-        "@types/node": "22.19.6",
+        "@types/node": "22.19.7",
         "@typescript-eslint/eslint-plugin": "5.53.0",
         "@typescript-eslint/parser": "5.53.0",
         "ansi-regex": "6.2.2",
