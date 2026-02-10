@@ -14,7 +14,7 @@
         "commander": "14.0.3",
         "cson-parser": "4.0.9",
         "eslint-config-prettier": "10.1.8",
-        "glob": "13.0.1",
+        "glob": "13.0.2",
         "json5": "2.2.3",
         "lodash": "4.17.23",
         "minimatch": "5.1.6",
