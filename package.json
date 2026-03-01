@@ -33,7 +33,7 @@
         "@typescript-eslint/parser": "5.53.0",
         "ansi-regex": "6.2.2",
         "cross-env": "10.1.0",
-        "eslint": "8.57.1",
+        "eslint": "10.0.2",
         "eslint-plugin-simple-import-sort": "12.1.1",
         "husky": "9.1.7",
         "jest": "27.5.1",
