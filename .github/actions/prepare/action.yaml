@@ -7,7 +7,7 @@ runs:
         - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
           with:
               cache: npm
-              node-version: 24.11.1
+              node-version: 24.14.0
         - run: npm ci
           shell: bash
     using: composite
