@@ -3,7 +3,7 @@ jobs:
         name: Compile
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
             - uses: ./.github/actions/prepare
             - run: npm run compile
             - run: node bin/tslint-to-eslint-config --version
@@ -11,21 +11,21 @@ jobs:
         name: Format
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
             - uses: ./.github/actions/prepare
             - run: npm run prettier -- --list-different
     lint:
         name: Lint
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
             - uses: ./.github/actions/prepare
             - run: npm run eslint
     test:
         name: Test
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
             - uses: ./.github/actions/prepare
             - run: npm run test:ci
 
