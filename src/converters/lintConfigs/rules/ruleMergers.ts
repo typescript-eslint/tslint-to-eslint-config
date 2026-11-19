@@ -2,6 +2,7 @@ import { mergeBanTypes } from "./ruleMergers/ban-types";
 import { mergeConsistentTypeAssertions } from "./ruleMergers/consistent-type-assertions";
 import { mergeIndent } from "./ruleMergers/indent";
 import { mergeJsxA11yAltText } from "./ruleMergers/jsx-a11y-alt-text";
+import { mergeJsxCurlySpacing } from "./ruleMergers/jsx-curly-spacing";
 import { mergeNoMemberDelimiterStyle } from "./ruleMergers/member-delimiter-style";
 import { mergeNamingConvention } from "./ruleMergers/naming-convention";
 import { mergeNoEmpty } from "./ruleMergers/no-empty";
@@ -20,6 +21,7 @@ export const ruleMergers = new Map([
     ["@typescript-eslint/no-unnecessary-type-assertion", mergeNoUnnecessaryTypeAssertion],
     ["@typescript-eslint/triple-slash-reference", mergeTripleSlashReference],
     ["jsx-a11y/alt-text", mergeJsxA11yAltText],
+    ["react/jsx-curly-spacing", mergeJsxCurlySpacing],
     ["no-empty", mergeNoEmpty],
     ["no-eval", mergeNoEval],
 ]);
